@@ -11,3 +11,4 @@ public/qa-screenshots/*.png
 .env*
 .vendor/
 install-log.txt
+temp-*.mjs
