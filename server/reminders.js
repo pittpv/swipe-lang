@@ -103,7 +103,14 @@ export async function sendReminderPush(db, user) {
     await webpush.sendNotification(user.push_subscription, payload);
     return { sent: true, due };
   } catch (err) {
-    if (err.statusCode === 404 || err.statusCode === 410) {
+    // 404/410 — subscription expired; 401/403 — VAPID key mismatch (keys were
+    // rotated). Both are permanent: drop the subscription so the client can
+    // re-subscribe with the current key on the next visit.
+    if ([401, 403, 404, 410].includes(err.statusCode)) {
+      if (user.push_schedule_id) {
+        // Best-effort: don't leave an orphaned schedule behind.
+        await deleteReminderSchedule(user.push_schedule_id).catch(() => {});
+      }
       user.push_subscription = null;
       user.push_schedule_id = null;
       db.persist();

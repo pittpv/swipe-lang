@@ -284,8 +284,30 @@ export class App {
       const status = await api('/push/status');
       this.reminder.enabled = status.enabled;
       if (status.time) this.reminderTime = status.time;
+      if (status.enabled) await this.healPushSubscription();
     } catch {
       /* reminders stay hidden/default on failure */
+    }
+  }
+
+  /**
+   * Silent self-heal on app open: re-subscribes when the stored subscription
+   * is missing or was made with a stale server VAPID key (pushes would
+   * otherwise fail with 403 forever).
+   */
+  async healPushSubscription() {
+    try {
+      if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
+      const registration = await navigator.serviceWorker.getRegistration();
+      const subscription = await registration?.pushManager.getSubscription();
+      let needsResubscribe = !subscription;
+      if (subscription) {
+        const config = await api('/push/config');
+        needsResubscribe = !this.sameVapidKey(subscription, config.publicKey);
+      }
+      if (needsResubscribe) await this.pushSubscribe();
+    } catch {
+      /* keep UI state as-is; the toggle still works manually */
     }
   }
 
@@ -301,6 +323,12 @@ export class App {
     const registration = await navigator.serviceWorker.register('/sw.js');
     await navigator.serviceWorker.ready;
     let subscription = await registration.pushManager.getSubscription();
+    // A subscription made with an older server VAPID key gets 403 on every
+    // send — drop it and re-subscribe with the current key.
+    if (subscription && !this.sameVapidKey(subscription, config.publicKey)) {
+      await subscription.unsubscribe().catch(() => {});
+      subscription = null;
+    }
     if (!subscription) {
       subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
@@ -308,6 +336,12 @@ export class App {
       });
     }
     return subscription.toJSON();
+  }
+
+  sameVapidKey(subscription, publicKeyB64) {
+    const current = urlB64ToUint8Array(publicKeyB64);
+    const existing = new Uint8Array(subscription.options?.applicationServerKey ?? []);
+    return existing.length === current.length && existing.every((b, i) => b === current[i]);
   }
 
   async enableReminders() {
