@@ -1,56 +1,64 @@
 # LangApp — Swipe Vocab
 
-PWA для изучения **турецкой лексики (TR→RU)**: свайп влево = знаю, вправо = учу, тап = перевод / произношение / примеры.
+LangApp is a PWA for learning **Turkish vocabulary (TR→RU)** built on **3,564 words** from two CSV dictionaries. Its learning methodology is a proven combination of **spaced repetition + microlearning + gamification** — the same principles behind Anki and Duolingo, delivered through a Tinder-style swipe interface.
 
-Словари: `vocabulary-Eski.csv` + `vocabulary-Yeni.csv` → **3564** уникальных слова.
+## 1. Spaced Repetition — Simplified SM-2 (`server/srs.js`)
 
-## Быстрый старт
+The heart of the app is an adaptation of the SuperMemo-2 algorithm built around two gestures:
 
-```powershell
-npm install
-npm run import:vocab
-npm run dev
-```
+| Action | Result |
+|---|---|
+| **Swipe left** ("I know it") | `repetitions+1`; interval: 1st review → **1 day**, 2nd → **6 days**, then `interval × ease`. With `ease=2.5`: 15 → 38 → 94 days... Word becomes `mature` at ≥ 21-day interval |
+| **Swipe right** ("still learning") | Progress reset: `status=learning`, interval = **1 day**, `ease − 0.2` |
 
-- **Frontend:** http://localhost:5173  
-- **API:** http://localhost:3000  
+Key implementation details:
 
-## Команды
+- **Ease factor** (initial value 2.5) — a per-word "difficulty" score: the more often you forget a word, the slower its intervals grow
+- **Minimum ease = 1.3** (`MIN_EASE`) — protection against endlessly punishing a hard word
+- The `isDue()` function selects only words whose review time has arrived
+- Algorithm correctness is covered by unit tests (`npm test`)
 
-| Команда | Описание |
-|---------|----------|
-| `npm run dev` | API + Vite dev server |
-| `npm run build` | Production build → `dist/` |
-| `npm start` | API + static (после build) |
-| `npm run import:vocab` | Импорт CSV словарей TR→RU |
-| `npm run seed` | Alias импорта (без --replace) |
-| `npm test` | SRS unit tests |
-| `npm run test:e2e` | E2E API (нужен запущенный server) |
-| `npm run report:weekly` | Отчёт D1/D7 retention |
-| `npm run backup` | Бэкап БД → `database/backups/` (хранит 14) |
-| `npm run migrate:pg` | Перенос состояния в Neon Postgres (`POSTGRES_URL`) |
-| `npm start` | Production (после build) |
+## 2. Microlearning: Fixed Short Sessions (`server/session.js`)
 
-## Launch
+- **18 cards per session** (`SESSION_SIZE = 18`) — about 3–5 minutes, following the principle "consistency beats volume"
+- **30% reviews / 70% new words** (`REVIEW_RATIO = 0.3`) — a balance between consolidation and forward progress
+- Reviews are picked most-overdue-first (sorted by `next_review_at`)
+- New words are filtered **by the user's CEFR level** (A1→C1, levels accumulate via `levelsUpTo()`)
+- Edge cases are documented in the workflow spec: empty review queue → new words only; everything learned → celebration + level-up suggestion
 
-- FAQ: `/help/faq.html`
-- Analytics: `/admin/dashboard.html` (ключ `ADMIN_API_KEY`)
-- Deploy: [`docs/DEPLOY.md`](docs/DEPLOY.md)
+## 3. Active Recall + Context
 
-## Документация проекта
+- The swipe forces **recall before the hint**: decision first, verification second
+- **Tapping a card** reveals the translation, audio pronunciation, and usage examples (context-based learning)
+- Analytics events (`tap_translation`, `tap_audio`) measure how often users need help
 
-- Спека: [`ai/memory-bank/site-setup.md`](ai/memory-bank/site-setup.md)
-- План команды: [`ai/memory-bank/langapp-mvp-plan.md`](ai/memory-bank/langapp-mvp-plan.md)
-- Workflow: [`ai/memory-bank/workflow-swipe-vocab.md`](ai/memory-bank/workflow-swipe-vocab.md)
-- Pipeline status: [`ai/memory-bank/pipeline-status.md`](ai/memory-bank/pipeline-status.md)
+## 4. Habit Building: Streaks & Push Reminders
 
-## Стек (MVP)
+- **Streaks** are computed server-side (`server/index.js`): study today = streak preserved, studied yesterday = +1 day, otherwise reset to 1
+- **Web Push via QStash** (`server/reminders.js`): daily reminders at the user's chosen local time, with smart copy:
+  - Words due → *"N words are waiting for review. Five minutes and you're done 🔥"*
+  - All reviewed → *"Today's plan is complete — see you tomorrow 🎉"*
+  - New user → *"Your first 18-word session is waiting"*
 
-Node.js, Express, Vite, vanilla JS. Хранилище — три режима по приоритету:
-**Neon Postgres** (`POSTGRES_URL`, JSONB-документ через serverless HTTP-driver) →
-**Upstash Redis** (`UPSTASH_REDIS_REST_*`) → **локальный JSON-файл** (dev).  
-*Запланированный Laravel + Livewire — после включения PHP `extension=openssl` и установки Composer.*
+## 5. Gamification & Dopamine Loops
 
-## NEXUS
+- **Milestone achievements** (`MILESTONES`): streaks `[3, 5, 7, 10, 14, 20, 30, 50, 75, 100...]` days and vocabulary size `[5, 10, 20 ... 1000]` words
+- Celebrations are styled as an **iMessage conversation** with a "typing…" animation (`src/achievements.js`) — respecting `prefers-reduced-motion`
+- Progressive captions: 30 days → *"Habit formed"*, 100 days → *"Legend!"*
 
-Запуск пайплайна — см. `ai/memory-bank/langapp-mvp-plan.md` §1.
+## 6. Analytics & the Retention Loop
+
+The client emits events (`session_start`, `card_shown`, `swipe_left/right`, `session_complete`), and `npm run report:weekly` generates a weekly **D1/D7 retention report** — measuring whether users come back the next day and the next week.
+
+---
+
+## How It Maps to Learning Science
+
+| Principle | Implementation |
+|---|---|
+| Spaced Repetition (SM-2) | `server/srs.js` — simplified version with an ease factor |
+| Active Recall | Swipe before the translation is shown |
+| Microlearning / consistency | 18-card sessions + daily streak + push reminders |
+| Gamification | Milestones, animated achievements |
+| Adaptivity (zone of proximal development) | CEFR filtering of new words by level |
+| Data-driven improvement | Event analytics + D1/D7 retention reports |
