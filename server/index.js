@@ -61,6 +61,46 @@ function findUser(id) {
   return db.data.users.find((u) => u.id === id);
 }
 
+/**
+ * Deletes one QStash schedule. On failure the id is queued on the user row
+ * (`orphan_schedule_ids`) so a later subscribe/unsubscribe can retry —
+ * otherwise an old schedule would keep firing alongside the new one.
+ * Returns true only when QStash confirmed the deletion.
+ */
+async function removeScheduleOrQueue(user, scheduleId) {
+  try {
+    const ok = await deleteReminderSchedule(scheduleId);
+    if (ok) return true;
+    console.error(`[reminders] DELETE /schedules/${scheduleId} rejected by QStash`);
+  } catch (e) {
+    console.error(`[reminders] DELETE /schedules/${scheduleId} failed: ${e?.message ?? e}`);
+  }
+  if (!Array.isArray(user.orphan_schedule_ids)) user.orphan_schedule_ids = [];
+  if (!user.orphan_schedule_ids.includes(scheduleId)) user.orphan_schedule_ids.push(scheduleId);
+  return false;
+}
+
+/** Best-effort retry of previously failed schedule deletions. Never throws. */
+async function purgeOrphanSchedules(user) {
+  const orphans = Array.isArray(user.orphan_schedule_ids) ? [...user.orphan_schedule_ids] : [];
+  if (!orphans.length) return;
+  const stillStuck = [];
+  await Promise.all(
+    orphans.map(async (scheduleId) => {
+      try {
+        const ok = await deleteReminderSchedule(scheduleId);
+        if (!ok) stillStuck.push(scheduleId);
+      } catch {
+        stillStuck.push(scheduleId);
+      }
+    }),
+  );
+  user.orphan_schedule_ids = stillStuck;
+  if (stillStuck.length) {
+    console.error(`[reminders] orphan QStash schedules still active for user ${user.id}: ${stillStuck.join(', ')}`);
+  }
+}
+
 app.post('/api/auth/register', authRateLimit, (req, res) => {
   const { email, password, referralCode } = req.body ?? {};
   if (!validateEmail(email) || !validatePassword(password)) {
@@ -82,6 +122,7 @@ app.post('/api/auth/register', authRateLimit, (req, res) => {
     referral_code: generateReferralCode(),
     referred_by: referrer?.id ?? null,
     referrals_count: 0,
+    orphan_schedule_ids: [],
     created_at: new Date().toISOString(),
   };
   if (referrer) referrer.referrals_count = (referrer.referrals_count ?? 0) + 1;
@@ -118,13 +159,24 @@ app.post('/api/auth/logout', (req, res) => {
   res.json({ ok: true });
 });
 
-app.delete('/api/account', requireAuth, (req, res) => {
+app.delete('/api/account', requireAuth, async (req, res) => {
   const userId = req.session.userId;
 
-  // Best-effort: kill the reminders schedule before the user row is gone.
+  // Best-effort: kill the reminders schedule(s) before the user row is gone.
   const user = findUser(userId);
-  if (user?.push_schedule_id) {
-    deleteReminderSchedule(user.push_schedule_id).catch(() => {});
+  if (user) {
+    const ids = Array.isArray(user.orphan_schedule_ids) ? [...user.orphan_schedule_ids] : [];
+    if (user.push_schedule_id) ids.push(user.push_schedule_id);
+    await Promise.all(
+      ids.map(async (scheduleId) => {
+        try {
+          const ok = await deleteReminderSchedule(scheduleId);
+          if (!ok) console.error(`[reminders] account delete: schedule ${scheduleId} not removed`);
+        } catch (e) {
+          console.error(`[reminders] account delete: schedule ${scheduleId} failed: ${e?.message ?? e}`);
+        }
+      }),
+    );
   }
 
   db.data.user_word_progress = db.data.user_word_progress.filter((p) => p.user_id !== userId);
@@ -227,9 +279,11 @@ app.post('/api/push/subscribe', requireAuth, async (req, res) => {
   }
   try {
     const user = findUser(req.session.userId);
+    // Retry cleanup of schedules we failed to delete earlier.
+    await purgeOrphanSchedules(user);
     // Replace any previous schedule (time may have changed).
     if (user.push_schedule_id) {
-      await deleteReminderSchedule(user.push_schedule_id).catch(() => {});
+      await removeScheduleOrQueue(user, user.push_schedule_id);
       user.push_schedule_id = null;
     }
     const proto = req.headers['x-forwarded-proto'] || req.protocol;
@@ -256,8 +310,9 @@ app.post('/api/push/subscribe', requireAuth, async (req, res) => {
 app.post('/api/push/unsubscribe', requireAuth, async (req, res) => {
   const user = findUser(req.session.userId);
   if (user.push_schedule_id) {
-    await deleteReminderSchedule(user.push_schedule_id).catch(() => {});
+    await removeScheduleOrQueue(user, user.push_schedule_id);
   }
+  await purgeOrphanSchedules(user);
   user.push_schedule_id = null;
   user.push_subscription = null;
   user.reminder_time = null;

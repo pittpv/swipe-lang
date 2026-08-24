@@ -37,6 +37,9 @@ export class App {
     this.reminder = { enabled: false };
     this.reminderTime = '19:00';
     this.reminderError = '';
+    this.reminderSaveTimer = null;
+    this.reminderSaveInFlight = false;
+    this.reminderSaveQueued = false;
     this.settingsError = '';
     this.settingsSaved = false;
     this.publicStats = { words: 3564, sessionSize: 18 };
@@ -308,6 +311,34 @@ export class App {
   }
 
   async enableReminders() {
+    await this.pushSubscribe();
+  }
+
+  /**
+   * Debounced save so dragging the time picker fires one request, not one
+   * per input event — parallel subscribe calls could otherwise race the
+   * delete-then-create schedule replacement on the server.
+   */
+  queueReminderSave(delayMs = 800) {
+    clearTimeout(this.reminderSaveTimer);
+    this.reminderSaveTimer = setTimeout(() => {
+      this.reminderSaveTimer = null;
+      this.saveReminderTime();
+    }, delayMs);
+  }
+
+  async saveReminderTime() {
+    if (this.reminder.enabled) await this.pushSubscribe();
+  }
+
+  /** Single serialized /push/subscribe call shared by enable + time change. */
+  async pushSubscribe() {
+    // If a call is already running, coalesce into exactly one follow-up.
+    if (this.reminderSaveInFlight) {
+      this.reminderSaveQueued = true;
+      return;
+    }
+    this.reminderSaveInFlight = true;
     this.reminderError = '';
     try {
       const subscription = await this.ensurePushSubscription();
@@ -324,10 +355,23 @@ export class App {
     } catch (e) {
       this.reminderError = e.message;
     }
+    this.reminderSaveInFlight = false;
+    if (this.reminderSaveQueued) {
+      this.reminderSaveQueued = false;
+      await this.pushSubscribe(); // renders when it finishes
+      return;
+    }
     this.render();
   }
 
+  cancelPendingReminderSave() {
+    clearTimeout(this.reminderSaveTimer);
+    this.reminderSaveTimer = null;
+    this.reminderSaveQueued = false;
+  }
+
   async disableReminders() {
+    this.cancelPendingReminderSave();
     try {
       await api('/push/unsubscribe', { method: 'POST' });
     } catch {
@@ -379,6 +423,7 @@ export class App {
 
   async logout() {
     await api('/auth/logout', { method: 'POST' });
+    this.cancelPendingReminderSave();
     this.user = null;
     this.referralLink = '';
     this.reminder = { enabled: false };
@@ -519,7 +564,7 @@ export class App {
       const { name, value } = e.target;
       if (name === 'reminderTime') {
         this.reminderTime = value;
-        if (this.reminder.enabled) this.saveReminderTime();
+        if (this.reminder.enabled) this.queueReminderSave();
         return;
       }
       if (name === 'cefrLevel' && this.view === 'settings') {
