@@ -12,3 +12,5 @@ public/qa-screenshots/*.png
 .vendor/
 install-log.txt
 temp-*.mjs
+vercel-log.json
+temp-*.mjs
