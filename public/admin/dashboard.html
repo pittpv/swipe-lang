@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics — LangApp</title>
+  <style>
+    :root { --primary: #1a5f4a; --muted: #5c6b64; --bg: #f4f7f5; --surface: #fff; }
+    body { font-family: system-ui, sans-serif; margin: 0; background: var(--bg); color: #1c2421; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+    h1 { color: var(--primary); }
+    .card { background: var(--surface); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+    .metric .num { font-size: 1.75rem; font-weight: 700; color: var(--primary); }
+    .metric .lbl { font-size: 0.75rem; color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid #d8e4de; }
+    input, button { padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid #d8e4de; }
+    button { background: var(--primary); color: #fff; border: none; cursor: pointer; }
+    .error { color: #dc2626; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>LangApp Analytics</h1>
+    <div class="card" id="auth">
+      <label>Admin API Key <input type="password" id="key" style="width:100%;margin-top:0.25rem" /></label>
+      <button id="load-btn" style="margin-top:0.75rem">Загрузить</button>
+      <p class="error" id="err"></p>
+    </div>
+    <div id="dash" style="display:none"></div>
+  </div>
+  <script src="/admin/dashboard.js"></script>
+</body>
+</html>
