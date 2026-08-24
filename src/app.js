@@ -742,6 +742,9 @@ export class App {
           <div class="benefit"><strong>18 карточек</strong><span>за 5 минут</span></div>
           <div class="benefit"><strong>SRS</strong><span>умные повторы</span></div>
           <div class="benefit"><strong>Тап</strong><span>перевод + аудио</span></div>
+          <div class="benefit"><strong>Онбординг</strong><span>за 15 секунд</span></div>
+          <div class="benefit"><strong>🔥 Streak</strong><span>серии и достижения</span></div>
+          <div class="benefit"><strong>📲 PWA</strong><span>установи на телефон</span></div>
         </div>
         <button class="btn btn-primary btn-lg" data-action="show-register">Начать бесплатно →</button>
         <p class="subcta">Без карты · Регистрация за 30 сек</p>
@@ -784,6 +787,7 @@ export class App {
           </label>
           ${this.error ? `<p class="error">${esc(this.error)}</p>` : ''}
           <button class="btn btn-primary" data-action="onboarding">Продолжить</button>
+          <p style="text-align:center;font-size:0.85rem;color:var(--color-muted);margin:1rem 0 0">📲 Совет: установите LangApp как приложение — инструкция для <a href="/help/faq.html#install" target="_blank" rel="noopener">iPhone и Android — в FAQ</a>.</p>
         </div>`;
     } else if (v === 'home') {
       html += `
