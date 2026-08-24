@@ -394,6 +394,34 @@ select {
   border-bottom: 1px solid var(--color-border);
 }
 
+/* Achievements grid on the stats page */
+.ach-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+.ach-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--color-bg);
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+}
+
+.ach-badge-emoji {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.ach-badge strong {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.3;
+}
+
 .hidden {
   display: none !important;
 }
@@ -527,3 +555,147 @@ select {
   margin-top: 2rem;
   text-align: center;
 }
+
+/* ===== Achievement celebration (iMessage-style overlay) ===== */
+.ach-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: achFadeIn 0.3s ease-out;
+}
+
+.ach-closing {
+  animation: achFadeOut 0.35s ease-in forwards;
+  pointer-events: none;
+}
+
+@keyframes achFadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes achFadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+.ach-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(28, 36, 33, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.ach-chat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  width: min(320px, 100%);
+  /* The whole conversation drifts down slightly as it fades out. */
+  transition: transform 0.35s ease-in;
+}
+
+.ach-closing .ach-chat {
+  transform: translateY(24px);
+}
+
+.ach-bubble {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--color-surface);
+  border-radius: 20px 20px 20px 6px; /* tail corner, like an incoming iMessage */
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
+  padding: 1rem 1.1rem;
+  max-width: 100%;
+  /* Spring pop from the tail corner — iMessage's incoming-message feel. */
+  transform-origin: left bottom;
+  animation: achPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+@keyframes achPop {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.5);
+  }
+}
+
+.ach-emoji {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.ach-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.ach-text strong {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.25;
+}
+
+.ach-text span {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  line-height: 1.35;
+}
+
+.ach-typing {
+  gap: 0.3rem;
+  padding: 0.9rem 1.1rem;
+}
+
+.ach-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-muted);
+  opacity: 0.4;
+  animation: achDot 0.9s ease-in-out infinite;
+}
+
+@keyframes achDot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+.ach-time {
+  align-self: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.7rem;
+  animation: achFadeIn 0.4s ease-out backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ach-layer,
+  .ach-closing,
+  .ach-closing .ach-chat,
+  .ach-bubble,
+  .ach-dot,
+  .ach-time {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+

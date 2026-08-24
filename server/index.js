@@ -392,6 +392,8 @@ app.post('/api/profile/reset-progress', requireAuth, (req, res) => {
   if (user) {
     user.streak = 0;
     user.last_session_date = null;
+    // Milestones are wiped too so celebrations can replay after a fresh start.
+    delete user.milestones;
   }
   db.persist();
   res.json({ ok: true });
@@ -460,6 +462,49 @@ app.post('/api/session/swipe', requireAuth, (req, res) => {
   res.json({ ok: true, progress: updated });
 });
 
+/** Milestone thresholds that unlock a fullscreen celebration. */
+const MILESTONES = {
+  streak: [3, 5, 7, 10, 14, 20, 30, 50, 75, 100, 150, 200, 365],
+  words: [5, 10, 20, 30, 50, 75, 100, 200, 300, 500, 1000],
+};
+
+/**
+ * Returns newly reached milestones and remembers them on the user row so each
+ * achievement is celebrated exactly once, even across sessions and devices.
+ */
+function collectMilestones(user, values) {
+  if (!user.milestones || typeof user.milestones !== 'object') user.milestones = {};
+  const unlocked = [];
+  for (const [type, thresholds] of Object.entries(MILESTONES)) {
+    const value = values[type] ?? 0;
+    const reached = thresholds.filter((t) => value >= t);
+    if (!reached.length) continue;
+    // Celebrate only the highest newly-crossed threshold (e.g. jumping straight
+    // from day 1 to day 12 shows "10 дней", not 3, 5 and 10 at once).
+    const top = Math.max(...reached);
+    if ((user.milestones[type] ?? 0) >= top) continue;
+    unlocked.push({ type, value: top });
+    user.milestones[type] = top;
+  }
+  return unlocked;
+}
+
+/**
+ * All milestones the user has reached so far — every threshold up to the
+ * highest celebrated one per category, ascending. Used by the stats page.
+ */
+function listMilestones(user) {
+  const celebrated = user?.milestones ?? {};
+  const out = [];
+  for (const [type, thresholds] of Object.entries(MILESTONES)) {
+    const top = celebrated[type] ?? 0;
+    for (const t of thresholds) {
+      if (t <= top) out.push({ type, value: t });
+    }
+  }
+  return out.sort((a, b) => (a.type === b.type ? a.value - b.value : a.type === 'streak' ? -1 : 1));
+}
+
 app.post('/api/session/complete', requireAuth, (req, res) => {
   const userId = req.session.userId;
   const sessionId = req.session.activeSessionId;
@@ -492,6 +537,12 @@ app.post('/api/session/complete', requireAuth, (req, res) => {
     (p) => p.user_id === userId && p.next_review_at && p.next_review_at <= tomorrowEnd,
   ).length;
 
+  const wordsLearned = db.data.user_word_progress.filter(
+    (p) => p.user_id === userId && ['learning', 'known', 'mature'].includes(p.status),
+  ).length;
+
+  const achievements = user ? collectMilestones(user, { streak, words: wordsLearned }) : [];
+
   db.persist();
 
   delete req.session.activeSessionId;
@@ -503,6 +554,8 @@ app.post('/api/session/complete', requireAuth, (req, res) => {
     cardsLearned: stats.learned,
     streak,
     wordsDueTomorrow,
+    wordsLearned,
+    achievements,
   });
 });
 
@@ -521,6 +574,7 @@ app.get('/api/stats', requireAuth, (req, res) => {
     goal: user.goal,
     wordsLearned: learned,
     sessionsCompleted: sessions,
+    achievements: listMilestones(user),
   });
 });
 

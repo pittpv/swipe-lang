@@ -1,4 +1,5 @@
 import { track, captureReferralFromUrl, getStoredReferral, fetchPublicStats, getCsrfToken } from './track.js';
+import { showAchievements, achievementBadge } from './achievements.js';
 
 const API = '/api';
 
@@ -193,8 +194,11 @@ export class App {
     this.cardEnter = true;
     if (this.cardIndex >= this.cards.length) {
       this.summary = await api('/session/complete', { method: 'POST' });
+      if (this.user) this.user.streak = this.summary.streak;
       track('session_complete');
       this.view = 'summary';
+      // Fullscreen iMessage-style celebration for streak / words milestones.
+      showAchievements(this.summary.achievements);
     }
     this.swiping = false;
     this.render();
@@ -794,6 +798,7 @@ export class App {
           <button class="btn btn-ghost" data-action="home" style="width:100%;margin-top:0.5rem">На главную</button>
         </div>`;
     } else if (v === 'stats' && this.stats) {
+      const achievements = Array.isArray(this.stats.achievements) ? this.stats.achievements : [];
       html += `
         <section class="hero"><h1>Статистика</h1></section>
         <div class="card-form stats-page">
@@ -801,6 +806,21 @@ export class App {
           <div class="stat-row"><span>Слов в учёбе</span><strong>${this.stats.wordsLearned}</strong></div>
           <div class="stat-row"><span>Сессий</span><strong>${this.stats.sessionsCompleted}</strong></div>
           <div class="stat-row"><span>Уровень</span><strong>${esc(this.stats.cefrLevel)}</strong></div>
+          <div class="settings-divider"></div>
+          <p class="referral-title">🏅 Достижения</p>
+          ${achievements.length
+            ? `<div class="ach-grid">
+                ${achievements.map((a) => {
+                  const badge = achievementBadge(a);
+                  if (!badge) return '';
+                  return `
+                    <div class="ach-badge" title="${esc(badge.title)}">
+                      <span class="ach-badge-emoji">${badge.emoji}</span>
+                      <strong>${esc(badge.title)}</strong>
+                    </div>`;
+                }).join('')}
+              </div>`
+            : '<p class="settings-hint">Достижений пока нет — завершите сессию, чтобы получить первое 🎯</p>'}
         </div>
         <button class="btn btn-primary" data-action="home" style="width:100%;margin-top:1rem">На главную</button>`;
     } else if (v === 'settings') {
