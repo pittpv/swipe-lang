@@ -742,12 +742,12 @@ export class App {
           <div class="benefit"><strong>18 карточек</strong><span>за 5 минут</span></div>
           <div class="benefit"><strong>SRS</strong><span>умные повторы</span></div>
           <div class="benefit"><strong>Тап</strong><span>перевод + аудио</span></div>
-          <div class="benefit"><strong>Онбординг</strong><span>за 15 секунд</span></div>
+          <div class="benefit"><strong>Онбординг</strong><span>за 20 секунд</span></div>
           <div class="benefit"><strong>🔥 Streak</strong><span>серии и достижения</span></div>
           <div class="benefit"><strong>📲 PWA</strong><span>установи на телефон</span></div>
         </div>
         <button class="btn btn-primary btn-lg" data-action="show-register">Начать бесплатно →</button>
-        <p class="subcta">Без карты · Регистрация за 30 сек</p>
+        <p class="subcta">Без карты · Быстрая регистрация</p>
         <p style="text-align:center;margin-top:1rem">
           <button class="link-btn" data-action="show-login">Уже есть аккаунт</button>
         </p>
