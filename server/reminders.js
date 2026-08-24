@@ -92,16 +92,18 @@ export async function sendReminderPush(db, user) {
   // pushes with 403 when the domain doesn't exist (e.g. ".example").
   const subject = process.env.APP_URL || 'https://langapp-neon.vercel.app';
   webpush.setVapidDetails(subject, keys.publicKey, keys.privateKey);
-  const payload = JSON.stringify({
-    title: 'LangApp',
-    body:
-      due > 0
-        ? `${due} ${pluralRu(due)} ждут повторения 🔥 Пять минут — и готово.`
-        : started
-          ? 'На сегодня всё повторено! 🎉 Загляни завтра — слова уже ждут.'
-          : 'Учи турецкий свайпом — первая сессия из 18 слов ждёт!',
-    url: '/',
-  });
+  // iOS shows "<title> from LangApp" — the "from LangApp" suffix comes from
+  // the manifest name, so the title itself must carry the actual message.
+  const { title, body } =
+    due > 0
+      ? {
+          title: `${due} ${pluralRu(due)} ждут повторения`,
+          body: 'Пять минут — и готово 🔥',
+        }
+      : started
+        ? { title: 'Всё повторено! 🎉', body: 'План на сегодня выполнен — возвращайся завтра' }
+        : { title: 'Начни учить турецкий 🇹🇷', body: 'Первая сессия из 18 слов уже ждёт' };
+  const payload = JSON.stringify({ title, body, url: '/' });
   try {
     await webpush.sendNotification(user.push_subscription, payload);
     return { sent: true, due };
