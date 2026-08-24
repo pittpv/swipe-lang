@@ -88,7 +88,10 @@ export async function sendReminderPush(db, user) {
   const { due, started } = dueWordsCount(db, user.id);
 
   const keys = getVapidKeys();
-  webpush.setVapidDetails('mailto:support@langapp.example', keys.publicKey, keys.privateKey);
+  // VAPID "sub" must be a reachable mailto: or https: URL — Apple rejects
+  // pushes with 403 when the domain doesn't exist (e.g. ".example").
+  const subject = process.env.APP_URL || 'https://langapp-neon.vercel.app';
+  webpush.setVapidDetails(subject, keys.publicKey, keys.privateKey);
   const payload = JSON.stringify({
     title: 'LangApp',
     body:
