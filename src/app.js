@@ -71,6 +71,53 @@ export class App {
       await this.loadUserExtras();
     }
     this.render();
+    this.initVersionWatch();
+  }
+
+  /**
+   * SPA deployments swap the server bundle while an already-open tab keeps
+   * running the old code. Watch for a newly deployed bundle and offer a
+   * one-tap reload instead of silently staying on the stale version.
+   */
+  initVersionWatch() {
+    // The hashed bundle this instance is running from (absent on the dev server).
+    const current = document.querySelector('script[src*="/assets/index-"]')?.getAttribute('src');
+    if (!current) return;
+    let toastShown = false;
+
+    const check = async () => {
+      if (toastShown || document.visibilityState !== 'visible') return;
+      try {
+        const res = await fetch(`/?t=${Date.now()}`, { cache: 'no-store' });
+        const html = await res.text();
+        const deployed = html.match(/src="(\/assets\/index-[^"]+\.js)"/)?.[1];
+        if (deployed && deployed !== current) {
+          toastShown = true;
+          this.showUpdateToast();
+        }
+      } catch {
+        /* offline or transient failure — try again later */
+      }
+    };
+
+    document.addEventListener('visibilitychange', check);
+    setInterval(check, 5 * 60 * 1000);
+  }
+
+  showUpdateToast() {
+    if (document.querySelector('.update-toast')) return;
+    const toast = document.createElement('div');
+    toast.className = 'update-toast';
+
+    const text = document.createElement('span');
+    text.textContent = 'Доступна новая версия';
+
+    const btn = document.createElement('button');
+    btn.textContent = 'Обновить';
+    btn.addEventListener('click', () => window.location.reload());
+
+    toast.append(text, btn);
+    document.body.appendChild(toast);
   }
 
   /** Referral link + reminder state — needed by home/settings after any login path. */
