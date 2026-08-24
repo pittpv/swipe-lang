@@ -61,9 +61,14 @@ export class App {
     if (this.user?.cefrLevel) this.cefrLevel = this.user.cefrLevel;
     if (this.view === 'landing') track('landing_view');
     if (this.user?.id) {
-      await Promise.all([this.loadReferralLink(), this.loadReminderStatus()]);
+      await this.loadUserExtras();
     }
     this.render();
+  }
+
+  /** Referral link + reminder state — needed by home/settings after any login path. */
+  async loadUserExtras() {
+    await Promise.all([this.loadReferralLink(), this.loadReminderStatus()]);
   }
 
   setView(view) {
@@ -76,6 +81,7 @@ export class App {
     try {
       this.user = await api('/auth/login', { method: 'POST', body: { email: this.email, password: this.password } });
       this.view = this.user.needsOnboarding ? 'onboarding' : 'home';
+      if (!this.user.needsOnboarding) await this.loadUserExtras();
     } catch (e) {
       this.error = e.message;
     }
@@ -103,6 +109,7 @@ export class App {
       track('onboarding_complete');
       this.user.needsOnboarding = false;
       this.view = 'home';
+      await this.loadUserExtras();
     } catch (e) {
       this.error = e.message;
     }
@@ -373,6 +380,8 @@ export class App {
   async logout() {
     await api('/auth/logout', { method: 'POST' });
     this.user = null;
+    this.referralLink = '';
+    this.reminder = { enabled: false };
     this.view = 'landing';
     this.render();
   }
