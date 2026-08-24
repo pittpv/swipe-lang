@@ -42,6 +42,8 @@ export class App {
     this.reminderSaveQueued = false;
     this.settingsError = '';
     this.settingsSaved = false;
+    this.name = '';
+    this.progressReset = false;
     this.publicStats = { words: 3564, sessionSize: 18 };
     this.referralLink = '';
     /** @type {Map<string, HTMLAudioElement>} cached pronunciation clips */
@@ -62,6 +64,7 @@ export class App {
       this.view = 'landing';
     }
     if (this.user?.cefrLevel) this.cefrLevel = this.user.cefrLevel;
+    if (this.user?.name) this.name = this.user.name;
     if (this.view === 'landing') track('landing_view');
     if (this.user?.id) {
       await this.loadUserExtras();
@@ -83,6 +86,7 @@ export class App {
   async login() {
     try {
       this.user = await api('/auth/login', { method: 'POST', body: { email: this.email, password: this.password } });
+      if (this.user?.name) this.name = this.user.name;
       this.view = this.user.needsOnboarding ? 'onboarding' : 'home';
       if (!this.user.needsOnboarding) await this.loadUserExtras();
     } catch (e) {
@@ -455,6 +459,54 @@ export class App {
     this.render();
   }
 
+  async saveName() {
+    this.settingsError = '';
+    const name = String(this.name ?? '').trim();
+    if (!name) {
+      this.settingsError = 'Введите имя';
+      this.render();
+      return;
+    }
+    try {
+      const result = await api('/profile', { method: 'PATCH', body: { name } });
+      if (this.user) this.user.name = result.name;
+      this.name = result.name ?? name;
+      this.settingsSaved = true;
+      this.render();
+      setTimeout(() => {
+        if (this.settingsSaved) {
+          this.settingsSaved = false;
+          this.render();
+        }
+      }, 1600);
+      return;
+    } catch (e) {
+      this.settingsError = e.message;
+    }
+    this.render();
+  }
+
+  async resetProgress() {
+    if (!confirm('Сбросить статистику и прогресс? Streak, изученные слова и сессии будут удалены. Это действие нельзя отменить.')) return;
+    try {
+      await api('/profile/reset-progress', { method: 'POST' });
+      if (this.user) this.user.streak = 0;
+      this.stats = null;
+      this.progressReset = true;
+      this.render();
+      setTimeout(() => {
+        if (this.progressReset) {
+          this.progressReset = false;
+          this.render();
+        }
+      }, 2400);
+      return;
+    } catch (e) {
+      this.error = e.message;
+    }
+    this.render();
+  }
+
   async logout() {
     await api('/auth/logout', { method: 'POST' });
     this.cancelPendingReminderSave();
@@ -580,6 +632,8 @@ export class App {
       if (action === 'start') this.startSession();
       if (action === 'stats') this.loadStats();
       if (action === 'settings') this.setView('settings');
+      if (action === 'save-name') this.saveName();
+      if (action === 'reset-progress') this.resetProgress();
       if (action === 'home') this.setView('home');
       if (action === 'logout') this.logout();
       if (action === 'delete-account') this.deleteAccount();
@@ -683,7 +737,7 @@ export class App {
     } else if (v === 'home') {
       html += `
         <section class="hero">
-          <h1>Привет!</h1>
+          <h1>${this.user?.name ? `Привет, ${esc(this.user.name)}!` : 'Привет!'}</h1>
           <p>Готов к сессии из 18 слов? Тап по карточке — перевод и примеры.</p>
         </section>
         ${this.user?.streak ? `<p style="text-align:center"><span class="streak-badge">🔥 ${this.user.streak} дней</span></p>` : ''}
@@ -753,6 +807,12 @@ export class App {
       html += `
         <section class="hero"><h1>Настройки</h1></section>
         <div class="card-form">
+          <label>Имя
+            <input name="name" type="text" value="${esc(this.name)}" maxlength="64" placeholder="Как к вам обращаться?" autocomplete="given-name" />
+          </label>
+          <button class="btn btn-primary" data-action="save-name" style="width:100%">Сохранить имя</button>
+          ${this.settingsSaved ? '<p class="saved-hint">Сохранено ✓</p>' : ''}
+          <div class="settings-divider"></div>
           <label>Уровень языка
             <select name="cefrLevel">
               ${opt('A1', 'A1 — начальный', this.cefrLevel)}
@@ -762,7 +822,6 @@ export class App {
               ${opt('C1', 'C1 — свободный', this.cefrLevel)}
             </select>
           </label>
-          ${this.settingsSaved ? '<p class="saved-hint">Сохранено ✓</p>' : ''}
           ${this.settingsError ? `<p class="error">${esc(this.settingsError)}</p>` : ''}
           <p class="settings-hint">Влияет на слова, которые попадают в сессии</p>
           <div class="settings-divider"></div>
@@ -779,7 +838,9 @@ export class App {
           ${this.reminderError ? `<p class="error" style="text-align:center">${esc(this.reminderError)}</p>` : ''}
         </div>
         <button class="btn btn-primary" data-action="home" style="width:100%;margin-top:1rem">На главную</button>
+        ${this.progressReset ? '<p class="saved-hint" style="text-align:center">Прогресс сброшен ✓</p>' : ''}
         <div class="danger-zone">
+          <button class="btn btn-danger" data-action="reset-progress">Сбросить статистику и прогресс</button>
           <button class="btn btn-danger" data-action="delete-account">Удалить аккаунт</button>
         </div>`;
     }

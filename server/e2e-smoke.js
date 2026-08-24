@@ -189,3 +189,61 @@ test('profile level update', async () => {
   }));
   assert.equal(res.status, 400);
 });
+
+test('profile name update and progress reset', async () => {
+  const client = jar();
+  await client.fetch('/api/public/stats');
+  let { res, data } = await client.fetch('/api/auth/register', {
+    method: 'POST',
+    body: JSON.stringify({ email: `name_${Date.now()}@langapp.test`, password }),
+  });
+  assert.equal(res.status, 200);
+  assert.equal(data.name ?? null, null);
+
+  ({ res } = await client.fetch('/api/onboarding', {
+    method: 'POST',
+    body: JSON.stringify({ goal: 'travel', cefrLevel: 'A1' }),
+  }));
+  assert.equal(res.status, 200);
+
+  // Build some progress: one completed session with a learned word.
+  ({ res, data } = await client.fetch('/api/session/start', { method: 'POST' }));
+  assert.equal(res.status, 200);
+  ({ res } = await client.fetch('/api/session/swipe', {
+    method: 'POST',
+    body: JSON.stringify({ wordId: data.cards[0].id, direction: 'right' }),
+  }));
+  assert.equal(res.status, 200);
+  ({ res, data } = await client.fetch('/api/session/complete', { method: 'POST' }));
+  assert.equal(res.status, 200);
+  assert.ok(data.streak >= 1);
+
+  // Name update round-trips through /auth/me.
+  ({ res, data } = await client.fetch('/api/profile', {
+    method: 'PATCH',
+    body: JSON.stringify({ name: 'Алиса' }),
+  }));
+  assert.equal(res.status, 200);
+  assert.equal(data.name, 'Алиса');
+
+  ({ res, data } = await client.fetch('/api/auth/me'));
+  assert.equal(res.status, 200);
+  assert.equal(data.name, 'Алиса');
+
+  // Empty name is rejected.
+  ({ res } = await client.fetch('/api/profile', {
+    method: 'PATCH',
+    body: JSON.stringify({ name: '   ' }),
+  }));
+  assert.equal(res.status, 400);
+
+  // Reset wipes progress, sessions and streak.
+  ({ res } = await client.fetch('/api/profile/reset-progress', { method: 'POST' }));
+  assert.equal(res.status, 200);
+
+  ({ res, data } = await client.fetch('/api/stats'));
+  assert.equal(res.status, 200);
+  assert.equal(data.streak, 0);
+  assert.equal(data.wordsLearned, 0);
+  assert.equal(data.sessionsCompleted, 0);
+});

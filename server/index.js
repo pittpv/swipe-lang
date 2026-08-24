@@ -116,6 +116,7 @@ app.post('/api/auth/register', authRateLimit, (req, res) => {
     id: db.nextId('users'),
     email: normalized,
     password_hash: bcrypt.hashSync(password, 10),
+    name: null,
     goal: null,
     cefr_level: 'A1',
     streak: 0,
@@ -148,6 +149,7 @@ app.post('/api/auth/login', authRateLimit, (req, res) => {
   res.json({
     id: user.id,
     email: user.email,
+    name: user.name ?? null,
     needsOnboarding: !user.goal,
     goal: user.goal,
     cefrLevel: user.cefr_level,
@@ -202,6 +204,7 @@ app.get('/api/auth/me', (req, res) => {
   res.json({
     id: user.id,
     email: user.email,
+    name: user.name ?? null,
     goal: user.goal,
     cefrLevel: user.cefr_level,
     streak: user.streak,
@@ -358,7 +361,7 @@ app.post('/api/onboarding', requireAuth, (req, res) => {
 
 app.patch('/api/profile', requireAuth, (req, res) => {
   const user = findUser(req.session.userId);
-  const { cefrLevel, goal } = req.body ?? {};
+  const { cefrLevel, goal, name } = req.body ?? {};
   if (cefrLevel !== undefined) {
     const level = sanitizeText(cefrLevel, 8).toUpperCase();
     if (!['A1', 'A2', 'B1', 'B2'].includes(level)) {
@@ -371,8 +374,27 @@ app.patch('/api/profile', requireAuth, (req, res) => {
     if (!trimmed) return res.status(400).json({ error: 'Invalid goal' });
     user.goal = trimmed;
   }
+  if (name !== undefined) {
+    const trimmed = sanitizeText(name, 64);
+    if (!trimmed) return res.status(400).json({ error: 'Invalid name' });
+    user.name = trimmed;
+  }
   db.persist();
-  res.json({ ok: true, cefrLevel: user.cefr_level, goal: user.goal });
+  res.json({ ok: true, cefrLevel: user.cefr_level, goal: user.goal, name: user.name ?? null });
+});
+
+/** Wipes all learning progress for the user: SRS cards, sessions, streak. */
+app.post('/api/profile/reset-progress', requireAuth, (req, res) => {
+  const userId = req.session.userId;
+  db.data.user_word_progress = db.data.user_word_progress.filter((p) => p.user_id !== userId);
+  db.data.study_sessions = db.data.study_sessions.filter((s) => s.user_id !== userId);
+  const user = findUser(userId);
+  if (user) {
+    user.streak = 0;
+    user.last_session_date = null;
+  }
+  db.persist();
+  res.json({ ok: true });
 });
 
 app.post('/api/session/start', requireAuth, (req, res) => {
