@@ -1,6 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import bcrypt from 'bcryptjs';
+import { createECDH } from 'crypto';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { existsSync } from 'fs';
@@ -529,6 +530,34 @@ app.get('/api/public/stats', (_req, res) => {
 
 app.get('/api/analytics/dashboard', requireAdmin, (_req, res) => {
   res.json(buildAnalyticsDashboard(db));
+});
+
+/**
+ * Diagnostics: verifies the VAPID keypair is internally consistent — the
+ * public key must be the P-256 point derived from the private key. A mismatch
+ * makes every web-push delivery fail with 401/403. No key material is returned.
+ */
+app.get('/api/admin/diag/vapid', requireAdmin, (_req, res) => {
+  const b64urlToBuf = (s) => Buffer.from(s.replace(/-/g, '+').replace(/_/g, '/'), 'base64');
+  const pub = process.env.VAPID_PUBLIC_KEY ?? '';
+  const priv = process.env.VAPID_PRIVATE_KEY ?? '';
+  let pairMatches = false;
+  let detail = 'checked';
+  try {
+    const ecdh = createECDH('prime256v1');
+    ecdh.setPrivateKey(b64urlToBuf(priv));
+    pairMatches = ecdh.getPublicKey().equals(b64urlToBuf(pub));
+  } catch (e) {
+    detail = `key decode failed: ${e.message}`;
+  }
+  res.json({
+    publicKeySet: Boolean(pub),
+    privateKeySet: Boolean(priv),
+    publicKeyLength: pub.length,
+    privateKeyLength: priv.length,
+    pairMatches,
+    detail,
+  });
 });
 
 const ALLOWED_EVENTS = new Set([

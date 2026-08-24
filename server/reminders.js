@@ -103,6 +103,7 @@ export async function sendReminderPush(db, user) {
     await webpush.sendNotification(user.push_subscription, payload);
     return { sent: true, due };
   } catch (err) {
+    console.error(`[reminders] web-push ${err.statusCode ?? '???'}: ${err.body ?? err.message}`);
     // 404/410 — subscription expired; 401/403 — VAPID key mismatch (keys were
     // rotated). Both are permanent: drop the subscription so the client can
     // re-subscribe with the current key on the next visit.
