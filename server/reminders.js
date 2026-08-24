@@ -86,8 +86,6 @@ export function dueWordsCount(db, userId) {
 export async function sendReminderPush(db, user) {
   if (!user?.push_subscription) return { skipped: 'no-subscription' };
   const { due, started } = dueWordsCount(db, user.id);
-  // Remind users with cards up for review, or nudge those who never started.
-  if (due === 0 && started) return { skipped: 'nothing-due' };
 
   const keys = getVapidKeys();
   webpush.setVapidDetails('mailto:support@langapp.example', keys.publicKey, keys.privateKey);
@@ -96,7 +94,9 @@ export async function sendReminderPush(db, user) {
     body:
       due > 0
         ? `${due} ${pluralRu(due)} ждут повторения 🔥 Пять минут — и готово.`
-        : 'Учи турецкий свайпом — первая сессия из 18 слов ждёт!',
+        : started
+          ? 'На сегодня всё повторено! 🎉 Загляни завтра — слова уже ждут.'
+          : 'Учи турецкий свайпом — первая сессия из 18 слов ждёт!',
     url: '/',
   });
   try {
