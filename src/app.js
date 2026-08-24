@@ -736,7 +736,7 @@ export class App {
         <section class="hero">
           <p class="eyebrow">TR → RU · ${w}+ слов</p>
           <h1>Учи турецкий свайпом</h1>
-          <p>Как Tinder, но для слов: влево — знаю, вправо — учу. Сессии по ${this.publicStats.sessionSize} карточек — без бесконечной ленты.</p>
+          <p>Свайп влево — знаю, вправо — учу. Сессии по ${this.publicStats.sessionSize} карточек — без бесконечной ленты.</p>
         </section>
         <div class="benefits">
           <div class="benefit"><strong>18 карточек</strong><span>за 5 минут</span></div>
