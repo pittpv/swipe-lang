@@ -505,7 +505,11 @@ function listMilestones(user) {
   return out.sort((a, b) => (a.type === b.type ? a.value - b.value : a.type === 'streak' ? -1 : 1));
 }
 
-app.post('/api/session/complete', requireAuth, (req, res) => {
+app.post('/api/session/complete', requireAuth, async (req, res) => {
+  // Sync with the shared store first: the user may have studied on another
+  // device, and milestones must be computed and persisted on top of the
+  // freshest streak / words data, not a stale in-memory snapshot.
+  await db.reload();
   const userId = req.session.userId;
   const sessionId = req.session.activeSessionId;
   const stats = req.session.sessionStats ?? { reviewed: 0, learned: 0 };
@@ -559,7 +563,10 @@ app.post('/api/session/complete', requireAuth, (req, res) => {
   });
 });
 
-app.get('/api/stats', requireAuth, (req, res) => {
+app.get('/api/stats', requireAuth, async (req, res) => {
+  // Re-read the shared document so achievements and counters reflect progress
+  // synced from any device (warm serverless instances keep stale snapshots).
+  await db.reload();
   const userId = req.session.userId;
   const user = findUser(userId);
   const learned = db.data.user_word_progress.filter(

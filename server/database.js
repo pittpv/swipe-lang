@@ -62,6 +62,22 @@ function saveFile(data) {
 let cache = defaultData();
 let sql = null;
 
+/**
+ * Fetches the latest shared document from the configured backend.
+ * Returns null when nothing has been stored yet.
+ */
+async function loadRemote() {
+  if (pgEnabled) {
+    const rows = await sql`SELECT data FROM langapp_state WHERE id = 1`;
+    return rows.length && rows[0].data ? rows[0].data : null;
+  }
+  if (redisEnabled) {
+    const blob = await redisCommand(['GET', DB_KEY]);
+    return blob ? JSON.parse(blob) : null;
+  }
+  return loadFile();
+}
+
 if (pgEnabled) {
   // Hydrate the full state from the single JSONB document before use.
   // Cold start on empty DB keeps defaultData; index.js seeds words right after.
@@ -72,15 +88,15 @@ if (pgEnabled) {
       data jsonb NOT NULL,
       updated_at timestamptz NOT NULL DEFAULT now()
     )`;
-    const rows = await sql`SELECT data FROM langapp_state WHERE id = 1`;
-    if (rows.length && rows[0].data) cache = rows[0].data;
+    const data = await loadRemote();
+    if (data) cache = data;
   } catch (err) {
     console.error('[db] Postgres load failed, starting empty:', err.message);
   }
 } else if (redisEnabled) {
   try {
-    const blob = await redisCommand(['GET', DB_KEY]);
-    if (blob) cache = JSON.parse(blob);
+    const data = await loadRemote();
+    if (data) cache = data;
   } catch (err) {
     console.error('[db] Redis load failed, starting empty:', err.message);
   }
@@ -114,8 +130,24 @@ export const db = {
   async flush() {
     if (pendingSave) await pendingSave;
   },
-  reload() {
-    if (!redisEnabled && !pgEnabled) cache = loadFile();
+  /**
+   * Re-reads the shared document from the backend so reads reflect writes made
+   * by other processes / serverless instances. Critical on Vercel, where warm
+   * lambdas would otherwise serve a stale in-memory snapshot forever and users
+   * would see different stats (e.g. missing achievements) per device.
+   * Mutates `cache` in place so existing references (db.data) stay valid.
+   */
+  async reload() {
+    try {
+      if (pendingSave) await pendingSave;
+      const fresh = await loadRemote();
+      if (!fresh) return;
+      for (const key of Object.keys(cache)) delete cache[key];
+      Object.assign(cache, fresh);
+    } catch (err) {
+      // Fail soft: stale data beats no data for a read-only refresh.
+      console.error('[db] reload failed:', err.message);
+    }
   },
   persist() {
     if (pgEnabled) persistPostgres(cache);
