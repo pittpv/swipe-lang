@@ -32,6 +32,7 @@ import {
   deleteReminderSchedule,
   reminderScheduleId,
   sendReminderPush,
+  sendTestPush,
 } from './reminders.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -335,6 +336,27 @@ app.post('/api/push/unsubscribe', requireAuth, async (req, res) => {
     user.reminder_time = null;
   });
   res.json({ ok: true, enabled: false });
+});
+
+app.post('/api/push/test', requireAuth, async (req, res) => {
+  await db.reload();
+  const user = findUser(req.session.userId);
+  if (!user) return res.status(401).json({ error: 'Unauthorized' });
+  try {
+    const result = await sendTestPush(user);
+    if (result.expired) {
+      await db.transact(() => {
+        const u = findUser(req.session.userId);
+        if (u) u.push_subscription = null;
+      });
+    }
+    if (!result.sent) {
+      return res.status(502).json({ error: 'Не удалось отправить пуш. Включите напоминания ещё раз.' });
+    }
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(502).json({ error: e.message });
+  }
 });
 
 /** QStash schedule target — authorized via shared secret header. */

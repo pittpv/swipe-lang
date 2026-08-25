@@ -129,6 +129,29 @@ export async function sendReminderPush(db, user) {
   }
 }
 
+/** Immediate test notification — same VAPID path as the daily reminder. */
+export async function sendTestPush(user) {
+  if (!user?.push_subscription) return { skipped: 'no-subscription' };
+  const keys = getVapidKeys();
+  const subject = process.env.APP_URL || 'https://langapp-neon.vercel.app';
+  webpush.setVapidDetails(subject, keys.publicKey, keys.privateKey);
+  const payload = JSON.stringify({
+    title: 'Тест LangApp',
+    body: 'Пуш работает — это проверка 🔔',
+    url: '/',
+  });
+  try {
+    await webpush.sendNotification(user.push_subscription, payload);
+    return { sent: true };
+  } catch (err) {
+    console.error(`[reminders] test web-push ${err.statusCode ?? '???'}: ${err.body ?? err.message}`);
+    if ([401, 403, 404, 410].includes(err.statusCode)) {
+      return { skipped: 'expired-subscription', expired: true };
+    }
+    return { skipped: `delivery-error-${err.statusCode ?? 'unknown'}` };
+  }
+}
+
 function pluralRu(n) {
   const mod10 = n % 10;
   const mod100 = n % 100;

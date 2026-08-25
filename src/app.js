@@ -26,6 +26,7 @@ export class App {
     this.reminder = { enabled: false };
     this.reminderTime = '19:00';
     this.reminderError = '';
+    this.reminderTestSent = false;
     this.reminderSaveTimer = null;
     this.reminderSaveInFlight = false;
     this.reminderSaveQueued = false;
@@ -482,6 +483,18 @@ export class App {
     this.render();
   }
 
+  async sendTestPush() {
+    this.reminderError = '';
+    this.reminderTestSent = false;
+    try {
+      await api('/push/test', { method: 'POST' });
+      this.reminderTestSent = true;
+    } catch (e) {
+      this.reminderError = e.message;
+    }
+    this.render();
+  }
+
   async saveCefr() {
     this.settingsError = '';
     try {
@@ -689,6 +702,7 @@ export class App {
       if (action === 'copy-referral') this.copyReferral();
       if (action === 'reminder-enable') this.enableReminders();
       if (action === 'reminder-disable') this.disableReminders();
+      if (action === 'reminder-test') this.sendTestPush();
     };
 
     this.root.oninput = (e) => {
@@ -896,8 +910,10 @@ export class App {
             </label>
           </div>
           ${this.reminder.enabled
-            ? '<button class="btn btn-ghost" data-action="reminder-disable" style="width:100%">Отключить напоминания</button>'
+            ? `<button class="btn btn-ghost" data-action="reminder-disable" style="width:100%">Отключить напоминания</button>
+          <button class="btn btn-primary" data-action="reminder-test" style="width:100%">Отправить тест</button>`
             : '<button class="btn btn-primary" data-action="reminder-enable" style="width:100%">Включить напоминания</button>'}
+          ${this.reminderTestSent ? '<p class="saved-hint" style="text-align:center">Тест отправлен ✓</p>' : ''}
           ${this.reminderError ? `<p class="error" style="text-align:center">${esc(this.reminderError)}</p>` : ''}
         </div>
         <button class="btn btn-primary" data-action="home" style="width:100%;margin-top:1rem">На главную</button>
