@@ -4,9 +4,9 @@
  * one with a spring animation, each preceded by a short "typing…" indicator.
  *
  * The layer is appended to document.body (outside the app's render root), so
- * re-renders of the main view never interrupt the animation. It is purely
- * visual (`pointer-events: none`) so summary buttons like «На главную» keep
- * the first tap. Escape still dismisses; navigating away also dismisses.
+ * re-renders of the main view never interrupt the animation. Celebrations are
+ * deferred until after the summary screen so iOS taps on «На главную» are not
+ * lost. The layer is visual-only (`pointer-events: none`); Escape dismisses.
  */
 
 const TYPING_MS = 650; // how long the "typing…" bubble shows before a message

@@ -39,6 +39,10 @@ export class App {
     this.progressReset = false;
     this.publicStats = { words: 3564, sessionSize: 18 };
     this.referralLink = '';
+    /** Achievements unlocked at session end — shown after leaving summary (iOS). */
+    this.pendingAchievements = null;
+    this._summaryTapHandled = false;
+    this._suppressClickUntil = 0;
     /** @type {Map<string, HTMLAudioElement>} cached pronunciation clips */
     this.audioCache = new Map();
   }
@@ -124,6 +128,13 @@ export class App {
     this.overlayWord = null;
     dismissAchievements();
     this.render();
+    if (view === 'home') this.flushPendingAchievements();
+  }
+
+  flushPendingAchievements() {
+    const list = this.pendingAchievements;
+    this.pendingAchievements = null;
+    if (list?.length) showAchievements(list);
   }
 
   async login() {
@@ -169,6 +180,8 @@ export class App {
   }
 
   async startSession() {
+    this.pendingAchievements = null;
+    dismissAchievements();
     try {
       const data = await api('/session/start', { method: 'POST' });
       this.sessionId = data.sessionId;
@@ -244,8 +257,9 @@ export class App {
       if (this.user) this.user.streak = this.summary.streak;
       track('session_complete');
       this.view = 'summary';
-      // Fullscreen iMessage-style celebration for streak / words milestones.
-      showAchievements(this.summary.achievements);
+      // Defer celebration until Home: on iOS a full-screen layer + post-swipe
+      // missing click made «На главную» need two taps.
+      this.pendingAchievements = this.summary.achievements;
     }
     this.swiping = false;
     this.render();
@@ -358,16 +372,20 @@ export class App {
 
   /**
    * iOS only allows PushManager.subscribe inside a user gesture. If launch
-   * heal could not recreate a lost endpoint, retry on the first tap.
+   * heal could not recreate a lost endpoint, retry after the first tap —
+   * deferred so subscribe() does not steal the same gesture from buttons
+   * like «На главную».
    */
   armGesturePushHeal() {
     if (!this.reminderNeedsGestureHeal) return;
     const retry = () => {
-      document.removeEventListener('pointerdown', retry);
-      this.reminderNeedsGestureHeal = false;
-      this.pushSubscribe({ interactive: false });
+      document.removeEventListener('pointerup', retry, true);
+      setTimeout(() => {
+        this.reminderNeedsGestureHeal = false;
+        this.pushSubscribe({ interactive: false });
+      }, 0);
     };
-    document.addEventListener('pointerdown', retry, { once: true });
+    document.addEventListener('pointerup', retry, { once: true, capture: true });
   }
 
   /**
@@ -705,11 +723,47 @@ export class App {
     }
   }
 
+  /**
+   * After a swipe, iOS often never synthesizes `click` for the next tap.
+   * Summary CTAs therefore run on pointerup; a short click-capture suppress
+   * stops the late ghost-click from hitting the newly rendered Home button.
+   */
+  onSummaryPointerUp(e) {
+    if (this.view !== 'summary' || this._summaryTapHandled) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    const t = e.target.closest('[data-action="home"], [data-action="start"]');
+    if (!t) return;
+    this._summaryTapHandled = true;
+    this._suppressClickUntil = Date.now() + 450;
+    const suppress = (ev) => {
+      if (Date.now() > this._suppressClickUntil) {
+        document.removeEventListener('click', suppress, true);
+        return;
+      }
+      ev.preventDefault();
+      ev.stopPropagation();
+    };
+    document.addEventListener('click', suppress, true);
+    setTimeout(() => {
+      document.removeEventListener('click', suppress, true);
+      this._summaryTapHandled = false;
+    }, 450);
+    if (t.dataset.action === 'home') this.setView('home');
+    else this.startSession();
+  }
+
   bindEvents() {
     this.root.onclick = (e) => {
+      if (Date.now() < this._suppressClickUntil) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
       const t = e.target.closest('[data-action]');
       if (!t) return;
       const action = t.dataset.action;
+      // Already handled in onSummaryPointerUp (iOS post-swipe path).
+      if (this._summaryTapHandled && (action === 'home' || action === 'start')) return;
       if (action === 'show-login') {
         this.authMode = 'login';
         this.setView('auth');
@@ -742,6 +796,8 @@ export class App {
       if (action === 'reminder-enable') this.enableReminders();
       if (action === 'reminder-disable') this.disableReminders();
     };
+
+    this.root.onpointerup = (e) => this.onSummaryPointerUp(e);
 
     this.root.oninput = (e) => {
       const { name, value } = e.target;
