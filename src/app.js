@@ -26,7 +26,6 @@ export class App {
     this.reminder = { enabled: false };
     this.reminderTime = '19:00';
     this.reminderError = '';
-    this.reminderTestSent = false;
     this.reminderSaveTimer = null;
     this.reminderSaveInFlight = false;
     this.reminderSaveQueued = false;
@@ -483,18 +482,6 @@ export class App {
     this.render();
   }
 
-  async sendTestPush() {
-    this.reminderError = '';
-    this.reminderTestSent = false;
-    try {
-      await api('/push/test', { method: 'POST' });
-      this.reminderTestSent = true;
-    } catch (e) {
-      this.reminderError = e.message;
-    }
-    this.render();
-  }
-
   async saveCefr() {
     this.settingsError = '';
     try {
@@ -604,7 +591,11 @@ export class App {
     // Drop a leftover spring-back transition so dragging follows the finger 1:1.
     e.currentTarget.style.transition = '';
     this.drag = { active: true, startX: e.clientX, startY: e.clientY, x: 0, y: 0 };
-    e.currentTarget.setPointerCapture?.(e.pointerId);
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      /* pointer already gone or capture unsupported */
+    }
   }
 
   onPointerMove(e) {
@@ -626,6 +617,15 @@ export class App {
     if (!this.drag.active) return;
     const { x, y } = this.drag;
     this.drag.active = false;
+    // Release before the last-card render() detaches the node. iOS otherwise
+    // spends the next tap resetting pointer capture, so «На главную» looks dead.
+    try {
+      if (e.currentTarget?.hasPointerCapture?.(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      }
+    } catch {
+      /* node already detached */
+    }
     const moved = Math.hypot(x, y);
     // Swipe threshold crossed — let swipe() animate the fly-out from the
     // current finger position (no transform reset here).
@@ -694,7 +694,9 @@ export class App {
       if (action === 'logout') this.logout();
       if (action === 'delete-account') this.deleteAccount();
       if (action === 'exit-session') this.exitSession();
-      if (action === 'overlay') this.openOverlay();
+      if (action === 'overlay') {
+        if (this.view === 'session' && !this.swiping) this.openOverlay();
+      }
       if (action === 'close-overlay') this.closeOverlay();
       if (action === 'speak') this.speak(this.overlayWord?.lemma);
       if (action === 'swipe-left') this.swipe('left');
@@ -702,7 +704,6 @@ export class App {
       if (action === 'copy-referral') this.copyReferral();
       if (action === 'reminder-enable') this.enableReminders();
       if (action === 'reminder-disable') this.disableReminders();
-      if (action === 'reminder-test') this.sendTestPush();
     };
 
     this.root.oninput = (e) => {
@@ -910,10 +911,8 @@ export class App {
             </label>
           </div>
           ${this.reminder.enabled
-            ? `<button class="btn btn-ghost" data-action="reminder-disable" style="width:100%">Отключить напоминания</button>
-          <button class="btn btn-primary" data-action="reminder-test" style="width:100%">Отправить тест</button>`
+            ? '<button class="btn btn-ghost" data-action="reminder-disable" style="width:100%">Отключить напоминания</button>'
             : '<button class="btn btn-primary" data-action="reminder-enable" style="width:100%">Включить напоминания</button>'}
-          ${this.reminderTestSent ? '<p class="saved-hint" style="text-align:center">Тест отправлен ✓</p>' : ''}
           ${this.reminderError ? `<p class="error" style="text-align:center">${esc(this.reminderError)}</p>` : ''}
         </div>
         <button class="btn btn-primary" data-action="home" style="width:100%;margin-top:1rem">На главную</button>

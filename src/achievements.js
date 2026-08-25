@@ -4,8 +4,9 @@
  * one with a spring animation, each preceded by a short "typing…" indicator.
  *
  * The layer is appended to document.body (outside the app's render root), so
- * re-renders of the main view never interrupt the animation. Multiple calls
- * queue up; tap anywhere or press Escape to dismiss.
+ * re-renders of the main view never interrupt the animation. It is purely
+ * visual (`pointer-events: none`) so summary buttons like «На главную» keep
+ * the first tap. Escape still dismisses; navigating away also dismisses.
  */
 
 const TYPING_MS = 650; // how long the "typing…" bubble shows before a message
@@ -104,13 +105,15 @@ function playBatch(messages) {
     document.body.appendChild(layer);
 
     let closed = false;
-    let timers = [];
 
     const close = () => {
       if (closed) return;
       closed = true;
       if (activeClose === close) activeClose = null;
-      timers.forEach(clearTimeout);
+      timers.forEach((t) => {
+        clearTimeout(t.id);
+        t.resolve();
+      });
       timers = [];
       document.removeEventListener('keydown', onKey);
       layer.classList.add('ach-closing');
@@ -125,7 +128,6 @@ function playBatch(messages) {
       if (e.key === 'Escape') close();
     }
 
-    layer.addEventListener('click', close);
     document.addEventListener('keydown', onKey);
 
     async function play() {
@@ -201,7 +203,8 @@ function plural(n, one, few, many) {
 
 function sleep(ms) {
   return new Promise((resolve) => {
-    timers.push(setTimeout(resolve, reducedMotion() ? Math.min(ms, 50) : ms));
+    const id = setTimeout(resolve, reducedMotion() ? Math.min(ms, 50) : ms);
+    timers.push({ id, resolve });
   });
 }
 

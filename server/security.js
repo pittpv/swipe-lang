@@ -70,7 +70,7 @@ export function csrfProtection(req, res, next) {
   if (SAFE_METHODS.has(req.method) || !req.path.startsWith('/api')) return next();
   // The QStash callback is machine-to-machine and authorized by its own
   // shared secret (x-internal-secret) inside the route — no CSRF applies.
-  if (req.path === '/api/cron/reminders') return next();
+  if (req.path === '/api/cron/reminders' || req.path.startsWith('/api/admin/')) return next();
   const header = req.get(CSRF_HEADER) ?? '';
   const cookie = req.cookies?.[CSRF_COOKIE] ?? '';
   const tokensMatch =

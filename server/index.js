@@ -338,27 +338,6 @@ app.post('/api/push/unsubscribe', requireAuth, async (req, res) => {
   res.json({ ok: true, enabled: false });
 });
 
-app.post('/api/push/test', requireAuth, async (req, res) => {
-  await db.reload();
-  const user = findUser(req.session.userId);
-  if (!user) return res.status(401).json({ error: 'Unauthorized' });
-  try {
-    const result = await sendTestPush(user);
-    if (result.expired) {
-      await db.transact(() => {
-        const u = findUser(req.session.userId);
-        if (u) u.push_subscription = null;
-      });
-    }
-    if (!result.sent) {
-      return res.status(502).json({ error: 'Не удалось отправить пуш. Включите напоминания ещё раз.' });
-    }
-    res.json({ ok: true });
-  } catch (e) {
-    res.status(502).json({ error: e.message });
-  }
-});
-
 /** QStash schedule target — authorized via shared secret header. */
 app.post('/api/cron/reminders', async (req, res) => {
   if (!process.env.REMINDER_SECRET || req.get('x-internal-secret') !== process.env.REMINDER_SECRET) {
@@ -701,6 +680,42 @@ app.get('/api/admin/diag/vapid', requireAdmin, (_req, res) => {
     pairMatches,
     detail,
   });
+});
+
+app.get('/api/admin/push/subscribers', requireAdmin, async (_req, res) => {
+  await db.reload();
+  const subscribers = (db.data.users ?? [])
+    .filter((u) => u.push_subscription)
+    .map((u) => ({
+      id: u.id,
+      name: u.name ?? null,
+      email: u.email,
+      time: u.reminder_time ?? null,
+      scheduled: Boolean(u.push_schedule_id),
+    }));
+  res.json({ subscribers });
+});
+
+app.post('/api/admin/push/test', requireAdmin, async (req, res) => {
+  const userId = Number(req.body?.userId);
+  await db.reload();
+  const user = db.data.users.find((u) => u.id === userId);
+  if (!user) return res.status(404).json({ error: 'User not found' });
+  try {
+    const result = await sendTestPush(user);
+    if (result.expired) {
+      await db.transact(() => {
+        const u = db.data.users.find((row) => row.id === userId);
+        if (u) u.push_subscription = null;
+      });
+    }
+    if (!result.sent) {
+      return res.status(502).json({ error: result.skipped || 'send failed', result });
+    }
+    res.json({ ok: true, userId });
+  } catch (e) {
+    res.status(502).json({ error: e.message });
+  }
 });
 
 const ALLOWED_EVENTS = new Set([
