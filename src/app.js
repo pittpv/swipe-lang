@@ -1009,7 +1009,7 @@ export class App {
           ${this.reminderError ? `<p class="error" style="text-align:center">${esc(this.reminderError)}</p>` : ''}
         </div>
         <button class="btn btn-primary" data-action="home" style="width:100%;margin-top:1rem">На главную</button>
-        ${this.progressReset ? '<p class="saved-hint" style="text-align:center">Прогресс сброшен ✓</p>' : ''}
+        ${this.progressReset ? '<p class="saved-hint reset-hint">Прогресс сброшен ✓</p>' : ''}
         <div class="danger-zone">
           <button class="btn btn-danger" data-action="reset-progress">Сбросить статистику и прогресс</button>
           <button class="btn btn-danger" data-action="delete-account">Удалить аккаунт</button>
