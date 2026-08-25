@@ -20,7 +20,9 @@ export class App {
     this.summary = null;
     this.stats = null;
     this.overlayWord = null;
-    this.drag = { active: false, startX: 0, startY: 0, x: 0, y: 0 };
+    this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
+    this._onWinPointerMove = (e) => this.onPointerMove(e);
+    this._onWinPointerUp = (e) => this.onPointerUp(e);
     this.swiping = false;
     this.cardEnter = false;
     this.reminder = { enabled: false };
@@ -219,6 +221,8 @@ export class App {
     if (!card || this.swiping) return;
     this.swiping = true;
     this.drag.active = false;
+    this.drag.pointerId = null;
+    this.endPointerTracking();
     track(direction === 'left' ? 'swipe_left' : 'swipe_right');
     // Fly away while the request is in flight — no dead waiting time.
     const flight = this.flyCardOut(direction, from.x, from.y);
@@ -232,7 +236,7 @@ export class App {
     }
     await flight;
     this.cardIndex += 1;
-    this.drag = { active: false, startX: 0, startY: 0, x: 0, y: 0 };
+    this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
     this.cardEnter = true;
     if (this.cardIndex >= this.cards.length) {
       this.overlayWord = null;
@@ -592,7 +596,8 @@ export class App {
     this.overlayWord = null;
     this.swiping = false;
     this.cardEnter = false;
-    this.drag = { active: false, startX: 0, startY: 0, x: 0, y: 0 };
+    this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
+    this.endPointerTracking();
     this.setView('home');
   }
 
@@ -612,18 +617,33 @@ export class App {
 
   onPointerDown(e) {
     if (this.view !== 'session' || this.overlayWord || this.swiping) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
     // Drop a leftover spring-back transition so dragging follows the finger 1:1.
     e.currentTarget.style.transition = '';
-    this.drag = { active: true, startX: e.clientX, startY: e.clientY, x: 0, y: 0 };
-    try {
-      e.currentTarget.setPointerCapture(e.pointerId);
-    } catch {
-      /* pointer already gone or capture unsupported */
-    }
+    this.drag = {
+      active: true,
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY,
+      x: 0,
+      y: 0,
+    };
+    // Track the gesture on window — not setPointerCapture. Capturing on the
+    // card and then destroying it at session end makes iOS eat the next tap
+    // («На главную» looks dead until the second press).
+    window.addEventListener('pointermove', this._onWinPointerMove);
+    window.addEventListener('pointerup', this._onWinPointerUp);
+    window.addEventListener('pointercancel', this._onWinPointerUp);
+  }
+
+  endPointerTracking() {
+    window.removeEventListener('pointermove', this._onWinPointerMove);
+    window.removeEventListener('pointerup', this._onWinPointerUp);
+    window.removeEventListener('pointercancel', this._onWinPointerUp);
   }
 
   onPointerMove(e) {
-    if (!this.drag.active) return;
+    if (!this.drag.active || e.pointerId !== this.drag.pointerId) return;
     this.drag.x = e.clientX - this.drag.startX;
     this.drag.y = e.clientY - this.drag.startY;
     const card = this.root.querySelector('.word-card');
@@ -638,18 +658,11 @@ export class App {
   }
 
   async onPointerUp(e) {
-    if (!this.drag.active) return;
+    if (!this.drag.active || e.pointerId !== this.drag.pointerId) return;
     const { x, y } = this.drag;
     this.drag.active = false;
-    // Release before the last-card render() detaches the node. iOS otherwise
-    // spends the next tap resetting pointer capture, so «На главную» looks dead.
-    try {
-      if (e.currentTarget?.hasPointerCapture?.(e.pointerId)) {
-        e.currentTarget.releasePointerCapture(e.pointerId);
-      }
-    } catch {
-      /* node already detached */
-    }
+    this.drag.pointerId = null;
+    this.endPointerTracking();
     const moved = Math.hypot(x, y);
     // Swipe threshold crossed — let swipe() animate the fly-out from the
     // current finger position (no transform reset here).
@@ -968,15 +981,13 @@ export class App {
         </div>`;
     }
 
+    this.endPointerTracking();
     this.root.innerHTML = html;
     this.cardEnter = false;
     this.bindEvents();
     const card = this.root.querySelector('#active-card');
     if (card) {
       card.addEventListener('pointerdown', (e) => this.onPointerDown(e));
-      card.addEventListener('pointermove', (e) => this.onPointerMove(e));
-      card.addEventListener('pointerup', (e) => this.onPointerUp(e));
-      card.addEventListener('pointercancel', (e) => this.onPointerUp(e));
     }
   }
 }
