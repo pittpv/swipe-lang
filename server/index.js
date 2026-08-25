@@ -30,6 +30,7 @@ import {
   getVapidKeys,
   createReminderSchedule,
   deleteReminderSchedule,
+  reminderScheduleId,
   sendReminderPush,
 } from './reminders.js';
 
@@ -50,6 +51,10 @@ app.use(cookieParser());
 app.use(attachSession);
 app.use(ensureCsrfToken);
 app.use(csrfProtection);
+app.use(async (req, _res, next) => {
+  if (req.path.startsWith('/api')) await db.reload();
+  next();
+});
 
 function requireAuth(req, res, next) {
   if (!req.session.userId) {
@@ -102,37 +107,46 @@ async function purgeOrphanSchedules(user) {
   }
 }
 
-app.post('/api/auth/register', authRateLimit, (req, res) => {
+app.post('/api/auth/register', authRateLimit, async (req, res) => {
   const { email, password, referralCode } = req.body ?? {};
   if (!validateEmail(email) || !validatePassword(password)) {
     return res.status(400).json({ error: 'Valid email and password (8–128 chars) required' });
   }
   const normalized = email.toLowerCase().trim();
-  if (db.data.users.some((u) => u.email === normalized)) {
-    return res.status(409).json({ error: 'Email already registered' });
+  try {
+    const created = await db.transact(() => {
+      if (db.data.users.some((u) => u.email === normalized)) {
+        const err = new Error('Email already registered');
+        err.status = 409;
+        throw err;
+      }
+      const referrer = findUserByReferralCode(db, referralCode);
+      const user = {
+        id: db.nextId('users'),
+        email: normalized,
+        password_hash: bcrypt.hashSync(password, 10),
+        name: null,
+        goal: null,
+        cefr_level: 'A1',
+        streak: 0,
+        last_session_date: null,
+        referral_code: generateReferralCode(),
+        referred_by: referrer?.id ?? null,
+        referrals_count: 0,
+        orphan_schedule_ids: [],
+        created_at: new Date().toISOString(),
+      };
+      if (referrer) referrer.referrals_count = (referrer.referrals_count ?? 0) + 1;
+      db.data.users.push(user);
+      return user;
+    });
+    req.session.userId = created.id;
+    setSessionCookie(res, req.session);
+    res.json({ id: created.id, email: created.email, needsOnboarding: true });
+  } catch (e) {
+    if (e.status === 409) return res.status(409).json({ error: e.message });
+    throw e;
   }
-  const referrer = findUserByReferralCode(db, referralCode);
-  const user = {
-    id: db.nextId('users'),
-    email: normalized,
-    password_hash: bcrypt.hashSync(password, 10),
-    name: null,
-    goal: null,
-    cefr_level: 'A1',
-    streak: 0,
-    last_session_date: null,
-    referral_code: generateReferralCode(),
-    referred_by: referrer?.id ?? null,
-    referrals_count: 0,
-    orphan_schedule_ids: [],
-    created_at: new Date().toISOString(),
-  };
-  if (referrer) referrer.referrals_count = (referrer.referrals_count ?? 0) + 1;
-  db.data.users.push(user);
-  db.persist();
-  req.session.userId = user.id;
-  setSessionCookie(res, req.session);
-  res.json({ id: user.id, email: user.email, needsOnboarding: true });
 });
 
 app.post('/api/auth/login', authRateLimit, (req, res) => {
@@ -182,25 +196,27 @@ app.delete('/api/account', requireAuth, async (req, res) => {
     );
   }
 
-  db.data.user_word_progress = db.data.user_word_progress.filter((p) => p.user_id !== userId);
-  db.data.study_sessions = db.data.study_sessions.filter((s) => s.user_id !== userId);
-  if (Array.isArray(db.data.analytics)) {
-    db.data.analytics = db.data.analytics.filter((a) => a.user_id !== userId);
-  }
-  for (const u of db.data.users) {
-    if (u.referred_by === userId) u.referred_by = null;
-  }
-  db.data.users = db.data.users.filter((u) => u.id !== userId);
-  db.persist();
+  await db.transact(() => {
+    db.data.user_word_progress = db.data.user_word_progress.filter((p) => p.user_id !== userId);
+    db.data.study_sessions = db.data.study_sessions.filter((s) => s.user_id !== userId);
+    if (Array.isArray(db.data.analytics)) {
+      db.data.analytics = db.data.analytics.filter((a) => a.user_id !== userId);
+    }
+    for (const u of db.data.users) {
+      if (u.referred_by === userId) u.referred_by = null;
+    }
+    db.data.users = db.data.users.filter((u) => u.id !== userId);
+  });
 
   clearSessionCookie(res);
   res.json({ ok: true });
 });
 
-app.get('/api/auth/me', (req, res) => {
+app.get('/api/auth/me', async (req, res) => {
   if (!req.session.userId) return res.status(401).json({ error: 'Unauthorized' });
-  const user = findUser(req.session.userId);
-  ensureReferralCode(user, db);
+  let user = findUser(req.session.userId);
+  await ensureReferralCode(user, db);
+  user = findUser(req.session.userId);
   res.json({
     id: user.id,
     email: user.email,
@@ -214,14 +230,14 @@ app.get('/api/auth/me', (req, res) => {
   });
 });
 
-app.get('/api/referral', requireAuth, (req, res) => {
+app.get('/api/referral', requireAuth, async (req, res) => {
   const user = findUser(req.session.userId);
-  const code = ensureReferralCode(user, db);
+  const code = await ensureReferralCode(user, db);
   const origin = process.env.APP_URL || `${req.protocol}://${req.get('host')}`;
   res.json({
     code,
     link: `${origin}/?ref=${code}`,
-    referralsCount: user.referrals_count ?? 0,
+    referralsCount: findUser(req.session.userId)?.referrals_count ?? 0,
   });
 });
 
@@ -282,29 +298,29 @@ app.post('/api/push/subscribe', requireAuth, async (req, res) => {
     return res.status(503).json({ error: 'Reminder scheduling is not configured on the server' });
   }
   try {
-    const user = findUser(req.session.userId);
-    // Retry cleanup of schedules we failed to delete earlier.
-    await purgeOrphanSchedules(user);
-    // Replace any previous schedule (time may have changed).
-    if (user.push_schedule_id) {
-      await removeScheduleOrQueue(user, user.push_schedule_id);
-      user.push_schedule_id = null;
-    }
-    const proto = req.headers['x-forwarded-proto'] || req.protocol;
-    const host = req.get('x-forwarded-host') || req.get('host');
-    const callbackUrl = `${proto}://${host}/api/cron/reminders`;
-    const scheduleId = await createReminderSchedule({
-      callbackUrl,
-      userId: user.id,
-      reminderTime,
-      tzOffsetMinutes: Number(tzOffsetMinutes) || 0,
-      timeZone: sanitizeText(req.body?.timeZone, 64),
+    await db.transact(async () => {
+      const user = findUser(req.session.userId);
+      await purgeOrphanSchedules(user);
+      const stableId = reminderScheduleId(user.id);
+      if (user.push_schedule_id && user.push_schedule_id !== stableId) {
+        await removeScheduleOrQueue(user, user.push_schedule_id);
+        user.push_schedule_id = null;
+      }
+      const proto = req.headers['x-forwarded-proto'] || req.protocol;
+      const host = req.get('x-forwarded-host') || req.get('host');
+      const callbackUrl = `${String(proto).split(',')[0].trim()}://${host}/api/cron/reminders`;
+      const scheduleId = await createReminderSchedule({
+        callbackUrl,
+        userId: user.id,
+        reminderTime,
+        tzOffsetMinutes: Number(tzOffsetMinutes) || 0,
+        timeZone: sanitizeText(req.body?.timeZone, 64),
+      });
+      user.push_subscription = subscription;
+      user.reminder_time = reminderTime;
+      user.tz_offset_minutes = Number(tzOffsetMinutes) || 0;
+      user.push_schedule_id = scheduleId;
     });
-    user.push_subscription = subscription;
-    user.reminder_time = reminderTime;
-    user.tz_offset_minutes = Number(tzOffsetMinutes) || 0;
-    user.push_schedule_id = scheduleId;
-    db.persist();
     res.json({ ok: true, enabled: true, time: reminderTime });
   } catch (e) {
     res.status(502).json({ error: e.message });
@@ -312,15 +328,16 @@ app.post('/api/push/subscribe', requireAuth, async (req, res) => {
 });
 
 app.post('/api/push/unsubscribe', requireAuth, async (req, res) => {
-  const user = findUser(req.session.userId);
-  if (user.push_schedule_id) {
-    await removeScheduleOrQueue(user, user.push_schedule_id);
-  }
-  await purgeOrphanSchedules(user);
-  user.push_schedule_id = null;
-  user.push_subscription = null;
-  user.reminder_time = null;
-  db.persist();
+  await db.transact(async () => {
+    const user = findUser(req.session.userId);
+    if (user.push_schedule_id) {
+      await removeScheduleOrQueue(user, user.push_schedule_id);
+    }
+    await purgeOrphanSchedules(user);
+    user.push_schedule_id = null;
+    user.push_subscription = null;
+    user.reminder_time = null;
+  });
   res.json({ ok: true, enabled: false });
 });
 
@@ -331,13 +348,20 @@ app.post('/api/cron/reminders', async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   const userId = Number(req.body?.userId);
-  const user = db.data.users.find((u) => u.id === userId);
-  if (!user) {
-    console.warn(`[cron] user ${userId} not found`);
-    return res.json({ ok: true, result: 'user-not-found' });
-  }
   try {
+    await db.reload();
+    const user = db.data.users.find((u) => u.id === userId);
+    if (!user) {
+      console.warn(`[cron] user ${userId} not found`);
+      return res.json({ ok: true, result: 'user-not-found' });
+    }
     const result = await sendReminderPush(db, user);
+    if (result.expired) {
+      await db.transact(() => {
+        const u = db.data.users.find((row) => row.id === userId);
+        if (u) u.push_subscription = null;
+      });
+    }
     console.log(`[cron] reminder for user ${userId}: ${JSON.stringify(result)}`);
     res.json({ ok: true, result });
   } catch (e) {
@@ -346,112 +370,132 @@ app.post('/api/cron/reminders', async (req, res) => {
   }
 });
 
-app.post('/api/onboarding', requireAuth, (req, res) => {
+app.post('/api/onboarding', requireAuth, async (req, res) => {
   const goal = sanitizeText(req.body?.goal, 64);
   const cefrLevel = sanitizeText(req.body?.cefrLevel, 8).toUpperCase();
   if (!goal || !['A1', 'A2', 'B1', 'B2', 'C1'].includes(cefrLevel)) {
     return res.status(400).json({ error: 'goal and valid cefrLevel required' });
   }
-  const user = findUser(req.session.userId);
-  user.goal = goal;
-  user.cefr_level = cefrLevel;
-  db.persist();
+  await db.transact(() => {
+    const user = findUser(req.session.userId);
+    user.goal = goal;
+    user.cefr_level = cefrLevel;
+  });
   res.json({ ok: true, goal, cefrLevel });
 });
 
-app.patch('/api/profile', requireAuth, (req, res) => {
-  const user = findUser(req.session.userId);
+app.patch('/api/profile', requireAuth, async (req, res) => {
   const { cefrLevel, goal, name } = req.body ?? {};
-  if (cefrLevel !== undefined) {
-    const level = sanitizeText(cefrLevel, 8).toUpperCase();
-    if (!['A1', 'A2', 'B1', 'B2'].includes(level)) {
-      return res.status(400).json({ error: 'Invalid cefrLevel' });
-    }
-    user.cefr_level = level;
+  try {
+    const saved = await db.transact(() => {
+      const user = findUser(req.session.userId);
+      if (cefrLevel !== undefined) {
+        const level = sanitizeText(cefrLevel, 8).toUpperCase();
+        if (!['A1', 'A2', 'B1', 'B2'].includes(level)) {
+          const err = new Error('Invalid cefrLevel');
+          err.status = 400;
+          throw err;
+        }
+        user.cefr_level = level;
+      }
+      if (goal !== undefined) {
+        const trimmed = sanitizeText(goal, 64);
+        if (!trimmed) {
+          const err = new Error('Invalid goal');
+          err.status = 400;
+          throw err;
+        }
+        user.goal = trimmed;
+      }
+      if (name !== undefined) {
+        const trimmed = sanitizeText(name, 64);
+        if (!trimmed) {
+          const err = new Error('Invalid name');
+          err.status = 400;
+          throw err;
+        }
+        user.name = trimmed;
+      }
+      return { cefrLevel: user.cefr_level, goal: user.goal, name: user.name ?? null };
+    });
+    res.json({ ok: true, ...saved });
+  } catch (e) {
+    if (e.status === 400) return res.status(400).json({ error: e.message });
+    throw e;
   }
-  if (goal !== undefined) {
-    const trimmed = sanitizeText(goal, 64);
-    if (!trimmed) return res.status(400).json({ error: 'Invalid goal' });
-    user.goal = trimmed;
-  }
-  if (name !== undefined) {
-    const trimmed = sanitizeText(name, 64);
-    if (!trimmed) return res.status(400).json({ error: 'Invalid name' });
-    user.name = trimmed;
-  }
-  db.persist();
-  res.json({ ok: true, cefrLevel: user.cefr_level, goal: user.goal, name: user.name ?? null });
 });
 
 /** Wipes all learning progress for the user: SRS cards, sessions, streak. */
-app.post('/api/profile/reset-progress', requireAuth, (req, res) => {
+app.post('/api/profile/reset-progress', requireAuth, async (req, res) => {
   const userId = req.session.userId;
-  db.data.user_word_progress = db.data.user_word_progress.filter((p) => p.user_id !== userId);
-  db.data.study_sessions = db.data.study_sessions.filter((s) => s.user_id !== userId);
-  const user = findUser(userId);
-  if (user) {
-    user.streak = 0;
-    user.last_session_date = null;
-    // Milestones are wiped too so celebrations can replay after a fresh start.
-    delete user.milestones;
-  }
-  db.persist();
+  await db.transact(() => {
+    db.data.user_word_progress = db.data.user_word_progress.filter((p) => p.user_id !== userId);
+    db.data.study_sessions = db.data.study_sessions.filter((s) => s.user_id !== userId);
+    const user = findUser(userId);
+    if (user) {
+      user.streak = 0;
+      user.last_session_date = null;
+      delete user.milestones;
+    }
+  });
   res.json({ ok: true });
 });
 
-app.post('/api/session/start', requireAuth, (req, res) => {
+app.post('/api/session/start', requireAuth, async (req, res) => {
   const userId = req.session.userId;
   const deck = buildSessionDeck(db, userId);
   if (!deck.length) {
     return res.status(404).json({ error: 'No words available for your level' });
   }
-  const sessionRow = {
-    id: db.nextId('study_sessions'),
-    user_id: userId,
-    started_at: new Date().toISOString(),
-    ended_at: null,
-    cards_reviewed: 0,
-    cards_learned: 0,
-  };
-  db.data.study_sessions.push(sessionRow);
-  db.persist();
+  const sessionRow = await db.transact(() => {
+    const row = {
+      id: db.nextId('study_sessions'),
+      user_id: userId,
+      started_at: new Date().toISOString(),
+      ended_at: null,
+      cards_reviewed: 0,
+      cards_learned: 0,
+    };
+    db.data.study_sessions.push(row);
+    return row;
+  });
   req.session.activeSessionId = sessionRow.id;
   req.session.sessionStats = { reviewed: 0, learned: 0 };
   setSessionCookie(res, req.session);
   res.json({ sessionId: sessionRow.id, sessionSize: SESSION_SIZE, cards: deck });
 });
 
-app.post('/api/session/swipe', requireAuth, (req, res) => {
+app.post('/api/session/swipe', requireAuth, async (req, res) => {
   const { wordId, direction } = req.body ?? {};
   if (!wordId || !['left', 'right'].includes(direction)) {
     return res.status(400).json({ error: 'wordId and direction (left|right) required' });
   }
   const userId = req.session.userId;
-  const existing = db.data.user_word_progress.find(
-    (p) => p.user_id === userId && p.word_id === wordId,
-  );
-
-  const updated = applySwipe(existing, direction);
-
-  if (existing) {
-    Object.assign(existing, {
-      status: updated.status,
-      ease: updated.ease,
-      interval_days: updated.interval_days,
-      repetitions: updated.repetitions,
-      next_review_at: updated.next_review_at,
-      updated_at: new Date().toISOString(),
-    });
-  } else {
-    db.data.user_word_progress.push({
-      id: db.nextId('user_word_progress'),
-      user_id: userId,
-      word_id: wordId,
-      ...updated,
-      updated_at: new Date().toISOString(),
-    });
-  }
-  db.persist();
+  const updated = await db.transact(() => {
+    const existing = db.data.user_word_progress.find(
+      (p) => p.user_id === userId && p.word_id === wordId,
+    );
+    const next = applySwipe(existing, direction);
+    if (existing) {
+      Object.assign(existing, {
+        status: next.status,
+        ease: next.ease,
+        interval_days: next.interval_days,
+        repetitions: next.repetitions,
+        next_review_at: next.next_review_at,
+        updated_at: new Date().toISOString(),
+      });
+    } else {
+      db.data.user_word_progress.push({
+        id: db.nextId('user_word_progress'),
+        user_id: userId,
+        word_id: wordId,
+        ...next,
+        updated_at: new Date().toISOString(),
+      });
+    }
+    return next;
+  });
 
   if (req.session.sessionStats) {
     req.session.sessionStats.reviewed += 1;
@@ -506,61 +550,59 @@ function listMilestones(user) {
 }
 
 app.post('/api/session/complete', requireAuth, async (req, res) => {
-  // Sync with the shared store first: the user may have studied on another
-  // device, and milestones must be computed and persisted on top of the
-  // freshest streak / words data, not a stale in-memory snapshot.
-  await db.reload();
   const userId = req.session.userId;
   const sessionId = req.session.activeSessionId;
   const stats = req.session.sessionStats ?? { reviewed: 0, learned: 0 };
 
-  const sessionRow = db.data.study_sessions.find((s) => s.id === sessionId);
-  if (sessionRow) {
-    sessionRow.ended_at = new Date().toISOString();
-    sessionRow.cards_reviewed = stats.reviewed;
-    sessionRow.cards_learned = stats.learned;
-  }
+  const payload = await db.transact(() => {
+    const sessionRow = db.data.study_sessions.find((s) => s.id === sessionId);
+    if (sessionRow) {
+      sessionRow.ended_at = new Date().toISOString();
+      sessionRow.cards_reviewed = stats.reviewed;
+      sessionRow.cards_learned = stats.learned;
+    }
 
-  const user = findUser(userId);
-  const today = new Date().toISOString().slice(0, 10);
-  let streak = user.streak ?? 0;
-  if (user.last_session_date !== today) {
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    const y = yesterday.toISOString().slice(0, 10);
-    streak = user.last_session_date === y ? streak + 1 : 1;
-    user.streak = streak;
-    user.last_session_date = today;
-  }
+    const user = findUser(userId);
+    const today = new Date().toISOString().slice(0, 10);
+    let streak = user.streak ?? 0;
+    if (user.last_session_date !== today) {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const y = yesterday.toISOString().slice(0, 10);
+      streak = user.last_session_date === y ? streak + 1 : 1;
+      user.streak = streak;
+      user.last_session_date = today;
+    }
 
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const tomorrowEnd = tomorrow.toISOString().slice(0, 10) + 'T23:59:59.999Z';
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowEnd = tomorrow.toISOString().slice(0, 10) + 'T23:59:59.999Z';
 
-  const wordsDueTomorrow = db.data.user_word_progress.filter(
-    (p) => p.user_id === userId && p.next_review_at && p.next_review_at <= tomorrowEnd,
-  ).length;
+    const wordsDueTomorrow = db.data.user_word_progress.filter(
+      (p) => p.user_id === userId && p.next_review_at && p.next_review_at <= tomorrowEnd,
+    ).length;
 
-  const wordsLearned = db.data.user_word_progress.filter(
-    (p) => p.user_id === userId && ['learning', 'known', 'mature'].includes(p.status),
-  ).length;
+    const wordsLearned = db.data.user_word_progress.filter(
+      (p) => p.user_id === userId && ['learning', 'known', 'mature'].includes(p.status),
+    ).length;
 
-  const achievements = user ? collectMilestones(user, { streak, words: wordsLearned }) : [];
+    const achievements = user ? collectMilestones(user, { streak, words: wordsLearned }) : [];
 
-  db.persist();
+    return {
+      cardsReviewed: stats.reviewed,
+      cardsLearned: stats.learned,
+      streak,
+      wordsDueTomorrow,
+      wordsLearned,
+      achievements,
+    };
+  });
 
   delete req.session.activeSessionId;
   delete req.session.sessionStats;
   setSessionCookie(res, req.session);
 
-  res.json({
-    cardsReviewed: stats.reviewed,
-    cardsLearned: stats.learned,
-    streak,
-    wordsDueTomorrow,
-    wordsLearned,
-    achievements,
-  });
+  res.json(payload);
 });
 
 app.get('/api/stats', requireAuth, async (req, res) => {
@@ -664,22 +706,23 @@ app.post('/api/analytics', (req, res, next) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   next();
-}, (req, res) => {
+}, async (req, res) => {
   const event = sanitizeText(req.body?.event, 64);
   if (!ALLOWED_EVENTS.has(event)) {
     return res.status(400).json({ error: 'Invalid event' });
   }
-  if (!db.data.analytics) db.data.analytics = [];
-  db.data.analytics.push({
-    id: db.nextId('analytics'),
-    user_id: req.session?.userId ?? null,
-    event,
-    at: new Date().toISOString(),
+  await db.transact(() => {
+    if (!db.data.analytics) db.data.analytics = [];
+    db.data.analytics.push({
+      id: db.nextId('analytics'),
+      user_id: req.session?.userId ?? null,
+      event,
+      at: new Date().toISOString(),
+    });
+    if (db.data.analytics.length > 10_000) {
+      db.data.analytics = db.data.analytics.slice(-5_000);
+    }
   });
-  if (db.data.analytics.length > 10_000) {
-    db.data.analytics = db.data.analytics.slice(-5_000);
-  }
-  db.persist();
   res.json({ ok: true });
 });
 

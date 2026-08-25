@@ -337,9 +337,20 @@ export class App {
   async loadReminderStatus() {
     try {
       const status = await api('/push/status');
-      this.reminder.enabled = status.enabled;
+      const local = readReminderPref();
       if (status.time) this.reminderTime = status.time;
-      if (status.enabled) await this.healPushSubscription();
+      else if (local?.time) this.reminderTime = local.time;
+      if (status.enabled || local?.enabled) {
+        // Re-bind every open: recovers wiped server state and iOS endpoints
+        // that went 410 after the first delivery.
+        await this.pushSubscribe();
+        return;
+      }
+      if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+        const registration = await navigator.serviceWorker.getRegistration();
+        const subscription = await registration?.pushManager.getSubscription();
+        if (subscription) await this.pushSubscribe();
+      }
     } catch {
       /* reminders stay hidden/default on failure */
     }
@@ -441,8 +452,10 @@ export class App {
         },
       });
       this.reminder.enabled = Boolean(result.enabled);
+      if (this.reminder.enabled) writeReminderPref({ enabled: true, time: this.reminderTime });
     } catch (e) {
       this.reminderError = e.message;
+      if (readReminderPref()?.enabled) this.reminder.enabled = true;
     }
     this.reminderSaveInFlight = false;
     if (this.reminderSaveQueued) {
@@ -461,32 +474,20 @@ export class App {
 
   async disableReminders() {
     this.cancelPendingReminderSave();
+    clearReminderPref();
     try {
       await api('/push/unsubscribe', { method: 'POST' });
     } catch {
       /* ignore */
     }
-    this.reminder.enabled = false;
-    this.render();
-  }
-
-  async saveReminderTime() {
-    this.reminderError = '';
     try {
-      const subscription = await this.ensurePushSubscription();
-      const result = await api('/push/subscribe', {
-        method: 'POST',
-        body: {
-          subscription,
-          reminderTime: this.reminderTime,
-          tzOffsetMinutes: new Date().getTimezoneOffset(),
-          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        },
-      });
-      this.reminder.enabled = Boolean(result.enabled);
-    } catch (e) {
-      this.reminderError = e.message;
+      const registration = await navigator.serviceWorker.getRegistration();
+      const subscription = await registration?.pushManager.getSubscription();
+      await subscription?.unsubscribe();
+    } catch {
+      /* ignore */
     }
+    this.reminder.enabled = false;
     this.render();
   }
 
@@ -956,6 +957,33 @@ function esc(s) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+const REMINDER_PREF_KEY = 'langapp.reminders';
+
+function readReminderPref() {
+  try {
+    const raw = localStorage.getItem(REMINDER_PREF_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeReminderPref(value) {
+  try {
+    localStorage.setItem(REMINDER_PREF_KEY, JSON.stringify(value));
+  } catch {
+    /* private mode */
+  }
+}
+
+function clearReminderPref() {
+  try {
+    localStorage.removeItem(REMINDER_PREF_KEY);
+  } catch {
+    /* private mode */
+  }
 }
 
 function urlB64ToUint8Array(base64UrlString) {

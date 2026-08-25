@@ -106,21 +106,80 @@ if (pgEnabled) {
 
 let pendingSave = null;
 
+function currentRev() {
+  return Number(cache._rev) || 0;
+}
+
+/**
+ * Compare-and-swap write. Returns false when another instance already stored
+ * a newer snapshot — callers must reload and retry instead of clobbering it.
+ * Without this, a warm Vercel lambda that started before a push subscribe
+ * would persist its stale blob and wipe `push_subscription`, so the next
+ * day's QStash cron would fire and skip the reminder.
+ */
+async function persistCas(data, expectedRev) {
+  const payload = JSON.stringify(data);
+  if (pgEnabled) {
+    const updated = await sql`
+      UPDATE langapp_state
+      SET data = ${payload}::jsonb, updated_at = now()
+      WHERE id = 1
+        AND COALESCE((data->>'_rev')::int, 0) = ${expectedRev}
+      RETURNING id
+    `;
+    if (updated.length) return true;
+    const existing = await sql`SELECT id FROM langapp_state WHERE id = 1`;
+    if (existing.length) return false;
+    try {
+      await sql`
+        INSERT INTO langapp_state (id, data, updated_at)
+        VALUES (1, ${payload}::jsonb, now())
+      `;
+      return true;
+    } catch (err) {
+      console.error('[db] Postgres insert race:', err.message);
+      return false;
+    }
+  }
+  if (redisEnabled) {
+    const script = `
+      local current = redis.call('GET', KEYS[1])
+      local expected = tonumber(ARGV[1])
+      if not current then
+        if expected ~= 0 then return 0 end
+        redis.call('SET', KEYS[1], ARGV[2])
+        return 1
+      end
+      local rev = tonumber(string.match(current, '"_rev":(%d+)')) or 0
+      if rev ~= expected then return 0 end
+      redis.call('SET', KEYS[1], ARGV[2])
+      return 1
+    `;
+    try {
+      const result = await redisCommand(['EVAL', script, 1, DB_KEY, String(expectedRev), payload]);
+      return Number(result) === 1;
+    } catch (err) {
+      console.error('[db] Redis CAS failed, falling back to SET:', err.message);
+      await redisCommand(['SET', DB_KEY, payload]);
+      return true;
+    }
+  }
+  saveFile(data);
+  return true;
+}
+
 function persistPostgres(data) {
-  pendingSave = sql`
-    INSERT INTO langapp_state (id, data, updated_at)
-    VALUES (1, ${JSON.stringify(data)}::jsonb, now())
-    ON CONFLICT (id) DO UPDATE
-      SET data = EXCLUDED.data, updated_at = now()
-  `;
+  pendingSave = persistCas(data, currentRev() - 1).then((ok) => {
+    if (!ok) console.error('[db] persist CAS conflict — skipped stale write');
+  });
   pendingSave.catch((err) => console.error('[db] Postgres persist failed:', err.message));
-  // Keeps the write alive until it completes, even after the response is sent
-  // (no-op outside Vercel).
   waitUntil(pendingSave);
 }
 
 function persistRemote(data) {
-  pendingSave = redisCommand(['SET', DB_KEY, JSON.stringify(data)]);
+  pendingSave = persistCas(data, currentRev() - 1).then((ok) => {
+    if (!ok) console.error('[db] persist CAS conflict — skipped stale write');
+  });
   pendingSave.catch((err) => console.error('[db] Redis persist failed:', err.message));
   waitUntil(pendingSave);
 }
@@ -149,7 +208,33 @@ export const db = {
       console.error('[db] reload failed:', err.message);
     }
   },
+  /**
+   * Reload → mutate → CAS write, retrying when another instance won the race.
+   * Request handlers that change user data (especially push subscriptions)
+   * must use this instead of mutate-then-`persist()`.
+   */
+  async transact(mutator) {
+    if (!pgEnabled && !redisEnabled) {
+      const result = await mutator();
+      saveFile(cache);
+      return result;
+    }
+    for (let attempt = 0; attempt < 5; attempt++) {
+      await this.reload();
+      const expectedRev = currentRev();
+      const result = await mutator();
+      cache._rev = expectedRev + 1;
+      const ok = await persistCas(cache, expectedRev);
+      if (ok) {
+        pendingSave = null;
+        return result;
+      }
+      console.warn(`[db] write conflict, retry ${attempt + 1}/5`);
+    }
+    throw new Error('Database write conflict');
+  },
   persist() {
+    cache._rev = currentRev() + 1;
     if (pgEnabled) persistPostgres(cache);
     else if (redisEnabled) persistRemote(cache);
     else saveFile(cache);

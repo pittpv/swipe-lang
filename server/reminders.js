@@ -17,8 +17,16 @@ export function getVapidKeys() {
   const publicKey = process.env.VAPID_PUBLIC_KEY;
   const privateKey = process.env.VAPID_PRIVATE_KEY;
   if (publicKey && privateKey) return { publicKey, privateKey };
+  if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
+    throw new Error('VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY must be set');
+  }
   if (!devVapidKeys) devVapidKeys = webpush.generateVAPIDKeys();
   return devVapidKeys;
+}
+
+/** Stable QStash id so time changes update the same schedule instead of delete+create. */
+export function reminderScheduleId(userId) {
+  return `langapp-reminder-${userId}`;
 }
 
 /** "19:00" + optional IANA timezone -> "{mm} {hh} * * *" cron (UTC fallback). */
@@ -53,6 +61,7 @@ export async function createReminderSchedule({ callbackUrl, userId, reminderTime
     method: 'POST',
     headers: {
       'Upstash-Cron': cron,
+      'Upstash-Schedule-Id': reminderScheduleId(userId),
       'Content-Type': 'application/json',
       // "Upstash-Forward-*" headers are forwarded to the destination;
       // plain custom headers are consumed by QStash itself.
@@ -110,17 +119,11 @@ export async function sendReminderPush(db, user) {
   } catch (err) {
     console.error(`[reminders] web-push ${err.statusCode ?? '???'}: ${err.body ?? err.message}`);
     // 404/410 — subscription expired; 401/403 — VAPID key mismatch (keys were
-    // rotated). Both are permanent: drop the subscription so the client can
-    // re-subscribe with the current key on the next visit.
+    // rotated). Drop the endpoint so the next app-open heal can resubscribe,
+    // but keep the QStash schedule and reminder_time — otherwise the UI shows
+    // reminders as off and heal never runs.
     if ([401, 403, 404, 410].includes(err.statusCode)) {
-      if (user.push_schedule_id) {
-        // Best-effort: don't leave an orphaned schedule behind.
-        await deleteReminderSchedule(user.push_schedule_id).catch(() => {});
-      }
-      user.push_subscription = null;
-      user.push_schedule_id = null;
-      db.persist();
-      return { skipped: 'expired-subscription' };
+      return { skipped: 'expired-subscription', expired: true };
     }
     return { skipped: `delivery-error-${err.statusCode ?? 'unknown'}` };
   }

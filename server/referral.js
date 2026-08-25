@@ -9,10 +9,12 @@ export function findUserByReferralCode(db, code) {
   return db.data.users.find((u) => u.referral_code === code.toLowerCase().trim()) ?? null;
 }
 
-export function ensureReferralCode(user, db) {
-  if (!user.referral_code) {
-    user.referral_code = generateReferralCode();
-    db.persist();
-  }
-  return user.referral_code;
+export async function ensureReferralCode(user, db) {
+  if (user.referral_code) return user.referral_code;
+  const code = generateReferralCode();
+  await db.transact(() => {
+    const u = db.data.users.find((row) => row.id === user.id);
+    if (u && !u.referral_code) u.referral_code = code;
+  });
+  return db.data.users.find((row) => row.id === user.id)?.referral_code ?? code;
 }
