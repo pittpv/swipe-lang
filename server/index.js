@@ -503,6 +503,13 @@ app.post('/api/session/swipe', requireAuth, async (req, res) => {
   res.json({ ok: true, progress: updated });
 });
 
+/** Words marked «Знаю» (SRS known/mature) — used for stats and word milestones. */
+function countWordsKnown(userId) {
+  return db.data.user_word_progress.filter(
+    (p) => p.user_id === userId && ['known', 'mature'].includes(p.status),
+  ).length;
+}
+
 /** Milestone thresholds that unlock a fullscreen celebration. */
 const MILESTONES = {
   streak: [3, 5, 7, 10, 14, 20, 30, 50, 75, 100, 150, 200, 365],
@@ -510,22 +517,20 @@ const MILESTONES = {
 };
 
 /**
- * Returns newly reached milestones and remembers them on the user row so each
- * achievement is celebrated exactly once, even across sessions and devices.
+ * Returns every newly reached milestone (ascending) and remembers the highest
+ * on the user row so each threshold is celebrated exactly once. Jumping past
+ * several thresholds (e.g. 0 → 12 words) unlocks a chat of several bubbles.
  */
 function collectMilestones(user, values) {
   if (!user.milestones || typeof user.milestones !== 'object') user.milestones = {};
   const unlocked = [];
   for (const [type, thresholds] of Object.entries(MILESTONES)) {
     const value = values[type] ?? 0;
-    const reached = thresholds.filter((t) => value >= t);
-    if (!reached.length) continue;
-    // Celebrate only the highest newly-crossed threshold (e.g. jumping straight
-    // from day 1 to day 12 shows "10 дней", not 3, 5 and 10 at once).
-    const top = Math.max(...reached);
-    if ((user.milestones[type] ?? 0) >= top) continue;
-    unlocked.push({ type, value: top });
-    user.milestones[type] = top;
+    const previously = user.milestones[type] ?? 0;
+    const newlyReached = thresholds.filter((t) => t > previously && value >= t);
+    if (!newlyReached.length) continue;
+    for (const t of newlyReached) unlocked.push({ type, value: t });
+    user.milestones[type] = newlyReached[newlyReached.length - 1];
   }
   return unlocked;
 }
@@ -579,9 +584,7 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
       (p) => p.user_id === userId && p.next_review_at && p.next_review_at <= tomorrowEnd,
     ).length;
 
-    const wordsLearned = db.data.user_word_progress.filter(
-      (p) => p.user_id === userId && ['learning', 'known', 'mature'].includes(p.status),
-    ).length;
+    const wordsLearned = countWordsKnown(userId);
 
     const achievements = user ? collectMilestones(user, { streak, words: wordsLearned }) : [];
 
@@ -608,9 +611,7 @@ app.get('/api/stats', requireAuth, async (req, res) => {
   await db.reload();
   const userId = req.session.userId;
   const user = findUser(userId);
-  const learned = db.data.user_word_progress.filter(
-    (p) => p.user_id === userId && ['learning', 'known', 'mature'].includes(p.status),
-  ).length;
+  const learned = countWordsKnown(userId);
   const sessions = db.data.study_sessions.filter(
     (s) => s.user_id === userId && s.ended_at,
   ).length;

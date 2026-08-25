@@ -132,15 +132,23 @@ function playBatch(messages) {
 
     async function play() {
       let lastBubble = null;
+      // Slightly snappier gaps when several milestones land at once,
+      // so a long chat still feels like iMessage, not a slideshow.
+      const readMs =
+        messages.length > 1
+          ? Math.max(1200, READ_MS - (messages.length - 1) * 250)
+          : READ_MS;
       for (const msg of messages) {
         if (closed) break;
         const typing = buildTyping();
         chat.appendChild(typing);
+        typing.scrollIntoView({ block: 'nearest', behavior: reducedMotion() ? 'auto' : 'smooth' });
         await sleep(TYPING_MS);
         if (closed) break;
         lastBubble = buildBubble(msg);
         typing.replaceWith(lastBubble);
-        await sleep(READ_MS);
+        lastBubble.scrollIntoView({ block: 'nearest', behavior: reducedMotion() ? 'auto' : 'smooth' });
+        await sleep(readMs);
       }
       if (!closed && lastBubble) {
         lastBubble.insertAdjacentElement('afterend', buildTimeLabel());

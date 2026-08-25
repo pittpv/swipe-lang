@@ -954,7 +954,7 @@ export class App {
         <section class="hero"><h1>Статистика</h1></section>
         <div class="card-form stats-page">
           <div class="stat-row"><span>Streak</span><strong>${this.stats.streak} дн.</strong></div>
-          <div class="stat-row"><span>Слов в учёбе</span><strong>${this.stats.wordsLearned}</strong></div>
+          <div class="stat-row"><span>Знаю</span><strong>${this.stats.wordsLearned}</strong></div>
           <div class="stat-row"><span>Сессий</span><strong>${this.stats.sessionsCompleted}</strong></div>
           <div class="stat-row"><span>Уровень</span><strong>${esc(this.stats.cefrLevel)}</strong></div>
           <div class="settings-divider"></div>

@@ -78,7 +78,7 @@ test('full user flow', async () => {
   const wordId = data.cards[0].id;
   ({ res } = await client.fetch('/api/session/swipe', {
     method: 'POST',
-    body: JSON.stringify({ wordId, direction: 'right' }),
+    body: JSON.stringify({ wordId, direction: 'left' }),
   }));
   assert.equal(res.status, 200);
 
