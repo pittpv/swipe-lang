@@ -220,7 +220,10 @@ export const db = {
       return result;
     }
     for (let attempt = 0; attempt < 5; attempt++) {
-      await this.reload();
+      // First attempt uses the in-memory snapshot (already loaded on this
+      // isolate). Reload only after a CAS miss so a swipe is one write, not
+      // two full-document round-trips.
+      if (attempt > 0) await this.reload();
       const expectedRev = currentRev();
       const result = await mutator();
       cache._rev = expectedRev + 1;

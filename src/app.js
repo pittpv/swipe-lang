@@ -1,19 +1,7 @@
-import { track, captureReferralFromUrl, getStoredReferral, fetchPublicStats, getCsrfToken } from './track.js';
-import { showAchievements, achievementBadge } from './achievements.js';
+import { track, captureReferralFromUrl, getStoredReferral, fetchPublicStats, api } from './track.js';
+import { showAchievements, dismissAchievements, achievementBadge } from './achievements.js';
 
-const API = '/api';
-
-export async function api(path, options = {}) {
-  const res = await fetch(`${API}${path}`, {
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': getCsrfToken(), ...options.headers },
-    ...options,
-    body: options.body ? JSON.stringify(options.body) : undefined,
-  });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || res.statusText);
-  return data;
-}
+export { api } from './track.js';
 
 export class App {
   constructor(root) {
@@ -128,6 +116,8 @@ export class App {
   setView(view) {
     this.view = view;
     this.error = '';
+    this.overlayWord = null;
+    dismissAchievements();
     this.render();
   }
 
@@ -240,6 +230,7 @@ export class App {
     this.drag = { active: false, startX: 0, startY: 0, x: 0, y: 0 };
     this.cardEnter = true;
     if (this.cardIndex >= this.cards.length) {
+      this.overlayWord = null;
       this.summary = await api('/session/complete', { method: 'POST' });
       if (this.user) this.user.streak = this.summary.streak;
       track('session_complete');

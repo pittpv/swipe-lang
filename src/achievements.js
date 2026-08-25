@@ -16,6 +16,7 @@ const CLOSE_MS = 380; // fade-out duration
 /** @type {Array<{emoji:string,title:string,text:string}>} */
 let queue = [];
 let showing = false;
+let activeClose = null;
 // Timers of the currently playing batch are registered here so an early
 // dismiss cancels every pending step at once.
 let timers = [];
@@ -30,6 +31,12 @@ export function showAchievements(achievements) {
   if (!messages.length) return;
   queue.push(...messages);
   if (!showing) runQueue();
+}
+
+/** Drop any playing celebration so it can't swallow the next tap (e.g. «На главную»). */
+export function dismissAchievements() {
+  queue = [];
+  activeClose?.();
 }
 
 function toMessage(a) {
@@ -102,6 +109,7 @@ function playBatch(messages) {
     const close = () => {
       if (closed) return;
       closed = true;
+      if (activeClose === close) activeClose = null;
       timers.forEach(clearTimeout);
       timers = [];
       document.removeEventListener('keydown', onKey);
@@ -111,6 +119,7 @@ function playBatch(messages) {
         resolve();
       }, reducedMotion() ? 0 : CLOSE_MS);
     };
+    activeClose = close;
 
     function onKey(e) {
       if (e.key === 'Escape') close();

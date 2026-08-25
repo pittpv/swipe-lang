@@ -596,6 +596,8 @@ select {
   justify-content: center;
   padding: 1.5rem;
   animation: achFadeIn 0.3s ease-out;
+  /* Let summary/home buttons receive the first tap; dismiss via the chat. */
+  pointer-events: none;
 }
 
 .ach-closing {
@@ -621,6 +623,7 @@ select {
   background: rgba(28, 36, 33, 0.55);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  pointer-events: none;
 }
 
 .ach-chat {
@@ -632,6 +635,7 @@ select {
   width: min(320px, 100%);
   /* The whole conversation drifts down slightly as it fades out. */
   transition: transform 0.35s ease-in;
+  pointer-events: auto;
 }
 
 .ach-closing .ach-chat {

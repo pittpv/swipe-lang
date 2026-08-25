@@ -51,10 +51,6 @@ app.use(cookieParser());
 app.use(attachSession);
 app.use(ensureCsrfToken);
 app.use(csrfProtection);
-app.use(async (req, _res, next) => {
-  if (req.path.startsWith('/api')) await db.reload();
-  next();
-});
 
 function requireAuth(req, res, next) {
   if (!req.session.userId) {
