@@ -591,19 +591,15 @@ select {
 /* ===== Achievement celebration (iMessage-style overlay) ===== */
 .ach-layer {
   position: fixed;
-  /* Top band only — leave summary CTAs («На главную») outside this box.
-     WebKit can still hit-test full-screen backdrop-filter layers even with
-     pointer-events: none, which ate the first tap after a session. */
-  top: 0;
-  left: 0;
-  right: 0;
-  height: min(42vh, 360px);
+  inset: 0;
   z-index: 1000;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding: max(8vh, calc(env(safe-area-inset-top, 0px) + 1.5rem)) 1.5rem 1rem;
+  padding: 1.5rem;
   animation: achFadeIn 0.3s ease-out;
+  /* Visual-only: celebrations run after summary (on home), so a full-screen
+     blur is safe and must not steal taps underneath. */
   pointer-events: none;
 }
 
@@ -627,12 +623,9 @@ select {
 .ach-backdrop {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(28, 36, 33, 0.62) 0%,
-    rgba(28, 36, 33, 0.35) 70%,
-    rgba(28, 36, 33, 0) 100%
-  );
+  background: rgba(28, 36, 33, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   pointer-events: none;
 }
 
@@ -643,17 +636,9 @@ select {
   align-items: flex-start;
   gap: 0.6rem;
   width: min(320px, 100%);
-  max-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scrollbar-width: none;
   /* The whole conversation drifts down slightly as it fades out. */
   transition: transform 0.35s ease-in;
   pointer-events: none;
-}
-
-.ach-chat::-webkit-scrollbar {
-  display: none;
 }
 
 .ach-closing .ach-chat {

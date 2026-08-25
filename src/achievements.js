@@ -142,12 +142,10 @@ function playBatch(messages) {
         if (closed) break;
         const typing = buildTyping();
         chat.appendChild(typing);
-        typing.scrollIntoView({ block: 'nearest', behavior: reducedMotion() ? 'auto' : 'smooth' });
         await sleep(TYPING_MS);
         if (closed) break;
         lastBubble = buildBubble(msg);
         typing.replaceWith(lastBubble);
-        lastBubble.scrollIntoView({ block: 'nearest', behavior: reducedMotion() ? 'auto' : 'smooth' });
         await sleep(readMs);
       }
       if (!closed && lastBubble) {
