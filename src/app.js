@@ -29,6 +29,8 @@ export class App {
     this.reminderSaveTimer = null;
     this.reminderSaveInFlight = false;
     this.reminderSaveQueued = false;
+    this.reminderSaveInteractiveQueued = false;
+    this.reminderNeedsGestureHeal = false;
     this.settingsError = '';
     this.settingsSaved = false;
     this.name = '';
@@ -59,6 +61,7 @@ export class App {
       await this.loadUserExtras();
     }
     this.render();
+    this.armGesturePushHeal();
     this.initVersionWatch();
   }
 
@@ -131,6 +134,7 @@ export class App {
       this.error = e.message;
     }
     this.render();
+    this.armGesturePushHeal();
   }
 
   async register() {
@@ -159,6 +163,7 @@ export class App {
       this.error = e.message;
     }
     this.render();
+    this.armGesturePushHeal();
   }
 
   async startSession() {
@@ -326,55 +331,51 @@ export class App {
   // --- Study reminders ---
 
   async loadReminderStatus() {
+    const local = readReminderPref();
     try {
       const status = await api('/push/status');
-      const local = readReminderPref();
       if (status.time) this.reminderTime = status.time;
       else if (local?.time) this.reminderTime = local.time;
       if (status.enabled || local?.enabled) {
-        // Re-bind every open: recovers wiped server state and iOS endpoints
-        // that went 410 after the first delivery.
-        await this.pushSubscribe();
+        this.reminder.enabled = true;
+        await this.pushSubscribe({ interactive: false });
         return;
       }
-      if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-        const registration = await navigator.serviceWorker.getRegistration();
-        const subscription = await registration?.pushManager.getSubscription();
-        if (subscription) await this.pushSubscribe();
-      }
+      const registration = await navigator.serviceWorker.getRegistration();
+      const subscription = await registration?.pushManager.getSubscription();
+      if (subscription) await this.pushSubscribe({ interactive: false });
     } catch {
-      /* reminders stay hidden/default on failure */
+      if (local?.enabled) {
+        this.reminder.enabled = true;
+        if (local.time) this.reminderTime = local.time;
+      }
     }
   }
 
   /**
-   * Silent self-heal on app open: re-subscribes when the stored subscription
-   * is missing or was made with a stale server VAPID key (pushes would
-   * otherwise fail with 403 forever).
+   * iOS only allows PushManager.subscribe inside a user gesture. If launch
+   * heal could not recreate a lost endpoint, retry on the first tap.
    */
-  async healPushSubscription() {
-    try {
-      if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
-      const registration = await navigator.serviceWorker.getRegistration();
-      const subscription = await registration?.pushManager.getSubscription();
-      let needsResubscribe = !subscription;
-      if (subscription) {
-        const config = await api('/push/config');
-        needsResubscribe = !this.sameVapidKey(subscription, config.publicKey);
-      }
-      if (needsResubscribe) await this.pushSubscribe();
-    } catch {
-      /* keep UI state as-is; the toggle still works manually */
-    }
+  armGesturePushHeal() {
+    if (!this.reminderNeedsGestureHeal) return;
+    const retry = () => {
+      document.removeEventListener('pointerdown', retry);
+      this.reminderNeedsGestureHeal = false;
+      this.pushSubscribe({ interactive: false });
+    };
+    document.addEventListener('pointerdown', retry, { once: true });
   }
 
-  async ensurePushSubscription() {
+  /**
+   * @param {{ interactive?: boolean }} [opts]
+   * interactive: only the Enable button may call Notification.requestPermission.
+   * A launch-time request is not a user gesture; iOS then reports "denied"
+   * even when the PWA already has notification permission.
+   */
+  async ensurePushSubscription({ interactive = false } = {}) {
     if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+      if (!interactive) return null;
       throw new Error('Push-уведомления не поддерживаются этим браузером');
-    }
-    const permission = await Notification.requestPermission();
-    if (permission !== 'granted') {
-      throw new Error('Разрешение на уведомления не выдано');
     }
     const config = await api('/push/config');
     const registration = await navigator.serviceWorker.register('/sw.js');
@@ -386,11 +387,24 @@ export class App {
       await subscription.unsubscribe().catch(() => {});
       subscription = null;
     }
-    if (!subscription) {
+    if (subscription) return subscription.toJSON();
+
+    let permission = typeof Notification !== 'undefined' ? Notification.permission : 'denied';
+    if (permission !== 'granted') {
+      if (!interactive) return null;
+      permission = await Notification.requestPermission();
+      if (permission !== 'granted') {
+        throw new Error('Разрешение на уведомления не выдано');
+      }
+    }
+    try {
       subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlB64ToUint8Array(config.publicKey),
       });
+    } catch (e) {
+      if (!interactive) return null;
+      throw e;
     }
     return subscription.toJSON();
   }
@@ -402,7 +416,7 @@ export class App {
   }
 
   async enableReminders() {
-    await this.pushSubscribe();
+    await this.pushSubscribe({ interactive: true });
   }
 
   /**
@@ -419,42 +433,52 @@ export class App {
   }
 
   async saveReminderTime() {
-    if (this.reminder.enabled) await this.pushSubscribe();
+    if (this.reminder.enabled) await this.pushSubscribe({ interactive: true });
   }
 
   /** Single serialized /push/subscribe call shared by enable + time change. */
-  async pushSubscribe() {
+  async pushSubscribe({ interactive = false } = {}) {
     // If a call is already running, coalesce into exactly one follow-up.
     if (this.reminderSaveInFlight) {
       this.reminderSaveQueued = true;
+      if (interactive) this.reminderSaveInteractiveQueued = true;
       return;
     }
     this.reminderSaveInFlight = true;
-    this.reminderError = '';
+    if (interactive) this.reminderError = '';
     try {
-      const subscription = await this.ensurePushSubscription();
-      const result = await api('/push/subscribe', {
-        method: 'POST',
-        body: {
-          subscription,
-          reminderTime: this.reminderTime,
-          tzOffsetMinutes: new Date().getTimezoneOffset(),
-          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        },
-      });
-      this.reminder.enabled = Boolean(result.enabled);
-      if (this.reminder.enabled) writeReminderPref({ enabled: true, time: this.reminderTime });
+      const subscription = await this.ensurePushSubscription({ interactive });
+      if (!subscription) {
+        this.reminderNeedsGestureHeal = true;
+        if (readReminderPref()?.enabled) this.reminder.enabled = true;
+      } else {
+        const result = await api('/push/subscribe', {
+          method: 'POST',
+          body: {
+            subscription,
+            reminderTime: this.reminderTime,
+            tzOffsetMinutes: new Date().getTimezoneOffset(),
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          },
+        });
+        this.reminder.enabled = Boolean(result.enabled);
+        this.reminderNeedsGestureHeal = false;
+        if (this.reminder.enabled) writeReminderPref({ enabled: true, time: this.reminderTime });
+      }
     } catch (e) {
-      this.reminderError = e.message;
+      if (interactive) this.reminderError = e.message;
+      else this.reminderNeedsGestureHeal = true;
       if (readReminderPref()?.enabled) this.reminder.enabled = true;
     }
     this.reminderSaveInFlight = false;
     if (this.reminderSaveQueued) {
       this.reminderSaveQueued = false;
-      await this.pushSubscribe(); // renders when it finishes
+      const nextInteractive = this.reminderSaveInteractiveQueued;
+      this.reminderSaveInteractiveQueued = false;
+      await this.pushSubscribe({ interactive: nextInteractive });
       return;
     }
-    this.render();
+    if (interactive || this.view === 'settings') this.render();
   }
 
   cancelPendingReminderSave() {
