@@ -25,6 +25,8 @@ export class App {
     this.overlayWord = null;
     /** @type {null | 'examples' | 'forms'} expanded section inside the word overlay */
     this.overlaySection = null;
+    /** Play bottom-sheet enter animation only on first open, not on section toggle. */
+    this.overlayEnter = false;
     this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
     this._onWinPointerMove = (e) => this.onPointerMove(e);
     this._onWinPointerUp = (e) => this.onPointerUp(e);
@@ -363,6 +365,7 @@ export class App {
   openOverlay() {
     this.overlayWord = this.currentCard();
     this.overlaySection = null;
+    this.overlayEnter = true;
     track('tap_translation');
     this.render();
   }
@@ -370,13 +373,71 @@ export class App {
   closeOverlay() {
     this.overlayWord = null;
     this.overlaySection = null;
+    this.overlayEnter = false;
     this.render();
   }
 
   toggleOverlaySection(section) {
     this.overlaySection = this.overlaySection === section ? null : section;
     if (this.overlaySection) track(`overlay_${this.overlaySection}`);
-    this.render();
+    // Update in place so the panel does not remount / replay slideUp.
+    this.syncOverlaySection();
+  }
+
+  /** Expand/collapse examples & forms without re-rendering the whole overlay. */
+  syncOverlaySection() {
+    const panel = this.root.querySelector('.overlay-panel');
+    const w = this.overlayWord;
+    if (!panel || !w) return;
+
+    const examples = Array.isArray(w.examples) ? w.examples : [];
+    const forms = Array.isArray(w.forms) ? w.forms : [];
+    const section = this.overlaySection;
+
+    panel.querySelectorAll('.overlay-actions [data-action]').forEach((btn) => {
+      const active =
+        (btn.dataset.action === 'overlay-examples' && section === 'examples') ||
+        (btn.dataset.action === 'overlay-forms' && section === 'forms');
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-expanded', active ? 'true' : 'false');
+    });
+
+    const slot = panel.querySelector('.overlay-section-slot');
+    const inner = panel.querySelector('.overlay-section-slot-inner');
+    if (!slot || !inner) return;
+
+    if (!section) {
+      slot.classList.remove('is-open');
+      const clear = () => {
+        if (!this.overlaySection) inner.innerHTML = '';
+      };
+      const onEnd = (e) => {
+        if (e.target !== slot || e.propertyName !== 'grid-template-rows') return;
+        slot.removeEventListener('transitionend', onEnd);
+        clear();
+      };
+      slot.addEventListener('transitionend', onEnd);
+      setTimeout(clear, 350);
+      return;
+    }
+
+    const html =
+      section === 'examples'
+        ? renderExamplesSection(examples)
+        : section === 'forms'
+          ? renderFormsSection(forms)
+          : '';
+    const wasOpen = slot.classList.contains('is-open');
+    inner.innerHTML = html;
+    if (wasOpen) {
+      slot.classList.add('is-open');
+      return;
+    }
+    slot.classList.remove('is-open');
+    void slot.offsetHeight;
+    requestAnimationFrame(() => {
+      slot.classList.add('is-open');
+    });
   }
 
   async loadStats() {
@@ -1179,9 +1240,10 @@ export class App {
       const hasExamples = examples.length > 0;
       const hasForms = w.pos === 'verb' && forms.length > 0;
       const section = this.overlaySection;
+      const enterClass = this.overlayEnter ? ' overlay-panel--enter' : '';
       html += `
         <div class="overlay" data-action="close-overlay">
-          <div class="overlay-panel">
+          <div class="overlay-panel${enterClass}">
             <h2>${esc(w.lemma)}</h2>
             ${meanings.map((m) => `<p class="translation">${esc(m)}</p>`).join('')}
             <span class="pos">${esc(posLabel(w.pos))} · ${esc(w.cefrLevel)}${w.unit ? ` · ${esc(w.unit)}` : ''}</span>
@@ -1201,8 +1263,12 @@ export class App {
                   >Формы</button>`
                 : ''}
             </div>
-            ${section === 'examples' ? renderExamplesSection(examples) : ''}
-            ${section === 'forms' ? renderFormsSection(forms) : ''}
+            <div class="overlay-section-slot${section ? ' is-open' : ''}">
+              <div class="overlay-section-slot-inner">
+                ${section === 'examples' ? renderExamplesSection(examples) : ''}
+                ${section === 'forms' ? renderFormsSection(forms) : ''}
+              </div>
+            </div>
             <button class="btn btn-ghost" data-action="close-overlay" style="width:100%;margin-top:0.5rem">Закрыть</button>
           </div>
         </div>`;
@@ -1211,6 +1277,7 @@ export class App {
     this.endPointerTracking();
     this.root.innerHTML = html;
     this.cardEnter = false;
+    this.overlayEnter = false;
     this.bindEvents();
     const card = this.root.querySelector('#active-card');
     if (card) {
