@@ -131,28 +131,13 @@ export function pushEndpointHost(subscription) {
   }
 }
 
-/**
- * Classic Web Push fields plus Safari 18.4+ Declarative Web Push.
- * iOS often accepts the POST (201) but never runs the service worker;
- * `web_push: 8030` lets WebKit show the banner without it.
- */
+/** Exact payload shape that previously delivered on Apple Web Push. */
 function buildPushPayload({ title, body, url = '/' }) {
   const path = url.startsWith('/') ? url : `/${url}`;
-  return JSON.stringify({
-    title,
-    body,
-    url: path,
-    web_push: 8030,
-    notification: {
-      title,
-      body,
-      tag: 'langapp-reminder',
-      navigate: `${vapidSubject()}${path}`,
-    },
-  });
+  return JSON.stringify({ title, body, url: path });
 }
 
-async function deliverPush(user, payload, { logPrefix, topic }) {
+async function deliverPush(user, payload, { logPrefix }) {
   if (!user?.push_subscription) return { skipped: 'no-subscription', host: null };
   const host = pushEndpointHost(user.push_subscription);
   const keys = getVapidKeys();
@@ -160,11 +145,9 @@ async function deliverPush(user, payload, { logPrefix, topic }) {
   // pushes with 403 when the domain doesn't exist (e.g. ".example").
   webpush.setVapidDetails(vapidSubject(), keys.publicKey, keys.privateKey);
   try {
-    const res = await webpush.sendNotification(user.push_subscription, payload, {
-      TTL: 86400,
-      urgency: 'high',
-      topic,
-    });
+    // No Topic header — Apple collapsing was unnecessary and risked drops.
+    const res = await webpush.sendNotification(user.push_subscription, payload);
+    console.log(`[reminders] ${logPrefix} sent host=${host} status=${res?.statusCode ?? 201}`);
     return { sent: true, statusCode: res?.statusCode ?? 201, host };
   } catch (err) {
     console.error(`[reminders] ${logPrefix} ${err.statusCode ?? '???'}: ${err.body ?? err.message}`);
@@ -196,7 +179,6 @@ export async function sendReminderPush(db, user) {
         : { title: 'Начни учить турецкий 🇹🇷', body: 'Первая сессия из 18 слов уже ждёт' };
   const result = await deliverPush(user, buildPushPayload({ title, body }), {
     logPrefix: 'web-push',
-    topic: 'langapp-reminder',
   });
   return { ...result, due };
 }
@@ -209,7 +191,7 @@ export async function sendTestPush(user) {
       title: 'Тест LangApp',
       body: 'Пуш работает — это проверка 🔔',
     }),
-    { logPrefix: 'test web-push', topic: 'langapp-test' },
+    { logPrefix: 'test web-push' },
   );
 }
 
