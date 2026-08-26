@@ -38,7 +38,7 @@ function render(d, subscribers) {
   const events = Object.entries(d.eventCounts).map(([k, v]) => `<li>${k}: ${v}</li>`).join('');
   const options = subscribers
     .map((u) => {
-      const label = [u.name, u.email, u.time ? `⏰ ${u.time}` : null].filter(Boolean).join(' · ');
+      const label = [u.name, u.email, u.time ? `⏰ ${u.time}` : null, u.host].filter(Boolean).join(' · ');
       return `<option value="${u.id}">#${u.id} ${esc(label)}</option>`;
     })
     .join('');
@@ -81,11 +81,14 @@ async function sendTestPush() {
   msg.className = 'ok';
   msg.textContent = 'Отправка…';
   try {
-    await adminFetch('/api/admin/push/test', {
+    const data = await adminFetch('/api/admin/push/test', {
       method: 'POST',
       body: JSON.stringify({ userId }),
     });
-    msg.textContent = `Тест отправлен пользователю #${userId}`;
+    const via = [data.host, data.statusCode].filter(Boolean).join(', ');
+    msg.textContent = via
+      ? `Тест принят сервисом пуша (${via}). Если баннер не появился — откройте PWA с домашнего экрана.`
+      : `Тест отправлен пользователю #${userId}`;
   } catch (e) {
     msg.className = 'error';
     msg.textContent = e.message;

@@ -482,8 +482,11 @@ export class App {
   }
 
   sameVapidKey(subscription, publicKeyB64) {
-    const current = urlB64ToUint8Array(publicKeyB64);
     const existing = new Uint8Array(subscription.options?.applicationServerKey ?? []);
+    // WebKit often omits applicationServerKey. Treat "unknown" as a match so
+    // launch heal does not unsubscribe a live Apple endpoint.
+    if (!existing.length) return true;
+    const current = urlB64ToUint8Array(publicKeyB64);
     return existing.length === current.length && existing.every((b, i) => b === current[i]);
   }
 

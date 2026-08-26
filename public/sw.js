@@ -11,13 +11,14 @@ self.addEventListener('push', (event) => {
   } catch {
     data = { body: event.data?.text() };
   }
-  const title = data.title || 'LangApp';
+  const title = data.notification?.title || data.title || 'LangApp';
+  const body = data.notification?.body || data.body || 'Пора повторить слова!';
+  const url = data.notification?.navigate || data.url || '/';
   event.waitUntil(
     self.registration.showNotification(title, {
-      body: data.body || 'Пора повторить слова!',
-      icon: '/favicon.svg',
-      badge: '/favicon.svg',
-      data: { url: data.url || '/' },
+      body,
+      tag: data.notification?.tag || 'langapp-reminder',
+      data: { url },
     }),
   );
 });

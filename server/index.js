@@ -34,6 +34,7 @@ import {
   reminderScheduleId,
   sendReminderPush,
   sendTestPush,
+  pushEndpointHost,
 } from './reminders.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -720,6 +721,7 @@ app.get('/api/admin/push/subscribers', requireAdmin, async (_req, res) => {
       email: u.email,
       time: u.reminder_time ?? null,
       scheduled: Boolean(u.push_schedule_id),
+      host: pushEndpointHost(u.push_subscription),
     }));
   res.json({ subscribers });
 });
@@ -740,7 +742,7 @@ app.post('/api/admin/push/test', requireAdmin, async (req, res) => {
     if (!result.sent) {
       return res.status(502).json({ error: result.skipped || 'send failed', result });
     }
-    res.json({ ok: true, userId });
+    res.json({ ok: true, userId, host: result.host, statusCode: result.statusCode });
   } catch (e) {
     res.status(502).json({ error: e.message });
   }
