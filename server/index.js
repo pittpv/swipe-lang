@@ -41,11 +41,19 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-if (!db.data.words.length) {
-  const { importVocabulary } = await import('./import-vocabulary.js');
-  const stats = importVocabulary({ replace: true });
-  console.log(`Seeded ${stats.total} words into ${dbMode === 'postgres' ? 'Neon Postgres' : dbMode === 'redis' ? 'Redis' : 'file store'}`);
-  await db.flush();
+{
+  const { importVocabulary, enrichVocabularyExtras } = await import('./import-vocabulary.js');
+  if (!db.data.words.length) {
+    const stats = importVocabulary({ replace: true });
+    console.log(`Seeded ${stats.total} words into ${dbMode === 'postgres' ? 'Neon Postgres' : dbMode === 'redis' ? 'Redis' : 'file store'}`);
+    await db.flush();
+  } else {
+    const enrich = enrichVocabularyExtras();
+    if (!enrich.skipped && enrich.updated) {
+      console.log(`Enriched examples/forms on ${enrich.updated} words (v${enrich.version})`);
+      await db.flush();
+    }
+  }
 }
 
 app.use(securityHeaders);

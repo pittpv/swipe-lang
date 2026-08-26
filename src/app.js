@@ -23,6 +23,8 @@ export class App {
     this.summary = null;
     this.stats = null;
     this.overlayWord = null;
+    /** @type {null | 'examples' | 'forms'} expanded section inside the word overlay */
+    this.overlaySection = null;
     this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
     this._onWinPointerMove = (e) => this.onPointerMove(e);
     this._onWinPointerUp = (e) => this.onPointerUp(e);
@@ -133,6 +135,7 @@ export class App {
     this.view = view;
     this.error = '';
     this.overlayWord = null;
+    this.overlaySection = null;
     dismissAchievements();
     this.render();
     if (view === 'home') this.flushPendingAchievements();
@@ -301,6 +304,7 @@ export class App {
     this.cardEnter = true;
     if (this.cardIndex >= this.cards.length) {
       this.overlayWord = null;
+      this.overlaySection = null;
       this.summary = await api('/session/complete', { method: 'POST' });
       if (this.user) this.user.streak = this.summary.streak;
       if (this.summary.levelComplete) this.levelOffer = this.summary.levelProgress;
@@ -358,12 +362,20 @@ export class App {
 
   openOverlay() {
     this.overlayWord = this.currentCard();
+    this.overlaySection = null;
     track('tap_translation');
     this.render();
   }
 
   closeOverlay() {
     this.overlayWord = null;
+    this.overlaySection = null;
+    this.render();
+  }
+
+  toggleOverlaySection(section) {
+    this.overlaySection = this.overlaySection === section ? null : section;
+    if (this.overlaySection) track(`overlay_${this.overlaySection}`);
     this.render();
   }
 
@@ -690,6 +702,7 @@ export class App {
     this.sessionId = null;
     this.summary = null;
     this.overlayWord = null;
+    this.overlaySection = null;
     this.swiping = false;
     this.cardEnter = false;
     this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
@@ -872,6 +885,8 @@ export class App {
       }
       if (action === 'close-overlay') this.closeOverlay();
       if (action === 'speak') this.speak(this.overlayWord?.lemma);
+      if (action === 'overlay-examples') this.toggleOverlaySection('examples');
+      if (action === 'overlay-forms') this.toggleOverlaySection('forms');
       if (action === 'swipe-left') this.swipe('left');
       if (action === 'swipe-right') this.swipe('right');
       if (action === 'copy-referral') this.copyReferral();
@@ -1159,15 +1174,36 @@ export class App {
         .split(',')
         .map((m) => m.trim())
         .filter(Boolean);
+      const examples = Array.isArray(w.examples) ? w.examples : [];
+      const forms = Array.isArray(w.forms) ? w.forms : [];
+      const hasExamples = examples.length > 0;
+      const hasForms = w.pos === 'verb' && forms.length > 0;
+      const section = this.overlaySection;
       html += `
         <div class="overlay" data-action="close-overlay">
           <div class="overlay-panel">
             <h2>${esc(w.lemma)}</h2>
             ${meanings.map((m) => `<p class="translation">${esc(m)}</p>`).join('')}
-            <span class="pos">${esc(w.pos)} · ${esc(w.cefrLevel)}${w.unit ? ` · ${esc(w.unit)}` : ''}</span>
-            <button class="btn btn-primary" data-action="speak" style="width:100%;margin-bottom:1rem">🔊 Произношение</button>
-            <ul class="examples">${w.examples.map((ex) => `<li>${esc(ex)}</li>`).join('')}</ul>
-            <button class="btn btn-ghost" data-action="close-overlay" style="width:100%">Закрыть</button>
+            <span class="pos">${esc(posLabel(w.pos))} · ${esc(w.cefrLevel)}${w.unit ? ` · ${esc(w.unit)}` : ''}</span>
+            <button class="btn btn-primary" data-action="speak" style="width:100%">🔊 Произношение</button>
+            <div class="overlay-actions">
+              <button
+                class="btn btn-soft${section === 'examples' ? ' is-active' : ''}"
+                data-action="overlay-examples"
+                ${hasExamples ? '' : 'disabled'}
+                aria-expanded="${section === 'examples'}"
+              >Примеры</button>
+              ${hasForms
+                ? `<button
+                    class="btn btn-soft${section === 'forms' ? ' is-active' : ''}"
+                    data-action="overlay-forms"
+                    aria-expanded="${section === 'forms'}"
+                  >Формы</button>`
+                : ''}
+            </div>
+            ${section === 'examples' ? renderExamplesSection(examples) : ''}
+            ${section === 'forms' ? renderFormsSection(forms) : ''}
+            <button class="btn btn-ghost" data-action="close-overlay" style="width:100%;margin-top:0.5rem">Закрыть</button>
           </div>
         </div>`;
     }
@@ -1189,6 +1225,105 @@ function esc(s) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+const POS_LABELS = {
+  noun: 'сущ.',
+  verb: 'глаг.',
+  adjective: 'прил.',
+  adverb: 'нареч.',
+  pronoun: 'мест.',
+  particle: 'част.',
+  other: 'др.',
+};
+
+const TENSE_LABELS = {
+  şimdi: 'Настоящее время',
+  di: 'Прошедшее время',
+  gelecek: 'Будущее время',
+};
+
+const PERSON_LABELS = {
+  ben: 'я (ben)',
+  sen: 'ты (sen)',
+  o: 'он/она (o)',
+  biz: 'мы (biz)',
+  siz: 'вы (siz)',
+  onlar: 'они (onlar)',
+};
+
+function posLabel(pos) {
+  return POS_LABELS[pos] || pos || '';
+}
+
+function renderExamplesSection(examples) {
+  if (!examples.length) {
+    return '<p class="overlay-empty">Примеров для этого слова пока нет.</p>';
+  }
+  return `
+    <div class="overlay-section" role="region" aria-label="Примеры">
+      <ul class="example-list">
+        ${examples
+          .map(
+            (ex) => `
+          <li class="example-item">
+            <p class="example-tr">${esc(ex.example)}</p>
+            ${ex.translate ? `<p class="example-ru">${esc(ex.translate)}</p>` : ''}
+          </li>`,
+          )
+          .join('')}
+      </ul>
+    </div>`;
+}
+
+function renderFormsSection(forms) {
+  if (!forms.length) {
+    return '<p class="overlay-empty">Словоформ для этого глагола нет.</p>';
+  }
+  const byTense = new Map();
+  for (const f of forms) {
+    const tense = f.tense || f.grammar || 'other';
+    if (!byTense.has(tense)) byTense.set(tense, new Map());
+    const byPerson = byTense.get(tense);
+    const person = f.person || '';
+    if (!byPerson.has(person)) byPerson.set(person, []);
+    byPerson.get(person).push(f.form);
+  }
+  const tenseOrder = ['şimdi', 'di', 'gelecek'];
+  const personOrder = ['ben', 'sen', 'o', 'biz', 'siz', 'onlar'];
+  const tenseKeys = [
+    ...tenseOrder.filter((t) => byTense.has(t)),
+    ...[...byTense.keys()].filter((t) => !tenseOrder.includes(t)),
+  ];
+
+  return `
+    <div class="overlay-section" role="region" aria-label="Словоформы">
+      ${tenseKeys
+        .map((tense) => {
+          const byPerson = byTense.get(tense);
+          const personKeys = [
+            ...personOrder.filter((p) => byPerson.has(p)),
+            ...[...byPerson.keys()].filter((p) => !personOrder.includes(p)),
+          ];
+          return `
+            <div class="forms-tense">
+              <h3 class="forms-tense-title">${esc(TENSE_LABELS[tense] || tense)}</h3>
+              <ul class="forms-list">
+                ${personKeys
+                  .map((person) => {
+                    const formText = byPerson.get(person).join(', ');
+                    return `
+                      <li class="forms-row">
+                        <span class="forms-person">${esc(PERSON_LABELS[person] || person)}</span>
+                        <span class="forms-value">${esc(formText)}</span>
+                      </li>`;
+                  })
+                  .join('')}
+              </ul>
+            </div>`;
+        })
+        .join('')}
+    </div>`;
 }
 
 const REMINDER_PREF_KEY = 'langapp.reminders';

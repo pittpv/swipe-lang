@@ -70,13 +70,41 @@ export function buildSessionDeck(db, userId) {
   return deck.slice(0, SESSION_SIZE).map(formatWord);
 }
 
+function parseJsonArray(raw) {
+  try {
+    const value = JSON.parse(raw || '[]');
+    return Array.isArray(value) ? value : [];
+  } catch {
+    return [];
+  }
+}
+
+/** Normalize legacy string examples and structured {example, translate} rows. */
+function formatExamples(raw) {
+  return parseJsonArray(raw)
+    .map((item) => {
+      if (item && typeof item === 'object') {
+        const example = String(item.example ?? item.tr ?? '').trim();
+        const translate = String(item.translate ?? item.ru ?? '').trim();
+        if (!example) return null;
+        return { example, translate };
+      }
+      const example = String(item ?? '').trim();
+      return example ? { example, translate: '' } : null;
+    })
+    .filter(Boolean);
+}
+
 function formatWord(row) {
+  const examples = formatExamples(row.examples);
+  const forms = row.pos === 'verb' ? parseJsonArray(row.forms) : [];
   return {
     id: row.id,
     lemma: row.lemma,
     translation: row.translation,
     pos: row.pos,
-    examples: JSON.parse(row.examples || '[]'),
+    examples,
+    forms,
     cefrLevel: row.cefr_level,
     unit: row.unit || null,
   };
