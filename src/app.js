@@ -36,6 +36,8 @@ export class App {
     this.reminderSaveQueued = false;
     this.reminderSaveInteractiveQueued = false;
     this.reminderNeedsGestureHeal = false;
+    this.gestureHealArmed = false;
+    this.vapidPublicKey = null;
     this.settingsError = '';
     this.settingsSaved = false;
     this.name = '';
@@ -400,6 +402,8 @@ export class App {
 
   async loadReminderStatus() {
     const local = readReminderPref();
+    // Warm the VAPID key before any Enable tap so subscribe stays in-gesture.
+    void this.prefetchVapidPublicKey();
     try {
       const status = await api('/push/status');
       if (status.time) this.reminderTime = status.time;
@@ -426,13 +430,27 @@ export class App {
    * drops user activation and subscribe() then fails silently.
    */
   armGesturePushHeal() {
-    if (!this.reminderNeedsGestureHeal) return;
+    if (!this.reminderNeedsGestureHeal || this.gestureHealArmed) return;
+    this.gestureHealArmed = true;
     const retry = () => {
       document.removeEventListener('pointerup', retry, true);
-      this.reminderNeedsGestureHeal = false;
+      this.gestureHealArmed = false;
+      // Keep reminderNeedsGestureHeal until pushSubscribe succeeds so a failed
+      // tap can re-arm instead of silently giving up after one attempt.
       this.pushSubscribe({ interactive: false });
     };
     document.addEventListener('pointerup', retry, { once: true, capture: true });
+  }
+
+  async prefetchVapidPublicKey() {
+    if (this.vapidPublicKey) return this.vapidPublicKey;
+    try {
+      const config = await api('/push/config');
+      this.vapidPublicKey = config.publicKey;
+      return this.vapidPublicKey;
+    } catch {
+      return null;
+    }
   }
 
   /**
@@ -447,13 +465,21 @@ export class App {
       if (!interactive) return null;
       throw new Error('Push-уведомления не поддерживаются этим браузером');
     }
-    const config = await api('/push/config');
-    const registration = await navigator.serviceWorker.register('/sw.js');
+    // Prefer a cached VAPID key so subscribe() stays inside the user-gesture
+    // window on iOS (awaiting /push/config first often burns activation).
+    let publicKey = this.vapidPublicKey;
+    if (!publicKey) {
+      const config = await api('/push/config');
+      publicKey = config.publicKey;
+      this.vapidPublicKey = publicKey;
+    }
+    let registration = await navigator.serviceWorker.getRegistration();
+    if (!registration) registration = await navigator.serviceWorker.register('/sw.js');
     await navigator.serviceWorker.ready;
     let subscription = await registration.pushManager.getSubscription();
     // Only rotate when WebKit exposes the key AND it disagrees. An empty key
     // must not unsubscribe — that killed live Apple endpoints after 8c03b34.
-    if (subscription && !this.sameVapidKey(subscription, config.publicKey)) {
+    if (subscription && !this.sameVapidKey(subscription, publicKey)) {
       await subscription.unsubscribe().catch(() => {});
       subscription = null;
     }
@@ -470,7 +496,7 @@ export class App {
     try {
       subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: urlB64ToUint8Array(config.publicKey),
+        applicationServerKey: urlB64ToUint8Array(publicKey),
       });
     } catch (e) {
       if (!interactive) return null;
@@ -551,12 +577,14 @@ export class App {
       return;
     }
     if (interactive || this.view === 'settings') this.render();
+    if (this.reminderNeedsGestureHeal) this.armGesturePushHeal();
   }
 
   cancelPendingReminderSave() {
     clearTimeout(this.reminderSaveTimer);
     this.reminderSaveTimer = null;
     this.reminderSaveQueued = false;
+    this.reminderSaveInteractiveQueued = false;
   }
 
   async disableReminders() {

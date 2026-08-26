@@ -277,7 +277,10 @@ app.get('/api/push/config', requireAuth, (_req, res) => {
   res.json({ publicKey: getVapidKeys().publicKey });
 });
 
-app.get('/api/push/status', requireAuth, (req, res) => {
+app.get('/api/push/status', requireAuth, async (req, res) => {
+  // Warm serverless isolates keep a stale snapshot; reminders toggled on
+  // another instance would otherwise show as off until a cold start.
+  await db.reload();
   const user = findUser(req.session.userId);
   res.json({
     enabled: Boolean(user.push_schedule_id),

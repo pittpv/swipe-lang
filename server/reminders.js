@@ -152,6 +152,9 @@ export async function sendReminderPush(db, user) {
       : started
         ? { title: 'Всё повторено! 🎉', body: 'План на сегодня выполнен — возвращайся завтра' }
         : { title: 'Начни учить турецкий 🇹🇷', body: 'Первая сессия из 18 слов уже ждёт' };
+  // Classic payload only. Declarative (`web_push: 8030`) needs an absolute
+  // `navigate` URL and can silent-drop on Safari if invalid; leave it off until
+  // validated on device with the PWA fully quit.
   const payload = JSON.stringify({ title, body, url: '/' });
   try {
     const res = await webpush.sendNotification(user.push_subscription, payload);
