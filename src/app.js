@@ -31,6 +31,8 @@ export class App {
     this._onWinPointerMove = (e) => this.onPointerMove(e);
     this._onWinPointerUp = (e) => this.onPointerUp(e);
     this.swiping = false;
+    /** True after fly-out while /session/swipe is still in flight — show card skeleton. */
+    this.awaitingNext = false;
     this.cardEnter = false;
     this.reminder = { enabled: false };
     this.reminderTime = '19:00';
@@ -212,6 +214,7 @@ export class App {
       this.cards = data.cards;
       this.cardIndex = 0;
       this.summary = null;
+      this.awaitingNext = false;
       this.levelOffer = data.levelComplete ? data.levelProgress : null;
       this.view = 'session';
       track('session_start');
@@ -286,35 +289,66 @@ export class App {
     const card = this.currentCard();
     if (!card || this.swiping) return;
     this.swiping = true;
+    this.awaitingNext = false;
     this.drag.active = false;
     this.drag.pointerId = null;
     this.endPointerTracking();
     track(direction === 'left' ? 'swipe_left' : 'swipe_right');
+    const isLast = this.cardIndex >= this.cards.length - 1;
     // Fly away while the request is in flight — no dead waiting time.
     const flight = this.flyCardOut(direction, from.x, from.y);
+    const request = api('/session/swipe', { method: 'POST', body: { wordId: card.id, direction } });
+    // If the network outlasts the exit animation, fill the gap with a skeleton
+    // (or the wrapping screen on the final card).
+    let swipeSettled = false;
+    flight.then(() => {
+      if (swipeSettled || !this.swiping) return;
+      if (isLast) {
+        this.view = 'session-wrapping';
+        this.render();
+      } else {
+        this.awaitingNext = true;
+        this.render();
+      }
+    });
     try {
-      await api('/session/swipe', { method: 'POST', body: { wordId: card.id, direction } });
+      await request;
     } catch (e) {
+      swipeSettled = true;
       this.error = e.message;
       this.swiping = false;
+      this.awaitingNext = false;
+      this.view = 'session';
       this.render(); // card comes back on failure
       return;
     }
+    swipeSettled = true;
     await flight;
+    this.awaitingNext = false;
     this.cardIndex += 1;
     this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
     this.cardEnter = true;
     if (this.cardIndex >= this.cards.length) {
       this.overlayWord = null;
       this.overlaySection = null;
-      this.summary = await api('/session/complete', { method: 'POST' });
-      if (this.user) this.user.streak = this.summary.streak;
-      if (this.summary.levelComplete) this.levelOffer = this.summary.levelProgress;
-      track('session_complete');
-      this.view = 'summary';
-      // Defer celebration until Home: on iOS a full-screen layer + post-swipe
-      // missing click made «На главную» need two taps.
-      this.pendingAchievements = this.summary.achievements;
+      this.swiping = false;
+      this.view = 'session-wrapping';
+      this.render();
+      try {
+        this.summary = await api('/session/complete', { method: 'POST' });
+        if (this.user) this.user.streak = this.summary.streak;
+        if (this.summary.levelComplete) this.levelOffer = this.summary.levelProgress;
+        track('session_complete');
+        this.view = 'summary';
+        // Defer celebration until Home: on iOS a full-screen layer + post-swipe
+        // missing click made «На главную» need two taps.
+        this.pendingAchievements = this.summary.achievements;
+      } catch (e) {
+        this.error = e.message;
+        this.view = 'home';
+      }
+      this.render();
+      return;
     }
     this.swiping = false;
     this.render();
@@ -765,6 +799,7 @@ export class App {
     this.overlayWord = null;
     this.overlaySection = null;
     this.swiping = false;
+    this.awaitingNext = false;
     this.cardEnter = false;
     this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
     this.endPointerTracking();
@@ -1070,14 +1105,21 @@ export class App {
         <button class="link-btn" data-action="logout" style="display:block;margin:1.5rem auto 0">Выйти</button>`;
     } else if (v === 'session') {
       const card = this.currentCard();
+      const progressNum = this.awaitingNext
+        ? Math.min(this.cardIndex + 2, this.cards.length)
+        : this.cardIndex + 1;
       html += `
         <div class="session-header">
           <button class="session-exit" data-action="exit-session" title="Выйти из сессии" aria-label="Выйти из сессии">✕</button>
-          <span class="progress">${this.cardIndex + 1} / ${this.cards.length}</span>
+          <span class="progress">${progressNum} / ${this.cards.length}</span>
           ${this.user?.streak ? `<span class="streak-badge">🔥 ${this.user.streak}</span>` : ''}
         </div>
         <div class="deck-area" id="deck">
-          ${card ? `
+          ${this.awaitingNext ? `
+          <div class="word-card word-card-skeleton" aria-busy="true" aria-label="Загрузка карточки">
+            <div class="skeleton-bone skeleton-lemma"></div>
+            <div class="skeleton-bone skeleton-hint"></div>
+          </div>` : card ? `
           <div class="word-card${this.cardEnter ? ' card-enter' : ''}" data-action="overlay" id="active-card">
             <span class="swipe-label know">ЗНАЮ</span>
             <span class="swipe-label learn">УЧУ</span>
@@ -1090,8 +1132,22 @@ export class App {
           <span>Учу →</span>
         </div>
         <div style="display:flex;gap:0.5rem;margin-top:1rem">
-          <button class="btn btn-ghost" data-action="swipe-left" style="flex:1">← Знаю</button>
-          <button class="btn btn-primary" data-action="swipe-right" style="flex:1">Учу →</button>
+          <button class="btn btn-ghost" data-action="swipe-left" style="flex:1" ${this.swiping ? 'disabled' : ''}>← Знаю</button>
+          <button class="btn btn-primary" data-action="swipe-right" style="flex:1" ${this.swiping ? 'disabled' : ''}>Учу →</button>
+        </div>`;
+    } else if (v === 'session-wrapping') {
+      html += `
+        <div class="summary-card summary-wrapping" aria-busy="true" aria-live="polite">
+          <div class="skeleton-bone skeleton-summary-title"></div>
+          <p class="wrapping-copy">Подвожу итоги сессии…</p>
+          <div class="stat-grid">
+            <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
+            <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
+            <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
+            <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
+          </div>
+          <div class="skeleton-bone skeleton-summary-btn"></div>
+          <div class="skeleton-bone skeleton-summary-btn ghost"></div>
         </div>`;
     } else if (v === 'summary' && this.summary) {
       const lp = this.summary.levelProgress;
