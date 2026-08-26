@@ -288,7 +288,8 @@ select {
   align-items: flex-end;
   justify-content: center;
   z-index: 100;
-  padding: 1rem;
+  /* Side inset only — panel meets the bottom edge of the screen */
+  padding: 1rem 1rem 0;
 }
 
 .overlay-panel {
@@ -298,7 +299,7 @@ select {
   max-width: 420px;
   max-height: 78dvh;
   overflow-y: auto;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
 }
 
 .overlay-panel--enter {
