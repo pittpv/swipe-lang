@@ -20,6 +20,7 @@ import {
 import { db, dbMode } from './database.js';
 import { applySwipe } from './srs.js';
 import { buildSessionDeck, SESSION_SIZE } from './session.js';
+import { getLevelProgress, estimateEta, CEFR_ORDER } from './progress.js';
 import {
   generateReferralCode,
   findUserByReferralCode,
@@ -388,7 +389,7 @@ app.patch('/api/profile', requireAuth, async (req, res) => {
       const user = findUser(req.session.userId);
       if (cefrLevel !== undefined) {
         const level = sanitizeText(cefrLevel, 8).toUpperCase();
-        if (!['A1', 'A2', 'B1', 'B2'].includes(level)) {
+        if (!CEFR_ORDER.includes(level)) {
           const err = new Error('Invalid cefrLevel');
           err.status = 400;
           throw err;
@@ -440,10 +441,21 @@ app.post('/api/profile/reset-progress', requireAuth, async (req, res) => {
 
 app.post('/api/session/start', requireAuth, async (req, res) => {
   const userId = req.session.userId;
+  const levelProgress = getLevelProgress(db, userId);
   const deck = buildSessionDeck(db, userId);
+
+  // Level fully known and nothing due → celebrate / offer next CEFR (no empty 404).
   if (!deck.length) {
-    return res.status(404).json({ error: 'No words available for your level' });
+    return res.json({
+      sessionId: null,
+      sessionSize: SESSION_SIZE,
+      cards: [],
+      levelComplete: levelProgress.complete,
+      levelProgress,
+      eta: estimateEta(db, userId, levelProgress),
+    });
   }
+
   const sessionRow = await db.transact(() => {
     const row = {
       id: db.nextId('study_sessions'),
@@ -459,7 +471,13 @@ app.post('/api/session/start', requireAuth, async (req, res) => {
   req.session.activeSessionId = sessionRow.id;
   req.session.sessionStats = { reviewed: 0, learned: 0 };
   setSessionCookie(res, req.session);
-  res.json({ sessionId: sessionRow.id, sessionSize: SESSION_SIZE, cards: deck });
+  res.json({
+    sessionId: sessionRow.id,
+    sessionSize: SESSION_SIZE,
+    cards: deck,
+    levelComplete: levelProgress.complete,
+    levelProgress,
+  });
 });
 
 app.post('/api/session/swipe', requireAuth, async (req, res) => {
@@ -585,6 +603,8 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
     ).length;
 
     const wordsLearned = countWordsKnown(userId);
+    const levelProgress = getLevelProgress(db, userId);
+    const eta = estimateEta(db, userId, levelProgress);
 
     const achievements = user ? collectMilestones(user, { streak, words: wordsLearned }) : [];
 
@@ -595,6 +615,9 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
       wordsDueTomorrow,
       wordsLearned,
       achievements,
+      levelComplete: levelProgress.complete,
+      levelProgress,
+      eta,
     };
   });
 
@@ -615,6 +638,8 @@ app.get('/api/stats', requireAuth, async (req, res) => {
   const sessions = db.data.study_sessions.filter(
     (s) => s.user_id === userId && s.ended_at,
   ).length;
+  const levelProgress = getLevelProgress(db, userId);
+  const eta = estimateEta(db, userId, levelProgress);
   res.json({
     streak: user.streak,
     cefrLevel: user.cefr_level,
@@ -622,6 +647,8 @@ app.get('/api/stats', requireAuth, async (req, res) => {
     wordsLearned: learned,
     sessionsCompleted: sessions,
     achievements: listMilestones(user),
+    levelProgress,
+    eta,
   });
 });
 

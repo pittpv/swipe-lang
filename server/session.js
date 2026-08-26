@@ -1,3 +1,5 @@
+import { getLevelProgress, levelsUpTo } from './progress.js';
+
 const SESSION_SIZE = 18;
 const REVIEW_RATIO = 0.3;
 
@@ -6,6 +8,7 @@ export function buildSessionDeck(db, userId) {
   const level = user?.cefr_level ?? 'A1';
   const levels = levelsUpTo(level);
   const now = new Date().toISOString();
+  const levelProgress = getLevelProgress(db, userId);
 
   const reviewCount = Math.floor(SESSION_SIZE * REVIEW_RATIO);
   const newCount = SESSION_SIZE - reviewCount;
@@ -36,7 +39,9 @@ export function buildSessionDeck(db, userId) {
 
   let deck = [...due, ...fresh];
 
-  if (deck.length < SESSION_SIZE) {
+  // When the level is fully known, do not pad with random already-known cards —
+  // an empty deck signals celebration / level-up on the client.
+  if (deck.length < SESSION_SIZE && !levelProgress.complete) {
     const extra = db.data.words
       .filter((w) => levels.includes(w.cefr_level) && !seenIds.has(w.id))
       .sort(() => Math.random() - 0.5)
@@ -44,13 +49,25 @@ export function buildSessionDeck(db, userId) {
     deck = deck.concat(extra);
   }
 
-  return deck.slice(0, SESSION_SIZE).map(formatWord);
-}
+  // Review-only when level complete but words are due: fill up to SESSION_SIZE from due queue.
+  if (levelProgress.complete && deck.length < SESSION_SIZE) {
+    const moreDue = db.data.user_word_progress
+      .filter(
+        (p) =>
+          p.user_id === userId &&
+          p.next_review_at &&
+          p.next_review_at <= now &&
+          !seenIds.has(p.word_id) &&
+          db.data.words.find((w) => w.id === p.word_id && levels.includes(w.cefr_level)),
+      )
+      .sort((a, b) => a.next_review_at.localeCompare(b.next_review_at))
+      .slice(0, SESSION_SIZE - deck.length)
+      .map((p) => db.data.words.find((w) => w.id === p.word_id))
+      .filter(Boolean);
+    deck = deck.concat(moreDue);
+  }
 
-function levelsUpTo(level) {
-  const order = ['A1', 'A2', 'B1', 'B2', 'C1'];
-  const idx = order.indexOf(level);
-  return order.slice(0, idx >= 0 ? idx + 1 : 1);
+  return deck.slice(0, SESSION_SIZE).map(formatWord);
 }
 
 function formatWord(row) {

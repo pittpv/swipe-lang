@@ -246,4 +246,39 @@ test('profile name update and progress reset', async () => {
   assert.equal(data.streak, 0);
   assert.equal(data.wordsLearned, 0);
   assert.equal(data.sessionsCompleted, 0);
+  assert.ok(data.levelProgress);
+  assert.equal(data.levelProgress.cefrLevel, 'A1');
+  assert.ok(data.levelProgress.wordsTotal > 0);
+  assert.ok(data.eta);
+  assert.ok(data.eta.sessionsNeeded >= 1);
+  assert.ok(typeof data.eta.label === 'string');
+});
+
+test('session start returns levelProgress; C1 allowed in profile', async () => {
+  const client = jar();
+  await client.fetch('/api/public/stats');
+  let { res, data } = await client.fetch('/api/auth/register', {
+    method: 'POST',
+    body: JSON.stringify({ email: `eta_${Date.now()}@langapp.test`, password }),
+  });
+  assert.equal(res.status, 200);
+
+  ({ res } = await client.fetch('/api/onboarding', {
+    method: 'POST',
+    body: JSON.stringify({ goal: 'travel', cefrLevel: 'A1' }),
+  }));
+  assert.equal(res.status, 200);
+
+  ({ res, data } = await client.fetch('/api/session/start', { method: 'POST' }));
+  assert.equal(res.status, 200);
+  assert.ok(data.cards.length > 0);
+  assert.ok(data.levelProgress);
+  assert.equal(data.levelComplete, false);
+
+  ({ res, data } = await client.fetch('/api/profile', {
+    method: 'PATCH',
+    body: JSON.stringify({ cefrLevel: 'C1' }),
+  }));
+  assert.equal(res.status, 200);
+  assert.equal(data.cefrLevel, 'C1');
 });

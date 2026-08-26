@@ -11,7 +11,7 @@
     "start": "node server/index.js",
     "seed": "node server/seed.js",
     "import:vocab": "node server/import-vocabulary.js --replace",
-    "test": "node --test server/srs.test.js server/reminders.test.js",
+    "test": "node --test server/srs.test.js server/reminders.test.js server/progress.test.js server/session.test.js",
     "test:e2e": "node server/e2e-smoke.js",
     "report:weekly": "node server/scripts/weekly-report.js",
     "backup": "node scripts/backup-db.mjs",

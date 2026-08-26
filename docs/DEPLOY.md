@@ -38,6 +38,16 @@ as a fallback.
    | `ADMIN_API_KEY` | key for `/admin/dashboard.html` |
 4. Deploy. On the first cold start the 3564-word vocabulary seeds itself into Redis.
 
+### App version (Settings screen)
+
+The UI shows `LangApp vX.Y.Z+abcdefg`: semver from `package.json` plus a short
+git commit SHA injected at build time (`VERCEL_GIT_COMMIT_SHA` on Vercel, else
+`git rev-parse`). Bump the marketed semver only when you intend a release:
+
+```powershell
+npm version patch   # or minor / major — then commit & push
+```
+
 CLI alternative:
 
 ```powershell

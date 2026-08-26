@@ -396,6 +396,83 @@ select {
   border-bottom: 1px solid var(--color-border);
 }
 
+.eta-scope {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.progress-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--color-bg);
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-primary);
+  transition: width 0.35s ease;
+}
+
+.eta-box {
+  margin-top: 0.85rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: var(--color-bg);
+}
+
+.eta-label {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.eta-value {
+  margin: 0.35rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.35;
+}
+
+.eta-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.level-up-banner {
+  text-align: left;
+  margin: 0 0 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+
+.level-up-title {
+  margin: 0 0 0.35rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.level-up-text {
+  margin: 0 0 0.85rem;
+  font-size: 0.92rem;
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+.level-up-card p {
+  color: var(--color-muted);
+  line-height: 1.45;
+}
+
 /* Achievements grid on the stats page */
 .ach-grid {
   display: grid;
@@ -596,6 +673,14 @@ select {
 .danger-zone {
   margin-top: 2rem;
   text-align: center;
+}
+
+.app-version {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
 }
 
 /* ===== Achievement celebration (iMessage-style overlay) ===== */

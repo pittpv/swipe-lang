@@ -3,6 +3,9 @@ import { showAchievements, dismissAchievements, achievementBadge } from './achie
 
 export { api } from './track.js';
 
+/** Injected at build/dev time from package.json via vite.config.js */
+const APP_VERSION = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.1.0';
+
 export class App {
   constructor(root) {
     this.root = root;
@@ -39,6 +42,8 @@ export class App {
     this.progressReset = false;
     this.publicStats = { words: 3564, sessionSize: 18 };
     this.referralLink = '';
+    /** Level-up offer when current CEFR scope is fully known. */
+    this.levelOffer = null;
     /** Achievements unlocked at session end — shown after leaving summary (iOS). */
     this.pendingAchievements = null;
     this._summaryTapHandled = false;
@@ -184,16 +189,57 @@ export class App {
     dismissAchievements();
     try {
       const data = await api('/session/start', { method: 'POST' });
+      if (!data.cards?.length) {
+        if (data.levelComplete) {
+          this.levelOffer = data.levelProgress;
+          this.view = 'level-up';
+          track('level_complete_shown');
+        } else {
+          this.error = 'Нет слов для сессии. Попробуйте сменить уровень в настройках.';
+          this.view = 'home';
+        }
+        this.render();
+        return;
+      }
       this.sessionId = data.sessionId;
       this.cards = data.cards;
       this.cardIndex = 0;
       this.summary = null;
+      this.levelOffer = data.levelComplete ? data.levelProgress : null;
       this.view = 'session';
       track('session_start');
     } catch (e) {
       this.error = e.message;
     }
     this.render();
+  }
+
+  async acceptLevelUp() {
+    const next = this.levelOffer?.nextCefrLevel;
+    if (!next) {
+      this.levelOffer = null;
+      this.setView('home');
+      return;
+    }
+    this.settingsError = '';
+    try {
+      const result = await api('/profile', { method: 'PATCH', body: { cefrLevel: next } });
+      this.cefrLevel = result.cefrLevel;
+      if (this.user) this.user.cefrLevel = result.cefrLevel;
+      this.levelOffer = null;
+      track('level_up_accepted');
+      await this.startSession();
+      return;
+    } catch (e) {
+      this.error = e.message;
+      this.view = 'level-up';
+    }
+    this.render();
+  }
+
+  dismissLevelUp() {
+    this.levelOffer = null;
+    this.setView('home');
   }
 
   currentCard() {
@@ -255,6 +301,7 @@ export class App {
       this.overlayWord = null;
       this.summary = await api('/session/complete', { method: 'POST' });
       if (this.user) this.user.streak = this.summary.streak;
+      if (this.summary.levelComplete) this.levelOffer = this.summary.levelProgress;
       track('session_complete');
       this.view = 'summary';
       // Defer celebration until Home: on iOS a full-screen layer + post-swipe
@@ -321,6 +368,9 @@ export class App {
   async loadStats() {
     try {
       this.stats = await api('/stats');
+      if (this.stats.levelProgress?.complete && this.stats.levelProgress.nextCefrLevel) {
+        this.levelOffer = this.stats.levelProgress;
+      }
       this.view = 'stats';
     } catch (e) {
       this.error = e.message;
@@ -729,9 +779,9 @@ export class App {
    * stops the late ghost-click from hitting the newly rendered Home button.
    */
   onSummaryPointerUp(e) {
-    if (this.view !== 'summary' || this._summaryTapHandled) return;
+    if ((this.view !== 'summary' && this.view !== 'level-up') || this._summaryTapHandled) return;
     if (e.pointerType === 'mouse' && e.button !== 0) return;
-    const t = e.target.closest('[data-action="home"], [data-action="start"]');
+    const t = e.target.closest('[data-action="home"], [data-action="start"], [data-action="level-up"], [data-action="dismiss-level-up"]');
     if (!t) return;
     this._summaryTapHandled = true;
     this._suppressClickUntil = Date.now() + 450;
@@ -749,6 +799,8 @@ export class App {
       this._summaryTapHandled = false;
     }, 450);
     if (t.dataset.action === 'home') this.setView('home');
+    else if (t.dataset.action === 'level-up') this.acceptLevelUp();
+    else if (t.dataset.action === 'dismiss-level-up') this.dismissLevelUp();
     else this.startSession();
   }
 
@@ -763,7 +815,7 @@ export class App {
       if (!t) return;
       const action = t.dataset.action;
       // Already handled in onSummaryPointerUp (iOS post-swipe path).
-      if (this._summaryTapHandled && (action === 'home' || action === 'start')) return;
+      if (this._summaryTapHandled && (action === 'home' || action === 'start' || action === 'level-up' || action === 'dismiss-level-up')) return;
       if (action === 'show-login') {
         this.authMode = 'login';
         this.setView('auth');
@@ -777,6 +829,8 @@ export class App {
       if (action === 'register') this.register();
       if (action === 'onboarding') this.saveOnboarding();
       if (action === 'start') this.startSession();
+      if (action === 'level-up') this.acceptLevelUp();
+      if (action === 'dismiss-level-up') this.dismissLevelUp();
       if (action === 'stats') this.loadStats();
       if (action === 'settings') this.setView('settings');
       if (action === 'save-name') this.saveName();
@@ -882,6 +936,7 @@ export class App {
               ${opt('A1', 'A1 — начальный', this.cefrLevel)}
               ${opt('A2', 'A2 — элементарный', this.cefrLevel)}
               ${opt('B1', 'B1 — средний', this.cefrLevel)}
+              ${opt('B2', 'B2 — продвинутый', this.cefrLevel)}
               ${opt('C1', 'C1 — свободный', this.cefrLevel)}
             </select>
           </label>
@@ -935,6 +990,9 @@ export class App {
           <button class="btn btn-primary" data-action="swipe-right" style="flex:1">Учу →</button>
         </div>`;
     } else if (v === 'summary' && this.summary) {
+      const lp = this.summary.levelProgress;
+      const offerUp = this.summary.levelComplete && lp?.nextCefrLevel;
+      const allDone = this.summary.levelComplete && lp?.atMaxLevel;
       html += `
         <div class="summary-card">
           <h2>Сессия завершена</h2>
@@ -945,18 +1003,66 @@ export class App {
             <div class="stat-box"><div class="num">${this.summary.streak}</div><div class="lbl">Streak</div></div>
             <div class="stat-box"><div class="num">${this.summary.wordsDueTomorrow}</div><div class="lbl">На завтра</div></div>
           </div>
-          <button class="btn btn-primary" data-action="start" style="width:100%">Ещё сессия</button>
+          ${offerUp ? `
+          <div class="level-up-banner">
+            <p class="level-up-title">Уровень ${esc(lp.cefrLevel)} освоен!</p>
+            <p class="level-up-text">Все ${lp.wordsTotal} слов до ${esc(lp.cefrLevel)} отмечены как «Знаю». Перейти на ${esc(lp.nextCefrLevel)}?</p>
+            <button class="btn btn-primary" data-action="level-up" style="width:100%">Перейти на ${esc(lp.nextCefrLevel)}</button>
+          </div>` : ''}
+          ${allDone ? `
+          <div class="level-up-banner">
+            <p class="level-up-title">Словарь пройден!</p>
+            <p class="level-up-text">Вы отметили «Знаю» все слова до C1. Можно повторять due-карточки.</p>
+          </div>` : ''}
+          ${!offerUp ? '<button class="btn btn-primary" data-action="start" style="width:100%">Ещё сессия</button>' : ''}
           <button class="btn btn-ghost" data-action="home" style="width:100%;margin-top:0.5rem">На главную</button>
+        </div>`;
+    } else if (v === 'level-up' && this.levelOffer) {
+      const lp = this.levelOffer;
+      html += `
+        <div class="summary-card level-up-card">
+          <h2>${lp.atMaxLevel ? 'Словарь освоен' : `Уровень ${esc(lp.cefrLevel)} пройден`}</h2>
+          <p>${lp.atMaxLevel
+            ? 'Все слова словаря отмечены как «Знаю». Возвращайтесь к повторениям, когда они появятся.'
+            : `Все ${lp.wordsTotal} слов до ${esc(lp.cefrLevel)} изучены. Откроем ${esc(lp.nextCefrLevel)}?`}</p>
+          ${lp.nextCefrLevel
+            ? `<button class="btn btn-primary" data-action="level-up" style="width:100%">Перейти на ${esc(lp.nextCefrLevel)}</button>
+               <button class="btn btn-ghost" data-action="dismiss-level-up" style="width:100%;margin-top:0.5rem">Остаться на ${esc(lp.cefrLevel)}</button>`
+            : `<button class="btn btn-primary" data-action="home" style="width:100%">На главную</button>`}
         </div>`;
     } else if (v === 'stats' && this.stats) {
       const achievements = Array.isArray(this.stats.achievements) ? this.stats.achievements : [];
+      const lp = this.stats.levelProgress;
+      const eta = this.stats.eta;
       html += `
         <section class="hero"><h1>Статистика</h1></section>
         <div class="card-form stats-page">
           <div class="stat-row"><span>Streak</span><strong>${this.stats.streak} дн.</strong></div>
-          <div class="stat-row"><span>Знаю</span><strong>${this.stats.wordsLearned}</strong></div>
+          <div class="stat-row"><span>Знаю (всего)</span><strong>${this.stats.wordsLearned}</strong></div>
           <div class="stat-row"><span>Сессий</span><strong>${this.stats.sessionsCompleted}</strong></div>
           <div class="stat-row"><span>Уровень</span><strong>${esc(this.stats.cefrLevel)}</strong></div>
+          ${lp ? `
+          <div class="settings-divider"></div>
+          <p class="referral-title">Прогресс уровня ${esc(lp.cefrLevel)}</p>
+          <p class="eta-scope">${lp.wordsKnown} из ${lp.wordsTotal} слов до ${esc(lp.cefrLevel)} · ${lp.percent}%</p>
+          <div class="progress-bar" role="progressbar" aria-valuenow="${lp.percent}" aria-valuemin="0" aria-valuemax="100" aria-label="Прогресс уровня">
+            <div class="progress-bar-fill" style="width:${lp.percent}%"></div>
+          </div>
+          <div class="stat-row"><span>Новых</span><strong>${lp.wordsNew}</strong></div>
+          <div class="stat-row"><span>На учёбе</span><strong>${lp.wordsLearning}</strong></div>
+          ${eta ? `
+          <div class="eta-box">
+            <p class="eta-label">Оценка до «Знаю» по уровню</p>
+            <p class="eta-value">${esc(eta.label)}</p>
+            ${eta.remainingWords
+              ? `<p class="eta-hint">Осталось ${eta.remainingWords} слов · до ~13 новых за сессию</p>`
+              : ''}
+          </div>` : ''}
+          ${lp.complete && lp.nextCefrLevel ? `
+          <button class="btn btn-primary" data-action="level-up" style="width:100%;margin-top:0.75rem">Перейти на ${esc(lp.nextCefrLevel)}</button>` : ''}
+          ${lp.complete && lp.atMaxLevel ? `
+          <p class="saved-hint" style="margin-top:0.75rem">Словарь C1 полностью освоен ✓</p>` : ''}
+          ` : ''}
           <div class="settings-divider"></div>
           <p class="referral-title">🏅 Достижения</p>
           ${achievements.length
@@ -1013,7 +1119,8 @@ export class App {
         <div class="danger-zone">
           <button class="btn btn-danger" data-action="reset-progress">Сбросить статистику и прогресс</button>
           <button class="btn btn-danger" data-action="delete-account">Удалить аккаунт</button>
-        </div>`;
+        </div>
+        <p class="app-version">LangApp v${esc(APP_VERSION)}</p>`;
     }
 
     html += '</div>';
