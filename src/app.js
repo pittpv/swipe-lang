@@ -421,19 +421,16 @@ export class App {
   }
 
   /**
-   * iOS only allows PushManager.subscribe inside a user gesture. If launch
-   * heal could not recreate a lost endpoint, retry after the first tap —
-   * deferred so subscribe() does not steal the same gesture from buttons
-   * like «На главную».
+   * iOS requires pushManager.subscribe inside a real user gesture. Launch heal
+   * may have failed; retry on the first tap — synchronously, because setTimeout
+   * drops user activation and subscribe() then fails silently.
    */
   armGesturePushHeal() {
     if (!this.reminderNeedsGestureHeal) return;
     const retry = () => {
       document.removeEventListener('pointerup', retry, true);
-      setTimeout(() => {
-        this.reminderNeedsGestureHeal = false;
-        this.pushSubscribe({ interactive: false });
-      }, 0);
+      this.reminderNeedsGestureHeal = false;
+      this.pushSubscribe({ interactive: false });
     };
     document.addEventListener('pointerup', retry, { once: true, capture: true });
   }
@@ -443,6 +440,7 @@ export class App {
    * interactive: only the Enable button may call Notification.requestPermission.
    * A launch-time request is not a user gesture; iOS then reports "denied"
    * even when the PWA already has notification permission.
+   * Subscribe itself is still attempted whenever permission is already granted.
    */
   async ensurePushSubscription({ interactive = false } = {}) {
     if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
@@ -453,8 +451,8 @@ export class App {
     const registration = await navigator.serviceWorker.register('/sw.js');
     await navigator.serviceWorker.ready;
     let subscription = await registration.pushManager.getSubscription();
-    // A subscription made with an older server VAPID key gets 403 on every
-    // send — drop it and re-subscribe with the current key.
+    // Only rotate when WebKit exposes the key AND it disagrees. An empty key
+    // must not unsubscribe — that killed live Apple endpoints after 8c03b34.
     if (subscription && !this.sameVapidKey(subscription, config.publicKey)) {
       await subscription.unsubscribe().catch(() => {});
       subscription = null;
@@ -483,8 +481,7 @@ export class App {
 
   sameVapidKey(subscription, publicKeyB64) {
     const existing = new Uint8Array(subscription.options?.applicationServerKey ?? []);
-    // WebKit often omits applicationServerKey. Treat "unknown" as a match so
-    // launch heal does not unsubscribe a live Apple endpoint.
+    // WebKit often omits applicationServerKey — treat as unknown/match.
     if (!existing.length) return true;
     const current = urlB64ToUint8Array(publicKeyB64);
     return existing.length === current.length && existing.every((b, i) => b === current[i]);

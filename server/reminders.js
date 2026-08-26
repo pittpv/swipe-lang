@@ -120,7 +120,7 @@ export function dueWordsCount(db, userId) {
 }
 
 function vapidSubject() {
-  return (process.env.APP_URL || 'https://langapp-neon.vercel.app').replace(/\/$/, '');
+  return process.env.APP_URL || 'https://langapp-neon.vercel.app';
 }
 
 export function pushEndpointHost(subscription) {
@@ -131,41 +131,16 @@ export function pushEndpointHost(subscription) {
   }
 }
 
-/** Exact payload shape that previously delivered on Apple Web Push. */
-function buildPushPayload({ title, body, url = '/' }) {
-  const path = url.startsWith('/') ? url : `/${url}`;
-  return JSON.stringify({ title, body, url: path });
-}
-
-async function deliverPush(user, payload, { logPrefix }) {
-  if (!user?.push_subscription) return { skipped: 'no-subscription', host: null };
-  const host = pushEndpointHost(user.push_subscription);
-  const keys = getVapidKeys();
-  // VAPID "sub" must be a reachable mailto: or https: URL — Apple rejects
-  // pushes with 403 when the domain doesn't exist (e.g. ".example").
-  webpush.setVapidDetails(vapidSubject(), keys.publicKey, keys.privateKey);
-  try {
-    // No Topic header — Apple collapsing was unnecessary and risked drops.
-    const res = await webpush.sendNotification(user.push_subscription, payload);
-    console.log(`[reminders] ${logPrefix} sent host=${host} status=${res?.statusCode ?? 201}`);
-    return { sent: true, statusCode: res?.statusCode ?? 201, host };
-  } catch (err) {
-    console.error(`[reminders] ${logPrefix} ${err.statusCode ?? '???'}: ${err.body ?? err.message}`);
-    // 404/410 — subscription expired; 401/403 — VAPID key mismatch (keys were
-    // rotated). Drop the endpoint so the next app-open heal can resubscribe,
-    // but keep the QStash schedule and reminder_time — otherwise the UI shows
-    // reminders as off and heal never runs.
-    if ([401, 403, 404, 410].includes(err.statusCode)) {
-      return { skipped: 'expired-subscription', expired: true, host, statusCode: err.statusCode };
-    }
-    return { skipped: `delivery-error-${err.statusCode ?? 'unknown'}`, host, statusCode: err.statusCode };
-  }
-}
-
 /** Sends one push; cleans up expired subscriptions. Never throws for delivery issues. */
 export async function sendReminderPush(db, user) {
   if (!user?.push_subscription) return { skipped: 'no-subscription' };
   const { due, started } = dueWordsCount(db, user.id);
+  const host = pushEndpointHost(user.push_subscription);
+
+  const keys = getVapidKeys();
+  // VAPID "sub" must be a reachable mailto: or https: URL — Apple rejects
+  // pushes with 403 when the domain doesn't exist (e.g. ".example").
+  webpush.setVapidDetails(vapidSubject(), keys.publicKey, keys.privateKey);
   // iOS shows "<title> from LangApp" — the "from LangApp" suffix comes from
   // the manifest name, so the title itself must carry the actual message.
   const { title, body } =
@@ -177,22 +152,47 @@ export async function sendReminderPush(db, user) {
       : started
         ? { title: 'Всё повторено! 🎉', body: 'План на сегодня выполнен — возвращайся завтра' }
         : { title: 'Начни учить турецкий 🇹🇷', body: 'Первая сессия из 18 слов уже ждёт' };
-  const result = await deliverPush(user, buildPushPayload({ title, body }), {
-    logPrefix: 'web-push',
-  });
-  return { ...result, due };
+  const payload = JSON.stringify({ title, body, url: '/' });
+  try {
+    const res = await webpush.sendNotification(user.push_subscription, payload);
+    console.log(`[reminders] web-push sent host=${host} status=${res?.statusCode ?? 201}`);
+    return { sent: true, due, host, statusCode: res?.statusCode ?? 201 };
+  } catch (err) {
+    console.error(`[reminders] web-push ${err.statusCode ?? '???'}: ${err.body ?? err.message}`);
+    // 404/410 — subscription expired; 401/403 — VAPID key mismatch (keys were
+    // rotated). Drop the endpoint so the next app-open heal can resubscribe,
+    // but keep the QStash schedule and reminder_time — otherwise the UI shows
+    // reminders as off and heal never runs.
+    if ([401, 403, 404, 410].includes(err.statusCode)) {
+      return { skipped: 'expired-subscription', expired: true, host, statusCode: err.statusCode };
+    }
+    return { skipped: `delivery-error-${err.statusCode ?? 'unknown'}`, host, statusCode: err.statusCode };
+  }
 }
 
 /** Immediate test notification — same VAPID path as the daily reminder. */
 export async function sendTestPush(user) {
-  return deliverPush(
-    user,
-    buildPushPayload({
-      title: 'Тест LangApp',
-      body: 'Пуш работает — это проверка 🔔',
-    }),
-    { logPrefix: 'test web-push' },
-  );
+  if (!user?.push_subscription) return { skipped: 'no-subscription', host: null };
+  const host = pushEndpointHost(user.push_subscription);
+  const keys = getVapidKeys();
+  const subject = vapidSubject();
+  webpush.setVapidDetails(subject, keys.publicKey, keys.privateKey);
+  const payload = JSON.stringify({
+    title: 'Тест LangApp',
+    body: 'Пуш работает — это проверка 🔔',
+    url: '/',
+  });
+  try {
+    const res = await webpush.sendNotification(user.push_subscription, payload);
+    console.log(`[reminders] test web-push sent host=${host} status=${res?.statusCode ?? 201}`);
+    return { sent: true, host, statusCode: res?.statusCode ?? 201 };
+  } catch (err) {
+    console.error(`[reminders] test web-push ${err.statusCode ?? '???'}: ${err.body ?? err.message}`);
+    if ([401, 403, 404, 410].includes(err.statusCode)) {
+      return { skipped: 'expired-subscription', expired: true, host, statusCode: err.statusCode };
+    }
+    return { skipped: `delivery-error-${err.statusCode ?? 'unknown'}`, host, statusCode: err.statusCode };
+  }
 }
 
 function pluralRu(n) {

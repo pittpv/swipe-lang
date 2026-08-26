@@ -11,16 +11,13 @@ self.addEventListener('push', (event) => {
   } catch {
     data = { body: event.data?.text() };
   }
-  // Declarative payloads nest fields under `notification` (Safari 18.4+).
-  // Classic payloads keep title/body/url at the top level (Chromium/Firefox).
-  const title = data.notification?.title || data.title || 'LangApp';
-  const body = data.notification?.body || data.body || 'Пора повторить слова!';
-  const url = data.notification?.navigate || data.url || '/';
+  const title = data.title || 'LangApp';
   event.waitUntil(
     self.registration.showNotification(title, {
-      body,
-      tag: 'langapp-reminder',
-      data: { url },
+      body: data.body || 'Пора повторить слова!',
+      icon: '/favicon.svg',
+      badge: '/favicon.svg',
+      data: { url: data.url || '/' },
     }),
   );
 });
