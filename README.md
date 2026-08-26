@@ -24,7 +24,14 @@ Key implementation details:
 - **30% reviews / 70% new words** (`REVIEW_RATIO = 0.3`) — a balance between consolidation and forward progress
 - Reviews are picked most-overdue-first (sorted by `next_review_at`)
 - New words are filtered **by the user's CEFR level** (A1→C1, levels accumulate via `levelsUpTo()`)
+- When the current CEFR scope is fully marked «known» and nothing is due → empty deck → **level-up offer** (or dictionary-complete at C1); due reviews still run as review-only sessions
 - Edge cases are documented in the workflow spec: empty review queue → new words only; everything learned → celebration + level-up suggestion
+
+## 2b. Progress ETA & level completion (`server/progress.js`)
+
+- **Stats screen** shows known / new / learning counts for the active CEFR scope, a progress bar, and a rough **ETA** to finish marking the level as «Знаю»
+- ETA ≈ `remaining ÷ ~13 new cards per session × 1.3 buffer`, paced by completed sessions in the last 14 days (defaults to 1 session/day)
+- **Level-up** can be accepted from stats, session summary, or the dedicated level-up screen; it PATCHes `cefrLevel` and starts a new session
 
 ## 3. Active Recall + Context
 
@@ -61,4 +68,10 @@ The client emits events (`session_start`, `card_shown`, `swipe_left/right`, `ses
 | Microlearning / consistency | 18-card sessions + daily streak + push reminders |
 | Gamification | Milestones, animated achievements |
 | Adaptivity (zone of proximal development) | CEFR filtering of new words by level |
+| Level completion | Offer next CEFR when scope is fully «known» (`progress.js`) |
+| Progress foresight | ETA on stats from remaining words + recent pace |
 | Data-driven improvement | Event analytics + D1/D7 retention reports |
+
+## App version
+
+Settings footer shows `LangApp vX.Y.Z+abcdefg` — semver from `package.json` plus a short git SHA injected at Vite build time (see `docs/DEPLOY.md`).

@@ -36,7 +36,8 @@
 |------|----------|
 | Empty review queue | Show only new words up to session cap (20) |
 | No new words left | Review-only session |
-| Both queues empty | Celebrate + suggest level up |
+| Both queues empty | Celebrate + suggest level up (`levelComplete` from `/api/session/start`; UI: level-up screen / stats CTA) |
+| Level complete but reviews due | Review-only session; level-up still offered on summary/stats |
 | Offline mid-session | Complete current card; sync on reconnect |
 | Undo last swipe | Phase 2 — not MVP |
 | Session cap reached | Force [Session Summary] after card 20 |
