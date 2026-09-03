@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="is-booting">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -8,12 +8,42 @@
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>LangApp</title>
+    <link rel="stylesheet" href="./splash.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <div id="app"></div>
+    <div
+      id="app-splash"
+      class="app-splash"
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
+    >
+      <div class="splash-stage">
+        <div class="splash-mark">
+          <div class="splash-glow" aria-hidden="true"></div>
+          <svg class="splash-logo" viewBox="0 0 72 72" aria-hidden="true" focusable="false">
+            <g class="splash-card-back">
+              <rect x="10.5" y="9.5" width="52" height="52" rx="13" fill="#2d8a6e" />
+            </g>
+            <g class="splash-card-front">
+              <rect x="8.5" y="11.5" width="52" height="52" rx="13" fill="#1a5f4a" />
+              <path
+                fill="#fff"
+                d="M42.65 40.61L42.31 46.16L26.35 46.16L26.35 45.21C26.64 45.18 26.97 45.15 27.35 45.09C27.74 45.04 27.99 44.99 28.11 44.94C28.4 44.83 28.61 44.67 28.72 44.46C28.83 44.26 28.89 44 28.89 43.68L28.89 31.46C28.89 31.17 28.85 30.93 28.76 30.74C28.67 30.55 28.45 30.37 28.11 30.22C27.86 30.1 27.55 30.01 27.2 29.94C26.85 29.87 26.56 29.82 26.35 29.79L26.35 28.84L35.86 28.84L35.86 29.79C35.6 29.82 35.29 29.85 34.94 29.9C34.59 29.94 34.28 30 34.02 30.08C33.7 30.19 33.49 30.35 33.38 30.58C33.28 30.8 33.22 31.06 33.22 31.34L33.22 42.73C33.22 43.27 33.26 43.69 33.33 44C33.41 44.31 33.55 44.54 33.76 44.68C33.97 44.84 34.27 44.94 34.65 44.98C35.02 45.03 35.55 45.05 36.22 45.05C36.87 45.05 37.5 45.01 38.11 44.93C38.73 44.86 39.17 44.69 39.44 44.43C39.85 44.01 40.28 43.43 40.71 42.68C41.15 41.92 41.5 41.23 41.76 40.61Z"
+              />
+              <circle class="splash-pip" cx="47.5" cy="24.5" r="3" fill="#e8a838" />
+            </g>
+          </svg>
+        </div>
+        <p class="splash-wordmark">LangApp</p>
+        <div class="splash-bar" aria-hidden="true"></div>
+      </div>
+      <p class="splash-sr">Загрузка LangApp</p>
+    </div>
+    <div id="app" aria-hidden="true"></div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

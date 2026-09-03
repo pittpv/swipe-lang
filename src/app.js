@@ -1022,7 +1022,7 @@ export class App {
     let html = '<div class="shell">';
 
     if (v === 'loading') {
-      html += '<p style="text-align:center;color:var(--color-muted)">Загрузка…</p>';
+      html += '';
     } else if (v === 'landing') {
       const w = this.publicStats.words;
       html += `
