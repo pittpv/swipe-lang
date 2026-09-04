@@ -8,7 +8,7 @@
 
 ```
 [App Launch]
-    → authenticated? ─no→ [Auth] → [Onboarding?] ─yes→ [Onboarding] → [Session Home]
+    → authenticated? ─no→ [Auth] → [Onboarding?] ─yes→ [Onboarding] → [Setup wait] → [Session Home]
                     └─yes→ [Onboarding complete?] ─no→ [Onboarding]
                                           └─yes→ [Session Home]
 
@@ -29,6 +29,11 @@
     → streak update, stats persist
     → [Another session?] / [Progress page] / [Home]
 ```
+
+## Onboarding
+
+- Collects **name** (UI-required), **goal**, **CEFR**. `POST /api/onboarding` may omit name (backward compatible); UI blocks empty name.
+- After «Продолжить»: setup-wait screen (home skeleton + install/reminder/5-min tips) while profile + extras save, then Home greets by name.
 
 ## Edge Cases
 

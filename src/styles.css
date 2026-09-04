@@ -87,6 +87,14 @@ select {
   background: var(--color-bg);
 }
 
+input:focus-visible,
+select:focus-visible,
+.btn:focus-visible,
+.link-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -327,6 +335,88 @@ select {
 .skeleton-summary-btn.ghost {
   margin-top: 0.5rem;
   opacity: 0.65;
+}
+
+.setup-wait {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.setup-preview {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.skeleton-home-title {
+  width: min(58%, 11rem);
+  height: 1.65rem;
+}
+
+.skeleton-home-sub {
+  width: min(82%, 16rem);
+  height: 0.7rem;
+}
+
+.skeleton-home-btn {
+  width: 100%;
+  height: 2.75rem;
+  border-radius: 12px;
+  margin-top: 0.35rem;
+}
+
+.skeleton-home-btn.ghost {
+  margin-top: 0;
+  height: 2.5rem;
+  opacity: 0.6;
+}
+
+.setup-tips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.setup-tips li {
+  padding: 0.15rem 0 0.85rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.setup-tips li:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.setup-tips strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+
+.setup-tips span {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+.card-form > label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
 @keyframes skeletonShimmer {

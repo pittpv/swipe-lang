@@ -133,7 +133,7 @@
 ## 7. Экраны MVP
 
 1. Landing / Welcome
-2. Onboarding (цель, уровень)
+2. Onboarding (имя, цель, уровень) → экран «кабинет создаётся»
 3. Auth (login / register)
 4. Session — swipe deck (главный экран)
 5. Word detail overlay (тап-слои)

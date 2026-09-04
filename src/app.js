@@ -47,6 +47,7 @@ export class App {
     this.settingsError = '';
     this.settingsSaved = false;
     this.name = '';
+    this._onboardingBusy = false;
     this.progressReset = false;
     this.publicStats = { words: 3564, sessionSize: 18 };
     this.referralLink = '';
@@ -180,15 +181,44 @@ export class App {
   }
 
   async saveOnboarding() {
+    if (this._onboardingBusy) return;
+    const name = String(this.name ?? '').trim();
+    if (!name) {
+      this.error = 'Введите имя';
+      this.render();
+      return;
+    }
+    this._onboardingBusy = true;
+    this.error = '';
+    this.view = 'onboarding-setup';
+    this.render();
+    const started = Date.now();
     try {
-      await api('/onboarding', { method: 'POST', body: { goal: this.goal, cefrLevel: this.cefrLevel } });
+      const result = await api('/onboarding', {
+        method: 'POST',
+        body: { goal: this.goal, cefrLevel: this.cefrLevel, name },
+      });
       track('onboarding_complete');
-      this.user.needsOnboarding = false;
+      if (this.user) {
+        this.user.needsOnboarding = false;
+        this.user.name = result.name ?? name;
+        this.user.goal = result.goal ?? this.goal;
+        this.user.cefrLevel = result.cefrLevel ?? this.cefrLevel;
+      }
+      this.name = result.name ?? name;
+      try {
+        await this.loadUserExtras();
+      } catch {
+        /* Home still works without referral/reminder extras. */
+      }
+      const wait = 1100 - (Date.now() - started);
+      if (wait > 0) await new Promise((r) => setTimeout(r, wait));
       this.view = 'home';
-      await this.loadUserExtras();
     } catch (e) {
       this.error = e.message;
+      this.view = 'onboarding';
     }
+    this._onboardingBusy = false;
     this.render();
     this.armGesturePushHeal();
   }
@@ -1007,7 +1037,14 @@ export class App {
       if (name in this) this[name] = value;
     };
 
-    this.root.onkeydown = (e) => this.onKeyDown(e);
+    this.root.onkeydown = (e) => {
+      if (this.view === 'onboarding' && e.key === 'Enter' && e.target.name === 'name') {
+        e.preventDefault();
+        this.saveOnboarding();
+        return;
+      }
+      this.onKeyDown(e);
+    };
 
     // CSP-safe replacement for the former inline onclick on .overlay-panel:
     // clicks on the panel body must not bubble to the closing backdrop,
@@ -1063,6 +1100,9 @@ export class App {
       html += `
         <section class="hero"><h1>Настройка</h1><p>Короткий онбординг — и к первой сессии.</p></section>
         <div class="card-form">
+          <label>Имя
+            <input name="name" type="text" value="${esc(this.name)}" maxlength="64" placeholder="Как к вам обращаться?" autocomplete="given-name" />
+          </label>
           <label>Цель
             <select name="goal">
               ${opt('travel', 'Путешествия', this.goal)}
@@ -1080,8 +1120,36 @@ export class App {
             </select>
           </label>
           ${this.error ? `<p class="error">${esc(this.error)}</p>` : ''}
-          <button class="btn btn-primary" data-action="onboarding">Продолжить</button>
+          <button class="btn btn-primary" data-action="onboarding"${this._onboardingBusy ? ' disabled' : ''}>Продолжить</button>
           <p style="text-align:center;font-size:0.85rem;color:var(--color-muted);margin:1rem 0 0">📲 Совет: установите LangApp как приложение — инструкция для <a href="/help/faq.html#install" target="_blank" rel="noopener">iPhone и Android — в FAQ</a>.</p>
+        </div>`;
+    } else if (v === 'onboarding-setup') {
+      html += `
+        <section class="hero">
+          <h1>Ваш личный кабинет создаётся</h1>
+          <p>Ещё секунда — и можно свайпать.</p>
+        </section>
+        <div class="setup-wait" aria-busy="true" aria-live="polite">
+          <div class="setup-preview" aria-hidden="true">
+            <div class="skeleton-bone skeleton-home-title"></div>
+            <div class="skeleton-bone skeleton-home-sub"></div>
+            <div class="skeleton-bone skeleton-home-btn"></div>
+            <div class="skeleton-bone skeleton-home-btn ghost"></div>
+          </div>
+          <ul class="setup-tips">
+            <li>
+              <strong>Никакой рутины — всего 5 минут в день</strong>
+              <span>18 карточек, затем стоп. Без бесконечной ленты.</span>
+            </li>
+            <li>
+              <strong>Установите на рабочий стол</strong>
+              <span>Так проще возвращаться каждый день. Инструкция — в FAQ.</span>
+            </li>
+            <li>
+              <strong>Не забудьте добавить напоминание</strong>
+              <span>Пуш в удобное время — в настройках, после первой сессии.</span>
+            </li>
+          </ul>
         </div>`;
     } else if (v === 'home') {
       html += `
@@ -1338,6 +1406,9 @@ export class App {
     const card = this.root.querySelector('#active-card');
     if (card) {
       card.addEventListener('pointerdown', (e) => this.onPointerDown(e));
+    }
+    if (v === 'onboarding') {
+      this.root.querySelector('input[name="name"]')?.focus();
     }
   }
 }

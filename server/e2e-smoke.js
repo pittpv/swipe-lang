@@ -190,6 +190,33 @@ test('profile level update', async () => {
   assert.equal(res.status, 400);
 });
 
+test('onboarding saves name with goal and level', async () => {
+  const client = jar();
+  await client.fetch('/api/public/stats');
+  let { res, data } = await client.fetch('/api/auth/register', {
+    method: 'POST',
+    body: JSON.stringify({ email: `onboard_name_${Date.now()}@langapp.test`, password }),
+  });
+  assert.equal(res.status, 200);
+  assert.equal(data.name ?? null, null);
+
+  ({ res, data } = await client.fetch('/api/onboarding', {
+    method: 'POST',
+    body: JSON.stringify({ goal: 'work', cefrLevel: 'A2', name: 'Мария' }),
+  }));
+  assert.equal(res.status, 200);
+  assert.equal(data.name, 'Мария');
+  assert.equal(data.goal, 'work');
+  assert.equal(data.cefrLevel, 'A2');
+
+  ({ res, data } = await client.fetch('/api/auth/me'));
+  assert.equal(res.status, 200);
+  assert.equal(data.name, 'Мария');
+  assert.equal(data.goal, 'work');
+  assert.equal(data.cefrLevel, 'A2');
+  assert.equal(data.needsOnboarding, false);
+});
+
 test('profile name update and progress reset', async () => {
   const client = jar();
   await client.fetch('/api/public/stats');

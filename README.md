@@ -72,6 +72,10 @@ The client emits events (`session_start`, `card_shown`, `swipe_left/right`, `ses
 | Progress foresight | ETA on stats from remaining words + recent pace |
 | Data-driven improvement | Event analytics + D1/D7 retention reports |
 
+## First-run onboarding
+
+After registration the app asks for a **display name**, study goal, and CEFR level (`POST /api/onboarding`). Name is required in the UI so Home can greet the user; the API still accepts onboarding without it. While the profile is saved, a short setup screen shows a home skeleton plus three tips (5-minute sessions, install the PWA, add a reminder). Name can be changed later via `PATCH /api/profile`.
+
 ## App version
 
 Settings footer shows `LangApp vX.Y.Z+abcdefg` — semver from `package.json` plus a short git SHA injected at Vite build time (see `docs/DEPLOY.md`).

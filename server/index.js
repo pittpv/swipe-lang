@@ -383,15 +383,18 @@ app.post('/api/cron/reminders', async (req, res) => {
 app.post('/api/onboarding', requireAuth, async (req, res) => {
   const goal = sanitizeText(req.body?.goal, 64);
   const cefrLevel = sanitizeText(req.body?.cefrLevel, 8).toUpperCase();
+  const name = req.body?.name !== undefined ? sanitizeText(req.body.name, 64) : '';
   if (!goal || !['A1', 'A2', 'B1', 'B2', 'C1'].includes(cefrLevel)) {
     return res.status(400).json({ error: 'goal and valid cefrLevel required' });
   }
-  await db.transact(() => {
+  const saved = await db.transact(() => {
     const user = findUser(req.session.userId);
     user.goal = goal;
     user.cefr_level = cefrLevel;
+    if (name) user.name = name;
+    return { goal: user.goal, cefrLevel: user.cefr_level, name: user.name ?? null };
   });
-  res.json({ ok: true, goal, cefrLevel });
+  res.json({ ok: true, ...saved });
 });
 
 app.patch('/api/profile', requireAuth, async (req, res) => {
