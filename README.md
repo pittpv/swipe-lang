@@ -29,7 +29,7 @@ Key implementation details:
 
 ## 2b. Progress ETA & level completion (`server/progress.js`)
 
-- **Stats screen** shows known / new / learning counts for the active CEFR scope, a progress bar, and a rough **ETA** to finish marking the level as «Знаю»
+- **Stats screen** opens with a content-shaped skeleton while `/stats` loads, then shows known / new / learning counts for the active CEFR scope, a progress bar, and a rough **ETA** to finish marking the level as «Знаю»
 - ETA ≈ `remaining ÷ ~13 new cards per session × 1.3 buffer`, paced by completed sessions in the last 14 days (defaults to 1 session/day)
 - **Level-up** can be accepted from stats, session summary, or the dedicated level-up screen; it PATCHes `cefrLevel` and starts a new session
 

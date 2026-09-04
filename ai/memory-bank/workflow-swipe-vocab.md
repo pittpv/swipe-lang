@@ -14,6 +14,8 @@
 
 [Session Home]
     → startSession() → [Building Deck] → [Card Idle] (card 1..N)
+    → «Статистика» → [Stats Loading skeleton] → [Stats]
+    → «Скопировать ссылку» → clipboard; button reads «Ссылка скопирована» for 1s
 
 [Card Idle]
     → tap card → [Detail Overlay Open]

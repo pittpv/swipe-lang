@@ -51,6 +51,8 @@ export class App {
     this.progressReset = false;
     this.publicStats = { words: 3564, sessionSize: 18 };
     this.referralLink = '';
+    this.referralCopied = false;
+    this.referralCopiedTimer = null;
     /** Level-up offer when current CEFR scope is fully known. */
     this.levelOffer = null;
     /** Achievements unlocked at session end — shown after leaving summary (iOS). */
@@ -505,14 +507,19 @@ export class App {
   }
 
   async loadStats() {
+    if (this.view === 'stats-loading') return;
+    this.error = '';
+    this.view = 'stats-loading';
+    this.render();
     try {
       this.stats = await api('/stats');
       if (this.stats.levelProgress?.complete && this.stats.levelProgress.nextCefrLevel) {
         this.levelOffer = this.stats.levelProgress;
       }
-      this.view = 'stats';
+      if (this.view === 'stats-loading') this.view = 'stats';
     } catch (e) {
       this.error = e.message;
+      if (this.view === 'stats-loading') this.view = 'home';
     }
     this.render();
   }
@@ -528,10 +535,24 @@ export class App {
 
   async copyReferral() {
     if (!this.referralLink) await this.loadReferralLink();
-    if (this.referralLink && navigator.clipboard) {
-      await navigator.clipboard.writeText(this.referralLink);
-      track('referral_share');
+    if (!this.referralLink || !navigator.clipboard?.writeText) {
+      this.render();
+      return;
     }
+    try {
+      await navigator.clipboard.writeText(this.referralLink);
+    } catch {
+      this.render();
+      return;
+    }
+    track('referral_share');
+    this.referralCopied = true;
+    clearTimeout(this.referralCopiedTimer);
+    this.referralCopiedTimer = setTimeout(() => {
+      this.referralCopied = false;
+      this.referralCopiedTimer = null;
+      if (this.view === 'home') this.render();
+    }, 1000);
     this.render();
   }
 
@@ -816,6 +837,9 @@ export class App {
     this.cancelPendingReminderSave();
     this.user = null;
     this.referralLink = '';
+    this.referralCopied = false;
+    clearTimeout(this.referralCopiedTimer);
+    this.referralCopiedTimer = null;
     this.reminder = { enabled: false };
     this.view = 'landing';
     this.render();
@@ -1164,9 +1188,11 @@ export class App {
         <button class="btn btn-ghost" data-action="settings" style="width:100%;margin-top:0.5rem">Настройки</button>
         ${this.referralLink ? `
         <div class="referral-box">
-          <p class="referral-title">Пригласи друга</p>
-          <p class="referral-muted">Поделись ссылкой — учите турецкий вместе</p>
-          <button class="btn btn-primary" data-action="copy-referral" style="width:100%">Скопировать ссылку</button>
+          <div class="referral-copy">
+            <p class="referral-title">Пригласи друга</p>
+            <p class="referral-muted">Поделись ссылкой — учите турецкий вместе</p>
+          </div>
+          <button class="btn btn-primary" data-action="copy-referral" aria-live="polite">${this.referralCopied ? 'Ссылка скопирована' : 'Скопировать ссылку'}</button>
           ${this.user?.referralsCount ? `<p class="referral-muted">${this.user.referralsCount} приглашённых</p>` : ''}
         </div>` : ''}
         <p class="footer-links"><a href="/help/faq.html">FAQ</a></p>
@@ -1258,6 +1284,32 @@ export class App {
                <button class="btn btn-ghost" data-action="dismiss-level-up" style="width:100%;margin-top:0.5rem">Остаться на ${esc(lp.cefrLevel)}</button>`
             : `<button class="btn btn-primary" data-action="home" style="width:100%">На главную</button>`}
         </div>`;
+    } else if (v === 'stats-loading') {
+      html += `
+        <section class="hero"><h1>Статистика</h1></section>
+        <div class="card-form stats-page stats-skeleton" aria-busy="true" aria-live="polite">
+          <p class="sr-only">Загружаю статистику…</p>
+          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label wide"></span><span class="skeleton-bone skeleton-row-value"></span></div>
+          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label"></span><span class="skeleton-bone skeleton-row-value wide"></span></div>
+          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label narrow"></span><span class="skeleton-bone skeleton-row-value"></span></div>
+          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label mid"></span><span class="skeleton-bone skeleton-row-value"></span></div>
+          <div class="settings-divider" aria-hidden="true"></div>
+          <div class="skeleton-bone skeleton-section-title" aria-hidden="true"></div>
+          <div class="skeleton-bone skeleton-section-sub" aria-hidden="true"></div>
+          <div class="skeleton-bone skeleton-progress-track" aria-hidden="true"></div>
+          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label narrow"></span><span class="skeleton-bone skeleton-row-value"></span></div>
+          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label mid"></span><span class="skeleton-bone skeleton-row-value"></span></div>
+          <div class="skeleton-bone skeleton-eta-block" aria-hidden="true"></div>
+          <div class="settings-divider" aria-hidden="true"></div>
+          <div class="skeleton-bone skeleton-section-title" aria-hidden="true"></div>
+          <div class="ach-grid" aria-hidden="true">
+            <div class="skeleton-bone skeleton-ach-badge"></div>
+            <div class="skeleton-bone skeleton-ach-badge"></div>
+            <div class="skeleton-bone skeleton-ach-badge"></div>
+            <div class="skeleton-bone skeleton-ach-badge"></div>
+          </div>
+        </div>
+        <button class="btn btn-primary" data-action="home" style="width:100%;margin-top:1rem">На главную</button>`;
     } else if (v === 'stats' && this.stats) {
       const achievements = Array.isArray(this.stats.achievements) ? this.stats.achievements : [];
       const lp = this.stats.levelProgress;
