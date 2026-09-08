@@ -1,5 +1,6 @@
 import { track, captureReferralFromUrl, getStoredReferral, fetchPublicStats, api } from './track.js';
 import { showAchievements, dismissAchievements, achievementBadge } from './achievements.js';
+import { THEME_CHOICES, getThemePreference, setThemePreference } from './theme.js';
 
 export { api } from './track.js';
 
@@ -1053,12 +1054,21 @@ export class App {
         if (this.reminder.enabled) this.queueReminderSave();
         return;
       }
+      if (name === 'theme' && this.view === 'settings') {
+        setThemePreference(value);
+        return;
+      }
       if (name === 'cefrLevel' && this.view === 'settings') {
         this.cefrLevel = value;
         this.saveCefr();
         return;
       }
       if (name in this) this[name] = value;
+    };
+
+    this.root.onchange = (e) => {
+      const { name, value } = e.target;
+      if (name === 'theme' && this.view === 'settings') setThemePreference(value);
     };
 
     this.root.onkeydown = (e) => {
@@ -1370,6 +1380,8 @@ export class App {
           <button class="btn btn-primary" data-action="save-name" style="width:100%">Сохранить имя</button>
           ${this.settingsSaved ? '<p class="saved-hint">Сохранено ✓</p>' : ''}
           <div class="settings-divider"></div>
+          ${renderThemePicker(getThemePreference())}
+          <div class="settings-divider"></div>
           <label>Уровень языка
             <select name="cefrLevel">
               ${opt('A1', 'A1 — начальный', this.cefrLevel)}
@@ -1608,4 +1620,19 @@ function urlB64ToUint8Array(base64UrlString) {
 
 function opt(value, label, selected) {
   return `<option value="${value}"${selected === value ? ' selected' : ''}>${label}</option>`;
+}
+
+function renderThemePicker(pref) {
+  return `
+    <div class="theme-field">
+      <span class="theme-field-label" id="theme-heading">Тема</span>
+      <div class="theme-seg" role="radiogroup" aria-labelledby="theme-heading">
+        ${THEME_CHOICES.map((choice) => `
+          <label class="theme-seg-item">
+            <input type="radio" name="theme" value="${choice.value}"${pref === choice.value ? ' checked' : ''} />
+            <span>${choice.label}</span>
+          </label>`).join('')}
+      </div>
+      <p class="settings-hint">«Система» следует за темой телефона или компьютера</p>
+    </div>`;
 }

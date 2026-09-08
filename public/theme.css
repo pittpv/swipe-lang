@@ -1,0 +1,86 @@
+/* Shared light/dark tokens. Loaded before paint so splash, PWA, and static pages match. */
+
+:root {
+  color-scheme: light;
+  --color-bg: #f4f7f5;
+  --color-surface: #ffffff;
+  --color-primary: #1a5f4a;
+  --color-primary-light: #2d8a6e;
+  --color-heading: #1a5f4a;
+  --color-accent: #e8a838;
+  --color-text: #1c2421;
+  --color-muted: #5c6b64;
+  --color-know: #3b82f6;
+  --color-learn: #22c55e;
+  --color-border: #d8e4de;
+  --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+  --color-overlay: rgba(28, 36, 33, 0.45);
+  --color-skeleton-shine: #eef4f1;
+  --color-on-accent: #1c2421;
+  --color-on-primary: #ffffff;
+  --color-inverse: #1c2421;
+  --color-on-inverse: #ffffff;
+  --color-primary-edge: transparent;
+  --shadow: 0 12px 40px rgba(26, 95, 74, 0.12);
+  --shadow-soft: 0 4px 16px rgba(26, 95, 74, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --color-bg: #121916;
+    --color-surface: #1c2622;
+    --color-primary: #1a5f4a;
+    --color-primary-light: #3aa37f;
+    --color-heading: #8ecfb3;
+    --color-accent: #e8b14a;
+    --color-text: #e7eeea;
+    --color-muted: #a7b8b1;
+    --color-know: #60a5fa;
+    --color-learn: #4ade80;
+    --color-border: #2e3f38;
+    --color-danger: #f87171;
+    --color-danger-hover: #fca5a5;
+    --color-overlay: rgba(6, 10, 8, 0.72);
+    --color-skeleton-shine: #2a3832;
+    --color-on-accent: #1c2421;
+    --color-on-primary: #ffffff;
+    --color-inverse: #e7eeea;
+    --color-on-inverse: #121916;
+    --color-primary-edge: rgba(255, 255, 255, 0.16);
+    --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.28);
+  }
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #121916;
+  --color-surface: #1c2622;
+  --color-primary: #1a5f4a;
+  --color-primary-light: #3aa37f;
+  --color-heading: #8ecfb3;
+  --color-accent: #e8b14a;
+  --color-text: #e7eeea;
+  --color-muted: #a7b8b1;
+  --color-know: #60a5fa;
+  --color-learn: #4ade80;
+  --color-border: #2e3f38;
+  --color-danger: #f87171;
+  --color-danger-hover: #fca5a5;
+  --color-overlay: rgba(6, 10, 8, 0.72);
+  --color-skeleton-shine: #2a3832;
+  --color-on-accent: #1c2421;
+  --color-on-primary: #ffffff;
+  --color-inverse: #e7eeea;
+  --color-on-inverse: #121916;
+  --color-primary-edge: rgba(255, 255, 255, 0.16);
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.28);
+}
+
+html,
+body {
+  background-color: var(--color-bg);
+}

@@ -76,6 +76,10 @@ The client emits events (`session_start`, `card_shown`, `swipe_left/right`, `ses
 
 After registration the app asks for a **display name**, study goal, and CEFR level (`POST /api/onboarding`). Name is required in the UI so Home can greet the user; the API still accepts onboarding without it. While the profile is saved, a short setup screen shows a home skeleton plus three tips (5-minute sessions, install the PWA, add a reminder). Name can be changed later via `PATCH /api/profile`.
 
+## Appearance
+
+The PWA and static pages follow the OS light/dark scheme by default. Signed-in users can pin **Система / Светлая / Тёмная** in Settings. The choice is stored on-device (`localStorage`, key `langapp.theme`) and applied before first paint so splash and browser chrome match.
+
 ## App version
 
 Settings footer shows `LangApp vX.Y.Z+abcdefg` — semver from `package.json` plus a short git SHA injected at Vite build time (see `docs/DEPLOY.md`).

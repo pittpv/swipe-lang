@@ -1,18 +1,7 @@
 :root {
-  --color-bg: #f4f7f5;
-  --color-surface: #ffffff;
-  --color-primary: #1a5f4a;
-  --color-primary-light: #2d8a6e;
-  --color-accent: #e8a838;
-  --color-text: #1c2421;
-  --color-muted: #5c6b64;
-  --color-know: #3b82f6;
-  --color-learn: #22c55e;
-  --color-border: #d8e4de;
   --font-sans: 'DM Sans', system-ui, sans-serif;
   --font-display: 'Fraunces', Georgia, serif;
   --radius: 20px;
-  --shadow: 0 12px 40px rgba(26, 95, 74, 0.12);
 }
 
 *,
@@ -51,7 +40,7 @@ body {
 .hero h1 {
   font-family: var(--font-display);
   font-size: 2.25rem;
-  color: var(--color-primary);
+  color: var(--color-heading);
   margin: 0 0 0.5rem;
 }
 
@@ -84,7 +73,14 @@ select {
   border: 1px solid var(--color-border);
   border-radius: 12px;
   font: inherit;
+  color: var(--color-text);
   background: var(--color-bg);
+  color-scheme: inherit;
+}
+
+input::placeholder {
+  color: var(--color-muted);
+  opacity: 1;
 }
 
 input:focus-visible,
@@ -122,7 +118,8 @@ select:focus-visible,
 
 .btn-primary {
   background: var(--color-primary);
-  color: white;
+  color: var(--color-on-primary);
+  box-shadow: inset 0 0 0 1px var(--color-primary-edge);
 }
 
 /* Hover effects only on devices with a real pointer — on touch screens
@@ -133,7 +130,7 @@ select:focus-visible,
   }
 
   .btn-danger:hover {
-    color: #b91c1c;
+    color: var(--color-danger-hover);
   }
 
   .session-exit:hover {
@@ -150,14 +147,14 @@ select:focus-visible,
 .link-btn {
   background: none;
   border: none;
-  color: var(--color-primary);
+  color: var(--color-heading);
   font: inherit;
   cursor: pointer;
   text-decoration: underline;
 }
 
 .error {
-  color: #dc2626;
+  color: var(--color-danger);
   font-size: 0.875rem;
   margin: 0;
 }
@@ -204,7 +201,7 @@ select:focus-visible,
 
 .streak-badge {
   background: var(--color-accent);
-  color: #1c2421;
+  color: var(--color-on-accent);
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.25rem 0.6rem;
@@ -247,7 +244,7 @@ select:focus-visible,
 .word-card .lemma {
   font-family: var(--font-display);
   font-size: 2.5rem;
-  color: var(--color-primary);
+  color: var(--color-heading);
   margin: 0;
   text-align: center;
 }
@@ -268,7 +265,7 @@ select:focus-visible,
   background: linear-gradient(
     90deg,
     var(--color-border) 0%,
-    #eef4f1 45%,
+    var(--color-skeleton-shine) 45%,
     var(--color-border) 90%
   );
   background-size: 200% 100%;
@@ -467,7 +464,7 @@ select:focus-visible,
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(28, 36, 33, 0.45);
+  background: var(--color-overlay);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -502,7 +499,7 @@ select:focus-visible,
 .overlay-panel h2 {
   font-family: var(--font-display);
   margin: 0 0 0.25rem;
-  color: var(--color-primary);
+  color: var(--color-heading);
 }
 
 .overlay-panel .translation {
@@ -540,14 +537,14 @@ select:focus-visible,
 
 .btn-soft {
   background: var(--color-bg);
-  color: var(--color-primary);
+  color: var(--color-heading);
   border: 1px solid var(--color-border);
 }
 
 .btn-soft.is-active {
-  background: color-mix(in srgb, var(--color-primary) 12%, white);
+  background: color-mix(in srgb, var(--color-primary) 14%, var(--color-surface));
   border-color: var(--color-primary-light);
-  color: var(--color-primary);
+  color: var(--color-heading);
 }
 
 .btn-soft:disabled {
@@ -558,7 +555,7 @@ select:focus-visible,
 @media (hover: hover) {
   .btn-soft:hover:not(:disabled) {
     border-color: var(--color-primary-light);
-    background: color-mix(in srgb, var(--color-primary) 8%, white);
+    background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
   }
 }
 
@@ -688,7 +685,7 @@ select:focus-visible,
 
 .summary-card h2 {
   font-family: var(--font-display);
-  color: var(--color-primary);
+  color: var(--color-heading);
   margin: 0 0 1rem;
 }
 
@@ -708,7 +705,7 @@ select:focus-visible,
 .stat-box .num {
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-heading);
 }
 
 .stat-box .lbl {
@@ -839,7 +836,7 @@ select:focus-visible,
   margin: 0.35rem 0 0;
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-heading);
   line-height: 1.35;
 }
 
@@ -861,7 +858,7 @@ select:focus-visible,
 .level-up-title {
   margin: 0 0 0.35rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-heading);
 }
 
 .level-up-text {
@@ -900,7 +897,7 @@ select:focus-visible,
 .ach-badge strong {
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-heading);
   line-height: 1.3;
 }
 
@@ -917,12 +914,12 @@ select:focus-visible,
   gap: 1rem;
   width: calc(100% - 2rem);
   max-width: 420px;
-  background: var(--color-text);
-  color: #fff;
+  background: var(--color-inverse);
+  color: var(--color-on-inverse);
   border-radius: 12px;
   padding: 0.85rem 1rem;
   font-size: 0.9rem;
-  box-shadow: 0 12px 32px rgba(28, 36, 33, 0.35);
+  box-shadow: var(--shadow);
   animation: cardEnter 0.25s ease-out;
 }
 
@@ -933,7 +930,7 @@ select:focus-visible,
   font: inherit;
   font-weight: 600;
   background: var(--color-accent);
-  color: var(--color-text);
+  color: var(--color-on-accent);
   cursor: pointer;
   flex-shrink: 0;
   touch-action: manipulation;
@@ -977,13 +974,13 @@ select:focus-visible,
   border-radius: 12px;
   padding: 0.75rem 0.5rem;
   text-align: center;
-  box-shadow: 0 4px 16px rgba(26, 95, 74, 0.06);
+  box-shadow: var(--shadow-soft);
 }
 
 .benefit strong {
   display: block;
   font-size: 0.85rem;
-  color: var(--color-primary);
+  color: var(--color-heading);
 }
 
 .benefit span {
@@ -1070,8 +1067,87 @@ select:focus-visible,
   margin: 0.25rem 0;
 }
 
+.theme-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.theme-field-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+.theme-seg {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.theme-seg-item {
+  position: relative;
+  display: block;
+  margin: 0;
+  cursor: pointer;
+}
+
+.theme-seg-item input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+.theme-seg-item span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.4rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.theme-seg-item input:focus,
+.theme-seg-item input:focus-visible {
+  outline: none;
+}
+
+.theme-seg-item input:checked + span {
+  background: var(--color-surface);
+  color: var(--color-heading);
+  box-shadow: var(--shadow-soft);
+}
+
+.theme-seg-item input:focus-visible + span {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .theme-seg-item:hover input:not(:checked) + span {
+    color: var(--color-text);
+  }
+}
+
 .saved-hint {
-  color: var(--color-primary);
+  color: var(--color-heading);
   font-size: 0.8rem;
   font-weight: 600;
   margin: 0;
@@ -1084,7 +1160,7 @@ select:focus-visible,
 
 .btn-danger {
   background: transparent;
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 .danger-zone {
@@ -1135,7 +1211,7 @@ select:focus-visible,
 .ach-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(28, 36, 33, 0.55);
+  background: var(--color-overlay);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   pointer-events: none;

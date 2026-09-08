@@ -1,5 +1,8 @@
 import './styles.css';
+import { initTheme } from './theme.js';
 import { api, App } from './app.js';
+
+initTheme();
 
 /** Enter + hold before the 400ms exit — total splash ~2.8s on a fast boot. */
 const SPLASH_MIN_MS = 2400;

@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1a5f4a" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121916" />
   <title>FAQ — LangApp</title>
+  <script src="/theme-boot.js"></script>
+  <link rel="stylesheet" href="/theme.css" />
   <style>
-    body{font-family:system-ui,sans-serif;max-width:640px;margin:2rem auto;padding:0 1rem 2rem;line-height:1.6;color:#1c2421}
-    h1{color:#1a5f4a}h2{font-size:1.1rem;margin-top:1.5rem}a{color:#1a5f4a}
-    .btn-home{display:inline-flex;align-items:center;justify-content:center;margin:2rem auto 0;padding:0.875rem 1.75rem;border-radius:12px;background:#1a5f4a;color:#fff;font:inherit;font-weight:600;text-decoration:none}
+    body{font-family:system-ui,sans-serif;max-width:640px;margin:2rem auto;padding:0 1rem 2rem;line-height:1.6;color:var(--color-text)}
+    h1,a{color:var(--color-heading)}h2{font-size:1.1rem;margin-top:1.5rem;color:var(--color-text)}
+    .btn-home{display:inline-flex;align-items:center;justify-content:center;margin:2rem auto 0;padding:0.875rem 1.75rem;border-radius:12px;background:var(--color-primary);color:var(--color-on-primary);font:inherit;font-weight:600;text-decoration:none}
     .btn-home-wrap{text-align:center}
+    code{color:var(--color-heading)}
   </style>
 </head>
 <body>
@@ -31,6 +36,9 @@
 
   <h2>Как включить напоминания?</h2>
   <p>В настройках приложения — блок «🔔 Напоминания». Выберите удобное время и нажмите «Включить напоминания», разрешив push-уведомления в браузере. Каждый день в выбранное время придёт пуш-напоминание о сессии. Отключить можно там же.</p>
+
+  <h2>Как сменить тему?</h2>
+  <p>В настройках — блок «Тема»: <strong>Система</strong> (как на телефоне или компьютере), <strong>Светлая</strong> или <strong>Тёмная</strong>. Выбор применяется сразу к сайту и установленному PWA и хранится только на этом устройстве.</p>
 
   <h2>Что спрашивают при первом входе?</h2>
   <p>После регистрации — короткое имя (так приложение поприветствует вас на главной), цель и уровень языка. Пока кабинет создаётся, на экране — подсказки: сессия занимает около 5 минут, приложение можно поставить на рабочий стол, напоминание включается в настройках после первой сессии. Имя и уровень потом можно поменять в настройках.</p>

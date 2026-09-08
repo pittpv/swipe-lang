@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1a5f4a" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121916" />
   <title>Условия использования — LangApp</title>
+  <script src="/theme-boot.js"></script>
+  <link rel="stylesheet" href="/theme.css" />
   <style>
-    body{font-family:system-ui,sans-serif;max-width:640px;margin:2rem auto;padding:0 1rem 2rem;line-height:1.6;color:#1c2421}
-    h1{color:#1a5f4a}a{color:#1a5f4a}
-    .btn-home{display:inline-flex;align-items:center;justify-content:center;margin:2rem auto 0;padding:0.875rem 1.75rem;border-radius:12px;background:#1a5f4a;color:#fff;font:inherit;font-weight:600;text-decoration:none}
+    body{font-family:system-ui,sans-serif;max-width:640px;margin:2rem auto;padding:0 1rem 2rem;line-height:1.6;color:var(--color-text)}
+    h1,a{color:var(--color-heading)}h2{color:var(--color-text)}
+    .btn-home{display:inline-flex;align-items:center;justify-content:center;margin:2rem auto 0;padding:0.875rem 1.75rem;border-radius:12px;background:var(--color-primary);color:var(--color-on-primary);font:inherit;font-weight:600;text-decoration:none}
     .btn-home-wrap{text-align:center}
   </style>
 </head>
