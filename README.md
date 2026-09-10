@@ -51,7 +51,7 @@ Key implementation details:
 
 ## 5. Gamification & Dopamine Loops
 
-- **Milestone achievements** (`MILESTONES`): streaks `[3, 5, 7, 10, 14, 20, 30, 50, 75, 100...]` days and vocabulary size `[5, 10, 20 ... 1000]` words
+- **Milestone achievements** (`server/milestones.js`): streaks `[3, 5, 7, 10, 14, 20, 30, 50, 75, 100...]` days (account-wide) and vocabulary size `[5, 10, 20 ... 1000]` words **per study language**. Stats badges show which language a word milestone belongs to.
 - Celebrations are styled as an **iMessage conversation** with a "typing…" animation (`src/achievements.js`) — respecting `prefers-reduced-motion`
 - Progressive captions: 30 days → *"Habit formed"*, 100 days → *"Legend!"*
 

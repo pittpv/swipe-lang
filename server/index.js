@@ -21,6 +21,7 @@ import { db, dbMode } from './database.js';
 import { applySwipe } from './srs.js';
 import { buildSessionDeck, SESSION_SIZE } from './session.js';
 import { getLevelProgress, estimateEta, CEFR_ORDER } from './progress.js';
+import { collectMilestones, knownWordsByPair, listMilestones } from './milestones.js';
 import {
   DEFAULT_LANG_PAIR,
   LANG_PAIRS,
@@ -589,47 +590,6 @@ function countWordsKnown(userId) {
   ).length;
 }
 
-/** Milestone thresholds that unlock a fullscreen celebration. */
-const MILESTONES = {
-  streak: [3, 5, 7, 10, 14, 20, 30, 50, 75, 100, 150, 200, 365],
-  words: [5, 10, 20, 30, 50, 75, 100, 200, 300, 500, 1000],
-};
-
-/**
- * Returns every newly reached milestone (ascending) and remembers the highest
- * on the user row so each threshold is celebrated exactly once. Jumping past
- * several thresholds (e.g. 0 → 12 words) unlocks a chat of several bubbles.
- */
-function collectMilestones(user, values) {
-  if (!user.milestones || typeof user.milestones !== 'object') user.milestones = {};
-  const unlocked = [];
-  for (const [type, thresholds] of Object.entries(MILESTONES)) {
-    const value = values[type] ?? 0;
-    const previously = user.milestones[type] ?? 0;
-    const newlyReached = thresholds.filter((t) => t > previously && value >= t);
-    if (!newlyReached.length) continue;
-    for (const t of newlyReached) unlocked.push({ type, value: t });
-    user.milestones[type] = newlyReached[newlyReached.length - 1];
-  }
-  return unlocked;
-}
-
-/**
- * All milestones the user has reached so far — every threshold up to the
- * highest celebrated one per category, ascending. Used by the stats page.
- */
-function listMilestones(user) {
-  const celebrated = user?.milestones ?? {};
-  const out = [];
-  for (const [type, thresholds] of Object.entries(MILESTONES)) {
-    const top = celebrated[type] ?? 0;
-    for (const t of thresholds) {
-      if (t <= top) out.push({ type, value: t });
-    }
-  }
-  return out.sort((a, b) => (a.type === b.type ? a.value - b.value : a.type === 'streak' ? -1 : 1));
-}
-
 app.post('/api/session/complete', requireAuth, async (req, res) => {
   const userId = req.session.userId;
   const sessionId = req.session.activeSessionId;
@@ -666,8 +626,11 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
     const wordsLearned = countWordsKnown(userId);
     const levelProgress = getLevelProgress(db, userId);
     const eta = estimateEta(db, userId, levelProgress);
+    const knownByPair = knownWordsByPair(db, userId);
 
-    const achievements = user ? collectMilestones(user, { streak, words: wordsLearned }) : [];
+    const achievements = user
+      ? collectMilestones(user, { streak, words: wordsLearned, langPair: userLangPair(user) }, knownByPair)
+      : [];
 
     return {
       cardsReviewed: stats.reviewed,
@@ -701,6 +664,7 @@ app.get('/api/stats', requireAuth, async (req, res) => {
   ).length;
   const levelProgress = getLevelProgress(db, userId);
   const eta = estimateEta(db, userId, levelProgress);
+  const knownByPair = knownWordsByPair(db, userId);
   res.json({
     streak: user.streak,
     cefrLevel: user.cefr_level,
@@ -708,7 +672,7 @@ app.get('/api/stats', requireAuth, async (req, res) => {
     goal: user.goal,
     wordsLearned: learned,
     sessionsCompleted: sessions,
-    achievements: listMilestones(user),
+    achievements: listMilestones(user, knownByPair),
     levelProgress,
     eta,
   });

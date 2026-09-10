@@ -341,6 +341,21 @@ test('onboarding and profile switch language pair', async () => {
   assert.ok(data.cards.length >= 15);
   assert.ok(data.cards.every((c) => c.langPair === 'en-ru'));
 
+  const knownIds = data.cards.slice(0, 5).map((c) => c.id);
+  for (const wordId of knownIds) {
+    ({ res } = await client.fetch('/api/session/swipe', {
+      method: 'POST',
+      body: JSON.stringify({ wordId, direction: 'left' }),
+    }));
+    assert.equal(res.status, 200);
+  }
+  ({ res, data } = await client.fetch('/api/session/complete', { method: 'POST' }));
+  assert.equal(res.status, 200);
+  assert.ok(
+    data.achievements.some((a) => a.type === 'words' && a.value === 5 && a.langPair === 'en-ru'),
+    JSON.stringify(data.achievements),
+  );
+
   ({ res, data } = await client.fetch('/api/profile', {
     method: 'PATCH',
     body: JSON.stringify({ langPair: 'es-ru', cefrLevel: 'C1' }),
@@ -353,4 +368,13 @@ test('onboarding and profile switch language pair', async () => {
   assert.equal(res.status, 200);
   assert.ok(data.cards.length >= 15);
   assert.ok(data.cards.every((c) => c.langPair === 'es-ru'));
+
+  ({ res, data } = await client.fetch('/api/stats'));
+  assert.equal(res.status, 200);
+  assert.equal(data.langPair, 'es-ru');
+  assert.equal(data.wordsLearned, 0);
+  assert.ok(
+    data.achievements.some((a) => a.type === 'words' && a.value === 5 && a.langPair === 'en-ru'),
+    JSON.stringify(data.achievements),
+  );
 });

@@ -9,6 +9,8 @@
  * lost. The layer is visual-only (`pointer-events: none`); Escape dismisses.
  */
 
+import { LANG_PAIR_META, isLangPair } from '../server/lang-pairs.js';
+
 const TYPING_MS = 650; // how long the "typing…" bubble shows before a message
 const READ_MS = 2400; // how long a message stays before the next one
 const TAIL_PAUSE_MS = 600; // extra beat after the last message
@@ -23,7 +25,7 @@ let activeClose = null;
 let timers = [];
 
 /**
- * @param {Array<{type:string,value:number}>} achievements
+ * @param {Array<{type:string,value:number,langPair?:string}>} achievements
  */
 export function showAchievements(achievements) {
   const messages = (Array.isArray(achievements) ? achievements : [])
@@ -43,11 +45,25 @@ export function dismissAchievements() {
 function toMessage(a) {
   const badge = achievementBadge(a);
   if (!badge) return null;
+  const scope = achievementScope(a);
+  const body = a.type === 'streak' ? streakSub(a.value) : wordsSub(a.value);
   return {
     emoji: badge.emoji,
     title: `${badge.title}!`,
-    text: a.type === 'streak' ? streakSub(a.value) : wordsSub(a.value),
+    text: scope?.label ? `${scope.label} · ${body}` : body,
   };
+}
+
+/** Visible language (or “all languages”) chip for an achievement. */
+export function achievementScope(a) {
+  if (a?.type === 'streak') {
+    return { kind: 'global', flag: '', label: 'все языки' };
+  }
+  if (a?.type === 'words' && isLangPair(a.langPair)) {
+    const meta = LANG_PAIR_META[a.langPair];
+    return { kind: 'pair', flag: meta.flag, label: meta.label, langPair: a.langPair };
+  }
+  return null;
 }
 
 /** Emoji + short title for an achievement, shared by bubbles and the stats page. */

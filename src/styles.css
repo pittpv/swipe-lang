@@ -780,7 +780,7 @@ select:focus-visible,
 }
 
 .skeleton-ach-badge {
-  height: 3.1rem;
+  height: 3.65rem;
   border-radius: 12px;
 }
 
@@ -892,6 +892,14 @@ select:focus-visible,
 .ach-badge-emoji {
   font-size: 1.4rem;
   line-height: 1;
+  flex-shrink: 0;
+}
+
+.ach-badge-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
 }
 
 .ach-badge strong {
@@ -899,6 +907,13 @@ select:focus-visible,
   font-weight: 600;
   color: var(--color-heading);
   line-height: 1.3;
+}
+
+.ach-badge-lang {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  line-height: 1.25;
 }
 
 /* "New version available" toast after a deploy */

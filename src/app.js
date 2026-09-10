@@ -1,5 +1,5 @@
 import { track, captureReferralFromUrl, getStoredReferral, fetchPublicStats, api } from './track.js';
-import { showAchievements, dismissAchievements, achievementBadge } from './achievements.js';
+import { showAchievements, dismissAchievements, achievementBadge, achievementScope } from './achievements.js';
 import { THEME_CHOICES, getThemePreference, setThemePreference } from './theme.js';
 import {
   CHANGELOG,
@@ -1423,10 +1423,18 @@ export class App {
                 ${achievements.map((a) => {
                   const badge = achievementBadge(a);
                   if (!badge) return '';
+                  const scope = achievementScope(a);
+                  const lang = scope
+                    ? `<span class="ach-badge-lang">${scope.flag ? `${scope.flag} ` : ''}${esc(scope.label)}</span>`
+                    : '';
+                  const hint = scope ? `${badge.title} · ${scope.label}` : badge.title;
                   return `
-                    <div class="ach-badge" title="${esc(badge.title)}">
+                    <div class="ach-badge" title="${esc(hint)}">
                       <span class="ach-badge-emoji">${badge.emoji}</span>
-                      <strong>${esc(badge.title)}</strong>
+                      <span class="ach-badge-copy">
+                        <strong>${esc(badge.title)}</strong>
+                        ${lang}
+                      </span>
                     </div>`;
                 }).join('')}
               </div>`
