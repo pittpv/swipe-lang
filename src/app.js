@@ -120,8 +120,21 @@ export class App {
   consumeOpenView() {
     const params = new URLSearchParams(location.search);
     const open = params.get('open');
-    if (this.user && !this.user.needsOnboarding && open === 'settings') {
+    let stored = '';
+    try {
+      stored = sessionStorage.getItem('langapp.returnView') || '';
+    } catch {
+      /* private mode */
+    }
+    const fromInfo = isReturnFromInfoPage();
+    const target = open || (fromInfo ? stored : '');
+    if (this.user && !this.user.needsOnboarding && target === 'settings') {
       this.view = 'settings';
+    }
+    try {
+      sessionStorage.removeItem('langapp.returnView');
+    } catch {
+      /* private mode */
     }
     if (!params.has('open')) return;
     params.delete('open');
@@ -193,6 +206,7 @@ export class App {
     this.overlaySection = null;
     dismissAchievements();
     this.render();
+    window.scrollTo(0, 0);
     if (view === 'home') this.flushPendingAchievements();
   }
 
@@ -1109,6 +1123,14 @@ export class App {
         e.stopPropagation();
         return;
       }
+      const infoLink = e.target.closest('a[href*="/help/faq.html"], a[href*="/legal/"]');
+      if (infoLink && this.view === 'settings') {
+        try {
+          sessionStorage.setItem('langapp.returnView', 'settings');
+        } catch {
+          /* private mode */
+        }
+      }
       const t = e.target.closest('[data-action]');
       if (!t) return;
       const action = t.dataset.action;
@@ -1762,6 +1784,16 @@ function esc(s) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+function isReturnFromInfoPage() {
+  try {
+    if (!document.referrer) return false;
+    const ref = new URL(document.referrer);
+    return ref.origin === location.origin && /\/(help|legal)\//.test(ref.pathname);
+  } catch {
+    return false;
+  }
 }
 
 const POS_LABELS = {
