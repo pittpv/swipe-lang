@@ -46,6 +46,12 @@ export class App {
     this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
     this._onWinPointerMove = (e) => this.onPointerMove(e);
     this._onWinPointerUp = (e) => this.onPointerUp(e);
+    this._onLandingPointerMove = (e) => this.onLandingPointerMove(e);
+    this._onLandingPointerUp = (e) => this.onLandingPointerUp(e);
+    this.landingBenefitIndex = 0;
+    this._landingSwiping = false;
+    this._landingAutoTimer = null;
+    this._landingDrag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
     this.swiping = false;
     /** True after fly-out while /session/swipe is still in flight — show card skeleton. */
     this.awaitingNext = false;
@@ -115,6 +121,12 @@ export class App {
     this.render();
     this.armGesturePushHeal();
     this.initVersionWatch();
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) this.clearLandingAuto();
+      else if (this.view === 'landing' && !this._landingSwiping && !this._landingDrag.active) {
+        this.scheduleLandingAuto();
+      }
+    });
   }
 
   consumeOpenView() {
@@ -200,6 +212,8 @@ export class App {
   }
 
   setView(view) {
+    if (this.view === 'landing' && view !== 'landing') this.stopLandingDeck();
+    if (view === 'landing' && this.view !== 'landing') this.landingBenefitIndex = 0;
     this.view = view;
     this.error = '';
     this.overlayWord = null;
@@ -962,6 +976,7 @@ export class App {
     clearTimeout(this.referralCopiedTimer);
     this.referralCopiedTimer = null;
     this.reminder = { enabled: false };
+    this.landingBenefitIndex = 0;
     this.view = 'landing';
     this.render();
   }
@@ -988,6 +1003,7 @@ export class App {
       this.user = null;
       this.stats = null;
       this.summary = null;
+      this.landingBenefitIndex = 0;
       this.view = 'landing';
     } catch (e) {
       this.error = e.message;
@@ -1072,6 +1088,17 @@ export class App {
   }
 
   onKeyDown(e) {
+    if (this.view === 'landing') {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        this.advanceLandingBenefit('left');
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        this.advanceLandingBenefit('right');
+      }
+      return;
+    }
     if (this.view !== 'session') return;
     if (this.overlayWord) {
       if (e.key === 'Escape') this.closeOverlay();
@@ -1083,6 +1110,192 @@ export class App {
       e.preventDefault();
       this.openOverlay();
     }
+  }
+
+  landingBenefitsList() {
+    return landingBenefits(this.publicStats.sessionSize ?? 18);
+  }
+
+  prefersReducedMotion() {
+    return Boolean(window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches);
+  }
+
+  clearLandingAuto() {
+    clearTimeout(this._landingAutoTimer);
+    this._landingAutoTimer = null;
+  }
+
+  scheduleLandingAuto() {
+    this.clearLandingAuto();
+    if (this.view !== 'landing' || this.prefersReducedMotion() || document.hidden) return;
+    this._landingAutoTimer = setTimeout(() => {
+      this.advanceLandingBenefit('left', { auto: true });
+    }, 3800);
+  }
+
+  stopLandingDeck() {
+    this.clearLandingAuto();
+    this.endLandingPointerTracking();
+    this._landingSwiping = false;
+    this._landingDrag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
+  }
+
+  mountLandingDeck() {
+    this.bindLandingCard();
+    this.scheduleLandingAuto();
+  }
+
+  bindLandingCard() {
+    const card = this.root.querySelector('#landing-active-card');
+    if (!card) return;
+    card.addEventListener('pointerdown', (e) => this.onLandingPointerDown(e));
+  }
+
+  endLandingPointerTracking() {
+    window.removeEventListener('pointermove', this._onLandingPointerMove);
+    window.removeEventListener('pointerup', this._onLandingPointerUp);
+    window.removeEventListener('pointercancel', this._onLandingPointerUp);
+  }
+
+  syncLandingDots() {
+    const dots = this.root.querySelectorAll('.landing-dots span');
+    dots.forEach((el, i) => el.classList.toggle('is-on', i === this.landingBenefitIndex));
+  }
+
+  landingNextIndex() {
+    const n = this.landingBenefitsList().length;
+    if (!n) return 0;
+    return (this.landingBenefitIndex + 1) % n;
+  }
+
+  paintLandingDeck() {
+    const deck = this.root.querySelector('.landing-deck');
+    if (!deck || this.view !== 'landing') return;
+    const list = this.landingBenefitsList();
+    const current = list[this.landingBenefitIndex] || list[0];
+    const next = list[this.landingNextIndex()] || current;
+    deck.querySelector('#landing-peek-card')?.remove();
+    deck.querySelector('#landing-active-card')?.remove();
+    deck.insertAdjacentHTML('beforeend', landingPeekCardHtml(next) + landingBenefitCardHtml(current));
+    this.bindLandingCard();
+    this.syncLandingDots();
+  }
+
+  promoteLandingPeek() {
+    const deck = this.root.querySelector('.landing-deck');
+    const peek = deck?.querySelector('#landing-peek-card');
+    const gone = deck?.querySelector('#landing-active-card');
+    if (!deck || !peek) {
+      this.paintLandingDeck();
+      return;
+    }
+    const list = this.landingBenefitsList();
+    const current = list[this.landingBenefitIndex] || list[0];
+    gone?.remove();
+    peek.id = 'landing-active-card';
+    peek.classList.remove('landing-benefit-peek');
+    peek.classList.add('landing-benefit-card');
+    peek.removeAttribute('aria-hidden');
+    peek.tabIndex = 0;
+    peek.setAttribute('role', 'group');
+    peek.setAttribute('aria-label', `${current.title}. ${current.subtitle}`);
+    const next = list[this.landingNextIndex()] || current;
+    peek.insertAdjacentHTML('beforebegin', landingPeekCardHtml(next));
+    this.bindLandingCard();
+    this.syncLandingDots();
+  }
+
+  flyLandingCardOut(direction, fromX = 0, fromY = 0) {
+    return new Promise((resolve) => {
+      const el = this.root.querySelector('#landing-active-card');
+      if (!el || this.prefersReducedMotion()) return resolve();
+      const off = direction === 'left' ? -1 : 1;
+      const exitX = off * (Math.abs(fromX) + 220);
+      el.style.pointerEvents = 'none';
+      el.style.transition = 'transform 0.28s ease-in';
+      el.style.transform = `translate(${exitX}px, ${fromY}px) rotate(${off * 18}deg)`;
+      let done = false;
+      const finish = () => {
+        if (!done) {
+          done = true;
+          resolve();
+        }
+      };
+      el.addEventListener('transitionend', finish, { once: true });
+      setTimeout(finish, 340);
+    });
+  }
+
+  async advanceLandingBenefit(direction, { auto = false, from = { x: 0, y: 0 } } = {}) {
+    if (this.view !== 'landing' || this._landingSwiping) return;
+    if (auto && this._landingDrag.active) {
+      this.scheduleLandingAuto();
+      return;
+    }
+    this._landingSwiping = true;
+    this.clearLandingAuto();
+    this.endLandingPointerTracking();
+    this._landingDrag.active = false;
+    if (!this.prefersReducedMotion()) {
+      await this.flyLandingCardOut(direction, from.x, from.y);
+    }
+    const n = this.landingBenefitsList().length;
+    this.landingBenefitIndex = (this.landingBenefitIndex + (direction === 'left' ? 1 : n - 1)) % n;
+    this._landingSwiping = false;
+    if (this.view !== 'landing') return;
+    if (this.prefersReducedMotion() || direction === 'right') this.paintLandingDeck();
+    else this.promoteLandingPeek();
+    this.scheduleLandingAuto();
+  }
+
+  onLandingPointerDown(e) {
+    if (this.view !== 'landing' || this._landingSwiping) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    e.currentTarget.style.transition = '';
+    this.clearLandingAuto();
+    this._landingDrag = {
+      active: true,
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY,
+      x: 0,
+      y: 0,
+    };
+    window.addEventListener('pointermove', this._onLandingPointerMove);
+    window.addEventListener('pointerup', this._onLandingPointerUp);
+    window.addEventListener('pointercancel', this._onLandingPointerUp);
+  }
+
+  onLandingPointerMove(e) {
+    if (!this._landingDrag.active || e.pointerId !== this._landingDrag.pointerId) return;
+    this._landingDrag.x = e.clientX - this._landingDrag.startX;
+    this._landingDrag.y = e.clientY - this._landingDrag.startY;
+    const card = this.root.querySelector('#landing-active-card');
+    if (card) {
+      const rot = this._landingDrag.x * 0.08;
+      card.style.transform = `translate(${this._landingDrag.x}px, ${this._landingDrag.y}px) rotate(${rot}deg)`;
+    }
+  }
+
+  async onLandingPointerUp(e) {
+    if (!this._landingDrag.active || e.pointerId !== this._landingDrag.pointerId) return;
+    const { x, y } = this._landingDrag;
+    this._landingDrag.active = false;
+    this._landingDrag.pointerId = null;
+    this.endLandingPointerTracking();
+    if (x < -80 || x > 80) {
+      await this.advanceLandingBenefit(x < -80 ? 'left' : 'right', { from: { x, y } });
+      return;
+    }
+    const card = this.root.querySelector('#landing-active-card');
+    if (card) {
+      card.style.transition = 'transform 0.2s ease-out';
+      card.style.transform = '';
+      setTimeout(() => {
+        if (card.isConnected) card.style.transition = '';
+      }, 220);
+    }
+    this.scheduleLandingAuto();
   }
 
   /**
@@ -1245,31 +1458,42 @@ export class App {
       html += '';
     } else if (v === 'landing') {
       const sessionSize = this.publicStats.sessionSize ?? 18;
+      const benefits = landingBenefits(sessionSize);
+      const benefit = benefits[this.landingBenefitIndex] || benefits[0];
+      const peek = benefits[(this.landingBenefitIndex + 1) % benefits.length] || benefit;
       html += `
-        <section class="hero">
-          <p class="eyebrow">Турецкий · английский · испанский</p>
-          <h1>Учи языки свайпом</h1>
-          <p>Три словаря с переводом на русский. Свайп влево — знаю, вправо — учу. Сессии по ${sessionSize} карточек — без бесконечной ленты.</p>
-        </section>
-        <div class="benefits">
-          ${landingLangBenefits(this.publicStats)}
-          <div class="benefit"><strong>${sessionSize} карточек</strong><span>за 5 минут</span></div>
-          <div class="benefit"><strong>SRS</strong><span>умные повторы</span></div>
-          <div class="benefit"><strong>Тап</strong><span>перевод + аудио</span></div>
-          <div class="benefit"><strong>Онбординг</strong><span>за 20 секунд</span></div>
-          <div class="benefit"><strong>🔥 Streak</strong><span>серии и достижения</span></div>
-          <div class="benefit"><strong>📲 PWA</strong><span>установи на телефон</span></div>
-        </div>
-        <button class="btn btn-primary btn-lg" data-action="show-register">Начать бесплатно →</button>
-        <p class="subcta">Без карты · Быстрая регистрация</p>
-        <p style="text-align:center;margin-top:1rem">
-          <button class="link-btn" data-action="show-login">Уже есть аккаунт</button>
-        </p>
-        <p class="footer-links">
-          <a href="/help/faq.html">FAQ</a>
-          · <a href="/legal/privacy.html">Конфиденциальность</a>
-          · <a href="/legal/terms.html">Условия</a>
-        </p>`;
+        <div class="landing">
+          <section class="hero">
+            <h1>Учи языки свайпом</h1>
+            <p>Турецкий, английский или испанский — с переводом на русский.</p>
+          </section>
+          <section class="landing-langs" aria-label="Словари">
+            ${landingLangBenefits(this.publicStats)}
+          </section>
+          <div class="landing-main">
+            <div class="landing-start">
+              <div class="home-deck landing-deck" role="region" aria-roledescription="карусель" aria-label="Как устроено приложение">
+                <span class="home-deck-layer is-left" aria-hidden="true"></span>
+                <span class="home-deck-layer is-right" aria-hidden="true"></span>
+                <span class="landing-deck-shadow" aria-hidden="true"></span>
+                ${landingPeekCardHtml(peek)}
+                ${landingBenefitCardHtml(benefit)}
+              </div>
+              ${landingDotsHtml(this.landingBenefitIndex, benefits.length)}
+              <p class="landing-how">Влево — знаю, вправо — учу</p>
+              <button type="button" class="btn btn-primary btn-lg" data-action="show-register">Начать бесплатно</button>
+            </div>
+            <div class="landing-cta">
+              <p class="subcta">Без карты · быстрая регистрация</p>
+              <button type="button" class="link-btn" data-action="show-login">Уже есть аккаунт</button>
+            </div>
+          </div>
+          <p class="footer-links">
+            <a href="/help/faq.html">FAQ</a>
+            · <a href="/legal/privacy.html">Конфиденциальность</a>
+            · <a href="/legal/terms.html">Условия</a>
+          </p>
+        </div>`;
     } else if (v === 'auth') {
       html += `
         ${pageBar({
@@ -1675,6 +1899,14 @@ export class App {
                 FAQ
                 <span class="settings-row-go" aria-hidden="true">›</span>
               </a>
+              <a class="settings-row" href="/legal/privacy.html?from=settings">
+                Конфиденциальность
+                <span class="settings-row-go" aria-hidden="true">›</span>
+              </a>
+              <a class="settings-row" href="/legal/terms.html?from=settings">
+                Условия
+                <span class="settings-row-go" aria-hidden="true">›</span>
+              </a>
               <button type="button" class="settings-row" data-action="updates">
                 Что нового
                 <span class="settings-row-end">
@@ -1764,6 +1996,7 @@ export class App {
     }
 
     this.endPointerTracking();
+    this.stopLandingDeck();
     this.root.innerHTML = html;
     this.cardEnter = false;
     this.overlayEnter = false;
@@ -1772,6 +2005,7 @@ export class App {
     if (card) {
       card.addEventListener('pointerdown', (e) => this.onPointerDown(e));
     }
+    if (v === 'landing') this.mountLandingDeck();
     if (v === 'onboarding') {
       this.root.querySelector('input[name="name"]')?.focus();
     }
@@ -1902,8 +2136,45 @@ function landingLangBenefits(stats) {
     const meta = LANG_PAIR_META[pair];
     const raw = Number(stats?.pairs?.[pair]?.words);
     const count = Number.isFinite(raw) && raw > 0 ? raw : LANDING_LANG_FALLBACK[pair];
-    return `<div class="benefit"><strong>${esc(meta.label)}</strong><span>${esc(formatWordCount(count))}</span></div>`;
+    return `<div class="landing-lang"><strong>${esc(meta.label)}</strong><span>${esc(formatWordCount(count))}</span></div>`;
   }).join('');
+}
+
+function landingBenefits(sessionSize) {
+  const n = Math.max(1, Math.floor(Number(sessionSize) || 18));
+  return [
+    { title: `${n} карточек`, subtitle: 'около 5 минут' },
+    { title: 'SRS', subtitle: 'умные повторы' },
+    { title: 'Тап', subtitle: 'перевод + аудио' },
+    { title: 'Онбординг', subtitle: 'за 20 секунд' },
+    { title: 'Streak', subtitle: 'серии и достижения' },
+    { title: 'PWA', subtitle: 'установи на телефон' },
+  ];
+}
+
+function landingBenefitInner(benefit) {
+  const b = benefit || landingBenefits(18)[0];
+  return `<span class="home-deck-facts">${esc(b.title)}</span><span class="home-deck-time">${esc(b.subtitle)}</span>`;
+}
+
+function landingBenefitCardHtml(benefit) {
+  const b = benefit || landingBenefits(18)[0];
+  return `<div class="home-deck-front landing-benefit-card" id="landing-active-card" tabindex="0" role="group" aria-label="${esc(b.title)}. ${esc(b.subtitle)}">${landingBenefitInner(b)}</div>`;
+}
+
+function landingPeekCardHtml(benefit) {
+  const b = benefit || landingBenefits(18)[0];
+  return `<div class="home-deck-front landing-benefit-peek" id="landing-peek-card" aria-hidden="true">${landingBenefitInner(b)}</div>`;
+}
+
+function landingDotsHtml(index, total) {
+  const on = Math.max(0, Math.min(index, total - 1));
+  let html = '<div class="landing-dots" aria-hidden="true">';
+  for (let i = 0; i < total; i += 1) {
+    html += `<span${i === on ? ' class="is-on"' : ''}></span>`;
+  }
+  html += '</div>';
+  return html;
 }
 
 function formatWordCount(n) {
