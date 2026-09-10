@@ -1,0 +1,99 @@
+/* Shared chrome for FAQ and legal pages — matches in-app page-bar. */
+
+:root {
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.info-shell {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 1rem 1rem 2rem;
+}
+
+.page-bar {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.15rem 0 1rem;
+}
+
+.page-back {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.05rem 0 0 -0.35rem;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  background: none;
+  color: var(--color-muted);
+  font: inherit;
+  font-size: 1.15rem;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+@media (hover: hover) {
+  .page-back:hover {
+    color: var(--color-text);
+    background: var(--color-border);
+  }
+}
+
+.page-back:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.page-bar-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.page-bar h1 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--color-heading);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.info-shell h2 {
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  color: var(--color-text);
+}
+
+.info-shell p,
+.info-shell li {
+  line-height: 1.6;
+}
+
+.info-shell a:not(.page-back) {
+  color: var(--color-heading);
+}
+
+.info-shell code {
+  color: var(--color-heading);
+}

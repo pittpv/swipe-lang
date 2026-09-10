@@ -61,7 +61,9 @@ export class App {
     this.gestureHealArmed = false;
     this.vapidPublicKey = null;
     this.settingsError = '';
+    this.settingsErrorSource = '';
     this.settingsSaved = false;
+    this.nameSavedTimer = null;
     this.name = '';
     this._onboardingBusy = false;
     this.progressReset = false;
@@ -109,9 +111,22 @@ export class App {
       await this.loadUserExtras();
     }
     this.changelogUnseen = hasUnseenChangelog();
+    this.consumeOpenView();
     this.render();
     this.armGesturePushHeal();
     this.initVersionWatch();
+  }
+
+  consumeOpenView() {
+    const params = new URLSearchParams(location.search);
+    const open = params.get('open');
+    if (this.user && !this.user.needsOnboarding && open === 'settings') {
+      this.view = 'settings';
+    }
+    if (!params.has('open')) return;
+    params.delete('open');
+    const qs = params.toString();
+    history.replaceState({}, '', `${location.pathname}${qs ? `?${qs}` : ''}${location.hash}`);
   }
 
   /**
@@ -807,6 +822,7 @@ export class App {
 
   async saveStudyPrefs() {
     this.settingsError = '';
+    this.settingsErrorSource = '';
     this.cefrLevel = clampCefrToPair(this.cefrLevel, this.langPair);
     try {
       const result = await api('/profile', {
@@ -830,6 +846,7 @@ export class App {
       return;
     } catch (e) {
       this.settingsError = e.message;
+      this.settingsErrorSource = 'prefs';
     }
     this.render();
   }
@@ -838,11 +855,42 @@ export class App {
     return this.saveStudyPrefs();
   }
 
-  async saveName() {
+  flashNameSaved() {
+    const hint = this.root.querySelector('[data-name-saved]');
+    if (!hint) return;
+    hint.hidden = false;
+    clearTimeout(this.nameSavedTimer);
+    this.nameSavedTimer = setTimeout(() => {
+      const el = this.root.querySelector('[data-name-saved]');
+      if (el) el.hidden = true;
+    }, 1600);
+  }
+
+  async saveNameIfChanged() {
+    const name = String(this.name ?? '').trim();
+    const current = String(this.user?.name ?? '').trim();
+    if (!name) {
+      this.name = current;
+      const input = this.root.querySelector('input[name="name"]');
+      if (input) input.value = current;
+      if (!current) {
+        this.settingsError = 'Введите имя';
+        this.settingsErrorSource = 'name';
+        this.render();
+      }
+      return;
+    }
+    if (name === current) return;
+    await this.saveName({ quiet: true });
+  }
+
+  async saveName({ quiet = false } = {}) {
     this.settingsError = '';
+    this.settingsErrorSource = '';
     const name = String(this.name ?? '').trim();
     if (!name) {
       this.settingsError = 'Введите имя';
+      this.settingsErrorSource = 'name';
       this.render();
       return;
     }
@@ -850,6 +898,10 @@ export class App {
       const result = await api('/profile', { method: 'PATCH', body: { name } });
       if (this.user) this.user.name = result.name;
       this.name = result.name ?? name;
+      if (quiet) {
+        this.flashNameSaved();
+        return;
+      }
       this.settingsSaved = true;
       this.render();
       setTimeout(() => {
@@ -861,6 +913,7 @@ export class App {
       return;
     } catch (e) {
       this.settingsError = e.message;
+      this.settingsErrorSource = 'name';
     }
     this.render();
   }
@@ -1070,6 +1123,10 @@ export class App {
         this.authMode = 'register';
         this.setView('auth');
       }
+      if (action === 'landing') {
+        this.error = '';
+        this.setView('landing');
+      }
       if (action === 'login') this.login();
       if (action === 'register') this.register();
       if (action === 'onboarding') this.saveOnboarding();
@@ -1132,10 +1189,19 @@ export class App {
       if (name === 'theme' && this.view === 'settings') setThemePreference(value);
     };
 
+    this.root.onfocusout = (e) => {
+      if (this.view === 'settings' && e.target?.name === 'name') this.saveNameIfChanged();
+    };
+
     this.root.onkeydown = (e) => {
       if (this.view === 'onboarding' && e.key === 'Enter' && e.target.name === 'name') {
         e.preventDefault();
         this.saveOnboarding();
+        return;
+      }
+      if (this.view === 'settings' && e.key === 'Enter' && e.target.name === 'name') {
+        e.preventDefault();
+        e.target.blur();
         return;
       }
       this.onKeyDown(e);
@@ -1184,17 +1250,26 @@ export class App {
         </p>`;
     } else if (v === 'auth') {
       html += `
-        <section class="hero"><h1>${this.authMode === 'login' ? 'Вход' : 'Регистрация'}</h1></section>
+        ${pageBar({
+          title: this.authMode === 'login' ? 'Вход' : 'Регистрация',
+          backAction: 'landing',
+          backLabel: 'На экран приветствия',
+        })}
         <div class="card-form">
           <label>Email<input name="email" type="email" value="${esc(this.email)}" autocomplete="email" /></label>
           <label>Пароль<input name="password" type="password" value="${esc(this.password)}" autocomplete="${this.authMode === 'login' ? 'current-password' : 'new-password'}" /></label>
           ${this.error ? `<p class="error">${esc(this.error)}</p>` : ''}
           <button class="btn btn-primary" data-action="${this.authMode}">${this.authMode === 'login' ? 'Войти' : 'Создать аккаунт'}</button>
-          <button class="link-btn" data-action="${this.authMode === 'login' ? 'show-register' : 'show-login'}">${this.authMode === 'login' ? 'Создать аккаунт' : 'Войти'}</button>
+          <p class="auth-switch">
+            <button class="link-btn" data-action="${this.authMode === 'login' ? 'show-register' : 'show-login'}">${this.authMode === 'login' ? 'Создать аккаунт' : 'Войти'}</button>
+          </p>
         </div>`;
     } else if (v === 'onboarding') {
       html += `
-        <section class="hero"><h1>Настройка</h1><p>Короткий онбординг — и к первой сессии.</p></section>
+        ${pageBar({
+          title: 'Настройка',
+          subtitle: 'Коротко — и к первой сессии',
+        })}
         <div class="card-form">
           <label>Имя
             <input name="name" type="text" value="${esc(this.name)}" maxlength="64" placeholder="Как к вам обращаться?" autocomplete="given-name" />
@@ -1218,20 +1293,34 @@ export class App {
           </label>
           ${this.error ? `<p class="error">${esc(this.error)}</p>` : ''}
           <button class="btn btn-primary" data-action="onboarding"${this._onboardingBusy ? ' disabled' : ''}>Продолжить</button>
-          <p style="text-align:center;font-size:0.85rem;color:var(--color-muted);margin:1rem 0 0">📲 Совет: установите LangApp как приложение — инструкция для <a href="/help/faq.html#install" target="_blank" rel="noopener">iPhone и Android — в FAQ</a>.</p>
+          <p class="settings-hint onboarding-install">📲 Совет: установите LangApp как приложение — инструкция для <a href="/help/faq.html#install" target="_blank" rel="noopener">iPhone и Android — в FAQ</a>.</p>
         </div>`;
     } else if (v === 'onboarding-setup') {
       html += `
-        <section class="hero">
-          <h1>Ваш личный кабинет создаётся</h1>
-          <p>Ещё секунда — и можно свайпать.</p>
-        </section>
+        ${pageBar({
+          title: 'Кабинет создаётся',
+          subtitle: 'Ещё секунда — и можно свайпать',
+        })}
         <div class="setup-wait" aria-busy="true" aria-live="polite">
           <div class="setup-preview" aria-hidden="true">
-            <div class="skeleton-bone skeleton-home-title"></div>
-            <div class="skeleton-bone skeleton-home-sub"></div>
-            <div class="skeleton-bone skeleton-home-btn"></div>
-            <div class="skeleton-bone skeleton-home-btn ghost"></div>
+            <div class="skeleton-home-bar">
+              <div class="skeleton-home-copy">
+                <div class="skeleton-bone skeleton-home-title"></div>
+                <div class="skeleton-bone skeleton-home-sub"></div>
+              </div>
+              <div class="skeleton-bone skeleton-home-badge"></div>
+            </div>
+            <div class="skeleton-home-start">
+              <div class="skeleton-home-deck-wrap">
+                <div class="skeleton-bone skeleton-home-deck-layer"></div>
+                <div class="skeleton-bone skeleton-home-deck"></div>
+              </div>
+              <div class="skeleton-bone skeleton-home-btn"></div>
+            </div>
+            <div class="skeleton-home-nav">
+              <div class="skeleton-bone skeleton-home-btn ghost"></div>
+              <div class="skeleton-bone skeleton-home-btn ghost"></div>
+            </div>
           </div>
           <ul class="setup-tips">
             <li>
@@ -1249,27 +1338,45 @@ export class App {
           </ul>
         </div>`;
     } else if (v === 'home') {
+      const sessionSize = this.publicStats.sessionSize ?? 18;
+      const langLabel = LANG_PAIR_META[normalizeLangPair(this.langPair)].label;
       html += `
-        <section class="hero">
-          <h1>${this.user?.name ? `Привет, ${esc(this.user.name)}!` : 'Привет!'}</h1>
-          <p>Готов к сессии из 18 слов? Тап по карточке — перевод и примеры.</p>
-        </section>
-        ${this.user?.streak ? `<p style="text-align:center"><span class="streak-badge">🔥 ${this.user.streak} дней</span></p>` : ''}
-        ${this.error ? `<p class="error" style="text-align:center">${esc(this.error)}</p>` : ''}
-        <button class="btn btn-primary" data-action="start" style="width:100%;margin-top:1rem">Начать сессию</button>
-        <button class="btn btn-ghost" data-action="stats" style="width:100%;margin-top:0.5rem">Статистика</button>
-        <button class="btn btn-ghost" data-action="settings" style="width:100%;margin-top:0.5rem">Настройки</button>
-        ${this.referralLink ? `
-        <div class="referral-box">
-          <div class="referral-copy">
-            <p class="referral-title">Пригласи друга</p>
-            <p class="referral-muted">Поделись ссылкой — учите вместе</p>
+        <div class="home">
+          <header class="home-bar">
+            <div class="home-bar-copy">
+              <h1>${this.user?.name ? `Привет, ${esc(this.user.name)}!` : 'Привет!'}</h1>
+              <p>${esc(langLabel)} · ${esc(this.cefrLevel)}</p>
+            </div>
+            ${this.user?.streak ? `<span class="streak-badge">🔥 ${this.user.streak} дней</span>` : ''}
+          </header>
+          ${this.error ? `<p class="error home-error">${esc(this.error)}</p>` : ''}
+          <div class="home-main">
+            <button type="button" class="home-start-card" data-action="start" aria-label="Начать сессию">
+              <span class="home-deck" aria-hidden="true">
+                <span class="home-deck-layer is-left"></span>
+                <span class="home-deck-layer is-right"></span>
+                <span class="home-deck-front">
+                  <span class="home-deck-facts">${sessionSize} слов</span>
+                  <span class="home-deck-time">около 5 минут</span>
+                </span>
+              </span>
+              <span class="btn btn-primary home-start-label">Начать сессию</span>
+            </button>
+            <nav class="home-nav" aria-label="Кабинет">
+              <button type="button" class="btn btn-ghost" data-action="stats">Статистика</button>
+              <button type="button" class="btn btn-ghost" data-action="settings">Настройки</button>
+            </nav>
           </div>
-          <button class="btn btn-primary" data-action="copy-referral" aria-live="polite">${this.referralCopied ? 'Ссылка скопирована' : 'Скопировать ссылку'}</button>
-          ${this.user?.referralsCount ? `<p class="referral-muted">${this.user.referralsCount} приглашённых</p>` : ''}
-        </div>` : ''}
-        <p class="footer-links"><a href="/help/faq.html">FAQ</a></p>
-        <button class="link-btn" data-action="logout" style="display:block;margin:1.5rem auto 0">Выйти</button>`;
+          ${this.referralLink ? `
+          <div class="referral-box">
+            <div class="referral-copy">
+              <p class="referral-title">Пригласи друга</p>
+              <p class="referral-muted">Поделись ссылкой — учите вместе</p>
+            </div>
+            <button class="btn btn-primary" data-action="copy-referral" aria-live="polite">${this.referralCopied ? 'Ссылка скопирована' : 'Скопировать ссылку'}</button>
+            ${this.user?.referralsCount ? `<p class="referral-muted">${this.user.referralsCount} приглашённых</p>` : ''}
+          </div>` : ''}
+        </div>`;
     } else if (v === 'session') {
       const card = this.currentCard();
       const progressNum = this.awaitingNext
@@ -1304,196 +1411,275 @@ export class App {
         </div>`;
     } else if (v === 'session-wrapping') {
       html += `
-        <div class="summary-card summary-wrapping" aria-busy="true" aria-live="polite">
-          <div class="skeleton-bone skeleton-summary-title"></div>
-          <p class="wrapping-copy">Подвожу итоги сессии…</p>
-          <div class="stat-grid">
-            <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
-            <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
-            <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
-            <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
+        <div class="screen-result">
+          <div class="summary-card summary-wrapping" aria-busy="true" aria-live="polite">
+            <div class="skeleton-bone skeleton-summary-title"></div>
+            <p class="wrapping-copy">Подвожу итоги сессии…</p>
+            <div class="stat-grid">
+              <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
+              <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
+              <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
+              <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
+            </div>
+            <div class="screen-actions">
+              <div class="skeleton-bone skeleton-summary-btn"></div>
+              <div class="skeleton-bone skeleton-summary-btn ghost"></div>
+            </div>
           </div>
-          <div class="skeleton-bone skeleton-summary-btn"></div>
-          <div class="skeleton-bone skeleton-summary-btn ghost"></div>
         </div>`;
     } else if (v === 'summary' && this.summary) {
       const lp = this.summary.levelProgress;
       const offerUp = this.summary.levelComplete && lp?.nextCefrLevel;
       const allDone = this.summary.levelComplete && lp?.atMaxLevel;
       html += `
-        <div class="summary-card">
-          <h2>Сессия завершена</h2>
-          <p>Отлично! Коротко и по делу — без рутины.</p>
-          <div class="stat-grid">
-            <div class="stat-box"><div class="num">${this.summary.cardsReviewed}</div><div class="lbl">Просмотрено</div></div>
-            <div class="stat-box"><div class="num">${this.summary.cardsLearned}</div><div class="lbl">На учёбе</div></div>
-            <div class="stat-box"><div class="num">${this.summary.streak}</div><div class="lbl">Streak</div></div>
-            <div class="stat-box"><div class="num">${this.summary.wordsDueTomorrow}</div><div class="lbl">На завтра</div></div>
+        <div class="screen-result">
+          <div class="summary-card">
+            <h2>Сессия завершена</h2>
+            <p>${this.summary.cardsReviewed} карточек — коротко и по делу.</p>
+            <div class="stat-grid">
+              <div class="stat-box"><div class="num">${this.summary.cardsReviewed}</div><div class="lbl">Просмотрено</div></div>
+              <div class="stat-box"><div class="num">${this.summary.cardsLearned}</div><div class="lbl">На учёбе</div></div>
+              <div class="stat-box"><div class="num">${this.summary.streak}</div><div class="lbl">Streak</div></div>
+              <div class="stat-box"><div class="num">${this.summary.wordsDueTomorrow}</div><div class="lbl">На завтра</div></div>
+            </div>
+            ${offerUp ? `
+            <div class="level-up-banner">
+              <p class="level-up-title">Уровень ${esc(lp.cefrLevel)} освоен!</p>
+              <p class="level-up-text">Все ${lp.wordsTotal} слов до ${esc(lp.cefrLevel)} отмечены как «Знаю». Перейти на ${esc(lp.nextCefrLevel)}?</p>
+              <button class="btn btn-primary" data-action="level-up">Перейти на ${esc(lp.nextCefrLevel)}</button>
+            </div>` : ''}
+            ${allDone ? `
+            <div class="level-up-banner">
+              <p class="level-up-title">Словарь пройден!</p>
+              <p class="level-up-text">Вы отметили «Знаю» все слова до C1. Можно повторять due-карточки.</p>
+            </div>` : ''}
+            <div class="screen-actions">
+              ${!offerUp ? '<button class="btn btn-primary" data-action="start">Ещё сессия</button>' : ''}
+              <button class="btn btn-ghost" data-action="home">На главную</button>
+            </div>
           </div>
-          ${offerUp ? `
-          <div class="level-up-banner">
-            <p class="level-up-title">Уровень ${esc(lp.cefrLevel)} освоен!</p>
-            <p class="level-up-text">Все ${lp.wordsTotal} слов до ${esc(lp.cefrLevel)} отмечены как «Знаю». Перейти на ${esc(lp.nextCefrLevel)}?</p>
-            <button class="btn btn-primary" data-action="level-up" style="width:100%">Перейти на ${esc(lp.nextCefrLevel)}</button>
-          </div>` : ''}
-          ${allDone ? `
-          <div class="level-up-banner">
-            <p class="level-up-title">Словарь пройден!</p>
-            <p class="level-up-text">Вы отметили «Знаю» все слова до C1. Можно повторять due-карточки.</p>
-          </div>` : ''}
-          ${!offerUp ? '<button class="btn btn-primary" data-action="start" style="width:100%">Ещё сессия</button>' : ''}
-          <button class="btn btn-ghost" data-action="home" style="width:100%;margin-top:0.5rem">На главную</button>
         </div>`;
     } else if (v === 'level-up' && this.levelOffer) {
       const lp = this.levelOffer;
       html += `
-        <div class="summary-card level-up-card">
-          <h2>${lp.atMaxLevel ? 'Словарь освоен' : `Уровень ${esc(lp.cefrLevel)} пройден`}</h2>
-          <p>${lp.atMaxLevel
-            ? 'Все слова словаря отмечены как «Знаю». Возвращайтесь к повторениям, когда они появятся.'
-            : `Все ${lp.wordsTotal} слов до ${esc(lp.cefrLevel)} изучены. Откроем ${esc(lp.nextCefrLevel)}?`}</p>
-          ${lp.nextCefrLevel
-            ? `<button class="btn btn-primary" data-action="level-up" style="width:100%">Перейти на ${esc(lp.nextCefrLevel)}</button>
-               <button class="btn btn-ghost" data-action="dismiss-level-up" style="width:100%;margin-top:0.5rem">Остаться на ${esc(lp.cefrLevel)}</button>`
-            : `<button class="btn btn-primary" data-action="home" style="width:100%">На главную</button>`}
+        <div class="screen-result">
+          <div class="summary-card level-up-card">
+            <h2>${lp.atMaxLevel ? 'Словарь освоен' : `Уровень ${esc(lp.cefrLevel)} пройден`}</h2>
+            <p>${lp.atMaxLevel
+              ? 'Все слова словаря отмечены как «Знаю». Возвращайтесь к повторениям, когда они появятся.'
+              : `Все ${lp.wordsTotal} слов до ${esc(lp.cefrLevel)} изучены. Откроем ${esc(lp.nextCefrLevel)}?`}</p>
+            <div class="screen-actions">
+              ${lp.nextCefrLevel
+                ? `<button class="btn btn-primary" data-action="level-up">Перейти на ${esc(lp.nextCefrLevel)}</button>
+                   <button class="btn btn-ghost" data-action="dismiss-level-up">Остаться на ${esc(lp.cefrLevel)}</button>`
+                : `<button class="btn btn-primary" data-action="home">На главную</button>`}
+            </div>
+          </div>
         </div>`;
     } else if (v === 'stats-loading') {
+      const langLabel = LANG_PAIR_META[normalizeLangPair(this.langPair)].label;
       html += `
-        <section class="hero"><h1>Статистика</h1></section>
-        <div class="card-form stats-page stats-skeleton" aria-busy="true" aria-live="polite">
+        ${pageBar({
+          title: 'Статистика',
+          subtitle: `${esc(langLabel)} · ${esc(this.cefrLevel)}`,
+          backAction: 'home',
+          backLabel: 'На главную',
+        })}
+        <div class="settings-stack stats-skeleton" aria-busy="true" aria-live="polite">
           <p class="sr-only">Загружаю статистику…</p>
-          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label wide"></span><span class="skeleton-bone skeleton-row-value"></span></div>
-          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label"></span><span class="skeleton-bone skeleton-row-value wide"></span></div>
-          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label narrow"></span><span class="skeleton-bone skeleton-row-value"></span></div>
-          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label mid"></span><span class="skeleton-bone skeleton-row-value"></span></div>
-          <div class="settings-divider" aria-hidden="true"></div>
-          <div class="skeleton-bone skeleton-section-title" aria-hidden="true"></div>
-          <div class="skeleton-bone skeleton-section-sub" aria-hidden="true"></div>
-          <div class="skeleton-bone skeleton-progress-track" aria-hidden="true"></div>
-          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label narrow"></span><span class="skeleton-bone skeleton-row-value"></span></div>
-          <div class="stat-row" aria-hidden="true"><span class="skeleton-bone skeleton-row-label mid"></span><span class="skeleton-bone skeleton-row-value"></span></div>
-          <div class="skeleton-bone skeleton-eta-block" aria-hidden="true"></div>
-          <div class="settings-divider" aria-hidden="true"></div>
-          <div class="skeleton-bone skeleton-section-title" aria-hidden="true"></div>
-          <div class="ach-grid" aria-hidden="true">
-            <div class="skeleton-bone skeleton-ach-badge"></div>
-            <div class="skeleton-bone skeleton-ach-badge"></div>
-            <div class="skeleton-bone skeleton-ach-badge"></div>
-            <div class="skeleton-bone skeleton-ach-badge"></div>
-          </div>
-        </div>
-        <button class="btn btn-primary" data-action="home" style="width:100%;margin-top:1rem">На главную</button>`;
+          ${settingsGroup('Сводка', `
+            <div class="card-form">
+              <div class="stats-hero" aria-hidden="true">
+                ${statsHeroSkeleton()}
+                ${statsHeroSkeleton()}
+                ${statsHeroSkeleton()}
+              </div>
+            </div>`)}
+          ${settingsGroup('Прогресс уровня', `
+            <div class="card-form">
+              <div class="stats-progress-head" aria-hidden="true">
+                <div class="skeleton-bone skeleton-progress-pct"></div>
+                <div class="skeleton-bone skeleton-section-sub"></div>
+              </div>
+              <div class="skeleton-bone skeleton-progress-track" aria-hidden="true"></div>
+              <div class="stats-split" aria-hidden="true">
+                <div class="skeleton-bone skeleton-split"></div>
+                <div class="skeleton-bone skeleton-split"></div>
+              </div>
+              <div class="skeleton-bone skeleton-stats-eta" aria-hidden="true"></div>
+            </div>`)}
+          ${settingsGroup('Достижения', `
+            <div class="card-form">
+              <div class="ach-grid" aria-hidden="true">
+                <div class="skeleton-bone skeleton-ach-badge"></div>
+                <div class="skeleton-bone skeleton-ach-badge"></div>
+                <div class="skeleton-bone skeleton-ach-badge"></div>
+                <div class="skeleton-bone skeleton-ach-badge"></div>
+              </div>
+            </div>`)}
+        </div>`;
     } else if (v === 'stats' && this.stats) {
       const achievements = Array.isArray(this.stats.achievements) ? this.stats.achievements : [];
       const lp = this.stats.levelProgress;
       const eta = this.stats.eta;
+      const langLabel = LANG_PAIR_META[normalizeLangPair(this.langPair)].label;
+      const cefr = this.stats.cefrLevel || this.cefrLevel;
       html += `
-        <section class="hero"><h1>Статистика</h1></section>
-        <div class="card-form stats-page">
-          <div class="stat-row"><span>Streak</span><strong>${this.stats.streak} дн.</strong></div>
-          <div class="stat-row"><span>Знаю (всего)</span><strong>${this.stats.wordsLearned}</strong></div>
-          <div class="stat-row"><span>Сессий</span><strong>${this.stats.sessionsCompleted}</strong></div>
-          <div class="stat-row"><span>Уровень</span><strong>${esc(this.stats.cefrLevel)}</strong></div>
-          ${lp ? `
-          <div class="settings-divider"></div>
-          <p class="referral-title">Прогресс уровня ${esc(lp.cefrLevel)}</p>
-          <p class="eta-scope">${lp.wordsKnown} из ${lp.wordsTotal} слов до ${esc(lp.cefrLevel)} · ${lp.percent}%</p>
-          <div class="progress-bar" role="progressbar" aria-valuenow="${lp.percent}" aria-valuemin="0" aria-valuemax="100" aria-label="Прогресс уровня">
-            <div class="progress-bar-fill" style="width:${lp.percent}%"></div>
-          </div>
-          <div class="stat-row"><span>Новых</span><strong>${lp.wordsNew}</strong></div>
-          <div class="stat-row"><span>На учёбе</span><strong>${lp.wordsLearning}</strong></div>
-          ${eta ? `
-          <div class="eta-box">
-            <p class="eta-label">Оценка до «Знаю» по уровню</p>
-            <p class="eta-value">${esc(eta.label)}</p>
-            ${eta.remainingWords
-              ? `<p class="eta-hint">Осталось ${eta.remainingWords} слов · до ~13 новых за сессию</p>`
-              : ''}
-          </div>` : ''}
-          ${lp.complete && lp.nextCefrLevel ? `
-          <button class="btn btn-primary" data-action="level-up" style="width:100%;margin-top:0.75rem">Перейти на ${esc(lp.nextCefrLevel)}</button>` : ''}
-          ${lp.complete && lp.atMaxLevel ? `
-          <p class="saved-hint" style="margin-top:0.75rem">Словарь C1 полностью освоен ✓</p>` : ''}
-          ` : ''}
-          <div class="settings-divider"></div>
-          <p class="referral-title">🏅 Достижения</p>
-          ${achievements.length
-            ? `<div class="ach-grid">
-                ${achievements.map((a) => {
-                  const badge = achievementBadge(a);
-                  if (!badge) return '';
-                  const scope = achievementScope(a);
-                  const lang = scope
-                    ? `<span class="ach-badge-lang">${scope.flag ? `${scope.flag} ` : ''}${esc(scope.label)}</span>`
-                    : '';
-                  const hint = scope ? `${badge.title} · ${scope.label}` : badge.title;
-                  return `
-                    <div class="ach-badge" title="${esc(hint)}">
-                      <span class="ach-badge-emoji">${badge.emoji}</span>
-                      <span class="ach-badge-copy">
-                        <strong>${esc(badge.title)}</strong>
-                        ${lang}
-                      </span>
-                    </div>`;
-                }).join('')}
-              </div>`
-            : '<p class="settings-hint">Достижений пока нет — завершите сессию, чтобы получить первое 🎯</p>'}
-        </div>
-        <button class="btn btn-primary" data-action="home" style="width:100%;margin-top:1rem">На главную</button>`;
+        ${pageBar({
+          title: 'Статистика',
+          subtitle: `${esc(langLabel)} · ${esc(cefr)}`,
+          backAction: 'home',
+          backLabel: 'На главную',
+        })}
+        <div class="settings-stack">
+          ${settingsGroup('Сводка', `
+            <div class="card-form">
+              <div class="stats-hero">
+                ${statsHeroItem(this.stats.streak, 'Streak')}
+                ${statsHeroItem(this.stats.wordsLearned, 'Знаю')}
+                ${statsHeroItem(this.stats.sessionsCompleted, 'Сессии')}
+              </div>
+            </div>`)}
+          ${lp ? settingsGroup('Прогресс уровня', `
+            <div class="card-form">
+              <div class="stats-progress-head">
+                <p class="stats-progress-pct">${lp.percent}%</p>
+                <p class="stats-progress-frac">${lp.wordsKnown} из ${lp.wordsTotal} «Знаю»</p>
+              </div>
+              <div class="progress-bar" role="progressbar" aria-valuenow="${lp.percent}" aria-valuemin="0" aria-valuemax="100" aria-label="Прогресс уровня ${esc(lp.cefrLevel)}">
+                <div class="progress-bar-fill" style="width:${lp.percent}%"></div>
+              </div>
+              <div class="stats-split">
+                <div class="stats-split-item">
+                  <div class="num">${lp.wordsLearning}</div>
+                  <div class="lbl">На учёбе</div>
+                </div>
+                <div class="stats-split-item">
+                  <div class="num">${lp.wordsNew}</div>
+                  <div class="lbl">Впереди</div>
+                </div>
+              </div>
+              ${renderStatsEta(this.stats, lp, eta)}
+              ${lp.complete && lp.nextCefrLevel
+                ? `<button type="button" class="btn btn-primary" data-action="level-up">Перейти на ${esc(lp.nextCefrLevel)}</button>`
+                : ''}
+              ${lp.complete && lp.atMaxLevel
+                ? '<p class="saved-hint">Словарь C1 полностью освоен ✓</p>'
+                : ''}
+            </div>`) : ''}
+          ${settingsGroup('Достижения', `
+            <div class="card-form">
+              ${achievements.length
+                ? `<div class="ach-grid">
+                    ${achievements.map((a) => {
+                      const badge = achievementBadge(a);
+                      if (!badge) return '';
+                      const scope = achievementScope(a);
+                      const lang = scope
+                        ? `<span class="ach-badge-lang">${scope.flag ? `${scope.flag} ` : ''}${esc(scope.label)}</span>`
+                        : '';
+                      const hint = scope ? `${badge.title} · ${scope.label}` : badge.title;
+                      return `
+                        <div class="ach-badge" title="${esc(hint)}">
+                          <span class="ach-badge-emoji">${badge.emoji}</span>
+                          <span class="ach-badge-copy">
+                            <strong>${esc(badge.title)}</strong>
+                            ${lang}
+                          </span>
+                        </div>`;
+                    }).join('')}
+                  </div>`
+                : '<p class="settings-lead">После первой сессии появится первое достижение.</p>'}
+            </div>`)}
+        </div>`;
     } else if (v === 'settings') {
+      const nameError = this.settingsErrorSource === 'name' && this.settingsError
+        ? `<p class="error">${esc(this.settingsError)}</p>`
+        : '';
+      const prefsError = this.settingsErrorSource === 'prefs' && this.settingsError
+        ? `<p class="error">${esc(this.settingsError)}</p>`
+        : '';
       html += `
-        <section class="hero"><h1>Настройки</h1></section>
-        <div class="card-form">
-          <label>Имя
-            <input name="name" type="text" value="${esc(this.name)}" maxlength="64" placeholder="Как к вам обращаться?" autocomplete="given-name" />
-          </label>
-          <button class="btn btn-primary" data-action="save-name" style="width:100%">Сохранить имя</button>
-          ${this.settingsSaved ? '<p class="saved-hint">Сохранено ✓</p>' : ''}
-          <div class="settings-divider"></div>
-          ${renderThemePicker(getThemePreference())}
-          <div class="settings-divider"></div>
-          <label>Язык
-            <select name="langPair">
-              ${langPairOptions(this.langPair)}
-            </select>
-          </label>
-          <label>Уровень языка
-            <select name="cefrLevel">
-              ${cefrOptions(this.cefrLevel, this.langPair)}
-            </select>
-          </label>
-          ${this.settingsError ? `<p class="error">${esc(this.settingsError)}</p>` : ''}
-          <p class="settings-hint">Язык и уровень влияют на слова в сессиях. Прогресс по каждому языку хранится отдельно.</p>
-          <div class="settings-divider"></div>
-          <p class="referral-title">🔔 Напоминания</p>
-          <p class="referral-muted">Пуш в удобное время — повторяй слова каждый день</p>
-          <div class="reminder-row">
-            <label>Время напоминания
-              <input type="time" name="reminderTime" value="${esc(this.reminderTime)}">
-            </label>
-          </div>
-          ${this.reminder.enabled
-            ? '<button class="btn btn-ghost" data-action="reminder-disable" style="width:100%">Отключить напоминания</button>'
-            : '<button class="btn btn-primary" data-action="reminder-enable" style="width:100%">Включить напоминания</button>'}
-          ${this.reminderError ? `<p class="error" style="text-align:center">${esc(this.reminderError)}</p>` : ''}
-        </div>
-        <button class="btn btn-primary" data-action="home" style="width:100%;margin-top:1rem">На главную</button>
-        ${this.progressReset ? '<p class="saved-hint reset-hint">Прогресс сброшен ✓</p>' : ''}
-        <div class="danger-zone">
-          <button class="btn btn-danger" data-action="reset-progress">Сбросить статистику и прогресс</button>
-          <button class="btn btn-danger" data-action="delete-account">Удалить аккаунт</button>
-        </div>
-        <p class="changelog-nav">
-          <button class="link-btn" data-action="updates">Что нового${this.changelogUnseen ? ' · новое' : ''}</button>
-        </p>
-        <p class="app-version">LangApp v${esc(APP_VERSION)}</p>`;
+        ${pageBar({
+          title: 'Настройки',
+          backAction: 'home',
+          backLabel: 'На главную',
+        })}
+        <div class="settings-stack">
+          ${settingsGroup('Профиль', `
+            <div class="card-form">
+              <label>Имя
+                <input name="name" type="text" value="${esc(this.name)}" maxlength="64" placeholder="Как к вам обращаться?" autocomplete="given-name" enterkeyhint="done" />
+              </label>
+              <p class="saved-hint" data-name-saved hidden>Сохранено ✓</p>
+              ${nameError}
+            </div>`)}
+          ${settingsGroup('Тема', `
+            <div class="card-form">
+              ${renderThemePicker(getThemePreference())}
+            </div>`)}
+          ${settingsGroup('Обучение', `
+            <div class="card-form">
+              <label>Язык
+                <select name="langPair">
+                  ${langPairOptions(this.langPair)}
+                </select>
+              </label>
+              <label>Уровень
+                <select name="cefrLevel">
+                  ${cefrOptions(this.cefrLevel, this.langPair)}
+                </select>
+              </label>
+              ${this.settingsSaved ? '<p class="saved-hint">Сохранено ✓</p>' : ''}
+              ${prefsError}
+              <p class="settings-hint">Слова в сессиях зависят от языка и уровня. Прогресс по каждому языку хранится отдельно.</p>
+            </div>`)}
+          ${settingsGroup('Напоминания', `
+            <div class="card-form">
+              <p class="settings-lead">Пуш каждый день в выбранное время</p>
+              <div class="reminder-row">
+                <label>Время
+                  <input type="time" name="reminderTime" value="${esc(this.reminderTime)}">
+                </label>
+              </div>
+              ${this.reminder.enabled
+                ? '<button type="button" class="btn btn-ghost btn-ghost-border" data-action="reminder-disable">Отключить</button>'
+                : '<button type="button" class="btn btn-primary" data-action="reminder-enable">Включить</button>'}
+              ${this.reminderError ? `<p class="error">${esc(this.reminderError)}</p>` : ''}
+            </div>`)}
+          ${settingsGroup('Справка', `
+            <nav class="card-form settings-list" aria-label="Справка">
+              <a class="settings-row" href="/help/faq.html?from=settings">
+                FAQ
+                <span class="settings-row-go" aria-hidden="true">›</span>
+              </a>
+              <button type="button" class="settings-row" data-action="updates">
+                Что нового
+                <span class="settings-row-end">
+                  ${this.changelogUnseen ? '<span class="settings-new">новое</span>' : ''}
+                  <span class="settings-row-go" aria-hidden="true">›</span>
+                </span>
+              </button>
+            </nav>`)}
+          ${settingsGroup('Аккаунт', `
+            <div class="card-form settings-list">
+              <button type="button" class="settings-row" data-action="logout">Выйти</button>
+            </div>
+            <p class="app-version">LangApp v${esc(APP_VERSION)}</p>
+            ${this.progressReset ? '<p class="saved-hint reset-hint">Прогресс сброшен ✓</p>' : ''}
+            <div class="card-form settings-list">
+              <button type="button" class="settings-row settings-row-danger" data-action="reset-progress">Сбросить статистику и прогресс</button>
+              <button type="button" class="settings-row settings-row-danger" data-action="delete-account">Удалить аккаунт</button>
+            </div>`)}
+        </div>`;
     } else if (v === 'updates') {
       html += `
-        <section class="hero">
-          <h1>Что нового</h1>
-          <p>Краткая история обновлений приложения.</p>
-        </section>
+        ${pageBar({
+          title: 'Что нового',
+          subtitle: 'История обновлений',
+          backAction: 'settings',
+          backLabel: 'Назад в настройки',
+        })}
         <div class="card-form changelog">
           ${CHANGELOG.map((entry) => `
             <article class="changelog-entry">
@@ -1505,8 +1691,7 @@ export class App {
                 ${(entry.items || []).map((item) => `<li>${esc(item)}</li>`).join('')}
               </ul>
             </article>`).join('')}
-        </div>
-        <button class="btn btn-primary" data-action="settings" style="width:100%;margin-top:1rem">Назад в настройки</button>`;
+        </div>`;
     }
 
     html += '</div>';
@@ -1635,6 +1820,34 @@ const CEFR_OPTION_LABELS = {
   B2: 'B2 — продвинутый',
   C1: 'C1 — свободный',
 };
+
+function settingsGroup(label, inner) {
+  return `<section class="settings-group"><h2 class="settings-group-label">${label}</h2>${inner}</section>`;
+}
+
+function statsHeroItem(value, label) {
+  return `<div class="stats-hero-item"><div class="num">${value}</div><div class="lbl">${label}</div></div>`;
+}
+
+function statsHeroSkeleton() {
+  return `<div class="stats-hero-item"><div class="skeleton-bone skeleton-hero-num"></div><div class="skeleton-bone skeleton-hero-lbl"></div></div>`;
+}
+
+function renderStatsEta(stats, lp, eta) {
+  if (!eta || !lp) return '';
+  if (lp.complete) return `<p class="stats-eta">${esc(eta.label)}</p>`;
+  if (!stats.sessionsCompleted) {
+    return '<p class="stats-eta">После первой сессии появится оценка, когда закроется уровень.</p>';
+  }
+  return `<p class="stats-eta">${esc(eta.label)}</p>`;
+}
+
+function pageBar({ title, subtitle = '', backAction = '', backLabel = 'Назад' }) {
+  const back = backAction
+    ? `<button type="button" class="page-back" data-action="${esc(backAction)}" aria-label="${esc(backLabel)}"><span aria-hidden="true">←</span></button>`
+    : '';
+  return `<header class="page-bar">${back}<div class="page-bar-copy"><h1>${title}</h1>${subtitle ? `<p>${subtitle}</p>` : ''}</div></header>`;
+}
 
 function langPairOptions(selected) {
   return LANG_PAIRS.map((pair) => opt(pair, LANG_PAIR_META[pair].label, selected)).join('');
@@ -1792,14 +2005,13 @@ function opt(value, label, selected) {
 function renderThemePicker(pref) {
   return `
     <div class="theme-field">
-      <span class="theme-field-label" id="theme-heading">Тема</span>
-      <div class="theme-seg" role="radiogroup" aria-labelledby="theme-heading">
+      <div class="theme-seg" role="radiogroup" aria-label="Тема">
         ${THEME_CHOICES.map((choice) => `
           <label class="theme-seg-item">
             <input type="radio" name="theme" value="${choice.value}"${pref === choice.value ? ' checked' : ''} />
             <span>${choice.label}</span>
           </label>`).join('')}
       </div>
-      <p class="settings-hint">«Система» следует за темой телефона или компьютера</p>
+      <p class="settings-hint">«Система» — как на устройстве</p>
     </div>`;
 }

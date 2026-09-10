@@ -78,7 +78,7 @@ npx vercel --prod
 
 ## Study reminders
 
-- Client subscribes from the home screen («🔔 Напоминания») and picks a local time.
+- Client subscribes from Settings → «Напоминания» and picks a local time.
 - Server creates one **QStash schedule** per user (cron in UTC) targeting
   `POST /api/cron/reminders` with the `x-internal-secret` header.
 - Push is sent via `web-push` only when there are words due for review
