@@ -59,6 +59,15 @@ export function getStoredReferral() {
 
 export async function fetchPublicStats() {
   const res = await fetch(`${API}/public/stats`);
-  if (!res.ok) return { words: 3500, sessionSize: 18 };
+  if (!res.ok) {
+    return {
+      sessionSize: 18,
+      pairs: {
+        'tr-ru': { words: 3500, label: 'Турецкий' },
+        'en-ru': { words: 4100, label: 'Английский' },
+        'es-ru': { words: 3900, label: 'Испанский' },
+      },
+    };
+  }
   return res.json();
 }

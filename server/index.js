@@ -22,6 +22,17 @@ import { applySwipe } from './srs.js';
 import { buildSessionDeck, SESSION_SIZE } from './session.js';
 import { getLevelProgress, estimateEta, CEFR_ORDER } from './progress.js';
 import {
+  DEFAULT_LANG_PAIR,
+  LANG_PAIRS,
+  LANG_PAIR_META,
+  clampCefrToPair,
+  isLangPair,
+  normalizeLangPair,
+  ttsLangFromQuery,
+  userLangPair,
+  wordLangPair,
+} from './lang-pairs.js';
+import {
   generateReferralCode,
   findUserByReferralCode,
   ensureReferralCode,
@@ -42,12 +53,18 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 {
-  const { importVocabulary, enrichVocabularyExtras } = await import('./import-vocabulary.js');
+  const { importVocabulary, enrichVocabularyExtras, missingVocabPairs } = await import('./import-vocabulary.js');
   if (!db.data.words.length) {
     const stats = importVocabulary({ replace: true });
     console.log(`Seeded ${stats.total} words into ${dbMode === 'postgres' ? 'Neon Postgres' : dbMode === 'redis' ? 'Redis' : 'file store'}`);
     await db.flush();
   } else {
+    const missing = missingVocabPairs();
+    if (missing.length) {
+      const stats = importVocabulary({ replace: false, pairs: missing });
+      console.log(`Added ${stats.added} words for ${missing.join(', ')}`);
+      await db.flush();
+    }
     const enrich = enrichVocabularyExtras();
     if (!enrich.skipped && enrich.updated) {
       console.log(`Enriched examples/forms on ${enrich.updated} words (v${enrich.version})`);
@@ -72,6 +89,18 @@ function requireAuth(req, res, next) {
 
 function findUser(id) {
   return db.data.users.find((u) => u.id === id);
+}
+
+function publicUserFields(user) {
+  return {
+    id: user.id,
+    email: user.email,
+    name: user.name ?? null,
+    goal: user.goal,
+    cefrLevel: user.cefr_level,
+    langPair: userLangPair(user),
+    streak: user.streak,
+  };
 }
 
 /**
@@ -135,6 +164,7 @@ app.post('/api/auth/register', authRateLimit, async (req, res) => {
         name: null,
         goal: null,
         cefr_level: 'A1',
+        lang_pair: DEFAULT_LANG_PAIR,
         streak: 0,
         last_session_date: null,
         referral_code: generateReferralCode(),
@@ -168,13 +198,8 @@ app.post('/api/auth/login', authRateLimit, (req, res) => {
   req.session.userId = user.id;
   setSessionCookie(res, req.session);
   res.json({
-    id: user.id,
-    email: user.email,
-    name: user.name ?? null,
+    ...publicUserFields(user),
     needsOnboarding: !user.goal,
-    goal: user.goal,
-    cefrLevel: user.cefr_level,
-    streak: user.streak,
   });
 });
 
@@ -225,12 +250,7 @@ app.get('/api/auth/me', async (req, res) => {
   await ensureReferralCode(user, db);
   user = findUser(req.session.userId);
   res.json({
-    id: user.id,
-    email: user.email,
-    name: user.name ?? null,
-    goal: user.goal,
-    cefrLevel: user.cefr_level,
-    streak: user.streak,
+    ...publicUserFields(user),
     needsOnboarding: !user.goal,
     referralCode: user.referral_code,
     referralsCount: user.referrals_count ?? 0,
@@ -261,9 +281,10 @@ app.get('/api/tts', async (req, res) => {
   if (!text) {
     return res.status(400).json({ error: 'q required' });
   }
+  const tl = ttsLangFromQuery(req.query.lang);
   try {
     const upstream = await fetch(
-      `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=tr&q=${encodeURIComponent(text)}`,
+      `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=${tl}&q=${encodeURIComponent(text)}`,
       { headers: { 'User-Agent': TTS_UA } },
     );
     const type = upstream.headers.get('content-type') ?? '';
@@ -384,24 +405,40 @@ app.post('/api/onboarding', requireAuth, async (req, res) => {
   const goal = sanitizeText(req.body?.goal, 64);
   const cefrLevel = sanitizeText(req.body?.cefrLevel, 8).toUpperCase();
   const name = req.body?.name !== undefined ? sanitizeText(req.body.name, 64) : '';
-  if (!goal || !['A1', 'A2', 'B1', 'B2', 'C1'].includes(cefrLevel)) {
+  const langPair = normalizeLangPair(req.body?.langPair);
+  if (!goal || !CEFR_ORDER.includes(cefrLevel)) {
     return res.status(400).json({ error: 'goal and valid cefrLevel required' });
   }
   const saved = await db.transact(() => {
     const user = findUser(req.session.userId);
     user.goal = goal;
-    user.cefr_level = cefrLevel;
+    user.lang_pair = langPair;
+    user.cefr_level = clampCefrToPair(cefrLevel, langPair);
     if (name) user.name = name;
-    return { goal: user.goal, cefrLevel: user.cefr_level, name: user.name ?? null };
+    return {
+      goal: user.goal,
+      cefrLevel: user.cefr_level,
+      langPair: userLangPair(user),
+      name: user.name ?? null,
+    };
   });
   res.json({ ok: true, ...saved });
 });
 
 app.patch('/api/profile', requireAuth, async (req, res) => {
-  const { cefrLevel, goal, name } = req.body ?? {};
+  const { cefrLevel, goal, name, langPair } = req.body ?? {};
   try {
     const saved = await db.transact(() => {
       const user = findUser(req.session.userId);
+      if (langPair !== undefined) {
+        if (!isLangPair(langPair)) {
+          const err = new Error('Invalid langPair');
+          err.status = 400;
+          throw err;
+        }
+        user.lang_pair = normalizeLangPair(langPair);
+        user.cefr_level = clampCefrToPair(user.cefr_level, user.lang_pair);
+      }
       if (cefrLevel !== undefined) {
         const level = sanitizeText(cefrLevel, 8).toUpperCase();
         if (!CEFR_ORDER.includes(level)) {
@@ -409,7 +446,7 @@ app.patch('/api/profile', requireAuth, async (req, res) => {
           err.status = 400;
           throw err;
         }
-        user.cefr_level = level;
+        user.cefr_level = clampCefrToPair(level, userLangPair(user));
       }
       if (goal !== undefined) {
         const trimmed = sanitizeText(goal, 64);
@@ -429,7 +466,12 @@ app.patch('/api/profile', requireAuth, async (req, res) => {
         }
         user.name = trimmed;
       }
-      return { cefrLevel: user.cefr_level, goal: user.goal, name: user.name ?? null };
+      return {
+        cefrLevel: user.cefr_level,
+        langPair: userLangPair(user),
+        goal: user.goal,
+        name: user.name ?? null,
+      };
     });
     res.json({ ok: true, ...saved });
   } catch (e) {
@@ -536,10 +578,14 @@ app.post('/api/session/swipe', requireAuth, async (req, res) => {
   res.json({ ok: true, progress: updated });
 });
 
-/** Words marked «Знаю» (SRS known/mature) — used for stats and word milestones. */
+/** Words marked «Знаю» (SRS known/mature) in the user's current language pair. */
 function countWordsKnown(userId) {
+  const pair = userLangPair(findUser(userId));
+  const ids = new Set(
+    db.data.words.filter((w) => wordLangPair(w) === pair).map((w) => w.id),
+  );
   return db.data.user_word_progress.filter(
-    (p) => p.user_id === userId && ['known', 'mature'].includes(p.status),
+    (p) => p.user_id === userId && ids.has(p.word_id) && ['known', 'mature'].includes(p.status),
   ).length;
 }
 
@@ -658,6 +704,7 @@ app.get('/api/stats', requireAuth, async (req, res) => {
   res.json({
     streak: user.streak,
     cefrLevel: user.cefr_level,
+    langPair: userLangPair(user),
     goal: user.goal,
     wordsLearned: learned,
     sessionsCompleted: sessions,
@@ -685,11 +732,24 @@ function requireAdmin(req, res, next) {
 app.get('/api/health', (_req, res) => res.json({ ok: true, words: db.data.words.length, storage: dbMode }));
 
 app.get('/api/public/stats', (_req, res) => {
+  const pairs = {};
+  for (const pair of LANG_PAIRS) {
+    pairs[pair] = {
+      words: 0,
+      label: LANG_PAIR_META[pair].label,
+      tagline: LANG_PAIR_META[pair].tagline,
+    };
+  }
+  for (const w of db.data.words) {
+    const pair = wordLangPair(w);
+    if (pairs[pair]) pairs[pair].words += 1;
+  }
   res.json({
     words: db.data.words.length,
-    langPair: 'tr-ru',
+    langPair: DEFAULT_LANG_PAIR,
+    pairs,
     sessionSize: SESSION_SIZE,
-    tagline: 'Турецкий словарь со свайп-механикой',
+    tagline: 'Словарь со свайп-механикой: турецкий, английский и испанский',
   });
 });
 

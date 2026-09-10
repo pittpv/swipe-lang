@@ -6,11 +6,11 @@ product
 
 ## Users
 
-Russian speakers learning Turkish vocabulary on a phone, in short daily sessions (about 3–5 minutes). They open the PWA between other tasks and expect to start swiping immediately — not to configure a study system.
+Russian speakers learning Turkish, English, or Spanish vocabulary on a phone, in short daily sessions (about 3–5 minutes). They open the PWA between other tasks and expect to start swiping immediately — not to configure a study system.
 
 ## Product Purpose
 
-LangApp teaches Turkish (TR→RU) through Tinder-style card swipes on a 3,564-word dictionary. Success is a completed 18-card session, a preserved streak, and coming back the next day. The product exists to make spaced repetition feel like a gesture, not homework.
+LangApp teaches Turkish, English, or Spanish (study language → Russian UI) through Tinder-style card swipes. Each language has its own dictionary; progress does not mix across languages. Success is a completed 18-card session, a preserved streak, and coming back the next day. The product exists to make spaced repetition feel like a gesture, not homework.
 
 ## Brand Personality
 

@@ -14,4 +14,5 @@ install-log.txt
 temp-*.mjs
 vercel-log.json
 vl.json
-temp-*.mjs
+*.tmp
+.impeccable/

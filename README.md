@@ -1,6 +1,8 @@
 # LangApp — Swipe Vocab
 
-LangApp is a PWA for learning **Turkish vocabulary (TR→RU)** built on **3,564 words** from two CSV dictionaries. Its learning methodology is a proven combination of **spaced repetition + microlearning + gamification** — the same principles behind Anki and Duolingo, delivered through a Tinder-style swipe interface.
+LangApp is a PWA for learning **Turkish, English, or Spanish vocabulary with a Russian UI**. Each language has its own dictionary (about 3,500–4,200 lemmas). The learning methodology is a proven combination of **spaced repetition + microlearning + gamification** — the same principles behind Anki and Duolingo, delivered through a Tinder-style swipe interface.
+
+Study language is chosen at onboarding and can be changed in Settings. Progress is stored per language, so switching decks does not mix cards.
 
 ## 1. Spaced Repetition — Simplified SM-2 (`server/srs.js`)
 
@@ -23,8 +25,8 @@ Key implementation details:
 - **18 cards per session** (`SESSION_SIZE = 18`) — about 3–5 minutes, following the principle "consistency beats volume"
 - **30% reviews / 70% new words** (`REVIEW_RATIO = 0.3`) — a balance between consolidation and forward progress
 - Reviews are picked most-overdue-first (sorted by `next_review_at`)
-- New words are filtered **by the user's CEFR level** (A1→C1, levels accumulate via `levelsUpTo()`)
-- When the current CEFR scope is fully marked «known» and nothing is due → empty deck → **level-up offer** (or dictionary-complete at C1); due reviews still run as review-only sessions
+- New words are filtered **by the user's language pair and CEFR level** (A1→C1 for Turkish and English; Spanish tops out at B2). Levels accumulate via `levelsUpTo()`.
+- When the current CEFR scope is fully marked «known» and nothing is due → empty deck → **level-up offer** (or dictionary-complete at the pair's max level); due reviews still run as review-only sessions
 - Edge cases are documented in the workflow spec: empty review queue → new words only; everything learned → celebration + level-up suggestion
 
 ## 2b. Progress ETA & level completion (`server/progress.js`)
@@ -45,7 +47,7 @@ Key implementation details:
 - **Web Push via QStash** (`server/reminders.js`): daily reminders at the user's chosen local time, with smart copy:
   - Words due → *"N words are waiting for review. Five minutes and you're done 🔥"*
   - All reviewed → *"Today's plan is complete — see you tomorrow 🎉"*
-  - New user → *"Your first 18-word session is waiting"*
+  - New user → language-aware nudge, e.g. *"Start learning Turkish 🇹🇷"*
 
 ## 5. Gamification & Dopamine Loops
 
@@ -67,14 +69,14 @@ The client emits events (`session_start`, `card_shown`, `swipe_left/right`, `ses
 | Active Recall | Swipe before the translation is shown |
 | Microlearning / consistency | 18-card sessions + daily streak + push reminders |
 | Gamification | Milestones, animated achievements |
-| Adaptivity (zone of proximal development) | CEFR filtering of new words by level |
+| Adaptivity (zone of proximal development) | CEFR filtering of new words by level and language pair |
 | Level completion | Offer next CEFR when scope is fully «known» (`progress.js`) |
 | Progress foresight | ETA on stats from remaining words + recent pace |
 | Data-driven improvement | Event analytics + D1/D7 retention reports |
 
 ## First-run onboarding
 
-After registration the app asks for a **display name**, study goal, and CEFR level (`POST /api/onboarding`). Name is required in the UI so Home can greet the user; the API still accepts onboarding without it. While the profile is saved, a short setup screen shows a home skeleton plus three tips (5-minute sessions, install the PWA, add a reminder). Name can be changed later via `PATCH /api/profile`.
+After registration the app asks for a **display name**, study **language** (Turkish / English / Spanish), goal, and CEFR level (`POST /api/onboarding`). Name is required in the UI so Home can greet the user; the API still accepts onboarding without it. Spanish CEFR is capped at B2. While the profile is saved, a short setup screen shows a home skeleton plus three tips (5-minute sessions, install the PWA, add a reminder). Name, language, and level can be changed later via `PATCH /api/profile`.
 
 ## Appearance
 
@@ -82,4 +84,4 @@ The PWA and static pages follow the OS light/dark scheme by default. Signed-in u
 
 ## App version
 
-Settings footer shows `LangApp vX.Y.Z+abcdefg` — semver from `package.json` plus a short git SHA injected at Vite build time (see `docs/DEPLOY.md`).
+Settings footer shows `LangApp vX.Y.Z+abcdefg` — semver from `package.json` plus a short git SHA injected at Vite build time (see `docs/DEPLOY.md`). The **Что нового** link opens the in-app changelog (`src/changelog.js`). Add a new entry at the top of that file and bump `package.json` on each release.

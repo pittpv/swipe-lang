@@ -1169,11 +1169,61 @@ select:focus-visible,
 }
 
 .app-version {
-  margin: 1.5rem 0 0;
+  margin: 0.35rem 0 0;
   text-align: center;
   font-size: 0.75rem;
   color: var(--color-muted);
   letter-spacing: 0.02em;
+}
+
+.changelog-nav {
+  margin: 1.5rem 0 0;
+  text-align: center;
+}
+
+.changelog {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.changelog-entry {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.changelog-entry:last-child {
+  border-bottom: none;
+}
+
+.changelog-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.45rem;
+}
+
+.changelog-meta strong {
+  color: var(--color-heading);
+  font-size: 0.95rem;
+}
+
+.changelog-meta time {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.changelog-entry ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.changelog-entry li {
+  margin: 0.28rem 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--color-text);
 }
 
 /* ===== Achievement celebration (iMessage-style overlay) ===== */

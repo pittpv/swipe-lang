@@ -1,3 +1,5 @@
+import { DEFAULT_LANG_PAIR, nextCefrForPair, userLangPair, wordMatchesPair } from './lang-pairs.js';
+
 /** Level progress + rough ETA for finishing the current CEFR scope. */
 
 export const CEFR_ORDER = ['A1', 'A2', 'B1', 'B2', 'C1'];
@@ -16,27 +18,26 @@ export function levelsUpTo(level) {
   return CEFR_ORDER.slice(0, idx >= 0 ? idx + 1 : 1);
 }
 
-export function nextCefrLevel(level) {
-  const idx = CEFR_ORDER.indexOf(level);
-  if (idx < 0 || idx >= CEFR_ORDER.length - 1) return null;
-  return CEFR_ORDER[idx + 1];
+export function nextCefrLevel(level, langPair = DEFAULT_LANG_PAIR) {
+  return nextCefrForPair(level, langPair);
 }
 
-export function wordsInScope(db, cefrLevel) {
+export function wordsInScope(db, cefrLevel, langPair = DEFAULT_LANG_PAIR) {
   const levels = levelsUpTo(cefrLevel);
   return db.data.words.filter(
-    (w) => levels.includes(w.cefr_level) && (w.lang_pair === 'tr-ru' || !w.lang_pair),
+    (w) => levels.includes(w.cefr_level) && wordMatchesPair(w, langPair),
   );
 }
 
 /**
  * Progress for words available at the user's selected CEFR
- * (selected level and all below it).
+ * (selected level and all below it) for the user's language pair.
  */
 export function getLevelProgress(db, userId) {
   const user = db.data.users.find((u) => u.id === userId);
   const cefrLevel = user?.cefr_level ?? 'A1';
-  const words = wordsInScope(db, cefrLevel);
+  const langPair = userLangPair(user);
+  const words = wordsInScope(db, cefrLevel, langPair);
   const byWord = new Map(
     db.data.user_word_progress
       .filter((p) => p.user_id === userId)
@@ -60,7 +61,7 @@ export function getLevelProgress(db, userId) {
 
   const wordsTotal = words.length;
   const remaining = wordsTotal - wordsKnown;
-  const next = nextCefrLevel(cefrLevel);
+  const next = nextCefrLevel(cefrLevel, langPair);
   const complete = wordsTotal > 0 && remaining === 0;
 
   return {

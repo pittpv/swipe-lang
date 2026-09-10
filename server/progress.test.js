@@ -36,6 +36,11 @@ test('nextCefrLevel advances until C1', () => {
   assert.equal(nextCefrLevel('C1'), null);
 });
 
+test('nextCefrLevel caps Spanish at B2', () => {
+  assert.equal(nextCefrLevel('B1', 'es-ru'), 'B2');
+  assert.equal(nextCefrLevel('B2', 'es-ru'), null);
+});
+
 test('getLevelProgress counts known / learning / new in scope', () => {
   const db = mockDb({
     cefr: 'A1',
@@ -94,6 +99,22 @@ test('estimateEta complete label when level done', () => {
   const eta = estimateEta(db, 1);
   assert.equal(eta.daysEstimate, 0);
   assert.match(eta.label, /освоен|дальше/i);
+});
+
+test('getLevelProgress ignores other language pairs', () => {
+  const db = mockDb({
+    cefr: 'A1',
+    words: [
+      ...tinyWords,
+      { id: 10, cefr_level: 'A1', lang_pair: 'en-ru' },
+      { id: 11, cefr_level: 'A1', lang_pair: 'es-ru' },
+    ],
+    progress: [{ user_id: 1, word_id: 1, status: 'known' }],
+  });
+  const lp = getLevelProgress(db, 1);
+  assert.equal(lp.wordsTotal, 2);
+  assert.equal(lp.wordsKnown, 1);
+  assert.equal(lp.wordsNew, 1);
 });
 
 test('NEW_PER_SESSION is 13 for session size 18', () => {

@@ -1,0 +1,3963 @@
+id,Слово,Перевод,Тип,Курс,Урок
+1,hola,привет,KALIP İFADELER,A1,UNIDAD1
+2,buenos días,доброе утро,KALIP İFADELER,A1,UNIDAD1
+3,buenas tardes,добрый день,KALIP İFADELER,A1,UNIDAD1
+4,buenas noches,добрый вечер / спокойной ночи,KALIP İFADELER,A1,UNIDAD1
+5,adiós,до свидания,KALIP İFADELER,A1,UNIDAD1
+6,hasta luego,до скорого,KALIP İFADELER,A1,UNIDAD1
+7,por favor,пожалуйста,KALIP İFADELER,A1,UNIDAD1
+8,gracias,спасибо,KALIP İFADELER,A1,UNIDAD1
+9,de nada,не за что,KALIP İFADELER,A1,UNIDAD1
+10,perdón,простите,KALIP İFADELER,A1,UNIDAD1
+11,lo siento,мне жаль,KALIP İFADELER,A1,UNIDAD1
+12,sí,да,DİĞER KELİMELER,A1,UNIDAD1
+13,no,нет,DİĞER KELİMELER,A1,UNIDAD1
+14,llamar,"звать, звонить",FİİLLER,A1,UNIDAD1
+15,ser,быть,FİİLLER,A1,UNIDAD1
+16,estar,"находиться, быть (состояние)",FİİLLER,A1,UNIDAD1
+17,nombre,имя,İSİMLER,A1,UNIDAD1
+18,apellido,фамилия,İSİMLER,A1,UNIDAD1
+19,persona,человек,İSİMLER,A1,UNIDAD1
+20,clase,"занятие, класс",İSİMLER,A1,UNIDAD1
+21,profesor,преподаватель,İSİMLER,A1,UNIDAD1
+22,estudiante,студент,İSİMLER,A1,UNIDAD1
+23,aula,аудитория,İSİMLER,A1,UNIDAD1
+24,libro,книга,İSİMLER,A1,UNIDAD1
+25,cuaderno,тетрадь,İSİMLER,A1,UNIDAD1
+26,boli,ручка,İSİMLER,A1,UNIDAD1
+27,lápiz,карандаш,İSİMLER,A1,UNIDAD1
+28,mesa,стол,İSİMLER,A1,UNIDAD1
+29,silla,стул,İSİMLER,A1,UNIDAD1
+30,pizarra,доска,İSİMLER,A1,UNIDAD1
+31,yo,я,ZAMİRLER,A1,UNIDAD1
+32,tú,ты,ZAMİRLER,A1,UNIDAD1
+33,él,он,ZAMİRLER,A1,UNIDAD1
+34,ella,она,ZAMİRLER,A1,UNIDAD1
+35,nosotros,мы,ZAMİRLER,A1,UNIDAD1
+36,vosotros,вы (мн.),ZAMİRLER,A1,UNIDAD1
+37,ellos,они,ZAMİRLER,A1,UNIDAD1
+38,usted,вы (вежл.),ZAMİRLER,A1,UNIDAD1
+39,y,и,EDATLAR / BAĞLAÇLAR,A1,UNIDAD1
+40,o,или,EDATLAR / BAĞLAÇLAR,A1,UNIDAD1
+41,pero,но,EDATLAR / BAĞLAÇLAR,A1,UNIDAD1
+42,también,тоже,ZARFLAR,A1,UNIDAD1
+43,tampoco,тоже не,ZARFLAR,A1,UNIDAD1
+44,nacionalidad,национальность,İSİMLER,A1,UNIDAD2
+45,país,страна,İSİMLER,A1,UNIDAD2
+46,español,"испанец, испанский",SIFATLAR,A1,UNIDAD2
+47,ruso,русский,SIFATLAR,A1,UNIDAD2
+48,inglés,"англичанин, английский",SIFATLAR,A1,UNIDAD2
+49,francés,французский,SIFATLAR,A1,UNIDAD2
+50,alemán,немецкий,SIFATLAR,A1,UNIDAD2
+51,italiano,итальянский,SIFATLAR,A1,UNIDAD2
+52,chino,китайский,SIFATLAR,A1,UNIDAD2
+53,japonés,японский,SIFATLAR,A1,UNIDAD2
+54,mexicano,мексиканский,SIFATLAR,A1,UNIDAD2
+55,argentino,аргентинский,SIFATLAR,A1,UNIDAD2
+56,brasileño,бразильский,SIFATLAR,A1,UNIDAD2
+57,estadounidense,американский,SIFATLAR,A1,UNIDAD2
+58,España,Испания,İSİMLER,A1,UNIDAD2
+59,Rusia,Россия,İSİMLER,A1,UNIDAD2
+60,idioma,язык,İSİMLER,A1,UNIDAD2
+61,hablar,говорить,FİİLLER,A1,UNIDAD2
+62,vivir,жить,FİİLLER,A1,UNIDAD2
+63,trabajar,работать,FİİLLER,A1,UNIDAD2
+64,estudiar,учиться,FİİLLER,A1,UNIDAD2
+65,profesión,профессия,İSİMLER,A1,UNIDAD2
+66,médico,врач,İSİMLER,A1,UNIDAD2
+67,enfermero,медбрат/сестра,İSİMLER,A1,UNIDAD2
+68,ingeniero,инженер,İSİMLER,A1,UNIDAD2
+69,abogado,адвокат,İSİMLER,A1,UNIDAD2
+70,camarero,официант,İSİMLER,A1,UNIDAD2
+71,cocinero,повар,İSİMLER,A1,UNIDAD2
+72,periodista,журналист,İSİMLER,A1,UNIDAD2
+73,artista,художник,İSİMLER,A1,UNIDAD2
+74,músico,музыкант,İSİMLER,A1,UNIDAD2
+75,policia,полицейский,İSİMLER,A1,UNIDAD2
+76,taxista,таксист,İSİMLER,A1,UNIDAD2
+77,edad,возраст,İSİMLER,A1,UNIDAD2
+78,número,"число, номер",İSİMLER,A1,UNIDAD2
+79,teléfono,телефон,İSİMLER,A1,UNIDAD2
+80,correo electrónico,эл. почта,İSİMLER,A1,UNIDAD2
+81,dirección,адрес,İSİMLER,A1,UNIDAD2
+82,tener,иметь,FİİLLER,A1,UNIDAD2
+83,hay,"есть, имеется",DİĞER KELİMELER,A1,UNIDAD2
+84,cuánto,сколько,ZAMİRLER,A1,UNIDAD2
+85,de dónde,откуда,KALIP İFADELER,A1,UNIDAD2
+86,qué,"что, какой",ZAMİRLER,A1,UNIDAD2
+87,ciudad,город,İSİMLER,A1,UNIDAD3
+88,pueblo,посёлок,İSİMLER,A1,UNIDAD3
+89,barrio,район,İSİMLER,A1,UNIDAD3
+90,calle,улица,İSİMLER,A1,UNIDAD3
+91,plaza,площадь,İSİMLER,A1,UNIDAD3
+92,parque,парк,İSİMLER,A1,UNIDAD3
+93,museo,музей,İSİMLER,A1,UNIDAD3
+94,teatro,театр,İSİMLER,A1,UNIDAD3
+95,cine,кинотеатр,İSİMLER,A1,UNIDAD3
+96,restaurante,ресторан,İSİMLER,A1,UNIDAD3
+97,bar,бар,İSİMLER,A1,UNIDAD3
+98,café,кафе,İSİMLER,A1,UNIDAD3
+99,tienda,магазин,İSİMLER,A1,UNIDAD3
+100,supermercado,супермаркет,İSİMLER,A1,UNIDAD3
+101,farmacia,аптека,İSİMLER,A1,UNIDAD3
+102,hospital,больница,İSİMLER,A1,UNIDAD3
+103,banco,банк,İSİMLER,A1,UNIDAD3
+104,correo,почта,İSİMLER,A1,UNIDAD3
+105,estación,вокзал,İSİMLER,A1,UNIDAD3
+106,aeropuerto,аэропорт,İSİMLER,A1,UNIDAD3
+107,hotel,отель,İSİMLER,A1,UNIDAD3
+108,iglesia,церковь,İSİMLER,A1,UNIDAD3
+109,escuela,школа,İSİMLER,A1,UNIDAD3
+110,universidad,университет,İSİMLER,A1,UNIDAD3
+111,biblioteca,библиотека,İSİMLER,A1,UNIDAD3
+112,gimnasio,спортзал,İSİMLER,A1,UNIDAD3
+113,playa,пляж,İSİMLER,A1,UNIDAD3
+114,mar,море,İSİMLER,A1,UNIDAD3
+115,río,река,İSİMLER,A1,UNIDAD3
+116,montaña,гора,İSİMLER,A1,UNIDAD3
+117,norte,север,İSİMLER,A1,UNIDAD3
+118,sur,юг,İSİMLER,A1,UNIDAD3
+119,este,восток,İSİMLER,A1,UNIDAD3
+120,oeste,запад,İSİMLER,A1,UNIDAD3
+121,cerca,близко,ZARFLAR,A1,UNIDAD3
+122,lejos,далеко,ZARFLAR,A1,UNIDAD3
+123,aquí,здесь,ZARFLAR,A1,UNIDAD3
+124,allí,там,ZARFLAR,A1,UNIDAD3
+125,a la derecha,справа,KALIP İFADELER,A1,UNIDAD3
+126,a la izquierda,слева,KALIP İFADELER,A1,UNIDAD3
+127,ir,"идти, ехать",FİİLLER,A1,UNIDAD3
+128,grande,большой,SIFATLAR,A1,UNIDAD3
+129,pequeño,маленький,SIFATLAR,A1,UNIDAD3
+130,bonito,красивый,SIFATLAR,A1,UNIDAD3
+131,feo,некрасивый,SIFATLAR,A1,UNIDAD3
+132,gustar,нравиться,FİİLLER,A1,UNIDAD4
+133,encantar,обожать,FİİLLER,A1,UNIDAD4
+134,interesar,интересовать,FİİLLER,A1,UNIDAD4
+135,odiar,ненавидеть,FİİLLER,A1,UNIDAD4
+136,preferir,предпочитать,FİİLLER,A1,UNIDAD4
+137,música,музыка,İSİMLER,A1,UNIDAD4
+138,deporte,спорт,İSİMLER,A1,UNIDAD4
+139,lectura,чтение,İSİMLER,A1,UNIDAD4
+140,viaje,путешествие,İSİMLER,A1,UNIDAD4
+141,fotografía,фотография,İSİMLER,A1,UNIDAD4
+142,baile,танцы,İSİMLER,A1,UNIDAD4
+143,cocina,"кухня, готовка",İSİMLER,A1,UNIDAD4
+144,fútbol,футбол,İSİMLER,A1,UNIDAD4
+145,tenis,теннис,İSİMLER,A1,UNIDAD4
+146,natación,плавание,İSİMLER,A1,UNIDAD4
+147,correr,бегать,FİİLLER,A1,UNIDAD4
+148,nadar,плавать,FİİLLER,A1,UNIDAD4
+149,bailar,танцевать,FİİLLER,A1,UNIDAD4
+150,cantar,петь,FİİLLER,A1,UNIDAD4
+151,leer,читать,FİİLLER,A1,UNIDAD4
+152,escuchar,слушать,FİİLLER,A1,UNIDAD4
+153,ver,"видеть, смотреть",FİİLLER,A1,UNIDAD4
+154,viajar,путешествовать,FİİLLER,A1,UNIDAD4
+155,cocinar,готовить,FİİLLER,A1,UNIDAD4
+156,pintar,рисовать,FİİLLER,A1,UNIDAD4
+157,dibujar,рисовать карандашом,FİİLLER,A1,UNIDAD4
+158,jugar,играть,FİİLLER,A1,UNIDAD4
+159,coleccionar,коллекционировать,FİİLLER,A1,UNIDAD4
+160,tiempo libre,свободное время,İSİMLER,A1,UNIDAD4
+161,afición,увлечение,İSİMLER,A1,UNIDAD4
+162,mucho,много,ZARFLAR,A1,UNIDAD4
+163,poco,мало,ZARFLAR,A1,UNIDAD4
+164,nada,ничего,ZAMİRLER,A1,UNIDAD4
+165,algo,что-то,ZAMİRLER,A1,UNIDAD4
+166,más que,больше чем,EDATLAR / BAĞLAÇLAR,A1,UNIDAD4
+167,menos que,меньше чем,EDATLAR / BAĞLAÇLAR,A1,UNIDAD4
+168,familia,семья,İSİMLER,A1,UNIDAD5
+169,madre,мать,İSİMLER,A1,UNIDAD5
+170,padre,отец,İSİMLER,A1,UNIDAD5
+171,hijo,сын,İSİMLER,A1,UNIDAD5
+172,hija,дочь,İSİMLER,A1,UNIDAD5
+173,hermano,брат,İSİMLER,A1,UNIDAD5
+174,hermana,сестра,İSİMLER,A1,UNIDAD5
+175,abuelo,дедушка,İSİMLER,A1,UNIDAD5
+176,abuela,бабушка,İSİMLER,A1,UNIDAD5
+177,tío,дядя,İSİMLER,A1,UNIDAD5
+178,tía,тётя,İSİMLER,A1,UNIDAD5
+179,primo,двоюродный брат,İSİMLER,A1,UNIDAD5
+180,prima,двоюродная сестра,İSİMLER,A1,UNIDAD5
+181,marido,муж,İSİMLER,A1,UNIDAD5
+182,mujer,"жена, женщина",İSİMLER,A1,UNIDAD5
+183,novio,парень,İSİMLER,A1,UNIDAD5
+184,novia,девушка,İSİMLER,A1,UNIDAD5
+185,amigo,друг,İSİMLER,A1,UNIDAD5
+186,amiga,подруга,İSİMLER,A1,UNIDAD5
+187,mascota,питомец,İSİMLER,A1,UNIDAD5
+188,levantarse,вставать,FİİLLER,A1,UNIDAD5
+189,acostarse,ложиться спать,FİİLLER,A1,UNIDAD5
+190,despertarse,просыпаться,FİİLLER,A1,UNIDAD5
+191,ducharse,принимать душ,FİİLLER,A1,UNIDAD5
+192,vestirse,одеваться,FİİLLER,A1,UNIDAD5
+193,desayunar,завтракать,FİİLLER,A1,UNIDAD5
+194,almorzar,обедать,FİİLLER,A1,UNIDAD5
+195,cenar,ужинать,FİİLLER,A1,UNIDAD5
+196,volver,возвращаться,FİİLLER,A1,UNIDAD5
+197,dormir,спать,FİİLLER,A1,UNIDAD5
+198,lunes,понедельник,İSİMLER,A1,UNIDAD5
+199,martes,вторник,İSİMLER,A1,UNIDAD5
+200,miércoles,среда,İSİMLER,A1,UNIDAD5
+201,jueves,четверг,İSİMLER,A1,UNIDAD5
+202,viernes,пятница,İSİMLER,A1,UNIDAD5
+203,sábado,суббота,İSİMLER,A1,UNIDAD5
+204,domingo,воскресенье,İSİMLER,A1,UNIDAD5
+205,hora,час,İSİMLER,A1,UNIDAD5
+206,minuto,минута,İSİMLER,A1,UNIDAD5
+207,siempre,всегда,ZARFLAR,A1,UNIDAD5
+208,a veces,иногда,KALIP İFADELER,A1,UNIDAD5
+209,nunca,никогда,ZARFLAR,A1,UNIDAD5
+210,todos los días,каждый день,KALIP İFADELER,A1,UNIDAD5
+211,comida,еда,İSİMLER,A1,UNIDAD6
+212,bebida,напиток,İSİMLER,A1,UNIDAD6
+213,desayuno,завтрак,İSİMLER,A1,UNIDAD6
+214,almuerzo,обед,İSİMLER,A1,UNIDAD6
+215,cena,ужин,İSİMLER,A1,UNIDAD6
+216,pan,хлеб,İSİMLER,A1,UNIDAD6
+217,aceite,масло (оливковое),İSİMLER,A1,UNIDAD6
+218,sal,соль,İSİMLER,A1,UNIDAD6
+219,azúcar,сахар,İSİMLER,A1,UNIDAD6
+220,leche,молоко,İSİMLER,A1,UNIDAD6
+221,agua,вода,İSİMLER,A1,UNIDAD6
+222,té,чай,İSİMLER,A1,UNIDAD6
+223,zumo,сок,İSİMLER,A1,UNIDAD6
+224,vino,вино,İSİMLER,A1,UNIDAD6
+225,cerveza,пиво,İSİMLER,A1,UNIDAD6
+226,fruta,фрукты,İSİMLER,A1,UNIDAD6
+227,manzana,яблоко,İSİMLER,A1,UNIDAD6
+228,naranja,апельсин,İSİMLER,A1,UNIDAD6
+229,plátano,банан,İSİMLER,A1,UNIDAD6
+230,uva,виноград,İSİMLER,A1,UNIDAD6
+231,fresa,клубника,İSİMLER,A1,UNIDAD6
+232,verdura,овощи,İSİMLER,A1,UNIDAD6
+233,tomate,помидор,İSİMLER,A1,UNIDAD6
+234,patata,картофель,İSİMLER,A1,UNIDAD6
+235,cebolla,лук,İSİMLER,A1,UNIDAD6
+236,ajo,чеснок,İSİMLER,A1,UNIDAD6
+237,lechuga,салат-латук,İSİMLER,A1,UNIDAD6
+238,carne,мясо,İSİMLER,A1,UNIDAD6
+239,pollo,курица,İSİMLER,A1,UNIDAD6
+240,pescado,рыба,İSİMLER,A1,UNIDAD6
+241,huevo,яйцо,İSİMLER,A1,UNIDAD6
+242,queso,сыр,İSİMLER,A1,UNIDAD6
+243,arroz,рис,İSİMLER,A1,UNIDAD6
+244,pasta,паста,İSİMLER,A1,UNIDAD6
+245,sopa,суп,İSİMLER,A1,UNIDAD6
+246,ensalada,салат,İSİMLER,A1,UNIDAD6
+247,comer,есть,FİİLLER,A1,UNIDAD6
+248,beber,пить,FİİLLER,A1,UNIDAD6
+249,probar,пробовать,FİİLLER,A1,UNIDAD6
+250,pedir,"заказывать, просить",FİİLLER,A1,UNIDAD6
+251,cuenta,счёт,İSİMLER,A1,UNIDAD6
+252,rico,"вкусный, богатый",SIFATLAR,A1,UNIDAD6
+253,dulce,сладкий,SIFATLAR,A1,UNIDAD6
+254,salado,солёный,SIFATLAR,A1,UNIDAD6
+255,picante,острый,SIFATLAR,A1,UNIDAD6
+256,ropa,одежда,İSİMLER,A1,UNIDAD7
+257,camisa,рубашка,İSİMLER,A1,UNIDAD7
+258,camiseta,футболка,İSİMLER,A1,UNIDAD7
+259,pantalón,брюки,İSİMLER,A1,UNIDAD7
+260,vaqueros,джинсы,İSİMLER,A1,UNIDAD7
+261,falda,юбка,İSİMLER,A1,UNIDAD7
+262,vestido,платье,İSİMLER,A1,UNIDAD7
+263,chaqueta,"пиджак, куртка",İSİMLER,A1,UNIDAD7
+264,abrigo,пальто,İSİMLER,A1,UNIDAD7
+265,zapatos,туфли,İSİMLER,A1,UNIDAD7
+266,botas,ботинки,İSİMLER,A1,UNIDAD7
+267,zapatillas,"кроссовки, тапочки",İSİMLER,A1,UNIDAD7
+268,sombrero,шляпа,İSİMLER,A1,UNIDAD7
+269,gorra,кепка,İSİMLER,A1,UNIDAD7
+270,bufanda,шарф,İSİMLER,A1,UNIDAD7
+271,guantes,перчатки,İSİMLER,A1,UNIDAD7
+272,calcetines,носки,İSİMLER,A1,UNIDAD7
+273,color,цвет,İSİMLER,A1,UNIDAD7
+274,rojo,красный,SIFATLAR,A1,UNIDAD7
+275,azul,синий,SIFATLAR,A1,UNIDAD7
+276,verde,зелёный,SIFATLAR,A1,UNIDAD7
+277,amarillo,жёлтый,SIFATLAR,A1,UNIDAD7
+278,negro,чёрный,SIFATLAR,A1,UNIDAD7
+279,blanco,белый,SIFATLAR,A1,UNIDAD7
+280,gris,серый,SIFATLAR,A1,UNIDAD7
+281,marrón,коричневый,SIFATLAR,A1,UNIDAD7
+282,rosa,розовый,SIFATLAR,A1,UNIDAD7
+283,llevar,носить (одежду),FİİLLER,A1,UNIDAD7
+284,ponerse,надевать,FİİLLER,A1,UNIDAD7
+285,quitarse,снимать,FİİLLER,A1,UNIDAD7
+286,comprar,покупать,FİİLLER,A1,UNIDAD7
+287,vender,продавать,FİİLLER,A1,UNIDAD7
+288,pagar,платить,FİİLLER,A1,UNIDAD7
+289,costar,стоить,FİİLLER,A1,UNIDAD7
+290,barato,дешёвый,SIFATLAR,A1,UNIDAD7
+291,caro,дорогой,SIFATLAR,A1,UNIDAD7
+292,talla,размер,İSİMLER,A1,UNIDAD7
+293,rebajas,скидки,İSİMLER,A1,UNIDAD7
+294,probador,примерочная,İSİMLER,A1,UNIDAD7
+295,tarjeta,карта,İSİMLER,A1,UNIDAD7
+296,descripción,описание,İSİMLER,A1,UNIDAD8
+297,pelo,волосы,İSİMLER,A1,UNIDAD8
+298,ojos,глаза,İSİMLER,A1,UNIDAD8
+299,alto,высокий,SIFATLAR,A1,UNIDAD8
+300,bajo,низкий,SIFATLAR,A1,UNIDAD8
+301,delgado,худой,SIFATLAR,A1,UNIDAD8
+302,gordo,полный,SIFATLAR,A1,UNIDAD8
+303,joven,молодой,SIFATLAR,A1,UNIDAD8
+304,mayor,"старший, пожилой",SIFATLAR,A1,UNIDAD8
+305,simpático,"милый, приятный",SIFATLAR,A1,UNIDAD8
+306,antipático,неприятный,SIFATLAR,A1,UNIDAD8
+307,inteligente,умный,SIFATLAR,A1,UNIDAD8
+308,divertido,весёлый,SIFATLAR,A1,UNIDAD8
+309,serio,серьёзный,SIFATLAR,A1,UNIDAD8
+310,tímido,застенчивый,SIFATLAR,A1,UNIDAD8
+311,extrovertido,экстраверт,SIFATLAR,A1,UNIDAD8
+312,trabajador,трудолюбивый,SIFATLAR,A1,UNIDAD8
+313,perezoso,ленивый,SIFATLAR,A1,UNIDAD8
+314,amable,любезный,SIFATLAR,A1,UNIDAD8
+315,carácter,характер,İSİMLER,A1,UNIDAD8
+316,parecer,казаться,FİİLLER,A1,UNIDAD8
+317,llevar gafas,носить очки,KALIP İFADELER,A1,UNIDAD8
+318,barba,борода,İSİMLER,A1,UNIDAD8
+319,bigote,усы,İSİMLER,A1,UNIDAD8
+320,sonrisa,улыбка,İSİMLER,A1,UNIDAD8
+321,cuerpo,тело,İSİMLER,A1,UNIDAD8
+322,cabeza,голова,İSİMLER,A1,UNIDAD8
+323,mano,рука (кисть),İSİMLER,A1,UNIDAD8
+324,pie,нога (ступня),İSİMLER,A1,UNIDAD8
+325,experiencia,опыт,İSİMLER,A1,UNIDAD9
+326,visitar,посещать,FİİLLER,A1,UNIDAD9
+327,conocer,"знать, знакомиться",FİİLLER,A1,UNIDAD9
+328,hacer,делать,FİİLLER,A1,UNIDAD9
+329,salir,выходить,FİİLLER,A1,UNIDAD9
+330,llegar,прибывать,FİİLLER,A1,UNIDAD9
+331,pasar,"проводить, происходить",FİİLLER,A1,UNIDAD9
+332,algunas veces,иногда,KALIP İFADELER,A1,UNIDAD9
+333,alguna vez,когда-нибудь,KALIP İFADELER,A1,UNIDAD9
+334,todavía no,ещё не,KALIP İFADELER,A1,UNIDAD9
+335,ya,уже,ZARFLAR,A1,UNIDAD9
+336,última vez,последний раз,İSİMLER,A1,UNIDAD9
+337,finde,выходные,İSİMLER,A1,UNIDAD9
+338,vacaciones,"каникулы, отпуск",İSİMLER,A1,UNIDAD9
+339,fiesta,"праздник, вечеринка",İSİMLER,A1,UNIDAD9
+340,cumpleaños,день рождения,İSİMLER,A1,UNIDAD9
+341,regalo,подарок,İSİMLER,A1,UNIDAD9
+342,foto,фото,İSİMLER,A1,UNIDAD9
+343,recuerdo,"сувенир, воспоминание",İSİMLER,A1,UNIDAD9
+344,año pasado,прошлый год,İSİMLER,A1,UNIDAD9
+345,lengua,язык,İSİMLER,A2,UNIDAD1
+346,acento,акцент,İSİMLER,A2,UNIDAD1
+347,pronunciación,произношение,İSİMLER,A2,UNIDAD1
+348,vocabulario,словарный запас,İSİMLER,A2,UNIDAD1
+349,gramática,грамматика,İSİMLER,A2,UNIDAD1
+350,traducir,переводить,FİİLLER,A2,UNIDAD1
+351,entender,понимать,FİİLLER,A2,UNIDAD1
+352,explicar,объяснять,FİİLLER,A2,UNIDAD1
+353,repetir,повторять,FİİLLER,A2,UNIDAD1
+354,equivocarse,ошибаться,FİİLLER,A2,UNIDAD1
+355,mejorar,улучшать(ся),FİİLLER,A2,UNIDAD1
+356,practicar,практиковать,FİİLLER,A2,UNIDAD1
+357,dificultad,трудность,İSİMLER,A2,UNIDAD1
+358,fácil,лёгкий,SIFATLAR,A2,UNIDAD1
+359,difícil,трудный,SIFATLAR,A2,UNIDAD1
+360,fluido,беглый,SIFATLAR,A2,UNIDAD1
+361,nativo,"носитель, родной",SIFATLAR,A2,UNIDAD1
+362,bilingüe,двуязычный,SIFATLAR,A2,UNIDAD1
+363,sentirse,чувствовать себя,FİİLLER,A2,UNIDAD1
+364,emoción,эмоция,İSİMLER,A2,UNIDAD1
+365,alegría,радость,İSİMLER,A2,UNIDAD1
+366,tristeza,грусть,İSİMLER,A2,UNIDAD1
+367,miedo,страх,İSİMLER,A2,UNIDAD1
+368,rabia,ярость,İSİMLER,A2,UNIDAD1
+369,nervioso,нервный,SIFATLAR,A2,UNIDAD1
+370,tranquilo,спокойный,SIFATLAR,A2,UNIDAD1
+371,enfadado,злой,SIFATLAR,A2,UNIDAD1
+372,contento,довольный,SIFATLAR,A2,UNIDAD1
+373,llevarse bien,ладить,FİİLLER,A2,UNIDAD1
+374,caer bien,нравиться (о человеке),FİİLLER,A2,UNIDAD1
+375,biografía,биография,İSİMLER,A2,UNIDAD2
+376,nacer,рождаться,FİİLLER,A2,UNIDAD2
+377,crecer,расти,FİİLLER,A2,UNIDAD2
+378,graduarse,заканчивать вуз,FİİLLER,A2,UNIDAD2
+379,casarse,жениться,FİİLLER,A2,UNIDAD2
+380,divorciarse,разводиться,FİİLLER,A2,UNIDAD2
+381,morir,умирать,FİİLLER,A2,UNIDAD2
+382,mudarse,переезжать,FİİLLER,A2,UNIDAD2
+383,empezar,начинать,FİİLLER,A2,UNIDAD2
+384,terminar,заканчивать,FİİLLER,A2,UNIDAD2
+385,ganar,"зарабатывать, побеждать",FİİLLER,A2,UNIDAD2
+386,perder,"терять, проигрывать",FİİLLER,A2,UNIDAD2
+387,descubrir,открывать,FİİLLER,A2,UNIDAD2
+388,famoso,знаменитый,SIFATLAR,A2,UNIDAD2
+389,exitoso,успешный,SIFATLAR,A2,UNIDAD2
+390,infancia,детство,İSİMLER,A2,UNIDAD2
+391,juventud,молодость,İSİMLER,A2,UNIDAD2
+392,edad adulta,взрослая жизнь,İSİMLER,A2,UNIDAD2
+393,carrera,карьера,İSİMLER,A2,UNIDAD2
+394,premio,премия,İSİMLER,A2,UNIDAD2
+395,éxito,успех,İSİMLER,A2,UNIDAD2
+396,fracaso,неудача,İSİMLER,A2,UNIDAD2
+397,en,в (году),EDATLAR / BAĞLAÇLAR,A2,UNIDAD2
+398,desde,с,EDATLAR / BAĞLAÇLAR,A2,UNIDAD2
+399,hasta,до,EDATLAR / BAĞLAÇLAR,A2,UNIDAD2
+400,durante,в течение,EDATLAR / BAĞLAÇLAR,A2,UNIDAD2
+401,hace,назад,DİĞER KELİMELER,A2,UNIDAD2
+402,casa,дом,İSİMLER,A2,UNIDAD3
+403,piso,"квартира, этаж",İSİMLER,A2,UNIDAD3
+404,habitación,комната,İSİMLER,A2,UNIDAD3
+405,salón,гостиная,İSİMLER,A2,UNIDAD3
+406,baño,ванная,İSİMLER,A2,UNIDAD3
+407,dormitorio,спальня,İSİMLER,A2,UNIDAD3
+408,pasillo,коридор,İSİMLER,A2,UNIDAD3
+409,terraza,терраса,İSİMLER,A2,UNIDAD3
+410,balcón,балкон,İSİMLER,A2,UNIDAD3
+411,jardín,сад,İSİMLER,A2,UNIDAD3
+412,garaje,гараж,İSİMLER,A2,UNIDAD3
+413,ascensor,лифт,İSİMLER,A2,UNIDAD3
+414,escalera,лестница,İSİMLER,A2,UNIDAD3
+415,mueble,мебель,İSİMLER,A2,UNIDAD3
+416,sofá,диван,İSİMLER,A2,UNIDAD3
+417,sillón,кресло,İSİMLER,A2,UNIDAD3
+418,estantería,стеллаж,İSİMLER,A2,UNIDAD3
+419,armario,шкаф,İSİMLER,A2,UNIDAD3
+420,cama,кровать,İSİMLER,A2,UNIDAD3
+421,lámpara,лампа,İSİMLER,A2,UNIDAD3
+422,alfombra,ковёр,İSİMLER,A2,UNIDAD3
+423,cortina,штора,İSİMLER,A2,UNIDAD3
+424,nevera,холодильник,İSİMLER,A2,UNIDAD3
+425,lavadora,стиральная машина,İSİMLER,A2,UNIDAD3
+426,alquilar,"снимать, сдавать",FİİLLER,A2,UNIDAD3
+427,comparar,сравнивать,FİİLLER,A2,UNIDAD3
+428,más... que,более ... чем,KALIP İFADELER,A2,UNIDAD3
+429,tan... como,такой же ... как,KALIP İFADELER,A2,UNIDAD3
+430,cómodo,удобный,SIFATLAR,A2,UNIDAD3
+431,luminoso,светлый,SIFATLAR,A2,UNIDAD3
+432,ruidoso,шумный,SIFATLAR,A2,UNIDAD3
+433,amueblado,меблированный,SIFATLAR,A2,UNIDAD3
+434,vecino,сосед,İSİMLER,A2,UNIDAD3
+435,receta,рецепт,İSİMLER,A2,UNIDAD4
+436,ingrediente,ингредиент,İSİMLER,A2,UNIDAD4
+437,cucharada,столовая ложка,İSİMLER,A2,UNIDAD4
+438,kilo,килограмм,İSİMLER,A2,UNIDAD4
+439,litro,литр,İSİMLER,A2,UNIDAD4
+440,trozo,кусок,İSİMLER,A2,UNIDAD4
+441,cortar,резать,FİİLLER,A2,UNIDAD4
+442,mezclar,смешивать,FİİLLER,A2,UNIDAD4
+443,freír,жарить,FİİLLER,A2,UNIDAD4
+444,hervir,"кипятить, варить",FİİLLER,A2,UNIDAD4
+445,hornear,печь,FİİLLER,A2,UNIDAD4
+446,añadir,добавлять,FİİLLER,A2,UNIDAD4
+447,servir,подавать,FİİLLER,A2,UNIDAD4
+448,hábito,привычка,İSİMLER,A2,UNIDAD4
+449,dieta,рацион,İSİMLER,A2,UNIDAD4
+450,vegetariano,вегетарианец,İSİMLER,A2,UNIDAD4
+451,alergia,аллергия,İSİMLER,A2,UNIDAD4
+452,saludable,полезный,SIFATLAR,A2,UNIDAD4
+453,casero,домашний,SIFATLAR,A2,UNIDAD4
+454,basura,мусор,İSİMLER,A2,UNIDAD4
+455,reciclaje,переработка,İSİMLER,A2,UNIDAD4
+456,mercado,рынок,İSİMLER,A2,UNIDAD4
+457,lista de la compra,список покупок,İSİMLER,A2,UNIDAD4
+458,consejo,совет,İSİMLER,A2,UNIDAD5
+459,recomendar,рекомендовать,FİİLLER,A2,UNIDAD5
+460,deber,долженствовать,FİİLLER,A2,UNIDAD5
+461,tener que,быть должным,FİİLLER,A2,UNIDAD5
+462,hay que,нужно (безлично),KALIP İFADELER,A2,UNIDAD5
+463,prohibido,запрещено,SIFATLAR,A2,UNIDAD5
+464,permitido,разрешено,SIFATLAR,A2,UNIDAD5
+465,salud,здоровье,İSİMLER,A2,UNIDAD5
+466,dolor,боль,İSİMLER,A2,UNIDAD5
+467,estómago,желудок,İSİMLER,A2,UNIDAD5
+468,garganta,горло,İSİMLER,A2,UNIDAD5
+469,tos,кашель,İSİMLER,A2,UNIDAD5
+470,fiebre,температура,İSİMLER,A2,UNIDAD5
+471,resfriado,простуда,İSİMLER,A2,UNIDAD5
+472,gripe,грипп,İSİMLER,A2,UNIDAD5
+473,herida,рана,İSİMLER,A2,UNIDAD5
+474,medicina,лекарство,İSİMLER,A2,UNIDAD5
+475,pastilla,таблетка,İSİMLER,A2,UNIDAD5
+476,enfermo,больной,SIFATLAR,A2,UNIDAD5
+477,sano,здоровый,SIFATLAR,A2,UNIDAD5
+478,descansar,отдыхать,FİİLLER,A2,UNIDAD5
+479,cuidarse,заботиться о себе,FİİLLER,A2,UNIDAD5
+480,beber agua,пить воду,KALIP İFADELER,A2,UNIDAD5
+481,hacer deporte,заниматься спортом,KALIP İFADELER,A2,UNIDAD5
+482,película,фильм,İSİMLER,A2,UNIDAD6
+483,comedia,комедия,İSİMLER,A2,UNIDAD6
+484,drama,драма,İSİMLER,A2,UNIDAD6
+485,terror,ужасы,İSİMLER,A2,UNIDAD6
+486,documental,документальный фильм,İSİMLER,A2,UNIDAD6
+487,actor,актёр,İSİMLER,A2,UNIDAD6
+488,actriz,актриса,İSİMLER,A2,UNIDAD6
+489,director,режиссёр,İSİMLER,A2,UNIDAD6
+490,entrada,билет,İSİMLER,A2,UNIDAD6
+491,sesión,сеанс,İSİMLER,A2,UNIDAD6
+492,subtitulos,субтитры,İSİMLER,A2,UNIDAD6
+493,valorar,оценивать,FİİLLER,A2,UNIDAD6
+494,aburrido,скучный,SIFATLAR,A2,UNIDAD6
+495,emocionante,захватывающий,SIFATLAR,A2,UNIDAD6
+496,original,оригинальный,SIFATLAR,A2,UNIDAD6
+497,predecible,предсказуемый,SIFATLAR,A2,UNIDAD6
+498,opinión,мнение,İSİMLER,A2,UNIDAD6
+499,de acuerdo,согласен,KALIP İFADELER,A2,UNIDAD6
+500,en desacuerdo,не согласен,KALIP İFADELER,A2,UNIDAD6
+501,billete,билет,İSİMLER,A2,UNIDAD7
+502,maleta,чемодан,İSİMLER,A2,UNIDAD7
+503,pasaporte,паспорт,İSİMLER,A2,UNIDAD7
+504,alojamiento,жильё,İSİMLER,A2,UNIDAD7
+505,reserva,бронь,İSİMLER,A2,UNIDAD7
+506,recepción,ресепшен,İSİMLER,A2,UNIDAD7
+507,habitación doble,двухместный номер,İSİMLER,A2,UNIDAD7
+508,desayuno incluido,завтрак включён,KALIP İFADELER,A2,UNIDAD7
+509,retraso,задержка,İSİMLER,A2,UNIDAD7
+510,equipaje,багаж,İSİMLER,A2,UNIDAD7
+511,facturar,сдавать багаж,FİİLLER,A2,UNIDAD7
+512,embarcar,садиться на борт,FİİLLER,A2,UNIDAD7
+513,aterrizar,приземляться,FİİLLER,A2,UNIDAD7
+514,despegar,взлетать,FİİLLER,A2,UNIDAD7
+515,perder el vuelo,опоздать на рейс,KALIP İFADELER,A2,UNIDAD7
+516,mapa,карта,İSİMLER,A2,UNIDAD7
+517,guía,"гид, путеводитель",İSİMLER,A2,UNIDAD7
+518,turista,турист,İSİMLER,A2,UNIDAD7
+519,excursión,экскурсия,İSİMLER,A2,UNIDAD7
+520,brazo,рука,İSİMLER,A2,UNIDAD8
+521,pierna,нога,İSİMLER,A2,UNIDAD8
+522,rodilla,колено,İSİMLER,A2,UNIDAD8
+523,espalda,спина,İSİMLER,A2,UNIDAD8
+524,cuello,шея,İSİMLER,A2,UNIDAD8
+525,hombro,плечо,İSİMLER,A2,UNIDAD8
+526,dedo,палец,İSİMLER,A2,UNIDAD8
+527,ojo,глаз,İSİMLER,A2,UNIDAD8
+528,oído,ухо (орган слуха),İSİMLER,A2,UNIDAD8
+529,nariz,нос,İSİMLER,A2,UNIDAD8
+530,boca,рот,İSİMLER,A2,UNIDAD8
+531,diente,зуб,İSİMLER,A2,UNIDAD8
+532,corazón,сердце,İSİMLER,A2,UNIDAD8
+533,estado de ánimo,настроение,İSİMLER,A2,UNIDAD8
+534,ánimo,настрой,İSİMLER,A2,UNIDAD8
+535,cansado,уставший,SIFATLAR,A2,UNIDAD8
+536,estresado,в стрессе,SIFATLAR,A2,UNIDAD8
+537,relajado,расслабленный,SIFATLAR,A2,UNIDAD8
+538,preocupado,обеспокоенный,SIFATLAR,A2,UNIDAD8
+539,ilusionado,полный надежд,SIFATLAR,A2,UNIDAD8
+540,decepcionado,разочарованный,SIFATLAR,A2,UNIDAD8
+541,enojarse,злиться,FİİLLER,A2,UNIDAD8
+542,alegrarse,радоваться,FİİLLER,A2,UNIDAD8
+543,preocuparse,беспокоиться,FİİLLER,A2,UNIDAD8
+544,relajarse,расслабляться,FİİLLER,A2,UNIDAD8
+545,antes,раньше,ZARFLAR,A2,UNIDAD9
+546,ahora,сейчас,ZARFLAR,A2,UNIDAD9
+547,acostumbrarse,привыкать,FİİLLER,A2,UNIDAD9
+548,soler,иметь обыкновение,FİİLLER,A2,UNIDAD9
+549,costumbre,обычай,İSİMLER,A2,UNIDAD9
+550,tradición,традиция,İSİMLER,A2,UNIDAD9
+551,cambiar,менять(ся),FİİLLER,A2,UNIDAD9
+552,empeorar,ухудшаться,FİİLLER,A2,UNIDAD9
+553,seguir,продолжать,FİİLLER,A2,UNIDAD9
+554,dejar de,переставать,FİİLLER,A2,UNIDAD9
+555,todavía,ещё,ZARFLAR,A2,UNIDAD9
+556,ya no,уже не,KALIP İFADELER,A2,UNIDAD9
+557,en aquella época,в ту эпоху,KALIP İFADELER,A2,UNIDAD9
+558,cuando era pequeño,когда я был маленьким,KALIP İFADELER,A2,UNIDAD9
+559,cada vez más,всё больше,KALIP İFADELER,A2,UNIDAD9
+560,al contrario,наоборот,KALIP İFADELER,A2,UNIDAD9
+561,anécdota,"анекдот, история",İSİMLER,A2,UNIDAD10
+562,de repente,вдруг,KALIP İFADELER,A2,UNIDAD10
+563,entonces,тогда,ZARFLAR,A2,UNIDAD10
+564,luego,потом,ZARFLAR,A2,UNIDAD10
+565,al final,в итоге,KALIP İFADELER,A2,UNIDAD10
+566,por eso,поэтому,KALIP İFADELER,A2,UNIDAD10
+567,mientras,"пока, в то время как",EDATLAR / BAĞLAÇLAR,A2,UNIDAD10
+568,cuando,когда,EDATLAR / BAĞLAÇLAR,A2,UNIDAD10
+569,contar,рассказывать,FİİLLER,A2,UNIDAD10
+570,ocurrir,происходить,FİİLLER,A2,UNIDAD10
+571,encontrarse,встречать(ся),FİİLLER,A2,UNIDAD10
+572,perderse,заблудиться,FİİLLER,A2,UNIDAD10
+573,asustarse,испугаться,FİİLLER,A2,UNIDAD10
+574,reírse,смеяться,FİİLLER,A2,UNIDAD10
+575,llorar,плакать,FİİLLER,A2,UNIDAD10
+576,sorpresa,сюрприз,İSİMLER,A2,UNIDAD10
+577,casualidad,случайность,İSİMLER,A2,UNIDAD10
+578,increíble,невероятный,SIFATLAR,A2,UNIDAD10
+579,inesperado,неожиданный,SIFATLAR,A2,UNIDAD10
+580,trabajo,работа,İSİMLER,B1,UNIDAD1
+581,empleo,занятость,İSİMLER,B1,UNIDAD1
+582,paro,безработица,İSİMLER,B1,UNIDAD1
+583,entrevista,собеседование,İSİMLER,B1,UNIDAD1
+584,currículum,резюме,İSİMLER,B1,UNIDAD1
+585,jefe,начальник,İSİMLER,B1,UNIDAD1
+586,compañero,коллега,İSİMLER,B1,UNIDAD1
+587,horario,график,İSİMLER,B1,UNIDAD1
+588,sueldo,зарплата,İSİMLER,B1,UNIDAD1
+589,contrato,контракт,İSİMLER,B1,UNIDAD1
+590,autónomo,самозанятый,İSİMLER,B1,UNIDAD1
+591,becario,стажёр,İSİMLER,B1,UNIDAD1
+592,reunión,совещание,İSİMLER,B1,UNIDAD1
+593,plazo,срок,İSİMLER,B1,UNIDAD1
+594,tarea,задача,İSİMLER,B1,UNIDAD1
+595,solicitar,подавать заявку,FİİLLER,B1,UNIDAD1
+596,contratar,нанимать,FİİLLER,B1,UNIDAD1
+597,despedir,увольнять,FİİLLER,B1,UNIDAD1
+598,ascender,повышать,FİİLLER,B1,UNIDAD1
+599,formarse,обучаться,FİİLLER,B1,UNIDAD1
+600,encargarse,отвечать за,FİİLLER,B1,UNIDAD1
+601,estresante,стрессовый,SIFATLAR,B1,UNIDAD1
+602,bien pagado,хорошо оплачиваемый,SIFATLAR,B1,UNIDAD1
+603,temporal,временный,SIFATLAR,B1,UNIDAD1
+604,fijo,постоянный,SIFATLAR,B1,UNIDAD1
+605,futuro,будущее,İSİMLER,B1,UNIDAD2
+606,plan,план,İSİMLER,B1,UNIDAD2
+607,proyecto,проект,İSİMLER,B1,UNIDAD2
+608,objetivo,цель,İSİMLER,B1,UNIDAD2
+609,sueño,"мечта, сон",İSİMLER,B1,UNIDAD2
+610,oportunidad,возможность,İSİMLER,B1,UNIDAD2
+611,previsión,прогноз,İSİMLER,B1,UNIDAD2
+612,intención,намерение,İSİMLER,B1,UNIDAD2
+613,pensar,"думать, собираться",FİİLLER,B1,UNIDAD2
+614,ir a,собираться,FİİLLER,B1,UNIDAD2
+615,querer,хотеть,FİİLLER,B1,UNIDAD2
+616,esperar,"надеяться, ждать",FİİLLER,B1,UNIDAD2
+617,prometer,обещать,FİİLLER,B1,UNIDAD2
+618,imaginar,представлять,FİİLLER,B1,UNIDAD2
+619,dentro de,через,EDATLAR / BAĞLAÇLAR,B1,UNIDAD2
+620,el año que viene,в следующем году,KALIP İFADELER,B1,UNIDAD2
+621,seguro,наверняка,SIFATLAR,B1,UNIDAD2
+622,probable,вероятный,SIFATLAR,B1,UNIDAD2
+623,posible,возможный,SIFATLAR,B1,UNIDAD2
+624,norma,"норма, правило",İSİMLER,B1,UNIDAD3
+625,ley,закон,İSİMLER,B1,UNIDAD3
+626,prohibición,запрет,İSİMLER,B1,UNIDAD3
+627,permiso,разрешение,İSİMLER,B1,UNIDAD3
+628,multa,штраф,İSİMLER,B1,UNIDAD3
+629,derecho,право,İSİMLER,B1,UNIDAD3
+630,condición,условие,İSİMLER,B1,UNIDAD3
+631,prohibir,запрещать,FİİLLER,B1,UNIDAD3
+632,permitir,разрешать,FİİLLER,B1,UNIDAD3
+633,obligar,обязывать,FİİLLER,B1,UNIDAD3
+634,respetar,"уважать, соблюдать",FİİLLER,B1,UNIDAD3
+635,si,если,EDATLAR / BAĞLAÇLAR,B1,UNIDAD3
+636,a menos que,если только не,EDATLAR / BAĞLAÇLAR,B1,UNIDAD3
+637,siempre que,при условии что,EDATLAR / BAĞLAÇLAR,B1,UNIDAD3
+638,en caso de,в случае,KALIP İFADELER,B1,UNIDAD3
+639,obligatorio,обязательный,SIFATLAR,B1,UNIDAD3
+640,opcional,необязательный,SIFATLAR,B1,UNIDAD3
+641,relato,рассказ,İSİMLER,B1,UNIDAD4
+642,detalle,деталь,İSİMLER,B1,UNIDAD4
+643,desenlace,развязка,İSİMLER,B1,UNIDAD4
+644,protagonista,протагонист,İSİMLER,B1,UNIDAD4
+645,narrar,повествовать,FİİLLER,B1,UNIDAD4
+646,describir,описывать,FİİLLER,B1,UNIDAD4
+647,suceder,случаться,FİİLLER,B1,UNIDAD4
+648,resultar,оказываться,FİİLLER,B1,UNIDAD4
+649,de pronto,вдруг,KALIP İFADELER,B1,UNIDAD4
+650,en aquel momento,в тот момент,KALIP İFADELER,B1,UNIDAD4
+651,sin embargo,однако,KALIP İFADELER,B1,UNIDAD4
+652,además,кроме того,ZARFLAR,B1,UNIDAD4
+653,por un lado,с одной стороны,KALIP İFADELER,B1,UNIDAD4
+654,por otro lado,с другой стороны,KALIP İFADELER,B1,UNIDAD4
+655,instrucción,инструкция,İSİMLER,B1,UNIDAD5
+656,advertencia,предупреждение,İSİMLER,B1,UNIDAD5
+657,sugerir,предлагать,FİİLLER,B1,UNIDAD5
+658,aconsejar,советовать,FİİLLER,B1,UNIDAD5
+659,evitar,избегать,FİİLLER,B1,UNIDAD5
+660,intentar,пытаться,FİİLLER,B1,UNIDAD5
+661,conseguir,добиваться,FİİLLER,B1,UNIDAD5
+662,lograr,достигать,FİİLLER,B1,UNIDAD5
+663,imperativo,повелительное наклонение,İSİMLER,B1,UNIDAD5
+664,se recomienda,рекомендуется,KALIP İFADELER,B1,UNIDAD5
+665,es mejor,лучше,KALIP İFADELER,B1,UNIDAD5
+666,lo más importante,самое важное,KALIP İFADELER,B1,UNIDAD5
+667,deseo,желание,İSİMLER,B1,UNIDAD6
+668,sentimiento,чувство,İSİMLER,B1,UNIDAD6
+669,esperanza,надежда,İSİMLER,B1,UNIDAD6
+670,pena,печаль,İSİMLER,B1,UNIDAD6
+671,desear,желать,FİİLLER,B1,UNIDAD6
+672,ojalá,хоть бы,DİĞER KELİMELER,B1,UNIDAD6
+673,temer,бояться,FİİLLER,B1,UNIDAD6
+674,esperar que,надеяться что,FİİLLER,B1,UNIDAD6
+675,siento que,мне жаль что,KALIP İFADELER,B1,UNIDAD6
+676,me da pena,мне жаль,KALIP İFADELER,B1,UNIDAD6
+677,me da igual,мне всё равно,KALIP İFADELER,B1,UNIDAD6
+678,subjuntivo,сослагательное наклонение,İSİMLER,B1,UNIDAD6
+679,objeto,предмет,İSİMLER,B1,UNIDAD7
+680,forma,форма,İSİMLER,B1,UNIDAD7
+681,material,материал,İSİMLER,B1,UNIDAD7
+682,madera,дерево,İSİMLER,B1,UNIDAD7
+683,metal,металл,İSİMLER,B1,UNIDAD7
+684,plástico,пластик,İSİMLER,B1,UNIDAD7
+685,cristal,стекло,İSİMLER,B1,UNIDAD7
+686,tela,ткань,İSİMLER,B1,UNIDAD7
+687,papel,бумага,İSİMLER,B1,UNIDAD7
+688,redondo,круглый,SIFATLAR,B1,UNIDAD7
+689,cuadrado,квадратный,SIFATLAR,B1,UNIDAD7
+690,rectangular,прямоугольный,SIFATLAR,B1,UNIDAD7
+691,suave,мягкий,SIFATLAR,B1,UNIDAD7
+692,duro,твёрдый,SIFATLAR,B1,UNIDAD7
+693,ligero,лёгкий,SIFATLAR,B1,UNIDAD7
+694,pesado,тяжёлый,SIFATLAR,B1,UNIDAD7
+695,servir para,служить для,FİİLLER,B1,UNIDAD7
+696,estar hecho de,быть сделанным из,FİİLLER,B1,UNIDAD7
+697,funcionar,работать (о приборе),FİİLLER,B1,UNIDAD7
+698,sociedad,общество,İSİMLER,B1,UNIDAD8
+699,política,политика,İSİMLER,B1,UNIDAD8
+700,gobierno,правительство,İSİMLER,B1,UNIDAD8
+701,elección,выборы,İSİMLER,B1,UNIDAD8
+702,voto,голос,İSİMLER,B1,UNIDAD8
+703,partido,партия,İSİMLER,B1,UNIDAD8
+704,noticia,новость,İSİMLER,B1,UNIDAD8
+705,prensa,пресса,İSİMLER,B1,UNIDAD8
+706,manifestación,манифестация,İSİMLER,B1,UNIDAD8
+707,votar,голосовать,FİİLLER,B1,UNIDAD8
+708,protestar,протестовать,FİİLLER,B1,UNIDAD8
+709,informarse,информироваться,FİİLLER,B1,UNIDAD8
+710,debatir,дискутировать,FİİLLER,B1,UNIDAD8
+711,justo,справедливый,SIFATLAR,B1,UNIDAD8
+712,injusto,несправедливый,SIFATLAR,B1,UNIDAD8
+713,democrático,демократический,SIFATLAR,B1,UNIDAD8
+714,corrupto,коррумпированный,SIFATLAR,B1,UNIDAD8
+715,personalidad,личность,İSİMLER,B1,UNIDAD9
+716,rasgo,черта,İSİMLER,B1,UNIDAD9
+717,actitud,отношение,İSİMLER,B1,UNIDAD9
+718,generoso,щедрый,SIFATLAR,B1,UNIDAD9
+719,egoísta,эгоистичный,SIFATLAR,B1,UNIDAD9
+720,sincero,искренний,SIFATLAR,B1,UNIDAD9
+721,falso,фальшивый,SIFATLAR,B1,UNIDAD9
+722,optimista,оптимист,SIFATLAR,B1,UNIDAD9
+723,pesimista,пессимист,SIFATLAR,B1,UNIDAD9
+724,responsable,ответственный,SIFATLAR,B1,UNIDAD9
+725,impulsivo,импульсивный,SIFATLAR,B1,UNIDAD9
+726,sensible,чувствительный,SIFATLAR,B1,UNIDAD9
+727,seguro de sí,уверенный в себе,SIFATLAR,B1,UNIDAD9
+728,parecerse a,быть похожим на,FİİLLER,B1,UNIDAD9
+729,comportarse,вести себя,FİİLLER,B1,UNIDAD9
+730,medioambiente,окружающая среда,İSİMLER,B1,UNIDAD10
+731,contaminación,загрязнение,İSİMLER,B1,UNIDAD10
+732,residuo,отход,İSİMLER,B1,UNIDAD10
+733,energía,энергия,İSİMLER,B1,UNIDAD10
+734,cambio climático,изменение климата,İSİMLER,B1,UNIDAD10
+735,especie,вид,İSİMLER,B1,UNIDAD10
+736,proteger,защищать,FİİLLER,B1,UNIDAD10
+737,contaminar,загрязнять,FİİLLER,B1,UNIDAD10
+738,ahorrar,экономить,FİİLLER,B1,UNIDAD10
+739,reciclar,перерабатывать,FİİLLER,B1,UNIDAD10
+740,renovable,возобновляемый,SIFATLAR,B1,UNIDAD10
+741,sostenible,устойчивый,SIFATLAR,B1,UNIDAD10
+742,ecológico,экологичный,SIFATLAR,B1,UNIDAD10
+743,en peligro,под угрозой,KALIP İFADELER,B1,UNIDAD10
+744,aunque,хотя,EDATLAR / BAĞLAÇLAR,B1,UNIDAD11
+745,así que,так что,EDATLAR / BAĞLAÇLAR,B1,UNIDAD11
+746,o sea,то есть,KALIP İFADELER,B1,UNIDAD11
+747,es decir,то есть,KALIP İFADELER,B1,UNIDAD11
+748,por tanto,следовательно,KALIP İFADELER,B1,UNIDAD11
+749,en cambio,"зато, напротив",KALIP İFADELER,B1,UNIDAD11
+750,de todas formas,в любом случае,KALIP İFADELER,B1,UNIDAD11
+751,conector,связка,İSİMLER,B1,UNIDAD11
+752,argumento,аргумент,İSİMLER,B1,UNIDAD11
+753,opinar,считать,FİİLLER,B1,UNIDAD11
+754,estar de acuerdo,соглашаться,FİİLLER,B1,UNIDAD11
+755,discrepar,не соглашаться,FİİLLER,B1,UNIDAD11
+756,matizar,уточнять,FİİLLER,B1,UNIDAD11
+757,estilo indirecto,косвенная речь,İSİMLER,B1,UNIDAD12
+758,afirmar,утверждать,FİİLLER,B1,UNIDAD12
+759,preguntar,спрашивать,FİİLLER,B1,UNIDAD12
+760,responder,отвечать,FİİLLER,B1,UNIDAD12
+761,decir que,говорить что,FİİLLER,B1,UNIDAD12
+762,preguntar si,спрашивать ли,FİİLLER,B1,UNIDAD12
+763,según,согласно,EDATLAR / BAĞLAÇLAR,B1,UNIDAD12
+764,al parecer,по-видимому,KALIP İFADELER,B1,UNIDAD12
+765,rumor,слух,İSİMLER,B1,UNIDAD12
+766,cita,цитата,İSİMLER,B1,UNIDAD12
+767,fuente,источник,İSİMLER,B1,UNIDAD12
+768,identidad,идентичность,İSİMLER,B2,UNIDAD1
+769,origen,происхождение,İSİMLER,B2,UNIDAD1
+770,estereotipo,стереотип,İSİMLER,B2,UNIDAD1
+771,prejuicio,предрассудок,İSİMLER,B2,UNIDAD1
+772,diversidad,разнообразие,İSİMLER,B2,UNIDAD1
+773,integración,интеграция,İSİMLER,B2,UNIDAD1
+774,encajar,вписываться,FİİLLER,B2,UNIDAD1
+775,discriminar,дискриминировать,FİİLLER,B2,UNIDAD1
+776,incluir,включать,FİİLLER,B2,UNIDAD1
+777,pertenecer,принадлежать,FİİLLER,B2,UNIDAD1
+778,abierto de mente,широких взглядов,SIFATLAR,B2,UNIDAD1
+779,cerrado,закрытый,SIFATLAR,B2,UNIDAD1
+780,medios,СМИ,İSİMLER,B2,UNIDAD2
+781,titular,заголовок,İSİMLER,B2,UNIDAD2
+782,sesgo,предвзятость,İSİMLER,B2,UNIDAD2
+783,desinformación,дезинформация,İSİMLER,B2,UNIDAD2
+784,filtrar,фильтровать,FİİLLER,B2,UNIDAD2
+785,contrastar,сверять,FİİLLER,B2,UNIDAD2
+786,viralizarse,стать вирусным,FİİLLER,B2,UNIDAD2
+787,riguroso,"строгий, точный",SIFATLAR,B2,UNIDAD2
+788,sensacionalista,сенсационный,SIFATLAR,B2,UNIDAD2
+789,fuente fiable,надёжный источник,İSİMLER,B2,UNIDAD2
+790,burbuja informativa,информационный пузырь,İSİMLER,B2,UNIDAD2
+791,consumo,потребление,İSİMLER,B2,UNIDAD3
+792,marca,бренд,İSİMLER,B2,UNIDAD3
+793,publicidad,реклама,İSİMLER,B2,UNIDAD3
+794,moda rápida,быстрая мода,İSİMLER,B2,UNIDAD3
+795,segunda mano,секонд-хенд,İSİMLER,B2,UNIDAD3
+796,consumir,потреблять,FİİLLER,B2,UNIDAD3
+797,desperdiciar,транжирить,FİİLLER,B2,UNIDAD3
+798,presumir,хвастаться,FİİLLER,B2,UNIDAD3
+799,ético,этичный,SIFATLAR,B2,UNIDAD3
+800,ostentoso,показной,SIFATLAR,B2,UNIDAD3
+801,huella de carbono,углеродный след,İSİMLER,B2,UNIDAD4
+802,energía renovable,возобновляемая энергия,İSİMLER,B2,UNIDAD4
+803,calentamiento global,глобальное потепление,İSİMLER,B2,UNIDAD4
+804,biodiversidad,биоразнообразие,İSİMLER,B2,UNIDAD4
+805,mitigar,смягчать,FİİLLER,B2,UNIDAD4
+806,compensar,компенсировать,FİİLLER,B2,UNIDAD4
+807,irreversible,необратимый,SIFATLAR,B2,UNIDAD4
+808,turismo,туризм,İSİMLER,B2,UNIDAD5
+809,masificación,массовость,İSİMLER,B2,UNIDAD5
+810,patrimonio,наследие,İSİMLER,B2,UNIDAD5
+811,temporada alta,высокий сезон,İSİMLER,B2,UNIDAD5
+812,turismo sostenible,устойчивый туризм,İSİMLER,B2,UNIDAD5
+813,desestacionalizar,сглаживать сезонность,FİİLLER,B2,UNIDAD5
+814,saturar,переполнять,FİİLLER,B2,UNIDAD5
+815,auténtico,подлинный,SIFATLAR,B2,UNIDAD5
+816,masificado,переполненный туристами,SIFATLAR,B2,UNIDAD5
+817,competición,соревнование,İSİMLER,B2,UNIDAD6
+818,dopaje,допинг,İSİMLER,B2,UNIDAD6
+819,aficionado,болельщик,İSİMLER,B2,UNIDAD6
+820,rendimiento,"результат, производительность",İSİMLER,B2,UNIDAD6
+821,disciplina,дисциплина,İSİMLER,B2,UNIDAD6
+822,entrenar,тренировать(ся),FİİLLER,B2,UNIDAD6
+823,superarse,превосходить себя,FİİLLER,B2,UNIDAD6
+824,competitivo,соревновательный,SIFATLAR,B2,UNIDAD6
+825,amateur,любительский,SIFATLAR,B2,UNIDAD6
+826,relación,отношения,İSİMLER,B2,UNIDAD7
+827,pareja,пара,İSİMLER,B2,UNIDAD7
+828,conflicto,конфликт,İSİMLER,B2,UNIDAD7
+829,celos,ревность,İSİMLER,B2,UNIDAD7
+830,confianza,доверие,İSİMLER,B2,UNIDAD7
+831,ruptura,разрыв,İSİMLER,B2,UNIDAD7
+832,comprometerse,брать обязательства,FİİLLER,B2,UNIDAD7
+833,romper,рвать отношения,FİİLLER,B2,UNIDAD7
+834,reconstruir,восстанавливать,FİİLLER,B2,UNIDAD7
+835,tóxico,токсичный,SIFATLAR,B2,UNIDAD7
+836,estable,стабильный,SIFATLAR,B2,UNIDAD7
+837,educación,образование,İSİMLER,B2,UNIDAD8
+838,competencia,компетенция,İSİMLER,B2,UNIDAD8
+839,fracaso escolar,школьная неуспеваемость,İSİMLER,B2,UNIDAD8
+840,beca,стипендия,İSİMLER,B2,UNIDAD8
+841,formación continua,непрерывное обучение,İSİMLER,B2,UNIDAD8
+842,analfabetismo,неграмотность,İSİMLER,B2,UNIDAD8
+843,evaluar,оценивать,FİİLLER,B2,UNIDAD8
+844,motivar,мотивировать,FİİLLER,B2,UNIDAD8
+845,equitativo,справедливый,SIFATLAR,B2,UNIDAD8
+846,selectivo,избирательный,SIFATLAR,B2,UNIDAD8
+847,ensayo,репетиция,İSİMLER,B2,UNIDAD9
+848,escenario,сцена,İSİMLER,B2,UNIDAD9
+849,público,публика,İSİMLER,B2,UNIDAD9
+850,crítica,рецензия,İSİMLER,B2,UNIDAD9
+851,obra,"пьеса, произведение",İSİMLER,B2,UNIDAD9
+852,representar,"ставить, изображать",FİİLLER,B2,UNIDAD9
+853,aplaudir,аплодировать,FİİLLER,B2,UNIDAD9
+854,conmovedor,трогательный,SIFATLAR,B2,UNIDAD9
+855,innovador,новаторский,SIFATLAR,B2,UNIDAD9
+856,mediación,медиация,İSİMLER,B2,UNIDAD10
+857,negociación,переговоры,İSİMLER,B2,UNIDAD10
+858,consenso,консенсус,İSİMLER,B2,UNIDAD10
+859,concesión,уступка,İSİMLER,B2,UNIDAD10
+860,punto de vista,точка зрения,İSİMLER,B2,UNIDAD10
+861,mediar,посредничать,FİİLLER,B2,UNIDAD10
+862,ceder,уступать,FİİLLER,B2,UNIDAD10
+863,imponer,навязывать,FİİLLER,B2,UNIDAD10
+864,constructivo,конструктивный,SIFATLAR,B2,UNIDAD10
+865,reportaje,репортаж,İSİMLER,B2,UNIDAD11
+866,crónica,хроника,İSİMLER,B2,UNIDAD11
+867,enfoque,ракурс,İSİMLER,B2,UNIDAD11
+868,redactar,писать текст,FİİLLER,B2,UNIDAD11
+869,contrastar fuentes,сверять источники,FİİLLER,B2,UNIDAD11
+870,tendencioso,тенденциозный,SIFATLAR,B2,UNIDAD11
+871,subjuntivo imperfecto,имперфект субхунтива,İSİMLER,B2,UNIDAD12
+872,condición irreal,нереальное условие,İSİMLER,B2,UNIDAD12
+873,como si,как будто,EDATLAR / BAĞLAÇLAR,B2,UNIDAD12
+874,quiera que,чтобы ни,KALIP İFADELER,B2,UNIDAD12
+875,por más que,как ни,EDATLAR / BAĞLAÇLAR,B2,UNIDAD12
+876,conceder,допускать,FİİLLER,B2,UNIDAD12
+877,hipotético,гипотетический,SIFATLAR,B2,UNIDAD12
+878,contrafactual,контрфактический,SIFATLAR,B2,UNIDAD12
+879,matiz,нюанс,İSİMLER,B2,UNIDAD12
+880,mundo,мир,İSİMLER,A1,UNIDAD1
+881,palabra,слово,İSİMLER,A1,UNIDAD1
+882,pregunta,вопрос,İSİMLER,A1,UNIDAD1
+883,respuesta,ответ,İSİMLER,A1,UNIDAD1
+884,ejemplo,пример,İSİMLER,A1,UNIDAD1
+885,error,ошибка,İSİMLER,A1,UNIDAD1
+886,página,страница,İSİMLER,A1,UNIDAD1
+887,letra,буква,İSİMLER,A1,UNIDAD1
+888,cartel,плакат,İSİMLER,A1,UNIDAD1
+889,mochila,рюкзак,İSİMLER,A1,UNIDAD1
+890,carpeta,папка,İSİMLER,A1,UNIDAD1
+891,abrir,открывать,FİİLLER,A1,UNIDAD1
+892,cerrar,закрывать,FİİLLER,A1,UNIDAD1
+893,escribir,писать,FİİLLER,A1,UNIDAD1
+894,mirar,смотреть,FİİLLER,A1,UNIDAD1
+895,entrar,входить,FİİLLER,A1,UNIDAD1
+896,sentarse,садиться,FİİLLER,A1,UNIDAD1
+897,levantar la mano,поднимать руку,FİİLLER,A1,UNIDAD1
+898,formulario,бланк,İSİMLER,A1,UNIDAD2
+899,número de teléfono,номер телефона,İSİMLER,A1,UNIDAD2
+900,web,сайт,İSİMLER,A1,UNIDAD2
+901,usuario,пользователь,İSİMLER,A1,UNIDAD2
+902,contraseña,пароль,İSİMLER,A1,UNIDAD2
+903,perfil,профиль,İSİMLER,A1,UNIDAD2
+904,llenar,заполнять,FİİLLER,A1,UNIDAD2
+905,firmar,подписывать,FİİLLER,A1,UNIDAD2
+906,enviar,отправлять,FİİLLER,A1,UNIDAD2
+907,recibir,получать,FİİLLER,A1,UNIDAD2
+908,edificio,здание,İSİMLER,A1,UNIDAD3
+909,puente,мост,İSİMLER,A1,UNIDAD3
+910,semáforo,светофор,İSİMLER,A1,UNIDAD3
+911,esquina,угол,İSİMLER,A1,UNIDAD3
+912,centro,центр,İSİMLER,A1,UNIDAD3
+913,afueras,окраина,İSİMLER,A1,UNIDAD3
+914,tráfico,движение,İSİMLER,A1,UNIDAD3
+915,aparcamiento,парковка,İSİMLER,A1,UNIDAD3
+916,metro,метро,İSİMLER,A1,UNIDAD3
+917,autobús,автобус,İSİMLER,A1,UNIDAD3
+918,taxi,такси,İSİMLER,A1,UNIDAD3
+919,bici,велосипед,İSİMLER,A1,UNIDAD3
+920,arriba,наверху,ZARFLAR,A1,UNIDAD3
+921,abajo,внизу,ZARFLAR,A1,UNIDAD3
+922,dentro,внутри,ZARFLAR,A1,UNIDAD3
+923,fuera,снаружи,ZARFLAR,A1,UNIDAD3
+924,instrumento,инструмент,İSİMLER,A1,UNIDAD4
+925,guitarra,гитара,İSİMLER,A1,UNIDAD4
+926,piano,пианино,İSİMLER,A1,UNIDAD4
+927,canción,песня,İSİMLER,A1,UNIDAD4
+928,concierto,концерт,İSİMLER,A1,UNIDAD4
+929,equipo,команда,İSİMLER,A1,UNIDAD4
+930,despertador,будильник,İSİMLER,A1,UNIDAD5
+931,ducha,душ,İSİMLER,A1,UNIDAD5
+932,cepillo,щётка,İSİMLER,A1,UNIDAD5
+933,jabón,мыло,İSİMLER,A1,UNIDAD5
+934,toalla,полотенце,İSİMLER,A1,UNIDAD5
+935,descanso,отдых,İSİMLER,A1,UNIDAD5
+936,cepillarse,чистить зубы,FİİLLER,A1,UNIDAD5
+937,lavarse,мыться,FİİLLER,A1,UNIDAD5
+938,afeitarse,бриться,FİİLLER,A1,UNIDAD5
+939,maquillarse,краситься,FİİLLER,A1,UNIDAD5
+940,cucharilla,чайная ложка,İSİMLER,A1,UNIDAD6
+941,tenedor,вилка,İSİMLER,A1,UNIDAD6
+942,cuchillo,нож,İSİMLER,A1,UNIDAD6
+943,plato,тарелка,İSİMLER,A1,UNIDAD6
+944,vaso,стакан,İSİMLER,A1,UNIDAD6
+945,taza,чашка,İSİMLER,A1,UNIDAD6
+946,servilleta,салфетка,İSİMLER,A1,UNIDAD6
+947,menú,меню,İSİMLER,A1,UNIDAD6
+948,postre,десерт,İSİMLER,A1,UNIDAD6
+949,entrante,закуска,İSİMLER,A1,UNIDAD6
+950,bolso,сумка,İSİMLER,A1,UNIDAD7
+951,cartera,кошелёк,İSİMLER,A1,UNIDAD7
+952,reloj,часы,İSİMLER,A1,UNIDAD7
+953,gafas de sol,солнечные очки,İSİMLER,A1,UNIDAD7
+954,paraguas,зонт,İSİMLER,A1,UNIDAD7
+955,sudadera,толстовка,İSİMLER,A1,UNIDAD7
+956,bañador,купальник,İSİMLER,A1,UNIDAD7
+957,cinturón,ремень,İSİMLER,A1,UNIDAD7
+958,rubio,светловолосый,SIFATLAR,A1,UNIDAD8
+959,moreno,брюнет,SIFATLAR,A1,UNIDAD8
+960,pelirrojo,рыжий,SIFATLAR,A1,UNIDAD8
+961,calvo,лысый,SIFATLAR,A1,UNIDAD8
+962,rizado,кудрявый,SIFATLAR,A1,UNIDAD8
+963,liso,прямой,SIFATLAR,A1,UNIDAD8
+964,alegre,весёлый,SIFATLAR,A1,UNIDAD8
+965,triste,грустный,SIFATLAR,A1,UNIDAD8
+966,grosero,грубый,SIFATLAR,A1,UNIDAD8
+967,aprender,учить,FİİLLER,A1,UNIDAD9
+968,enseñar,преподавать,FİİLLER,A1,UNIDAD9
+969,decidir,решать,FİİLLER,A1,UNIDAD9
+970,olvidar,забывать,FİİLLER,A1,UNIDAD9
+971,recordar,помнить,FİİLLER,A1,UNIDAD9
+972,ayudar,помогать,FİİLLER,A1,UNIDAD9
+973,necesitar,нуждаться,FİİLLER,A1,UNIDAD9
+974,buscar,искать,FİİLLER,A1,UNIDAD9
+975,encontrar,находить,FİİLLER,A1,UNIDAD9
+976,dialecto,диалект,İSİMLER,A2,UNIDAD1
+977,jerga,жаргон,İSİMLER,A2,UNIDAD1
+978,traducción,перевод,İSİMLER,A2,UNIDAD1
+979,diccionario,словарь,İSİMLER,A2,UNIDAD1
+980,dudar,сомневаться,FİİLLER,A2,UNIDAD1
+981,confundir,путать,FİİLLER,A2,UNIDAD1
+982,aclarar,прояснять,FİİLLER,A2,UNIDAD1
+983,resumir,резюмировать,FİİLLER,A2,UNIDAD1
+984,logro,достижение,İSİMLER,A2,UNIDAD2
+985,meta,цель,İSİMLER,A2,UNIDAD2
+986,etapa,этап,İSİMLER,A2,UNIDAD2
+987,legado,наследие,İSİMLER,A2,UNIDAD2
+988,fundar,основывать,FİİLLER,A2,UNIDAD2
+989,publicar,публиковать,FİİLLER,A2,UNIDAD2
+990,inventar,изобретать,FİİLLER,A2,UNIDAD2
+991,dirigir,руководить,FİİLLER,A2,UNIDAD2
+992,inquilino,арендатор,İSİMLER,A2,UNIDAD3
+993,hipoteca,ипотека,İSİMLER,A2,UNIDAD3
+994,comunidad,ТСЖ,İSİMLER,A2,UNIDAD3
+995,horno,духовка,İSİMLER,A2,UNIDAD4
+996,sartén,сковорода,İSİMLER,A2,UNIDAD4
+997,cazuela,кастрюля,İSİMLER,A2,UNIDAD4
+998,microondas,микроволновка,İSİMLER,A2,UNIDAD4
+999,pelar,чистить,FİİLLER,A2,UNIDAD4
+1000,picar,нарезать,FİİLLER,A2,UNIDAD4
+1001,remover,помешивать,FİİLLER,A2,UNIDAD4
+1002,sazonar,приправлять,FİİLLER,A2,UNIDAD4
+1003,síntoma,симптом,İSİMLER,A2,UNIDAD5
+1004,cita médica,запись к врачу,İSİMLER,A2,UNIDAD5
+1005,urgencia,неотложка,İSİMLER,A2,UNIDAD5
+1006,seguro médico,медстраховка,İSİMLER,A2,UNIDAD5
+1007,toser,кашлять,FİİLLER,A2,UNIDAD5
+1008,estornudar,чихать,FİİLLER,A2,UNIDAD5
+1009,sangrar,кровоточить,FİİLLER,A2,UNIDAD5
+1010,curar,лечить,FİİLLER,A2,UNIDAD5
+1011,taquilla,касса,İSİMLER,A2,UNIDAD6
+1012,reparto,актёрский состав,İSİMLER,A2,UNIDAD6
+1013,guion,сценарий,İSİMLER,A2,UNIDAD6
+1014,estreno,премьера,İSİMLER,A2,UNIDAD6
+1015,escala,пересадка,İSİMLER,A2,UNIDAD7
+1016,asiento,сиденье,İSİMLER,A2,UNIDAD7
+1017,ventanilla,иллюминатор,İSİMLER,A2,UNIDAD7
+1018,aduana,таможня,İSİMLER,A2,UNIDAD7
+1019,visa,виза,İSİMLER,A2,UNIDAD7
+1020,seguro de viaje,страховка поездки,İSİMLER,A2,UNIDAD7
+1021,muñeca,запястье,İSİMLER,A2,UNIDAD8
+1022,tobillo,лодыжка,İSİMLER,A2,UNIDAD8
+1023,codo,локоть,İSİMLER,A2,UNIDAD8
+1024,pulmón,лёгкое,İSİMLER,A2,UNIDAD8
+1025,hígado,печень,İSİMLER,A2,UNIDAD8
+1026,sangre,кровь,İSİMLER,A2,UNIDAD8
+1027,hueso,кость,İSİMLER,A2,UNIDAD8
+1028,músculo,мышца,İSİMLER,A2,UNIDAD8
+1029,antiguamente,в старину,ZARFLAR,A2,UNIDAD9
+1030,actualmente,в настоящее время,ZARFLAR,A2,UNIDAD9
+1031,habitualmente,обычно,ZARFLAR,A2,UNIDAD9
+1032,raramente,редко,ZARFLAR,A2,UNIDAD9
+1033,para colmo,в довершение всего,KALIP İFADELER,A2,UNIDAD10
+1034,menos mal,хорошо хоть,KALIP İFADELER,A2,UNIDAD10
+1035,por poco,едва не,KALIP İFADELER,A2,UNIDAD10
+1036,de casualidad,случайно,KALIP İFADELER,A2,UNIDAD10
+1037,nómina,расчётный лист,İSİMLER,B1,UNIDAD1
+1038,baja laboral,больничный,İSİMLER,B1,UNIDAD1
+1039,teletrabajo,удалёнка,İSİMLER,B1,UNIDAD1
+1040,convenio,коллективный договор,İSİMLER,B1,UNIDAD1
+1041,sindicato,профсоюз,İSİMLER,B1,UNIDAD1
+1042,prever,предвидеть,FİİLLER,B1,UNIDAD2
+1043,plantear,ставить (цель),FİİLLER,B1,UNIDAD2
+1044,posponer,откладывать,FİİLLER,B1,UNIDAD2
+1045,adelantar,приближать,FİİLLER,B1,UNIDAD2
+1046,sanción,"санкция, штраф",İSİMLER,B1,UNIDAD3
+1047,normativa,норматив,İSİMLER,B1,UNIDAD3
+1048,excepción,исключение,İSİMLER,B1,UNIDAD3
+1049,requisito,требование,İSİMLER,B1,UNIDAD3
+1050,ciudadano,гражданин,İSİMLER,B1,UNIDAD8
+1051,impuesto,налог,İSİMLER,B1,UNIDAD8
+1052,campaña,кампания,İSİMLER,B1,UNIDAD8
+1053,escaño,мандат,İSİMLER,B1,UNIDAD8
+1054,vertido,сброс отходов,İSİMLER,B1,UNIDAD10
+1055,sequía,засуха,İSİMLER,B1,UNIDAD10
+1056,incendio forestal,лесной пожар,İSİMLER,B1,UNIDAD10
+1057,especie en peligro,вымирающий вид,İSİMLER,B1,UNIDAD10
+1058,arraigo,укоренённость,İSİMLER,B2,UNIDAD1
+1059,diáspora,диаспора,İSİMLER,B2,UNIDAD1
+1060,convivencia,сосуществование,İSİMLER,B2,UNIDAD1
+1061,algoritmo,алгоритм,İSİMLER,B2,UNIDAD2
+1062,clickbait,кликбейт,İSİMLER,B2,UNIDAD2
+1063,filtrado,фильтрация,İSİMLER,B2,UNIDAD2
+1064,economía circular,циркулярная экономика,İSİMLER,B2,UNIDAD4
+1065,greenwashing,гринвошинг,İSİMLER,B2,UNIDAD4
+1066,transición energética,энергопереход,İSİMLER,B2,UNIDAD4
+1067,coquetear,флиртовать,FİİLLER,B2,UNIDAD7
+1068,superar,преодолевать,FİİLLER,B2,UNIDAD7
+1069,apoyarse,опираться друг на друга,FİİLLER,B2,UNIDAD7
+1070,abandono escolar,отсев из школы,İSİMLER,B2,UNIDAD8
+1071,brecha educativa,образовательный разрыв,İSİMLER,B2,UNIDAD8
+1072,uno,один,İSİMLER,A1,UNIDAD1
+1073,dos,два,İSİMLER,A1,UNIDAD1
+1074,tres,три,İSİMLER,A1,UNIDAD1
+1075,cuatro,четыре,İSİMLER,A1,UNIDAD1
+1076,cinco,пять,İSİMLER,A1,UNIDAD1
+1077,seis,шесть,İSİMLER,A1,UNIDAD1
+1078,siete,семь,İSİMLER,A1,UNIDAD1
+1079,ocho,восемь,İSİMLER,A1,UNIDAD1
+1080,nueve,девять,İSİMLER,A1,UNIDAD1
+1081,diez,десять,İSİMLER,A1,UNIDAD1
+1082,veinte,двадцать,İSİMLER,A1,UNIDAD1
+1083,cien,сто,İSİMLER,A1,UNIDAD1
+1084,año,год,İSİMLER,A1,UNIDAD1
+1085,mes,месяц,İSİMLER,A1,UNIDAD1
+1086,semana,неделя,İSİMLER,A1,UNIDAD1
+1087,día,день,İSİMLER,A1,UNIDAD1
+1088,Portugal,Португалия,İSİMLER,A1,UNIDAD2
+1089,Marruecos,Марокко,İSİMLER,A1,UNIDAD2
+1090,Chile,Чили,İSİMLER,A1,UNIDAD2
+1091,Colombia,Колумбия,İSİMLER,A1,UNIDAD2
+1092,Perú,Перу,İSİMLER,A1,UNIDAD2
+1093,Cuba,Куба,İSİMLER,A1,UNIDAD2
+1094,arquitecto,архитектор,İSİMLER,A1,UNIDAD2
+1095,informático,айтишник,İSİMLER,A1,UNIDAD2
+1096,traductor,переводчик,İSİMLER,A1,UNIDAD2
+1097,peluquero,парикмахер,İSİMLER,A1,UNIDAD2
+1098,mecánico,механик,İSİMLER,A1,UNIDAD2
+1099,bombero,пожарный,İSİMLER,A1,UNIDAD2
+1100,panadería,булочная,İSİMLER,A1,UNIDAD3
+1101,carnicería,мясная,İSİMLER,A1,UNIDAD3
+1102,pescadería,рыбный магазин,İSİMLER,A1,UNIDAD3
+1103,frutería,фруктовый магазин,İSİMLER,A1,UNIDAD3
+1104,librería,книжный,İSİMLER,A1,UNIDAD3
+1105,kiosco,киоск,İSİMLER,A1,UNIDAD3
+1106,estanco,табачный киоск,İSİMLER,A1,UNIDAD3
+1107,gasolinera,заправка,İSİMLER,A1,UNIDAD3
+1108,comisaría,полиция,İSİMLER,A1,UNIDAD3
+1109,ayuntamiento,мэрия,İSİMLER,A1,UNIDAD3
+1110,estadio,стадион,İSİMLER,A1,UNIDAD3
+1111,piscina,бассейн,İSİMLER,A1,UNIDAD3
+1112,ajedrez,шахматы,İSİMLER,A1,UNIDAD4
+1113,videojuego,видеоигра,İSİMLER,A1,UNIDAD4
+1114,senderismo,пеший туризм,İSİMLER,A1,UNIDAD4
+1115,ciclismo,велоспорт,İSİMLER,A1,UNIDAD4
+1116,yoga,йога,İSİMLER,A1,UNIDAD4
+1117,jardinería,садоводство,İSİMLER,A1,UNIDAD4
+1118,manualidades,рукоделие,İSİMLER,A1,UNIDAD4
+1119,enero,январь,İSİMLER,A1,UNIDAD5
+1120,febrero,февраль,İSİMLER,A1,UNIDAD5
+1121,marzo,март,İSİMLER,A1,UNIDAD5
+1122,abril,апрель,İSİMLER,A1,UNIDAD5
+1123,mayo,май,İSİMLER,A1,UNIDAD5
+1124,junio,июнь,İSİMLER,A1,UNIDAD5
+1125,julio,июль,İSİMLER,A1,UNIDAD5
+1126,agosto,август,İSİMLER,A1,UNIDAD5
+1127,septiembre,сентябрь,İSİMLER,A1,UNIDAD5
+1128,octubre,октябрь,İSİMLER,A1,UNIDAD5
+1129,noviembre,ноябрь,İSİMLER,A1,UNIDAD5
+1130,diciembre,декабрь,İSİMLER,A1,UNIDAD5
+1131,jamón,хамон,İSİMLER,A1,UNIDAD6
+1132,chorizo,чоризо,İSİMLER,A1,UNIDAD6
+1133,tortilla,тортилья,İSİMLER,A1,UNIDAD6
+1134,paella,паэлья,İSİMLER,A1,UNIDAD6
+1135,gazpacho,гаспачо,İSİMLER,A1,UNIDAD6
+1136,tapas,тапас,İSİMLER,A1,UNIDAD6
+1137,churros,чуррос,İSİMLER,A1,UNIDAD6
+1138,flan,флан,İSİMLER,A1,UNIDAD6
+1139,aceituna,оливка,İSİMLER,A1,UNIDAD6
+1140,garbanzo,нут,İSİMLER,A1,UNIDAD6
+1141,lenteja,чечевица,İSİMLER,A1,UNIDAD6
+1142,atún,тунец,İSİMLER,A1,UNIDAD6
+1143,pendientes,серьги,İSİMLER,A1,UNIDAD7
+1144,collar,ожерелье,İSİMLER,A1,UNIDAD7
+1145,anillo,кольцо,İSİMLER,A1,UNIDAD7
+1146,pulsera,браслет,İSİMLER,A1,UNIDAD7
+1147,moño,пучок,İSİMLER,A1,UNIDAD7
+1148,trenza,коса,İSİMLER,A1,UNIDAD7
+1149,maquillaje,макияж,İSİMLER,A1,UNIDAD7
+1150,perfume,духи,İSİMLER,A1,UNIDAD7
+1151,cejas,брови,İSİMLER,A1,UNIDAD8
+1152,pestañas,ресницы,İSİMLER,A1,UNIDAD8
+1153,mejilla,щека,İSİMLER,A1,UNIDAD8
+1154,mentón,подбородок,İSİMLER,A1,UNIDAD8
+1155,frente,лоб,İSİMLER,A1,UNIDAD8
+1156,labios,губы,İSİMLER,A1,UNIDAD8
+1157,pecas,веснушки,İSİMLER,A1,UNIDAD8
+1158,arrugas,морщины,İSİMLER,A1,UNIDAD8
+1159,castillo,замок,İSİMLER,A1,UNIDAD9
+1160,catedral,собор,İSİMLER,A1,UNIDAD9
+1161,isla,остров,İSİMLER,A1,UNIDAD9
+1162,lago,озеро,İSİMLER,A1,UNIDAD9
+1163,bosque,лес,İSİMLER,A1,UNIDAD9
+1164,contestar,отвечать,FİİLLER,A1,UNIDAD1
+1165,presentar,представлять,FİİLLER,A1,UNIDAD1
+1166,saludarse,здороваться,FİİLLER,A1,UNIDAD1
+1167,despedirse,прощаться,FİİLLER,A1,UNIDAD1
+1168,caminar,идти пешком,FİİLLER,A1,UNIDAD3
+1169,coger,"брать, садиться на (транспорт)",FİİLLER,A1,UNIDAD3
+1170,bajar,"спускаться, выходить",FİİLLER,A1,UNIDAD3
+1171,subir,подниматься,FİİLLER,A1,UNIDAD3
+1172,cruzar,переходить,FİİLLER,A1,UNIDAD3
+1173,parar,останавливаться,FİİLLER,A1,UNIDAD3
+1174,invitar,приглашать,FİİLLER,A1,UNIDAD6
+1175,compartir,делиться,FİİLLER,A1,UNIDAD6
+1176,frustrado,расстроенный,SIFATLAR,A2,UNIDAD1
+1177,motivado,мотивированный,SIFATLAR,A2,UNIDAD1
+1178,confundido,сбитый с толку,SIFATLAR,A2,UNIDAD1
+1179,orgulloso,гордый,SIFATLAR,A2,UNIDAD1
+1180,avergonzado,пристыженный,SIFATLAR,A2,UNIDAD1
+1181,celoso,ревнивый,SIFATLAR,A2,UNIDAD1
+1182,guerra,война,İSİMLER,A2,UNIDAD2
+1183,paz,мир,İSİMLER,A2,UNIDAD2
+1184,descubrimiento,открытие,İSİMLER,A2,UNIDAD2
+1185,invento,изобретение,İSİMLER,A2,UNIDAD2
+1186,independencia,независимость,İSİMLER,A2,UNIDAD2
+1187,revolución,революция,İSİMLER,A2,UNIDAD2
+1188,ático,мансарда,İSİMLER,A2,UNIDAD3
+1189,dúplex,двухуровневая квартира,İSİMLER,A2,UNIDAD3
+1190,adosado,таунхаус,İSİMLER,A2,UNIDAD3
+1191,chalet,коттедж,İSİMLER,A2,UNIDAD3
+1192,estudio,студия,İSİMLER,A2,UNIDAD3
+1193,trastero,кладовка,İSİMLER,A2,UNIDAD3
+1194,caldo,бульон,İSİMLER,A2,UNIDAD4
+1195,salsa,соус,İSİMLER,A2,UNIDAD4
+1196,rebozado,в кляре,İSİMLER,A2,UNIDAD4
+1197,al horno,запечённый,İSİMLER,A2,UNIDAD4
+1198,a la plancha,на гриле,İSİMLER,A2,UNIDAD4
+1199,crudo,сырой,İSİMLER,A2,UNIDAD4
+1200,tensión,давление,İSİMLER,A2,UNIDAD5
+1201,mareo,головокружение,İSİMLER,A2,UNIDAD5
+1202,náuseas,тошнота,İSİMLER,A2,UNIDAD5
+1203,esguince,растяжение,İSİMLER,A2,UNIDAD5
+1204,fractura,перелом,İSİMLER,A2,UNIDAD5
+1205,albergue,хостел,İSİMLER,A2,UNIDAD7
+1206,camping,кемпинг,İSİMLER,A2,UNIDAD7
+1207,pensión,пансион,İSİMLER,A2,UNIDAD7
+1208,habitación individual,одноместный номер,İSİMLER,A2,UNIDAD7
+1209,vista al mar,вид на море,İSİMLER,A2,UNIDAD7
+1210,abrazar,обнимать,FİİLLER,A2,UNIDAD8
+1211,besar,целовать,FİİLLER,A2,UNIDAD8
+1212,sonreír,улыбаться,FİİLLER,A2,UNIDAD8
+1213,gritar,кричать,FİİLLER,A2,UNIDAD8
+1214,suspirar,вздыхать,FİİLLER,A2,UNIDAD8
+1215,videoconsola,игровая приставка,İSİMLER,A2,UNIDAD9
+1216,casete,кассета,İSİMLER,A2,UNIDAD9
+1217,walkman,плейер,İSİMLER,A2,UNIDAD9
+1218,carta,письмо,İSİMLER,A2,UNIDAD9
+1219,cabina,телефонная будка,İSİMLER,A2,UNIDAD9
+1220,disco de vinilo,виниловая пластинка,İSİMLER,A2,UNIDAD9
+1221,tropezar,спотыкаться,FİİLLER,A2,UNIDAD10
+1222,caerse,падать,FİİLLER,A2,UNIDAD10
+1223,descubrirse,обнаруживать себя,FİİLLER,A2,UNIDAD10
+1224,currículum vitae,резюме,İSİMLER,B1,UNIDAD1
+1225,carta de presentación,сопроводительное письмо,İSİMLER,B1,UNIDAD1
+1226,jornada completa,полный день,İSİMLER,B1,UNIDAD1
+1227,media jornada,полставки,İSİMLER,B1,UNIDAD1
+1228,horas extra,сверхурочные,İSİMLER,B1,UNIDAD1
+1229,baja por maternidad,декрет,İSİMLER,B1,UNIDAD1
+1230,jubilación,пенсия,İSİMLER,B1,UNIDAD2
+1231,ahorro,накопление,İSİMLER,B1,UNIDAD2
+1232,inversión,инвестиция,İSİMLER,B1,UNIDAD2
+1233,emprendimiento,предпринимательство,İSİMLER,B1,UNIDAD2
+1234,exagerar,преувеличивать,FİİLLER,B1,UNIDAD4
+1235,calentar,разогревать,FİİLLER,B1,UNIDAD5
+1236,estirar,растягивать,FİİLLER,B1,UNIDAD5
+1237,hidratarse,пить воду,FİİLLER,B1,UNIDAD5
+1238,calmarse,успокаиваться,FİİLLER,B1,UNIDAD5
+1239,respirar,дышать,FİİLLER,B1,UNIDAD5
+1240,ilusión,радость ожидания,İSİMLER,B1,UNIDAD6
+1241,decepción,разочарование,İSİMLER,B1,UNIDAD6
+1242,orgullo,гордость,İSİMLER,B1,UNIDAD6
+1243,vergüenza,стыд,İSİMLER,B1,UNIDAD6
+1244,envidia,зависть,İSİMLER,B1,UNIDAD6
+1245,asa,ручка,İSİMLER,B1,UNIDAD7
+1246,tapa,крышка,İSİMLER,B1,UNIDAD7
+1247,rueda,колесо,İSİMLER,B1,UNIDAD7
+1248,pantalla,экран,İSİMLER,B1,UNIDAD7
+1249,botón,кнопка,İSİMLER,B1,UNIDAD7
+1250,cable,кабель,İSİMLER,B1,UNIDAD7
+1251,pila,батарейка,İSİMLER,B1,UNIDAD7
+1252,enchufe,розетка,İSİMLER,B1,UNIDAD7
+1253,huelga,забастовка,İSİMLER,B1,UNIDAD8
+1254,manifestante,демонстрант,İSİMLER,B1,UNIDAD8
+1255,urna,урна для голосования,İSİMLER,B1,UNIDAD8
+1256,introvertido,интроверт,SIFATLAR,B1,UNIDAD9
+1257,empático,эмпатичный,SIFATLAR,B1,UNIDAD9
+1258,narcisista,нарциссический,SIFATLAR,B1,UNIDAD9
+1259,resolutivo,решительный,SIFATLAR,B1,UNIDAD9
+1260,indeciso,нерешительный,SIFATLAR,B1,UNIDAD9
+1261,plástico de un solo uso,одноразовый пластик,İSİMLER,B1,UNIDAD10
+1262,contenedor,контейнер,İSİMLER,B1,UNIDAD10
+1263,punto limpio,пункт вторсырья,İSİMLER,B1,UNIDAD10
+1264,huella ecológica,экологический след,İSİMLER,B1,UNIDAD10
+1265,en primer lugar,во-первых,KALIP İFADELER,B1,UNIDAD11
+1266,en segundo lugar,во-вторых,KALIP İFADELER,B1,UNIDAD11
+1267,por último,наконец,KALIP İFADELER,B1,UNIDAD11
+1268,dicho esto,сказав это,KALIP İFADELER,B1,UNIDAD11
+1269,ahora bien,однако,KALIP İFADELER,B1,UNIDAD11
+1270,en definitiva,в итоге,KALIP İFADELER,B1,UNIDAD11
+1271,asegurar,заверять,FİİLLER,B1,UNIDAD12
+1272,negar,отрицать,FİİLLER,B1,UNIDAD12
+1273,admitir,признавать,FİİLLER,B1,UNIDAD12
+1274,ordenar,приказывать,FİİLLER,B1,UNIDAD12
+1275,acento regional,региональный акцент,İSİMLER,B2,UNIDAD1
+1276,costumbre local,местный обычай,İSİMLER,B2,UNIDAD1
+1277,fiesta nacional,национальный праздник,İSİMLER,B2,UNIDAD1
+1278,himno,гимн,İSİMLER,B2,UNIDAD1
+1279,titular clickbait,кликбейт-заголовок,İSİMLER,B2,UNIDAD2
+1280,periodismo de investigación,расследовательская журналистика,İSİMLER,B2,UNIDAD2
+1281,libertad de prensa,свобода прессы,İSİMLER,B2,UNIDAD2
+1282,censura,цензура,İSİMLER,B2,UNIDAD2
+1283,obsolescencia programada,запланированное устаревание,İSİMLER,B2,UNIDAD3
+1284,consumo responsable,ответственное потребление,İSİMLER,B2,UNIDAD3
+1285,comercio justo,справедливая торговля,İSİMLER,B2,UNIDAD3
+1286,economía colaborativa,шеринг-экономика,İSİMLER,B2,UNIDAD3
+1287,emisiones,выбросы,İSİMLER,B2,UNIDAD4
+1288,deshielo,таяяние льдов,İSİMLER,B2,UNIDAD4
+1289,escasez de agua,нехватка воды,İSİMLER,B2,UNIDAD4
+1290,residuos nucleares,ядерные отходы,İSİMLER,B2,UNIDAD4
+1291,vehículo eléctrico,электромобиль,İSİMLER,B2,UNIDAD4
+1292,turismo de masas,массовый туризм,İSİMLER,B2,UNIDAD5
+1293,gentrificación,джентрификация,İSİMLER,B2,UNIDAD5
+1294,alquiler vacacional,посуточная аренда,İSİMLER,B2,UNIDAD5
+1295,tasa turística,туристический сбор,İSİMLER,B2,UNIDAD5
+1296,juego limpio,честная игра,İSİMLER,B2,UNIDAD6
+1297,apuesta,ставка,İSİMLER,B2,UNIDAD6
+1298,violencia en el deporte,насилие в спорте,İSİMLER,B2,UNIDAD6
+1299,deporte adaptado,адаптивный спорт,İSİMLER,B2,UNIDAD6
+1300,espacio personal,личное пространство,İSİMLER,B2,UNIDAD7
+1301,dependencia emocional,эмоциональная зависимость,İSİMLER,B2,UNIDAD7
+1302,límite,граница,İSİMLER,B2,UNIDAD7
+1303,educación pública,государственное образование,İSİMLER,B2,UNIDAD8
+1304,universidad privada,частный вуз,İSİMLER,B2,UNIDAD8
+1305,notas,оценки,İSİMLER,B2,UNIDAD8
+1306,selectividad,вступительные экзамены,İSİMLER,B2,UNIDAD8
+1307,platea,партер,İSİMLER,B2,UNIDAD9
+1308,palco,ложа,İSİMLER,B2,UNIDAD9
+1309,telón,занавес,İSİMLER,B2,UNIDAD9
+1310,tramoya,кулисы,İSİMLER,B2,UNIDAD9
+1311,entrada agotada,аншлаг,İSİMLER,B2,UNIDAD9
+1312,tercera vía,третья сторона,İSİMLER,B2,UNIDAD10
+1313,acuerdo,соглашение,İSİMLER,B2,UNIDAD10
+1314,impasse,тупик,İSİMLER,B2,UNIDAD10
+1315,buena fe,добросовестность,İSİMLER,B2,UNIDAD10
+1316,lead,"лид, зачин",İSİMLER,B2,UNIDAD11
+1317,entradilla,вводка,İSİMLER,B2,UNIDAD11
+1318,cierre,концовка,İSİMLER,B2,UNIDAD11
+1319,fuente anónima,анонимный источник,İSİMLER,B2,UNIDAD11
+1320,como si nada,как ни в чём не бывало,KALIP İFADELER,B2,UNIDAD12
+1321,ni que decir tiene,само собой,KALIP İFADELER,B2,UNIDAD12
+1322,puesto que,поскольку,KALIP İFADELER,B2,UNIDAD12
+1323,a condición de que,при условии что,KALIP İFADELER,B2,UNIDAD12
+1324,portugués,португальский,SIFATLAR,A1,UNIDAD2
+1325,árabe,арабский,SIFATLAR,A1,UNIDAD2
+1326,turco,турецкий,SIFATLAR,A1,UNIDAD2
+1327,griego,греческий,SIFATLAR,A1,UNIDAD2
+1328,polaco,польский,SIFATLAR,A1,UNIDAD2
+1329,sueco,шведский,SIFATLAR,A1,UNIDAD2
+1330,temprano,рано,ZARFLAR,A1,UNIDAD5
+1331,tarde,поздно,ZARFLAR,A1,UNIDAD5
+1332,después,после,ZARFLAR,A1,UNIDAD5
+1333,céntrico,в центре,SIFATLAR,A2,UNIDAD3
+1334,residencial,жилой,SIFATLAR,A2,UNIDAD3
+1335,industrial,промышленный,SIFATLAR,A2,UNIDAD3
+1336,turístico,туристический,SIFATLAR,A2,UNIDAD3
+1337,universitario,университетский,SIFATLAR,A2,UNIDAD3
+1338,multar,штрафовать,FİİLLER,B1,UNIDAD3
+1339,denunciar,заявлять,FİİLLER,B1,UNIDAD3
+1340,cumplir,соблюдать,FİİLLER,B1,UNIDAD3
+1341,infringir,нарушать,FİİLLER,B1,UNIDAD3
+1342,regular,регулировать,FİİLLER,B1,UNIDAD3
+1343,tiempo,"время, погода",İSİMLER,A1,UNIDAD1
+1344,vez,раз,İSİMLER,A1,UNIDAD1
+1345,parte,часть,İSİMLER,A1,UNIDAD1
+1346,vida,жизнь,İSİMLER,A1,UNIDAD1
+1347,momento,момент,İSİMLER,A1,UNIDAD1
+1348,cosa,вещь,İSİMLER,A1,UNIDAD1
+1349,lugar,место,İSİMLER,A1,UNIDAD1
+1350,hombre,мужчина,İSİMLER,A1,UNIDAD1
+1351,niño,ребёнок,İSİMLER,A1,UNIDAD1
+1352,niña,девочка,İSİMLER,A1,UNIDAD1
+1353,gente,люди,İSİMLER,A1,UNIDAD1
+1354,problema,проблема,İSİMLER,A1,UNIDAD1
+1355,caso,случай,İSİMLER,A1,UNIDAD1
+1356,punto,точка,İSİMLER,A1,UNIDAD1
+1357,grupo,группа,İSİMLER,A1,UNIDAD1
+1358,poder,мочь,FİİLLER,A1,UNIDAD9
+1359,saber,знать,FİİLLER,A1,UNIDAD9
+1360,poner,класть,FİİLLER,A1,UNIDAD9
+1361,dar,давать,FİİLLER,A1,UNIDAD9
+1362,decir,говорить,FİİLLER,A1,UNIDAD9
+1363,venir,приходить,FİİLLER,A1,UNIDAD9
+1364,traer,приносить,FİİLLER,A1,UNIDAD9
+1365,quedar,"оставаться, договариваться",FİİLLER,A1,UNIDAD9
+1366,creer,"верить, считать",FİİLLER,A1,UNIDAD9
+1367,sentir,чувствовать,FİİLLER,A1,UNIDAD9
+1368,dejar,"оставлять, позволять",FİİLLER,A1,UNIDAD9
+1369,tomar,"брать, принимать",FİİLLER,A1,UNIDAD9
+1370,usar,использовать,FİİLLER,A1,UNIDAD9
+1371,razón,"причина, правота",İSİMLER,A2,UNIDAD1
+1372,sentido,"смысл, чувство",İSİMLER,A2,UNIDAD1
+1373,manera,способ,İSİMLER,A2,UNIDAD1
+1374,nivel,уровень,İSİMLER,A2,UNIDAD1
+1375,cambio,изменение,İSİMLER,A2,UNIDAD1
+1376,desarrollo,развитие,İSİMLER,A2,UNIDAD1
+1377,resultado,результат,İSİMLER,A2,UNIDAD1
+1378,efecto,эффект,İSİMLER,A2,UNIDAD1
+1379,causa,причина,İSİMLER,A2,UNIDAD1
+1380,fin,"конец, цель",İSİMLER,A2,UNIDAD1
+1381,medio,"средство, среда",İSİMLER,A2,UNIDAD1
+1382,sistema,система,İSİMLER,A2,UNIDAD1
+1383,proceso,процесс,İSİMLER,A2,UNIDAD1
+1384,tipo,тип,İSİMLER,A2,UNIDAD1
+1385,servicio,услуга,İSİMLER,A2,UNIDAD1
+1386,actividad,деятельность,İSİMLER,A2,UNIDAD1
+1387,situación,ситуация,İSİMLER,A2,UNIDAD1
+1388,ofrecer,предлагать,FİİLLER,A2,UNIDAD10
+1389,aceptar,принимать,FİİLLER,A2,UNIDAD10
+1390,rechazar,отклонять,FİİLLER,A2,UNIDAD10
+1391,elegir,выбирать,FİİLLER,A2,UNIDAD10
+1392,aumentar,увеличивать,FİİLLER,A2,UNIDAD10
+1393,reducir,сокращать,FİİLLER,A2,UNIDAD10
+1394,mantener,поддерживать,FİİLLER,A2,UNIDAD10
+1395,exigir,требовать,FİİLLER,A2,UNIDAD10
+1396,proponer,предлагать,FİİLLER,A2,UNIDAD10
+1397,resolver,решать,FİİLLER,A2,UNIDAD10
+1398,existir,существовать,FİİLLER,A2,UNIDAD10
+1399,depender,зависеть,FİİLLER,A2,UNIDAD10
+1400,cultura,культура,İSİMLER,B1,UNIDAD8
+1401,economía,экономика,İSİMLER,B1,UNIDAD8
+1402,empresa,компания,İSİMLER,B1,UNIDAD8
+1403,producto,продукт,İSİMLER,B1,UNIDAD8
+1404,calidad,качество,İSİMLER,B1,UNIDAD8
+1405,cantidad,количество,İSİMLER,B1,UNIDAD8
+1406,precio,цена,İSİMLER,B1,UNIDAD8
+1407,cliente,клиент,İSİMLER,B1,UNIDAD8
+1408,recurso,ресурс,İSİMLER,B1,UNIDAD8
+1409,ventaja,преимущество,İSİMLER,B1,UNIDAD8
+1410,desventaja,недостаток,İSİMLER,B1,UNIDAD8
+1411,riesgo,риск,İSİMLER,B1,UNIDAD8
+1412,beneficio,выгода,İSİMLER,B1,UNIDAD8
+1413,pérdida,потеря,İSİMLER,B1,UNIDAD8
+1414,salario,зарплата,İSİMLER,B1,UNIDAD8
+1415,pobreza,бедность,İSİMLER,B1,UNIDAD8
+1416,riqueza,богатство,İSİMLER,B1,UNIDAD8
+1417,analizar,анализировать,FİİLLER,B1,UNIDAD4
+1418,demostrar,доказывать,FİİLLER,B1,UNIDAD4
+1419,indicar,указывать,FİİLLER,B1,UNIDAD4
+1420,señalar,отмечать,FİİLLER,B1,UNIDAD4
+1421,destacar,выделять,FİİLLER,B1,UNIDAD4
+1422,suponer,предполагать,FİİLLER,B1,UNIDAD4
+1423,significar,значить,FİİLLER,B1,UNIDAD4
+1424,considerar,считать,FİİLLER,B1,UNIDAD4
+1425,reconocer,признавать,FİİLLER,B1,UNIDAD4
+1426,comentar,комментировать,FİİLLER,B1,UNIDAD4
+1427,importante,важный,SIFATLAR,B1,UNIDAD9
+1428,necesario,необходимый,SIFATLAR,B1,UNIDAD9
+1429,claro,ясный,SIFATLAR,B1,UNIDAD9
+1430,oscuro,тёмный,SIFATLAR,B1,UNIDAD9
+1431,principal,главный,SIFATLAR,B1,UNIDAD9
+1432,básico,базовый,SIFATLAR,B1,UNIDAD9
+1433,general,общий,SIFATLAR,B1,UNIDAD9
+1434,particular,частный,SIFATLAR,B1,UNIDAD9
+1435,especial,особый,SIFATLAR,B1,UNIDAD9
+1436,normal,обычный,SIFATLAR,B1,UNIDAD9
+1437,raro,редкий,SIFATLAR,B1,UNIDAD9
+1438,común,"общий, обычный",SIFATLAR,B1,UNIDAD9
+1439,propio,собственный,SIFATLAR,B1,UNIDAD9
+1440,ajeno,чужой,SIFATLAR,B1,UNIDAD9
+1441,actual,актуальный,SIFATLAR,B1,UNIDAD9
+1442,antiguo,старинный,SIFATLAR,B1,UNIDAD9
+1443,moderno,современный,SIFATLAR,B1,UNIDAD9
+1444,completo,полный,SIFATLAR,B1,UNIDAD9
+1445,vacío,пустой,SIFATLAR,B1,UNIDAD9
+1446,lleno,полный,SIFATLAR,B1,UNIDAD9
+1447,libre,свободный,SIFATLAR,B1,UNIDAD9
+1448,impacto,воздействие,İSİMLER,B2,UNIDAD2
+1449,alcance,охват,İSİMLER,B2,UNIDAD2
+1450,criterio,критерий,İSİMLER,B2,UNIDAD2
+1451,planteamiento,постановка,İSİMLER,B2,UNIDAD2
+1452,balance,баланс,İSİMLER,B2,UNIDAD2
+1453,tendencia,тенденция,İSİMLER,B2,UNIDAD2
+1454,fenómeno,явление,İSİMLER,B2,UNIDAD2
+1455,contexto,контекст,İSİMLER,B2,UNIDAD2
+1456,perspectiva,перспектива,İSİMLER,B2,UNIDAD2
+1457,reto,вызов,İSİMLER,B2,UNIDAD2
+1458,amenaza,угроза,İSİMLER,B2,UNIDAD2
+1459,estrategia,стратегия,İSİMLER,B2,UNIDAD2
+1460,medida,мера,İSİMLER,B2,UNIDAD2
+1461,política pública,госполитика,İSİMLER,B2,UNIDAD2
+1462,transparencia,прозрачность,İSİMLER,B2,UNIDAD2
+1463,rendición de cuentas,подотчётность,İSİMLER,B2,UNIDAD2
+1464,participación,участие,İSİMLER,B2,UNIDAD2
+1465,abordar,"поднимать, подходить к",FİİLLER,B2,UNIDAD10
+1466,fomentar,поощрять,FİİLLER,B2,UNIDAD10
+1467,impulsar,стимулировать,FİİLLER,B2,UNIDAD10
+1468,garantizar,гарантировать,FİİLLER,B2,UNIDAD10
+1469,cuestionar,ставить под вопрос,FİİLLER,B2,UNIDAD10
+1470,reivindicar,"требовать, отстаивать",FİİLLER,B2,UNIDAD10
+1471,pactar,договариваться,FİİLLER,B2,UNIDAD10
+1472,relativizar,релятивизировать,FİİLLER,B2,UNIDAD10
+1473,profundizar,углублять,FİİLLER,B2,UNIDAD10
+1474,ampliar,расширять,FİİLLER,B2,UNIDAD10
+1475,restringir,ограничивать,FİİLLER,B2,UNIDAD10
+1476,relevante,релевантный,SIFATLAR,B2,UNIDAD1
+1477,significativo,значимый,SIFATLAR,B2,UNIDAD1
+1478,crucial,ключевой,SIFATLAR,B2,UNIDAD1
+1479,secundario,второстепенный,SIFATLAR,B2,UNIDAD1
+1480,evidente,очевидный,SIFATLAR,B2,UNIDAD1
+1481,dudoso,сомнительный,SIFATLAR,B2,UNIDAD1
+1482,viable,жизнеспособный,SIFATLAR,B2,UNIDAD1
+1483,insostenible,несостоятельный,SIFATLAR,B2,UNIDAD1
+1484,obsoleto,устаревший,SIFATLAR,B2,UNIDAD1
+1485,desigual,неравный,SIFATLAR,B2,UNIDAD1
+1486,plural,плюральный,SIFATLAR,B2,UNIDAD1
+1487,homogéneo,однородный,SIFATLAR,B2,UNIDAD1
+1488,heterogéneo,разнородный,SIFATLAR,B2,UNIDAD1
+1489,el,определённый артикль (м.р.),DİĞER KELİMELER,A1,UNIDAD1
+1490,de,"из, от, родительный падеж",EDATLAR / BAĞLAÇLAR,A1,UNIDAD2
+1491,a,"в, к, на (направление)",EDATLAR / BAĞLAÇLAR,A1,UNIDAD5
+1492,un,неопределённый артикль,DİĞER KELİMELER,A1,UNIDAD6
+1493,se,возвратная частица,ZAMİRLER,A1,UNIDAD7
+1494,que,"что, который",EDATLAR / BAĞLAÇLAR,A1,UNIDAD9
+1495,del,слитный артикль (de+el),EDATLAR / BAĞLAÇLAR,A1,UNIDAD1
+1496,por,"по, из-за, за",EDATLAR / BAĞLAÇLAR,A1,UNIDAD2
+1497,con,"с, вместе с",EDATLAR / BAĞLAÇLAR,A1,UNIDAD4
+1498,para,"для, чтобы",EDATLAR / BAĞLAÇLAR,A1,UNIDAD5
+1499,al,слитный артикль (a+el),EDATLAR / BAĞLAÇLAR,A1,UNIDAD6
+1500,lo,это; средний род / прямое дополнение,ZAMİRLER,A1,UNIDAD8
+1501,como,как,EDATLAR / BAĞLAÇLAR,A1,UNIDAD9
+1502,le,"ему, ей (дат. падеж)",ZAMİRLER,A1,UNIDAD2
+1503,más,больше,ZARFLAR,A1,UNIDAD5
+1504,todo,"весь, всё",ZAMİRLER,A1,UNIDAD6
+1505,me,"меня, мне (энклитика)",ZAMİRLER,A1,UNIDAD1
+1506,ese,"тот, этот",ZAMİRLER,A1,UNIDAD3
+1507,otro,другой,ZAMİRLER,A1,UNIDAD4
+1508,haber,вспомогательный «иметь» (hay / he),FİİLLER,A1,UNIDAD7
+1509,sobre,"о, на, поверх",EDATLAR / BAĞLAÇLAR,A1,UNIDAD1
+1510,entre,"между, среди",EDATLAR / BAĞLAÇLAR,A1,UNIDAD2
+1511,sin,без,EDATLAR / BAĞLAÇLAR,A1,UNIDAD6
+1512,mismo,"сам, тот же",ZAMİRLER,A1,UNIDAD8
+1513,primero,первый,İSİMLER,A1,UNIDAD2
+1514,muy,очень,ZARFLAR,A1,UNIDAD4
+1515,alguno,"какой-то, некоторый",ZAMİRLER,A1,UNIDAD5
+1516,nos,"нас, нам (энклитика)",ZAMİRLER,A1,UNIDAD7
+1517,porque,потому что,EDATLAR / BAĞLAÇLAR,A1,UNIDAD2
+1518,solo,"только, лишь",ZARFLAR,A1,UNIDAD4
+1519,nuevo,новый,SIFATLAR,A1,UNIDAD7
+1520,te,"тебя, тебе (энклитика)",ZAMİRLER,A1,UNIDAD2
+1521,ni,ни,EDATLAR / BAĞLAÇLAR,A1,UNIDAD8
+1522,aquel,тот (далёкий),ZAMİRLER,A1,UNIDAD9
+1523,donde,где (относит.),ZARFLAR,A1,UNIDAD2
+1524,último,последний,SIFATLAR,A1,UNIDAD9
+1525,cada,каждый,ZAMİRLER,A1,UNIDAD6
+1526,tan,"так, настолько",ZARFLAR,A1,UNIDAD8
+1527,así,"так, таким образом",ZARFLAR,A1,UNIDAD1
+1528,bueno,хороший,SIFATLAR,A1,UNIDAD2
+1529,presidente,президент,İSİMLER,A1,UNIDAD6
+1530,estado,"государство, состояние",İSİMLER,A1,UNIDAD8
+1531,bien,хорошо,ZARFLAR,A1,UNIDAD3
+1532,sino,"а, но (после отрицания)",EDATLAR / BAĞLAÇLAR,A1,UNIDAD4
+1533,político,политический,SIFATLAR,A1,UNIDAD5
+1534,tratar,пытаться; касаться; обращаться,FİİLLER,A1,UNIDAD2
+1535,nacional,"национальный, государственный",SIFATLAR,A1,UNIDAD9
+1536,millón,миллион,İSİMLER,A1,UNIDAD5
+1537,contra,против,EDATLAR / BAĞLAÇLAR,A1,UNIDAD7
+1538,ante,"перед, перед лицом",EDATLAR / BAĞLAÇLAR,A1,UNIDAD9
+1539,ayer,вчера,ZARFLAR,A1,UNIDAD3
+1540,hacia,"к, по направлению к",EDATLAR / BAĞLAÇLAR,A1,UNIDAD5
+1541,social,"социальный, общественный",SIFATLAR,A1,UNIDAD1
+1542,realizar,"осуществлять, проводить",FİİLLER,A1,UNIDAD3
+1543,pues,"итак, ведь, ну",EDATLAR / BAĞLAÇLAR,A1,UNIDAD4
+1544,menos,"меньше, кроме",ZARFLAR,A1,UNIDAD8
+1545,hoy,сегодня,ZARFLAR,A1,UNIDAD3
+1546,producir,"производить, вызывать",FİİLLER,A1,UNIDAD4
+1547,casi,почти,ZARFLAR,A1,UNIDAD9
+1548,crear,создавать,FİİLLER,A1,UNIDAD1
+1549,cómo,как (вопросит.),ZARFLAR,A1,UNIDAD2
+1550,ninguno,"никакой, никто",ZAMİRLER,A1,UNIDAD5
+1551,económico,экономический,SIFATLAR,A1,UNIDAD6
+1552,segundo,второй; секунда,İSİMLER,A1,UNIDAD9
+1553,señor,"господин, сеньор",İSİMLER,A1,UNIDAD8
+1554,noche,"ночь, вечер",İSİMLER,A1,UNIDAD9
+1555,mejor,лучший,SIFATLAR,A1,UNIDAD6
+1556,historia,история,İSİMLER,A1,UNIDAD1
+1557,tras,"после, за",EDATLAR / BAĞLAÇLAR,A1,UNIDAD7
+1558,largo,"длинный, долгий",SIFATLAR,A1,UNIDAD9
+1559,varios,"несколько, различные",ZAMİRLER,A1,UNIDAD2
+1560,fuerza,сила,İSİMLER,A1,UNIDAD3
+1561,hecho,"факт, дело",İSİMLER,A1,UNIDAD6
+1562,mí,"меня, мне (после предлога)",ZAMİRLER,A1,UNIDAD1
+1563,tanto,"столько, так сильно",ZARFLAR,A1,UNIDAD2
+1564,único,"единственный, уникальный",SIFATLAR,A1,UNIDAD3
+1565,cualquiera,любой,ZAMİRLER,A1,UNIDAD6
+1566,aún,ещё,ZARFLAR,A1,UNIDAD4
+1567,comenzar,начинать,FİİLLER,A1,UNIDAD9
+1568,tal,такой,ZAMİRLER,A1,UNIDAD6
+1569,siglo,"век, столетие",İSİMLER,A1,UNIDAD5
+1570,ministro,министр,İSİMLER,A1,UNIDAD6
+1571,aparecer,появляться,FİİLLER,A1,UNIDAD8
+1572,convertir,"превращать, обращать",FİİLLER,A1,UNIDAD2
+1573,acción,"действие, акция",İSİMLER,A1,UNIDAD3
+1574,lado,"сторона, бок",İSİMLER,A1,UNIDAD4
+1575,nadie,никто,ZAMİRLER,A1,UNIDAD5
+1576,utilizar,использовать,FİİLLER,A1,UNIDAD8
+1577,próximo,"следующий, ближайший",SIFATLAR,A1,UNIDAD9
+1578,humano,человеческий,SIFATLAR,A1,UNIDAD2
+1579,realidad,"реальность, действительность",İSİMLER,A1,UNIDAD5
+1580,programa,программа,İSİMLER,A1,UNIDAD6
+1581,cierto,"некий, некоторый",ZAMİRLER,A1,UNIDAD1
+1582,tierra,"земля, страна",İSİMLER,A1,UNIDAD9
+1583,acabar,заканчивать; только что,FİİLLER,A1,UNIDAD2
+1584,idea,"идея, мысль",İSİMLER,A1,UNIDAD5
+1585,mostrar,показывать,FİİLLER,A1,UNIDAD7
+1586,zona,"зона, район",İSİMLER,A1,UNIDAD9
+1587,formar,"формировать, образовывать",FİİLLER,A1,UNIDAD1
+1588,tema,тема,İSİMLER,A1,UNIDAD3
+1589,muerte,смерть,İSİMLER,A1,UNIDAD5
+1590,principio,"начало, принцип",İSİMLER,A1,UNIDAD8
+1591,ya que,"поскольку, так как",EDATLAR / BAĞLAÇLAR,A1,UNIDAD9
+1592,interés,интерес,İSİMLER,A1,UNIDAD1
+1593,distinto,"различный, иной",SIFATLAR,A1,UNIDAD4
+1594,internacional,международный,SIFATLAR,A1,UNIDAD6
+1595,sector,"сектор, отрасль",İSİMLER,A1,UNIDAD3
+1596,paso,"шаг, проход",İSİMLER,A1,UNIDAD4
+1597,incluso,"даже, включая",ZARFLAR,A1,UNIDAD5
+1598,información,информация,İSİMLER,A1,UNIDAD8
+1599,voz,голос,İSİMLER,A1,UNIDAD2
+1600,valor,"ценность, мужество",İSİMLER,A1,UNIDAD4
+1601,figura,"фигура, личность",İSİMLER,A1,UNIDAD5
+1602,establecer,"устанавливать, учреждать",FİİLLER,A1,UNIDAD8
+1603,ambos,оба,ZAMİRLER,A1,UNIDAD9
+1604,verdad,"правда, истина",İSİMLER,A1,UNIDAD3
+1605,movimiento,движение,İSİMLER,A1,UNIDAD4
+1606,anterior,"предыдущий, прежний",SIFATLAR,A1,UNIDAD5
+1607,a través de,"через, посредством",EDATLAR / BAĞLAÇLAR,A1,UNIDAD6
+1608,puerta,дверь,İSİMLER,A1,UNIDAD7
+1609,obtener,"получать, добывать",FİİLLER,A1,UNIDAD8
+1610,posibilidad,возможность,İSİMLER,A1,UNIDAD9
+1611,frente a,"перед, напротив",EDATLAR / BAĞLAÇLAR,A1,UNIDAD1
+1612,alcanzar,достигать,FİİLLER,A1,UNIDAD3
+1613,caer,падать,FİİLLER,A1,UNIDAD6
+1614,fondo,"дно, фон, суть",İSİMLER,A1,UNIDAD7
+1615,imagen,"изображение, образ",İSİMLER,A1,UNIDAD8
+1616,orden,"порядок, приказ",İSİMLER,A1,UNIDAD3
+1617,luz,свет,İSİMLER,A1,UNIDAD6
+1618,final,"конец, финал",İSİMLER,A1,UNIDAD7
+1619,siguiente,следующий,SIFATLAR,A1,UNIDAD8
+1620,policía,"полиция, полицейский",İSİMLER,A1,UNIDAD9
+1621,peseta,песета (старая валюта),İSİMLER,A1,UNIDAD4
+1622,miembro,член (организации),İSİMLER,A1,UNIDAD5
+1623,modo,"способ, образ",İSİMLER,A1,UNIDAD6
+1624,oír,слышать,FİİLLER,A1,UNIDAD1
+1625,necesidad,"необходимость, нужда",İSİMLER,A1,UNIDAD7
+1626,estados unidos,Соединённые Штаты,İSİMLER,A1,UNIDAD8
+1627,comisión,"комиссия, комиссионные",İSİMLER,A1,UNIDAD9
+1628,diferente,"другой, различный",SIFATLAR,A1,UNIDAD2
+1629,campo,"поле, сельская местность",İSİMLER,A1,UNIDAD4
+1630,organización,организация,İSİMLER,A1,UNIDAD5
+1631,don,дон (титул); дар,İSİMLER,A1,UNIDAD6
+1632,camino,"дорога, путь",İSİMLER,A1,UNIDAD7
+1633,sentar,сажать(ся),FİİLLER,A1,UNIDAD9
+1634,constituir,"составлять, являться",FİİLLER,A1,UNIDAD1
+1635,referir,"ссылаться, рассказывать",FİİLLER,A1,UNIDAD7
+1636,mayoría,большинство,İSİMLER,A1,UNIDAD8
+1637,sacar,"доставать, вынимать",FİİLLER,A1,UNIDAD9
+1638,decisión,решение,İSİMLER,A1,UNIDAD1
+1639,función,"функция, должность",İSİMLER,A1,UNIDAD2
+1640,etcétera,и так далее,ZAMİRLER,A1,UNIDAD3
+1641,espacio,"пространство, место",İSİMLER,A1,UNIDAD5
+1642,continuar,продолжать,FİİLLER,A1,UNIDAD6
+1643,europeo,европейский,SIFATLAR,A1,UNIDAD7
+1644,base,"база, основа",İSİMLER,A1,UNIDAD8
+1645,seguridad,безопасность,İSİMLER,A1,UNIDAD9
+1646,a partir de,начиная с,EDATLAR / BAĞLAÇLAR,A1,UNIDAD1
+1647,desarrollar,развивать,FİİLLER,A1,UNIDAD3
+1648,popular,"народный, популярный",SIFATLAR,A1,UNIDAD4
+1649,militar,военный,SIFATLAR,A1,UNIDAD5
+1650,autor,автор,İSİMLER,A1,UNIDAD6
+1651,real,королевский; реальный,SIFATLAR,A1,UNIDAD7
+1652,malo,плохой,SIFATLAR,A1,UNIDAD9
+1653,iniciar,начинать,FİİLLER,A1,UNIDAD2
+1654,investigación,исследование,İSİMLER,A1,UNIDAD4
+1655,juego,игра,İSİMLER,A1,UNIDAD5
+1656,ciento,сто (por ciento),İSİMLER,A1,UNIDAD6
+1657,capital,столица; капитал,İSİMLER,A1,UNIDAD7
+1658,libertad,свобода,İSİMLER,A1,UNIDAD1
+1659,caso de,в случае,EDATLAR / BAĞLAÇLAR,A1,UNIDAD2
+1660,amor,любовь,İSİMLER,A1,UNIDAD5
+1661,arte,искусство,İSİMLER,A1,UNIDAD6
+1662,viejo,старый,SIFATLAR,A1,UNIDAD7
+1663,dinero,деньги,İSİMLER,A1,UNIDAD8
+1664,producción,производство,İSİMLER,A1,UNIDAD2
+1665,levantar,поднимать,FİİLLER,A1,UNIDAD3
+1666,rey,король,İSİMLER,A1,UNIDAD5
+1667,ocasión,"случай, оказия",İSİMLER,A1,UNIDAD8
+1668,población,население,İSİMLER,A1,UNIDAD9
+1669,méxico,Мексика,İSİMLER,A1,UNIDAD1
+1670,duda,сомнение,İSİMLER,A1,UNIDAD2
+1671,falta,"нехватка, отсутствие",İSİMLER,A1,UNIDAD4
+1672,línea,линия,İSİMLER,A1,UNIDAD7
+1673,aspecto,"аспект, вид",İSİMLER,A1,UNIDAD8
+1674,ahí,там,ZARFLAR,A1,UNIDAD3
+1675,ocupar,занимать,FİİLLER,A1,UNIDAD5
+1676,diverso,"различный, разнообразный",SIFATLAR,A1,UNIDAD8
+1677,informar,"сообщать, информировать",FİİLLER,A1,UNIDAD9
+1678,autoridad,"власть, авторитет",İSİMLER,A1,UNIDAD2
+1679,acto,"акт, поступок",İSİMLER,A1,UNIDAD5
+1680,presencia,присутствие,İSİMLER,A1,UNIDAD6
+1681,tercero,третий,İSİMLER,A1,UNIDAD8
+1682,fuerte,сильный,SIFATLAR,A1,UNIDAD1
+1683,dato,"данные, факт",İSİMLER,A1,UNIDAD4
+1684,vista,"вид, зрение",İSİMLER,A1,UNIDAD6
+1685,asunto,"дело, вопрос",İSİMLER,A1,UNIDAD7
+1686,elemento,элемент,İSİMLER,A1,UNIDAD8
+1687,a pesar de,несмотря на,EDATLAR / BAĞLAÇLAR,A1,UNIDAD9
+1688,resto,"остаток, остальные",İSİMLER,A1,UNIDAD1
+1689,ex,"бывший, экс-",İSİMLER,A1,UNIDAD2
+1690,demás,остальные,ZAMİRLER,A1,UNIDAD5
+1691,consecuencia,последствие,İSİMLER,A1,UNIDAD8
+1692,comprender,"понимать, включать",FİİLLER,A1,UNIDAD9
+1693,posición,"положение, позиция",İSİMLER,A1,UNIDAD2
+1694,observar,наблюдать,FİİLLER,A1,UNIDAD4
+1695,sufrir,страдать,FİİLLER,A1,UNIDAD5
+1696,artículo,статья; изделие,İSİMLER,A1,UNIDAD7
+1697,peso,вес; песо,İSİMLER,A1,UNIDAD8
+1698,junto a,рядом с,EDATLAR / BAĞLAÇLAR,A1,UNIDAD9
+1699,dólar,доллар,İSİMLER,A1,UNIDAD1
+1700,dedicar,посвящать,FİİLLER,A1,UNIDAD3
+1701,aire,воздух,İSİMLER,A1,UNIDAD5
+1702,unir,соединять,FİİLLER,A1,UNIDAD6
+1703,técnico,"техник, специалист",İSİMLER,A1,UNIDAD7
+1704,congreso,конгресс,İSİMLER,A1,UNIDAD9
+1705,mañana,утро,İSİMLER,A1,UNIDAD1
+1706,natural,"естественный, природный",SIFATLAR,A1,UNIDAD2
+1707,serie,серия,İSİMLER,A1,UNIDAD6
+1708,pronto,"скоро, быстро",ZARFLAR,A1,UNIDAD8
+1709,época,"эпоха, период",İSİMLER,A1,UNIDAD9
+1710,menor,"меньший, младший",SIFATLAR,A1,UNIDAD1
+1711,anunciar,объявлять,FİİLLER,A1,UNIDAD4
+1712,civil,гражданский,SIFATLAR,A1,UNIDAD7
+1713,región,регион,İSİMLER,A1,UNIDAD1
+1714,uso,"использование, употребление",İSİMLER,A1,UNIDAD2
+1715,mediante,посредством,EDATLAR / BAĞLAÇLAR,A1,UNIDAD3
+1716,comunicación,"общение, связь",İSİMLER,A1,UNIDAD4
+1717,enfermedad,болезнь,İSİMLER,A1,UNIDAD5
+1718,capacidad,"способность, ёмкость",İSİMLER,A1,UNIDAD6
+1719,diferencia,различие,İSİMLER,A1,UNIDAD7
+1720,secretario,секретарь,İSİMLER,A1,UNIDAD8
+1721,dicho,"упомянутый, сказанный",SIFATLAR,A1,UNIDAD9
+1722,detener,"останавливать, задерживать",FİİLLER,A1,UNIDAD1
+1723,provocar,"вызывать, провоцировать",FİİLLER,A1,UNIDAD4
+1724,manifestar,"проявлять, заявлять",FİİLLER,A1,UNIDAD6
+1725,así como,а также,ZARFLAR,A1,UNIDAD8
+1726,declarar,"заявлять, объявлять",FİİLLER,A1,UNIDAD9
+1727,superior,"высший, верхний",SIFATLAR,A1,UNIDAD3
+1728,término,"термин, срок, конец",İSİMLER,A1,UNIDAD4
+1729,contrario,противоположный,SIFATLAR,A1,UNIDAD5
+1730,ministerio,министерство,İSİMLER,A1,UNIDAD6
+1731,participar,участвовать,FİİLLER,A1,UNIDAD7
+1732,expresar,выражать,FİİLLER,A1,UNIDAD8
+1733,operación,операция,İSİMLER,A1,UNIDAD2
+1734,control,контроль,İSİMLER,A1,UNIDAD5
+1735,cargo,"должность, обвинение",İSİMLER,A1,UNIDAD7
+1736,defensa,защита,İSİMLER,A1,UNIDAD9
+1737,cara,лицо,İSİMLER,A1,UNIDAD1
+1738,celebrar,праздновать; проводить,FİİLLER,A1,UNIDAD2
+1739,juez,судья,İSİMLER,A1,UNIDAD3
+1740,prueba,"доказательство, тест",İSİMLER,A1,UNIDAD4
+1741,crisis,кризис,İSİMLER,A1,UNIDAD5
+1742,tocar,трогать; играть (на инструменте),FİİLLER,A1,UNIDAD3
+1743,afectar,"затрагивать, влиять",FİİLLER,A1,UNIDAD4
+1744,cuadro,картина; кадр,İSİMLER,A1,UNIDAD5
+1745,televisión,телевидение,İSİMLER,A1,UNIDAD6
+1746,oficial,официальный,SIFATLAR,A1,UNIDAD7
+1747,europa,Европа,İSİMLER,A1,UNIDAD8
+1748,institución,учреждение,İSİMLER,A1,UNIDAD9
+1749,doctor,доктор,İSİMLER,A1,UNIDAD1
+1750,privado,"частный, личный",SIFATLAR,A1,UNIDAD3
+1751,central,центральный,SIFATLAR,A1,UNIDAD6
+1752,echar,"бросать, лить",FİİLLER,A1,UNIDAD7
+1753,justicia,"правосудие, справедливость",İSİMLER,A1,UNIDAD8
+1754,administración,"администрация, управление",İSİMLER,A1,UNIDAD9
+1755,unidad,"единица, единство",İSİMLER,A1,UNIDAD2
+1756,acompañar,сопровождать,FİİLLER,A1,UNIDAD4
+1757,preparar,готовить,FİİLLER,A1,UNIDAD5
+1758,actuar,действовать,FİİLLER,A1,UNIDAD6
+1759,área,"область, зона",İSİMLER,A1,UNIDAD7
+1760,compañía,компания,İSİMLER,A1,UNIDAD8
+1761,interior,"внутренность, интерьер",İSİMLER,A1,UNIDAD9
+1762,abandonar,"покидать, оставлять",FİİLLER,A1,UNIDAD1
+1763,atención,внимание,İSİMLER,A1,UNIDAD4
+1764,colocar,"размещать, ставить",FİİLLER,A1,UNIDAD6
+1765,situar,располагать,FİİLLER,A1,UNIDAD7
+1766,acercar,приближать,FİİLLER,A1,UNIDAD8
+1767,estructura,структура,İSİMLER,A1,UNIDAD9
+1768,pretender,"претендовать, намереваться",FİİLLER,A1,UNIDAD2
+1769,histórico,исторический,SIFATLAR,A1,UNIDAD3
+1770,cultural,культурный,SIFATLAR,A1,UNIDAD4
+1771,conjunto,"совокупность, ансамбль",İSİMLER,A1,UNIDAD6
+1772,verdadero,"истинный, настоящий",SIFATLAR,A1,UNIDAD1
+1773,dios,бог,İSİMLER,A1,UNIDAD2
+1774,texto,текст,İSİMLER,A1,UNIDAD3
+1775,además de,"помимо, кроме",EDATLAR / BAĞLAÇLAR,A1,UNIDAD4
+1776,aplicar,применять,FİİLLER,A1,UNIDAD6
+1777,apoyo,поддержка,İSİMLER,A1,UNIDAD8
+1778,modelo,"модель, образец",İSİMLER,A1,UNIDAD4
+1779,mover,двигать,FİİLLER,A1,UNIDAD6
+1780,apenas,"едва, лишь",ZARFLAR,A1,UNIDAD4
+1781,título,"заголовок, титул",İSİMLER,A1,UNIDAD5
+1782,conocimiento,знание,İSİMLER,A1,UNIDAD6
+1783,esfuerzo,усилие,İSİMLER,A1,UNIDAD7
+1784,personal,"личный, кадровый",SIFATLAR,A1,UNIDAD9
+1785,paciente,пациент,İSİMLER,A1,UNIDAD1
+1786,cubrir,покрывать,FİİLLER,A1,UNIDAD2
+1787,entregar,"вручать, сдавать",FİİLLER,A1,UNIDAD4
+1788,importancia,важность,İSİMLER,A1,UNIDAD5
+1789,meter,"класть, совать",FİİLLER,A1,UNIDAD6
+1790,alguien,кто-то,ZAMİRLER,A1,UNIDAD7
+1791,allá,"там, туда",ZARFLAR,A1,UNIDAD8
+1792,declaración,"заявление, декларация",İSİMLER,A1,UNIDAD9
+1793,silencio,"тишина, молчание",İSİMLER,A1,UNIDAD1
+1794,disponer,"располагать, иметь",FİİLLER,A1,UNIDAD4
+1795,nación,"нация, государство",İSİMLER,A1,UNIDAD5
+1796,reunir,собирать,FİİLLER,A1,UNIDAD6
+1797,presente,"присутствующий, нынешний",SIFATLAR,A1,UNIDAD7
+1798,grave,"серьёзный, тяжёлый",SIFATLAR,A1,UNIDAD1
+1799,suelo,"пол, почва",İSİMLER,A1,UNIDAD6
+1800,mundial,мировой,SIFATLAR,A1,UNIDAD8
+1801,apoyar,поддерживать,FİİLLER,A1,UNIDAD1
+1802,corresponder,соответствовать,FİİLLER,A1,UNIDAD2
+1803,fecha,дата,İSİMLER,A1,UNIDAD5
+1804,capaz,способный,SIFATLAR,A1,UNIDAD6
+1805,ciencia,наука,İSİMLER,A1,UNIDAD7
+1806,solución,решение,İSİMLER,A1,UNIDAD8
+1807,cabo,конец; мыс; капрал,İSİMLER,A1,UNIDAD3
+1808,sol,солнце,İSİMLER,A1,UNIDAD6
+1809,andar,"ходить, идти",FİİLLER,A1,UNIDAD8
+1810,lucha,борьба,İSİMLER,A1,UNIDAD1
+1811,especialmente,особенно,ZARFLAR,A1,UNIDAD3
+1812,ejército,армия,İSİMLER,A1,UNIDAD5
+1813,naturaleza,природа,İSİMLER,A1,UNIDAD7
+1814,quizá,возможно,ZARFLAR,A1,UNIDAD8
+1815,citar,цитировать; назначать встречу,FİİLLER,A1,UNIDAD9
+1816,diputado,депутат,İSİMLER,A1,UNIDAD1
+1817,norteamericano,североамериканский,SIFATLAR,A1,UNIDAD2
+1818,encuentro,"встреча, матч",İSİMLER,A1,UNIDAD5
+1819,dónde,где (вопросит.),ZARFLAR,A1,UNIDAD6
+1820,faltar,"недоставать, отсутствовать",FİİLLER,A1,UNIDAD7
+1821,personaje,"персонаж, личность",İSİMLER,A1,UNIDAD8
+1822,materia,"материя, предмет",İSİMLER,A1,UNIDAD9
+1823,definir,определять,FİİLLER,A1,UNIDAD1
+1824,permanecer,оставаться,FİİLLER,A1,UNIDAD2
+1825,construir,строить,FİİLLER,A1,UNIDAD3
+1826,agregar,добавлять,FİİLLER,A1,UNIDAD4
+1827,sostener,"поддерживать, утверждать",FİİLLER,A1,UNIDAD5
+1828,organismo,"организм, учреждение",İSİMLER,A1,UNIDAD7
+1829,informe,"доклад, отчёт",İSİMLER,A1,UNIDAD8
+1830,ayuda,помощь,İSİMLER,A1,UNIDAD1
+1831,motivo,"мотив, причина",İSİMLER,A1,UNIDAD2
+1832,concepto,понятие,İSİMLER,A1,UNIDAD3
+1833,electoral,избирательный,SIFATLAR,A1,UNIDAD4
+1834,reforma,реформа,İSİMLER,A1,UNIDAD5
+1835,régimen,режим,İSİMLER,A1,UNIDAD6
+1836,matar,убивать,FİİLLER,A1,UNIDAD7
+1837,tribunal,"суд, трибунал",İSİMLER,A2,UNIDAD1
+1838,expresión,выражение,İSİMLER,A2,UNIDAD7
+1839,físico,физический,SIFATLAR,A2,UNIDAD8
+1840,pasado,прошлый,SIFATLAR,A2,UNIDAD9
+1841,interno,внутренний,SIFATLAR,A2,UNIDAD1
+1842,planta,растение; этаж; завод,İSİMLER,A2,UNIDAD2
+1843,encima,"сверху, поверх",ZARFLAR,A2,UNIDAD3
+1844,factor,фактор,İSİMLER,A2,UNIDAD5
+1845,documento,документ,İSİMLER,A2,UNIDAD6
+1846,surgir,возникать,FİİLLER,A2,UNIDAD7
+1847,defender,защищать,FİİLLER,A2,UNIDAD9
+1848,vuelta,"оборот, возвращение",İSİMLER,A2,UNIDAD2
+1849,hallar,находить,FİİLLER,A2,UNIDAD3
+1850,demasiado,слишком,ZARFLAR,A2,UNIDAD4
+1851,recoger,"собирать, подбирать",FİİLLER,A2,UNIDAD7
+1852,tratamiento,"лечение, обращение",İSİMLER,A2,UNIDAD8
+1853,construcción,строительство,İSİMLER,A2,UNIDAD9
+1854,formación,"образование, формирование",İSİMLER,A2,UNIDAD10
+1855,industria,промышленность,İSİMLER,A2,UNIDAD1
+1856,jugador,игрок,İSİMLER,A2,UNIDAD2
+1857,asociación,ассоциация,İSİMLER,A2,UNIDAD3
+1858,regresar,возвращаться,FİİLLER,A2,UNIDAD4
+1859,cámara,палата; камера,İSİMLER,A2,UNIDAD5
+1860,funcionario,"чиновник, служащий",İSİMLER,A2,UNIDAD7
+1861,propuesta,предложение,İSİMLER,A2,UNIDAD8
+1862,arma,оружие,İSİMLER,A2,UNIDAD10
+1863,existencia,существование,İSİMLER,A2,UNIDAD1
+1864,grado,"степень, градус",İSİMLER,A2,UNIDAD3
+1865,advertir,"предупреждать, замечать",FİİLLER,A2,UNIDAD5
+1866,total,"полный, совокупный",SIFATLAR,A2,UNIDAD7
+1867,representante,представитель,İSİMLER,A2,UNIDAD8
+1868,muchacho,"парень, мальчик",İSİMLER,A2,UNIDAD10
+1869,período,период,İSİMLER,A2,UNIDAD1
+1870,líder,лидер,İSİMLER,A2,UNIDAD2
+1871,tal vez,возможно,ZARFLAR,A2,UNIDAD4
+1872,propiedad,"собственность, свойство",İSİMLER,A2,UNIDAD5
+1873,candidato,кандидат,İSİMLER,A2,UNIDAD6
+1874,crecimiento,рост,İSİMLER,A2,UNIDAD7
+1875,dirigente,руководитель,İSİMLER,A2,UNIDAD8
+1876,adquirir,приобретать,FİİLLER,A2,UNIDAD9
+1877,amplio,широкий,SIFATLAR,A2,UNIDAD10
+1878,mientras que,в то время как,EDATLAR / BAĞLAÇLAR,A2,UNIDAD1
+1879,precisamente,"именно, как раз",ZARFLAR,A2,UNIDAD2
+1880,impedir,препятствовать,FİİLLER,A2,UNIDAD5
+1881,vía,"путь, дорога",İSİMLER,A2,UNIDAD6
+1882,izquierda,"левая сторона, левые",İSİMLER,A2,UNIDAD8
+1883,suficiente,достаточный,SIFATLAR,A2,UNIDAD9
+1884,américa,Америка,İSİMLER,A2,UNIDAD10
+1885,mal,плохо,ZARFLAR,A2,UNIDAD1
+1886,francia,Франция,İSİMLER,A2,UNIDAD2
+1887,organizar,организовывать,FİİLLER,A2,UNIDAD4
+1888,desaparecer,исчезать,FİİLLER,A2,UNIDAD5
+1889,aprobar,одобрять; сдавать (экзамен),FİİLLER,A2,UNIDAD6
+1890,local,местный,SIFATLAR,A2,UNIDAD7
+1891,radio,радио; радиус,İSİMLER,A2,UNIDAD10
+1892,mirada,взгляд,İSİMLER,A2,UNIDAD1
+1893,curso,курс,İSİMLER,A2,UNIDAD3
+1894,determinado,определённый,SIFATLAR,A2,UNIDAD4
+1895,contener,содержать,FİİLLER,A2,UNIDAD6
+1896,poseer,обладать,FİİLLER,A2,UNIDAD7
+1897,característico,характерная черта,İSİMLER,A2,UNIDAD8
+1898,práctica,практика,İSİMLER,A2,UNIDAD9
+1899,directo,прямой,SIFATLAR,A2,UNIDAD1
+1900,crítico,критик,İSİMLER,A2,UNIDAD2
+1901,contenido,содержание,İSİMLER,A2,UNIDAD4
+1902,maestro,"учитель, мастер",İSİMLER,A2,UNIDAD5
+1903,enfrentar,"сталкиваться, противостоять",FİİLLER,A2,UNIDAD6
+1904,cuestión,вопрос,İSİMLER,A2,UNIDAD8
+1905,comercial,"торговый, коммерческий",SIFATLAR,A2,UNIDAD9
+1906,animal,животное,İSİMLER,A2,UNIDAD10
+1907,memoria,память,İSİMLER,A2,UNIDAD1
+1908,profundo,глубокий,SIFATLAR,A2,UNIDAD5
+1909,socialista,социалистический,SIFATLAR,A2,UNIDAD9
+1910,juicio,"суд, суждение",İSİMLER,A2,UNIDAD1
+1911,requerir,требовать,FİİLLER,A2,UNIDAD2
+1912,lanzar,"бросать, запускать",FİİLLER,A2,UNIDAD3
+1913,salido,"выход, уход",İSİMLER,A2,UNIDAD4
+1914,diario,дневник; ежедневная газета,İSİMLER,A2,UNIDAD5
+1915,corte,суд; двор; разрез,İSİMLER,A2,UNIDAD7
+1916,análisis,анализ,İSİMLER,A2,UNIDAD9
+1917,fundamental,основополагающий,SIFATLAR,A2,UNIDAD10
+1918,mitad,половина,İSİMLER,A2,UNIDAD2
+1919,conducir,"вести, водить",FİİLLER,A2,UNIDAD3
+1920,marcha,"ход, марш",İSİMLER,A2,UNIDAD4
+1921,sala,"зал, комната",İSİMLER,A2,UNIDAD6
+1922,determinar,определять,FİİLLER,A2,UNIDAD7
+1923,relacionar,связывать,FİİLLER,A2,UNIDAD8
+1924,municipal,муниципальный,SIFATLAR,A2,UNIDAD9
+1925,mencionar,упоминать,FİİLLER,A2,UNIDAD10
+1926,igual,"равный, одинаковый",SIFATLAR,A2,UNIDAD1
+1927,financiero,финансовый,SIFATLAR,A2,UNIDAD2
+1928,finalmente,наконец,ZARFLAR,A2,UNIDAD3
+1929,democracia,демократия,İSİMLER,A2,UNIDAD6
+1930,aumento,увеличение,İSİMLER,A2,UNIDAD7
+1931,responsabilidad,ответственность,İSİMLER,A2,UNIDAD8
+1932,venta,продажа,İSİMLER,A2,UNIDAD9
+1933,oposición,оппозиция,İSİMLER,A2,UNIDAD10
+1934,visita,визит,İSİMLER,A2,UNIDAD1
+1935,inmediato,немедленный,SIFATLAR,A2,UNIDAD4
+1936,creación,создание,İSİMLER,A2,UNIDAD5
+1937,contacto,контакт,İSİMLER,A2,UNIDAD7
+1938,fuego,огонь,İSİMLER,A2,UNIDAD8
+1939,científico,научный,SIFATLAR,A2,UNIDAD9
+1940,ti,"тебя, тебе (после предлога)",ZAMİRLER,A2,UNIDAD1
+1941,teoría,теория,İSİMLER,A2,UNIDAD3
+1942,bastante,"довольно, достаточно",ZARFLAR,A2,UNIDAD5
+1943,quitar,"снимать, убирать",FİİLLER,A2,UNIDAD8
+1944,esposo,супруг,İSİMLER,A2,UNIDAD10
+1945,terreno,"участок, почва",İSİMLER,A2,UNIDAD2
+1946,confirmar,подтверждать,FİİLLER,A2,UNIDAD3
+1947,comercio,торговля,İSİMLER,A2,UNIDAD7
+1948,simple,простой,SIFATLAR,A2,UNIDAD8
+1949,favor,"одолжение, милость",İSİMLER,A2,UNIDAD9
+1950,golpe,удар,İSİMLER,A2,UNIDAD10
+1951,insistir,настаивать,FİİLLER,A2,UNIDAD2
+1952,en cuanto a,что касается,EDATLAR / BAĞLAÇLAR,A2,UNIDAD3
+1953,presión,давление,İSİMLER,A2,UNIDAD6
+1954,exterior,внешний,SIFATLAR,A2,UNIDAD8
+1955,conciencia,"совесть, сознание",İSİMLER,A2,UNIDAD9
+1956,debido a,из-за,EDATLAR / BAĞLAÇLAR,A2,UNIDAD10
+1957,integrar,"включать, объединять",FİİLLER,A2,UNIDAD1
+1958,preocupar,беспокоить,FİİLLER,A2,UNIDAD2
+1959,máximo,максимальный,SIFATLAR,A2,UNIDAD3
+1960,negocio,"дело, бизнес",İSİMLER,A2,UNIDAD4
+1961,concluir,"заключать, заканчивать",FİİLLER,A2,UNIDAD7
+1962,derecha,"правая сторона, правые",İSİMLER,A2,UNIDAD10
+1963,basar,основывать,FİİLLER,A2,UNIDAD2
+1964,importar,быть важным; импортировать,FİİLLER,A2,UNIDAD3
+1965,marcar,"отмечать, забивать",FİİLLER,A2,UNIDAD6
+1966,profesional,профессиональный,SIFATLAR,A2,UNIDAD7
+1967,atrás,"назад, сзади",ZARFLAR,A2,UNIDAD10
+1968,acordar,договариваться,FİİLLER,A2,UNIDAD2
+1969,ejercicio,упражнение; осуществление,İSİMLER,A2,UNIDAD5
+1970,fijar,"закреплять, устанавливать",FİİLLER,A2,UNIDAD8
+1971,puesto,"место, должность",İSİMLER,A2,UNIDAD9
+1972,ingreso,"доход, поступление",İSİMLER,A2,UNIDAD10
+1973,novela,роман,İSİMLER,A2,UNIDAD1
+1974,aprovechar,"использовать, воспользоваться",FİİLLER,A2,UNIDAD2
+1975,suerte,"удача, судьба",İSİMLER,A2,UNIDAD3
+1976,pensamiento,"мысль, мышление",İSİMLER,A2,UNIDAD4
+1977,numeroso,многочисленный,SIFATLAR,A2,UNIDAD5
+1978,método,метод,İSİMLER,A2,UNIDAD8
+1979,periódico,газета,İSİMLER,A2,UNIDAD10
+1980,estilo,стиль,İSİMLER,A2,UNIDAD2
+1981,club,клуб,İSİMLER,A2,UNIDAD3
+1982,departamento,"отдел, департамент",İSİMLER,A2,UNIDAD4
+1983,república,республика,İSİMLER,A2,UNIDAD5
+1984,rostro,лицо,İSİMLER,A2,UNIDAD6
+1985,voluntad,воля,İSİMLER,A2,UNIDAD7
+1986,circunstancia,обстоятельство,İSİMLER,A2,UNIDAD10
+1987,vivo,живой,SIFATLAR,A2,UNIDAD1
+1988,acudir,"являться, приходить",FİİLLER,A2,UNIDAD2
+1989,escena,сцена,İSİMLER,A2,UNIDAD3
+1990,ni siquiera,даже не,ZARFLAR,A2,UNIDAD5
+1991,absoluto,абсолютный,SIFATLAR,A2,UNIDAD6
+1992,adelante,вперёд,ZARFLAR,A2,UNIDAD9
+1993,agente,агент,İSİMLER,A2,UNIDAD1
+1994,escritor,писатель,İSİMLER,A2,UNIDAD2
+1995,pese a,несмотря на,EDATLAR / BAĞLAÇLAR,A2,UNIDAD3
+1996,altura,высота,İSİMLER,A2,UNIDAD4
+1997,extender,"расширять, протягивать",FİİLLER,A2,UNIDAD5
+1998,cielo,небо,İSİMLER,A2,UNIDAD6
+1999,adoptar,"принимать, усыновлять",FİİLLER,A2,UNIDAD7
+2000,dispuesto,"готовый, расположенный",SIFATLAR,A2,UNIDAD9
+2001,vestir,одевать(ся),FİİLLER,A2,UNIDAD1
+2002,efectuar,осуществлять,FİİLLER,A2,UNIDAD2
+2003,cuarto,комната; четвёртый; четверть,İSİMLER,A2,UNIDAD3
+2004,recuperar,"восстанавливать, возвращать",FİİLLER,A2,UNIDAD4
+2005,entidad,"организация, сущность",İSİMLER,A2,UNIDAD6
+2006,sitio,место,İSİMLER,A2,UNIDAD7
+2007,aplicación,"применение, приложение",İSİMLER,A2,UNIDAD8
+2008,adecuado,"подходящий, адекватный",SIFATLAR,A2,UNIDAD9
+2009,aun,даже,ZARFLAR,A2,UNIDAD2
+2010,enorme,огромный,SIFATLAR,A2,UNIDAD3
+2011,contemplar,"созерцать, рассматривать",FİİLLER,A2,UNIDAD6
+2012,capítulo,глава,İSİMLER,A2,UNIDAD8
+2013,guardar,"хранить, беречь",FİİLLER,A2,UNIDAD9
+2014,provincia,провинция,İSİMLER,A2,UNIDAD10
+2015,asumir,брать на себя,FİİLLER,A2,UNIDAD1
+2016,consistir,состоять,FİİLLER,A2,UNIDAD3
+2017,gracias a,благодаря,EDATLAR / BAĞLAÇLAR,A2,UNIDAD4
+2018,registrar,"регистрировать, записывать",FİİLLER,A2,UNIDAD5
+2019,coche,"машина, автомобиль",İSİMLER,A2,UNIDAD6
+2020,asistir,"присутствовать, помогать",FİİLLER,A2,UNIDAD7
+2021,controlar,контролировать,FİİLLER,A2,UNIDAD8
+2022,definitivo,окончательный,SIFATLAR,A2,UNIDAD9
+2023,denominar,называть,FİİLLER,A2,UNIDAD10
+2024,rápido,быстрый,SIFATLAR,A2,UNIDAD1
+2025,piedra,камень,İSİMLER,A2,UNIDAD2
+2026,gesto,жест,İSİMLER,A2,UNIDAD3
+2027,acusar,обвинять,FİİLLER,A2,UNIDAD4
+2028,someter,"подчинять, подвергать",FİİLLER,A2,UNIDAD5
+2029,distancia,расстояние,İSİMLER,A2,UNIDAD6
+2030,pintura,"живопись, краска",İSİMLER,A2,UNIDAD7
+2031,instituto,институт,İSİMLER,A2,UNIDAD8
+2032,caber,вмещаться; быть возможным,FİİLLER,A2,UNIDAD9
+2033,destino,"судьба, назначение",İSİMLER,A2,UNIDAD10
+2034,demanda,"спрос, иск",İSİMLER,A2,UNIDAD1
+2035,corto,короткий,SIFATLAR,A2,UNIDAD3
+2036,mínimo,минимальный,SIFATLAR,A2,UNIDAD4
+2037,actuación,"выступление, действия",İSİMLER,A2,UNIDAD6
+2038,violencia,насилие,İSİMLER,A2,UNIDAD7
+2039,parís,Париж,İSİMLER,A2,UNIDAD8
+2040,separar,разделять,FİİLLER,A2,UNIDAD9
+2041,introducir,вводить,FİİLLER,A2,UNIDAD10
+2042,de acuerdo con,в соответствии с,EDATLAR / BAĞLAÇLAR,A2,UNIDAD2
+2043,reír,смеяться,FİİLLER,A2,UNIDAD3
+2044,cifra,"цифра, число",İSİMLER,A2,UNIDAD4
+2045,exposición,выставка; изложение,İSİMLER,A2,UNIDAD6
+2046,solamente,только,ZARFLAR,A2,UNIDAD7
+2047,conversación,разговор,İSİMLER,A2,UNIDAD8
+2048,mensaje,сообщение,İSİMLER,A2,UNIDAD1
+2049,generar,"порождать, генерировать",FİİLLER,A2,UNIDAD3
+2050,imposible,невозможный,SIFATLAR,A2,UNIDAD5
+2051,revista,журнал,İSİMLER,A2,UNIDAD7
+2052,chico,"мальчик, парень",İSİMLER,A2,UNIDAD8
+2053,asimismo,"также, равным образом",ZARFLAR,A2,UNIDAD9
+2054,judicial,судебный,SIFATLAR,A2,UNIDAD10
+2055,valer,"стоить, годиться",FİİLLER,A2,UNIDAD1
+2056,pieza,"часть, пьеса",İSİMLER,A2,UNIDAD3
+2057,discurso,"речь, дискурс",İSİMLER,A2,UNIDAD4
+2058,constitución,конституция,İSİMLER,A2,UNIDAD5
+2059,década,десятилетие,İSİMLER,A2,UNIDAD6
+2060,retirar,"отзывать, убирать",FİİLLER,A2,UNIDAD7
+2061,incorporar,"включать, присоединять",FİİLLER,A2,UNIDAD9
+2062,peligro,опасность,İSİMLER,A2,UNIDAD10
+2063,alcalde,мэр,İSİMLER,A2,UNIDAD1
+2064,alimento,"пища, продукт",İSİMLER,A2,UNIDAD2
+2065,oro,золото,İSİMLER,A2,UNIDAD4
+2066,mandar,"посылать, приказывать",FİİLLER,A2,UNIDAD5
+2067,lenguaje,"язык, речь",İSİMLER,A2,UNIDAD7
+2068,convencer,убеждать,FİİLLER,A2,UNIDAD8
+2069,víctima,жертва,İSİMLER,A2,UNIDAD9
+2070,empresario,предприниматель,İSİMLER,A2,UNIDAD10
+2071,similar,похожий,SIFATLAR,A2,UNIDAD2
+2072,intervención,вмешательство,İSİMLER,A2,UNIDAD4
+2073,listo,готовый; умный,İSİMLER,A2,UNIDAD6
+2074,gestión,"управление, менеджмент",İSİMLER,A2,UNIDAD7
+2075,gasto,расход,İSİMLER,A2,UNIDAD8
+2076,territorio,территория,İSİMLER,A2,UNIDAD2
+2077,emplear,"нанимать, применять",FİİLLER,A2,UNIDAD3
+2078,marco,"рамка, рамки",İSİMLER,A2,UNIDAD4
+2079,jornada,"рабочий день, день",İSİMLER,A2,UNIDAD5
+2080,a la que,"которой, к которой",EDATLAR / BAĞLAÇLAR,A2,UNIDAD6
+2081,ambiente,"обстановка, среда",İSİMLER,A2,UNIDAD8
+2082,presupuesto,"бюджет, смета",İSİMLER,A2,UNIDAD9
+2083,comprobar,"проверять, устанавливать",FİİLLER,A2,UNIDAD10
+2084,tradicional,традиционный,SIFATLAR,A2,UNIDAD1
+2085,vehículo,"транспорт, средство",İSİMLER,A2,UNIDAD2
+2086,atender,"обслуживать, уделять внимание",FİİLLER,A2,UNIDAD3
+2087,red,сеть,İSİMLER,A2,UNIDAD4
+2088,exponer,"излагать, выставлять",FİİLLER,A2,UNIDAD5
+2089,pobre,бедный,SIFATLAR,A2,UNIDAD7
+2090,pleno,"полный, пленарный",SIFATLAR,A2,UNIDAD8
+2091,hoja,лист,İSİMLER,A2,UNIDAD10
+2092,piel,кожа,İSİMLER,A2,UNIDAD2
+2093,partir,отправляться; делить,FİİLLER,A2,UNIDAD3
+2094,no obstante,тем не менее,ZARFLAR,A2,UNIDAD4
+2095,individuo,"индивид, человек",İSİMLER,A2,UNIDAD5
+2096,reciente,недавний,SIFATLAR,A2,UNIDAD6
+2097,alma,душа,İSİMLER,A2,UNIDAD8
+2098,concreto,конкретный,SIFATLAR,A2,UNIDAD9
+2099,abierto,открытый,SIFATLAR,A2,UNIDAD1
+2100,jamás,никогда,ZARFLAR,A2,UNIDAD4
+2101,procedimiento,процедура,İSİMLER,A2,UNIDAD5
+2102,espíritu,дух,İSİMLER,A2,UNIDAD7
+2103,positivo,положительный,SIFATLAR,A2,UNIDAD10
+2104,extraño,"странный, чужой",SIFATLAR,A2,UNIDAD2
+2105,gusto,вкус,İSİMLER,A2,UNIDAD4
+2106,sorprender,удивлять,FİİLLER,A2,UNIDAD6
+2107,flor,цветок,İSİMLER,A2,UNIDAD9
+2108,causar,"вызывать, причинять",FİİLLER,A2,UNIDAD10
+2109,avanzar,продвигаться,FİİLLER,A2,UNIDAD1
+2110,armado,вооружённый,SIFATLAR,A2,UNIDAD2
+2111,masa,"масса, тесто",İSİMLER,A2,UNIDAD3
+2112,viento,ветер,İSİMLER,A2,UNIDAD4
+2113,alrededor,вокруг,ZARFLAR,A2,UNIDAD6
+2114,familiar,"семейный, знакомый",SIFATLAR,A2,UNIDAD9
+2115,reacción,реакция,İSİMLER,A2,UNIDAD10
+2116,conservar,сохранять,FİİLLER,A2,UNIDAD1
+2117,oficina,"офис, контора",İSİMLER,A2,UNIDAD4
+2118,alumno,"ученик, студент",İSİMLER,A2,UNIDAD5
+2119,propósito,"цель, намерение",İSİMLER,A2,UNIDAD6
+2120,comité,комитет,İSİMLER,A2,UNIDAD7
+2121,palacio,дворец,İSİMLER,A2,UNIDAD8
+2122,nota,"заметка, оценка, нота",İSİMLER,A2,UNIDAD9
+2123,versión,версия,İSİMLER,A2,UNIDAD10
+2124,referencia,"ссылка, упоминание",İSİMLER,A2,UNIDAD1
+2125,disposición,"расположение, готовность",İSİMLER,A2,UNIDAD5
+2126,escaso,"скудный, редкий",SIFATLAR,A2,UNIDAD6
+2127,junta,"совет, хунта",İSİMLER,A2,UNIDAD7
+2128,ejercer,"осуществлять, исполнять",FİİLLER,A2,UNIDAD9
+2129,correspondiente,соответствующий,SIFATLAR,A2,UNIDAD10
+2130,coincidir,совпадать,FİİLLER,A2,UNIDAD1
+2131,religioso,религиозный,SIFATLAR,A2,UNIDAD2
+2132,peor,"худший, хуже",SIFATLAR,A2,UNIDAD3
+2133,guardia,"охрана, гвардия",İSİMLER,A2,UNIDAD4
+2134,preciso,"точный, необходимый",SIFATLAR,A2,UNIDAD5
+2135,respecto a,относительно,EDATLAR / BAĞLAÇLAR,A2,UNIDAD6
+2136,influencia,влияние,İSİMLER,A2,UNIDAD7
+2137,despertar,"будить, просыпаться",FİİLLER,A2,UNIDAD8
+2138,limitar,ограничивать,FİİLLER,A2,UNIDAD9
+2139,sombra,тень,İSİMLER,A2,UNIDAD10
+2140,extranjero,иностранный,SIFATLAR,A2,UNIDAD1
+2141,temperatura,температура,İSİMLER,A2,UNIDAD2
+2142,rodear,окружать,FİİLLER,A2,UNIDAD3
+2143,pared,стена,İSİMLER,A2,UNIDAD4
+2144,instalar,устанавливать,FİİLLER,A2,UNIDAD5
+2145,intervenir,"вмешиваться, оперировать",FİİLLER,A2,UNIDAD6
+2146,contribuir,вносить вклад,FİİLLER,A2,UNIDAD8
+2147,puro,"чистый, чистейший",SIFATLAR,A2,UNIDAD9
+2148,identificar,"опознавать, отождествлять",FİİLLER,A2,UNIDAD10
+2149,tirar,"бросать, тянуть",FİİLLER,A2,UNIDAD1
+2150,labor,"труд, работа",İSİMLER,A2,UNIDAD3
+2151,argentina,Аргентина,İSİMLER,A2,UNIDAD4
+2152,implicar,"подразумевать, вовлекать",FİİLLER,A2,UNIDAD5
+2153,cadena,"цепь, сеть",İSİMLER,A2,UNIDAD7
+2154,unión,"союз, объединение",İSİMLER,A2,UNIDAD8
+2155,visión,"видение, зрение",İSİMLER,A2,UNIDAD9
+2156,conferencia,"конференция, лекция",İSİMLER,A2,UNIDAD1
+2157,urbano,городской,SIFATLAR,A2,UNIDAD2
+2158,detrás,сзади,ZARFLAR,A2,UNIDAD3
+2159,verano,лето,İSİMLER,A2,UNIDAD4
+2160,representación,"представление, представительство",İSİMLER,A2,UNIDAD5
+2161,superficie,поверхность,İSİMLER,A2,UNIDAD6
+2162,selección,"отбор, сборная",İSİMLER,A2,UNIDAD7
+2163,ventana,окно,İSİMLER,A2,UNIDAD9
+2164,prestar,давать взаймы; оказывать,FİİLLER,A2,UNIDAD1
+2165,componer,"составлять, сочинять",FİİLLER,A2,UNIDAD2
+2166,poeta,поэт,İSİMLER,A2,UNIDAD4
+2167,temporada,сезон,İSİMLER,A2,UNIDAD5
+2168,caballo,лошадь,İSİMLER,A2,UNIDAD7
+2169,ataque,"атака, приступ",İSİMLER,A2,UNIDAD8
+2170,kilómetro,километр,İSİMLER,A2,UNIDAD10
+2171,colegio,"школа, колледж",İSİMLER,A2,UNIDAD2
+2172,jurídico,юридический,SIFATLAR,A2,UNIDAD4
+2173,fase,"фаза, этап",İSİMLER,A2,UNIDAD5
+2174,conducta,поведение,İSİMLER,A2,UNIDAD8
+2175,soldado,солдат,İSİMLER,A2,UNIDAD10
+2176,frase,"фраза, предложение",İSİMLER,A2,UNIDAD2
+2177,compromiso,"обязательство, компромисс",İSİMLER,A2,UNIDAD4
+2178,diálogo,диалог,İSİMLER,A2,UNIDAD5
+2179,realmente,действительно,ZARFLAR,A2,UNIDAD6
+2180,sensación,"ощущение, сенсация",İSİMLER,A2,UNIDAD8
+2181,acceso,доступ,İSİMLER,A2,UNIDAD2
+2182,facilitar,"облегчать, предоставлять",FİİLLER,A2,UNIDAD3
+2183,regional,региональный,SIFATLAR,A2,UNIDAD6
+2184,árbol,дерево,İSİMLER,A2,UNIDAD8
+2185,frecuencia,частота,İSİMLER,A2,UNIDAD9
+2186,crédito,кредит,İSİMLER,A2,UNIDAD2
+2187,bastar,"хватать, быть достаточным",FİİLLER,A2,UNIDAD3
+2188,muestra,"образец, выставка",İSİMLER,A2,UNIDAD4
+2189,droga,"наркотик, лекарство",İSİMLER,A2,UNIDAD8
+2190,parlamento,парламент,İSİMLER,A2,UNIDAD9
+2191,transporte,транспорт,İSİMLER,A2,UNIDAD10
+2192,os,"вас, вам (энклитика, мн.)",ZAMİRLER,A2,UNIDAD1
+2193,delito,преступление,İSİMLER,A2,UNIDAD4
+2194,merecer,заслуживать,FİİLLER,A2,UNIDAD5
+2195,específico,"конкретный, специфический",SIFATLAR,A2,UNIDAD6
+2196,transformar,преобразовывать,FİİLLER,A2,UNIDAD7
+2197,victoria,победа,İSİMLER,A2,UNIDAD8
+2198,instante,мгновение,İSİMLER,A2,UNIDAD10
+2199,triunfo,"триумф, победа",İSİMLER,A2,UNIDAD1
+2200,ritmo,ритм,İSİMLER,A2,UNIDAD2
+2201,proceder,происходить; приступать,FİİLLER,A2,UNIDAD3
+2202,directamente,напрямую,ZARFLAR,A2,UNIDAD4
+2203,tono,тон,İSİMLER,A2,UNIDAD5
+2204,ámbito,"сфера, область",İSİMLER,A2,UNIDAD6
+2205,intento,попытка,İSİMLER,A2,UNIDAD7
+2206,legal,законный,SIFATLAR,A2,UNIDAD8
+2207,vivienda,жильё,İSİMLER,A2,UNIDAD1
+2208,par,пара,İSİMLER,A2,UNIDAD2
+2209,revelar,"раскрывать, проявлять",FİİLLER,A2,UNIDAD3
+2210,perro,собака,İSİMLER,A2,UNIDAD7
+2211,salvar,спасать,FİİLLER,A2,UNIDAD9
+2212,apuntar,"указывать, записывать",FİİLLER,A2,UNIDAD10
+2213,tender,иметь тенденцию; протягивать,FİİLLER,A2,UNIDAD1
+2214,sumar,"складывать, составлять",FİİLLER,A2,UNIDAD2
+2215,debate,"дебаты, обсуждение",İSİMLER,A2,UNIDAD3
+2216,mecanismo,механизм,İSİMLER,A2,UNIDAD4
+2217,instalación,"установка, сооружение",İSİMLER,A2,UNIDAD5
+2218,destinar,предназначать,FİİLLER,A2,UNIDAD6
+2219,iniciativa,инициатива,İSİMLER,A2,UNIDAD7
+2220,frío,холодный,SIFATLAR,A2,UNIDAD8
+2221,sujeto,"субъект, подлежащее",İSİMLER,A2,UNIDAD9
+2222,gracia,милость; острота; gracia de,İSİMLER,A2,UNIDAD10
+2223,plano,"план, плоскость",İSİMLER,A2,UNIDAD1
+2224,pago,платёж,İSİMLER,A2,UNIDAD2
+2225,toro,бык,İSİMLER,A2,UNIDAD3
+2226,comienzo,начало,İSİMLER,A2,UNIDAD6
+2227,tecnología,технология,İSİMLER,A2,UNIDAD8
+2228,casar,женить(ся),FİİLLER,A2,UNIDAD9
+2229,deudo,родственник (умершего),İSİMLER,A2,UNIDAD10
+2230,carretero,погонщик; дорожный,İSİMLER,A2,UNIDAD1
+2231,acerca de,"о, относительно",EDATLAR / BAĞLAÇLAR,A2,UNIDAD2
+2232,evolución,"эволюция, развитие",İSİMLER,A2,UNIDAD3
+2233,la,определённый артикль (ж.р.),İSİMLER,A2,UNIDAD5
+2234,caja,"коробка, касса",İSİMLER,A2,UNIDAD6
+2235,trasladar,"перемещать, переводить",FİİLLER,A2,UNIDAD9
+2236,totalmente,полностью,ZARFLAR,A2,UNIDAD10
+2237,raíz,корень,İSİMLER,A2,UNIDAD1
+2238,generación,поколение,İSİMLER,A2,UNIDAD2
+2239,calificar,"оценивать, квалифицировать",FİİLLER,A2,UNIDAD3
+2240,cubano,кубинский,SIFATLAR,A2,UNIDAD4
+2241,interpretar,"толковать, исполнять",FİİLLER,A2,UNIDAD5
+2242,notar,замечать,FİİLLER,A2,UNIDAD7
+2243,reflejar,отражать,FİİLLER,A2,UNIDAD8
+2244,eléctrico,электрический,SIFATLAR,A2,UNIDAD1
+2245,en torno a,"вокруг, около",EDATLAR / BAĞLAÇLAR,A2,UNIDAD2
+2246,elaborar,"разрабатывать, готовить",FİİLLER,A2,UNIDAD3
+2247,edición,издание,İSİMLER,A2,UNIDAD4
+2248,audiencia,"аудитория, слушание",İSİMLER,A2,UNIDAD9
+2249,agencia,агентство,İSİMLER,A2,UNIDAD10
+2250,previo,предварительный,SIFATLAR,A2,UNIDAD1
+2251,breve,краткий,SIFATLAR,A2,UNIDAD3
+2252,asamblea,"собрание, ассамблея",İSİMLER,A2,UNIDAD4
+2253,cometer,совершать (проступок),FİİLLER,A2,UNIDAD5
+2254,recorrer,"проезжать, обходить",FİİLLER,A2,UNIDAD7
+2255,presidencia,"президентство, председательство",İSİMLER,A2,UNIDAD10
+2256,costa,"берег, побережье",İSİMLER,A2,UNIDAD3
+2257,volumen,"объём, том",İSİMLER,A2,UNIDAD5
+2258,vencer,"побеждать, истекать (срок)",FİİLLER,A2,UNIDAD6
+2259,protección,защита,İSİMLER,A2,UNIDAD7
+2260,calor,"жара, тепло",İSİMLER,A2,UNIDAD8
+2261,doble,двойной,SIFATLAR,A2,UNIDAD9
+2262,estrella,звезда,İSİMLER,A2,UNIDAD10
+2263,laboral,трудовой,SIFATLAR,A2,UNIDAD2
+2264,tasa,"ставка, тариф",İSİMLER,A2,UNIDAD3
+2265,americano,американский,SIFATLAR,A2,UNIDAD4
+2266,cobrar,"взимать, получать (деньги)",FİİLLER,A2,UNIDAD8
+2267,estimar,"оценивать, считать",FİİLLER,A2,UNIDAD9
+2268,externo,внешний,SIFATLAR,A2,UNIDAD1
+2269,amar,любить,FİİLLER,A2,UNIDAD2
+2270,oferta,предложение (оферта),İSİMLER,A2,UNIDAD3
+2271,emitir,"выпускать, передавать",FİİLLER,A2,UNIDAD4
+2272,simplemente,просто,ZARFLAR,A2,UNIDAD5
+2273,clave,"ключ, код",İSİMLER,A2,UNIDAD6
+2274,sonar,звучать,FİİLLER,A2,UNIDAD7
+2275,avión,самолёт,İSİMLER,A2,UNIDAD9
+2276,feliz,счастливый,SIFATLAR,A2,UNIDAD10
+2277,escapar,"сбежать, избежать",FİİLLER,A2,UNIDAD1
+2278,gobernador,губернатор,İSİMLER,A2,UNIDAD3
+2279,aportar,"вносить, давать",FİİLLER,A2,UNIDAD5
+2280,proporcionar,предоставлять,FİİLLER,A2,UNIDAD6
+2281,artístico,художественный,SIFATLAR,A2,UNIDAD7
+2282,clásico,классический,SIFATLAR,A2,UNIDAD10
+2283,rato,"время, промежуток",İSİMLER,A2,UNIDAD1
+2284,italia,Италия,İSİMLER,A2,UNIDAD4
+2285,sonido,звук,İSİMLER,A2,UNIDAD5
+2286,federal,федеральный,SIFATLAR,A2,UNIDAD6
+2287,eliminar,"устранять, удалять",FİİLLER,A2,UNIDAD9
+2288,aparato,"аппарат, прибор",İSİMLER,A2,UNIDAD1
+2289,ejecutivo,руководитель; исполнительная власть,İSİMLER,A2,UNIDAD3
+2290,cercano,близкий,SIFATLAR,A2,UNIDAD4
+2291,convocar,"созывать, вызывать",FİİLLER,A2,UNIDAD5
+2292,si bien,хотя,EDATLAR / BAĞLAÇLAR,A2,UNIDAD6
+2293,junto,"вместе, рядом",SIFATLAR,A2,UNIDAD7
+2294,lector,читатель,İSİMLER,A2,UNIDAD8
+2295,copa,"кубок, бокал",İSİMLER,A2,UNIDAD10
+2296,cárcel,тюрьма,İSİMLER,A2,UNIDAD1
+2297,permanente,постоянный,SIFATLAR,A2,UNIDAD3
+2298,sexual,"сексуальный, половой",SIFATLAR,A2,UNIDAD4
+2299,opción,"вариант, опция",İSİMLER,A2,UNIDAD6
+2300,velocidad,скорость,İSİMLER,A2,UNIDAD7
+2301,figurar,"фигурировать, изображать",FİİLLER,A2,UNIDAD8
+2302,mamá,мама,İSİMLER,A2,UNIDAD9
+2303,gol,гол,İSİMLER,A2,UNIDAD10
+2304,literatura,литература,İSİMLER,A2,UNIDAD1
+2305,frente al,"перед, напротив",EDATLAR / BAĞLAÇLAR,A2,UNIDAD2
+2306,respeto,уважение,İSİMLER,A2,UNIDAD4
+2307,ausencia,отсутствие,İSİMLER,A2,UNIDAD5
+2308,alemania,Германия,İSİMLER,A2,UNIDAD6
+2309,posterior,"последующий, задний",SIFATLAR,A2,UNIDAD10
+2310,habitante,житель,İSİMLER,A2,UNIDAD1
+2311,órgano,орган,İSİMLER,A2,UNIDAD2
+2312,independiente,независимый,SIFATLAR,A2,UNIDAD3
+2313,comportamiento,поведение,İSİMLER,A2,UNIDAD4
+2314,interesante,интересный,SIFATLAR,A2,UNIDAD5
+2315,signo,знак,İSİMLER,A2,UNIDAD6
+2316,actualidad,"современность, новости",İSİMLER,A2,UNIDAD7
+2317,firma,"подпись, фирма",İSİMLER,A2,UNIDAD8
+2318,puerto,порт,İSİMLER,A2,UNIDAD9
+2319,cuidado,"забота, осторожность",İSİMLER,A2,UNIDAD10
+2320,tamaño,размер,İSİMLER,A2,UNIDAD1
+2321,espectáculo,"зрелище, спектакль",İSİMLER,A2,UNIDAD2
+2322,división,"деление, дивизия",İSİMLER,A2,UNIDAD3
+2323,musical,музыкальный,SIFATLAR,A2,UNIDAD4
+2324,preocupación,беспокойство,İSİMLER,A2,UNIDAD6
+2325,discutir,"обсуждать, спорить",FİİLLER,A2,UNIDAD7
+2326,habitual,"привычный, обычный",SIFATLAR,A2,UNIDAD8
+2327,muerto,"покойник, мёртвый",İSİMLER,A2,UNIDAD9
+2328,comunicar,сообщать,FİİLLER,A2,UNIDAD10
+2329,accidente,несчастный случай,İSİMLER,A2,UNIDAD1
+2330,constitucional,конституционный,SIFATLAR,A2,UNIDAD3
+2331,otorgar,"предоставлять, жаловать",FİİLLER,A2,UNIDAD4
+2332,modificar,изменять,FİİLLER,A2,UNIDAD5
+2333,impresión,впечатление; печать,İSİMLER,A2,UNIDAD7
+2334,fórmula,формула,İSİMLER,A2,UNIDAD8
+2335,banda,"группа, лента, банда",İSİMLER,A2,UNIDAD9
+2336,convenir,"подходить, договариваться",FİİLLER,A2,UNIDAD10
+2337,inferior,"нижний, низший",SIFATLAR,A2,UNIDAD1
+2338,enseñanza,"обучение, преподавание",İSİMLER,A2,UNIDAD2
+2339,deportivo,спортивный,SIFATLAR,A2,UNIDAD4
+2340,quizás,возможно,ZARFLAR,A2,UNIDAD5
+2341,delante,"спереди, впереди",ZARFLAR,A2,UNIDAD6
+2342,británico,британский,SIFATLAR,A2,UNIDAD7
+2343,categoría,категория,İSİMLER,A2,UNIDAD8
+2344,fiscal,прокурор,İSİMLER,A2,UNIDAD10
+2345,femenino,женский,SIFATLAR,A2,UNIDAD1
+2346,mil,тысяча,İSİMLER,A2,UNIDAD2
+2347,conclusión,"вывод, заключение",İSİMLER,A2,UNIDAD3
+2348,prácticamente,практически,ZARFLAR,A2,UNIDAD6
+2349,género,"род, жанр",İSİMLER,A2,UNIDAD9
+2350,príncipe,"принц, князь",İSİMLER,A2,UNIDAD1
+2351,distinguir,"различать, отличать",FİİLLER,A2,UNIDAD2
+2352,dominar,"господствовать, владеть",FİİLLER,A2,UNIDAD3
+2353,bolsa,сумка; биржа,İSİMLER,A2,UNIDAD5
+2354,sustituir,заменять,FİİLLER,A2,UNIDAD6
+2355,nombrar,"назначать, называть",FİİLLER,A2,UNIDAD7
+2356,estatal,государственный,SIFATLAR,A2,UNIDAD9
+2357,durar,длиться,FİİLLER,A2,UNIDAD10
+2358,recién,только что,ZARFLAR,A2,UNIDAD1
+2359,intenso,"интенсивный, сильный",SIFATLAR,A2,UNIDAD2
+2360,individual,индивидуальный,SIFATLAR,A2,UNIDAD4
+2361,misión,миссия,İSİMLER,A2,UNIDAD5
+2362,catalán,каталонский,SIFATLAR,A2,UNIDAD6
+2363,elevado,"высокий, возвышенный",SIFATLAR,A2,UNIDAD7
+2364,presentación,"презентация, представление",İSİMLER,A2,UNIDAD8
+2365,pronunciar,произносить,FİİLLER,A2,UNIDAD9
+2366,portavoz,"представитель, спикер",İSİMLER,A2,UNIDAD10
+2367,moral,моральный,SIFATLAR,A2,UNIDAD1
+2368,enemigo,враг,İSİMLER,A2,UNIDAD3
+2369,explicación,объяснение,İSİMLER,A2,UNIDAD4
+2370,luchar,бороться,FİİLLER,A2,UNIDAD7
+2371,frecuente,частый,SIFATLAR,A2,UNIDAD10
+2372,por supuesto,конечно,ZARFLAR,A2,UNIDAD1
+2373,colectivo,коллективный,SIFATLAR,A2,UNIDAD2
+2374,seco,сухой,SIFATLAR,A2,UNIDAD3
+2375,disminuir,уменьшать,FİİLLER,A2,UNIDAD4
+2376,condenar,"осуждать, приговаривать",FİİLLER,A2,UNIDAD5
+2377,lluvia,дождь,İSİMLER,A2,UNIDAD6
+2378,precisar,"уточнять, нуждаться",FİİLLER,A2,UNIDAD7
+2379,entero,целый,SIFATLAR,A2,UNIDAD9
+2380,hacienda,казначейство; усадьба,İSİMLER,A2,UNIDAD10
+2381,frontera,граница,İSİMLER,A2,UNIDAD2
+2382,incremento,прирост,İSİMLER,A2,UNIDAD3
+2383,margen,"край, маржа, поле",İSİMLER,A2,UNIDAD4
+2384,relativo,относительный,SIFATLAR,A2,UNIDAD5
+2385,justificar,"оправдывать, обосновывать",FİİLLER,A2,UNIDAD6
+2386,por lo menos,по крайней мере,ZARFLAR,A2,UNIDAD7
+2387,venezuela,Венесуэла,İSİMLER,A2,UNIDAD8
+2388,dueño,"хозяин, владелец",İSİMLER,A2,UNIDAD9
+2389,grito,крик,İSİMLER,A2,UNIDAD10
+2390,percibir,"воспринимать, получать",FİİLLER,A2,UNIDAD2
+2391,canal,канал,İSİMLER,A2,UNIDAD4
+2392,manejar,"управлять, обращаться",FİİLLER,A2,UNIDAD5
+2393,vasco,баскский,SIFATLAR,A2,UNIDAD6
+2394,regla,"правило, линейка",İSİMLER,A2,UNIDAD7
+2395,corriente,"течение, ток",İSİMLER,A2,UNIDAD9
+2396,extremo,"край, конец",İSİMLER,A2,UNIDAD10
+2397,dimensión,"измерение, масштаб",İSİMLER,B1,UNIDAD1
+2398,marchar,"идти, уходить",FİİLLER,B1,UNIDAD3
+2399,daño,"вред, ущерб",İSİMLER,B1,UNIDAD4
+2400,activo,активный,SIFATLAR,B1,UNIDAD6
+2401,destruir,разрушать,FİİLLER,B1,UNIDAD12
+2402,tratado,"договор, трактат",İSİMLER,B1,UNIDAD3
+2403,atravesar,пересекать,FİİLLER,B1,UNIDAD4
+2404,semejante,подобный,SIFATLAR,B1,UNIDAD5
+2405,señal,"сигнал, знак",İSİMLER,B1,UNIDAD6
+2406,distribución,распределение,İSİMLER,B1,UNIDAD7
+2407,aparición,появление,İSİMLER,B1,UNIDAD9
+2408,federación,федерация,İSİMLER,B1,UNIDAD11
+2409,máquina,"машина, механизм",İSİMLER,B1,UNIDAD1
+2410,carga,"груз, нагрузка",İSİMLER,B1,UNIDAD2
+2411,negativo,отрицательный,SIFATLAR,B1,UNIDAD3
+2412,elevar,"поднимать, повышать",FİİLLER,B1,UNIDAD4
+2413,amenazar,угрожать,FİİLLER,B1,UNIDAD5
+2414,sede,"штаб-квартира, резиденция",İSİMLER,B1,UNIDAD8
+2415,sencillo,простой,SIFATLAR,B1,UNIDAD9
+2416,alianza,"союз, альянс",İSİMLER,B1,UNIDAD10
+2417,caracterizar,характеризовать,FİİLLER,B1,UNIDAD1
+2418,acontecimiento,событие,İSİMLER,B1,UNIDAD4
+2419,temor,страх,İSİMLER,B1,UNIDAD6
+2420,pecho,грудь,İSİMLER,B1,UNIDAD8
+2421,pintor,художник,İSİMLER,B1,UNIDAD9
+2422,llegada,прибытие,İSİMLER,B1,UNIDAD10
+2423,ruido,шум,İSİMLER,B1,UNIDAD11
+2424,enterar,"узнавать, извещать",FİİLLER,B1,UNIDAD12
+2425,liga,"лига, связь",İSİMLER,B1,UNIDAD1
+2426,resolución,"резолюция, разрешение",İSİMLER,B1,UNIDAD3
+2427,hermoso,красивый,SIFATLAR,B1,UNIDAD4
+2428,esconder,прятать,FİİLLER,B1,UNIDAD5
+2429,operar,"оперировать, действовать",FİİLLER,B1,UNIDAD8
+2430,literario,литературный,SIFATLAR,B1,UNIDAD10
+2431,extraordinario,"чрезвычайный, необычный",SIFATLAR,B1,UNIDAD11
+2432,matrimonio,"брак, супружество",İSİMLER,B1,UNIDAD1
+2433,debajo,"внизу, под",ZARFLAR,B1,UNIDAD3
+2434,supremo,верховный,SIFATLAR,B1,UNIDAD4
+2435,interpretación,"толкование, исполнение",İSİMLER,B1,UNIDAD5
+2436,alternativa,альтернатива,İSİMLER,B1,UNIDAD6
+2437,ubicar,"располагать, находить",FİİLLER,B1,UNIDAD7
+2438,atribuir,приписывать,FİİLLER,B1,UNIDAD9
+2439,célula,клетка,İSİMLER,B1,UNIDAD10
+2440,junto con,вместе с,EDATLAR / BAĞLAÇLAR,B1,UNIDAD11
+2441,complejo,сложный,SIFATLAR,B1,UNIDAD12
+2442,esencial,существенный,SIFATLAR,B1,UNIDAD1
+2443,anual,годовой,SIFATLAR,B1,UNIDAD2
+2444,obligación,"обязанность, обязательство",İSİMLER,B1,UNIDAD3
+2445,inicial,начальный,SIFATLAR,B1,UNIDAD5
+2446,devolver,возвращать,FİİLLER,B1,UNIDAD6
+2447,investigar,"расследовать, исследовать",FİİLLER,B1,UNIDAD7
+2448,constante,постоянный,SIFATLAR,B1,UNIDAD8
+2449,bello,прекрасный,SIFATLAR,B1,UNIDAD9
+2450,doce,двенадцать,İSİMLER,B1,UNIDAD10
+2451,revolucionario,революционный,SIFATLAR,B1,UNIDAD11
+2452,perfecto,совершенный,SIFATLAR,B1,UNIDAD1
+2453,testigo,свидетель,İSİMLER,B1,UNIDAD2
+2454,fe,вера,İSİMLER,B1,UNIDAD4
+2455,atrever,осмеливаться,FİİLLER,B1,UNIDAD5
+2456,probablemente,вероятно,ZARFLAR,B1,UNIDAD6
+2457,sección,"раздел, секция",İSİMLER,B1,UNIDAD8
+2458,disco,"диск, пластинка",İSİMLER,B1,UNIDAD9
+2459,labio,губа,İSİMLER,B1,UNIDAD10
+2460,decreto,"указ, декрет",İSİMLER,B1,UNIDAD11
+2461,favorecer,"способствовать, благоприятствовать",FİİLLER,B1,UNIDAD12
+2462,administrativo,административный,SIFATLAR,B1,UNIDAD1
+2463,dividir,делить,FİİLLER,B1,UNIDAD4
+2464,pegar,"клеить, бить",FİİLLER,B1,UNIDAD5
+2465,reclamar,"требовать, жаловаться",FİİLLER,B1,UNIDAD6
+2466,encargar,"поручать, заказывать",FİİLLER,B1,UNIDAD7
+2467,herido,раненый,İSİMLER,B1,UNIDAD8
+2468,occidental,западный,SIFATLAR,B1,UNIDAD9
+2469,capitán,капитан,İSİMLER,B1,UNIDAD10
+2470,posteriormente,впоследствии,ZARFLAR,B1,UNIDAD11
+2471,funcionamiento,"функционирование, работа",İSİMLER,B1,UNIDAD1
+2472,brasil,Бразилия,İSİMLER,B1,UNIDAD3
+2473,igualmente,равным образом,ZARFLAR,B1,UNIDAD5
+2474,registro,"реестр, запись",İSİMLER,B1,UNIDAD6
+2475,buenos aires,Буэнос-Айрес,İSİMLER,B1,UNIDAD7
+2476,peligroso,опасный,SIFATLAR,B1,UNIDAD8
+2477,pacto,"пакт, соглашение",İSİMLER,B1,UNIDAD9
+2478,saltar,прыгать,FİİLLER,B1,UNIDAD10
+2479,secreto,"секрет, тайна",İSİMLER,B1,UNIDAD11
+2480,filosofía,философия,İSİMLER,B1,UNIDAD2
+2481,empleado,"служащий, работник",İSİMLER,B1,UNIDAD3
+2482,comunista,коммунистический,SIFATLAR,B1,UNIDAD4
+2483,excelente,отличный,SIFATLAR,B1,UNIDAD5
+2484,reducción,сокращение,İSİMLER,B1,UNIDAD7
+2485,costo,"стоимость, издержка",İSİMLER,B1,UNIDAD8
+2486,caído,падение; павший,İSİMLER,B1,UNIDAD9
+2487,mente,"ум, разум",İSİMLER,B1,UNIDAD10
+2488,inmediatamente,немедленно,ZARFLAR,B1,UNIDAD12
+2489,búsqueda,поиск,İSİMLER,B1,UNIDAD2
+2490,concentración,концентрация,İSİMLER,B1,UNIDAD3
+2491,derivar,"происходить, выводить",FİİLLER,B1,UNIDAD4
+2492,sustancia,вещество,İSİMLER,B1,UNIDAD6
+2493,presidir,председательствовать,FİİLLER,B1,UNIDAD8
+2494,ciclo,цикл,İSİMLER,B1,UNIDAD9
+2495,gas,газ,İSİMLER,B1,UNIDAD10
+2496,ocultar,скрывать,FİİLLER,B1,UNIDAD11
+2497,conmigo,со мной,ZAMİRLER,B1,UNIDAD1
+2498,componente,компонент,İSİMLER,B1,UNIDAD2
+2499,nueva york,Нью-Йорк,İSİMLER,B1,UNIDAD3
+2500,índice,"индекс, указатель",İSİMLER,B1,UNIDAD6
+2501,crimen,преступление,İSİMLER,B1,UNIDAD7
+2502,educativo,образовательный,SIFATLAR,B1,UNIDAD8
+2503,latino,"латинский, латиноамериканский",SIFATLAR,B1,UNIDAD11
+2504,protesta,протест,İSİMLER,B1,UNIDAD12
+2505,resistencia,сопротивление,İSİMLER,B1,UNIDAD1
+2506,comentario,комментарий,İSİMLER,B1,UNIDAD3
+2507,facultad,факультет; способность,İSİMLER,B1,UNIDAD4
+2508,cuidar,заботиться,FİİLLER,B1,UNIDAD5
+2509,existente,существующий,SIFATLAR,B1,UNIDAD6
+2510,nada más,"только, ничего больше",EDATLAR / BAĞLAÇLAR,B1,UNIDAD7
+2511,apreciar,"ценить, замечать",FİİLLER,B1,UNIDAD8
+2512,espejo,зеркало,İSİMLER,B1,UNIDAD10
+2513,consultar,"консультироваться, справляться",FİİLLER,B1,UNIDAD12
+2514,experto,эксперт,İSİMLER,B1,UNIDAD1
+2515,asesinato,убийство,İSİMLER,B1,UNIDAD2
+2516,continuación,продолжение,İSİMLER,B1,UNIDAD3
+2517,huir,"бежать, спасаться",FİİLLER,B1,UNIDAD4
+2518,colaboración,сотрудничество,İSİMLER,B1,UNIDAD5
+2519,avance,продвижение,İSİMLER,B1,UNIDAD6
+2520,por lo tanto,"поэтому, следовательно",ZARFLAR,B1,UNIDAD7
+2521,prisión,тюрьма,İSİMLER,B1,UNIDAD8
+2522,transmitir,передавать,FİİLLER,B1,UNIDAD10
+2523,papa,папа (римский); картофель,İSİMLER,B1,UNIDAD11
+2524,confiar,доверять,FİİLLER,B1,UNIDAD1
+2525,partida,партия; отъезд,İSİMLER,B1,UNIDAD3
+2526,alejar,отдалять,FİİLLER,B1,UNIDAD6
+2527,parlamentario,парламентский,SIFATLAR,B1,UNIDAD7
+2528,seguido,"подряд, непрерывный",SIFATLAR,B1,UNIDAD8
+2529,medir,измерять,FİİLLER,B1,UNIDAD9
+2530,culpa,вина,İSİMLER,B1,UNIDAD12
+2531,sindical,профсоюзный,SIFATLAR,B1,UNIDAD1
+2532,preso,заключённый,İSİMLER,B1,UNIDAD3
+2533,realización,осуществление,İSİMLER,B1,UNIDAD4
+2534,incrementar,увеличивать,FİİLLER,B1,UNIDAD5
+2535,indio,индеец; индийский,İSİMLER,B1,UNIDAD7
+2536,virtud,добродетель; en virtud de,İSİMLER,B1,UNIDAD9
+2537,discusión,"обсуждение, спор",İSİMLER,B1,UNIDAD10
+2538,sexo,"пол, секс",İSİMLER,B1,UNIDAD11
+2539,fundación,"фонд, основание",İSİMLER,B1,UNIDAD12
+2540,postura,"позиция, поза",İSİMLER,B1,UNIDAD1
+2541,poesía,поэзия,İSİMLER,B1,UNIDAD2
+2542,lento,медленный,SIFATLAR,B1,UNIDAD3
+2543,ignorar,"не знать, игнорировать",FİİLLER,B1,UNIDAD4
+2544,loco,сумасшедший,SIFATLAR,B1,UNIDAD5
+2545,ingresar,"поступать, вносить",FİİLLER,B1,UNIDAD6
+2546,barco,"корабль, судно",İSİMLER,B1,UNIDAD7
+2547,denuncia,"жалоба, донос",İSİMLER,B1,UNIDAD8
+2548,únicamente,исключительно,ZARFLAR,B1,UNIDAD9
+2549,luna,луна,İSİMLER,B1,UNIDAD11
+2550,compra,покупка,İSİMLER,B1,UNIDAD2
+2551,espectador,зритель,İSİMLER,B1,UNIDAD5
+2552,soñar,"мечтать, видеть сны",FİİLLER,B1,UNIDAD6
+2553,vicepresidente,вице-президент,İSİMLER,B1,UNIDAD8
+2554,presidencial,президентский,SIFATLAR,B1,UNIDAD9
+2555,batalla,битва,İSİMLER,B1,UNIDAD10
+2556,concepción,зачатие; концепция,İSİMLER,B1,UNIDAD11
+2557,carecer,быть лишённым,FİİLLER,B1,UNIDAD12
+2558,comprometer,компрометировать; обязывать,FİİLLER,B1,UNIDAD1
+2559,localidad,населённый пункт,İSİMLER,B1,UNIDAD2
+2560,pasión,страсть,İSİMLER,B1,UNIDAD3
+2561,código,"кодекс, код",İSİMLER,B1,UNIDAD4
+2562,principalmente,главным образом,ZARFLAR,B1,UNIDAD5
+2563,montar,"монтировать, садиться (на)",FİİLLER,B1,UNIDAD9
+2564,municipio,муниципалитет,İSİMLER,B1,UNIDAD10
+2565,equilibrio,равновесие,İSİMLER,B1,UNIDAD11
+2566,efectivo,"действенный, эффективный",SIFATLAR,B1,UNIDAD12
+2567,arrastrar,"тащить, увлекать",FİİLLER,B1,UNIDAD3
+2568,porcentaje,процент,İSİMLER,B1,UNIDAD4
+2569,clima,климат,İSİMLER,B1,UNIDAD5
+2570,gana,"желание, охота",İSİMLER,B1,UNIDAD6
+2571,acaso,"разве, случайно",ZARFLAR,B1,UNIDAD7
+2572,encender,зажигать,FİİLLER,B1,UNIDAD8
+2573,perseguir,преследовать,FİİLLER,B1,UNIDAD9
+2574,senador,сенатор,İSİMLER,B1,UNIDAD11
+2575,mental,"умственный, психический",SIFATLAR,B1,UNIDAD1
+2576,atacar,атаковать,FİİLLER,B1,UNIDAD3
+2577,consideración,"рассмотрение, уважение",İSİMLER,B1,UNIDAD4
+2578,continuo,непрерывный,SIFATLAR,B1,UNIDAD5
+2579,moneda,"монета, валюта",İSİMLER,B1,UNIDAD6
+2580,lógico,логичный,SIFATLAR,B1,UNIDAD7
+2581,quince,пятнадцать,İSİMLER,B1,UNIDAD8
+2582,negociar,вести переговоры,FİİLLER,B1,UNIDAD10
+2583,múltiple,множественный,SIFATLAR,B1,UNIDAD11
+2584,generalmente,"обычно, как правило",ZARFLAR,B1,UNIDAD1
+2585,por fin,наконец,ZARFLAR,B1,UNIDAD3
+2586,promover,"продвигать, поощрять",FİİLLER,B1,UNIDAD4
+2587,publicación,публикация,İSİMLER,B1,UNIDAD6
+2588,establecimiento,"заведение, установление",İSİMLER,B1,UNIDAD7
+2589,callar,молчать,FİİLLER,B1,UNIDAD8
+2590,disfrutar,наслаждаться,FİİLLER,B1,UNIDAD9
+2591,recurrir,"прибегать, обжаловать",FİİLLER,B1,UNIDAD10
+2592,hogar,"дом, очаг",İSİMLER,B1,UNIDAD11
+2593,automóvil,автомобиль,İSİMLER,B1,UNIDAD12
+2594,vincular,связывать,FİİLLER,B1,UNIDAD1
+2595,composición,"состав, сочинение",İSİMLER,B1,UNIDAD2
+2596,diseño,"дизайн, чертёж",İSİMLER,B1,UNIDAD5
+2597,londres,Лондон,İSİMLER,B1,UNIDAD6
+2598,recuperación,восстановление,İSİMLER,B1,UNIDAD7
+2599,inicio,начало,İSİMLER,B1,UNIDAD8
+2600,fruto,плод,İSİMLER,B1,UNIDAD9
+2601,paisaje,пейзаж,İSİMLER,B1,UNIDAD11
+2602,belleza,красота,İSİMLER,B1,UNIDAD12
+2603,notable,"заметный, выдающийся",SIFATLAR,B1,UNIDAD1
+2604,depresión,"депрессия, впадина",İSİMLER,B1,UNIDAD2
+2605,corrupción,коррупция,İSİMLER,B1,UNIDAD3
+2606,esquema,схема,İSİMLER,B1,UNIDAD4
+2607,oponer,противопоставлять,FİİLLER,B1,UNIDAD5
+2608,encerrar,"запирать, заключать",FİİLLER,B1,UNIDAD6
+2609,religión,религия,İSİMLER,B1,UNIDAD7
+2610,reconocimiento,"признание, осмотр",İSİMLER,B1,UNIDAD8
+2611,experimentar,"испытывать, экспериментировать",FİİLLER,B1,UNIDAD9
+2612,sentencia,"приговор, сентенция",İSİMLER,B1,UNIDAD12
+2613,autonomía,автономия,İSİMLER,B1,UNIDAD1
+2614,planeta,планета,İSİMLER,B1,UNIDAD3
+2615,aproximadamente,приблизительно,ZARFLAR,B1,UNIDAD4
+2616,confesar,признаваться,FİİLLER,B1,UNIDAD5
+2617,caliente,горячий,SIFATLAR,B1,UNIDAD6
+2618,honor,честь,İSİMLER,B1,UNIDAD7
+2619,católico,католический,SIFATLAR,B1,UNIDAD8
+2620,completar,завершать,FİİLLER,B1,UNIDAD9
+2621,embajador,посол,İSİMLER,B1,UNIDAD10
+2622,criticar,критиковать,FİİLLER,B1,UNIDAD11
+2623,calcular,"вычислять, рассчитывать",FİİLLER,B1,UNIDAD12
+2624,tabla,"таблица, доска",İSİMLER,B1,UNIDAD1
+2625,roma,Рим,İSİMLER,B1,UNIDAD2
+2626,intelectual,интеллектуальный,SIFATLAR,B1,UNIDAD3
+2627,socio,"партнёр, член",İSİMLER,B1,UNIDAD4
+2628,círculo,круг,İSİMLER,B1,UNIDAD6
+2629,plata,серебро; деньги,İSİMLER,B1,UNIDAD7
+2630,colgar,вешать,FİİLLER,B1,UNIDAD8
+2631,perfectamente,"совершенно, идеально",ZARFLAR,B1,UNIDAD10
+2632,dominio,"господство, владение",İSİMLER,B1,UNIDAD12
+2633,interrumpir,прерывать,FİİLLER,B1,UNIDAD1
+2634,poderoso,могущественный,SIFATLAR,B1,UNIDAD2
+2635,claramente,ясно,ZARFLAR,B1,UNIDAD3
+2636,apertura,открытие,İSİMLER,B1,UNIDAD5
+2637,periodo,период,İSİMLER,B1,UNIDAD7
+2638,campeón,чемпион,İSİMLER,B1,UNIDAD8
+2639,despacho,"кабинет, отправка",İSİMLER,B1,UNIDAD10
+2640,petición,"просьба, ходатайство",İSİMLER,B1,UNIDAD11
+2641,reflexión,"размышление, отражение",İSİMLER,B1,UNIDAD12
+2642,cuento,"рассказ, сказка",İSİMLER,B1,UNIDAD2
+2643,cristiano,христианский,SIFATLAR,B1,UNIDAD3
+2644,observación,"наблюдение, замечание",İSİMLER,B1,UNIDAD5
+2645,investigador,исследователь,İSİMLER,B1,UNIDAD6
+2646,garantía,гарантия,İSİMLER,B1,UNIDAD8
+2647,policial,полицейский,SIFATLAR,B1,UNIDAD10
+2648,respecto,"отношение, уважение",İSİMLER,B1,UNIDAD11
+2649,arrancar,"вырывать, заводить (мотор)",FİİLLER,B1,UNIDAD12
+2650,recientemente,недавно,ZARFLAR,B1,UNIDAD2
+2651,vuelo,"полёт, рейс",İSİMLER,B1,UNIDAD6
+2652,pista,"дорожка, след, подсказка",İSİMLER,B1,UNIDAD7
+2653,transformación,преобразование,İSİMLER,B1,UNIDAD8
+2654,juzgar,судить,FİİLLER,B1,UNIDAD9
+2655,tardar,"занимать время, опаздывать",FİİLLER,B1,UNIDAD10
+2656,ah,"ах, а",KALIP İFADELER,B1,UNIDAD11
+2657,universal,"всеобщий, универсальный",SIFATLAR,B1,UNIDAD12
+2658,rama,"ветвь, отрасль",İSİMLER,B1,UNIDAD2
+2659,modificación,изменение,İSİMLER,B1,UNIDAD3
+2660,fino,"тонкий, изысканный",SIFATLAR,B1,UNIDAD4
+2661,aéreo,"воздушный, авиа-",SIFATLAR,B1,UNIDAD6
+2662,santiago,Сантьяго,İSİMLER,B1,UNIDAD10
+2663,moda,мода,İSİMLER,B1,UNIDAD11
+2664,atentado,"покушение, теракт",İSİMLER,B1,UNIDAD12
+2665,guatemala,Гватемала,İSİMLER,B1,UNIDAD1
+2666,soportar,"выдерживать, терпеть",FİİLLER,B1,UNIDAD2
+2667,preparación,подготовка,İSİMLER,B1,UNIDAD3
+2668,equivocar,ошибаться,FİİLLER,B1,UNIDAD4
+2669,washington,Вашингтон,İSİMLER,B1,UNIDAD5
+2670,químico,химический,SIFATLAR,B1,UNIDAD6
+2671,subrayar,подчёркивать,FİİLLER,B1,UNIDAD8
+2672,a través del,"через, посредством",EDATLAR / BAĞLAÇLAR,B1,UNIDAD9
+2673,productor,производитель,İSİMLER,B1,UNIDAD10
+2674,inteligencia,"ум, разведка",İSİMLER,B1,UNIDAD1
+2675,cadáver,труп,İSİMLER,B1,UNIDAD2
+2676,perdonar,прощать,FİİLLER,B1,UNIDAD3
+2677,significado,значение,İSİMLER,B1,UNIDAD10
+2678,al igual que,так же как,EDATLAR / BAĞLAÇLAR,B1,UNIDAD11
+2679,global,глобальный,SIFATLAR,B1,UNIDAD12
+2680,olor,запах,İSİMLER,B1,UNIDAD2
+2681,penal,уголовный,SIFATLAR,B1,UNIDAD3
+2682,resistir,сопротивляться,FİİLLER,B1,UNIDAD4
+2683,tecnológico,технологический,SIFATLAR,B1,UNIDAD5
+2684,festival,фестиваль,İSİMLER,B1,UNIDAD7
+2685,telefónico,телефонный,SIFATLAR,B1,UNIDAD8
+2686,placer,удовольствие,İSİMLER,B1,UNIDAD10
+2687,renunciar,отказываться,FİİLLER,B1,UNIDAD12
+2688,papá,"папа, отец",İSİMLER,B1,UNIDAD1
+2689,influir,влиять,FİİLLER,B1,UNIDAD2
+2690,punta,"кончик, остриё",İSİMLER,B1,UNIDAD3
+2691,disparar,стрелять,FİİLLER,B1,UNIDAD4
+2692,golpear,ударять,FİİLLER,B1,UNIDAD5
+2693,inmenso,огромный,SIFATLAR,B1,UNIDAD6
+2694,definición,определение,İSİMLER,B1,UNIDAD7
+2695,acusación,обвинение,İSİMLER,B1,UNIDAD9
+2696,auto,авто; постановление суда,İSİMLER,B1,UNIDAD10
+2697,desde luego,разумеется,ZARFLAR,B1,UNIDAD11
+2698,coronel,полковник,İSİMLER,B1,UNIDAD12
+2699,firme,"твёрдый, стойкий",SIFATLAR,B1,UNIDAD1
+2700,soltar,"отпускать, ронять",FİİLLER,B1,UNIDAD2
+2701,detectar,обнаруживать,FİİLLER,B1,UNIDAD3
+2702,en relación con,в связи с,EDATLAR / BAĞLAÇLAR,B1,UNIDAD4
+2703,presunto,предполагаемый,SIFATLAR,B1,UNIDAD5
+2704,cargar,"грузить, заряжать",FİİLLER,B1,UNIDAD7
+2705,suspender,приостанавливать,FİİLLER,B1,UNIDAD8
+2706,ejecutar,"исполнять, казнить",FİİLLER,B1,UNIDAD9
+2707,especialista,специалист,İSİMLER,B1,UNIDAD10
+2708,útil,полезный,SIFATLAR,B1,UNIDAD11
+2709,finalizar,завершать,FİİLLER,B1,UNIDAD12
+2710,alcohol,алкоголь,İSİMLER,B1,UNIDAD1
+2711,conformar,"составлять, формировать",FİİLLER,B1,UNIDAD2
+2712,tren,поезд,İSİMLER,B1,UNIDAD4
+2713,orgánico,органический,SIFATLAR,B1,UNIDAD5
+2714,utilización,использование,İSİMLER,B1,UNIDAD7
+2715,mando,"командование, пульт",İSİMLER,B1,UNIDAD8
+2716,potencia,"держава, мощность",İSİMLER,B1,UNIDAD10
+2717,invertir,инвестировать; переворачивать,FİİLLER,B1,UNIDAD11
+2718,menudo,мелкий; a menudo — часто,SIFATLAR,B1,UNIDAD12
+2719,alzar,поднимать,FİİLLER,B1,UNIDAD1
+2720,gozar,наслаждаться,FİİLLER,B1,UNIDAD2
+2721,progreso,прогресс,İSİMLER,B1,UNIDAD3
+2722,salvo,"кроме, за исключением",SIFATLAR,B1,UNIDAD4
+2723,patria,родина,İSİMLER,B1,UNIDAD5
+2724,acceder,получать доступ; соглашаться,FİİLLER,B1,UNIDAD6
+2725,padecer,страдать,FİİLLER,B1,UNIDAD7
+2726,campesino,крестьянин,İSİMLER,B1,UNIDAD8
+2727,anuncio,"объявление, реклама",İSİMLER,B1,UNIDAD9
+2728,residencia,"резиденция, проживание",İSİMLER,B1,UNIDAD10
+2729,seguramente,наверняка,ZARFLAR,B1,UNIDAD11
+2730,eficaz,эффективный,SIFATLAR,B1,UNIDAD12
+2731,consciente,"сознательный, осознающий",SIFATLAR,B1,UNIDAD1
+2732,nuevamente,вновь,ZARFLAR,B1,UNIDAD2
+2733,cultivo,"выращивание, культура",İSİMLER,B1,UNIDAD4
+2734,infantil,детский,SIFATLAR,B1,UNIDAD6
+2735,conocido,известный,SIFATLAR,B1,UNIDAD7
+2736,envolver,"оборачивать, вовлекать",FİİLLER,B1,UNIDAD8
+2737,solidaridad,солидарность,İSİMLER,B1,UNIDAD9
+2738,instancia,инстанция; заявление,İSİMLER,B1,UNIDAD10
+2739,cooperación,сотрудничество,İSİMLER,B1,UNIDAD12
+2740,exportación,экспорт,İSİMLER,B1,UNIDAD2
+2741,hambre,голод,İSİMLER,B1,UNIDAD3
+2742,consejero,советник,İSİMLER,B1,UNIDAD4
+2743,oficio,"ремесло, должность",İSİMLER,B1,UNIDAD5
+2744,rápidamente,быстро,ZARFLAR,B1,UNIDAD6
+2745,lejano,далёкий,SIFATLAR,B1,UNIDAD9
+2746,brillante,блестящий,SIFATLAR,B1,UNIDAD10
+2747,llamada,"звонок, призыв",İSİMLER,B1,UNIDAD11
+2748,entorno,окружение,İSİMLER,B1,UNIDAD12
+2749,poema,"стихотворение, поэма",İSİMLER,B1,UNIDAD1
+2750,columna,"колонка, колонна",İSİMLER,B1,UNIDAD2
+2751,originar,"порождать, происходить",FİİLLER,B1,UNIDAD3
+2752,en cuanto,как только; поскольку,ZARFLAR,B1,UNIDAD4
+2753,intensidad,интенсивность,İSİMLER,B1,UNIDAD6
+2754,asesinar,убивать,FİİLLER,B1,UNIDAD8
+2755,héroe,герой,İSİMLER,B1,UNIDAD9
+2756,risa,смех,İSİMLER,B1,UNIDAD11
+2757,capa,"слой, плащ",İSİMLER,B1,UNIDAD12
+2758,aventura,приключение,İSİMLER,B1,UNIDAD3
+2759,violento,"насильственный, яростный",SIFATLAR,B1,UNIDAD4
+2760,polvo,"пыль, порошок",İSİMLER,B1,UNIDAD6
+2761,tropa,войско,İSİMLER,B1,UNIDAD7
+2762,pausa,пауза,İSİMLER,B1,UNIDAD8
+2763,seleccionar,отбирать,FİİLLER,B1,UNIDAD9
+2764,quemar,жечь,FİİLLER,B1,UNIDAD10
+2765,elaboración,"разработка, изготовление",İSİMLER,B1,UNIDAD11
+2766,liberación,освобождение,İSİMLER,B1,UNIDAD12
+2767,robar,красть,FİİLLER,B1,UNIDAD2
+2768,creciente,растущий,SIFATLAR,B1,UNIDAD3
+2769,procurar,"стараться, обеспечивать",FİİLLER,B1,UNIDAD4
+2770,nicaragua,Никарагуа,İSİMLER,B1,UNIDAD5
+2771,miami,Майами,İSİMLER,B1,UNIDAD6
+2772,correcto,правильный,SIFATLAR,B1,UNIDAD7
+2773,izquierdo,левый,SIFATLAR,B1,UNIDAD9
+2774,amistad,дружба,İSİMLER,B1,UNIDAD10
+2775,motor,двигатель,İSİMLER,B1,UNIDAD11
+2776,acostumbrar,"приучать, привыкать",FİİLLER,B1,UNIDAD12
+2777,girar,"вращать(ся), поворачивать",FİİLLER,B1,UNIDAD2
+2778,con respecto a,относительно,EDATLAR / BAĞLAÇLAR,B1,UNIDAD3
+2779,curioso,"любопытный, странный",SIFATLAR,B1,UNIDAD4
+2780,liberal,либеральный,SIFATLAR,B1,UNIDAD5
+2781,formular,формулировать,FİİLLER,B1,UNIDAD6
+2782,gobernar,"управлять, править",FİİLLER,B1,UNIDAD7
+2783,colombiano,колумбийский,SIFATLAR,B1,UNIDAD9
+2784,exceso,избыток,İSİMLER,B1,UNIDAD10
+2785,madrugada,"раннее утро, рассвет",İSİMLER,B1,UNIDAD11
+2786,cumbre,"вершина, саммит",İSİMLER,B1,UNIDAD1
+2787,nuclear,ядерный,SIFATLAR,B1,UNIDAD2
+2788,dibujo,рисунок,İSİMLER,B1,UNIDAD3
+2789,derrota,поражение,İSİMLER,B1,UNIDAD4
+2790,desplazar,"смещать, перемещать",FİİLLER,B1,UNIDAD5
+2791,orientar,ориентировать,FİİLLER,B1,UNIDAD6
+2792,quinto,пятый,İSİMLER,B1,UNIDAD7
+2793,propietario,собственник,İSİMLER,B1,UNIDAD9
+2794,repartir,"раздавать, распределять",FİİLLER,B1,UNIDAD10
+2795,torneo,турнир,İSİMLER,B1,UNIDAD11
+2796,proyectar,"проектировать, проецировать",FİİLLER,B1,UNIDAD1
+2797,símbolo,символ,İSİMLER,B1,UNIDAD4
+2798,arrojar,"бросать, давать (результат)",FİİLLER,B1,UNIDAD5
+2799,respectivo,соответствующий,SIFATLAR,B1,UNIDAD6
+2800,geografía,география,İSİMLER,B1,UNIDAD8
+2801,suma,сумма,İSİMLER,B1,UNIDAD11
+2802,consulta,"консультация, запрос",İSİMLER,B1,UNIDAD12
+2803,limpio,чистый,SIFATLAR,B1,UNIDAD2
+2804,rural,сельский,SIFATLAR,B1,UNIDAD3
+2805,concurso,конкурс,İSİMLER,B1,UNIDAD5
+2806,práctico,практический,SIFATLAR,B1,UNIDAD6
+2807,herir,ранить,FİİLLER,B1,UNIDAD7
+2808,borde,"край, кромка",İSİMLER,B1,UNIDAD8
+2809,variar,"меняться, варьировать",FİİLLER,B1,UNIDAD9
+2810,exigencia,требование,İSİMLER,B1,UNIDAD10
+2811,comandante,"командир, комендант",İSİMLER,B1,UNIDAD11
+2812,asociar,"ассоциировать, объединять",FİİLLER,B1,UNIDAD12
+2813,obispo,епископ,İSİMLER,B1,UNIDAD1
+2814,liberar,освобождать,FİİLLER,B1,UNIDAD3
+2815,cerebro,мозг,İSİMLER,B1,UNIDAD4
+2816,ideológico,идеологический,SIFATLAR,B1,UNIDAD5
+2817,volar,летать,FİİLLER,B1,UNIDAD6
+2818,asistencia,"помощь, присутствие",İSİMLER,B1,UNIDAD7
+2819,designar,"назначать, обозначать",FİİLLER,B1,UNIDAD8
+2820,variedad,разнообразие,İSİMLER,B1,UNIDAD10
+2821,completamente,полностью,ZARFLAR,B1,UNIDAD11
+2822,procedente,"происходящий, прибывающий",SIFATLAR,B1,UNIDAD12
+2823,impulso,"импульс, толчок",İSİMLER,B1,UNIDAD1
+2824,tiro,"выстрел, бросок",İSİMLER,B1,UNIDAD2
+2825,colección,коллекция,İSİMLER,B1,UNIDAD3
+2826,fresco,"свежий, прохладный",SIFATLAR,B1,UNIDAD4
+2827,bandera,флаг,İSİMLER,B1,UNIDAD5
+2828,concentrar,концентрировать,FİİLLER,B1,UNIDAD6
+2829,encabezar,возглавлять,FİİLLER,B1,UNIDAD7
+2830,legislativo,законодательный,SIFATLAR,B1,UNIDAD8
+2831,monetario,"денежный, валютный",SIFATLAR,B1,UNIDAD10
+2832,cuándo,когда (вопросит.),ZARFLAR,B1,UNIDAD11
+2833,entrega,"сдача, доставка",İSİMLER,B1,UNIDAD12
+2834,secretaría,"секретариат, канцелярия",İSİMLER,B1,UNIDAD1
+2835,suceso,"происшествие, событие",İSİMLER,B1,UNIDAD2
+2836,en lugar de,вместо,EDATLAR / BAĞLAÇLAR,B1,UNIDAD3
+2837,proporción,"пропорция, доля",İSİMLER,B1,UNIDAD4
+2838,núcleo,ядро,İSİMLER,B1,UNIDAD6
+2839,humor,"настроение, юмор",İSİMLER,B1,UNIDAD7
+2840,descender,"спускаться, происходить",FİİLLER,B1,UNIDAD8
+2841,débil,слабый,SIFATLAR,B1,UNIDAD10
+2842,hundir,"топить, погружать",FİİLLER,B1,UNIDAD11
+2843,dependencia,зависимость; ведомство,İSİMLER,B1,UNIDAD12
+2844,sanitario,"санитарный, здравоохранительный",SIFATLAR,B1,UNIDAD1
+2845,laboratorio,лаборатория,İSİMLER,B1,UNIDAD2
+2846,patio,"двор, патио",İSİMLER,B1,UNIDAD4
+2847,inclinar,наклонять,FİİLLER,B1,UNIDAD5
+2848,delegación,делегация,İSİMLER,B1,UNIDAD6
+2849,saludar,"здороваться, приветствовать",FİİLLER,B1,UNIDAD7
+2850,gubernamental,правительственный,SIFATLAR,B1,UNIDAD8
+2851,paseo,"прогулка, бульвар",İSİMLER,B1,UNIDAD9
+2852,bomba,бомба; насос,İSİMLER,B1,UNIDAD10
+2853,directivo,руководитель,İSİMLER,B1,UNIDAD11
+2854,avenida,проспект,İSİMLER,B1,UNIDAD12
+2855,desnudo,голый,SIFATLAR,B1,UNIDAD1
+2856,espera,ожидание,İSİMLER,B1,UNIDAD2
+2857,a partir del,начиная с,EDATLAR / BAĞLAÇLAR,B1,UNIDAD3
+2858,transcurrir,протекать (о времени),FİİLLER,B1,UNIDAD5
+2859,petróleo,нефть,İSİMLER,B1,UNIDAD8
+2860,cuanto,сколько; en cuanto,ZARFLAR,B1,UNIDAD9
+2861,comunitario,общинный; ЕС-,SIFATLAR,B1,UNIDAD10
+2862,fallecer,скончаться,FİİLLER,B1,UNIDAD11
+2863,especializar,специализировать(ся),FİİLLER,B1,UNIDAD12
+2864,coste,"стоимость, затрата",İSİMLER,B1,UNIDAD3
+2865,radical,радикальный,SIFATLAR,B1,UNIDAD4
+2866,dictar,"диктовать, издавать (закон)",FİİLLER,B1,UNIDAD5
+2867,terrible,ужасный,SIFATLAR,B1,UNIDAD6
+2868,contemporáneo,современный,SIFATLAR,B1,UNIDAD7
+2869,excesivo,чрезмерный,SIFATLAR,B1,UNIDAD8
+2870,acumular,накапливать,FİİLLER,B1,UNIDAD9
+2871,extensión,"протяжение, расширение",İSİMLER,B1,UNIDAD2
+2872,atraer,привлекать,FİİLLER,B1,UNIDAD3
+2873,bloque,блок,İSİMLER,B1,UNIDAD4
+2874,disputar,"оспаривать, проводить (матч)",FİİLLER,B1,UNIDAD5
+2875,ambiental,"экологический, окружающей среды",SIFATLAR,B1,UNIDAD6
+2876,productivo,продуктивный,SIFATLAR,B1,UNIDAD7
+2877,seno,"грудь, лоно, синус",İSİMLER,B1,UNIDAD8
+2878,emisión,"выпуск, передача",İSİMLER,B1,UNIDAD9
+2879,déficit,дефицит,İSİMLER,B1,UNIDAD10
+2880,primario,первичный,SIFATLAR,B1,UNIDAD11
+2881,treinta,тридцать,İSİMLER,B1,UNIDAD1
+2882,latinoamericano,латиноамериканский,SIFATLAR,B1,UNIDAD4
+2883,absolutamente,абсолютно,ZARFLAR,B1,UNIDAD6
+2884,soledad,одиночество,İSİMLER,B1,UNIDAD7
+2885,emisor,"эмитент, передатчик",İSİMLER,B1,UNIDAD9
+2886,asomar,"показываться, выглядывать",FİİLLER,B1,UNIDAD10
+2887,patrón,хозяин; образец; патрон,İSİMLER,B1,UNIDAD12
+2888,retrato,портрет,İSİMLER,B1,UNIDAD1
+2889,clasificación,"классификация, рейтинг",İSİMLER,B1,UNIDAD2
+2890,emprender,предпринимать,FİİLLER,B1,UNIDAD3
+2891,invierno,зима,İSİMLER,B1,UNIDAD4
+2892,lesión,"травма, повреждение",İSİMLER,B1,UNIDAD5
+2893,empresarial,предпринимательский,SIFATLAR,B1,UNIDAD6
+2894,definitivamente,окончательно,ZARFLAR,B1,UNIDAD9
+2895,de modo que,так что,EDATLAR / BAĞLAÇLAR,B1,UNIDAD10
+2896,adaptar,приспосабливать,FİİLLER,B1,UNIDAD11
+2897,busca,поиск,İSİMLER,B1,UNIDAD12
+2898,remedio,"средство, лекарство",İSİMLER,B1,UNIDAD2
+2899,duración,продолжительность,İSİMLER,B1,UNIDAD3
+2900,descartar,"отбрасывать, исключать",FİİLLER,B1,UNIDAD4
+2901,agrícola,сельскохозяйственный,SIFATLAR,B1,UNIDAD5
+2902,concebir,зачатие; задумывать,FİİLLER,B1,UNIDAD6
+2903,ejecución,"исполнение, казнь",İSİMLER,B1,UNIDAD7
+2904,humanidad,человечество,İSİMLER,B1,UNIDAD9
+2905,santo,святой,SIFATLAR,B1,UNIDAD10
+2906,totalidad,"совокупность, целое",İSİMLER,B1,UNIDAD11
+2907,academia,академия,İSİMLER,B1,UNIDAD12
+2908,exactamente,точно,ZARFLAR,B1,UNIDAD1
+2909,dictadura,диктатура,İSİMLER,B1,UNIDAD2
+2910,desconocer,"не знать, игнорировать",FİİLLER,B1,UNIDAD3
+2911,junto al,рядом с,EDATLAR / BAĞLAÇLAR,B1,UNIDAD4
+2912,mezcla,смесь,İSİMLER,B1,UNIDAD5
+2913,distribuir,распределять,FİİLLER,B1,UNIDAD6
+2914,favorable,благоприятный,SIFATLAR,B1,UNIDAD7
+2915,nacimiento,рождение,İSİMLER,B1,UNIDAD9
+2916,agricultura,сельское хозяйство,İSİMLER,B1,UNIDAD10
+2917,vital,"жизненный, насущный",SIFATLAR,B1,UNIDAD11
+2918,eje,ось,İSİMLER,B1,UNIDAD12
+2919,orquesta,оркестр,İSİMLER,B1,UNIDAD1
+2920,testimonio,свидетельство,İSİMLER,B1,UNIDAD2
+2921,enfrentamiento,столкновение,İSİMLER,B1,UNIDAD3
+2922,cotidiano,повседневный,SIFATLAR,B1,UNIDAD4
+2923,alteración,"изменение, нарушение",İSİMLER,B1,UNIDAD5
+2924,diagnóstico,диагноз,İSİMLER,B1,UNIDAD6
+2925,optar,выбирать,FİİLLER,B1,UNIDAD7
+2926,fundamentalmente,в основном,ZARFLAR,B1,UNIDAD8
+2927,arreglar,"чинить, устраивать",FİİLLER,B1,UNIDAD10
+2928,ceremonia,церемония,İSİMLER,B1,UNIDAD11
+2929,estatuto,"устав, статут",İSİMLER,B1,UNIDAD12
+2930,proteína,белок,İSİMLER,B1,UNIDAD1
+2931,decisivo,решающий,SIFATLAR,B1,UNIDAD2
+2932,colaborar,сотрудничать,FİİLLER,B1,UNIDAD3
+2933,encuesta,опрос,İSİMLER,B1,UNIDAD4
+2934,combatir,"бороться, сражаться",FİİLLER,B1,UNIDAD5
+2935,botella,бутылка,İSİMLER,B1,UNIDAD6
+2936,universo,вселенная,İSİMLER,B1,UNIDAD7
+2937,chileno,чилийский,SIFATLAR,B1,UNIDAD8
+2938,traje,костюм,İSİMLER,B1,UNIDAD9
+2939,alimentar,"кормить, питать",FİİLLER,B1,UNIDAD10
+2940,madrileño,мадридский,SIFATLAR,B1,UNIDAD12
+2941,fila,"ряд, очередь",İSİMLER,B1,UNIDAD1
+2942,estrecho,узкий; пролив,SIFATLAR,B1,UNIDAD2
+2943,escándalo,скандал,İSİMLER,B1,UNIDAD3
+2944,pendiente,ожидающий; склон,SIFATLAR,B1,UNIDAD5
+2945,tejido,ткань,İSİMLER,B1,UNIDAD6
+2946,inglaterra,Англия,İSİMLER,B1,UNIDAD7
+2947,muro,"стена, ограда",İSİMLER,B1,UNIDAD8
+2948,respecto de,относительно,EDATLAR / BAĞLAÇLAR,B1,UNIDAD9
+2949,fábrica,"фабрика, завод",İSİMLER,B1,UNIDAD10
+2950,naturalmente,естественно,ZARFLAR,B1,UNIDAD11
+2951,institucional,институциональный,SIFATLAR,B1,UNIDAD12
+2952,fabricar,изготавливать,FİİLLER,B1,UNIDAD1
+2953,desempeñar,"исполнять (роль, должность)",FİİLLER,B1,UNIDAD2
+2954,hierro,железо,İSİMLER,B1,UNIDAD3
+2955,desconocido,неизвестный,SIFATLAR,B1,UNIDAD4
+2956,rival,соперник,İSİMLER,B1,UNIDAD5
+2957,apartar,"отстранять, откладывать",FİİLLER,B1,UNIDAD6
+2958,acoger,"принимать, приютить",FİİLLER,B1,UNIDAD7
+2959,inaugurar,"открывать, торжественно открывать",FİİLLER,B1,UNIDAD9
+2960,oreja,ухо,İSİMLER,B1,UNIDAD10
+2961,alterar,"изменять, нарушать",FİİLLER,B1,UNIDAD11
+2962,escoger,выбирать,FİİLLER,B1,UNIDAD12
+2963,taller,"мастерская, семинар",İSİMLER,B1,UNIDAD2
+2964,regreso,возвращение,İSİMLER,B1,UNIDAD3
+2965,revisar,"проверять, пересматривать",FİİLLER,B1,UNIDAD6
+2966,agradecer,благодарить,FİİLLER,B1,UNIDAD8
+2967,ruta,"маршрут, путь",İSİMLER,B1,UNIDAD9
+2968,rayo,"молния, луч",İSİMLER,B1,UNIDAD10
+2969,sólido,"твёрдый, прочный",SIFATLAR,B1,UNIDAD11
+2970,dosis,доза,İSİMLER,B1,UNIDAD12
+2971,inflación,инфляция,İSİMLER,B1,UNIDAD1
+2972,soviético,советский,SIFATLAR,B1,UNIDAD2
+2973,examen,"экзамен, обследование",İSİMLER,B1,UNIDAD7
+2974,geográfico,географический,SIFATLAR,B1,UNIDAD8
+2975,toma,съёмка; захват; приём,İSİMLER,B1,UNIDAD9
+2976,angustia,"тоска, тревога",İSİMLER,B1,UNIDAD10
+2977,teórico,теоретический,SIFATLAR,B1,UNIDAD11
+2978,beneficiar,приносить пользу,FİİLLER,B1,UNIDAD12
+2979,orientación,"ориентация, направление",İSİMLER,B1,UNIDAD1
+2980,explotación,"эксплуатация, разработка",İSİMLER,B1,UNIDAD2
+2981,formal,формальный,SIFATLAR,B1,UNIDAD3
+2982,cáncer,рак (болезнь),İSİMLER,B1,UNIDAD4
+2983,cálculo,расчёт,İSİMLER,B1,UNIDAD5
+2984,coalición,коалиция,İSİMLER,B1,UNIDAD6
+2985,sacerdote,священник,İSİMLER,B1,UNIDAD7
+2986,bancario,банковский,SIFATLAR,B1,UNIDAD9
+2987,constar,состоять; быть зафиксированным,FİİLLER,B1,UNIDAD10
+2988,eficacia,эффективность,İSİMLER,B1,UNIDAD11
+2989,exclusivamente,исключительно,ZARFLAR,B1,UNIDAD12
+2990,difundir,распространять,FİİLLER,B1,UNIDAD2
+2991,estancia,"пребывание, комната",İSİMLER,B1,UNIDAD3
+2992,reforzar,укреплять,FİİLLER,B1,UNIDAD5
+2993,templo,храм,İSİMLER,B1,UNIDAD7
+2994,fortuna,"удача, состояние",İSİMLER,B1,UNIDAD8
+2995,techo,"крыша, потолок",İSİMLER,B1,UNIDAD9
+2996,continente,континент,İSİMLER,B1,UNIDAD10
+2997,japón,Япония,İSİMLER,B1,UNIDAD12
+2998,grabar,"записывать, гравировать",FİİLLER,B1,UNIDAD1
+2999,promoción,"продвижение, акция",İSİMLER,B1,UNIDAD2
+3000,facilidad,"лёгкость, удобство",İSİMLER,B1,UNIDAD3
+3001,iluminar,освещать,FİİLLER,B1,UNIDAD4
+3002,animar,воодушевлять,FİİLLER,B1,UNIDAD5
+3003,evaluación,оценка,İSİMLER,B1,UNIDAD7
+3004,brindar,"предлагать, чокаться",FİİLLER,B1,UNIDAD8
+3005,transición,переход,İSİMLER,B1,UNIDAD11
+3006,ópera,опера,İSİMLER,B1,UNIDAD1
+3007,homenaje,дань уважения,İSİMLER,B1,UNIDAD2
+3008,tesis,"тезис, диссертация",İSİMLER,B1,UNIDAD5
+3009,novedad,"новинка, новость",İSİMLER,B1,UNIDAD6
+3010,ay,"ай, ой",KALIP İFADELER,B1,UNIDAD7
+3011,respectivamente,соответственно,ZARFLAR,B1,UNIDAD8
+3012,galería,галерея,İSİMLER,B1,UNIDAD9
+3013,lavar,мыть,FİİLLER,B1,UNIDAD10
+3014,afirmación,утверждение,İSİMLER,B1,UNIDAD11
+3015,imaginación,воображение,İSİMLER,B1,UNIDAD1
+3016,mas,"но, однако",EDATLAR / BAĞLAÇLAR,B1,UNIDAD3
+3017,descenso,"спуск, снижение",İSİMLER,B1,UNIDAD4
+3018,pasear,гулять,FİİLLER,B1,UNIDAD5
+3019,satisfacción,удовлетворение,İSİMLER,B1,UNIDAD6
+3020,lentamente,медленно,ZARFLAR,B1,UNIDAD7
+3021,empujar,толкать,FİİLLER,B1,UNIDAD8
+3022,clínico,клинический,SIFATLAR,B1,UNIDAD9
+3023,limpiar,чистить,FİİLLER,B1,UNIDAD10
+3024,informativo,информационный,SIFATLAR,B1,UNIDAD11
+3025,apagar,"гасить, выключать",FİİLLER,B1,UNIDAD12
+3026,promedio,среднее,İSİMLER,B1,UNIDAD1
+3027,redacción,"редакция, формулировка",İSİMLER,B1,UNIDAD2
+3028,rendir,сдавать; приносить (результат),FİİLLER,B1,UNIDAD4
+3029,anciano,пожилой человек,İSİMLER,B1,UNIDAD5
+3030,obedecer,повиноваться,FİİLLER,B1,UNIDAD6
+3031,autonómico,автономный (адм.),SIFATLAR,B1,UNIDAD7
+3032,comunicado,"сообщение, коммюнике",İSİMLER,B1,UNIDAD8
+3033,danza,танец,İSİMLER,B1,UNIDAD9
+3034,obrero,рабочий,SIFATLAR,B1,UNIDAD11
+3035,episodio,эпизод,İSİMLER,B1,UNIDAD12
+3036,estabilidad,стабильность,İSİMLER,B1,UNIDAD2
+3037,consumidor,потребитель,İSİMLER,B1,UNIDAD3
+3038,diferenciar,различать,FİİLLER,B1,UNIDAD4
+3039,inútil,бесполезный,SIFATLAR,B1,UNIDAD5
+3040,solar,солнечный; участок,SIFATLAR,B1,UNIDAD6
+3041,campeonato,чемпионат,İSİMLER,B1,UNIDAD7
+3042,apretar,"сжимать, нажимать",FİİLLER,B1,UNIDAD8
+3043,combate,"бой, сражение",İSİMLER,B1,UNIDAD9
+3044,canto,"пение, песнь",İSİMLER,B1,UNIDAD11
+3045,localizar,"обнаруживать, локализовать",FİİLLER,B1,UNIDAD1
+3046,solicitud,"заявление, просьба",İSİMLER,B1,UNIDAD2
+3047,manejo,"обращение, управление",İSİMLER,B1,UNIDAD3
+3048,difusión,распространение,İSİMLER,B1,UNIDAD4
+3049,cuestión de,вопрос (о),EDATLAR / BAĞLAÇLAR,B1,UNIDAD5
+3050,asustar,пугать,FİİLLER,B1,UNIDAD7
+3051,típico,типичный,SIFATLAR,B1,UNIDAD8
+3052,mero,"простой, сущий",SIFATLAR,B1,UNIDAD9
+3053,nube,облако,İSİMLER,B1,UNIDAD10
+3054,diseñar,проектировать,FİİLLER,B1,UNIDAD12
+3055,biológico,биологический,SIFATLAR,B1,UNIDAD1
+3056,arena,песок; арена,İSİMLER,B1,UNIDAD2
+3057,fumar,курить,FİİLLER,B1,UNIDAD3
+3058,gastar,тратить,FİİLLER,B1,UNIDAD4
+3059,legislación,законодательство,İSİMLER,B1,UNIDAD6
+3060,psicológico,психологический,SIFATLAR,B1,UNIDAD7
+3061,destacado,выдающийся,SIFATLAR,B1,UNIDAD8
+3062,pato,утка,İSİMLER,B1,UNIDAD9
+3063,abundante,обильный,SIFATLAR,B1,UNIDAD10
+3064,imperio,империя,İSİMLER,B1,UNIDAD11
+3065,claridad,ясность,İSİMLER,B1,UNIDAD12
+3066,mentira,ложь,İSİMLER,B1,UNIDAD1
+3067,anotar,"записывать, отмечать",FİİLLER,B1,UNIDAD2
+3068,profundidad,глубина,İSİMLER,B1,UNIDAD4
+3069,escolar,школьный,SIFATLAR,B1,UNIDAD5
+3070,defensor,защитник,İSİMLER,B1,UNIDAD6
+3071,reflejo,"отражение, рефлекс",İSİMLER,B1,UNIDAD7
+3072,rechazo,"отказ, неприятие",İSİMLER,B1,UNIDAD9
+3073,remitir,отправлять; ослабевать,FİİLLER,B1,UNIDAD10
+3074,piloto,пилот,İSİMLER,B1,UNIDAD11
+3075,autorizar,"разрешать, уполномочивать",FİİLLER,B1,UNIDAD12
+3076,entrevistar,интервьюировать,FİİLLER,B1,UNIDAD1
+3077,conveniente,"удобный, уместный",SIFATLAR,B1,UNIDAD3
+3078,mantenimiento,"обслуживание, содержание",İSİMLER,B1,UNIDAD4
+3079,centrar,"центрировать, сосредоточивать",FİİLLER,B1,UNIDAD5
+3080,estímulo,стимул,İSİMLER,B1,UNIDAD6
+3081,recorrido,"маршрут, пробег",İSİMLER,B1,UNIDAD7
+3082,archivo,"архив, файл",İSİMLER,B1,UNIDAD8
+3083,incidente,инцидент,İSİMLER,B1,UNIDAD9
+3084,delegado,делегат,İSİMLER,B1,UNIDAD10
+3085,en vez de,вместо,EDATLAR / BAĞLAÇLAR,B1,UNIDAD11
+3086,indígena,"коренной, туземный",SIFATLAR,B1,UNIDAD3
+3087,molestar,"беспокоить, мешать",FİİLLER,B1,UNIDAD4
+3088,satisfacer,удовлетворять,FİİLLER,B1,UNIDAD5
+3089,conservador,консервативный,SIFATLAR,B1,UNIDAD6
+3090,hipótesis,гипотеза,İSİMLER,B1,UNIDAD8
+3091,aspirar,стремиться; вдыхать,FİİLLER,B1,UNIDAD10
+3092,convocatoria,"созыв, объявление конкурса",İSİMLER,B1,UNIDAD1
+3093,sida,СПИД,İSİMLER,B1,UNIDAD3
+3094,lágrima,слеза,İSİMLER,B1,UNIDAD5
+3095,salto,прыжок,İSİMLER,B1,UNIDAD7
+3096,digno,достойный,SIFATLAR,B1,UNIDAD8
+3097,examinar,"исследовать, осматривать",FİİLLER,B1,UNIDAD9
+3098,desprender,"отделять, испускать",FİİLLER,B1,UNIDAD10
+3099,trato,"обращение, сделка",İSİMLER,B1,UNIDAD11
+3100,reproducir,воспроизводить,FİİLLER,B1,UNIDAD12
+3101,penetrar,проникать,FİİLLER,B1,UNIDAD1
+3102,íntimo,"интимный, близкий",SIFATLAR,B1,UNIDAD2
+3103,extraer,извлекать,FİİLLER,B1,UNIDAD3
+3104,renta,"доход, рента",İSİMLER,B1,UNIDAD4
+3105,valle,долина,İSİMLER,B1,UNIDAD5
+3106,roca,"скала, камень",İSİMLER,B1,UNIDAD6
+3107,baja,снижение; потеря; увольнение,İSİMLER,B1,UNIDAD7
+3108,evidencia,"очевидность, доказательство",İSİMLER,B1,UNIDAD8
+3109,gabinete,кабинет (министров),İSİMLER,B1,UNIDAD9
+3110,amante,"любовник, любитель",İSİMLER,B1,UNIDAD10
+3111,reino,королевство,İSİMLER,B1,UNIDAD12
+3112,arquitectura,архитектура,İSİMLER,B1,UNIDAD1
+3113,ácido,"кислота, кислый",İSİMLER,B1,UNIDAD2
+3114,variación,"вариация, изменение",İSİMLER,B1,UNIDAD4
+3115,colonia,колония; одеколон,İSİMLER,B1,UNIDAD5
+3116,provincial,провинциальный,SIFATLAR,B1,UNIDAD6
+3117,hilo,нить,İSİMLER,B1,UNIDAD7
+3118,olímpico,олимпийский,SIFATLAR,B1,UNIDAD8
+3119,mejora,улучшение,İSİMLER,B1,UNIDAD9
+3120,once,одиннадцать,İSİMLER,B1,UNIDAD10
+3121,dama,дама,İSİMLER,B1,UNIDAD11
+3122,cesar,прекращать,FİİLLER,B1,UNIDAD12
+3123,misterio,"тайна, мистерия",İSİMLER,B1,UNIDAD1
+3124,paquete,"пакет, посылка",İSİMLER,B1,UNIDAD2
+3125,eterno,вечный,SIFATLAR,B1,UNIDAD4
+3126,senado,сенат,İSİMLER,B1,UNIDAD5
+3127,engañar,обманывать,FİİLLER,B1,UNIDAD6
+3128,circulación,"обращение, движение",İSİMLER,B1,UNIDAD7
+3129,medicamento,лекарство,İSİMLER,B1,UNIDAD8
+3130,expectativa,"ожидание, перспектива",İSİMLER,B1,UNIDAD9
+3131,trastorno,"расстройство, беспорядок",İSİMLER,B1,UNIDAD11
+3132,electrónico,электронный,SIFATLAR,B1,UNIDAD12
+3133,atmósfera,атмосфера,İSİMLER,B1,UNIDAD3
+3134,cocer,"варить, печь",FİİLLER,B1,UNIDAD4
+3135,colega,коллега,İSİMLER,B1,UNIDAD6
+3136,alimentación,питание,İSİMLER,B1,UNIDAD7
+3137,apartado,раздел; абонентский ящик,İSİMLER,B1,UNIDAD8
+3138,caballero,"кавалер, господин",İSİMLER,B1,UNIDAD9
+3139,gato,кот,İSİMLER,B1,UNIDAD11
+3140,pájaro,птица,İSİMLER,B1,UNIDAD12
+3141,magistrado,"магистрат, судья",İSİMLER,B1,UNIDAD1
+3142,ejemplar,экземпляр; образцовый,İSİMLER,B1,UNIDAD2
+3143,comando,"команда, спецназ",İSİMLER,B1,UNIDAD3
+3144,agarrar,хватать,FİİLLER,B1,UNIDAD4
+3145,exacto,точный,SIFATLAR,B1,UNIDAD5
+3146,camión,грузовик,İSİMLER,B1,UNIDAD7
+3147,emperador,император,İSİMLER,B1,UNIDAD8
+3148,intercambio,обмен,İSİMLER,B1,UNIDAD9
+3149,celebración,празднование,İSİMLER,B1,UNIDAD3
+3150,entusiasmo,энтузиазм,İSİMLER,B1,UNIDAD5
+3151,miguel,Мигель,İSİMLER,B1,UNIDAD6
+3152,prestigio,престиж,İSİMLER,B1,UNIDAD9
+3153,ampliación,расширение,İSİMLER,B1,UNIDAD10
+3154,ilegal,незаконный,SIFATLAR,B1,UNIDAD11
+3155,cumplimiento,"выполнение, соблюдение",İSİMLER,B1,UNIDAD12
+3156,sospechar,подозревать,FİİLLER,B1,UNIDAD1
+3157,masivo,массовый,SIFATLAR,B1,UNIDAD2
+3158,peruano,перуанский,SIFATLAR,B1,UNIDAD4
+3159,consolidar,"укреплять, консолидировать",FİİLLER,B2,UNIDAD2
+3160,sobrevivir,выживать,FİİLLER,B2,UNIDAD4
+3161,juzgado,суд (инстанция),İSİMLER,B2,UNIDAD5
+3162,combinar,сочетать,FİİLLER,B2,UNIDAD7
+3163,bolsillo,карман,İSİMLER,B2,UNIDAD8
+3164,conectar,соединять,FİİLLER,B2,UNIDAD9
+3165,generalizar,обобщать,FİİLLER,B2,UNIDAD10
+3166,solitario,"одинокий, уединённый",SIFATLAR,B2,UNIDAD12
+3167,aprobación,одобрение,İSİMLER,B2,UNIDAD1
+3168,renovar,"обновлять, продлевать",FİİLLER,B2,UNIDAD2
+3169,reaccionar,реагировать,FİİLLER,B2,UNIDAD3
+3170,particularmente,в особенности,ZARFLAR,B2,UNIDAD4
+3171,ideología,идеология,İSİMLER,B2,UNIDAD6
+3172,derrotar,наносить поражение,FİİLLER,B2,UNIDAD7
+3173,grasa,жир,İSİMLER,B2,UNIDAD8
+3174,masculino,мужской,SIFATLAR,B2,UNIDAD9
+3175,exhibir,"выставлять, демонстрировать",FİİLLER,B2,UNIDAD10
+3176,concejal,муниципальный советник,İSİMLER,B2,UNIDAD11
+3177,anoche,вчера вечером,ZARFLAR,B2,UNIDAD12
+3178,anteriormente,ранее,ZARFLAR,B2,UNIDAD2
+3179,china,Китай,İSİMLER,B2,UNIDAD3
+3180,teniente,лейтенант,İSİMLER,B2,UNIDAD4
+3181,humo,дым,İSİMLER,B2,UNIDAD5
+3182,delicado,"деликатный, хрупкий",SIFATLAR,B2,UNIDAD6
+3183,reglamento,"регламент, правила",İSİMLER,B2,UNIDAD7
+3184,dramático,драматический,SIFATLAR,B2,UNIDAD10
+3185,aparte de,помимо,EDATLAR / BAĞLAÇLAR,B2,UNIDAD12
+3186,infección,инфекция,İSİMLER,B2,UNIDAD1
+3187,polémica,"полемика, спор",İSİMLER,B2,UNIDAD2
+3188,virgen,"дева, девственный",İSİMLER,B2,UNIDAD3
+3189,agudo,острый,SIFATLAR,B2,UNIDAD5
+3190,venezolano,венесуэльский,SIFATLAR,B2,UNIDAD6
+3191,vigente,действующий,SIFATLAR,B2,UNIDAD8
+3192,cura,лечение; священник,İSİMLER,B2,UNIDAD9
+3193,guerrilla,партизанская война,İSİMLER,B2,UNIDAD10
+3194,rincón,"угол, уголок",İSİMLER,B2,UNIDAD11
+3195,a medida que,по мере того как,EDATLAR / BAĞLAÇLAR,B2,UNIDAD1
+3196,lima,Лима; лайм; напильник,İSİMLER,B2,UNIDAD4
+3197,feria,"ярмарка, праздник",İSİMLER,B2,UNIDAD5
+3198,agrario,аграрный,SIFATLAR,B2,UNIDAD6
+3199,manifiesto,манифест; явный,İSİMLER,B2,UNIDAD7
+3200,reiterar,повторять,FİİLLER,B2,UNIDAD8
+3201,sagrado,священный,SIFATLAR,B2,UNIDAD9
+3202,provenir,"происходить, прибывать",FİİLLER,B2,UNIDAD11
+3203,imprescindible,"необходимый, незаменимый",SIFATLAR,B2,UNIDAD12
+3204,proseguir,продолжать,FİİLLER,B2,UNIDAD1
+3205,previamente,предварительно,ZARFLAR,B2,UNIDAD2
+3206,confusión,путаница,İSİMLER,B2,UNIDAD3
+3207,banca,банковский сектор; скамья,İSİMLER,B2,UNIDAD4
+3208,cantante,певец,İSİMLER,B2,UNIDAD6
+3209,candidatura,кандидатура,İSİMLER,B2,UNIDAD7
+3210,depositar,"класть, вносить",FİİLLER,B2,UNIDAD8
+3211,editorial,издательство; передовица,İSİMLER,B2,UNIDAD9
+3212,israel,Израиль,İSİMLER,B2,UNIDAD10
+3213,ideal,идеальный,SIFATLAR,B2,UNIDAD11
+3214,verso,стих,İSİMLER,B2,UNIDAD12
+3215,tabaco,табак,İSİMLER,B2,UNIDAD1
+3216,vacación,"каникулы, отпуск",İSİMLER,B2,UNIDAD2
+3217,infraestructura,инфраструктура,İSİMLER,B2,UNIDAD4
+3218,opuesto,противоположный,SIFATLAR,B2,UNIDAD5
+3219,regalar,дарить,FİİLLER,B2,UNIDAD7
+3220,expulsar,изгонять,FİİLLER,B2,UNIDAD8
+3221,aislado,изолированный,SIFATLAR,B2,UNIDAD9
+3222,complicado,"сложный, запутанный",SIFATLAR,B2,UNIDAD10
+3223,circular,циркулировать; циркуляр,FİİLLER,B2,UNIDAD11
+3224,juvenil,юношеский,SIFATLAR,B2,UNIDAD12
+3225,escrito,"письменный текст, документ",İSİMLER,B2,UNIDAD1
+3226,aprendizaje,"обучение, усвоение",İSİMLER,B2,UNIDAD2
+3227,visitante,посетитель,İSİMLER,B2,UNIDAD3
+3228,horizonte,горизонт,İSİMLER,B2,UNIDAD4
+3229,expansión,"экспансия, расширение",İSİMLER,B2,UNIDAD5
+3230,estrenar,"впервые использовать, премьера",FİİLLER,B2,UNIDAD6
+3231,distrito,"округ, район",İSİMLER,B2,UNIDAD7
+3232,dignidad,достоинство,İSİMLER,B2,UNIDAD8
+3233,académico,академический,SIFATLAR,B2,UNIDAD9
+3234,aguantar,"выдерживать, терпеть",FİİLLER,B2,UNIDAD10
+3235,corredor,коридор; бегун; брокер,İSİMLER,B2,UNIDAD1
+3236,genético,генетический,SIFATLAR,B2,UNIDAD2
+3237,sensibilidad,чувствительность,İSİMLER,B2,UNIDAD3
+3238,prolongar,продлевать,FİİLLER,B2,UNIDAD4
+3239,magnífico,великолепный,SIFATLAR,B2,UNIDAD5
+3240,sucio,грязный,SIFATLAR,B2,UNIDAD6
+3241,oriental,восточный,SIFATLAR,B2,UNIDAD7
+3242,tonelada,тонна,İSİMLER,B2,UNIDAD8
+3243,por cierto,кстати,ZARFLAR,B2,UNIDAD10
+3244,entrenador,тренер,İSİMLER,B2,UNIDAD11
+3245,acostar,укладывать спать,FİİLLER,B2,UNIDAD12
+3246,bolivia,Боливия,İSİMLER,B2,UNIDAD1
+3247,promesa,обещание,İSİMLER,B2,UNIDAD2
+3248,torre,башня,İSİMLER,B2,UNIDAD3
+3249,aludir,"намекать, упоминать",FİİLLER,B2,UNIDAD4
+3250,quejar,жаловаться,FİİLLER,B2,UNIDAD5
+3251,efectivamente,действительно,ZARFLAR,B2,UNIDAD6
+3252,programación,"программирование, программа",İSİMLER,B2,UNIDAD7
+3253,fácilmente,легко,ZARFLAR,B2,UNIDAD8
+3254,felicidad,счастье,İSİMLER,B2,UNIDAD9
+3255,depósito,"вклад, склад, отложение",İSİMLER,B2,UNIDAD10
+3256,estimular,стимулировать,FİİLLER,B2,UNIDAD11
+3257,estallar,"взрываться, вспыхивать",FİİLLER,B2,UNIDAD1
+3258,regir,"править, действовать (о законе)",FİİLLER,B2,UNIDAD2
+3259,fiel,верный,SIFATLAR,B2,UNIDAD3
+3260,limitación,ограничение,İSİMLER,B2,UNIDAD4
+3261,esclavo,раб,İSİMLER,B2,UNIDAD5
+3262,afuera,снаружи,ZARFLAR,B2,UNIDAD6
+3263,terrorismo,терроризм,İSİMLER,B2,UNIDAD7
+3264,corregir,исправлять,FİİLLER,B2,UNIDAD8
+3265,la habana,Гавана,İSİMLER,B2,UNIDAD9
+3266,primavera,весна,İSİMLER,B2,UNIDAD11
+3267,panorama,"панорама, обзор",İSİMLER,B2,UNIDAD12
+3268,avanzado,продвинутый,SIFATLAR,B2,UNIDAD1
+3269,oscuridad,темнота,İSİMLER,B2,UNIDAD2
+3270,detención,"задержание, арест",İSİMLER,B2,UNIDAD3
+3271,obstáculo,препятствие,İSİMLER,B2,UNIDAD4
+3272,grueso,толстый; основная часть,SIFATLAR,B2,UNIDAD5
+3273,embajada,посольство,İSİMLER,B2,UNIDAD6
+3274,percepción,восприятие,İSİMLER,B2,UNIDAD7
+3275,importación,импорт,İSİMLER,B2,UNIDAD8
+3276,esencia,"сущность, эссенция",İSİMLER,B2,UNIDAD9
+3277,cola,"хвост, очередь",İSİMLER,B2,UNIDAD10
+3278,diplomático,дипломатический,SIFATLAR,B2,UNIDAD11
+3279,sabor,вкус,İSİMLER,B2,UNIDAD12
+3280,energético,энергетический,SIFATLAR,B2,UNIDAD1
+3281,lamentar,сожалеть,FİİLLER,B2,UNIDAD2
+3282,secuestro,"похищение, угон",İSİMLER,B2,UNIDAD3
+3283,apariencia,"внешний вид, видимость",İSİMLER,B2,UNIDAD5
+3284,nacionalista,националистический,SIFATLAR,B2,UNIDAD9
+3285,zapato,"туфля, ботинок",İSİMLER,B2,UNIDAD10
+3286,expediente,дело (документ),İSİMLER,B2,UNIDAD11
+3287,señorito,молодой господин,İSİMLER,B2,UNIDAD12
+3288,doméstico,домашний,SIFATLAR,B2,UNIDAD1
+3289,acariciar,ласкать,FİİLLER,B2,UNIDAD2
+3290,parcial,"частичный, пристрастный",SIFATLAR,B2,UNIDAD4
+3291,espacial,"космический, пространственный",SIFATLAR,B2,UNIDAD5
+3292,gloria,слава,İSİMLER,B2,UNIDAD6
+3293,turno,"очередь, смена",İSİMLER,B2,UNIDAD7
+3294,cuarenta,сорок,İSİMLER,B2,UNIDAD8
+3295,oculto,скрытый,SIFATLAR,B2,UNIDAD9
+3296,diablo,дьявол,İSİMLER,B2,UNIDAD10
+3297,excluir,исключать,FİİLLER,B2,UNIDAD11
+3298,contradicción,противоречие,İSİMLER,B2,UNIDAD12
+3299,amo,хозяин; люблю (форма),İSİMLER,B2,UNIDAD1
+3300,mandato,"мандат, полномочие",İSİMLER,B2,UNIDAD2
+3301,proyección,"проекция, прогноз",İSİMLER,B2,UNIDAD3
+3302,húmedo,влажный,SIFATLAR,B2,UNIDAD5
+3303,circuito,"цепь, контур, трасса",İSİMLER,B2,UNIDAD6
+3304,conductor,водитель; проводник,İSİMLER,B2,UNIDAD9
+3305,corresponsal,корреспондент,İSİMLER,B2,UNIDAD10
+3306,incendio,пожар,İSİMLER,B2,UNIDAD11
+3307,posesión,владение,İSİMLER,B2,UNIDAD12
+3308,antecedente,"предшествующее, судимость",İSİMLER,B2,UNIDAD1
+3309,panamá,Панама,İSİMLER,B2,UNIDAD2
+3310,agotar,"исчерпывать, утомлять",FİİLLER,B2,UNIDAD3
+3311,espectacular,"эффектный, зрелищный",SIFATLAR,B2,UNIDAD4
+3312,gravedad,серьёзность; гравитация,İSİMLER,B2,UNIDAD6
+3313,modalidad,"вид, форма",İSİMLER,B2,UNIDAD7
+3314,sucesivo,последовательный,SIFATLAR,B2,UNIDAD8
+3315,variado,разнообразный,SIFATLAR,B2,UNIDAD9
+3316,admirar,восхищаться,FİİLLER,B2,UNIDAD11
+3317,ecuador,Эквадор; экватор,İSİMLER,B2,UNIDAD12
+3318,financiar,финансировать,FİİLLER,B2,UNIDAD1
+3319,republicano,республиканский,SIFATLAR,B2,UNIDAD2
+3320,tapar,"закрывать, прикрывать",FİİLLER,B2,UNIDAD3
+3321,arco,"дуга, арка, лук",İSİMLER,B2,UNIDAD4
+3322,invadir,вторгаться,FİİLLER,B2,UNIDAD5
+3323,estético,эстетический,SIFATLAR,B2,UNIDAD7
+3324,jurar,клясться,FİİLLER,B2,UNIDAD9
+3325,sacrificio,"жертва, жертвоприношение",İSİMLER,B2,UNIDAD10
+3326,financiación,финансирование,İSİMLER,B2,UNIDAD11
+3327,nave,"корабль, неф (храма)",İSİMLER,B2,UNIDAD12
+3328,incapaz,неспособный,SIFATLAR,B2,UNIDAD1
+3329,onda,волна,İSİMLER,B2,UNIDAD2
+3330,raza,"раса, порода",İSİMLER,B2,UNIDAD4
+3331,enterrar,хоронить,FİİLLER,B2,UNIDAD5
+3332,virus,вирус,İSİMLER,B2,UNIDAD6
+3333,aportación,вклад,İSİMLER,B2,UNIDAD7
+3334,curiosidad,любопытство,İSİMLER,B2,UNIDAD8
+3335,mediano,средний,SIFATLAR,B2,UNIDAD9
+3336,reducido,"сокращённый, небольшой",SIFATLAR,B2,UNIDAD10
+3337,involucrar,вовлекать,FİİLLER,B2,UNIDAD11
+3338,tarifa,тариф,İSİMLER,B2,UNIDAD12
+3339,romano,римский,SIFATLAR,B2,UNIDAD1
+3340,captar,"улавливать, привлекать",FİİLLER,B2,UNIDAD2
+3341,comisario,"комиссар, комиссар полиции",İSİMLER,B2,UNIDAD3
+3342,espiritual,духовный,SIFATLAR,B2,UNIDAD4
+3343,inspirar,"вдохновлять, вдыхать",FİİLLER,B2,UNIDAD5
+3344,andaluz,андалусский,SIFATLAR,B2,UNIDAD6
+3345,cuerdo,"здравый, разумный",İSİMLER,B2,UNIDAD7
+3346,defecto,"недостаток, дефект",İSİMLER,B2,UNIDAD8
+3347,comparación,сравнение,İSİMLER,B2,UNIDAD9
+3348,viajero,путешественник,İSİMLER,B2,UNIDAD10
+3349,cigarrillo,сигарета,İSİMLER,B2,UNIDAD11
+3350,cuota,"взнос, квота",İSİMLER,B2,UNIDAD12
+3351,residir,проживать,FİİLLER,B2,UNIDAD3
+3352,disminución,уменьшение,İSİMLER,B2,UNIDAD4
+3353,territorial,территориальный,SIFATLAR,B2,UNIDAD5
+3354,combinación,сочетание,İSİMLER,B2,UNIDAD6
+3355,restante,остальной,SIFATLAR,B2,UNIDAD7
+3356,llave,ключ,İSİMLER,B2,UNIDAD8
+3357,síntesis,"синтез, резюме",İSİMLER,B2,UNIDAD10
+3358,cada vez que,"каждый раз, когда",EDATLAR / BAĞLAÇLAR,B2,UNIDAD11
+3359,ancho,широкий,SIFATLAR,B2,UNIDAD2
+3360,mérito,"заслуга, достоинство",İSİMLER,B2,UNIDAD3
+3361,introducción,введение,İSİMLER,B2,UNIDAD4
+3362,gen,ген,İSİMLER,B2,UNIDAD5
+3363,desaparición,исчезновение,İSİMLER,B2,UNIDAD6
+3364,multiplicar,"умножать, размножать",FİİLLER,B2,UNIDAD8
+3365,harina,мука,İSİMLER,B2,UNIDAD9
+3366,castigo,наказание,İSİMLER,B2,UNIDAD10
+3367,corona,корона,İSİMLER,B2,UNIDAD11
+3368,concretar,"конкретизировать, договариваться",FİİLLER,B2,UNIDAD12
+3369,milagro,чудо,İSİMLER,B2,UNIDAD2
+3370,corporación,корпорация,İSİMLER,B2,UNIDAD5
+3371,destrucción,разрушение,İSİMLER,B2,UNIDAD6
+3372,bogotá,Богота,İSİMLER,B2,UNIDAD7
+3373,continuidad,непрерывность,İSİMLER,B2,UNIDAD8
+3374,solucionar,решать (проблему),FİİLLER,B2,UNIDAD9
+3375,competir,соревноваться,FİİLLER,B2,UNIDAD10
+3376,entrenamiento,тренировка,İSİMLER,B2,UNIDAD12
+3377,desgracia,несчастье,İSİMLER,B2,UNIDAD1
+3378,proclamar,провозглашать,FİİLLER,B2,UNIDAD2
+3379,martín,Мартин,İSİMLER,B2,UNIDAD3
+3380,revisión,"проверка, пересмотр",İSİMLER,B2,UNIDAD4
+3381,cualidad,"качество, свойство",İSİMLER,B2,UNIDAD5
+3382,orilla,"берег, край",İSİMLER,B2,UNIDAD7
+3383,forzar,"заставлять, форсировать",FİİLLER,B2,UNIDAD8
+3384,vigilancia,надзор,İSİMLER,B2,UNIDAD9
+3385,exclusivo,исключительный,SIFATLAR,B2,UNIDAD10
+3386,fantasía,фантазия,İSİMLER,B2,UNIDAD11
+3387,afrontar,"противостоять, встречаться с",FİİLLER,B2,UNIDAD1
+3388,armar,"вооружать, собирать",FİİLLER,B2,UNIDAD2
+3389,comprensión,понимание,İSİMLER,B2,UNIDAD3
+3390,pesar,весить; a pesar,FİİLLER,B2,UNIDAD4
+3391,publicitario,рекламный,SIFATLAR,B2,UNIDAD5
+3392,vigilar,"следить, охранять",FİİLLER,B2,UNIDAD6
+3393,asignar,"назначать, выделять",FİİLLER,B2,UNIDAD7
+3394,abarcar,охватывать,FİİLLER,B2,UNIDAD9
+3395,multitud,"множество, толпа",İSİMLER,B2,UNIDAD11
+3396,extrañar,скучать; казаться странным,FİİLLER,B2,UNIDAD12
+3397,mágico,магический,SIFATLAR,B2,UNIDAD2
+3398,jesús,Иисус,İSİMLER,B2,UNIDAD4
+3399,posiblemente,возможно,ZARFLAR,B2,UNIDAD6
+3400,estratégico,стратегический,SIFATLAR,B2,UNIDAD7
+3401,adolescente,подросток,İSİMLER,B2,UNIDAD8
+3402,compositor,композитор,İSİMLER,B2,UNIDAD9
+3403,puesta,постановка; ставка; закат,İSİMLER,B2,UNIDAD10
+3404,retener,удерживать,FİİLLER,B2,UNIDAD11
+3405,mediodía,полдень,İSİMLER,B2,UNIDAD12
+3406,cansar,утомлять,FİİLLER,B2,UNIDAD1
+3407,evento,событие,İSİMLER,B2,UNIDAD3
+3408,precisión,точность,İSİMLER,B2,UNIDAD6
+3409,puerto rico,Пуэрто-Рико,İSİMLER,B2,UNIDAD8
+3410,semilla,семя,İSİMLER,B2,UNIDAD9
+3411,pasajero,пассажир,İSİMLER,B2,UNIDAD11
+3412,una vez que,"как только, после того как",EDATLAR / BAĞLAÇLAR,B2,UNIDAD1
+3413,huella,след,İSİMLER,B2,UNIDAD2
+3414,condicionar,обусловливать,FİİLLER,B2,UNIDAD3
+3415,disponible,"доступный, свободный",SIFATLAR,B2,UNIDAD4
+3416,indispensable,незаменимый,SIFATLAR,B2,UNIDAD5
+3417,placa,"табличка, номерной знак",İSİMLER,B2,UNIDAD6
+3418,monte,"гора, лес",İSİMLER,B2,UNIDAD7
+3419,centenar,сотня,İSİMLER,B2,UNIDAD9
+3420,emergencia,чрезвычайная ситуация,İSİMLER,B2,UNIDAD10
+3421,atar,связывать,FİİLLER,B2,UNIDAD11
+3422,absurdo,абсурдный,SIFATLAR,B2,UNIDAD12
+3423,lujo,роскошь,İSİMLER,B2,UNIDAD1
+3424,asesor,"советник, консультант",İSİMLER,B2,UNIDAD3
+3425,reservar,резервировать,FİİLLER,B2,UNIDAD4
+3426,gallo,петух,İSİMLER,B2,UNIDAD5
+3427,tesoro,"сокровище, казна",İSİMLER,B2,UNIDAD6
+3428,imprimir,печатать,FİİLLER,B2,UNIDAD7
+3429,ordenador,компьютер,İSİMLER,B2,UNIDAD8
+3430,normalmente,обычно,ZARFLAR,B2,UNIDAD9
+3431,doctrina,"доктрина, учение",İSİMLER,B2,UNIDAD10
+3432,inevitable,неизбежный,SIFATLAR,B2,UNIDAD11
+3433,doler,болеть,FİİLLER,B2,UNIDAD2
+3434,cinta,лента,İSİMLER,B2,UNIDAD3
+3435,líquido,жидкость,İSİMLER,B2,UNIDAD4
+3436,oler,"нюхать, пахнуть",FİİLLER,B2,UNIDAD5
+3437,tragedia,трагедия,İSİMLER,B2,UNIDAD7
+3438,moderado,умеренный,SIFATLAR,B2,UNIDAD8
+3439,fallar,терпеть неудачу; выносить приговор,FİİLLER,B2,UNIDAD9
+3440,anticipar,предвосхищать,FİİLLER,B2,UNIDAD10
+3441,visible,видимый,SIFATLAR,B2,UNIDAD11
+3442,conexión,"связь, соединение",İSİMLER,B2,UNIDAD12
+3443,colaborador,сотрудник,İSİMLER,B2,UNIDAD1
+3444,ligar,связывать,FİİLLER,B2,UNIDAD2
+3445,cartero,почтальон,İSİMLER,B2,UNIDAD3
+3446,convicción,убеждение,İSİMLER,B2,UNIDAD5
+3447,conservación,"сохранение, охрана",İSİMLER,B2,UNIDAD6
+3448,singular,"единственный, своеобразный",SIFATLAR,B2,UNIDAD7
+3449,inquietud,беспокойство,İSİMLER,B2,UNIDAD8
+3450,relativamente,относительно,ZARFLAR,B2,UNIDAD9
+3451,castigar,наказывать,FİİLLER,B2,UNIDAD10
+3452,dado que,поскольку,EDATLAR / BAĞLAÇLAR,B2,UNIDAD11
+3453,identificación,"опознание, идентификация",İSİMLER,B2,UNIDAD12
+3454,cabello,волосы,İSİMLER,B2,UNIDAD1
+3455,conquistar,завоёвывать,FİİLLER,B2,UNIDAD2
+3456,disparo,выстрел,İSİMLER,B2,UNIDAD4
+3457,bienestar,благополучие,İSİMLER,B2,UNIDAD5
+3458,mina,"шахта, мина",İSİMLER,B2,UNIDAD6
+3459,castellano,"кастильский, испанский",İSİMLER,B2,UNIDAD7
+3460,moscú,Москва,İSİMLER,B2,UNIDAD1
+3461,estadístico,статистический,İSİMLER,B2,UNIDAD2
+3462,rigor,"строгость, точность",İSİMLER,B2,UNIDAD3
+3463,igualdad,равенство,İSİMLER,B2,UNIDAD4
+3464,ajustar,"подгонять, регулировать",FİİLLER,B2,UNIDAD6
+3465,administrar,"управлять, назначать (лекарство)",FİİLLER,B2,UNIDAD7
+3466,clasificar,классифицировать,FİİLLER,B2,UNIDAD8
+3467,utilidad,"полезность, утилита",İSİMLER,B2,UNIDAD9
+3468,conquista,завоевание,İSİMLER,B2,UNIDAD10
+3469,habitar,обитать,FİİLLER,B2,UNIDAD11
+3470,cincuenta,пятьдесят,İSİMLER,B2,UNIDAD12
+3471,cinematográfico,кинематографический,SIFATLAR,B2,UNIDAD1
+3472,integrante,"участник, составная часть",İSİMLER,B2,UNIDAD2
+3473,satisfecho,удовлетворённый,SIFATLAR,B2,UNIDAD3
+3474,considerable,значительный,SIFATLAR,B2,UNIDAD4
+3475,mito,миф,İSİMLER,B2,UNIDAD5
+3476,explosión,взрыв,İSİMLER,B2,UNIDAD6
+3477,beso,поцелуй,İSİMLER,B2,UNIDAD7
+3478,aparentemente,по-видимому,ZARFLAR,B2,UNIDAD8
+3479,estructural,структурный,SIFATLAR,B2,UNIDAD9
+3480,fundamento,"основание, фундамент",İSİMLER,B2,UNIDAD10
+3481,válido,"действительный, веский",SIFATLAR,B2,UNIDAD11
+3482,transportar,перевозить,FİİLLER,B2,UNIDAD1
+3483,avisar,"предупреждать, извещать",FİİLLER,B2,UNIDAD2
+3484,maniobra,манёвр,İSİMLER,B2,UNIDAD3
+3485,urgente,срочный,SIFATLAR,B2,UNIDAD4
+3486,subida,"подъём, повышение",İSİMLER,B2,UNIDAD5
+3487,marino,моряк,İSİMLER,B2,UNIDAD6
+3488,extenso,обширный,SIFATLAR,B2,UNIDAD7
+3489,incidencia,"случай, влияние",İSİMLER,B2,UNIDAD8
+3490,pelota,мяч,İSİMLER,B2,UNIDAD9
+3491,monje,монах,İSİMLER,B2,UNIDAD11
+3492,adulto,взрослый,İSİMLER,B2,UNIDAD12
+3493,estricto,строгий,SIFATLAR,B2,UNIDAD1
+3494,explotar,эксплуатировать; взрываться,FİİLLER,B2,UNIDAD2
+3495,paralelo,параллельный,SIFATLAR,B2,UNIDAD4
+3496,boda,свадьба,İSİMLER,B2,UNIDAD5
+3497,leve,"лёгкий, незначительный",SIFATLAR,B2,UNIDAD6
+3498,varón,"мужчина, самец",İSİMLER,B2,UNIDAD8
+3499,nocturno,ночной,SIFATLAR,B2,UNIDAD9
+3500,agitar,"трясти, волновать",FİİLLER,B2,UNIDAD10
+3501,vos,ты (в LatAm),ZAMİRLER,B2,UNIDAD11
+3502,escultura,скульптура,İSİMLER,B2,UNIDAD12
+3503,fama,"слава, известность",İSİMLER,B2,UNIDAD1
+3504,ahora que,"теперь, когда",EDATLAR / BAĞLAÇLAR,B2,UNIDAD2
+3505,necesariamente,"обязательно, непременно",ZARFLAR,B2,UNIDAD3
+3506,real madrid,Реал Мадрид,İSİMLER,B2,UNIDAD4
+3507,corporal,телесный,SIFATLAR,B2,UNIDAD5
+3508,fantasma,призрак,İSİMLER,B2,UNIDAD6
+3509,adaptación,адаптация,İSİMLER,B2,UNIDAD8
+3510,síndrome,синдром,İSİMLER,B2,UNIDAD9
+3511,inscribir,"записывать, регистрировать",FİİLLER,B2,UNIDAD10
+3512,creencia,"убеждение, вера",İSİMLER,B2,UNIDAD12
+3513,primitivo,"первобытный, примитивный",SIFATLAR,B2,UNIDAD2
+3514,borrar,"стирать, удалять",FİİLLER,B2,UNIDAD3
+3515,de manera que,так что,EDATLAR / BAĞLAÇLAR,B2,UNIDAD4
+3516,terrorista,террористический,SIFATLAR,B2,UNIDAD5
+3517,gota,капля,İSİMLER,B2,UNIDAD6
+3518,cultivar,"возделывать, культивировать",FİİLLER,B2,UNIDAD7
+3519,maravilloso,замечательный,SIFATLAR,B2,UNIDAD8
+3520,atlético,атлетический; «Атлетико»,SIFATLAR,B2,UNIDAD9
+3521,ratificar,ратифицировать,FİİLLER,B2,UNIDAD10
+3522,aguardar,ожидать,FİİLLER,B2,UNIDAD11
+3523,de acuerdo a,согласно,EDATLAR / BAĞLAÇLAR,B2,UNIDAD12
+3524,fallo,сбой; судебное решение,İSİMLER,B2,UNIDAD1
+3525,ocasionar,"вызывать, причинять",FİİLLER,B2,UNIDAD2
+3526,intérprete,"переводчик, исполнитель",İSİMLER,B2,UNIDAD3
+3527,cruz,крест,İSİMLER,B2,UNIDAD4
+3528,librar,избавлять; выдавать (чек),FİİLLER,B2,UNIDAD6
+3529,sexto,шестой,İSİMLER,B2,UNIDAD7
+3530,ala,крыло,İSİMLER,B2,UNIDAD8
+3531,dotar,"наделять, оснащать",FİİLLER,B2,UNIDAD9
+3532,contraste,контраст,İSİMLER,B2,UNIDAD10
+3533,licenciado,дипломированный специалист,İSİMLER,B2,UNIDAD11
+3534,carro,"повозка, машина (LatAm)",İSİMLER,B2,UNIDAD12
+3535,socialismo,социализм,İSİMLER,B2,UNIDAD1
+3536,lección,урок,İSİMLER,B2,UNIDAD2
+3537,votación,голосование,İSİMLER,B2,UNIDAD3
+3538,préstamo,"заём, ссуда",İSİMLER,B2,UNIDAD4
+3539,oportuno,"своевременный, уместный",SIFATLAR,B2,UNIDAD5
+3540,suficientemente,достаточно,ZARFLAR,B2,UNIDAD6
+3541,agresión,"агрессия, нападение",İSİMLER,B2,UNIDAD7
+3542,pistola,пистолет,İSİMLER,B2,UNIDAD10
+3543,narcotráfico,наркоторговля,İSİMLER,B2,UNIDAD2
+3544,dorado,золотой,SIFATLAR,B2,UNIDAD3
+3545,trayectoria,"траектория, карьера",İSİMLER,B2,UNIDAD4
+3546,satélite,спутник,İSİMLER,B2,UNIDAD6
+3547,ocupación,"занятие, оккупация",İSİMLER,B2,UNIDAD7
+3548,ajuste,"настройка, корректировка",İSİMLER,B2,UNIDAD8
+3549,debilidad,слабость,İSİMLER,B2,UNIDAD9
+3550,habilidad,"умение, навык",İSİMLER,B2,UNIDAD12
+3551,transmisión,передача,İSİMLER,B2,UNIDAD1
+3552,sospecha,подозрение,İSİMLER,B2,UNIDAD3
+3553,comerciante,торговец,İSİMLER,B2,UNIDAD4
+3554,aproximar,приближать,FİİLLER,B2,UNIDAD5
+3555,miseria,"нищета, горе",İSİMLER,B2,UNIDAD6
+3556,misa,месса,İSİMLER,B2,UNIDAD8
+3557,domicilio,место жительства,İSİMLER,B2,UNIDAD9
+3558,ciego,слепой,SIFATLAR,B2,UNIDAD10
+3559,adicional,дополнительный,SIFATLAR,B2,UNIDAD11
+3560,finalidad,"цель, предназначение",İSİMLER,B2,UNIDAD12
+3561,pecado,грех,İSİMLER,B2,UNIDAD2
+3562,mientras tanto,тем временем,ZARFLAR,B2,UNIDAD3
+3563,unión europea,Европейский союз,İSİMLER,B2,UNIDAD4
+3564,separación,"разделение, разлука",İSİMLER,B2,UNIDAD5
+3565,mentir,лгать,FİİLLER,B2,UNIDAD6
+3566,conde,граф,İSİMLER,B2,UNIDAD7
+3567,idéntico,идентичный,SIFATLAR,B2,UNIDAD8
+3568,a lo mejor,может быть,ZARFLAR,B2,UNIDAD9
+3569,planificación,планирование,İSİMLER,B2,UNIDAD1
+3570,obligado,"обязанный, вынужденный",SIFATLAR,B2,UNIDAD2
+3571,leyenda,легенда,İSİMLER,B2,UNIDAD4
+3572,vigor,"сила, действие (закона)",İSİMLER,B2,UNIDAD5
+3573,suscribir,подписывать(ся),FİİLLER,B2,UNIDAD6
+3574,encargado,"отвечающий, уполномоченный",SIFATLAR,B2,UNIDAD7
+3575,suspensión,"приостановка, подвеска",İSİMLER,B2,UNIDAD8
+3576,determinación,"решимость, определение",İSİMLER,B2,UNIDAD10
+3577,talento,талант,İSİMLER,B2,UNIDAD2
+3578,batir,"бить, взбивать, побивать (рекорд)",FİİLLER,B2,UNIDAD3
+3579,vidrio,стекло,İSİMLER,B2,UNIDAD5
+3580,frenar,тормозить,FİİLLER,B2,UNIDAD6
+3581,herramienta,инструмент,İSİMLER,B2,UNIDAD7
+3582,verdaderamente,"воистину, действительно",ZARFLAR,B2,UNIDAD8
+3583,vitamina,витамин,İSİMLER,B2,UNIDAD9
+3584,severo,суровый,SIFATLAR,B2,UNIDAD10
+3585,vanguardia,авангард,İSİMLER,B2,UNIDAD11
+3586,abuso,злоупотребление,İSİMLER,B2,UNIDAD12
+3587,coro,хор,İSİMLER,B2,UNIDAD1
+3588,ave,птица,İSİMLER,B2,UNIDAD4
+3589,enamorar,влюблять(ся),FİİLLER,B2,UNIDAD5
+3590,excepcional,исключительный,SIFATLAR,B2,UNIDAD7
+3591,cuartel,казарма,İSİMLER,B2,UNIDAD8
+3592,trámite,"формальность, процедура",İSİMLER,B2,UNIDAD9
+3593,conversar,беседовать,FİİLLER,B2,UNIDAD10
+3594,tramo,"участок, отрезок",İSİMLER,B2,UNIDAD12
+3595,nieve,снег,İSİMLER,B2,UNIDAD3
+3596,resaltar,"выделять, подчёркивать",FİİLLER,B2,UNIDAD4
+3597,caracas,Каракас,İSİMLER,B2,UNIDAD5
+3598,visual,зрительный,SIFATLAR,B2,UNIDAD7
+3599,cm,см (сантиметр),İSİMLER,B2,UNIDAD8
+3600,esfera,сфера,İSİMLER,B2,UNIDAD9
+3601,agrupar,группировать,FİİLLER,B2,UNIDAD10
+3602,secuencia,последовательность,İSİMLER,B2,UNIDAD11
+3603,prisa,спешка,İSİMLER,B2,UNIDAD12
+3604,asesino,убийца,İSİMLER,B2,UNIDAD1
+3605,palo,палка,İSİMLER,B2,UNIDAD2
+3606,copia,копия,İSİMLER,B2,UNIDAD3
+3607,escritura,"письмо, писание",İSİMLER,B2,UNIDAD4
+3608,caso del,в случае,EDATLAR / BAĞLAÇLAR,B2,UNIDAD6
+3609,odio,ненависть,İSİMLER,B2,UNIDAD7
+3610,cristo,Христос,İSİMLER,B2,UNIDAD8
+3611,coordinador,координатор,İSİMLER,B2,UNIDAD9
+3612,propiciar,способствовать,FİİLLER,B2,UNIDAD10
+3613,lucir,"блистать, выглядеть",FİİLLER,B2,UNIDAD11
+3614,internet,интернет,İSİMLER,B2,UNIDAD12
+3615,regulación,регулирование,İSİMLER,B2,UNIDAD1
+3616,tránsito,"движение, транзит",İSİMLER,B2,UNIDAD2
+3617,profundamente,глубоко,ZARFLAR,B2,UNIDAD4
+3618,doblar,"сгибать, дублировать",FİİLLER,B2,UNIDAD7
+3619,militante,"активист, боевик",İSİMLER,B2,UNIDAD9
+3620,en cualquier caso,в любом случае,ZARFLAR,B2,UNIDAD10
+3621,onu,ООН,İSİMLER,B2,UNIDAD11
+3622,culminar,"завершать(ся), достигать пика",FİİLLER,B2,UNIDAD12
+3623,artificial,искусственный,SIFATLAR,B2,UNIDAD1
+3624,gerente,"управляющий, менеджер",İSİMLER,B2,UNIDAD2
+3625,observador,наблюдатель,İSİMLER,B2,UNIDAD3
+3626,agrupación,"группировка, объединение",İSİMLER,B2,UNIDAD4
+3627,pedazo,кусок,İSİMLER,B2,UNIDAD5
+3628,combustible,топливо,İSİMLER,B2,UNIDAD6
+3629,limitado,ограниченный,SIFATLAR,B2,UNIDAD7
+3630,llama,пламя; лама,İSİMLER,B2,UNIDAD8
+3631,medalla,медаль,İSİMLER,B2,UNIDAD9
+3632,párrafo,абзац,İSİMLER,B2,UNIDAD10
+3633,curvo,"изгиб, кривая",İSİMLER,B2,UNIDAD1
+3634,locura,безумие,İSİMLER,B2,UNIDAD2
+3635,dominante,господствующий,SIFATLAR,B2,UNIDAD3
+3636,calma,спокойствие,İSİMLER,B2,UNIDAD4
+3637,respaldo,"поддержка, спинка",İSİMLER,B2,UNIDAD5
+3638,divino,божественный,SIFATLAR,B2,UNIDAD6
+3639,violar,"нарушать, насиловать",FİİLLER,B2,UNIDAD8
+3640,renovación,"обновление, продление",İSİMLER,B2,UNIDAD9
+3641,protagonizar,играть главную роль,FİİLLER,B2,UNIDAD10
+3642,contigo,с тобой,ZAMİRLER,B2,UNIDAD11
+3643,al tiempo que,в то время как,EDATLAR / BAĞLAÇLAR,B2,UNIDAD12
+3644,acentuar,"подчёркивать, ставить ударение",FİİLLER,B2,UNIDAD2
+3645,progresivo,"постепенный, прогрессивный",SIFATLAR,B2,UNIDAD3
+3646,sonoro,звучный,SIFATLAR,B2,UNIDAD4
+3647,rodar,катиться; снимать (фильм),FİİLLER,B2,UNIDAD5
+3648,ángulo,угол,İSİMLER,B2,UNIDAD6
+3649,sorprendente,удивительный,SIFATLAR,B2,UNIDAD7
+3650,eco,эхо,İSİMLER,B2,UNIDAD9
+3651,temblar,дрожать,FİİLLER,B2,UNIDAD10
+3652,empeñar,закладывать; empeñarse: настаивать,FİİLLER,B2,UNIDAD11
+3653,ola,волна,İSİMLER,B2,UNIDAD12
+3654,inocente,невинный,SIFATLAR,B2,UNIDAD1
+3655,incorporación,"включение, вступление",İSİMLER,B2,UNIDAD2
+3656,terrestre,"земной, наземный",SIFATLAR,B2,UNIDAD3
+3657,magnitud,"величина, магнитуда",İSİMLER,B2,UNIDAD4
+3658,vocación,призвание,İSİMLER,B2,UNIDAD5
+3659,cerdo,свинья,İSİMLER,B2,UNIDAD6
+3660,humedad,влажность,İSİMLER,B2,UNIDAD7
+3661,violación,нарушение; изнасилование,İSİMLER,B2,UNIDAD9
+3662,presionar,"давить, оказывать давление",FİİLLER,B2,UNIDAD10
+3663,atractivo,привлекательный,SIFATLAR,B2,UNIDAD1
+3664,asistente,"помощник, ассистент",İSİMLER,B2,UNIDAD2
+3665,jurado,"жюри, присяжные",İSİMLER,B2,UNIDAD3
+3666,africano,африканский,SIFATLAR,B2,UNIDAD4
+3667,sembrar,сеять,FİİLLER,B2,UNIDAD5
+3668,coordinación,координация,İSİMLER,B2,UNIDAD6
+3669,comportar,влечь за собой; вести себя,FİİLLER,B2,UNIDAD9
+3670,partidario,сторонник,SIFATLAR,B2,UNIDAD10
+3671,decidido,решительный,SIFATLAR,B2,UNIDAD11
+3672,invitado,гость,İSİMLER,B2,UNIDAD12
+3673,absorber,поглощать,FİİLLER,B2,UNIDAD1
+3674,poético,поэтический,SIFATLAR,B2,UNIDAD2
+3675,apostar,"ставить (на), делать ставку",FİİLLER,B2,UNIDAD3
+3676,rezar,молиться,FİİLLER,B2,UNIDAD4
+3677,filme,фильм,İSİMLER,B2,UNIDAD5
+3678,valioso,ценный,SIFATLAR,B2,UNIDAD6
+3679,vengar,мстить,FİİLLER,B2,UNIDAD7
+3680,torero,"тореро, матадор",İSİMLER,B2,UNIDAD8
+3681,disolver,"растворять, распускать",FİİLLER,B2,UNIDAD9
+3682,infinito,бесконечный,SIFATLAR,B2,UNIDAD10
+3683,deducir,"выводить, удерживать",FİİLLER,B2,UNIDAD11
+3684,relatar,рассказывать,FİİLLER,B2,UNIDAD1
+3685,creador,создатель,İSİMLER,B2,UNIDAD2
+3686,acá,"здесь, сюда",ZARFLAR,B2,UNIDAD3
+3687,nombramiento,назначение,İSİMLER,B2,UNIDAD4
+3688,privilegio,привилегия,İSİMLER,B2,UNIDAD6
+3689,aspiración,стремление,İSİMLER,B2,UNIDAD8
+3690,siquiera,хотя бы,ZARFLAR,B2,UNIDAD9
+3691,enseguida,"сразу, тотчас",ZARFLAR,B2,UNIDAD10
+3692,documentación,документация,İSİMLER,B2,UNIDAD11
+3693,fibra,волокно,İSİMLER,B2,UNIDAD1
+3694,decena,десяток,İSİMLER,B2,UNIDAD3
+3695,trazar,"чертить, намечать",FİİLLER,B2,UNIDAD4
+3696,misterioso,таинственный,SIFATLAR,B2,UNIDAD5
+3697,oh,"о, ох",KALIP İFADELER,B2,UNIDAD6
+3698,tronco,"ствол, туловище",İSİMLER,B2,UNIDAD7
+3699,occidente,Запад,İSİMLER,B2,UNIDAD8
+3700,adivinar,угадывать,FİİLLER,B2,UNIDAD9
+3701,afán,"рвение, стремление",İSİMLER,B2,UNIDAD10
+3702,muñeco,"кукла, манекен",İSİMLER,B2,UNIDAD11
+3703,renuncia,"отставка, отказ",İSİMLER,B2,UNIDAD12
+3704,vegetal,растительный,SIFATLAR,B2,UNIDAD1
+3705,exclamar,восклицать,FİİLLER,B2,UNIDAD2
+3706,espada,"меч, шпага",İSİMLER,B2,UNIDAD4
+3707,ganador,победитель,İSİMLER,B2,UNIDAD5
+3708,ligeramente,слегка,ZARFLAR,B2,UNIDAD6
+3709,pluma,"перо, ручка",İSİMLER,B2,UNIDAD7
+3710,ansiedad,"тревога, беспокойство",İSİMLER,B2,UNIDAD9
+3711,fusión,"слияние, ядерный синтез",İSİMLER,B2,UNIDAD10
+3712,país vasco,Страна Басков,İSİMLER,B2,UNIDAD11
+3713,grano,зерно,İSİMLER,B2,UNIDAD12
+3714,obvio,очевидный,SIFATLAR,B2,UNIDAD1
+3715,mancha,пятно,İSİMLER,B2,UNIDAD2
+3716,viudo,вдовец,İSİMLER,B2,UNIDAD3
+3717,relieve,рельеф; выделяться,İSİMLER,B2,UNIDAD4
+3718,personalmente,лично,ZARFLAR,B2,UNIDAD5
+3719,ciertamente,"конечно, несомненно",ZARFLAR,B2,UNIDAD6
+3720,colonial,колониальный,SIFATLAR,B2,UNIDAD7
+3721,recomendación,рекомендация,İSİMLER,B2,UNIDAD9
+3722,aparente,"кажущийся, видимый",SIFATLAR,B2,UNIDAD10
+3723,valoración,оценка,İSİMLER,B2,UNIDAD11
+3724,otoño,осень,İSİMLER,B2,UNIDAD12
+3725,asalto,"штурм, нападение",İSİMLER,B2,UNIDAD1
+3726,nervio,нерв,İSİMLER,B2,UNIDAD3
+3727,fotógrafo,фотограф,İSİMLER,B2,UNIDAD4
+3728,infierno,ад,İSİMLER,B2,UNIDAD5
+3729,maíz,кукуруза,İSİMLER,B2,UNIDAD7
+3730,sacudir,трясти,FİİLLER,B2,UNIDAD8
+3731,fernando,Фернандо,İSİMLER,B2,UNIDAD9
+3732,barra,"брус, стойка, полоса",İSİMLER,B2,UNIDAD11
+3733,suscitar,"вызывать, возбуждать",FİİLLER,B2,UNIDAD2
+3734,tv,"ТВ, телевидение",İSİMLER,B2,UNIDAD3
+3735,tercio,треть; тертио (коррида),İSİMLER,B2,UNIDAD4
+3736,integral,"полный, комплексный",SIFATLAR,B2,UNIDAD5
+3737,teatral,театральный,SIFATLAR,B2,UNIDAD6
+3738,centímetro,сантиметр,İSİMLER,B2,UNIDAD7
+3739,broma,шутка,İSİMLER,B2,UNIDAD9
+3740,prioridad,приоритет,İSİMLER,B2,UNIDAD10
+3741,agradable,приятный,SIFATLAR,B2,UNIDAD11
+3742,funcional,функциональный,SIFATLAR,B2,UNIDAD12
+3743,civilización,цивилизация,İSİMLER,B2,UNIDAD1
+3744,represión,"репрессии, подавление",İSİMLER,B2,UNIDAD3
+3745,noble,"благородный, дворянин",SIFATLAR,B2,UNIDAD4
+3746,sierra,горный хребет; пила,İSİMLER,B2,UNIDAD5
+3747,adquisición,приобретение,İSİMLER,B2,UNIDAD6
+3748,tranquilidad,спокойствие,İSİMLER,B2,UNIDAD7
+3749,sanidad,здравоохранение,İSİMLER,B2,UNIDAD8
+3750,precioso,"драгоценный, прекрасный",SIFATLAR,B2,UNIDAD9
+3751,balón,мяч,İSİMLER,B2,UNIDAD10
+3752,transferencia,"перевод, трансфер",İSİMLER,B2,UNIDAD11
+3753,aniversario,годовщина,İSİMLER,B2,UNIDAD12
+3754,demandar,"требовать, предъявлять иск",FİİLLER,B2,UNIDAD1
+3755,robo,"кража, ограбление",İSİMLER,B2,UNIDAD2
+3756,repente,внезапность (de repente),İSİMLER,B2,UNIDAD5
+3757,aliado,союзник,İSİMLER,B2,UNIDAD6
+3758,aporte,вклад,İSİMLER,B2,UNIDAD8
+3759,giro,"поворот, перевод (денежный)",İSİMLER,B2,UNIDAD11
+3760,doloroso,"болезненный, горестный",SIFATLAR,B2,UNIDAD12
+3761,condena,"приговор, осуждение",İSİMLER,B2,UNIDAD1
+3762,herencia,"наследство, наследие",İSİMLER,B2,UNIDAD4
+3763,programar,"программировать, планировать",FİİLLER,B2,UNIDAD5
+3764,villa,"городок, вилла",İSİMLER,B2,UNIDAD6
+3765,editar,"издавать, редактировать",FİİLLER,B2,UNIDAD7
+3766,km,км (километр),İSİMLER,B2,UNIDAD8
+3767,licencia,"лицензия, отпуск",İSİMLER,B2,UNIDAD9
+3768,rescatar,"спасать, выкупать",FİİLLER,B2,UNIDAD10
+3769,experimento,эксперимент,İSİMLER,B2,UNIDAD11
+3770,fortalecer,укреплять,FİİLLER,B2,UNIDAD1
+3771,exilio,"изгнание, эмиграция",İSİMLER,B2,UNIDAD2
+3772,modesto,скромный,SIFATLAR,B2,UNIDAD3
+3773,ganancia,"прибыль, выигрыш",İSİMLER,B2,UNIDAD5
+3774,aceptación,"принятие, признание",İSİMLER,B2,UNIDAD6
+3775,adentro,внутри,ZARFLAR,B2,UNIDAD7
+3776,daniel,Даниэль,İSİMLER,B2,UNIDAD8
+3777,prevenir,"предотвращать, предупреждать",FİİLLER,B2,UNIDAD9
+3778,limpieza,"чистота, уборка",İSİMLER,B2,UNIDAD10
+3779,desierto,пустыня,İSİMLER,B2,UNIDAD11
+3780,privatización,приватизация,İSİMLER,B2,UNIDAD12
+3781,tremendo,"огромный, страшный",SIFATLAR,B2,UNIDAD1
+3782,pelear,"драться, ссориться",FİİLLER,B2,UNIDAD2
+3783,clavar,"вбивать, вонзать",FİİLLER,B2,UNIDAD3
+3784,deshacer,"разбирать, отменять",FİİLLER,B2,UNIDAD4
+3785,elegante,элегантный,SIFATLAR,B2,UNIDAD5
+3786,fuga,"побег, утечка",İSİMLER,B2,UNIDAD6
+3787,cancha,"площадка, корт",İSİMLER,B2,UNIDAD8
+3788,célebre,знаменитый,SIFATLAR,B2,UNIDAD9
+3789,radicar,"заключаться, корениться",FİİLLER,B2,UNIDAD10
+3790,israelí,израильский,SIFATLAR,B2,UNIDAD11
+3791,recinto,"помещение, огороженная территория",İSİMLER,B2,UNIDAD1
+3792,restar,"вычитать, оставаться",FİİLLER,B2,UNIDAD2
+3793,crema,крем,İSİMLER,B2,UNIDAD3
+3794,plenamente,в полной мере,ZARFLAR,B2,UNIDAD4
+3795,contribución,"вклад, взнос",İSİMLER,B2,UNIDAD5
+3796,respecto al,относительно,EDATLAR / BAĞLAÇLAR,B2,UNIDAD7
+3797,canadá,Канада,İSİMLER,B2,UNIDAD8
+3798,preferencia,предпочтение,İSİMLER,B2,UNIDAD9
+3799,cardenal,кардинал,İSİMLER,B2,UNIDAD10
+3800,prestación,"пособие, услуга",İSİMLER,B2,UNIDAD11
+3801,gramo,грамм,İSİMLER,B2,UNIDAD1
+3802,caza,охота,İSİMLER,B2,UNIDAD2
+3803,uniforme,"форма, мундир",İSİMLER,B2,UNIDAD4
+3804,elemental,элементарный,SIFATLAR,B2,UNIDAD5
+3805,fiscalía,прокуратура,İSİMLER,B2,UNIDAD7
+3806,configurar,"настраивать, формировать",FİİLLER,B2,UNIDAD8
+3807,plataforma,платформа,İSİMLER,B2,UNIDAD9
+3808,filosófico,философский,SIFATLAR,B2,UNIDAD10
+3809,canciller,"канцлер, министр иностранных дел",İSİMLER,B2,UNIDAD12
+3810,fracasar,терпеть неудачу,FİİLLER,B2,UNIDAD1
+3811,gran bretaña,Великобритания,İSİMLER,B2,UNIDAD3
+3812,ruina,"руина, разорение",İSİMLER,B2,UNIDAD5
+3813,ronda,"раунд, обход",İSİMLER,B2,UNIDAD6
+3814,terapéutico,терапевтический,SIFATLAR,B2,UNIDAD7
+3815,selva,"сельва, джунгли",İSİMLER,B2,UNIDAD9
+3816,casco,шлем; корпус (города),İSİMLER,B2,UNIDAD10
+3817,proveer,"снабжать, обеспечивать",FİİLLER,B2,UNIDAD11
+3818,romántico,романтический,SIFATLAR,B2,UNIDAD1
+3819,convención,"конвенция, съезд",İSİMLER,B2,UNIDAD2
+3820,fragmento,фрагмент,İSİMLER,B2,UNIDAD3
+3821,apropiado,подходящий,SIFATLAR,B2,UNIDAD4
+3822,intermedio,промежуточный,SIFATLAR,B2,UNIDAD5
+3823,península,полуостров,İSİMLER,B2,UNIDAD6
+3824,pez,рыба,İSİMLER,B2,UNIDAD7
+3825,mandatario,глава государства,İSİMLER,B2,UNIDAD8
+3826,ángel,ангел,İSİMLER,B2,UNIDAD9
+3827,traslado,"перевод, перевозка",İSİMLER,B2,UNIDAD10
+3828,minoría,меньшинство,İSİMLER,B2,UNIDAD11
+3829,barrera,барьер,İSİMLER,B2,UNIDAD1
+3830,refugio,убежище,İSİMLER,B2,UNIDAD3
+3831,legislador,законодатель,İSİMLER,B2,UNIDAD4
+3832,desplazamiento,"перемещение, смещение",İSİMLER,B2,UNIDAD5
+3833,metálico,металлический,SIFATLAR,B2,UNIDAD6
+3834,uruguay,Уругвай,İSİMLER,B2,UNIDAD7
+3835,soporte,"опора, поддержка",İSİMLER,B2,UNIDAD8
+3836,duque,герцог,İSİMLER,B2,UNIDAD9
+3837,resumen,"резюме, сводка",İSİMLER,B2,UNIDAD12
+3838,filósofo,философ,İSİMLER,B2,UNIDAD2
+3839,récord,рекорд,İSİMLER,B2,UNIDAD3
+3840,accionista,акционер,İSİMLER,B2,UNIDAD4
+3841,inspección,"инспекция, проверка",İSİMLER,B2,UNIDAD5
+3842,secar,сушить,FİİLLER,B2,UNIDAD6
+3843,reparar,чинить; замечать,FİİLLER,B2,UNIDAD7
+3844,limón,лимон,İSİMLER,B2,UNIDAD8
+3845,longitud,"длина, долгота",İSİMLER,B2,UNIDAD9
+3846,abandono,"заброшенность, отказ",İSİMLER,B2,UNIDAD10
+3847,cementerio,кладбище,İSİMLER,B2,UNIDAD12
+3848,finca,"ферма, поместье",İSİMLER,B2,UNIDAD1
+3849,en cuanto al,что касается,EDATLAR / BAĞLAÇLAR,B2,UNIDAD2
+3850,prevención,"профилактика, предотвращение",İSİMLER,B2,UNIDAD5
+3851,judío,еврей,İSİMLER,B2,UNIDAD6
+3852,racional,рациональный,SIFATLAR,B2,UNIDAD7
+3853,complementario,дополнительный,SIFATLAR,B2,UNIDAD8
+3854,tormenta,"буря, гроза",İSİMLER,B2,UNIDAD10
+3855,alejado,удалённый,SIFATLAR,B2,UNIDAD11
+3856,consigo,с собой,ZAMİRLER,B2,UNIDAD12
+3857,desempleo,безработица,İSİMLER,B2,UNIDAD1
+3858,tumba,могила,İSİMLER,B2,UNIDAD2
+3859,deterioro,"ухудшение, износ",İSİMLER,B2,UNIDAD4
+3860,retorno,"возврат, возвращение",İSİMLER,B2,UNIDAD5
+3861,buque,"судно, корабль",İSİMLER,B2,UNIDAD6
+3862,en tanto que,"в то время как, поскольку",EDATLAR / BAĞLAÇLAR,B2,UNIDAD7
+3863,honduras,Гондурас,İSİMLER,B2,UNIDAD8
+3864,refugiado,беженец,İSİMLER,B2,UNIDAD9
+3865,brillar,сиять,FİİLLER,B2,UNIDAD10
+3866,argumentar,аргументировать,FİİLLER,B2,UNIDAD11
+3867,soberanía,суверенитет,İSİMLER,B2,UNIDAD12
+3868,oficialmente,официально,ZARFLAR,B2,UNIDAD2
+3869,ordinario,"обычный, ординарный",SIFATLAR,B2,UNIDAD3
+3870,triunfar,торжествовать,FİİLLER,B2,UNIDAD4
+3871,inspector,инспектор,İSİMLER,B2,UNIDAD5
+3872,perteneciente,принадлежащий,SIFATLAR,B2,UNIDAD7
+3873,disimular,"скрывать, притворяться",FİİLLER,B2,UNIDAD8
+3874,evidentemente,очевидно,ZARFLAR,B2,UNIDAD9
+3875,prolongado,продолжительный,SIFATLAR,B2,UNIDAD10
+3876,cariño,"ласка, привязанность",İSİMLER,B2,UNIDAD11
+3877,editor,"издатель, редактор",İSİMLER,B2,UNIDAD12
+3878,caribe,"Карибы, Карибский",İSİMLER,B2,UNIDAD1
+3879,e,и (перед i/hi),İSİMLER,B2,UNIDAD2
+3880,guiar,"вести, направлять",FİİLLER,B2,UNIDAD3
+3881,psicología,психология,İSİMLER,B2,UNIDAD4
+3882,imitar,подражать,FİİLLER,B2,UNIDAD5
+3883,pretensión,"притязание, претензия",İSİMLER,B2,UNIDAD6
+3884,embarazo,беременность,İSİMLER,B2,UNIDAD7
+3885,vela,свеча; парус,İSİMLER,B2,UNIDAD10
+3886,aviso,"извещение, предупреждение",İSİMLER,B2,UNIDAD11
+3887,acelerar,ускорять,FİİLLER,B2,UNIDAD12
+3888,emocional,эмоциональный,SIFATLAR,B2,UNIDAD1
+3889,simbólico,символический,SIFATLAR,B2,UNIDAD2
+3890,paciencia,терпение,İSİMLER,B2,UNIDAD3
+3891,paralizar,парализовать,FİİLLER,B2,UNIDAD4
+3892,monumento,памятник,İSİMLER,B2,UNIDAD5
+3893,enviado,"посланник, отправленный",İSİMLER,B2,UNIDAD6
+3894,historiador,историк,İSİMLER,B2,UNIDAD8
+3895,delincuente,преступник,İSİMLER,B2,UNIDAD10
+3896,tubo,"труба, тюбик",İSİMLER,B2,UNIDAD11
+3897,representativo,представительный,SIFATLAR,B2,UNIDAD1
+3898,pisar,"ступать, наступать",FİİLLER,B2,UNIDAD2
+3899,periodismo,журналистика,İSİMLER,B2,UNIDAD3
+3900,carencia,нехватка,İSİMLER,B2,UNIDAD4
+3901,secuestrar,похищать,FİİLLER,B2,UNIDAD6
+3902,perjudicar,наносить ущерб,FİİLLER,B2,UNIDAD7
+3903,perdido,потерянный,SIFATLAR,B2,UNIDAD8
+3904,rumbo,"курс, направление",İSİMLER,B2,UNIDAD9
+3905,plantilla,"штат, шаблон",İSİMLER,B2,UNIDAD10
+3906,noción,"понятие, представление",İSİMLER,B2,UNIDAD1
+3907,mixto,смешанный,SIFATLAR,B2,UNIDAD2
+3908,horror,ужас,İSİMLER,B2,UNIDAD3
+3909,contraer,"сокращать; заключать (брак, долг)",FİİLLER,B2,UNIDAD4
+3910,flujo,поток,İSİMLER,B2,UNIDAD5
+3911,el salvador,Сальвадор,İSİMLER,B2,UNIDAD6
+3912,autorización,разрешение,İSİMLER,B2,UNIDAD7
+3913,convencional,"условный, обычный",SIFATLAR,B2,UNIDAD9
+3914,olvido,забвение,İSİMLER,B2,UNIDAD10
+3915,acomodar,"приспосабливать, размещать",FİİLLER,B2,UNIDAD11
+3916,gal,GAL; галисийский,İSİMLER,B2,UNIDAD12
+3917,calendario,календарь,İSİMLER,B2,UNIDAD2
+3918,probabilidad,вероятность,İSİMLER,B2,UNIDAD4
+3919,excelencia,"превосходство, превосходительство",İSİMLER,B2,UNIDAD6
+3920,muscular,мышечный,SIFATLAR,B2,UNIDAD8
+3921,rapidez,быстрота,İSİMLER,B2,UNIDAD9
+3922,rol,роль,İSİMLER,B2,UNIDAD11
+3923,periodístico,журналистский,SIFATLAR,B2,UNIDAD12
+3924,urss,СССР,İSİMLER,B2,UNIDAD4
+3925,jugo,сок,İSİMLER,B2,UNIDAD5
+3926,participante,участник,İSİMLER,B2,UNIDAD6
+3927,respiración,дыхание,İSİMLER,B2,UNIDAD8
+3928,lingüístico,лингвистический,SIFATLAR,B2,UNIDAD9
+3929,prender,"зажигать; хватать, арестовывать",FİİLLER,B2,UNIDAD11
+3930,creativo,творческий,SIFATLAR,B2,UNIDAD12
+3931,vigencia,"действие, актуальность",İSİMLER,B2,UNIDAD1
+3932,desviar,"отклонять, сворачивать",FİİLLER,B2,UNIDAD2
+3933,tragar,глотать,FİİLLER,B2,UNIDAD3
+3934,inconveniente,"неудобство, препятствие",İSİMLER,B2,UNIDAD4
+3935,aparte,"отдельно, кроме того",ZARFLAR,B2,UNIDAD6
+3936,mortal,"смертельный, смертный",SIFATLAR,B2,UNIDAD7
+3937,legítimo,"законный, легитимный",SIFATLAR,B2,UNIDAD8
+3938,encaminar,направлять,FİİLLER,B2,UNIDAD9
+3939,cero,ноль,İSİMLER,B2,UNIDAD10
+3940,trágico,трагический,SIFATLAR,B2,UNIDAD11
+3941,desplegar,развёртывать,FİİLLER,B2,UNIDAD1
+3942,reemplazar,заменять,FİİLLER,B2,UNIDAD4
+3943,vaca,корова,İSİMLER,B2,UNIDAD5
+3944,pasaje,"пассаж, проезд, отрывок",İSİMLER,B2,UNIDAD6
+3945,invasión,вторжение,İSİMLER,B2,UNIDAD7
+3946,capturar,захватывать,FİİLLER,B2,UNIDAD8
+3947,bañar,купать,FİİLLER,B2,UNIDAD9
+3948,montaje,"монтаж, постановка",İSİMLER,B2,UNIDAD10
+3949,agresivo,агрессивный,SIFATLAR,B2,UNIDAD11
+3950,razonable,разумный,SIFATLAR,B2,UNIDAD1
+3951,salarial,зарплатный,SIFATLAR,B2,UNIDAD2
+3952,sufrimiento,страдание,İSİMLER,B2,UNIDAD5
+3953,receptor,"приёмник, получатель",İSİMLER,B2,UNIDAD6
+3954,miel,мёд,İSİMLER,B2,UNIDAD7
+3955,constantemente,постоянно,ZARFLAR,B2,UNIDAD9
+3956,justamente,"как раз, справедливо",ZARFLAR,B2,UNIDAD10
+3957,desastre,катастрофа,İSİMLER,B2,UNIDAD11
+3958,remoto,"далёкий, удалённый",SIFATLAR,B2,UNIDAD12
+3959,maldito,проклятый,SIFATLAR,B2,UNIDAD1
+3960,fabricación,"изготовление, производство",İSİMLER,B2,UNIDAD2
+3961,film,фильм,İSİMLER,B2,UNIDAD3
+3962,bolo,кегля; кусок (пищи),İSİMLER,B2,UNIDAD4

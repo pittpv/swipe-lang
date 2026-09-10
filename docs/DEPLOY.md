@@ -23,7 +23,9 @@ as a fallback.
 
 3. Add `POSTGRES_URL` to the project environment variables and deploy.
    The state lives in one JSONB document (`langapp_state`); on an empty DB
-   the 3564-word vocabulary seeds itself on first cold start.
+   the vocabulary for all language pairs seeds itself on first cold start
+   (Turkish, English, and Spanish CSVs under `server/data/`). Existing
+   databases that only have Turkish pick up the other packs on the next boot.
 
 ### Storage option B — Upstash Redis
 
@@ -36,13 +38,15 @@ as a fallback.
    |----------|-------|
    | `SESSION_SECRET` | any random string, min 32 chars |
    | `ADMIN_API_KEY` | key for `/admin/dashboard.html` |
-4. Deploy. On the first cold start the 3564-word vocabulary seeds itself into Redis.
+4. Deploy. On the first cold start the full vocabulary (TR + EN + ES) seeds itself into Redis.
+   An existing Turkish-only store is extended with English and Spanish on the next request.
 
 ### App version (Settings screen)
 
 The UI shows `LangApp vX.Y.Z+abcdefg`: semver from `package.json` plus a short
 git commit SHA injected at build time (`VERCEL_GIT_COMMIT_SHA` on Vercel, else
-`git rev-parse`). Bump the marketed semver only when you intend a release:
+`git rev-parse`). User-facing notes live in `src/changelog.js` (Settings → Что нового).
+Bump the marketed semver only when you intend a release:
 
 ```powershell
 npm version patch   # or minor / major — then commit & push

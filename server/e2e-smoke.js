@@ -309,3 +309,48 @@ test('session start returns levelProgress; C1 allowed in profile', async () => {
   assert.equal(res.status, 200);
   assert.equal(data.cefrLevel, 'C1');
 });
+
+test('public stats lists language pairs', async () => {
+  const res = await fetch(`${BASE}/api/public/stats`);
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  assert.ok(data.words >= 3000);
+  assert.ok(data.pairs?.['tr-ru']?.words >= 3000);
+  assert.ok(data.pairs?.['en-ru']?.words >= 3000);
+  assert.ok(data.pairs?.['es-ru']?.words >= 3000);
+});
+
+test('onboarding and profile switch language pair', async () => {
+  const client = jar();
+  await client.fetch('/api/public/stats');
+  let { res, data } = await client.fetch('/api/auth/register', {
+    method: 'POST',
+    body: JSON.stringify({ email: `lang_${Date.now()}@langapp.test`, password }),
+  });
+  assert.equal(res.status, 200);
+
+  ({ res, data } = await client.fetch('/api/onboarding', {
+    method: 'POST',
+    body: JSON.stringify({ goal: 'travel', cefrLevel: 'A1', langPair: 'en-ru', name: 'Test' }),
+  }));
+  assert.equal(res.status, 200);
+  assert.equal(data.langPair, 'en-ru');
+
+  ({ res, data } = await client.fetch('/api/session/start', { method: 'POST' }));
+  assert.equal(res.status, 200);
+  assert.ok(data.cards.length >= 15);
+  assert.ok(data.cards.every((c) => c.langPair === 'en-ru'));
+
+  ({ res, data } = await client.fetch('/api/profile', {
+    method: 'PATCH',
+    body: JSON.stringify({ langPair: 'es-ru', cefrLevel: 'C1' }),
+  }));
+  assert.equal(res.status, 200);
+  assert.equal(data.langPair, 'es-ru');
+  assert.equal(data.cefrLevel, 'B2');
+
+  ({ res, data } = await client.fetch('/api/session/start', { method: 'POST' }));
+  assert.equal(res.status, 200);
+  assert.ok(data.cards.length >= 15);
+  assert.ok(data.cards.every((c) => c.langPair === 'es-ru'));
+});

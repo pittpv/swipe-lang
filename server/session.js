@@ -1,11 +1,17 @@
 import { getLevelProgress, levelsUpTo } from './progress.js';
+import { DEFAULT_LANG_PAIR, userLangPair, wordMatchesPair } from './lang-pairs.js';
 
 const SESSION_SIZE = 18;
 const REVIEW_RATIO = 0.3;
 
+function inScope(word, levels, pair) {
+  return Boolean(word) && levels.includes(word.cefr_level) && wordMatchesPair(word, pair);
+}
+
 export function buildSessionDeck(db, userId) {
   const user = db.data.users.find((u) => u.id === userId);
   const level = user?.cefr_level ?? 'A1';
+  const pair = userLangPair(user);
   const levels = levelsUpTo(level);
   const now = new Date().toISOString();
   const levelProgress = getLevelProgress(db, userId);
@@ -19,12 +25,12 @@ export function buildSessionDeck(db, userId) {
         p.user_id === userId &&
         p.next_review_at &&
         p.next_review_at <= now &&
-        db.data.words.find((w) => w.id === p.word_id && levels.includes(w.cefr_level)),
+        inScope(db.data.words.find((w) => w.id === p.word_id), levels, pair),
     )
     .sort((a, b) => a.next_review_at.localeCompare(b.next_review_at))
     .slice(0, reviewCount)
     .map((p) => db.data.words.find((w) => w.id === p.word_id))
-    .filter(Boolean);
+    .filter((w) => inScope(w, levels, pair));
 
   const seenIds = new Set(due.map((w) => w.id));
   const progressWordIds = new Set(
@@ -32,7 +38,7 @@ export function buildSessionDeck(db, userId) {
   );
 
   const fresh = db.data.words
-    .filter((w) => levels.includes(w.cefr_level) && w.lang_pair === 'tr-ru' && !progressWordIds.has(w.id))
+    .filter((w) => inScope(w, levels, pair) && !progressWordIds.has(w.id))
     .slice(0, newCount);
 
   for (const w of fresh) seenIds.add(w.id);
@@ -43,7 +49,7 @@ export function buildSessionDeck(db, userId) {
   // an empty deck signals celebration / level-up on the client.
   if (deck.length < SESSION_SIZE && !levelProgress.complete) {
     const extra = db.data.words
-      .filter((w) => levels.includes(w.cefr_level) && !seenIds.has(w.id))
+      .filter((w) => inScope(w, levels, pair) && !seenIds.has(w.id))
       .sort(() => Math.random() - 0.5)
       .slice(0, SESSION_SIZE - deck.length);
     deck = deck.concat(extra);
@@ -58,12 +64,12 @@ export function buildSessionDeck(db, userId) {
           p.next_review_at &&
           p.next_review_at <= now &&
           !seenIds.has(p.word_id) &&
-          db.data.words.find((w) => w.id === p.word_id && levels.includes(w.cefr_level)),
+          inScope(db.data.words.find((w) => w.id === p.word_id), levels, pair),
       )
       .sort((a, b) => a.next_review_at.localeCompare(b.next_review_at))
       .slice(0, SESSION_SIZE - deck.length)
       .map((p) => db.data.words.find((w) => w.id === p.word_id))
-      .filter(Boolean);
+      .filter((w) => inScope(w, levels, pair));
     deck = deck.concat(moreDue);
   }
 
@@ -107,6 +113,7 @@ function formatWord(row) {
     forms,
     cefrLevel: row.cefr_level,
     unit: row.unit || null,
+    langPair: row.lang_pair || DEFAULT_LANG_PAIR,
   };
 }
 

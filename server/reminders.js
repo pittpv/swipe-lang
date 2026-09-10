@@ -9,6 +9,7 @@
  *  - The callback sends the push if there is something worth reminding about.
  */
 import webpush from 'web-push';
+import { LANG_PAIR_META, userLangPair } from './lang-pairs.js';
 
 let devVapidKeys = null;
 
@@ -143,6 +144,7 @@ export async function sendReminderPush(db, user) {
   webpush.setVapidDetails(vapidSubject(), keys.publicKey, keys.privateKey);
   // iOS shows "<title> from LangApp" — the "from LangApp" suffix comes from
   // the manifest name, so the title itself must carry the actual message.
+  const meta = LANG_PAIR_META[userLangPair(user)];
   const { title, body } =
     due > 0
       ? {
@@ -151,7 +153,10 @@ export async function sendReminderPush(db, user) {
         }
       : started
         ? { title: 'Всё повторено! 🎉', body: 'План на сегодня выполнен — возвращайся завтра' }
-        : { title: 'Начни учить турецкий 🇹🇷', body: 'Первая сессия из 18 слов уже ждёт' };
+        : {
+            title: `Начни учить ${meta.labelAccusative} ${meta.flag}`,
+            body: 'Первая сессия из 18 слов уже ждёт',
+          };
   // Classic payload only. Declarative (`web_push: 8030`) needs an absolute
   // `navigate` URL and can silent-drop on Safari if invalid; leave it off until
   // validated on device with the PWA fully quit.

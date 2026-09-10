@@ -1,0 +1,208 @@
+import { expandPos } from '../lib/csv-util.js';
+
+function rows(cefr, unit, list) {
+  return list.map(([lemma, translation, pos, example, translate]) => ({
+    cefr, unit, lemma, translation, pos: expandPos(pos), example: example || '', translate: translate || '',
+  }));
+}
+
+export function aulaB1() {
+  return [
+    ...rows('B1', 'UNIDAD1', [
+      ['trabajo', 'работа', 'N'], ['empleo', 'занятость', 'N'], ['paro', 'безработица', 'N'],
+      ['entrevista', 'собеседование', 'N'], ['currículum', 'резюме', 'N'], ['jefe', 'начальник', 'N'],
+      ['compañero', 'коллега', 'N'], ['horario', 'график', 'N'], ['sueldo', 'зарплата', 'N'],
+      ['contrato', 'контракт', 'N'], ['autónomo', 'самозанятый', 'N'], ['becario', 'стажёр', 'N'],
+      ['reunión', 'совещание', 'N'], ['plazo', 'срок', 'N'], ['tarea', 'задача', 'N'],
+      ['solicitar', 'подавать заявку', 'V'], ['contratar', 'нанимать', 'V'], ['despedir', 'увольнять', 'V'],
+      ['ascender', 'повышать', 'V'], ['formarse', 'обучаться', 'V'], ['encargarse', 'отвечать за', 'V'],
+      ['estresante', 'стрессовый', 'A'], ['bien pagado', 'хорошо оплачиваемый', 'A'],
+      ['temporal', 'временный', 'A'], ['fijo', 'постоянный', 'A'],
+    ]),
+    ...rows('B1', 'UNIDAD2', [
+      ['futuro', 'будущее', 'N'], ['plan', 'план', 'N'], ['proyecto', 'проект', 'N'],
+      ['objetivo', 'цель', 'N'], ['sueño', 'мечта, сон', 'N'], ['oportunidad', 'возможность', 'N'],
+      ['previsión', 'прогноз', 'N'], ['intención', 'намерение', 'N'],
+      ['pensar', 'думать, собираться', 'V'], ['ir a', 'собираться', 'V'],
+      ['querer', 'хотеть', 'V'], ['esperar', 'надеяться, ждать', 'V'],
+      ['prometer', 'обещать', 'V'], ['imaginar', 'представлять', 'V'],
+      ['dentro de', 'через', 'C'], ['el año que viene', 'в следующем году', 'F'],
+      ['seguro', 'наверняка', 'A'], ['probable', 'вероятный', 'A'], ['posible', 'возможный', 'A'],
+    ]),
+    ...rows('B1', 'UNIDAD3', [
+      ['norma', 'норма, правило', 'N'], ['ley', 'закон', 'N'], ['prohibición', 'запрет', 'N'],
+      ['permiso', 'разрешение', 'N'], ['multa', 'штраф', 'N'], ['derecho', 'право', 'N'],
+      ['deber', 'обязанность', 'N'], ['condición', 'условие', 'N'],
+      ['prohibir', 'запрещать', 'V'], ['permitir', 'разрешать', 'V'],
+      ['obligar', 'обязывать', 'V'], ['respetar', 'уважать, соблюдать', 'V'],
+      ['si', 'если', 'C'], ['a menos que', 'если только не', 'C'],
+      ['siempre que', 'при условии что', 'C'], ['en caso de', 'в случае', 'F'],
+      ['obligatorio', 'обязательный', 'A'], ['opcional', 'необязательный', 'A'],
+    ]),
+    ...rows('B1', 'UNIDAD4', [
+      ['anécdota', 'история', 'N'], ['relato', 'рассказ', 'N'], ['detalle', 'деталь', 'N'],
+      ['desenlace', 'развязка', 'N'], ['protagonista', 'протагонист', 'N'],
+      ['narrar', 'повествовать', 'V'], ['describir', 'описывать', 'V'],
+      ['suceder', 'случаться', 'V'], ['resultar', 'оказываться', 'V'],
+      ['de pronto', 'вдруг', 'F'], ['en aquel momento', 'в тот момент', 'F'],
+      ['sin embargo', 'однако', 'F'], ['además', 'кроме того', 'D'],
+      ['por un lado', 'с одной стороны', 'F'], ['por otro lado', 'с другой стороны', 'F'],
+    ]),
+    ...rows('B1', 'UNIDAD5', [
+      ['consejo', 'совет', 'N'], ['instrucción', 'инструкция', 'N'], ['advertencia', 'предупреждение', 'N'],
+      ['sugerir', 'предлагать', 'V'], ['aconsejar', 'советовать', 'V'],
+      ['evitar', 'избегать', 'V'], ['intentar', 'пытаться', 'V'],
+      ['conseguir', 'добиваться', 'V'], ['lograr', 'достигать', 'V'],
+      ['imperativo', 'повелительное наклонение', 'N'], ['tú', 'ты (форма)', 'R'],
+      ['usted', 'вы', 'R'], ['se recomienda', 'рекомендуется', 'F'],
+      ['es mejor', 'лучше', 'F'], ['lo más importante', 'самое важное', 'F'],
+    ]),
+    ...rows('B1', 'UNIDAD6', [
+      ['deseo', 'желание', 'N'], ['sentimiento', 'чувство', 'N'], ['esperanza', 'надежда', 'N'],
+      ['miedo', 'страх', 'N'], ['alegría', 'радость', 'N'], ['pena', 'печаль', 'N'],
+      ['desear', 'желать', 'V'], ['ojalá', 'хоть бы', 'O'],
+      ['temer', 'бояться', 'V'], ['alegrarse', 'радоваться', 'V'],
+      ['esperar que', 'надеяться что', 'V'], ['siento que', 'мне жаль что', 'F'],
+      ['me da pena', 'мне жаль', 'F'], ['me da igual', 'мне всё равно', 'F'],
+      ['subjuntivo', 'сослагательное наклонение', 'N'],
+    ]),
+    ...rows('B1', 'UNIDAD7', [
+      ['objeto', 'предмет', 'N'], ['forma', 'форма', 'N'], ['material', 'материал', 'N'],
+      ['madera', 'дерево', 'N'], ['metal', 'металл', 'N'], ['plástico', 'пластик', 'N'],
+      ['cristal', 'стекло', 'N'], ['tela', 'ткань', 'N'], ['papel', 'бумага', 'N'],
+      ['redondo', 'круглый', 'A'], ['cuadrado', 'квадратный', 'A'], ['rectangular', 'прямоугольный', 'A'],
+      ['suave', 'мягкий', 'A'], ['duro', 'твёрдый', 'A'], ['ligero', 'лёгкий', 'A'],
+      ['pesado', 'тяжёлый', 'A'], ['servir para', 'служить для', 'V'],
+      ['estar hecho de', 'быть сделанным из', 'V'], ['funcionar', 'работать (о приборе)', 'V'],
+    ]),
+    ...rows('B1', 'UNIDAD8', [
+      ['sociedad', 'общество', 'N'], ['política', 'политика', 'N'], ['gobierno', 'правительство', 'N'],
+      ['elección', 'выборы', 'N'], ['voto', 'голос', 'N'], ['partido', 'партия', 'N'],
+      ['noticia', 'новость', 'N'], ['prensa', 'пресса', 'N'], ['manifestación', 'манифестация', 'N'],
+      ['votar', 'голосовать', 'V'], ['protestar', 'протестовать', 'V'],
+      ['informarse', 'информироваться', 'V'], ['debatir', 'дискутировать', 'V'],
+      ['justo', 'справедливый', 'A'], ['injusto', 'несправедливый', 'A'],
+      ['democrático', 'демократический', 'A'], ['corrupto', 'коррумпированный', 'A'],
+    ]),
+    ...rows('B1', 'UNIDAD9', [
+      ['personalidad', 'личность', 'N'], ['rasgo', 'черта', 'N'], ['actitud', 'отношение', 'N'],
+      ['generoso', 'щедрый', 'A'], ['egoísta', 'эгоистичный', 'A'], ['sincero', 'искренний', 'A'],
+      ['falso', 'фальшивый', 'A'], ['optimista', 'оптимист', 'A'], ['pesimista', 'пессимист', 'A'],
+      ['responsable', 'ответственный', 'A'], ['impulsivo', 'импульсивный', 'A'],
+      ['sensible', 'чувствительный', 'A'], ['seguro de sí', 'уверенный в себе', 'A'],
+      ['parecerse a', 'быть похожим на', 'V'], ['comportarse', 'вести себя', 'V'],
+    ]),
+    ...rows('B1', 'UNIDAD10', [
+      ['medioambiente', 'окружающая среда', 'N'], ['contaminación', 'загрязнение', 'N'],
+      ['reciclaje', 'переработка', 'N'], ['residuo', 'отход', 'N'], ['energía', 'энергия', 'N'],
+      ['cambio climático', 'изменение климата', 'N'], ['especie', 'вид', 'N'],
+      ['proteger', 'защищать', 'V'], ['contaminar', 'загрязнять', 'V'],
+      ['ahorrar', 'экономить', 'V'], ['reciclar', 'перерабатывать', 'V'],
+      ['renovable', 'возобновляемый', 'A'], ['sostenible', 'устойчивый', 'A'],
+      ['ecológico', 'экологичный', 'A'], ['en peligro', 'под угрозой', 'F'],
+    ]),
+    ...rows('B1', 'UNIDAD11', [
+      ['aunque', 'хотя', 'C'], ['así que', 'так что', 'C'], ['o sea', 'то есть', 'F'],
+      ['es decir', 'то есть', 'F'], ['por tanto', 'следовательно', 'F'],
+      ['en cambio', 'зато, напротив', 'F'], ['de todas formas', 'в любом случае', 'F'],
+      ['conector', 'связка', 'N'], ['argumento', 'аргумент', 'N'],
+      ['opinar', 'считать', 'V'], ['estar de acuerdo', 'соглашаться', 'V'],
+      ['discrepar', 'не соглашаться', 'V'], ['matizar', 'уточнять', 'V'],
+    ]),
+    ...rows('B1', 'UNIDAD12', [
+      ['estilo indirecto', 'косвенная речь', 'N'], ['afirmar', 'утверждать', 'V'],
+      ['preguntar', 'спрашивать', 'V'], ['responder', 'отвечать', 'V'],
+      ['decir que', 'говорить что', 'V'], ['preguntar si', 'спрашивать ли', 'V'],
+      ['según', 'согласно', 'C'], ['al parecer', 'по-видимому', 'F'],
+      ['rumor', 'слух', 'N'], ['cita', 'цитата', 'N'], ['fuente', 'источник', 'N'],
+    ]),
+  ];
+}
+
+export function aulaB2() {
+  return [
+    ...rows('B2', 'UNIDAD1', [
+      ['identidad', 'идентичность', 'N'], ['origen', 'происхождение', 'N'],
+      ['estereotipo', 'стереотип', 'N'], ['prejuicio', 'предрассудок', 'N'],
+      ['diversidad', 'разнообразие', 'N'], ['integración', 'интеграция', 'N'],
+      ['encajar', 'вписываться', 'V'], ['discriminar', 'дискриминировать', 'V'],
+      ['incluir', 'включать', 'V'], ['pertenecer', 'принадлежать', 'V'],
+      ['abierto de mente', 'широких взглядов', 'A'], ['cerrado', 'закрытый', 'A'],
+    ]),
+    ...rows('B2', 'UNIDAD2', [
+      ['medios', 'СМИ', 'N'], ['titular', 'заголовок', 'N'], ['sesgo', 'предвзятость', 'N'],
+      ['desinformación', 'дезинформация', 'N'], ['filtrar', 'фильтровать', 'V'],
+      ['contrastar', 'сверять', 'V'], ['viralizarse', 'стать вирусным', 'V'],
+      ['riguroso', 'строгий, точный', 'A'], ['sensacionalista', 'сенсационный', 'A'],
+      ['fuente fiable', 'надёжный источник', 'N'], ['burbuja informativa', 'информационный пузырь', 'N'],
+    ]),
+    ...rows('B2', 'UNIDAD3', [
+      ['consumo', 'потребление', 'N'], ['marca', 'бренд', 'N'], ['publicidad', 'реклама', 'N'],
+      ['moda rápida', 'быстрая мода', 'N'], ['segunda mano', 'секонд-хенд', 'N'],
+      ['consumir', 'потреблять', 'V'], ['desperdiciar', 'транжирить', 'V'],
+      ['ahorrar', 'экономить', 'V'], ['presumir', 'хвастаться', 'V'],
+      ['ético', 'этичный', 'A'], ['ostentoso', 'показной', 'A'],
+    ]),
+    ...rows('B2', 'UNIDAD4', [
+      ['contaminación', 'загрязнение', 'N'], ['huella de carbono', 'углеродный след', 'N'],
+      ['energía renovable', 'возобновляемая энергия', 'N'], ['residuo', 'отход', 'N'],
+      ['calentamiento global', 'глобальное потепление', 'N'], ['biodiversidad', 'биоразнообразие', 'N'],
+      ['mitigar', 'смягчать', 'V'], ['compensar', 'компенсировать', 'V'],
+      ['irreversible', 'необратимый', 'A'], ['sostenible', 'устойчивый', 'A'],
+    ]),
+    ...rows('B2', 'UNIDAD5', [
+      ['turismo', 'туризм', 'N'], ['masificación', 'массовость', 'N'],
+      ['patrimonio', 'наследие', 'N'], ['alojamiento', 'размещение', 'N'],
+      ['temporada alta', 'высокий сезон', 'N'], ['turismo sostenible', 'устойчивый туризм', 'N'],
+      ['desestacionalizar', 'сглаживать сезонность', 'V'], ['saturar', 'переполнять', 'V'],
+      ['auténtico', 'подлинный', 'A'], ['masificado', 'переполненный туристами', 'A'],
+    ]),
+    ...rows('B2', 'UNIDAD6', [
+      ['deporte', 'спорт', 'N'], ['competición', 'соревнование', 'N'],
+      ['dopaje', 'допинг', 'N'], ['aficionado', 'болельщик', 'N'],
+      ['rendimiento', 'результат, производительность', 'N'], ['disciplina', 'дисциплина', 'N'],
+      ['entrenar', 'тренировать(ся)', 'V'], ['superarse', 'превосходить себя', 'V'],
+      ['competitivo', 'соревновательный', 'A'], ['amateur', 'любительский', 'A'],
+    ]),
+    ...rows('B2', 'UNIDAD7', [
+      ['relación', 'отношения', 'N'], ['pareja', 'пара', 'N'], ['conflicto', 'конфликт', 'N'],
+      ['celos', 'ревность', 'N'], ['confianza', 'доверие', 'N'], ['ruptura', 'разрыв', 'N'],
+      ['comprometerse', 'брать обязательства', 'V'], ['romper', 'рвать отношения', 'V'],
+      ['reconstruir', 'восстанавливать', 'V'], ['tóxico', 'токсичный', 'A'],
+      ['sano', 'здоровый (об отношениях)', 'A'], ['estable', 'стабильный', 'A'],
+    ]),
+    ...rows('B2', 'UNIDAD8', [
+      ['educación', 'образование', 'N'], ['competencia', 'компетенция', 'N'],
+      ['fracaso escolar', 'школьная неуспеваемость', 'N'], ['beca', 'стипендия', 'N'],
+      ['formación continua', 'непрерывное обучение', 'N'], ['analfabetismo', 'неграмотность', 'N'],
+      ['evaluar', 'оценивать', 'V'], ['motivar', 'мотивировать', 'V'],
+      ['equitativo', 'справедливый', 'A'], ['selectivo', 'избирательный', 'A'],
+    ]),
+    ...rows('B2', 'UNIDAD9', [
+      ['teatro', 'театр', 'N'], ['ensayo', 'репетиция', 'N'], ['escenario', 'сцена', 'N'],
+      ['público', 'публика', 'N'], ['crítica', 'рецензия', 'N'], ['obra', 'пьеса, произведение', 'N'],
+      ['representar', 'ставить, изображать', 'V'], ['aplaudir', 'аплодировать', 'V'],
+      ['conmovedor', 'трогательный', 'A'], ['innovador', 'новаторский', 'A'],
+    ]),
+    ...rows('B2', 'UNIDAD10', [
+      ['mediación', 'медиация', 'N'], ['conflicto', 'конфликт', 'N'],
+      ['negociación', 'переговоры', 'N'], ['consenso', 'консенсус', 'N'],
+      ['concesión', 'уступка', 'N'], ['punto de vista', 'точка зрения', 'N'],
+      ['mediar', 'посредничать', 'V'], ['ceder', 'уступать', 'V'],
+      ['imponer', 'навязывать', 'V'], ['constructivo', 'конструктивный', 'A'],
+    ]),
+    ...rows('B2', 'UNIDAD11', [
+      ['noticia', 'новость', 'N'], ['reportaje', 'репортаж', 'N'], ['crónica', 'хроника', 'N'],
+      ['entrevista', 'интервью', 'N'], ['titular', 'заголовок', 'N'], ['enfoque', 'ракурс', 'N'],
+      ['redactar', 'писать текст', 'V'], ['contrastar fuentes', 'сверять источники', 'V'],
+      ['objetivo', 'объективный', 'A'], ['tendencioso', 'тенденциозный', 'A'],
+    ]),
+    ...rows('B2', 'UNIDAD12', [
+      ['subjuntivo imperfecto', 'имперфект субхунтива', 'N'], ['condición irreal', 'нереальное условие', 'N'],
+      ['como si', 'как будто', 'C'], ['ojalá', 'хоть бы', 'O'],
+      ['quiera que', 'чтобы ни', 'F'], ['por más que', 'как ни', 'C'],
+      ['conceder', 'допускать', 'V'], ['hipotético', 'гипотетический', 'A'],
+      ['contrafactual', 'контрфактический', 'A'], ['matiz', 'нюанс', 'N'],
+    ]),
+  ];
+}

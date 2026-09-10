@@ -1,0 +1,4190 @@
+id,Слово,Перевод,Тип,Курс,Урок
+1,hello,привет,KALIP İFADELER,A1,FILE1
+2,hi,привет,KALIP İFADELER,A1,FILE1
+3,goodbye,до свидания,KALIP İFADELER,A1,FILE1
+4,bye,пока,KALIP İFADELER,A1,FILE1
+5,please,пожалуйста,KALIP İFADELER,A1,FILE1
+6,thank you,спасибо,KALIP İFADELER,A1,FILE1
+7,thanks,спасибо,KALIP İFADELER,A1,FILE1
+8,yes,да,DİĞER KELİMELER,A1,FILE1
+9,no,нет,DİĞER KELİMELER,A1,FILE1
+10,sorry,извините,KALIP İFADELER,A1,FILE1
+11,excuse me,извините (привлечь внимание),KALIP İFADELER,A1,FILE1
+12,name,имя,İSİMLER,A1,FILE1
+13,number,"число, номер",İSİMLER,A1,FILE1
+14,zero,ноль,İSİMLER,A1,FILE1
+15,one,один,İSİMLER,A1,FILE1
+16,two,два,İSİMLER,A1,FILE1
+17,three,три,İSİMLER,A1,FILE1
+18,four,четыре,İSİMLER,A1,FILE1
+19,five,пять,İSİMLER,A1,FILE1
+20,six,шесть,İSİMLER,A1,FILE1
+21,seven,семь,İSİMLER,A1,FILE1
+22,eight,восемь,İSİMLER,A1,FILE1
+23,nine,девять,İSİMLER,A1,FILE1
+24,ten,десять,İSİMLER,A1,FILE1
+25,day,день,İSİMLER,A1,FILE1
+26,week,неделя,İSİMLER,A1,FILE1
+27,Monday,понедельник,İSİMLER,A1,FILE1
+28,Tuesday,вторник,İSİMLER,A1,FILE1
+29,Wednesday,среда,İSİMLER,A1,FILE1
+30,Thursday,четверг,İSİMLER,A1,FILE1
+31,Friday,пятница,İSİMLER,A1,FILE1
+32,Saturday,суббота,İSİMLER,A1,FILE1
+33,Sunday,воскресенье,İSİMLER,A1,FILE1
+34,country,страна,İSİMLER,A1,FILE1
+35,England,Англия,İSİMLER,A1,FILE1
+36,the USA,США,İSİMLER,A1,FILE1
+37,Spain,Испания,İSİMLER,A1,FILE1
+38,France,Франция,İSİMLER,A1,FILE1
+39,Germany,Германия,İSİMLER,A1,FILE1
+40,Italy,Италия,İSİMLER,A1,FILE1
+41,Russia,Россия,İSİMLER,A1,FILE1
+42,China,Китай,İSİMLER,A1,FILE1
+43,Japan,Япония,İSİMLER,A1,FILE1
+44,Brazil,Бразилия,İSİMLER,A1,FILE1
+45,Mexico,Мексика,İSİMLER,A1,FILE1
+46,Turkey,Турция,İSİMLER,A1,FILE1
+47,be,быть,FİİLLER,A1,FILE1
+48,I,я,ZAMİRLER,A1,FILE1
+49,you,"ты, вы",ZAMİRLER,A1,FILE1
+50,he,он,ZAMİRLER,A1,FILE1
+51,she,она,ZAMİRLER,A1,FILE1
+52,it,"оно, это",ZAMİRLER,A1,FILE1
+53,and,и,EDATLAR / BAĞLAÇLAR,A1,FILE1
+54,from,"из, от",EDATLAR / BAĞLAÇLAR,A1,FILE1
+55,what,"что, какой",ZAMİRLER,A1,FILE1
+56,where,где,ZAMİRLER,A1,FILE1
+57,how,как,ZAMİRLER,A1,FILE1
+58,cappuccino,капучино,İSİMLER,A1,FILE1
+59,coffee,кофе,İSİMLER,A1,FILE1
+60,tea,чай,İSİMLER,A1,FILE1
+61,water,вода,İSİMLER,A1,FILE1
+62,hotel,отель,İSİMLER,A1,FILE1
+63,table,стол,İSİMLER,A1,FILE1
+64,we,мы,ZAMİRLER,A1,FILE2
+65,they,они,ZAMİRLER,A1,FILE2
+66,nationality,национальность,İSİMLER,A1,FILE2
+67,British,британский,SIFATLAR,A1,FILE2
+68,American,американский,SIFATLAR,A1,FILE2
+69,Spanish,испанский,SIFATLAR,A1,FILE2
+70,French,французский,SIFATLAR,A1,FILE2
+71,German,немецкий,SIFATLAR,A1,FILE2
+72,Italian,итальянский,SIFATLAR,A1,FILE2
+73,Russian,русский,SIFATLAR,A1,FILE2
+74,Chinese,китайский,SIFATLAR,A1,FILE2
+75,Japanese,японский,SIFATLAR,A1,FILE2
+76,holiday,"отпуск, праздник",İSİMLER,A1,FILE2
+77,tourist,турист,İSİMLER,A1,FILE2
+78,city,город,İSİMLER,A1,FILE2
+79,bus,автобус,İSİMLER,A1,FILE2
+80,phone,телефон,İSİMLER,A1,FILE2
+81,phone number,номер телефона,İSİMLER,A1,FILE2
+82,eleven,одиннадцать,İSİMLER,A1,FILE2
+83,twelve,двенадцать,İSİMLER,A1,FILE2
+84,thirteen,тринадцать,İSİMLER,A1,FILE2
+85,twenty,двадцать,İSİMLER,A1,FILE2
+86,thirty,тридцать,İSİMLER,A1,FILE2
+87,forty,сорок,İSİMLER,A1,FILE2
+88,fifty,пятьдесят,İSİMLER,A1,FILE2
+89,hundred,сто,İSİMLER,A1,FILE2
+90,question,вопрос,İSİMLER,A1,FILE2
+91,answer,ответ,İSİMLER,A1,FILE2
+92,who,кто,ZAMİRLER,A1,FILE2
+93,why,почему,ZAMİRLER,A1,FILE2
+94,when,когда,ZAMİRLER,A1,FILE2
+95,our,наш,SIFATLAR,A1,FILE2
+96,their,их,SIFATLAR,A1,FILE2
+97,my,мой,SIFATLAR,A1,FILE2
+98,your,"твой, ваш",SIFATLAR,A1,FILE2
+99,his,его,SIFATLAR,A1,FILE2
+100,her,её,SIFATLAR,A1,FILE2
+101,its,"его, её (неодуш.)",SIFATLAR,A1,FILE2
+102,classroom,"класс, аудитория",İSİMLER,A1,FILE2
+103,teacher,учитель,İSİMLER,A1,FILE2
+104,student,"студент, ученик",İSİMLER,A1,FILE2
+105,pen,ручка,İSİMLER,A1,FILE2
+106,pencil,карандаш,İSİMLER,A1,FILE2
+107,book,книга,İSİMLER,A1,FILE2
+108,bag,сумка,İSİMLER,A1,FILE2
+109,chair,стул,İSİMLER,A1,FILE2
+110,door,дверь,İSİMLER,A1,FILE2
+111,window,окно,İSİMLER,A1,FILE2
+112,board,доска,İSİMLER,A1,FILE2
+113,alphabet,алфавит,İSİMLER,A1,FILE2
+114,letter,"буква, письмо",İSİMLER,A1,FILE2
+115,key,ключ,İSİMLER,A1,FILE3
+116,wallet,бумажник,İSİMLER,A1,FILE3
+117,umbrella,зонт,İSİMLER,A1,FILE3
+118,watch,часы (наручные),İSİMLER,A1,FILE3
+119,ticket,билет,İSİMLER,A1,FILE3
+120,map,карта,İSİMLER,A1,FILE3
+121,passport,паспорт,İSİMLER,A1,FILE3
+122,camera,фотоаппарат,İSİMLER,A1,FILE3
+123,laptop,ноутбук,İSİMLER,A1,FILE3
+124,phone charger,зарядка для телефона,İSİMLER,A1,FILE3
+125,glasses,очки,İSİMLER,A1,FILE3
+126,hat,шляпа,İSİMLER,A1,FILE3
+127,souvenir,сувенир,İSİMLER,A1,FILE3
+128,postcard,открытка,İSİMLER,A1,FILE3
+129,gift,подарок,İSİMLER,A1,FILE3
+130,this,этот,ZAMİRLER,A1,FILE3
+131,that,тот,ZAMİRLER,A1,FILE3
+132,these,эти,ZAMİRLER,A1,FILE3
+133,those,те,ZAMİRLER,A1,FILE3
+134,a,неопределённый артикль,DİĞER KELİMELER,A1,FILE3
+135,an,неопределённый артикль (перед гласной),DİĞER KELİMELER,A1,FILE3
+136,the,определённый артикль,DİĞER KELİMELER,A1,FILE3
+137,singular,единственное число,İSİMLER,A1,FILE3
+138,plural,множественное число,İSİMLER,A1,FILE3
+139,thing,вещь,İSİMLER,A1,FILE3
+140,price,цена,İSİMLER,A1,FILE3
+141,cheap,дешёвый,SIFATLAR,A1,FILE3
+142,expensive,дорогой,SIFATLAR,A1,FILE3
+143,how much,сколько (стоит),KALIP İFADELER,A1,FILE3
+144,lunch,обед,İSİMLER,A1,FILE3
+145,sandwich,сэндвич,İSİMLER,A1,FILE3
+146,salad,салат,İSİMLER,A1,FILE3
+147,juice,сок,İSİMLER,A1,FILE3
+148,buy,покупать,FİİLLER,A1,FILE3
+149,sell,продавать,FİİLLER,A1,FILE3
+150,have,иметь,FİİLLER,A1,FILE3
+151,need,нуждаться,FİİLLER,A1,FILE3
+152,want,хотеть,FİİLLER,A1,FILE3
+153,open,открывать,FİİLLER,A1,FILE3
+154,close,закрывать,FİİLLER,A1,FILE3
+155,look,смотреть,FİİLLER,A1,FILE3
+156,listen,слушать,FİİLLER,A1,FILE3
+157,read,читать,FİİLLER,A1,FILE3
+158,write,писать,FİİLLER,A1,FILE3
+159,speak,говорить,FİİLLER,A1,FILE3
+160,family,семья,İSİMLER,A1,FILE4
+161,mother,мама,İSİMLER,A1,FILE4
+162,father,папа,İSİMLER,A1,FILE4
+163,mum,мама,İSİMLER,A1,FILE4
+164,dad,папа,İSİMLER,A1,FILE4
+165,parent,родитель,İSİMLER,A1,FILE4
+166,brother,брат,İSİMLER,A1,FILE4
+167,sister,сестра,İSİMLER,A1,FILE4
+168,son,сын,İSİMLER,A1,FILE4
+169,daughter,дочь,İSİMLER,A1,FILE4
+170,child,ребёнок,İSİMLER,A1,FILE4
+171,children,дети,İSİMLER,A1,FILE4
+172,husband,муж,İSİMLER,A1,FILE4
+173,wife,жена,İSİMLER,A1,FILE4
+174,grandfather,дедушка,İSİMLER,A1,FILE4
+175,grandmother,бабушка,İSİMLER,A1,FILE4
+176,uncle,дядя,İSİMLER,A1,FILE4
+177,aunt,тётя,İSİMLER,A1,FILE4
+178,cousin,двоюродный брат/сестра,İSİMLER,A1,FILE4
+179,friend,друг,İSİMLER,A1,FILE4
+180,boyfriend,парень,İSİMLER,A1,FILE4
+181,girlfriend,девушка,İSİMLER,A1,FILE4
+182,person,человек,İSİMLER,A1,FILE4
+183,people,люди,İSİMLER,A1,FILE4
+184,man,мужчина,İSİMLER,A1,FILE4
+185,woman,женщина,İSİMLER,A1,FILE4
+186,boy,мальчик,İSİMLER,A1,FILE4
+187,girl,девочка,İSİMLER,A1,FILE4
+188,car,машина,İSİMLER,A1,FILE4
+189,colour,цвет,İSİMLER,A1,FILE4
+190,red,красный,SIFATLAR,A1,FILE4
+191,blue,синий,SIFATLAR,A1,FILE4
+192,green,зелёный,SIFATLAR,A1,FILE4
+193,yellow,жёлтый,SIFATLAR,A1,FILE4
+194,black,чёрный,SIFATLAR,A1,FILE4
+195,white,белый,SIFATLAR,A1,FILE4
+196,brown,коричневый,SIFATLAR,A1,FILE4
+197,grey,серый,SIFATLAR,A1,FILE4
+198,orange,оранжевый,SIFATLAR,A1,FILE4
+199,pink,розовый,SIFATLAR,A1,FILE4
+200,big,большой,SIFATLAR,A1,FILE4
+201,small,маленький,SIFATLAR,A1,FILE4
+202,new,новый,SIFATLAR,A1,FILE4
+203,old,старый,SIFATLAR,A1,FILE4
+204,good,хороший,SIFATLAR,A1,FILE4
+205,bad,плохой,SIFATLAR,A1,FILE4
+206,nice,"приятный, милый",SIFATLAR,A1,FILE4
+207,beautiful,красивый,SIFATLAR,A1,FILE4
+208,fast,быстрый,SIFATLAR,A1,FILE4
+209,slow,медленный,SIFATLAR,A1,FILE4
+210,perfect,идеальный,SIFATLAR,A1,FILE4
+211,breakfast,завтрак,İSİMLER,A1,FILE5
+212,dinner,ужин,İSİMLER,A1,FILE5
+213,meal,приём пищи,İSİMLER,A1,FILE5
+214,food,еда,İSİMLER,A1,FILE5
+215,drink,напиток; пить,İSİMLER,A1,FILE5
+216,bread,хлеб,İSİMLER,A1,FILE5
+217,butter,масло,İSİMLER,A1,FILE5
+218,cheese,сыр,İSİMLER,A1,FILE5
+219,egg,яйцо,İSİMLER,A1,FILE5
+220,milk,молоко,İSİMLER,A1,FILE5
+221,sugar,сахар,İSİMLER,A1,FILE5
+222,fruit,фрукты,İSİMLER,A1,FILE5
+223,apple,яблоко,İSİMLER,A1,FILE5
+224,banana,банан,İSİMLER,A1,FILE5
+225,vegetable,овощ,İSİMLER,A1,FILE5
+226,tomato,помидор,İSİMLER,A1,FILE5
+227,potato,картофель,İSİMLER,A1,FILE5
+228,rice,рис,İSİMLER,A1,FILE5
+229,pasta,паста,İSİMLER,A1,FILE5
+230,meat,мясо,İSİMLER,A1,FILE5
+231,chicken,курица,İSİMLER,A1,FILE5
+232,fish,рыба,İSİMLER,A1,FILE5
+233,eat,"есть, кушать",FİİLLER,A1,FILE5
+234,like,нравиться,FİİLLER,A1,FILE5
+235,love,любить,FİİLLER,A1,FILE5
+236,hate,ненавидеть,FİİLLER,A1,FILE5
+237,live,жить,FİİLLER,A1,FILE5
+238,work,работать,FİİLLER,A1,FILE5
+239,study,учиться,FİİLLER,A1,FILE5
+240,go,"идти, ехать",FİİLLER,A1,FILE5
+241,come,приходить,FİİLLER,A1,FILE5
+242,get up,вставать,FİİLLER,A1,FILE5
+243,go to bed,ложиться спать,FİİLLER,A1,FILE5
+244,start,начинать,FİİLLER,A1,FILE5
+245,finish,заканчивать,FİİLLER,A1,FILE5
+246,flight,"рейс, полёт",İSİMLER,A1,FILE5
+247,plane,самолёт,İSİMLER,A1,FILE5
+248,airport,аэропорт,İSİMLER,A1,FILE5
+249,travel,путешествовать,FİİLLER,A1,FILE5
+250,usually,обычно,ZARFLAR,A1,FILE5
+251,always,всегда,ZARFLAR,A1,FILE5
+252,never,никогда,ZARFLAR,A1,FILE5
+253,sometimes,иногда,ZARFLAR,A1,FILE5
+254,often,часто,ZARFLAR,A1,FILE5
+255,job,"работа, должность",İSİMLER,A1,FILE6
+256,office,офис,İSİMLER,A1,FILE6
+257,hospital,больница,İSİMLER,A1,FILE6
+258,school,школа,İSİMLER,A1,FILE6
+259,university,университет,İSİMLER,A1,FILE6
+260,shop,магазин,İSİMLER,A1,FILE6
+261,restaurant,ресторан,İSİMLER,A1,FILE6
+262,doctor,врач,İSİMLER,A1,FILE6
+263,nurse,"медсестра, медбрат",İSİMLER,A1,FILE6
+264,waiter,официант,İSİMLER,A1,FILE6
+265,chef,шеф-повар,İSİMLER,A1,FILE6
+266,driver,водитель,İSİMLER,A1,FILE6
+267,pilot,пилот,İSİMLER,A1,FILE6
+268,engineer,инженер,İSİMLER,A1,FILE6
+269,lawyer,юрист,İSİMLER,A1,FILE6
+270,actor,актёр,İSİMLER,A1,FILE6
+271,singer,певец,İSİMLER,A1,FILE6
+272,journalist,журналист,İSİMLER,A1,FILE6
+273,manager,менеджер,İSİMLER,A1,FILE6
+274,receptionist,администратор,İSİMLER,A1,FILE6
+275,morning,утро,İSİMLER,A1,FILE6
+276,afternoon,день (после полудня),İSİMLER,A1,FILE6
+277,evening,вечер,İSİMLER,A1,FILE6
+278,night,ночь,İSİMLER,A1,FILE6
+279,time,время,İSİMLER,A1,FILE6
+280,hour,час,İSİMLER,A1,FILE6
+281,minute,минута,İSİMLER,A1,FILE6
+282,o'clock,часов ровно,DİĞER KELİMELER,A1,FILE6
+283,typical,типичный,SIFATLAR,A1,FILE6
+284,busy,занятой,SIFATLAR,A1,FILE6
+285,tired,усталый,SIFATLAR,A1,FILE6
+286,happy,счастливый,SIFATLAR,A1,FILE6
+287,sad,грустный,SIFATLAR,A1,FILE6
+288,hungry,голодный,SIFATLAR,A1,FILE6
+289,thirsty,хочется пить,SIFATLAR,A1,FILE6
+290,early,"ранний, рано",SIFATLAR,A1,FILE6
+291,late,"поздний, поздно",SIFATLAR,A1,FILE6
+292,every day,каждый день,KALIP İFADELER,A1,FILE6
+293,at night,ночью,KALIP İFADELER,A1,FILE6
+294,in the morning,утром,KALIP İFADELER,A1,FILE6
+295,weekend,выходные,İSİMLER,A1,FILE7
+296,free time,свободное время,İSİMLER,A1,FILE7
+297,hobby,хобби,İSİMLER,A1,FILE7
+298,sport,спорт,İSİMLER,A1,FILE7
+299,football,футбол,İSİMLER,A1,FILE7
+300,tennis,теннис,İSİMLER,A1,FILE7
+301,swimming,плавание,İSİMLER,A1,FILE7
+302,running,бег,İSİMLER,A1,FILE7
+303,music,музыка,İSİMLER,A1,FILE7
+304,film,фильм,İSİMLER,A1,FILE7
+305,cinema,кинотеатр,İSİMLER,A1,FILE7
+306,comedy,комедия,İSİMLER,A1,FILE7
+307,drama,драма,İSİMLER,A1,FILE7
+308,action film,боевик,İSİMLER,A1,FILE7
+309,horror film,фильм ужасов,İSİMLER,A1,FILE7
+310,science fiction,научная фантастика,İSİMLER,A1,FILE7
+311,play,играть,FİİLLER,A1,FILE7
+312,cook,готовить,FİİLLER,A1,FILE7
+313,dance,танцевать,FİİLLER,A1,FILE7
+314,sing,петь,FİİLLER,A1,FILE7
+315,meet,встречать(ся),FİİLLER,A1,FILE7
+316,visit,посещать,FİİLLER,A1,FILE7
+317,stay,оставаться,FİİLLER,A1,FILE7
+318,relax,расслабляться,FİİLLER,A1,FILE7
+319,walk,"гулять, ходить пешком",FİİLLER,A1,FILE7
+320,drive,водить машину,FİİLLER,A1,FILE7
+321,ride,ехать (на велосипеде/лошади),FİİLLER,A1,FILE7
+322,month,месяц,İSİMLER,A1,FILE7
+323,January,январь,İSİMLER,A1,FILE7
+324,February,февраль,İSİMLER,A1,FILE7
+325,March,март,İSİMLER,A1,FILE7
+326,April,апрель,İSİMLER,A1,FILE7
+327,May,май,İSİMLER,A1,FILE7
+328,June,июнь,İSİMLER,A1,FILE7
+329,July,июль,İSİMLER,A1,FILE7
+330,August,август,İSİMLER,A1,FILE7
+331,September,сентябрь,İSİMLER,A1,FILE7
+332,October,октябрь,İSİMLER,A1,FILE7
+333,November,ноябрь,İSİMLER,A1,FILE7
+334,December,декабрь,İSİMLER,A1,FILE7
+335,date,дата,İSİMLER,A1,FILE7
+336,today,сегодня,ZARFLAR,A1,FILE7
+337,tomorrow,завтра,ZARFLAR,A1,FILE7
+338,yesterday,вчера,ZARFLAR,A1,FILE7
+339,can,"мочь, уметь",FİİLLER,A1,FILE8
+340,park,парковать; парк,FİİLLER,A1,FILE8
+341,swim,плавать,FİİLLER,A1,FILE8
+342,ski,кататься на лыжах,FİİLLER,A1,FILE8
+343,draw,рисовать,FİİLLER,A1,FILE8
+344,paint,"красить, писать красками",FİİLLER,A1,FILE8
+345,take photos,фотографировать,FİİLLER,A1,FILE8
+346,use,использовать,FİİLLER,A1,FILE8
+347,help,помогать,FİİLLER,A1,FILE8
+348,wait,ждать,FİİLLER,A1,FILE8
+349,sit,сидеть,FİİLLER,A1,FILE8
+350,stand,стоять,FİİLLER,A1,FILE8
+351,run,бегать,FİİLLER,A1,FILE8
+352,jump,прыгать,FİİLLER,A1,FILE8
+353,activity,"занятие, активность",İSİMLER,A1,FILE8
+354,yoga,йога,İSİMLER,A1,FILE8
+355,gym,спортзал,İSİMLER,A1,FILE8
+356,bike,велосипед,İSİMLER,A1,FILE8
+357,computer,компьютер,İSİMLER,A1,FILE8
+358,internet,интернет,İSİMLER,A1,FILE8
+359,game,игра,İSİMLER,A1,FILE8
+360,cooking,готовка,İSİMLER,A1,FILE8
+361,recipe,рецепт,İSİMLER,A1,FILE8
+362,kitchen,кухня,İSİMLER,A1,FILE8
+363,like doing,любить делать,KALIP İFADELER,A1,FILE8
+364,love doing,обожать делать,KALIP İFADELER,A1,FILE8
+365,hate doing,ненавидеть делать,KALIP İFADELER,A1,FILE8
+366,good at,способный к,KALIP İFADELER,A1,FILE8
+367,difficult,трудный,SIFATLAR,A1,FILE8
+368,easy,лёгкий,SIFATLAR,A1,FILE8
+369,fun,"весёлый, забавный",SIFATLAR,A1,FILE8
+370,interesting,интересный,SIFATLAR,A1,FILE8
+371,boring,скучный,SIFATLAR,A1,FILE8
+372,trip,поездка,İSİMLER,A1,FILE9
+373,train,поезд,İSİMLER,A1,FILE9
+374,station,"станция, вокзал",İSİMLER,A1,FILE9
+375,taxi,такси,İSİMLER,A1,FILE9
+376,car park,парковка,İSİMLER,A1,FILE9
+377,suitcase,чемодан,İSİMLER,A1,FILE9
+378,passport control,паспортный контроль,İSİMLER,A1,FILE9
+379,gate,выход на посадку,İSİMLER,A1,FILE9
+380,delay,задержка,İSİMLER,A1,FILE9
+381,clothes,одежда,İSİMLER,A1,FILE9
+382,T-shirt,футболка,İSİMLER,A1,FILE9
+383,shirt,рубашка,İSİMLER,A1,FILE9
+384,trousers,брюки,İSİMLER,A1,FILE9
+385,jeans,джинсы,İSİMLER,A1,FILE9
+386,skirt,юбка,İSİMLER,A1,FILE9
+387,dress,платье,İSİMLER,A1,FILE9
+388,coat,пальто,İSİMLER,A1,FILE9
+389,jacket,куртка,İSİMLER,A1,FILE9
+390,shoes,"туфли, обувь",İSİMLER,A1,FILE9
+391,boots,ботинки,İSİMLER,A1,FILE9
+392,socks,носки,İSİMLER,A1,FILE9
+393,wear,носить (одежду),FİİLLER,A1,FILE9
+394,put on,надевать,FİİLLER,A1,FILE9
+395,take off,снимать (одежду); взлетать,FİİLLER,A1,FILE9
+396,now,сейчас,ZARFLAR,A1,FILE9
+397,at the moment,в данный момент,KALIP İFADELER,A1,FILE9
+398,wait for,ждать кого-либо,FİİLLER,A1,FILE9
+399,look at,смотреть на,FİİLLER,A1,FILE9
+400,talk,разговаривать,FİİLLER,A1,FILE9
+401,call,звонить,FİİLLER,A1,FILE9
+402,send,отправлять,FİİLLER,A1,FILE9
+403,message,сообщение,İSİMLER,A1,FILE9
+404,room,комната,İSİMLER,A1,FILE10
+405,view,вид,İSİMLER,A1,FILE10
+406,hotel room,номер в отеле,İSİMLER,A1,FILE10
+407,bathroom,ванная,İSİMLER,A1,FILE10
+408,bed,кровать,İSİMLER,A1,FILE10
+409,pillow,подушка,İSİMLER,A1,FILE10
+410,towel,полотенце,İSİMLER,A1,FILE10
+411,shower,душ,İSİMLER,A1,FILE10
+412,wifi,вайфай,İSİMLER,A1,FILE10
+413,key card,ключ-карта,İSİMLER,A1,FILE10
+414,reception,ресепшен,İSİMLER,A1,FILE10
+415,there is,есть (ед. ч.),KALIP İFADELER,A1,FILE10
+416,there are,есть (мн. ч.),KALIP İFADELER,A1,FILE10
+417,some,"несколько, немного",ZAMİRLER,A1,FILE10
+418,any,какие-либо,ZAMİRLER,A1,FILE10
+419,in,в,EDATLAR / BAĞLAÇLAR,A1,FILE10
+420,on,на,EDATLAR / BAĞLAÇLAR,A1,FILE10
+421,under,под,EDATLAR / BAĞLAÇLAR,A1,FILE10
+422,next to,рядом с,EDATLAR / BAĞLAÇLAR,A1,FILE10
+423,between,между,EDATLAR / BAĞLAÇLAR,A1,FILE10
+424,behind,"за, позади",EDATLAR / BAĞLAÇLAR,A1,FILE10
+425,in front of,перед,EDATLAR / BAĞLAÇLAR,A1,FILE10
+426,at,"у, в (точке)",EDATLAR / BAĞLAÇLAR,A1,FILE10
+427,was,был (I/he/she/it),DİĞER KELİMELER,A1,FILE10
+428,were,был(и) (you/we/they),DİĞER KELİMELER,A1,FILE10
+429,last night,прошлой ночью,KALIP İFADELER,A1,FILE10
+430,last week,на прошлой неделе,KALIP İFADELER,A1,FILE10
+431,where were you,где ты был(а),KALIP İFADELER,A1,FILE10
+432,home,дом,İSİMLER,A1,FILE10
+433,party,вечеринка,İSİMLER,A1,FILE10
+434,concert,концерт,İSİMLER,A1,FILE10
+435,life,жизнь,İSİMLER,A1,FILE11
+436,new life,новая жизнь,İSİMLER,A1,FILE11
+437,move,переезжать,FİİLLER,A1,FILE11
+438,arrive,прибывать,FİİLLER,A1,FILE11
+439,decide,решать,FİİLLER,A1,FILE11
+440,clean,убирать,FİİLLER,A1,FILE11
+441,wash,мыть,FİİLLER,A1,FILE11
+442,get,"получать, добираться",FİİLLER,A1,FILE11
+443,do,делать,FİİLLER,A1,FILE11
+444,see,видеть,FİİLLER,A1,FILE11
+445,make,"делать, изготавливать",FİİLLER,A1,FILE11
+446,take,брать,FİİLLER,A1,FILE11
+447,give,давать,FİİLLER,A1,FILE11
+448,find,находить,FİİLLER,A1,FILE11
+449,think,думать,FİİLLER,A1,FILE11
+450,know,знать,FİİLLER,A1,FILE11
+451,say,сказать,FİİLLER,A1,FILE11
+452,tell,рассказывать,FİİLLER,A1,FILE11
+453,leave,"уходить, покидать",FİİLLER,A1,FILE11
+454,feel,чувствовать,FİİLLER,A1,FILE11
+455,sleep,спать,FİİLLER,A1,FILE11
+456,pay,платить,FİİLLER,A1,FILE11
+457,lose,терять,FİİLLER,A1,FILE11
+458,win,побеждать,FİİLLER,A1,FILE11
+459,how was your day,как прошёл день,KALIP İFADELER,A1,FILE11
+460,stranger,незнакомец,İSİMLER,A1,FILE12
+461,passenger,пассажир,İSİMLER,A1,FILE12
+462,ticket inspector,контролёр,İSİMLER,A1,FILE12
+463,seat,место (сиденье),İSİMLER,A1,FILE12
+464,platform,платформа,İSİMLER,A1,FILE12
+465,miss,"пропускать, скучать",FİİLLER,A1,FILE12
+466,catch,"успевать на, ловить",FİİLLER,A1,FILE12
+467,change,"пересаживаться, менять",FİİLLER,A1,FILE12
+468,ask,спрашивать,FİİLLER,A1,FILE12
+469,understand,понимать,FİİLLER,A1,FILE12
+470,remember,помнить,FİİLLER,A1,FILE12
+471,forget,забывать,FİİLLER,A1,FILE12
+472,bring,приносить,FİİLLER,A1,FILE12
+473,put,класть,FİİLLER,A1,FILE12
+474,turn,поворачивать,FİİLLER,A1,FILE12
+475,stop,останавливаться,FİİLLER,A1,FILE12
+476,begin,начинать,FİİLLER,A1,FILE12
+477,become,становиться,FİİLLER,A1,FILE12
+478,keep,"хранить, продолжать",FİİLLER,A1,FILE12
+479,let,позволять,FİİLLER,A1,FILE12
+480,mean,значить,FİİLLER,A1,FILE12
+481,show,показывать,FİİLLER,A1,FILE12
+482,hear,слышать,FİİLLER,A1,FILE12
+483,learn,учить(ся),FİİLLER,A1,FILE12
+484,teach,преподавать,FİİLLER,A1,FILE12
+485,break,ломать,FİİLLER,A1,FILE12
+486,choose,выбирать,FİİLLER,A1,FILE12
+487,grow,расти,FİİLLER,A1,FILE12
+488,fall,падать,FİİLLER,A1,FILE12
+489,hold,держать,FİİLLER,A1,FILE12
+490,cut,резать,FİİLLER,A1,FILE12
+491,hit,ударять,FİİLLER,A1,FILE12
+492,hurt,причинять боль,FİİLLER,A1,FILE12
+493,regular verb,правильный глагол,İSİMLER,A1,FILE12
+494,irregular verb,неправильный глагол,İSİMLER,A1,FILE12
+495,occupation,профессия,İSİMLER,A2,FILE1
+496,artist,художник,İSİMLER,A2,FILE1
+497,builder,строитель,İSİMLER,A2,FILE1
+498,dentist,стоматолог,İSİMLER,A2,FILE1
+499,farmer,фермер,İSİMLER,A2,FILE1
+500,firefighter,пожарный,İSİMLER,A2,FILE1
+501,flight attendant,бортпроводник,İSİMLER,A2,FILE1
+502,hairdresser,парикмахер,İSİMLER,A2,FILE1
+503,mechanic,механик,İSİMLER,A2,FILE1
+504,musician,музыкант,İSİMLER,A2,FILE1
+505,photographer,фотограф,İSİMLER,A2,FILE1
+506,plumber,сантехник,İSİMLER,A2,FILE1
+507,police officer,полицейский,İSİMLER,A2,FILE1
+508,politician,политик,İSİMLER,A2,FILE1
+509,scientist,учёный,İSİMLER,A2,FILE1
+510,soldier,солдат,İSİMLER,A2,FILE1
+511,vet,ветеринар,İSİMLER,A2,FILE1
+512,writer,писатель,İSİMLER,A2,FILE1
+513,retired,на пенсии,SIFATLAR,A2,FILE1
+514,unemployed,безработный,SIFATLAR,A2,FILE1
+515,self-employed,самозанятый,SIFATLAR,A2,FILE1
+516,full-time,полный рабочий день,SIFATLAR,A2,FILE1
+517,part-time,неполный рабочий день,SIFATLAR,A2,FILE1
+518,salary,зарплата,İSİMLER,A2,FILE1
+519,earn,зарабатывать,FİİLLER,A2,FILE1
+520,apply,подавать заявление,FİİLLER,A2,FILE1
+521,interview,собеседование,İSİMLER,A2,FILE1
+522,colleague,коллега,İSİMLER,A2,FILE1
+523,boss,начальник,İSİMLER,A2,FILE1
+524,customer,клиент,İSİMLER,A2,FILE1
+525,uniform,форма,İSİMLER,A2,FILE1
+526,shift,смена,İSİMLER,A2,FILE1
+527,overtime,сверхурочная работа,İSİMLER,A2,FILE1
+528,meeting,"встреча, совещание",İSİMLER,A2,FILE1
+529,email,электронная почта,İSİMLER,A2,FILE1
+530,document,документ,İSİMLER,A2,FILE1
+531,printer,принтер,İSİMLER,A2,FILE1
+532,password,пароль,İSİMLER,A2,FILE1
+533,appearance,внешность,İSİMLER,A2,FILE2
+534,tall,высокий,SIFATLAR,A2,FILE2
+535,short,"низкий, короткий",SIFATLAR,A2,FILE2
+536,slim,стройный,SIFATLAR,A2,FILE2
+537,overweight,полный,SIFATLAR,A2,FILE2
+538,thin,худой,SIFATLAR,A2,FILE2
+539,medium height,среднего роста,KALIP İFADELER,A2,FILE2
+540,long hair,длинные волосы,İSİMLER,A2,FILE2
+541,short hair,короткие волосы,İSİMLER,A2,FILE2
+542,straight hair,прямые волосы,İSİMLER,A2,FILE2
+543,curly hair,кудрявые волосы,İSİMLER,A2,FILE2
+544,beard,борода,İSİMLER,A2,FILE2
+545,moustache,усы,İSİMLER,A2,FILE2
+546,pretty,симпатичная,SIFATLAR,A2,FILE2
+547,handsome,красивый (о мужчине),SIFATLAR,A2,FILE2
+548,good-looking,привлекательный,SIFATLAR,A2,FILE2
+549,personality,характер,İSİMLER,A2,FILE2
+550,friendly,дружелюбный,SIFATLAR,A2,FILE2
+551,kind,добрый,SIFATLAR,A2,FILE2
+552,funny,смешной,SIFATLAR,A2,FILE2
+553,shy,застенчивый,SIFATLAR,A2,FILE2
+554,quiet,тихий,SIFATLAR,A2,FILE2
+555,talkative,разговорчивый,SIFATLAR,A2,FILE2
+556,lazy,ленивый,SIFATLAR,A2,FILE2
+557,hard-working,трудолюбивый,SIFATLAR,A2,FILE2
+558,clever,умный,SIFATLAR,A2,FILE2
+559,stupid,глупый,SIFATLAR,A2,FILE2
+560,generous,щедрый,SIFATLAR,A2,FILE2
+561,selfish,эгоистичный,SIFATLAR,A2,FILE2
+562,honest,честный,SIFATLAR,A2,FILE2
+563,polite,вежливый,SIFATLAR,A2,FILE2
+564,rude,грубый,SIFATLAR,A2,FILE2
+565,ambitious,амбициозный,SIFATLAR,A2,FILE2
+566,confident,уверенный,SIFATLAR,A2,FILE2
+567,nervous,нервный,SIFATLAR,A2,FILE2
+568,calm,спокойный,SIFATLAR,A2,FILE2
+569,age,возраст,İSİMLER,A2,FILE2
+570,young,молодой,SIFATLAR,A2,FILE2
+571,middle-aged,средних лет,SIFATLAR,A2,FILE2
+572,house,дом,İSİMLER,A2,FILE3
+573,flat,квартира,İSİMLER,A2,FILE3
+574,apartment,квартира,İSİMLER,A2,FILE3
+575,floor,"этаж, пол",İSİMLER,A2,FILE3
+576,lift,лифт,İSİMLER,A2,FILE3
+577,stairs,лестница,İSİMLER,A2,FILE3
+578,garden,сад,İSİMLER,A2,FILE3
+579,balcony,балкон,İSİMLER,A2,FILE3
+580,garage,гараж,İSİMLER,A2,FILE3
+581,living room,гостиная,İSİMLER,A2,FILE3
+582,bedroom,спальня,İSİMLER,A2,FILE3
+583,dining room,столовая,İSİMLER,A2,FILE3
+584,hall,прихожая,İSİMLER,A2,FILE3
+585,sofa,диван,İSİMLER,A2,FILE3
+586,armchair,кресло,İSİMLER,A2,FILE3
+587,shelf,полка,İSİMLER,A2,FILE3
+588,cupboard,шкаф (кухонный),İSİMLER,A2,FILE3
+589,wardrobe,шкаф для одежды,İSİMLER,A2,FILE3
+590,mirror,зеркало,İSİMLER,A2,FILE3
+591,lamp,лампа,İSİMLER,A2,FILE3
+592,carpet,ковёр,İSİMLER,A2,FILE3
+593,curtain,штора,İSİMLER,A2,FILE3
+594,fridge,холодильник,İSİMLER,A2,FILE3
+595,oven,духовка,İSİMLER,A2,FILE3
+596,sink,раковина,İSİMLER,A2,FILE3
+597,dishwasher,посудомоечная машина,İSİMLER,A2,FILE3
+598,washing machine,стиральная машина,İSİMLER,A2,FILE3
+599,neighbour,сосед,İSİMLER,A2,FILE3
+600,rent,"аренда, снимать",İSİMLER,A2,FILE3
+601,landlord,арендодатель,İSİMLER,A2,FILE3
+602,furniture,мебель,İSİMLER,A2,FILE3
+603,comfortable,удобный,SIFATLAR,A2,FILE3
+604,spacious,просторный,SIFATLAR,A2,FILE3
+605,noisy,шумный,SIFATLAR,A2,FILE3
+606,central,центральный,SIFATLAR,A2,FILE3
+607,suburb,пригород,İSİMLER,A2,FILE3
+608,village,деревня,İSİMLER,A2,FILE3
+609,countryside,сельская местность,İSİMLER,A2,FILE3
+610,go out,выходить в свет,FİİLLER,A2,FILE4
+611,stay in,оставаться дома,FİİLLER,A2,FILE4
+612,hang out,тусоваться,FİİLLER,A2,FILE4
+613,chat,болтать,FİİLLER,A2,FILE4
+614,text,писать сообщение,FİİLLER,A2,FILE4
+615,post,публиковать,FİİLLER,A2,FILE4
+616,follow,"подписываться, следить",FİİLLER,A2,FILE4
+617,download,скачивать,FİİLLER,A2,FILE4
+618,stream,"стримить, смотреть онлайн",FİİLLER,A2,FILE4
+619,exhibition,выставка,İSİMLER,A2,FILE4
+620,museum,музей,İSİMLER,A2,FILE4
+621,theatre,театр,İSİMLER,A2,FILE4
+622,club,клуб,İSİMLER,A2,FILE4
+623,pub,паб,İSİMLER,A2,FILE4
+624,café,кафе,İSİMLER,A2,FILE4
+625,beach,пляж,İSİMLER,A2,FILE4
+626,mountain,гора,İSİMLER,A2,FILE4
+627,lake,озеро,İSİMLER,A2,FILE4
+628,forest,лес,İSİMLER,A2,FILE4
+629,invite,приглашать,FİİLLER,A2,FILE4
+630,join,присоединяться,FİİLLER,A2,FILE4
+631,prefer,предпочитать,FİİLLER,A2,FILE4
+632,enjoy,наслаждаться,FİİLLER,A2,FILE4
+633,recommend,рекомендовать,FİİLLER,A2,FILE4
+634,cancel,отменять,FİİLLER,A2,FILE4
+635,queue,очередь; стоять в очереди,İSİMLER,A2,FILE4
+636,online,онлайн,ZARFLAR,A2,FILE4
+637,offline,офлайн,ZARFLAR,A2,FILE4
+638,social media,соцсети,İSİMLER,A2,FILE4
+639,profile,профиль,İSİMLER,A2,FILE4
+640,username,имя пользователя,İSİMLER,A2,FILE4
+641,weather,погода,İSİMLER,A2,FILE5
+642,sunny,солнечно,SIFATLAR,A2,FILE5
+643,cloudy,облачно,SIFATLAR,A2,FILE5
+644,rainy,дождливо,SIFATLAR,A2,FILE5
+645,snowy,снежно,SIFATLAR,A2,FILE5
+646,windy,ветрено,SIFATLAR,A2,FILE5
+647,foggy,туманно,SIFATLAR,A2,FILE5
+648,hot,жаркий,SIFATLAR,A2,FILE5
+649,warm,тёплый,SIFATLAR,A2,FILE5
+650,cool,прохладный,SIFATLAR,A2,FILE5
+651,cold,холодный,SIFATLAR,A2,FILE5
+652,storm,"шторм, буря",İSİMLER,A2,FILE5
+653,rain,дождь,İSİMLER,A2,FILE5
+654,snow,снег,İSİMLER,A2,FILE5
+655,temperature,температура,İSİMLER,A2,FILE5
+656,degree,градус,İSİMLER,A2,FILE5
+657,season,время года,İSİMLER,A2,FILE5
+658,spring,весна,İSİMLER,A2,FILE5
+659,summer,лето,İSİMLER,A2,FILE5
+660,autumn,осень,İSİMLER,A2,FILE5
+661,winter,зима,İSİMLER,A2,FILE5
+662,forecast,прогноз,İSİMLER,A2,FILE5
+663,sunglasses,солнцезащитные очки,İSİMLER,A2,FILE5
+664,scarf,шарф,İSİMLER,A2,FILE5
+665,gloves,перчатки,İSİMLER,A2,FILE5
+666,jumper,джемпер,İSİMLER,A2,FILE5
+667,suit,костюм,İSİMLER,A2,FILE5
+668,tie,галстук,İSİMLER,A2,FILE5
+669,trainers,кроссовки,İSİMLER,A2,FILE5
+670,sandals,сандалии,İSİMLER,A2,FILE5
+671,jewellery,украшения,İSİMLER,A2,FILE5
+672,necklace,ожерелье,İSİMLER,A2,FILE5
+673,earrings,серьги,İSİMLER,A2,FILE5
+674,ring,кольцо,İSİMLER,A2,FILE5
+675,fashion,мода,İSİMLER,A2,FILE5
+676,size,размер,İSİMLER,A2,FILE5
+677,fit,сидеть (об одежде),FİİLLER,A2,FILE5
+678,try on,примерять,FİİLLER,A2,FILE5
+679,appointment,"запись, встреча",İSİMLER,A2,FILE6
+680,calendar,календарь,İSİMLER,A2,FILE6
+681,diary,ежедневник,İSİMLER,A2,FILE6
+682,plan,план,İSİMLER,A2,FILE6
+683,arrangement,договорённость,İSİMLER,A2,FILE6
+684,accept,принимать,FİİLLER,A2,FILE6
+685,refuse,отказывать,FİİLLER,A2,FILE6
+686,suggest,предлагать,FİİLLER,A2,FILE6
+687,agree,соглашаться,FİİLLER,A2,FILE6
+688,disagree,не соглашаться,FİİLLER,A2,FILE6
+689,maybe,может быть,ZARFLAR,A2,FILE6
+690,probably,вероятно,ZARFLAR,A2,FILE6
+691,definitely,определённо,ZARFLAR,A2,FILE6
+692,soon,скоро,ZARFLAR,A2,FILE6
+693,later,позже,ZARFLAR,A2,FILE6
+694,tonight,сегодня вечером,ZARFLAR,A2,FILE6
+695,this weekend,в эти выходные,KALIP İFADELER,A2,FILE6
+696,next week,на следующей неделе,KALIP İFADELER,A2,FILE6
+697,in an hour,через час,KALIP İFADELER,A2,FILE6
+698,at once,сразу,KALIP İFADELER,A2,FILE6
+699,on time,вовремя,KALIP İFADELER,A2,FILE6
+700,in time,вовремя (успеть),KALIP İFADELER,A2,FILE6
+701,hurry,спешить,FİİLLER,A2,FILE6
+702,schedule,расписание,İSİMLER,A2,FILE6
+703,timetable,расписание (занятий),İSİMLER,A2,FILE6
+704,deadline,срок сдачи,İSİMLER,A2,FILE6
+705,story,"история, рассказ",İSİMLER,A2,FILE7
+706,biography,биография,İSİMLER,A2,FILE7
+707,childhood,детство,İSİMLER,A2,FILE7
+708,teenager,подросток,İSİMLER,A2,FILE7
+709,adult,взрослый,İSİMLER,A2,FILE7
+710,born,рождённый,SIFATLAR,A2,FILE7
+711,grow up,"расти, взрослеть",FİİLLER,A2,FILE7
+712,graduate,заканчивать вуз,FİİLLER,A2,FILE7
+713,get married,"жениться, выходить замуж",FİİLLER,A2,FILE7
+714,get divorced,разводиться,FİİLLER,A2,FILE7
+715,retire,уходить на пенсию,FİİLLER,A2,FILE7
+716,die,умирать,FİİLLER,A2,FILE7
+717,move house,переезжать,FİİLLER,A2,FILE7
+718,change jobs,менять работу,FİİLLER,A2,FILE7
+719,famous,знаменитый,SIFATLAR,A2,FILE7
+720,successful,успешный,SIFATLAR,A2,FILE7
+721,lucky,везучий,SIFATLAR,A2,FILE7
+722,unlucky,неудачливый,SIFATLAR,A2,FILE7
+723,event,событие,İSİMLER,A2,FILE7
+724,memory,"воспоминание, память",İSİMLER,A2,FILE7
+725,ago,назад,ZARFLAR,A2,FILE7
+726,then,"тогда, затем",ZARFLAR,A2,FILE7
+727,after that,после этого,KALIP İFADELER,A2,FILE7
+728,suddenly,вдруг,ZARFLAR,A2,FILE7
+729,finally,наконец,ZARFLAR,A2,FILE7
+730,in the end,в итоге,KALIP İFADELER,A2,FILE7
+731,once,однажды,ZARFLAR,A2,FILE7
+732,twice,дважды,ZARFLAR,A2,FILE7
+733,several times,несколько раз,KALIP İFADELER,A2,FILE7
+734,transport,транспорт,İSİMLER,A2,FILE8
+735,underground,метро,İSİMLER,A2,FILE8
+736,tram,трамвай,İSİMLER,A2,FILE8
+737,ferry,паром,İSİMLER,A2,FILE8
+738,coach,междугородний автобус,İSİMLER,A2,FILE8
+739,motorbike,мотоцикл,İSİMLER,A2,FILE8
+740,scooter,скутер,İSİMLER,A2,FILE8
+741,lorry,грузовик,İSİMLER,A2,FILE8
+742,van,фургон,İSİMLER,A2,FILE8
+743,traffic,"движение, пробки",İSİMLER,A2,FILE8
+744,traffic jam,пробка,İSİMLER,A2,FILE8
+745,traffic lights,светофор,İSİMLER,A2,FILE8
+746,roundabout,кольцевая развязка,İSİMLER,A2,FILE8
+747,motorway,автомагистраль,İSİMLER,A2,FILE8
+748,petrol,бензин,İSİMLER,A2,FILE8
+749,petrol station,заправка,İSİMLER,A2,FILE8
+750,parking,парковка,İSİMLER,A2,FILE8
+751,speed,скорость,İSİMLER,A2,FILE8
+752,journey,"поездка, путь",İSİMLER,A2,FILE8
+753,commute,ездить на работу,FİİLLER,A2,FILE8
+754,get on,садиться (в транспорт),FİİLLER,A2,FILE8
+755,get off,выходить (из транспорта),FİİLLER,A2,FILE8
+756,get in,садиться (в машину),FİİLLER,A2,FILE8
+757,get out,выходить (из машины),FİİLLER,A2,FILE8
+758,pick up,забирать,FİİLLER,A2,FILE8
+759,drop off,высаживать,FİİLLER,A2,FILE8
+760,turn left,повернуть налево,KALIP İFADELER,A2,FILE8
+761,turn right,повернуть направо,KALIP İFADELER,A2,FILE8
+762,go straight on,идти прямо,KALIP İFADELER,A2,FILE8
+763,opposite,напротив,EDATLAR / BAĞLAÇLAR,A2,FILE8
+764,on the corner,на углу,KALIP İFADELER,A2,FILE8
+765,directions,указания дороги,İSİMLER,A2,FILE8
+766,lost,потерявшийся,SIFATLAR,A2,FILE8
+767,a piece of,кусок,KALIP İFADELER,A2,FILE9
+768,a bottle of,бутылка,KALIP İFADELER,A2,FILE9
+769,a cup of,чашка,KALIP İFADELER,A2,FILE9
+770,a glass of,стакан,KALIP İFADELER,A2,FILE9
+771,a kilo of,килограмм,KALIP İFADELER,A2,FILE9
+772,a packet of,пачка,KALIP İFADELER,A2,FILE9
+773,a can of,банка (жестяная),KALIP İFADELER,A2,FILE9
+774,much,много (неисчисл.),ZAMİRLER,A2,FILE9
+775,many,много (исчисл.),ZAMİRLER,A2,FILE9
+776,a lot of,много,KALIP İFADELER,A2,FILE9
+777,a few,несколько,KALIP İFADELER,A2,FILE9
+778,a little,немного,KALIP İFADELER,A2,FILE9
+779,enough,достаточно,SIFATLAR,A2,FILE9
+780,too much,слишком много,KALIP İFADELER,A2,FILE9
+781,menu,меню,İSİMLER,A2,FILE9
+782,starter,закуска,İSİMLER,A2,FILE9
+783,main course,основное блюдо,İSİMLER,A2,FILE9
+784,dessert,десерт,İSİMLER,A2,FILE9
+785,bill,счёт,İSİMLER,A2,FILE9
+786,tip,чаевые,İSİMLER,A2,FILE9
+787,order,заказ; заказывать,İSİMLER,A2,FILE9
+788,vegetarian,вегетарианец,İSİMLER,A2,FILE9
+789,vegan,веган,İSİMLER,A2,FILE9
+790,allergic,"аллергик, аллергический",SIFATLAR,A2,FILE9
+791,delicious,вкусный,SIFATLAR,A2,FILE9
+792,spicy,острый,SIFATLAR,A2,FILE9
+793,sweet,сладкий,SIFATLAR,A2,FILE9
+794,sour,кислый,SIFATLAR,A2,FILE9
+795,bitter,горький,SIFATLAR,A2,FILE9
+796,salty,солёный,SIFATLAR,A2,FILE9
+797,fresh,свежий,SIFATLAR,A2,FILE9
+798,frozen,замороженный,SIFATLAR,A2,FILE9
+799,boil,варить,FİİLLER,A2,FILE9
+800,fry,жарить,FİİLLER,A2,FILE9
+801,bake,печь,FİİLLER,A2,FILE9
+802,grill,"гриль, жарить на гриле",FİİLLER,A2,FILE9
+803,roast,запекать,FİİLLER,A2,FILE9
+804,taste,"пробовать, вкус",FİİLLER,A2,FILE9
+805,future,будущее,İSİMLER,A2,FILE10
+806,hope,надеяться,FİİLLER,A2,FILE10
+807,expect,ожидать,FİİLLER,A2,FILE10
+808,promise,обещать,FİİLLER,A2,FILE10
+809,offer,предлагать,FİİLLER,A2,FILE10
+810,predict,предсказывать,FİİLLER,A2,FILE10
+811,will,вспомогательный глагол будущего,DİĞER KELİMELER,A2,FILE10
+812,going to,собираться,KALIP İFADELER,A2,FILE10
+813,might,может быть (вероятность),DİĞER KELİMELER,A2,FILE10
+814,ambition,"цель, амбиция",İSİMLER,A2,FILE10
+815,dream,"мечта, сон",İSİMLER,A2,FILE10
+816,goal,цель,İSİMLER,A2,FILE10
+817,opportunity,возможность,İSİMLER,A2,FILE10
+818,decision,решение,İSİMLER,A2,FILE10
+819,choice,выбор,İSİMLER,A2,FILE10
+820,risk,риск,İSİMLER,A2,FILE10
+821,success,успех,İSİMLER,A2,FILE10
+822,failure,неудача,İSİMLER,A2,FILE10
+823,improve,улучшать,FİİLLER,A2,FILE10
+824,save,"копить, спасать",FİİLLER,A2,FILE10
+825,spend,тратить,FİİLLER,A2,FILE10
+826,waste,тратить впустую,FİİLLER,A2,FILE10
+827,afford,позволять себе,FİİLLER,A2,FILE10
+828,borrow,брать взаймы,FİİLLER,A2,FILE10
+829,lend,давать взаймы,FİİLLER,A2,FILE10
+830,owe,быть должным,FİİLLER,A2,FILE10
+831,budget,бюджет,İSİMLER,A2,FILE10
+832,company,компания,İSİMLER,A2,FILE11
+833,business,бизнес,İSİMLER,A2,FILE11
+834,product,продукт,İSİMLER,A2,FILE11
+835,service,услуга,İSİMLER,A2,FILE11
+836,market,рынок,İSİMLER,A2,FILE11
+837,advert,реклама,İSİMLER,A2,FILE11
+838,brand,бренд,İSİMLER,A2,FILE11
+839,quality,качество,İSİMLER,A2,FILE11
+840,discount,скидка,İSİMLER,A2,FILE11
+841,sale,распродажа,İSİMLER,A2,FILE11
+842,online shop,интернет-магазин,İSİMLER,A2,FILE11
+843,delivery,доставка,İSİMLER,A2,FILE11
+844,return,возврат,İSİMLER,A2,FILE11
+845,receipt,чек,İSİMLER,A2,FILE11
+846,cash,наличные,İSİMLER,A2,FILE11
+847,card,карта,İSİMLER,A2,FILE11
+848,cost,стоить,FİİLLER,A2,FILE11
+849,charge,взимать плату,FİİLLER,A2,FILE11
+850,complain,жаловаться,FİİLLER,A2,FILE11
+851,replace,заменять,FİİLLER,A2,FILE11
+852,repair,чинить,FİİLLER,A2,FILE11
+853,broken,сломанный,SIFATLAR,A2,FILE11
+854,available,доступный,SIFATLAR,A2,FILE11
+855,sold out,распродано,SIFATLAR,A2,FILE11
+856,in stock,в наличии,KALIP İFADELER,A2,FILE11
+857,out of stock,нет в наличии,KALIP İFADELER,A2,FILE11
+858,department store,универмаг,İSİMLER,A2,FILE11
+859,checkout,касса,İSİMLER,A2,FILE11
+860,shopping basket,корзина,İSİMLER,A2,FILE11
+861,ever,когда-либо,ZARFLAR,A2,FILE12
+862,already,уже,ZARFLAR,A2,FILE12
+863,yet,"ещё (не), уже (в вопросе)",ZARFLAR,A2,FILE12
+864,just,только что,ZARFLAR,A2,FILE12
+865,recently,недавно,ZARFLAR,A2,FILE12
+866,since,с (какого-то момента),EDATLAR / BAĞLAÇLAR,A2,FILE12
+867,for,в течение,EDATLAR / BAĞLAÇLAR,A2,FILE12
+868,experience,опыт,İSİMLER,A2,FILE12
+869,have you ever,ты когда-нибудь...,KALIP İFADELER,A2,FILE12
+870,been to,бывавший в,KALIP İFADELER,A2,FILE12
+871,gone to,уехавший в,KALIP İFADELER,A2,FILE12
+872,try,пробовать,FİİLLER,A2,FILE12
+873,fail,терпеть неудачу,FİİLLER,A2,FILE12
+874,succeed,преуспевать,FİİLLER,A2,FILE12
+875,achieve,достигать,FİİLLER,A2,FILE12
+876,discover,"открывать, обнаруживать",FİİLLER,A2,FILE12
+877,invent,изобретать,FİİLLER,A2,FILE12
+878,explore,исследовать,FİİLLER,A2,FILE12
+879,adventure,приключение,İSİMLER,A2,FILE12
+880,challenge,вызов,İSİMLER,A2,FILE12
+881,skill,навык,İSİMLER,A2,FILE12
+882,practice,практика,İSİMLER,A2,FILE12
+883,progress,прогресс,İSİMLER,A2,FILE12
+884,fluent,свободно владеющий,SIFATLAR,A2,FILE12
+885,beginner,начинающий,İSİMLER,A2,FILE12
+886,intermediate,средний уровень,SIFATLAR,A2,FILE12
+887,advanced,продвинутый,SIFATLAR,A2,FILE12
+888,native speaker,носитель языка,İSİMLER,A2,FILE12
+889,accent,акцент,İSİMLER,A2,FILE12
+890,pronunciation,произношение,İSİMLER,A2,FILE12
+891,vocabulary,словарный запас,İSİMLER,A2,FILE12
+892,grammar,грамматика,İSİMLER,A2,FILE12
+893,habit,привычка,İSİMLER,B1,FILE1
+894,routine,распорядок,İSİMLER,B1,FILE1
+895,lifestyle,образ жизни,İSİMLER,B1,FILE1
+896,work-life balance,баланс работы и жизни,İSİMLER,B1,FILE1
+897,stress,стресс,İSİMLER,B1,FILE1
+898,cope,справляться,FİİLLER,B1,FILE1
+899,manage,"управлять, справляться",FİİLLER,B1,FILE1
+900,avoid,избегать,FİİLLER,B1,FILE1
+901,reduce,сокращать,FİİLLER,B1,FILE1
+902,increase,увеличивать,FİİLLER,B1,FILE1
+903,depend on,зависеть от,FİİLLER,B1,FILE1
+904,belong to,принадлежать,FİİLLER,B1,FILE1
+905,used to,раньше (делал),KALIP İFADELER,B1,FILE1
+906,get used to,привыкать,KALIP İFADELER,B1,FILE1
+907,nowadays,в наши дни,ZARFLAR,B1,FILE1
+908,these days,в последнее время,KALIP İFADELER,B1,FILE1
+909,on average,в среднем,KALIP İFADELER,B1,FILE1
+910,at least,по крайней мере,KALIP İFADELER,B1,FILE1
+911,in general,в целом,KALIP İFADELER,B1,FILE1
+912,for instance,например,KALIP İFADELER,B1,FILE1
+913,such as,такие как,EDATLAR / BAĞLAÇLAR,B1,FILE1
+914,whereas,тогда как,EDATLAR / BAĞLAÇLAR,B1,FILE1
+915,although,хотя,EDATLAR / BAĞLAÇLAR,B1,FILE1
+916,however,однако,ZARFLAR,B1,FILE1
+917,therefore,поэтому,ZARFLAR,B1,FILE1
+918,meanwhile,тем временем,ZARFLAR,B1,FILE1
+919,commuter,"человек, ездящий на работу",İSİMLER,B1,FILE1
+920,remote work,удалённая работа,İSİMLER,B1,FILE1
+921,workload,нагрузка,İSİMLER,B1,FILE1
+922,burnout,выгорание,İSİMLER,B1,FILE1
+923,mindfulness,осознанность,İSİMLER,B1,FILE1
+924,exercise,"упражнение, тренировка",İSİMLER,B1,FILE1
+925,diet,"рацион, диета",İSİMLER,B1,FILE1
+926,screen time,время у экрана,İSİMLER,B1,FILE1
+927,junk food,вредная еда,İSİMLER,B1,FILE1
+928,takeaway,еда на вынос,İSİMLER,B1,FILE1
+929,homemade,домашний (о еде),SIFATLAR,B1,FILE1
+930,processed,обработанный,SIFATLAR,B1,FILE1
+931,money,деньги,İSİMLER,B1,FILE2
+932,coin,монета,İSİMLER,B1,FILE2
+933,note,купюра,İSİMLER,B1,FILE2
+934,currency,валюта,İSİMLER,B1,FILE2
+935,exchange rate,курс валют,İSİMLER,B1,FILE2
+936,bank account,банковский счёт,İSİMLER,B1,FILE2
+937,savings,сбережения,İSİMLER,B1,FILE2
+938,loan,кредит,İSİMLER,B1,FILE2
+939,mortgage,ипотека,İSİMLER,B1,FILE2
+940,interest,процент,İSİMLER,B1,FILE2
+941,debt,долг,İSİMLER,B1,FILE2
+942,tax,налог,İSİMLER,B1,FILE2
+943,income,доход,İSİMLER,B1,FILE2
+944,expense,расход,İSİMLER,B1,FILE2
+945,invest,инвестировать,FİİLLER,B1,FILE2
+946,save up,копить,FİİLLER,B1,FILE2
+947,cut down on,сокращать,FİİLLER,B1,FILE2
+948,splash out,тратиться,FİİLLER,B1,FILE2
+949,be worth,стоить (быть стоящим),FİİLLER,B1,FILE2
+950,bargain,выгодная покупка,İSİMLER,B1,FILE2
+951,value for money,соотношение цена-качество,İSİMLER,B1,FILE2
+952,refund,возврат денег,İSİMLER,B1,FILE2
+953,insurance,страховка,İSİMLER,B1,FILE2
+954,fine,штраф,İSİMLER,B1,FILE2
+955,wealthy,богатый,SIFATLAR,B1,FILE2
+956,poor,бедный,SIFATLAR,B1,FILE2
+957,broke,без денег,SIFATLAR,B1,FILE2
+958,stingy,скупой,SIFATLAR,B1,FILE2
+959,cost of living,стоимость жизни,İSİMLER,B1,FILE2
+960,minimum wage,минимальная зарплата,İSİMLER,B1,FILE2
+961,relationship,отношения,İSİMLER,B1,FILE3
+962,partner,партнёр,İSİMLER,B1,FILE3
+963,classmate,одноклассник,İSİMLER,B1,FILE3
+964,flatmate,сосед по квартире,İSİMLER,B1,FILE3
+965,acquaintance,знакомый,İSİMLER,B1,FILE3
+966,get on with,ладить с,FİİLLER,B1,FILE3
+967,fall out,ссориться,FİİLLER,B1,FILE3
+968,make up,мириться,FİİLLER,B1,FILE3
+969,break up,расставаться,FİİLLER,B1,FILE3
+970,get together,"собираться, сходиться",FİİLLER,B1,FILE3
+971,keep in touch,поддерживать связь,FİİLLER,B1,FILE3
+972,lose touch,терять связь,FİİLLER,B1,FILE3
+973,rely on,полагаться на,FİİLLER,B1,FILE3
+974,trust,доверять,FİİLLER,B1,FILE3
+975,support,поддерживать,FİİLLER,B1,FILE3
+976,argue,"спорить, ссориться",FİİLLER,B1,FILE3
+977,apologise,извиняться,FİİLLER,B1,FILE3
+978,forgive,прощать,FİİLLER,B1,FILE3
+979,respect,уважать,FİİLLER,B1,FILE3
+980,jealous,ревнивый,SIFATLAR,B1,FILE3
+981,loyal,верный,SIFATLAR,B1,FILE3
+982,reliable,надёжный,SIFATLAR,B1,FILE3
+983,sensitive,чувствительный,SIFATLAR,B1,FILE3
+984,easy-going,лёгкий в общении,SIFATLAR,B1,FILE3
+985,outgoing,общительный,SIFATLAR,B1,FILE3
+986,moody,капризный,SIFATLAR,B1,FILE3
+987,stubborn,упрямый,SIFATLAR,B1,FILE3
+988,close friend,близкий друг,İSİMLER,B1,FILE3
+989,best friend,лучший друг,İSİMLER,B1,FILE3
+990,in common,общее,KALIP İFADELER,B1,FILE3
+991,have a lot in common,иметь много общего,KALIP İFADELER,B1,FILE3
+992,crime,преступление,İSİMLER,B1,FILE4
+993,criminal,преступник,İSİMLER,B1,FILE4
+994,thief,вор,İSİMLER,B1,FILE4
+995,robber,грабитель,İSİMLER,B1,FILE4
+996,burglar,домушник,İSİMLER,B1,FILE4
+997,shoplifter,магазинный вор,İSİMLER,B1,FILE4
+998,mugger,уличный грабитель,İSİMLER,B1,FILE4
+999,vandal,вандал,İSİMLER,B1,FILE4
+1000,hacker,хакер,İSİMLER,B1,FILE4
+1001,fraud,мошенничество,İSİMLER,B1,FILE4
+1002,theft,кража,İSİMLER,B1,FILE4
+1003,robbery,ограбление,İSİMLER,B1,FILE4
+1004,burglary,кража со взломом,İSİMLER,B1,FILE4
+1005,murder,убийство,İSİMLER,B1,FILE4
+1006,assault,нападение,İSİMLER,B1,FILE4
+1007,kidnapping,похищение,İSİMLER,B1,FILE4
+1008,steal,красть,FİİLLER,B1,FILE4
+1009,rob,грабить,FİİLLER,B1,FILE4
+1010,burgle,вламываться,FİİLLER,B1,FILE4
+1011,arrest,арестовывать,FİİLLER,B1,FILE4
+1012,accuse,обвинять,FİİLLER,B1,FILE4
+1013,sentence,приговаривать,FİİLLER,B1,FILE4
+1014,punish,наказывать,FİİLLER,B1,FILE4
+1015,prison,тюрьма,İSİMLER,B1,FILE4
+1016,prisoner,заключённый,İSİMLER,B1,FILE4
+1017,police station,полицейский участок,İSİMLER,B1,FILE4
+1018,witness,свидетель,İSİMLER,B1,FILE4
+1019,victim,жертва,İSİMLER,B1,FILE4
+1020,evidence,улики,İSİMLER,B1,FILE4
+1021,trial,"суд, процесс",İSİMLER,B1,FILE4
+1022,guilty,виновный,SIFATLAR,B1,FILE4
+1023,innocent,невиновный,SIFATLAR,B1,FILE4
+1024,illegal,незаконный,SIFATLAR,B1,FILE4
+1025,legal,законный,SIFATLAR,B1,FILE4
+1026,safe,безопасный,SIFATLAR,B1,FILE4
+1027,dangerous,опасный,SIFATLAR,B1,FILE4
+1028,report a crime,заявить о преступлении,KALIP İFADELER,B1,FILE4
+1029,health,здоровье,İSİMLER,B1,FILE5
+1030,illness,болезнь,İSİMLER,B1,FILE5
+1031,disease,заболевание,İSİMLER,B1,FILE5
+1032,symptom,симптом,İSİMLER,B1,FILE5
+1033,pain,боль,İSİMLER,B1,FILE5
+1034,ache,"нытьё, боль",İSİMLER,B1,FILE5
+1035,headache,головная боль,İSİMLER,B1,FILE5
+1036,toothache,зубная боль,İSİMLER,B1,FILE5
+1037,stomachache,боль в животе,İSİMLER,B1,FILE5
+1038,sore throat,боль в горле,İSİMLER,B1,FILE5
+1039,cough,кашель,İSİMLER,B1,FILE5
+1040,flu,грипп,İSİMLER,B1,FILE5
+1041,fever,жар,İSİMLER,B1,FILE5
+1042,injury,травма,İSİMLER,B1,FILE5
+1043,wound,рана,İSİMLER,B1,FILE5
+1044,broken bone,перелом,İSİMLER,B1,FILE5
+1045,prescription,рецепт (мед.),İSİMLER,B1,FILE5
+1046,medicine,лекарство,İSİMLER,B1,FILE5
+1047,pill,таблетка,İSİMLER,B1,FILE5
+1048,injection,укол,İSİMLER,B1,FILE5
+1049,operation,операция,İSİMLER,B1,FILE5
+1050,GP,терапевт,İSİMLER,B1,FILE5
+1051,specialist,специалист,İSİMLER,B1,FILE5
+1052,pharmacy,аптека,İSİMLER,B1,FILE5
+1053,emergency,экстренный случай,İSİMLER,B1,FILE5
+1054,ambulance,скорая помощь,İSİMLER,B1,FILE5
+1055,treatment,лечение,İSİMLER,B1,FILE5
+1056,recover,выздоравливать,FİİLLER,B1,FILE5
+1057,heal,заживать,FİİLLER,B1,FILE5
+1058,bleed,кровоточить,FİİLLER,B1,FILE5
+1059,swallow,глотать,FİİLLER,B1,FILE5
+1060,breathe,дышать,FİİLLER,B1,FILE5
+1061,allergic to,иметь аллергию на,KALIP İFADELER,B1,FILE5
+1062,keep fit,поддерживать форму,KALIP İFADELER,B1,FILE5
+1063,balanced diet,сбалансированное питание,İSİMLER,B1,FILE5
+1064,environment,окружающая среда,İSİMLER,B1,FILE6
+1065,pollution,загрязнение,İSİMLER,B1,FILE6
+1066,climate change,изменение климата,İSİMLER,B1,FILE6
+1067,global warming,глобальное потепление,İSİMLER,B1,FILE6
+1068,recycle,перерабатывать,FİİLLER,B1,FILE6
+1069,reuse,повторно использовать,FİİLLER,B1,FILE6
+1070,rubbish,мусор,İSİMLER,B1,FILE6
+1071,litter,"мусорить, мусор",FİİLLER,B1,FILE6
+1072,plastic,пластик,İSİMLER,B1,FILE6
+1073,packaging,упаковка,İSİMLER,B1,FILE6
+1074,renewable,возобновляемый,SIFATLAR,B1,FILE6
+1075,solar power,солнечная энергия,İSİMLER,B1,FILE6
+1076,wind power,энергия ветра,İSİMLER,B1,FILE6
+1077,fossil fuel,ископаемое топливо,İSİMLER,B1,FILE6
+1078,emissions,выбросы,İSİMLER,B1,FILE6
+1079,carbon footprint,углеродный след,İSİMLER,B1,FILE6
+1080,endangered,вымирающий,SIFATLAR,B1,FILE6
+1081,extinct,вымерший,SIFATLAR,B1,FILE6
+1082,wildlife,дикая природа,İSİMLER,B1,FILE6
+1083,habitat,среда обитания,İSİMLER,B1,FILE6
+1084,deforestation,вырубка лесов,İSİMLER,B1,FILE6
+1085,drought,засуха,İSİMLER,B1,FILE6
+1086,flood,наводнение,İSİMLER,B1,FILE6
+1087,heatwave,волна жары,İSİMLER,B1,FILE6
+1088,sustainable,"устойчивый, экологичный",SIFATLAR,B1,FILE6
+1089,eco-friendly,экологичный,SIFATLAR,B1,FILE6
+1090,organic,органический,SIFATLAR,B1,FILE6
+1091,public transport,общественный транспорт,İSİMLER,B1,FILE6
+1092,cycle,ездить на велосипеде,FİİLLER,B1,FILE6
+1093,plant,сажать,FİİLLER,B1,FILE6
+1094,protect,защищать,FİİLLER,B1,FILE6
+1095,destroy,разрушать,FİİLLER,B1,FILE6
+1096,raise awareness,повышать осведомлённость,KALIP İFADELER,B1,FILE6
+1097,education,образование,İSİMLER,B1,FILE7
+1098,subject,предмет,İSİMLER,B1,FILE7
+1099,lesson,урок,İSİMLER,B1,FILE7
+1100,lecture,лекция,İSİMLER,B1,FILE7
+1101,course,курс,İSİMLER,B1,FILE7
+1102,exam,экзамен,İSİMLER,B1,FILE7
+1103,test,тест,İSİMLER,B1,FILE7
+1104,mark,оценка,İSİMLER,B1,FILE7
+1105,grade,"оценка, класс",İSİMLER,B1,FILE7
+1106,homework,домашнее задание,İSİMLER,B1,FILE7
+1107,assignment,задание,İSİMLER,B1,FILE7
+1108,essay,эссе,İSİMLER,B1,FILE7
+1109,research,исследование,İSİMLER,B1,FILE7
+1110,revision,повторение,İSİMLER,B1,FILE7
+1111,term,семестр,İSİMLER,B1,FILE7
+1112,primary school,начальная школа,İSİMLER,B1,FILE7
+1113,secondary school,средняя школа,İSİMLER,B1,FILE7
+1114,college,колледж,İSİMLER,B1,FILE7
+1115,campus,кампус,İSİMLER,B1,FILE7
+1116,tutor,"преподаватель, тьютор",İSİMLER,B1,FILE7
+1117,headteacher,директор школы,İSİMLER,B1,FILE7
+1118,pass,сдать (экзамен),FİİLLER,B1,FILE7
+1119,revise,повторять материал,FİİLLER,B1,FILE7
+1120,memorise,запоминать,FİİLLER,B1,FILE7
+1121,concentrate,концентрироваться,FİİLLER,B1,FILE7
+1122,cheat,списывать,FİİLLER,B1,FILE7
+1123,drop out,бросить учёбу,FİİLLER,B1,FILE7
+1124,enrol,записываться,FİİLLER,B1,FILE7
+1125,qualify,получать квалификацию,FİİLLER,B1,FILE7
+1126,strict,строгий,SIFATLAR,B1,FILE7
+1127,optional,необязательный,SIFATLAR,B1,FILE7
+1128,compulsory,обязательный,SIFATLAR,B1,FILE7
+1129,academic,академический,SIFATLAR,B1,FILE7
+1130,media,СМИ,İSİMLER,B1,FILE8
+1131,newspaper,газета,İSİMLER,B1,FILE8
+1132,magazine,журнал,İSİMLER,B1,FILE8
+1133,headline,заголовок,İSİMLER,B1,FILE8
+1134,article,статья,İSİMLER,B1,FILE8
+1135,reporter,репортёр,İSİMLER,B1,FILE8
+1136,editor,редактор,İSİMLER,B1,FILE8
+1137,broadcast,трансляция,İSİMLER,B1,FILE8
+1138,channel,канал,İSİMLER,B1,FILE8
+1139,series,сериал,İSİMLER,B1,FILE8
+1140,episode,серия,İSİMLER,B1,FILE8
+1141,documentary,документальный фильм,İSİMLER,B1,FILE8
+1142,news,новости,İSİMLER,B1,FILE8
+1143,rumour,слух,İSİMLER,B1,FILE8
+1144,fake news,фейковые новости,İSİMLER,B1,FILE8
+1145,bias,предвзятость,İSİMLER,B1,FILE8
+1146,source,источник,İSİMLER,B1,FILE8
+1147,celebrity,знаменитость,İSİMLER,B1,FILE8
+1148,influencer,инфлюенсер,İSİMLER,B1,FILE8
+1149,follower,подписчик,İSİMLER,B1,FILE8
+1150,comment,комментарий,İSİMLER,B1,FILE8
+1151,share,делиться,FİİLLER,B1,FILE8
+1152,upload,загружать,FİİLLER,B1,FILE8
+1153,go viral,стать вирусным,FİİLLER,B1,FILE8
+1154,subscribe,подписываться,FİİLLER,B1,FILE8
+1155,biased,предвзятый,SIFATLAR,B1,FILE8
+1156,entertaining,развлекательный,SIFATLAR,B1,FILE8
+1157,informative,информативный,SIFATLAR,B1,FILE8
+1158,addicted to,зависимый от,KALIP İFADELER,B1,FILE8
+1159,switch off,выключать,FİİLLER,B1,FILE8
+1160,technology,технологии,İSİMLER,B1,FILE9
+1161,device,устройство,İSİMLER,B1,FILE9
+1162,gadget,гаджет,İSİMLER,B1,FILE9
+1163,app,приложение,İSİMLER,B1,FILE9
+1164,software,ПО,İSİMLER,B1,FILE9
+1165,hardware,"железо, аппаратура",İSİMLER,B1,FILE9
+1166,screen,экран,İSİMLER,B1,FILE9
+1167,keyboard,клавиатура,İSİMLER,B1,FILE9
+1168,mouse,мышь,İSİMLER,B1,FILE9
+1169,charger,зарядка,İSİMLER,B1,FILE9
+1170,battery,батарея,İSİMLER,B1,FILE9
+1171,network,сеть,İSİMLER,B1,FILE9
+1172,cloud,облако (данные),İSİMLER,B1,FILE9
+1173,data,данные,İSİMLER,B1,FILE9
+1174,file,файл,İSİMLER,B1,FILE9
+1175,folder,папка,İSİMLER,B1,FILE9
+1176,account,аккаунт,İSİMLER,B1,FILE9
+1177,click,кликать,FİİLLER,B1,FILE9
+1178,scroll,прокручивать,FİİLLER,B1,FILE9
+1179,search,искать,FİİLLER,B1,FILE9
+1180,install,устанавливать,FİİLLER,B1,FILE9
+1181,update,обновлять,FİİLLER,B1,FILE9
+1182,delete,удалять,FİİLLER,B1,FILE9
+1183,backup,резервная копия,İSİMLER,B1,FILE9
+1184,crash,"зависать, сбой",FİİLLER,B1,FILE9
+1185,freeze,зависать,FİİLLER,B1,FILE9
+1186,plug in,включать в розетку,FİİLLER,B1,FILE9
+1187,connect,подключать,FİİLLER,B1,FILE9
+1188,wireless,беспроводной,SIFATLAR,B1,FILE9
+1189,outdated,устаревший,SIFATLAR,B1,FILE9
+1190,user-friendly,удобный для пользователя,SIFATLAR,B1,FILE9
+1191,artificial intelligence,искусственный интеллект,İSİMLER,B1,FILE9
+1192,robot,робот,İSİMLER,B1,FILE9
+1193,virtual,виртуальный,SIFATLAR,B1,FILE9
+1194,destination,направление,İSİMLER,B1,FILE10
+1195,sightseeing,осмотр достопримечательностей,İSİMLER,B1,FILE10
+1196,guidebook,путеводитель,İSİMLER,B1,FILE10
+1197,landmark,достопримечательность,İSİMLER,B1,FILE10
+1198,tour,"тур, экскурсия",İSİMLER,B1,FILE10
+1199,tourist attraction,туристическое место,İSİMLER,B1,FILE10
+1200,accommodation,жильё,İSİMLER,B1,FILE10
+1201,hostel,хостел,İSİMLER,B1,FILE10
+1202,resort,курорт,İSİMLER,B1,FILE10
+1203,campsite,кемпинг,İSİMLER,B1,FILE10
+1204,check in,регистрироваться,FİİLLER,B1,FILE10
+1205,check out,выезжать,FİİLLER,B1,FILE10
+1206,pack,упаковывать,FİİLLER,B1,FILE10
+1207,unpack,распаковывать,FİİLLER,B1,FILE10
+1208,set off,отправляться,FİİLLER,B1,FILE10
+1209,get lost,заблудиться,FİİLLER,B1,FILE10
+1210,hire,арендовать,FİİLLER,B1,FILE10
+1211,overcrowded,переполненный,SIFATLAR,B1,FILE10
+1212,off the beaten track,в стороне от туристических троп,KALIP İFADELER,B1,FILE10
+1213,package holiday,пакетный тур,İSİMLER,B1,FILE10
+1214,backpacker,бэкпекер,İSİMLER,B1,FILE10
+1215,itinerary,маршрут,İSİMLER,B1,FILE10
+1216,customs,таможня,İSİMLER,B1,FILE10
+1217,luggage,багаж,İSİMLER,B1,FILE10
+1218,hand luggage,ручная кладь,İSİMLER,B1,FILE10
+1219,boarding pass,посадочный талон,İSİMLER,B1,FILE10
+1220,turbulence,турбулентность,İSİMLER,B1,FILE10
+1221,jet lag,джетлаг,İSİMLER,B1,FILE10
+1222,career,карьера,İSİMLER,B1,FILE11
+1223,profession,профессия,İSİMLER,B1,FILE11
+1224,promotion,повышение,İSİMLER,B1,FILE11
+1225,raise,повышение зарплаты,İSİMLER,B1,FILE11
+1226,resign,увольняться,FİİLLER,B1,FILE11
+1227,fire,увольнять,FİİLLER,B1,FILE11
+1228,responsible for,ответственный за,KALIP İFADELER,B1,FILE11
+1229,in charge of,отвечающий за,KALIP İFADELER,B1,FILE11
+1230,deal with,иметь дело с,FİİLLER,B1,FILE11
+1231,run a business,вести бизнес,FİİLLER,B1,FILE11
+1232,shift work,сменная работа,İSİMLER,B1,FILE11
+1233,nine-to-five,с девяти до пяти,SIFATLAR,B1,FILE11
+1234,freelance,фриланс,İSİMLER,B1,FILE11
+1235,internship,стажировка,İSİMLER,B1,FILE11
+1236,unemployment,безработица,İSİMLER,B1,FILE11
+1237,redundant,сокращённый,SIFATLAR,B1,FILE11
+1238,experienced,опытный,SIFATLAR,B1,FILE11
+1239,qualified,квалифицированный,SIFATLAR,B1,FILE11
+1240,well-paid,хорошо оплачиваемый,SIFATLAR,B1,FILE11
+1241,stressful,стрессовый,SIFATLAR,B1,FILE11
+1242,rewarding,благодарный (о работе),SIFATLAR,B1,FILE11
+1243,challenging,"сложный, бросающий вызов",SIFATLAR,B1,FILE11
+1244,monotonous,монотонный,SIFATLAR,B1,FILE11
+1245,CV,резюме,İSİMLER,B1,FILE11
+1246,cover letter,сопроводительное письмо,İSİMLER,B1,FILE11
+1247,reference,рекомендация,İSİMLER,B1,FILE11
+1248,strength,сильная сторона,İSİMLER,B1,FILE11
+1249,weakness,слабая сторона,İSİMLER,B1,FILE11
+1250,team,команда,İSİMLER,B1,FILE12
+1251,match,матч,İSİMLER,B1,FILE12
+1252,score,"счёт, забивать",İSİMLER,B1,FILE12
+1253,defeat,поражение,İSİMLER,B1,FILE12
+1254,champion,чемпион,İSİMLER,B1,FILE12
+1255,referee,судья,İSİMLER,B1,FILE12
+1256,stadium,стадион,İSİMLER,B1,FILE12
+1257,crowd,"толпа, зрители",İSİMLER,B1,FILE12
+1258,athlete,спортсмен,İSİMLER,B1,FILE12
+1259,race,"гонка, забег",İSİMLER,B1,FILE12
+1260,compete,соревноваться,FİİLLER,B1,FILE12
+1261,beat,побеждать (кого-то),FİİLLER,B1,FILE12
+1262,kick,ударять ногой,FİİLLER,B1,FILE12
+1263,throw,бросать,FİİLLER,B1,FILE12
+1264,basketball,баскетбол,İSİMLER,B1,FILE12
+1265,golf,гольф,İSİMLER,B1,FILE12
+1266,volleyball,волейбол,İSİMLER,B1,FILE12
+1267,hockey,хоккей,İSİMLER,B1,FILE12
+1268,boxing,бокс,İSİMLER,B1,FILE12
+1269,athletics,лёгкая атлетика,İSİMLER,B1,FILE12
+1270,cycling,велоспорт,İSİMLER,B1,FILE12
+1271,skiing,лыжи,İSİMLER,B1,FILE12
+1272,supporter,болельщик,İSİMLER,B1,FILE12
+1273,kit,форма,İSİMLER,B1,FILE12
+1274,fair play,честная игра,İSİMLER,B1,FILE12
+1275,competitive,соревновательный,SIFATLAR,B1,FILE12
+1276,identity,"личность, идентичность",İSİMLER,B2,FILE1
+1277,background,происхождение,İSİMLER,B2,FILE1
+1278,upbringing,воспитание,İSİMLER,B2,FILE1
+1279,roots,корни,İSİMLER,B2,FILE1
+1280,heritage,наследие,İSİMLER,B2,FILE1
+1281,generation,поколение,İSİMLER,B2,FILE1
+1282,stereotype,стереотип,İSİMLER,B2,FILE1
+1283,prejudice,предрассудок,İSİMLER,B2,FILE1
+1284,discrimination,дискриминация,İSİMLER,B2,FILE1
+1285,diversity,разнообразие,İSİMLER,B2,FILE1
+1286,inclusion,инклюзия,İSİMLER,B2,FILE1
+1287,belong,"принадлежать, чувствовать себя своим",FİİLLER,B2,FILE1
+1288,fit in,вписываться,FİİLLER,B2,FILE1
+1289,stand out,выделяться,FİİLLER,B2,FILE1
+1290,take after,быть похожим на,FİİLLER,B2,FILE1
+1291,look up to,равняться на,FİİLLER,B2,FILE1
+1292,look down on,смотреть свысока,FİİLLER,B2,FILE1
+1293,come across as,производить впечатление,FİİLLER,B2,FILE1
+1294,reserved,сдержанный,SIFATLAR,B2,FILE1
+1295,open-minded,широких взглядов,SIFATLAR,B2,FILE1
+1296,narrow-minded,ограниченный,SIFATLAR,B2,FILE1
+1297,self-aware,осознающий себя,SIFATLAR,B2,FILE1
+1298,insecure,неуверенный,SIFATLAR,B2,FILE1
+1299,assertive,настойчивый,SIFATLAR,B2,FILE1
+1300,humble,скромный,SIFATLAR,B2,FILE1
+1301,first impression,первое впечатление,İSİMLER,B2,FILE1
+1302,sense of humour,чувство юмора,İSİMLER,B2,FILE1
+1303,perk,льгота,İSİMLER,B2,FILE2
+1304,bonus,премия,İSİMLER,B2,FILE2
+1305,commission,"комиссия, процент",İSİMLER,B2,FILE2
+1306,sick leave,больничный,İSİMLER,B2,FILE2
+1307,maternity leave,декрет,İSİMLER,B2,FILE2
+1308,notice period,срок уведомления,İSİMLER,B2,FILE2
+1309,redundancy,сокращение штата,İSİMLER,B2,FILE2
+1310,resignation,увольнение по собственному,İSİMLER,B2,FILE2
+1311,workplace,рабочее место,İSİMLER,B2,FILE2
+1312,hierarchy,иерархия,İSİMLER,B2,FILE2
+1313,target,"цель, план",İSİMLER,B2,FILE2
+1314,delegate,делегировать,FİİLLER,B2,FILE2
+1315,supervise,контролировать,FİİLLER,B2,FILE2
+1316,collaborate,сотрудничать,FİİLLER,B2,FILE2
+1317,negotiate,вести переговоры,FİİLLER,B2,FILE2
+1318,clock in,отмечать приход,FİİLLER,B2,FILE2
+1319,demanding,требовательный,SIFATLAR,B2,FILE2
+1320,tedious,утомительный,SIFATLAR,B2,FILE2
+1321,fulfilling,приносящий удовлетворение,SIFATLAR,B2,FILE2
+1322,dead-end,без перспективы,SIFATLAR,B2,FILE2
+1323,high-powered,высокопоставленный,SIFATLAR,B2,FILE2
+1324,white-collar,офисный,SIFATLAR,B2,FILE2
+1325,blue-collar,рабочий,SIFATLAR,B2,FILE2
+1326,gig economy,гиг-экономика,İSİMLER,B2,FILE2
+1327,consumer,потребитель,İSİMLER,B2,FILE3
+1328,consumption,потребление,İSİMLER,B2,FILE3
+1329,retail,розница,İSİMLER,B2,FILE3
+1330,wholesale,опт,İSİMLER,B2,FILE3
+1331,e-commerce,электронная коммерция,İSİMLER,B2,FILE3
+1332,loyalty card,карта лояльности,İSİMLER,B2,FILE3
+1333,impulse buy,импульсная покупка,İSİMLER,B2,FILE3
+1334,window shopping,разглядывание витрин,İSİMLER,B2,FILE3
+1335,bestseller,бестселлер,İSİMLER,B2,FILE3
+1336,counterfeit,подделка,İSİMLER,B2,FILE3
+1337,warranty,гарантия,İSİMLER,B2,FILE3
+1338,complaint,жалоба,İSİMLER,B2,FILE3
+1339,haggle,торговаться,FİİLLER,B2,FILE3
+1340,splurge,транжирить,FİİLLER,B2,FILE3
+1341,cut back,сокращать траты,FİİLLER,B2,FILE3
+1342,rip off,обдирать,FİİLLER,B2,FILE3
+1343,shop around,сравнивать цены,FİİLLER,B2,FILE3
+1344,overpriced,завышенный по цене,SIFATLAR,B2,FILE3
+1345,good value,выгодный,SIFATLAR,B2,FILE3
+1346,luxurious,роскошный,SIFATLAR,B2,FILE3
+1347,ethical,этичный,SIFATLAR,B2,FILE3
+1348,fast fashion,быстрая мода,İSİMLER,B2,FILE3
+1349,second-hand,секонд-хенд,SIFATLAR,B2,FILE3
+1350,brand-conscious,одержимый брендами,SIFATLAR,B2,FILE3
+1351,status symbol,символ статуса,İSİMLER,B2,FILE3
+1352,issue,"проблема, вопрос",İSİMLER,B2,FILE4
+1353,controversy,"спор, полемика",İSİMLER,B2,FILE4
+1354,debate,дебаты,İSİMLER,B2,FILE4
+1355,argument,"аргумент, спор",İSİMLER,B2,FILE4
+1356,claim,утверждение,İSİMLER,B2,FILE4
+1357,opinion,мнение,İSİMLER,B2,FILE4
+1358,point of view,точка зрения,İSİMLER,B2,FILE4
+1359,pros and cons,плюсы и минусы,İSİMLER,B2,FILE4
+1360,trade-off,компромисс,İSİMLER,B2,FILE4
+1361,address,"рассматривать, решать",FİİLLER,B2,FILE4
+1362,tackle,браться за проблему,FİİLLER,B2,FILE4
+1363,overlook,упускать,FİİLLER,B2,FILE4
+1364,exaggerate,преувеличивать,FİİLLER,B2,FILE4
+1365,underestimate,недооценивать,FİİLLER,B2,FILE4
+1366,justify,оправдывать,FİİLLER,B2,FILE4
+1367,object to,возражать против,FİİLLER,B2,FILE4
+1368,in favour of,за,KALIP İFADELER,B2,FILE4
+1369,against,против,EDATLAR / BAĞLAÇLAR,B2,FILE4
+1370,as far as I am concerned,что касается меня,KALIP İFADELER,B2,FILE4
+1371,to a certain extent,в определённой степени,KALIP İFADELER,B2,FILE4
+1372,on the one hand,с одной стороны,KALIP İFADELER,B2,FILE4
+1373,on the other hand,с другой стороны,KALIP İFADELER,B2,FILE4
+1374,controversial,спорный,SIFATLAR,B2,FILE4
+1375,convincing,убедительный,SIFATLAR,B2,FILE4
+1376,objective,объективный,SIFATLAR,B2,FILE4
+1377,body,тело,İSİMLER,B2,FILE5
+1378,posture,осанка,İSİMLER,B2,FILE5
+1379,gesture,жест,İSİMLER,B2,FILE5
+1380,facial expression,выражение лица,İSİMLER,B2,FILE5
+1381,eye contact,зрительный контакт,İSİMLER,B2,FILE5
+1382,handshake,рукопожатие,İSİMLER,B2,FILE5
+1383,personal space,личное пространство,İSİMLER,B2,FILE5
+1384,body language,язык тела,İSİMLER,B2,FILE5
+1385,tone of voice,тон голоса,İSİMLER,B2,FILE5
+1386,shrug,пожимать плечами,FİİLLER,B2,FILE5
+1387,nod,кивать,FİİLLER,B2,FILE5
+1388,frown,хмуриться,FİİLLER,B2,FILE5
+1389,yawn,зевать,FİİLLER,B2,FILE5
+1390,blush,краснеть,FİİLLER,B2,FILE5
+1391,stare,пристально смотреть,FİİLLER,B2,FILE5
+1392,glance,взглянуть,FİİLLER,B2,FILE5
+1393,whisper,шептать,FİİLLER,B2,FILE5
+1394,shout,кричать,FİİLLER,B2,FILE5
+1395,interrupt,перебивать,FİİLLER,B2,FILE5
+1396,get the wrong end of the stick,неправильно понять,KALIP İFADELER,B2,FILE5
+1397,break the ice,снять напряжение,KALIP İFADELER,B2,FILE5
+1398,small talk,светская беседа,İSİMLER,B2,FILE5
+1399,awkward,неловкий,SIFATLAR,B2,FILE5
+1400,spontaneous,спонтанный,SIFATLAR,B2,FILE5
+1401,tactful,тактичный,SIFATLAR,B2,FILE5
+1402,blunt,прямолинейный,SIFATLAR,B2,FILE5
+1403,science,наука,İSİMLER,B2,FILE6
+1404,experiment,эксперимент,İSİMLER,B2,FILE6
+1405,theory,теория,İSİMLER,B2,FILE6
+1406,hypothesis,гипотеза,İSİMLER,B2,FILE6
+1407,lab,лаборатория,İSİMLER,B2,FILE6
+1408,researcher,исследователь,İSİMLER,B2,FILE6
+1409,discovery,открытие,İSİMLER,B2,FILE6
+1410,innovation,инновация,İSİMLER,B2,FILE6
+1411,breakthrough,прорыв,İSİMLER,B2,FILE6
+1412,side effect,побочный эффект,İSİMLER,B2,FILE6
+1413,vaccine,вакцина,İSİMLER,B2,FILE6
+1414,gene,ген,İSİMLER,B2,FILE6
+1415,DNA,ДНК,İSİMLER,B2,FILE6
+1416,clone,клон,İSİMLER,B2,FILE6
+1417,prove,доказывать,FİİLLER,B2,FILE6
+1418,disprove,опровергать,FİİLLER,B2,FILE6
+1419,analyse,анализировать,FİİLLER,B2,FILE6
+1420,measure,измерять,FİİLLER,B2,FILE6
+1421,observe,наблюдать,FİİLLER,B2,FILE6
+1422,conclude,делать вывод,FİİLLER,B2,FILE6
+1423,carry out,проводить,FİİLLER,B2,FILE6
+1424,come up with,придумывать,FİİLLER,B2,FILE6
+1425,accurate,точный,SIFATLAR,B2,FILE6
+1426,groundbreaking,новаторский,SIFATLAR,B2,FILE6
+1427,ethical dilemma,этическая дилемма,İSİMLER,B2,FILE6
+1428,peer review,рецензирование,İSİMLER,B2,FILE6
+1429,art,искусство,İSİMLER,B2,FILE7
+1430,painting,"картина, живопись",İSİMLER,B2,FILE7
+1431,sculpture,скульптура,İSİMLER,B2,FILE7
+1432,gallery,галерея,İSİMLER,B2,FILE7
+1433,masterpiece,шедевр,İSİMLER,B2,FILE7
+1434,audience,"аудитория, публика",İSİMLER,B2,FILE7
+1435,performance,выступление,İSİMLER,B2,FILE7
+1436,rehearsal,репетиция,İSİMLER,B2,FILE7
+1437,stage,сцена,İSİMLER,B2,FILE7
+1438,plot,сюжет,İSİMLER,B2,FILE7
+1439,character,персонаж,İSİMLER,B2,FILE7
+1440,novel,роман,İSİMLER,B2,FILE7
+1441,poetry,поэзия,İSİMLER,B2,FILE7
+1442,lyrics,текст песни,İSİMLER,B2,FILE7
+1443,compose,сочинять,FİİLLER,B2,FILE7
+1444,perform,исполнять,FİİLLER,B2,FILE7
+1445,portray,изображать,FİİLLER,B2,FILE7
+1446,depict,изображать,FİİLLER,B2,FILE7
+1447,inspire,вдохновлять,FİİLLER,B2,FILE7
+1448,appreciate,ценить,FİİLLER,B2,FILE7
+1449,abstract,абстрактный,SIFATLAR,B2,FILE7
+1450,realistic,реалистичный,SIFATLAR,B2,FILE7
+1451,moving,трогательный,SIFATLAR,B2,FILE7
+1452,thought-provoking,наводящий на размышления,SIFATLAR,B2,FILE7
+1453,overrated,переоценённый,SIFATLAR,B2,FILE7
+1454,underrated,недооценённый,SIFATLAR,B2,FILE7
+1455,box office,кассовые сборы,İSİMLER,B2,FILE7
+1456,soundtrack,саундтрек,İSİMLER,B2,FILE7
+1457,weather extreme,экстремальная погода,İSİMLER,B2,FILE8
+1458,hurricane,ураган,İSİMLER,B2,FILE8
+1459,tornado,торнадо,İSİMLER,B2,FILE8
+1460,earthquake,землетрясение,İSİMLER,B2,FILE8
+1461,tsunami,цунами,İSİMLER,B2,FILE8
+1462,wildfire,лесной пожар,İSİMLER,B2,FILE8
+1463,avalanche,лавина,İSİMLER,B2,FILE8
+1464,landslide,оползень,İSİMLER,B2,FILE8
+1465,famine,голод,İSİMLER,B2,FILE8
+1466,outbreak,вспышка (болезни),İSİMLER,B2,FILE8
+1467,evacuate,эвакуировать,FİİLLER,B2,FILE8
+1468,rescue,спасать,FİİLLER,B2,FILE8
+1469,survive,выживать,FİİLLER,B2,FILE8
+1470,rebuild,восстанавливать,FİİLLER,B2,FILE8
+1471,donate,жертвовать,FİİLLER,B2,FILE8
+1472,volunteer,работать волонтёром,FİİLLER,B2,FILE8
+1473,warn,предупреждать,FİİLLER,B2,FILE8
+1474,devastating,разрушительный,SIFATLAR,B2,FILE8
+1475,severe,"сильный, суровый",SIFATLAR,B2,FILE8
+1476,mild,мягкий,SIFATLAR,B2,FILE8
+1477,unpredictable,непредсказуемый,SIFATLAR,B2,FILE8
+1478,natural disaster,стихийное бедствие,İSİMLER,B2,FILE8
+1479,aid,помощь,İSİMLER,B2,FILE8
+1480,shelter,убежище,İSİMLER,B2,FILE8
+1481,casualty,пострадавший,İSİMLER,B2,FILE8
+1482,law,закон,İSİMLER,B2,FILE9
+1483,right,право,İSİMLER,B2,FILE9
+1484,duty,обязанность,İSİMLER,B2,FILE9
+1485,citizen,гражданин,İSİMLER,B2,FILE9
+1486,government,правительство,İSİMLER,B2,FILE9
+1487,election,выборы,İSİMLER,B2,FILE9
+1488,vote,"голос, голосовать",İSİMLER,B2,FILE9
+1489,campaign,кампания,İSİMLER,B2,FILE9
+1490,policy,политика (курс),İSİMLER,B2,FILE9
+1491,protest,протест,İSİMLER,B2,FILE9
+1492,petition,петиция,İSİMLER,B2,FILE9
+1493,freedom of speech,свобода слова,İSİMLER,B2,FILE9
+1494,human rights,права человека,İSİMLER,B2,FILE9
+1495,ban,запрещать,FİİLLER,B2,FILE9
+1496,legalise,легализовать,FİİLLER,B2,FILE9
+1497,enforce,обеспечивать соблюдение,FİİLLER,B2,FILE9
+1498,abolish,"отменять, упразднять",FİİLLER,B2,FILE9
+1499,elect,избирать,FİİLLER,B2,FILE9
+1500,demonstrate,"демонстрировать, митинговать",FİİLLER,B2,FILE9
+1501,fair,справедливый,SIFATLAR,B2,FILE9
+1502,unfair,несправедливый,SIFATLAR,B2,FILE9
+1503,democratic,демократический,SIFATLAR,B2,FILE9
+1504,corrupt,коррумпированный,SIFATLAR,B2,FILE9
+1505,civil,гражданский,SIFATLAR,B2,FILE9
+1506,public opinion,общественное мнение,İSİMLER,B2,FILE9
+1507,food industry,пищевая промышленность,İSİMLER,B2,FILE10
+1508,supply chain,цепочка поставок,İSİMLER,B2,FILE10
+1509,organic farming,органическое земледелие,İSİMLER,B2,FILE10
+1510,pesticide,пестицид,İSİMLER,B2,FILE10
+1511,additives,добавки,İSİMLER,B2,FILE10
+1512,preservative,консервант,İSİMLER,B2,FILE10
+1513,nutrition,питание,İSİMLER,B2,FILE10
+1514,calorie,калория,İSİMLER,B2,FILE10
+1515,protein,белок,İSİMLER,B2,FILE10
+1516,carbohydrate,углевод,İSİMLER,B2,FILE10
+1517,obesity,ожирение,İSİMLER,B2,FILE10
+1518,malnutrition,недоедание,İSİMLER,B2,FILE10
+1519,food waste,пищевые отходы,İSİMLER,B2,FILE10
+1520,food miles,продовольственные мили,İSİMLER,B2,FILE10
+1521,harvest,"урожай, собирать урожай",İSİMLER,B2,FILE10
+1522,crop,сельхозкультура,İSİMLER,B2,FILE10
+1523,livestock,скот,İSİMLER,B2,FILE10
+1524,seafood,морепродукты,İSİMLER,B2,FILE10
+1525,craving,тяга (к еде),İSİMLER,B2,FILE10
+1526,appetite,аппетит,İSİMLER,B2,FILE10
+1527,digest,переваривать,FİİLLER,B2,FILE10
+1528,skip a meal,пропускать приём пищи,FİİLLER,B2,FILE10
+1529,put on weight,набирать вес,FİİLLER,B2,FILE10
+1530,lose weight,худеть,FİİLLER,B2,FILE10
+1531,nutritious,питательный,SIFATLAR,B2,FILE10
+1532,bland,пресный,SIFATLAR,B2,FILE10
+1533,rich,"сытный, насыщенный",SIFATLAR,B2,FILE10
+1534,raw,сырой,SIFATLAR,B2,FILE10
+1535,concentration,концентрация,İSİMLER,B2,FILE11
+1536,intelligence,интеллект,İSİMLER,B2,FILE11
+1537,creativity,креативность,İSİMLER,B2,FILE11
+1538,instinct,инстинкт,İSİMLER,B2,FILE11
+1539,intuition,интуиция,İSİMLER,B2,FILE11
+1540,emotion,эмоция,İSİMLER,B2,FILE11
+1541,mood,настроение,İSİMLER,B2,FILE11
+1542,anxiety,тревога,İSİMLER,B2,FILE11
+1543,depression,депрессия,İSİMLER,B2,FILE11
+1544,self-esteem,самооценка,İSİMLER,B2,FILE11
+1545,motivation,мотивация,İSİMLER,B2,FILE11
+1546,recall,вспоминать,FİİLLER,B2,FILE11
+1547,remind,напоминать,FİİLLER,B2,FILE11
+1548,distract,отвлекать,FİİLLER,B2,FILE11
+1549,focus,фокусироваться,FİİLLER,B2,FILE11
+1550,cope with,справляться с,FİİLLER,B2,FILE11
+1551,bottle up,сдерживать (чувства),FİİLLER,B2,FILE11
+1552,cheer up,подбодрить,FİİLLER,B2,FILE11
+1553,calm down,успокаиваться,FİİLLER,B2,FILE11
+1554,absent-minded,рассеянный,SIFATLAR,B2,FILE11
+1555,sharp,острый умом,SIFATLAR,B2,FILE11
+1556,gifted,одарённый,SIFATLAR,B2,FILE11
+1557,overwhelmed,перегруженный,SIFATLAR,B2,FILE11
+1558,mind goes blank,ум заходит за разум,KALIP İFADELER,B2,FILE11
+1559,learn by heart,учить наизусть,KALIP İFADELER,B2,FILE11
+1560,phrase,фраза,İSİMLER,B2,FILE12
+1561,idiom,идиома,İSİMLER,B2,FILE12
+1562,collocation,коллокация,İSİMLER,B2,FILE12
+1563,phrasal verb,фразовый глагол,İSİMLER,B2,FILE12
+1564,register,регистр речи,İSİMLER,B2,FILE12
+1565,slang,сленг,İSİMLER,B2,FILE12
+1566,formal,официальный,SIFATLAR,B2,FILE12
+1567,informal,неформальный,SIFATLAR,B2,FILE12
+1568,literal,буквальный,SIFATLAR,B2,FILE12
+1569,figurative,переносный,SIFATLAR,B2,FILE12
+1570,nuance,нюанс,İSİMLER,B2,FILE12
+1571,get across,донести мысль,FİİLLER,B2,FILE12
+1572,sum up,подводить итог,FİİLLER,B2,FILE12
+1573,point out,указывать,FİİLLER,B2,FILE12
+1574,bring up,поднимать тему,FİİLLER,B2,FILE12
+1575,make sense,иметь смысл,FİİLLER,B2,FILE12
+1576,miss the point,не уловить суть,FİİLLER,B2,FILE12
+1577,in other words,другими словами,KALIP İFADELER,B2,FILE12
+1578,that is to say,то есть,KALIP İFADELER,B2,FILE12
+1579,as a matter of fact,на самом деле,KALIP İFADELER,B2,FILE12
+1580,by the way,кстати,KALIP İFADELER,B2,FILE12
+1581,to be honest,честно говоря,KALIP İFADELER,B2,FILE12
+1582,needless to say,излишне говорить,KALIP İFADELER,B2,FILE12
+1583,bear in mind,иметь в виду,KALIP İFADELER,B2,FILE12
+1584,take into account,принимать во внимание,KALIP İFADELER,B2,FILE12
+1585,on second thoughts,по зрелом размышлении,KALIP İFADELER,B2,FILE12
+1586,the bottom line,"суть, итог",İSİMLER,B2,FILE12
+1587,subtlety,тонкость,İSİMLER,C1,FILE1
+1588,implication,"подтекст, следствие",İSİMLER,C1,FILE1
+1589,assumption,допущение,İSİMLER,C1,FILE1
+1590,premise,посылка,İSİMLER,C1,FILE1
+1591,fallacy,заблуждение,İSİMLER,C1,FILE1
+1592,rhetoric,риторика,İSİMLER,C1,FILE1
+1593,discourse,дискурс,İSİMLER,C1,FILE1
+1594,narrative,нарратив,İSİMLER,C1,FILE1
+1595,convey,передавать (смысл),FİİLLER,C1,FILE1
+1596,imply,подразумевать,FİİLLER,C1,FILE1
+1597,infer,делать вывод,FİİLLER,C1,FILE1
+1598,assert,утверждать,FİİLLER,C1,FILE1
+1599,concede,признавать,FİİLLER,C1,FILE1
+1600,refute,опровергать,FİİLLER,C1,FILE1
+1601,articulate,чётко формулировать,FİİLLER,C1,FILE1
+1602,underscore,подчёркивать,FİİLLER,C1,FILE1
+1603,compelling,убедительный,SIFATLAR,C1,FILE1
+1604,tenuous,шаткий,SIFATLAR,C1,FILE1
+1605,unequivocal,недвусмысленный,SIFATLAR,C1,FILE1
+1606,ambiguous,двусмысленный,SIFATLAR,C1,FILE1
+1607,on the contrary,напротив,KALIP İFADELER,C1,FILE1
+1608,by the same token,по той же логике,KALIP İFADELER,C1,FILE1
+1609,that said,при этом,KALIP İFADELER,C1,FILE1
+1610,all things considered,учитывая всё,KALIP İFADELER,C1,FILE1
+1611,urbanisation,урбанизация,İSİMLER,C1,FILE2
+1612,infrastructure,инфраструктура,İSİMLER,C1,FILE2
+1613,gentrification,джентрификация,İSİMLER,C1,FILE2
+1614,sprawl,расползание города,İSİMLER,C1,FILE2
+1615,congestion,"затор, перегрузка",İSİMLER,C1,FILE2
+1616,affordable housing,доступное жильё,İSİMLER,C1,FILE2
+1617,public realm,общественное пространство,İSİMLER,C1,FILE2
+1618,liveable,пригодный для жизни,SIFATLAR,C1,FILE2
+1619,run-down,запущенный,SIFATLAR,C1,FILE2
+1620,up-and-coming,перспективный (район),SIFATLAR,C1,FILE2
+1621,relocate,переезжать,FİİLLER,C1,FILE2
+1622,regenerate,обновлять (район),FİİLLER,C1,FILE2
+1623,pedestrianise,делать пешеходным,FİİLLER,C1,FILE2
+1624,densify,уплотнять застройку,FİİLLER,C1,FILE2
+1625,15-minute city,город 15 минут,İSİMLER,C1,FILE2
+1626,mixed-use,смешанного назначения,SIFATLAR,C1,FILE2
+1627,algorithm,алгоритм,İSİMLER,C1,FILE3
+1628,data privacy,конфиденциальность данных,İSİMLER,C1,FILE3
+1629,surveillance,слежка,İSİMLER,C1,FILE3
+1630,misinformation,дезинформация,İSİMLER,C1,FILE3
+1631,disinformation,намеренная дезинформация,İSİMLER,C1,FILE3
+1632,echo chamber,эхо-камера,İSİMLER,C1,FILE3
+1633,filter bubble,информационный пузырь,İSİMLER,C1,FILE3
+1634,deepfake,дипфейк,İSİMLER,C1,FILE3
+1635,automation,автоматизация,İSİMLER,C1,FILE3
+1636,disruption,подрыв уклада,İSİMLER,C1,FILE3
+1637,scalability,масштабируемость,İSİMLER,C1,FILE3
+1638,interoperability,совместимость,İSİMLER,C1,FILE3
+1639,monetise,монетизировать,FİİLLER,C1,FILE3
+1640,harvest data,собирать данные,FİİLLER,C1,FILE3
+1641,opt out,отказаться,FİİLLER,C1,FILE3
+1642,encrypt,шифровать,FİİLLER,C1,FILE3
+1643,pervasive,всепроникающий,SIFATLAR,C1,FILE3
+1644,intrusive,навязчивый,SIFATLAR,C1,FILE3
+1645,obsolete,устаревший,SIFATLAR,C1,FILE3
+1646,cutting-edge,передовой,SIFATLAR,C1,FILE3
+1647,inequality,неравенство,İSİMLER,C1,FILE4
+1648,social mobility,социальная мобильность,İSİMLER,C1,FILE4
+1649,welfare,соцобеспечение,İSİMLER,C1,FILE4
+1650,austerity,режим экономии,İSİMLER,C1,FILE4
+1651,subsidy,субсидия,İSİMLER,C1,FILE4
+1652,living wage,прожиточный минимум (достойный),İSİMLER,C1,FILE4
+1653,poverty line,черта бедности,İSİMLER,C1,FILE4
+1654,meritocracy,меритократия,İSİMLER,C1,FILE4
+1655,nepotism,непотизм,İSİMLER,C1,FILE4
+1656,glass ceiling,стеклянный потолок,İSİMLER,C1,FILE4
+1657,privilege,привилегия,İSİMLER,C1,FILE4
+1658,redistribute,перераспределять,FİİLLER,C1,FILE4
+1659,empower,наделять возможностями,FİİLLER,C1,FILE4
+1660,marginalise,маргинализировать,FİİLLER,C1,FILE4
+1661,stigmatise,стигматизировать,FİİLLER,C1,FILE4
+1662,entrenched,укоренившийся,SIFATLAR,C1,FILE4
+1663,systemic,системный,SIFATLAR,C1,FILE4
+1664,equitable,"справедливый, равный",SIFATLAR,C1,FILE4
+1665,precarious,нестабильный,SIFATLAR,C1,FILE4
+1666,climate crisis,климатический кризис,İSİMLER,C1,FILE5
+1667,tipping point,переломный момент,İSİMLER,C1,FILE5
+1668,net zero,нулевые выбросы,İSİMLER,C1,FILE5
+1669,carbon offset,углеродный офсет,İSİMLER,C1,FILE5
+1670,biodiversity,биоразнообразие,İSİMLER,C1,FILE5
+1671,ecosystem,экосистема,İSİMLER,C1,FILE5
+1672,circular economy,циркулярная экономика,İSİMLER,C1,FILE5
+1673,greenwashing,гринвошинг,İSİMLER,C1,FILE5
+1674,mitigate,смягчать,FİİLLER,C1,FILE5
+1675,adapt,адаптироваться,FİİLLER,C1,FILE5
+1676,phase out,постепенно отказываться,FİİLLER,C1,FILE5
+1677,offset,компенсировать,FİİLLER,C1,FILE5
+1678,irreversible,необратимый,SIFATLAR,C1,FILE5
+1679,anthropogenic,антропогенный,SIFATLAR,C1,FILE5
+1680,resilient,устойчивый,SIFATLAR,C1,FILE5
+1681,finite,конечный,SIFATLAR,C1,FILE5
+1682,the precautionary principle,принцип предосторожности,İSİMLER,C1,FILE5
+1683,journalism,журналистика,İSİMLER,C1,FILE6
+1684,editorial,"передовица, редакционная",İSİMLER,C1,FILE6
+1685,op-ed,авторская колонка,İSİMLER,C1,FILE6
+1686,whistleblower,разоблачитель,İSİMLER,C1,FILE6
+1687,leak,утечка,İSİMLER,C1,FILE6
+1688,scoop,"сенсация, эксклюзив",İSİMLER,C1,FILE6
+1689,paywall,платный доступ,İSİMLER,C1,FILE6
+1690,clickbait,кликбейт,İSİMLER,C1,FILE6
+1691,corroborate,подтверждать,FİİLLER,C1,FILE6
+1692,retract,отзывать (материал),FİİLLER,C1,FILE6
+1693,sensationalise,сенсационализировать,FİİLLER,C1,FILE6
+1694,fact-check,проверять факты,FİİLLER,C1,FILE6
+1695,investigative,расследовательский,SIFATLAR,C1,FILE6
+1696,libelous,клеветнический,SIFATLAR,C1,FILE6
+1697,off the record,не для печати,KALIP İFADELER,C1,FILE6
+1698,on the record,официально,KALIP İFADELER,C1,FILE6
+1699,cognition,познание,İSİMLER,C1,FILE7
+1700,confirmation bias,склонность подтверждать своё,İSİMLER,C1,FILE7
+1701,cognitive dissonance,когнитивный диссонанс,İSİMLER,C1,FILE7
+1702,placebo,плацебо,İSİMLER,C1,FILE7
+1703,mindset,установка,İSİMLER,C1,FILE7
+1704,resilience,устойчивость психики,İSİMLER,C1,FILE7
+1705,agency,субъектность,İSİMLER,C1,FILE7
+1706,internalise,интернализировать,FİİLLER,C1,FILE7
+1707,rationalise,рационализировать,FİİLLER,C1,FILE7
+1708,procrastinate,откладывать,FİİLLER,C1,FILE7
+1709,catastrophise,катастрофизировать,FİİLLER,C1,FILE7
+1710,empathetic,эмпатичный,SIFATLAR,C1,FILE7
+1711,impulsive,импульсивный,SIFATLAR,C1,FILE7
+1712,introspective,склонный к самоанализу,SIFATLAR,C1,FILE7
+1713,neurodivergent,нейроотличный,SIFATLAR,C1,FILE7
+1714,geopolitics,геополитика,İSİMLER,C1,FILE8
+1715,diplomacy,дипломатия,İSİMLER,C1,FILE8
+1716,sovereignty,суверенитет,İSİMLER,C1,FILE8
+1717,sanction,санкция,İSİMLER,C1,FILE8
+1718,treaty,договор,İSİMLER,C1,FILE8
+1719,alliance,альянс,İSİMLER,C1,FILE8
+1720,soft power,мягкая сила,İSİMLER,C1,FILE8
+1721,proxy war,прокси-война,İSİMLER,C1,FILE8
+1722,escalate,эскалировать,FİİLLER,C1,FILE8
+1723,de-escalate,снижать напряжённость,FİİLLER,C1,FILE8
+1724,broker,посредничать,FİİLLER,C1,FILE8
+1725,annex,аннексировать,FİİLLER,C1,FILE8
+1726,volatile,нестабильный,SIFATLAR,C1,FILE8
+1727,multilateral,многосторонний,SIFATLAR,C1,FILE8
+1728,unilateral,односторонний,SIFATLAR,C1,FILE8
+1729,humanitarian,гуманитарный,SIFATLAR,C1,FILE8
+1730,aesthetics,эстетика,İSİMLER,C1,FILE9
+1731,canon,канон,İSİMLER,C1,FILE9
+1732,trope,"троп, штамп",İSİMLER,C1,FILE9
+1733,subtext,подтекст,İSİMLER,C1,FILE9
+1734,pacing,темп повествования,İSİMLER,C1,FILE9
+1735,voice,голос (автора),İSİMLER,C1,FILE9
+1736,intertextuality,интертекстуальность,İSİMLER,C1,FILE9
+1737,critique,критический разбор,İSİMLER,C1,FILE9
+1738,curate,кураторствовать,FİİLLER,C1,FILE9
+1739,subvert,подрывать ожидания,FİİLLER,C1,FILE9
+1740,evoke,вызывать (чувство),FİİLLER,C1,FILE9
+1741,resonate,находить отклик,FİİLLER,C1,FILE9
+1742,derivative,вторичный,SIFATLAR,C1,FILE9
+1743,seminal,основополагающий,SIFATLAR,C1,FILE9
+1744,iconic,знаковый,SIFATLAR,C1,FILE9
+1745,kitsch,китч,İSİMLER,C1,FILE9
+1746,hedging,смягчение формулировок,İSİMLER,C1,FILE10
+1747,understatement,преуменьшение,İSİMLER,C1,FILE10
+1748,irony,ирония,İSİMLER,C1,FILE10
+1749,sarcasm,сарказм,İSİMLER,C1,FILE10
+1750,euphemism,эвфемизм,İSİMLER,C1,FILE10
+1751,dysphemism,дисфемизм,İSİMLER,C1,FILE10
+1752,connotation,коннотация,İSİMLER,C1,FILE10
+1753,denotation,прямое значение,İSİMLER,C1,FILE10
+1754,hedge,смягчать высказывание,FİİLLER,C1,FILE10
+1755,it would appear,"похоже, что",KALIP İFADELER,C1,FILE10
+1756,to put it mildly,мягко говоря,KALIP İFADELER,C1,FILE10
+1757,for want of a better word,за неимением лучшего слова,KALIP İFADELER,C1,FILE10
+1758,with hindsight,оглядываясь назад,KALIP İFADELER,C1,FILE10
+1759,in retrospect,ретроспективно,KALIP İFADELER,C1,FILE10
+1760,equivocate,увиливать,FİİLLER,C2,FILE1
+1761,obfuscate,запутывать,FİİLLER,C2,FILE1
+1762,elide,"опускать, элидировать",FİİLLER,C2,FILE1
+1763,posit,постулировать,FİİLLER,C2,FILE1
+1764,adumbrate,намечать в общих чертах,FİİLLER,C2,FILE1
+1765,parse,"разбирать, анализировать",FİİLLER,C2,FILE1
+1766,aporia,апория,İSİMLER,C2,FILE1
+1767,apotheosis,апофеоз,İSİMLER,C2,FILE1
+1768,anomie,аномия,İSİMLER,C2,FILE1
+1769,praxis,"практика, праксис",İSİMLER,C2,FILE1
+1770,sui generis,уникальный в своём роде,SIFATLAR,C2,FILE1
+1771,sclerotic,закостенелый,SIFATLAR,C2,FILE1
+1772,inchoate,зарождающийся,SIFATLAR,C2,FILE1
+1773,liminal,пороговый,SIFATLAR,C2,FILE1
+1774,fiduciary,фидуциарный,SIFATLAR,C2,FILE2
+1775,rent-seeking,рентоориентированный,SIFATLAR,C2,FILE2
+1776,moral hazard,моральный риск,İSİMLER,C2,FILE2
+1777,externality,экстерналия,İSİMLER,C2,FILE2
+1778,deadweight loss,чистые потери,İSİMLER,C2,FILE2
+1779,arbitrage,арбитраж,İSİMLER,C2,FILE2
+1780,liquidity,ликвидность,İSİMLER,C2,FILE2
+1781,solvency,платёжеспособность,İSİMLER,C2,FILE2
+1782,leverage,кредитное плечо,İSİMLER,C2,FILE2
+1783,contagion,заражение (рынков),İSİMLER,C2,FILE2
+1784,unwind,сворачивать позицию,FİİLLER,C2,FILE2
+1785,front-run,опережать сделки,FİİLLER,C2,FILE2
+1786,jurisprudence,юриспруденция,İSİMLER,C2,FILE3
+1787,precedent,прецедент,İSİMLER,C2,FILE3
+1788,due process,надлежащая правовая процедура,İSİMLER,C2,FILE3
+1789,habeas corpus,хабеас корпус,İSİMLER,C2,FILE3
+1790,mens rea,"вина, умысел",İSİMLER,C2,FILE3
+1791,ultra vires,за пределами полномочий,SIFATLAR,C2,FILE3
+1792,injunction,судебный запрет,İSİMLER,C2,FILE3
+1793,liability,ответственность,İSİMLER,C2,FILE3
+1794,adjudicate,выносить решение,FİİLLER,C2,FILE3
+1795,indemnify,возмещать убытки,FİİLLER,C2,FILE3
+1796,estoppel,эстоппель,İSİMLER,C2,FILE3
+1797,tort,деликт,İSİMLER,C2,FILE3
+1798,phenomenology,феноменология,İSİMLER,C2,FILE4
+1799,epistemology,эпистемология,İSİMLER,C2,FILE4
+1800,ontology,онтология,İSİMLER,C2,FILE4
+1801,teleology,телеология,İSİMLER,C2,FILE4
+1802,dialectic,диалектика,İSİMLER,C2,FILE4
+1803,hermeneutics,герменевтика,İSİMLER,C2,FILE4
+1804,contingent,"случайный, обусловленный",SIFATLAR,C2,FILE4
+1805,necessary,необходимый (филос.),SIFATLAR,C2,FILE4
+1806,a priori,априори,SIFATLAR,C2,FILE4
+1807,a posteriori,апостериори,SIFATLAR,C2,FILE4
+1808,beg the question,исходить из недоказанного,KALIP İFADELER,C2,FILE4
+1809,straw man,подмена тезиса,İSİMLER,C2,FILE4
+1810,steel man,усиление аргумента оппонента,İSİMLER,C2,FILE4
+1811,pathophysiology,патофизиология,İSİMLER,C2,FILE5
+1812,comorbidity,коморбидность,İSİMLER,C2,FILE5
+1813,iatrogenic,ятрогенный,SIFATLAR,C2,FILE5
+1814,idiopathic,идиопатический,SIFATLAR,C2,FILE5
+1815,prognosis,прогноз,İSİMLER,C2,FILE5
+1816,aetiology,этиология,İSİMLER,C2,FILE5
+1817,randomised,рандомизированный,SIFATLAR,C2,FILE5
+1818,double-blind,двойной слепой,SIFATLAR,C2,FILE5
+1819,meta-analysis,метаанализ,İSİMLER,C2,FILE5
+1820,confounding variable,вмешивающаяся переменная,İSİMLER,C2,FILE5
+1821,effect size,размер эффекта,İSİMLER,C2,FILE5
+1822,p-hacking,подгонка p-значения,İSİMLER,C2,FILE5
+1823,intertextual,интертекстуальный,SIFATLAR,C2,FILE6
+1824,metafiction,метапроза,İSİMLER,C2,FILE6
+1825,unreliable narrator,ненадёжный рассказчик,İSİMLER,C2,FILE6
+1826,free indirect style,несобственно-прямая речь,İSİMLER,C2,FILE6
+1827,catharsis,катарсис,İSİMLER,C2,FILE6
+1828,hamartia,"гамартия, трагическая ошибка",İSİMLER,C2,FILE6
+1829,hubris,гордыня,İSİMLER,C2,FILE6
+1830,bathos,"батос, срыв в банальность",İSİMLER,C2,FILE6
+1831,defamiliarise,остранять,FİİLLER,C2,FILE6
+1832,focalise,фокализировать,FİİLLER,C2,FILE6
+1833,lingua franca,лингва франка,İSİMLER,C2,FILE7
+1834,code-switching,переключение кодов,İSİMLER,C2,FILE7
+1835,calque,калька,İSİMLER,C2,FILE7
+1836,loanword,заимствование,İSİMLER,C2,FILE7
+1837,pragmatics,прагматика,İSİMLER,C2,FILE7
+1838,speech act,речевой акт,İSİMLER,C2,FILE7
+1839,implicature,импликатура,İSİMLER,C2,FILE7
+1840,deixis,дейксис,İSİMLER,C2,FILE7
+1841,prosody,просодия,İSİMLER,C2,FILE7
+1842,register shift,сдвиг регистра,İSİMLER,C2,FILE7
+1843,discourse marker,дискурсивный маркер,İSİMLER,C2,FILE7
+1844,notwithstanding,несмотря на,EDATLAR / BAĞLAÇLAR,C2,FILE8
+1845,inasmuch as,поскольку,EDATLAR / BAĞLAÇLAR,C2,FILE8
+1846,insofar as,насколько,EDATLAR / BAĞLAÇLAR,C2,FILE8
+1847,albeit,хотя и,EDATLAR / BAĞLAÇLAR,C2,FILE8
+1848,whereby,посредством чего,EDATLAR / BAĞLAÇLAR,C2,FILE8
+1849,heretofore,до сих пор,ZARFLAR,C2,FILE8
+1850,therein,"в том, в этом",ZARFLAR,C2,FILE8
+1851,thereof,"того, этого",ZARFLAR,C2,FILE8
+1852,qua,в качестве,EDATLAR / BAĞLAÇLAR,C2,FILE8
+1853,pace,вопреки (автору),EDATLAR / BAĞLAÇLAR,C2,FILE8
+1854,mutatis mutandis,с соответствующими изменениями,KALIP İFADELER,C2,FILE8
+1855,ceteris paribus,при прочих равных,KALIP İFADELER,C2,FILE8
+1856,ipso facto,в силу самого факта,KALIP İFADELER,C2,FILE8
+1857,de facto,де-факто,KALIP İFADELER,C2,FILE8
+1858,de jure,де-юре,KALIP İFADELER,C2,FILE8
+1859,sine qua non,необходимое условие,İSİMLER,C2,FILE8
+1860,world,мир,İSİMLER,A1,FILE1
+1861,language,язык,İSİMLER,A1,FILE1
+1862,word,слово,İSİMLER,A1,FILE1
+1863,place,место,İSİMLER,A1,FILE1
+1864,year,год,İSİMLER,A1,FILE1
+1865,street,улица,İSİMLER,A1,FILE1
+1866,town,городок,İSİMLER,A1,FILE1
+1867,first,первый,SIFATLAR,A1,FILE1
+1868,last,последний,SIFATLAR,A1,FILE1
+1869,next,следующий,SIFATLAR,A1,FILE1
+1870,same,тот же,SIFATLAR,A1,FILE1
+1871,other,другой,SIFATLAR,A1,FILE1
+1872,wrong,неправильный,SIFATLAR,A1,FILE1
+1873,true,верный,SIFATLAR,A1,FILE1
+1874,false,ложный,SIFATLAR,A1,FILE1
+1875,ready,готовый,SIFATLAR,A1,FILE1
+1876,website,сайт,İSİMLER,A1,FILE2
+1877,photo,фото,İSİMLER,A1,FILE2
+1878,picture,картинка,İSİMLER,A1,FILE2
+1879,form,бланк,İSİMLER,A1,FILE2
+1880,paper,бумага,İSİMLER,A1,FILE2
+1881,page,страница,İSİMLER,A1,FILE2
+1882,line,строка,İSİMLER,A1,FILE2
+1883,class,класс,İSİMLER,A1,FILE2
+1884,example,пример,İSİMLER,A1,FILE2
+1885,mistake,ошибка,İSİMLER,A1,FILE2
+1886,spell,произносить по буквам,FİİLLER,A1,FILE2
+1887,repeat,повторять,FİİLLER,A1,FILE2
+1888,translate,переводить,FİİLLER,A1,FILE2
+1889,practise,практиковаться,FİİLLER,A1,FILE2
+1890,here,здесь,ZARFLAR,A1,FILE2
+1891,there,там,ZARFLAR,A1,FILE2
+1892,well,хорошо,ZARFLAR,A1,FILE2
+1893,too,"тоже, слишком",ZARFLAR,A1,FILE2
+1894,also,также,ZARFLAR,A1,FILE2
+1895,very,очень,ZARFLAR,A1,FILE2
+1896,box,коробка,İSİMLER,A1,FILE3
+1897,bottle,бутылка,İSİMLER,A1,FILE3
+1898,cup,чашка,İSİMLER,A1,FILE3
+1899,glass,"стакан, стекло",İSİMLER,A1,FILE3
+1900,plate,тарелка,İSİMLER,A1,FILE3
+1901,bowl,миска,İSİMLER,A1,FILE3
+1902,knife,нож,İSİMLER,A1,FILE3
+1903,fork,вилка,İSİMLER,A1,FILE3
+1904,spoon,ложка,İSİMLER,A1,FILE3
+1905,present,подарок,İSİMLER,A1,FILE3
+1906,toy,игрушка,İSİMLER,A1,FILE3
+1907,ball,мяч,İSİMLER,A1,FILE3
+1908,empty,пустой,SIFATLAR,A1,FILE3
+1909,full,полный,SIFATLAR,A1,FILE3
+1910,dirty,грязный,SIFATLAR,A1,FILE3
+1911,closed,закрытый,SIFATLAR,A1,FILE3
+1912,heavy,тяжёлый,SIFATLAR,A1,FILE3
+1913,light,"лёгкий, светлый",SIFATLAR,A1,FILE3
+1914,long,длинный,SIFATLAR,A1,FILE3
+1915,wide,широкий,SIFATLAR,A1,FILE3
+1916,baby,малыш,İSİMLER,A1,FILE4
+1917,guest,гость,İSİMLER,A1,FILE4
+1918,host,хозяин,İSİMLER,A1,FILE4
+1919,owner,владелец,İSİMLER,A1,FILE4
+1920,member,член,İSİMLER,A1,FILE4
+1921,group,группа,İSİMLER,A1,FILE4
+1922,couple,пара,İSİMLER,A1,FILE4
+1923,single,холостой / одна,İSİMLER,A1,FILE4
+1924,married,"женатый, замужем",SIFATLAR,A1,FILE4
+1925,strong,сильный,SIFATLAR,A1,FILE4
+1926,weak,слабый,SIFATLAR,A1,FILE4
+1927,nice to meet you,приятно познакомиться,KALIP İFADELER,A1,FILE4
+1928,how are you,как дела,KALIP İFADELER,A1,FILE4
+1929,see you later,увидимся позже,KALIP İFADELER,A1,FILE4
+1930,take care,береги себя,KALIP İFADELER,A1,FILE4
+1931,soup,суп,İSİMLER,A1,FILE5
+1932,pizza,пицца,İSİMLER,A1,FILE5
+1933,burger,бургер,İSİMLER,A1,FILE5
+1934,chips,картофель фри,İSİMLER,A1,FILE5
+1935,ice cream,мороженое,İSİMLER,A1,FILE5
+1936,cake,торт,İSİMLER,A1,FILE5
+1937,chocolate,шоколад,İSİMLER,A1,FILE5
+1938,biscuit,печенье,İSİMLER,A1,FILE5
+1939,honey,мёд,İSİMLER,A1,FILE5
+1940,salt,соль,İSİMLER,A1,FILE5
+1941,pepper,перец,İSİMLER,A1,FILE5
+1942,oil,масло растительное,İSİMLER,A1,FILE5
+1943,yogurt,йогурт,İSİMLER,A1,FILE5
+1944,cereal,хлопья,İSİMLER,A1,FILE5
+1945,toast,тост,İSİMLER,A1,FILE5
+1946,mix,смешивать,FİİLLER,A1,FILE5
+1947,pour,наливать,FİİLLER,A1,FILE5
+1948,serve,подавать,FİİLLER,A1,FILE5
+1949,factory,завод,İSİMLER,A1,FILE6
+1950,farm,ферма,İSİMLER,A1,FILE6
+1951,bank,банк,İSİMLER,A1,FILE6
+1952,post office,почта,İSİMLER,A1,FILE6
+1953,library,библиотека,İSİMLER,A1,FILE6
+1954,pool,бассейн,İSİMLER,A1,FILE6
+1955,guitar,гитара,İSİMLER,A1,FILE7
+1956,piano,пианино,İSİMLER,A1,FILE7
+1957,song,песня,İSİMLER,A1,FILE7
+1958,band,группа,İSİMLER,A1,FILE7
+1959,dancer,танцор,İSİMLER,A1,FILE7
+1960,film star,кинозвезда,İSİMLER,A1,FILE7
+1961,radio,радио,İSİMLER,A1,FILE7
+1962,TV,телевизор,İSİMLER,A1,FILE7
+1963,puzzle,головоломка,İSİMLER,A1,FILE7
+1964,listen to,слушать,FİİLLER,A1,FILE7
+1965,collect,коллекционировать,FİİLLER,A1,FILE7
+1966,ability,способность,İSİMLER,A1,FILE8
+1967,problem,проблема,İSİMLER,A1,FILE8
+1968,idea,идея,İSİMLER,A1,FILE8
+1969,advice,совет,İSİMLER,A1,FILE8
+1970,information,информация,İSİMLER,A1,FILE8
+1971,explain,объяснять,FİİLLER,A1,FILE8
+1972,check,проверять,FİİLLER,A1,FILE8
+1973,possible,возможный,SIFATLAR,A1,FILE8
+1974,impossible,невозможный,SIFATLAR,A1,FILE8
+1975,important,важный,SIFATLAR,A1,FILE8
+1976,useful,полезный,SIFATLAR,A1,FILE8
+1977,sweater,свитер,İSİMLER,A1,FILE9
+1978,hoodie,худи,İSİMLER,A1,FILE9
+1979,cap,кепка,İSİMLER,A1,FILE9
+1980,belt,ремень,İSİMLER,A1,FILE9
+1981,pocket,карман,İSİMLER,A1,FILE9
+1982,button,пуговица,İSİMLER,A1,FILE9
+1983,pair,пара,İSİMLER,A1,FILE9
+1984,cotton,хлопок,İSİMLER,A1,FILE9
+1985,wool,шерсть,İSİMLER,A1,FILE9
+1986,leather,кожа,İSİMLER,A1,FILE9
+1987,silk,шёлк,İSİMLER,A1,FILE9
+1988,tight,тесный,SIFATLAR,A1,FILE9
+1989,loose,свободный,SIFATLAR,A1,FILE9
+1990,smart,элегантный,SIFATLAR,A1,FILE9
+1991,casual,повседневный,SIFATLAR,A1,FILE9
+1992,fashionable,модный,SIFATLAR,A1,FILE9
+1993,blanket,одеяло,İSİMLER,A1,FILE10
+1994,sheet,простыня,İSİMLER,A1,FILE10
+1995,alarm clock,будильник,İSİMLER,A1,FILE10
+1996,toothbrush,зубная щётка,İSİMLER,A1,FILE10
+1997,soap,мыло,İSİMLER,A1,FILE10
+1998,shampoo,шампунь,İSİMLER,A1,FILE10
+1999,corridor,коридор,İSİMLER,A1,FILE10
+2000,wake up,просыпаться,FİİLLER,A1,FILE10
+2001,get dressed,одеваться,FİİLLER,A1,FILE10
+2002,have a shower,принимать душ,FİİLLER,A1,FILE10
+2003,have a bath,принимать ванну,FİİLLER,A1,FILE10
+2004,tidy,приводить в порядок,FİİLLER,A1,FILE10
+2005,rest,отдыхать,FİİLLER,A1,FILE10
+2006,build,строить,FİİLLER,A1,FILE11
+2007,fight,"драться, бороться",FİİLLER,A1,FILE11
+2008,road,дорога,İSİMLER,A1,FILE12
+2009,bridge,мост,İSİMLER,A1,FILE12
+2010,river,река,İSİMLER,A1,FILE12
+2011,sea,море,İSİMLER,A1,FILE12
+2012,hill,холм,İSİMLER,A1,FILE12
+2013,island,остров,İSİMLER,A1,FILE12
+2014,tree,дерево,İSİMLER,A1,FILE12
+2015,flower,цветок,İSİMLER,A1,FILE12
+2016,animal,животное,İSİMLER,A1,FILE12
+2017,dog,собака,İSİMLER,A1,FILE12
+2018,cat,кошка,İSİMLER,A1,FILE12
+2019,bird,птица,İSİMLER,A1,FILE12
+2020,horse,лошадь,İSİMLER,A1,FILE12
+2021,near,близкий,SIFATLAR,A1,FILE12
+2022,far,далёкий,SIFATLAR,A1,FILE12
+2023,high,высокий,SIFATLAR,A1,FILE12
+2024,low,низкий,SIFATLAR,A1,FILE12
+2025,deep,глубокий,SIFATLAR,A1,FILE12
+2026,dark,тёмный,SIFATLAR,A1,FILE12
+2027,bright,яркий,SIFATLAR,A1,FILE12
+2028,over there,вон там,KALIP İFADELER,A1,FILE12
+2029,this way,сюда,KALIP İFADELER,A1,FILE12
+2030,that way,туда,KALIP İFADELER,A1,FILE12
+2031,on the left,слева,KALIP İFADELER,A1,FILE12
+2032,on the right,справа,KALIP İFADELER,A1,FILE12
+2033,straight on,прямо,KALIP İFADELER,A1,FILE12
+2034,application,заявление,İSİMLER,A2,FILE1
+2035,candidate,кандидат,İSİMLER,A2,FILE1
+2036,qualification,квалификация,İSİMLER,A2,FILE1
+2037,training,обучение,İSİMLER,A2,FILE1
+2038,industry,отрасль,İSİMLER,A2,FILE1
+2039,staff,персонал,İSİMLER,A2,FILE1
+2040,department,отдел,İSİMLER,A2,FILE1
+2041,project,проект,İSİMLER,A2,FILE1
+2042,apply for,подавать заявку на,FİİLLER,A2,FILE1
+2043,look for,искать,FİİLLER,A2,FILE1
+2044,fill in,заполнять,FİİLLER,A2,FILE1
+2045,hand in,сдавать,FİİLLER,A2,FILE1
+2046,take on,брать на работу,FİİLLER,A2,FILE1
+2047,skin,кожа,İSİMLER,A2,FILE2
+2048,hair,волосы,İSİMLER,A2,FILE2
+2049,eye,глаз,İSİMLER,A2,FILE2
+2050,nose,нос,İSİMLER,A2,FILE2
+2051,mouth,рот,İSİMLER,A2,FILE2
+2052,ear,ухо,İSİMLER,A2,FILE2
+2053,face,лицо,İSİMLER,A2,FILE2
+2054,smile,улыбка,İSİMLER,A2,FILE2
+2055,height,рост,İSİMLER,A2,FILE2
+2056,weight,вес,İSİMLER,A2,FILE2
+2057,looks,внешность,İSİMLER,A2,FILE2
+2058,cheerful,жизнерадостный,SIFATLAR,A2,FILE2
+2059,serious,серьёзный,SIFATLAR,A2,FILE2
+2060,patient,терпеливый,SIFATLAR,A2,FILE2
+2061,impatient,нетерпеливый,SIFATLAR,A2,FILE2
+2062,brave,храбрый,SIFATLAR,A2,FILE2
+2063,cowardly,трусливый,SIFATLAR,A2,FILE2
+2064,organised,организованный,SIFATLAR,A2,FILE2
+2065,disorganised,неорганизованный,SIFATLAR,A2,FILE2
+2066,ceiling,потолок,İSİMLER,A2,FILE3
+2067,wall,стена,İSİMLER,A2,FILE3
+2068,roof,крыша,İSİMLER,A2,FILE3
+2069,fence,забор,İSİMLER,A2,FILE3
+2070,path,дорожка,İSİMLER,A2,FILE3
+2071,driveway,подъезд к дому,İSİMLER,A2,FILE3
+2072,basement,подвал,İSİMLER,A2,FILE3
+2073,attic,чердак,İSİMLER,A2,FILE3
+2074,chimney,дымоход,İSİMLER,A2,FILE3
+2075,doorbell,дверной звонок,İSİMLER,A2,FILE3
+2076,modern,современный,SIFATLAR,A2,FILE3
+2077,traditional,традиционный,SIFATLAR,A2,FILE3
+2078,cosy,уютный,SIFATLAR,A2,FILE3
+2079,tiny,крошечный,SIFATLAR,A2,FILE3
+2080,huge,огромный,SIFATLAR,A2,FILE3
+2081,invitation,приглашение,İSİMLER,A2,FILE4
+2082,guest list,список гостей,İSİMLER,A2,FILE4
+2083,festival,фестиваль,İSİMLER,A2,FILE4
+2084,parade,парад,İSİMLER,A2,FILE4
+2085,firework,фейерверк,İSİMLER,A2,FILE4
+2086,ticket office,билетная касса,İSİMLER,A2,FILE4
+2087,booking,бронь,İSİMLER,A2,FILE4
+2088,review,отзыв,İSİMLER,A2,FILE4
+2089,rating,рейтинг,İSİMLER,A2,FILE4
+2090,celebrate,праздновать,FİİLLER,A2,FILE4
+2091,organise,организовывать,FİİLLER,A2,FILE4
+2092,attend,посещать,FİİLLER,A2,FILE4
+2093,cheer,"болеть, подбадривать",FİİLLER,A2,FILE4
+2094,record,записывать,FİİLLER,A2,FILE4
+2095,thunder,гром,İSİMLER,A2,FILE5
+2096,lightning,молния,İSİMLER,A2,FILE5
+2097,rainbow,радуга,İSİMLER,A2,FILE5
+2098,ice,лёд,İSİMLER,A2,FILE5
+2099,frost,мороз,İSİMLER,A2,FILE5
+2100,humidity,влажность,İSİMLER,A2,FILE5
+2101,breeze,бриз,İSİMLER,A2,FILE5
+2102,gale,штормовой ветер,İSİMLER,A2,FILE5
+2103,shine,светить,FİİLLER,A2,FILE5
+2104,blow,дуть,FİİLLER,A2,FILE5
+2105,melt,таять,FİİLLER,A2,FILE5
+2106,clear up,проясняться,FİİLLER,A2,FILE5
+2107,how about,как насчёт,KALIP İFADELER,A2,FILE6
+2108,why don't we,почему бы нам не,KALIP İFADELER,A2,FILE6
+2109,let's,давай(те),KALIP İFADELER,A2,FILE6
+2110,I'd rather,я бы предпочёл,KALIP İFADELER,A2,FILE6
+2111,it depends,зависит,KALIP İFADELER,A2,FILE6
+2112,I'm afraid I can't,"боюсь, не могу",KALIP İFADELER,A2,FILE6
+2113,sounds good,звучит хорошо,KALIP İFADELER,A2,FILE6
+2114,count me in,я с вами,KALIP İFADELER,A2,FILE6
+2115,immediately,немедленно,ZARFLAR,A2,FILE6
+2116,eventually,в конце концов,ZARFLAR,A2,FILE6
+2117,currently,в настоящее время,ZARFLAR,A2,FILE6
+2118,previously,ранее,ZARFLAR,A2,FILE6
+2119,afterwards,впоследствии,ZARFLAR,A2,FILE6
+2120,anniversary,годовщина,İSİMLER,A2,FILE7
+2121,wedding,свадьба,İSİMLER,A2,FILE7
+2122,birthday,день рождения,İSİMLER,A2,FILE7
+2123,graduation,выпуск,İSİMLER,A2,FILE7
+2124,funeral,похороны,İSİMLER,A2,FILE7
+2125,reunion,воссоединение,İSİMLER,A2,FILE7
+2126,tradition,традиция,İSİMLER,A2,FILE7
+2127,custom,обычай,İSİMLER,A2,FILE7
+2128,ancestor,предок,İSİMLER,A2,FILE7
+2129,look back,оглядываться,FİİLLER,A2,FILE7
+2130,settle down,остепениться,FİİLLER,A2,FILE7
+2131,lane,полоса,İSİMLER,A2,FILE8
+2132,pavement,тротуар,İSİMLER,A2,FILE8
+2133,crossing,переход,İSİMLER,A2,FILE8
+2134,sign,знак,İSİMLER,A2,FILE8
+2135,speed limit,ограничение скорости,İSİMLER,A2,FILE8
+2136,seat belt,ремень безопасности,İSİMLER,A2,FILE8
+2137,helmet,шлем,İSİMLER,A2,FILE8
+2138,breakdown,поломка,İSİMLER,A2,FILE8
+2139,diesel,дизель,İSİMLER,A2,FILE8
+2140,overtake,обгонять,FİİLLER,A2,FILE8
+2141,brake,тормозить,FİİLLER,A2,FILE8
+2142,accelerate,ускоряться,FİİLLER,A2,FILE8
+2143,reverse,сдавать назад,FİİLLER,A2,FILE8
+2144,indicate,включать поворотник,FİİLLER,A2,FILE8
+2145,ingredient,ингредиент,İSİMLER,A2,FILE9
+2146,portion,порция,İSİMLER,A2,FILE9
+2147,pan,сковорода,İSİMLER,A2,FILE9
+2148,pot,кастрюля,İSİMLER,A2,FILE9
+2149,freezer,морозилка,İSİMLER,A2,FILE9
+2150,microwave,микроволновка,İSİMLER,A2,FILE9
+2151,kettle,чайник,İSİMLER,A2,FILE9
+2152,cooked,приготовленный,SIFATLAR,A2,FILE9
+2153,ripe,спелый,SIFATLAR,A2,FILE9
+2154,stale,чёрствый,SIFATLAR,A2,FILE9
+2155,tender,нежный,SIFATLAR,A2,FILE9
+2156,tough,жёсткий,SIFATLAR,A2,FILE9
+2157,chance,шанс,İSİMLER,A2,FILE10
+2158,reward,награда,İSİMLER,A2,FILE10
+2159,result,результат,İSİMLER,A2,FILE10
+2160,aim,"целиться, стремиться",FİİLLER,A2,FILE10
+2161,intend,намереваться,FİİLLER,A2,FILE10
+2162,prepare,готовить(ся),FİİLLER,A2,FILE10
+2163,develop,развивать,FİİLLER,A2,FILE10
+2164,advertisement,реклама,İSİMLER,A2,FILE11
+2165,poster,постер,İSİMLER,A2,FILE11
+2166,logo,логотип,İSİMLER,A2,FILE11
+2167,customer service,служба поддержки,İSİMLER,A2,FILE11
+2168,guarantee,гарантия,İSİMLER,A2,FILE11
+2169,exchange,обмен,İSİMLER,A2,FILE11
+2170,stock,запас товара,İSİMLER,A2,FILE11
+2171,aisle,проход в магазине,İSİMLER,A2,FILE11
+2172,trolley,тележка,İSİMLER,A2,FILE11
+2173,advertise,рекламировать,FİİLLER,A2,FILE11
+2174,promote,продвигать,FİİLLER,A2,FILE11
+2175,launch,запускать (продукт),FİİLLER,A2,FILE11
+2176,compare,сравнивать,FİİLLER,A2,FILE11
+2177,achievement,достижение,İSİMLER,A2,FILE12
+2178,attempt,попытка,İSİMLER,A2,FILE12
+2179,talent,талант,İSİMLER,A2,FILE12
+2180,level,уровень,İSİMLER,A2,FILE12
+2181,give up,сдаваться,FİİLLER,A2,FILE12
+2182,priority,приоритет,İSİMLER,B1,FILE1
+2183,habit tracker,трекер привычек,İSİMLER,B1,FILE1
+2184,well-being,благополучие,İSİMLER,B1,FILE1
+2185,self-care,забота о себе,İSİMLER,B1,FILE1
+2186,boundary,граница,İSİMLER,B1,FILE1
+2187,prioritise,расставлять приоритеты,FİİLLER,B1,FILE1
+2188,multitask,делать несколько дел сразу,FİİLLER,B1,FILE1
+2189,keep up with,успевать за,FİİLLER,B1,FILE1
+2190,overdraft,овердрафт,İSİMLER,B1,FILE2
+2191,interest rate,процентная ставка,İSİMLER,B1,FILE2
+2192,installment,рассрочка,İSİMLER,B1,FILE2
+2193,fee,комиссия,İSİMLER,B1,FILE2
+2194,statement,выписка,İSİMLER,B1,FILE2
+2195,PIN,пин-код,İSİMLER,B1,FILE2
+2196,transfer,переводить деньги,FİİLLER,B1,FILE2
+2197,withdraw,снимать наличные,FİİLLER,B1,FILE2
+2198,deposit,вносить на счёт,FİİLLER,B1,FILE2
+2199,bond,связь,İSİMLER,B1,FILE3
+2200,conflict,конфликт,İSİMLER,B1,FILE3
+2201,compromise,компромисс,İSİMLER,B1,FILE3
+2202,empathy,эмпатия,İSİMLER,B1,FILE3
+2203,peer pressure,давление сверстников,İSİMLER,B1,FILE3
+2204,confide in,доверять секреты,FİİLLER,B1,FILE3
+2205,stand by,поддерживать,FİİLLER,B1,FILE3
+2206,let down,подводить,FİİLLER,B1,FILE3
+2207,put up with,мириться с,FİİLLER,B1,FILE3
+2208,look after,заботиться,FİİLLER,B1,FILE3
+2209,cybercrime,киберпреступление,İSİMLER,B1,FILE4
+2210,identity theft,кража личности,İSİMLER,B1,FILE4
+2211,scam,мошенничество,İSİMLER,B1,FILE4
+2212,phishing,фишинг,İSİMLER,B1,FILE4
+2213,ransom,выкуп,İSİMLER,B1,FILE4
+2214,alibi,алиби,İSİMLER,B1,FILE4
+2215,investigate,расследовать,FİİLLER,B1,FILE4
+2216,convict,осуждать,FİİLLER,B1,FILE4
+2217,acquit,оправдывать,FİİLLER,B1,FILE4
+2218,deter,сдерживать,FİİLLER,B1,FILE4
+2219,prevent,предотвращать,FİİLLER,B1,FILE4
+2220,immune system,иммунитет,İSİMLER,B1,FILE5
+2221,checkup,медосмотр,İSİMLER,B1,FILE5
+2222,first aid,первая помощь,İSİMLER,B1,FILE5
+2223,mental health,психическое здоровье,İSİMLER,B1,FILE5
+2224,therapy,терапия,İSİMLER,B1,FILE5
+2225,diagnose,диагностировать,FİİLLER,B1,FILE5
+2226,prescribe,прописывать,FİİLLER,B1,FILE5
+2227,recover from,восстанавливаться после,FİİLLER,B1,FILE5
+2228,landfill,свалка,İSİMLER,B1,FILE6
+2229,compost,компост,İSİMLER,B1,FILE6
+2230,microplastic,микропластик,İSİMLER,B1,FILE6
+2231,sea level,уровень моря,İSİMLER,B1,FILE6
+2232,ice cap,ледяная шапка,İSİMLER,B1,FILE6
+2233,species,вид,İSİMLER,B1,FILE6
+2234,cut down,вырубать,FİİLLER,B1,FILE6
+2235,die out,вымирать,FİİLLER,B1,FILE6
+2236,clean up,очищать,FİİLLER,B1,FILE6
+2237,switch to,переходить на,FİİLLER,B1,FILE6
+2238,cut emissions,сокращать выбросы,FİİLLER,B1,FILE6
+2239,literacy,грамотность,İSİMLER,B1,FILE7
+2240,numeracy,"счёт, математическая грамотность",İSİMLER,B1,FILE7
+2241,curriculum,учебный план,İSİMLER,B1,FILE7
+2242,scholarship,стипендия,İSİMLER,B1,FILE7
+2243,tuition,плата за обучение,İSİMLER,B1,FILE7
+2244,distance learning,дистанционное обучение,İSİMLER,B1,FILE7
+2245,enrol on,записываться на,FİİLLER,B1,FILE7
+2246,sit an exam,сдавать экзамен,FİİLLER,B1,FILE7
+2247,skip class,пропускать занятия,FİİLLER,B1,FILE7
+2248,podcast,подкаст,İSİMLER,B1,FILE8
+2249,livestream,прямая трансляция,İSİMLER,B1,FILE8
+2250,trending,в тренде,İSİMLER,B1,FILE8
+2251,hashtag,хештег,İSİMLER,B1,FILE8
+2252,binge-watch,смотреть запоем,FİİLLER,B1,FILE8
+2253,unfollow,отписаться,FİİLLER,B1,FILE8
+2254,notification,уведомление,İSİMLER,B1,FILE9
+2255,settings,настройки,İSİMLER,B1,FILE9
+2256,storage,хранилище,İSİMLER,B1,FILE9
+2257,bandwidth,пропускная способность,İSİMLER,B1,FILE9
+2258,bug,баг,İSİMLER,B1,FILE9
+2259,log in,входить,FİİLLER,B1,FILE9
+2260,log out,выходить,FİİLLER,B1,FILE9
+2261,sign up,регистрироваться,FİİLLER,B1,FILE9
+2262,back up,делать бэкап,FİİLLER,B1,FILE9
+2263,wipe,стирать данные,FİİLLER,B1,FILE9
+2264,layover,пересадка,İSİMLER,B1,FILE10
+2265,red-eye,ночной рейс,İSİMLER,B1,FILE10
+2266,window seat,место у окна,İSİMLER,B1,FILE10
+2267,all-inclusive,всё включено,İSİMLER,B1,FILE10
+2268,self-catering,самостоятельное питание,İSİMLER,B1,FILE10
+2269,stop over,делать остановку,FİİLLER,B1,FILE10
+2270,check in online,регистрироваться онлайн,FİİLLER,B1,FILE10
+2271,go sightseeing,осматривать город,FİİLLER,B1,FILE10
+2272,travel light,путешествовать налегке,FİİLLER,B1,FILE10
+2273,networking,нетворкинг,İSİMLER,B1,FILE11
+2274,mentorship,наставничество,İSİMLER,B1,FILE11
+2275,side hustle,подработка,İSİMLER,B1,FILE11
+2276,work ethic,трудовая этика,İSİMLER,B1,FILE11
+2277,office politics,офисные интриги,İSİMLER,B1,FILE11
+2278,step down,уходить с должности,FİİLLER,B1,FILE11
+2279,take over,брать на себя руководство,FİİLLER,B1,FILE11
+2280,climb the ladder,делать карьеру,FİİLLER,B1,FILE11
+2281,warmup,разминка,İSİMLER,B1,FILE12
+2282,cooldown,заминка,İSİMLER,B1,FILE12
+2283,endurance,выносливость,İSİMLER,B1,FILE12
+2284,flexibility,гибкость,İSİMLER,B1,FILE12
+2285,personal best,личный рекорд,İSİMLER,B1,FILE12
+2286,league,лига,İSİMLER,B1,FILE12
+2287,warm up,разминаться,FİİLLER,B1,FILE12
+2288,work out,тренироваться,FİİLLER,B1,FILE12
+2289,knock out,нокаутировать,FİİLLER,B1,FILE12
+2290,equalise,сравнять счёт,FİİLLER,B1,FILE12
+2291,student card,студенческий билет,İSİMLER,A1,FILE1
+2292,first name,имя,İSİMLER,A1,FILE1
+2293,surname,фамилия,İSİMLER,A1,FILE1
+2294,Mr,господин,İSİMLER,A1,FILE1
+2295,Mrs,госпожа,İSİMLER,A1,FILE1
+2296,Ms,госпожа (нейтр.),İSİMLER,A1,FILE1
+2297,headphones,наушники,İSİMLER,A1,FILE3
+2298,notebook,блокнот,İSİMLER,A1,FILE3
+2299,rubber,ластик,İSİMLER,A1,FILE3
+2300,ruler,линейка,İSİMLER,A1,FILE3
+2301,scissors,ножницы,İSİMLER,A1,FILE3
+2302,stamp,марка,İSİMLER,A1,FILE3
+2303,envelope,конверт,İSİMLER,A1,FILE3
+2304,package,посылка,İSİMLER,A1,FILE3
+2305,twin,близнец,İSİMLER,A1,FILE4
+2306,only child,единственный ребёнок,İSİMLER,A1,FILE4
+2307,relative,родственник,İSİMLER,A1,FILE4
+2308,pet,питомец,İSİMLER,A1,FILE4
+2309,strawberry,клубника,İSİMLER,A1,FILE5
+2310,grape,виноград,İSİMLER,A1,FILE5
+2311,lemon,лимон,İSİMLER,A1,FILE5
+2312,peach,персик,İSİMLER,A1,FILE5
+2313,carrot,морковь,İSİMLER,A1,FILE5
+2314,onion,лук,İSİMLER,A1,FILE5
+2315,garlic,чеснок,İSİMLER,A1,FILE5
+2316,cucumber,огурец,İSİMLER,A1,FILE5
+2317,mushroom,гриб,İSİMLER,A1,FILE5
+2318,bean,фасоль,İSİMLER,A1,FILE5
+2319,pea,горох,İSİMLER,A1,FILE5
+2320,lion,лев,İSİMLER,A1,FILE12
+2321,tiger,тигр,İSİMLER,A1,FILE12
+2322,elephant,слон,İSİMLER,A1,FILE12
+2323,monkey,обезьяна,İSİMLER,A1,FILE12
+2324,bear,медведь,İSİMLER,A1,FILE12
+2325,wolf,волк,İSİMLER,A1,FILE12
+2326,fox,лиса,İSİMLER,A1,FILE12
+2327,rabbit,кролик,İSİMLER,A1,FILE12
+2328,cow,корова,İSİMLER,A1,FILE12
+2329,pig,свинья,İSİMLER,A1,FILE12
+2330,sheep,овца,İSİMLER,A1,FILE12
+2331,duck,утка,İSİMLER,A1,FILE12
+2332,snake,змея,İSİMLER,A1,FILE12
+2333,frog,лягушка,İSİMLER,A1,FILE12
+2334,head,голова,İSİMLER,A1,FILE11
+2335,tooth,зуб,İSİMLER,A1,FILE11
+2336,neck,шея,İSİMLER,A1,FILE11
+2337,shoulder,плечо,İSİMLER,A1,FILE11
+2338,arm,рука,İSİMLER,A1,FILE11
+2339,hand,кисть,İSİMLER,A1,FILE11
+2340,finger,палец,İSİMLER,A1,FILE11
+2341,leg,нога,İSİMLER,A1,FILE11
+2342,foot,ступня,İSİMLER,A1,FILE11
+2343,back,спина,İSİMLER,A1,FILE11
+2344,stomach,живот,İSİMLER,A1,FILE11
+2345,heart,сердце,İSİMLER,A1,FILE11
+2346,blood,кровь,İSİMLER,A1,FILE11
+2347,architect,архитектор,İSİMLER,A2,FILE1
+2348,accountant,бухгалтер,İSİMLER,A2,FILE1
+2349,translator,переводчик,İSİMLER,A2,FILE1
+2350,designer,дизайнер,İSİMLER,A2,FILE1
+2351,programmer,программист,İSİMLER,A2,FILE1
+2352,librarian,библиотекарь,İSİMLER,A2,FILE1
+2353,electrician,электрик,İSİMLER,A2,FILE1
+2354,carpenter,плотник,İSİMLER,A2,FILE1
+2355,toaster,тостер,İSİMLER,A2,FILE3
+2356,blender,блендер,İSİMLER,A2,FILE3
+2357,vacuum cleaner,пылесос,İSİMLER,A2,FILE3
+2358,iron,утюг,İSİMLER,A2,FILE3
+2359,radiator,батарея,İSİMLER,A2,FILE3
+2360,plug,"вилка, розетка",İSİMLER,A2,FILE3
+2361,switch,выключатель,İSİMLER,A2,FILE3
+2362,be born,рождаться,FİİLLER,A2,FILE7
+2363,fall in love,влюбляться,FİİLLER,A2,FILE7
+2364,get engaged,помолвиться,FİİLLER,A2,FILE7
+2365,have a baby,родить ребёнка,FİİLLER,A2,FILE7
+2366,pass away,умереть,FİİLLER,A2,FILE7
+2367,security,досмотр,İSİMLER,A2,FILE8
+2368,departure,"вылет, отправление",İSİMLER,A2,FILE8
+2369,arrival,прибытие,İSİMLER,A2,FILE8
+2370,cancellation,отмена,İSİMLER,A2,FILE8
+2371,flour,мука,İSİMLER,A2,FILE9
+2372,yeast,дрожжи,İSİMLER,A2,FILE9
+2373,vinegar,уксус,İSİMLER,A2,FILE9
+2374,herb,трава,İSİMLER,A2,FILE9
+2375,spice,специя,İSİMLER,A2,FILE9
+2376,mustard,горчица,İSİMLER,A2,FILE9
+2377,ketchup,кетчуп,İSİMLER,A2,FILE9
+2378,mayonnaise,майонез,İSİMLER,A2,FILE9
+2379,hectic,суматошный,SIFATLAR,B1,FILE1
+2380,sedentary,сидячий,SIFATLAR,B1,FILE1
+2381,mindful,осознанный,SIFATLAR,B1,FILE1
+2382,burnt out,выгоревший,SIFATLAR,B1,FILE1
+2383,well-rested,выспавшийся,SIFATLAR,B1,FILE1
+2384,cryptocurrency,криптовалюта,İSİMLER,B1,FILE2
+2385,contactless,бесконтактный,İSİMLER,B1,FILE2
+2386,standing order,постоянное поручение,İSİMLER,B1,FILE2
+2387,direct debit,прямое дебетование,İSİMLER,B1,FILE2
+2388,antibiotic,антибиотик,İSİMLER,B1,FILE5
+2389,bandage,бинт,İSİMLER,B1,FILE5
+2390,crutches,костыли,İSİMLER,B1,FILE5
+2391,wheelchair,инвалидная коляска,İSİMLER,B1,FILE5
+2392,allergy,аллергия,İSİMLER,B1,FILE5
+2393,smog,смог,İSİMLER,B1,FILE6
+2394,acid rain,кислотный дождь,İSİMLER,B1,FILE6
+2395,overfishing,перелов рыбы,İSİMLER,B1,FILE6
+2396,poaching,браконьерство,İSİMLER,B1,FILE6
+2397,single-use,одноразовый,İSİMLER,B1,FILE6
+2398,kindergarten,детский сад,İSİMLER,B1,FILE7
+2399,boarding school,интернат,İSİMLER,B1,FILE7
+2400,vocational,профессиональный,İSİMLER,B1,FILE7
+2401,gap year,год перерыва,İSİMLER,B1,FILE7
+2402,dissertation,диссертация,İSİMLER,B1,FILE7
+2403,plagiarism,плагиат,İSİMLER,B1,FILE7
+2404,persona,публичный образ,İSİMLER,B2,FILE1
+2405,self-image,представление о себе,İSİMLER,B2,FILE1
+2406,peer group,группа сверстников,İSİMLER,B2,FILE1
+2407,role model,пример для подражания,İSİMLER,B2,FILE1
+2408,play down,преуменьшать,FİİLLER,B2,FILE4
+2409,play up,раздувать,FİİLLER,B2,FILE4
+2410,water down,размывать (идею),FİİLLER,B2,FILE4
+2411,clinical trial,клиническое испытание,İSİMLER,B2,FILE6
+2412,peer-reviewed,рецензируемый,İSİMLER,B2,FILE6
+2413,sample size,размер выборки,İSİMLER,B2,FILE6
+2414,control group,контрольная группа,İSİMLER,B2,FILE6
+2415,caveat,оговорка,İSİMLER,C1,FILE1
+2416,corollary,следствие,İSİMLER,C1,FILE1
+2417,leitmotif,лейтмотив,İSİMLER,C1,FILE1
+2418,touchstone,критерий,İSİMLER,C1,FILE1
+2419,yardstick,мерка,İSİMLER,C1,FILE1
+2420,dark pattern,тёмный паттерн,İSİMLER,C1,FILE3
+2421,attention economy,экономика внимания,İSİMLER,C1,FILE3
+2422,surveillance capitalism,капитализм слежки,İSİMLER,C1,FILE3
+2423,just transition,справедливый переход,İSİMLER,C1,FILE5
+2424,loss and damage,убытки и ущерб,İSİMLER,C1,FILE5
+2425,carbon budget,углеродный бюджет,İSİMLER,C1,FILE5
+2426,recondite,малопонятный,SIFATLAR,C2,FILE1
+2427,perspicuous,ясный,SIFATLAR,C2,FILE1
+2428,orotund,напыщенный,SIFATLAR,C2,FILE1
+2429,lapidary,лапидарный,SIFATLAR,C2,FILE1
+2430,gnomic,гномический,SIFATLAR,C2,FILE1
+2431,of,"из, от",EDATLAR / BAĞLAÇLAR,A1,FILE4
+2432,to,к; чтобы,EDATLAR / BAĞLAÇLAR,A1,FILE5
+2433,not,не,ZARFLAR,A1,FILE2
+2434,with,"с, вместе с",EDATLAR / BAĞLAÇLAR,A1,FILE6
+2435,as,как; в качестве,EDATLAR / BAĞLAÇLAR,A1,FILE10
+2436,but,но,EDATLAR / BAĞLAÇLAR,A1,FILE1
+2437,by,кем-то; при помощи; около,EDATLAR / BAĞLAÇLAR,A1,FILE3
+2438,or,или,EDATLAR / BAĞLAÇLAR,A1,FILE5
+2439,so,"так, поэтому",ZARFLAR,A1,FILE8
+2440,all,"все, весь",ZAMİRLER,A1,FILE9
+2441,if,если,EDATLAR / BAĞLAÇLAR,A1,FILE10
+2442,would,бы (условн.),FİİLLER,A1,FILE12
+2443,about,"о, около",EDATLAR / BAĞLAÇLAR,A1,FILE1
+2444,which,который,ZAMİRLER,A1,FILE3
+2445,more,больше,ZARFLAR,A1,FILE6
+2446,up,"вверх, наверх",ZARFLAR,A1,FILE4
+2447,out,"наружу, вне",ZARFLAR,A1,FILE7
+2448,because,потому что,EDATLAR / BAĞLAÇLAR,A1,FILE2
+2449,could,"мог, мог бы",FİİLLER,A1,FILE6
+2450,than,чем,EDATLAR / BAĞLAÇLAR,A1,FILE9
+2451,into,в (внутрь),EDATLAR / BAĞLAÇLAR,A1,FILE1
+2452,only,только,ZARFLAR,A1,FILE2
+2453,way,"путь, способ",İSİMLER,A1,FILE8
+2454,over,"над, свыше",EDATLAR / BAĞLAÇLAR,A1,FILE10
+2455,after,после,EDATLAR / BAĞLAÇLAR,A1,FILE12
+2456,most,"наиболее, большинство",ZARFLAR,A1,FILE4
+2457,should,"следует, должен",FİİLLER,A1,FILE5
+2458,even,даже,ZARFLAR,A1,FILE12
+2459,such,такой,ZAMİRLER,A1,FILE4
+2460,really,"действительно, очень",ZARFLAR,A1,FILE8
+2461,before,"до, перед",EDATLAR / BAĞLAÇLAR,A1,FILE10
+2462,through,"через, сквозь",EDATLAR / BAĞLAÇLAR,A1,FILE12
+2463,down,вниз,ZARFLAR,A1,FILE1
+2464,still,всё ещё,ZARFLAR,A1,FILE11
+2465,lot,"много, уйма",İSİMLER,A1,FILE3
+2466,great,"отличный, великий",SIFATLAR,A1,FILE4
+2467,both,оба,ZAMİRLER,A1,FILE8
+2468,own,собственный,SIFATLAR,A1,FILE9
+2469,part,часть,İSİMLER,A1,FILE10
+2470,point,"точка, смысл",İSİMLER,A1,FILE11
+2471,little,"маленький, мало",SIFATLAR,A1,FILE12
+2472,something,что-то,ZAMİRLER,A1,FILE6
+2473,another,"другой, ещё один",ZAMİRLER,A1,FILE8
+2474,each,каждый,ZAMİRLER,A1,FILE1
+2475,different,"разный, другой",SIFATLAR,A1,FILE5
+2476,off,"прочь, выключено",ZARFLAR,A1,FILE6
+2477,end,конец,İSİMLER,A1,FILE8
+2478,while,"пока, в то время как",EDATLAR / BAĞLAÇLAR,A1,FILE11
+2479,must,должен,FİİLLER,A1,FILE4
+2480,include,включать,FİİLLER,A1,FILE7
+2481,report,"отчёт, доклад",İSİMLER,A1,FILE10
+2482,case,"случай, дело",İSİMLER,A1,FILE12
+2483,around,"вокруг, около",EDATLAR / BAĞLAÇLAR,A1,FILE2
+2484,seem,казаться,FİİLLER,A1,FILE5
+2485,again,снова,ZARFLAR,A1,FILE7
+2486,system,система,İSİMLER,A1,FILE11
+2487,every,каждый,ZAMİRLER,A1,FILE12
+2488,during,во время,EDATLAR / BAĞLAÇLAR,A1,FILE2
+2489,set,"ставить, устанавливать",FİİLLER,A1,FILE5
+2490,few,"немного, мало",ZAMİRLER,A1,FILE3
+2491,state,"государство, штат",İSİMLER,A1,FILE7
+2492,fact,факт,İSİMLER,A1,FILE10
+2493,area,"область, район",İSİMLER,A1,FILE12
+2494,provide,предоставлять,FİİLLER,A1,FILE1
+2495,large,большой,SIFATLAR,A1,FILE6
+2496,without,без,EDATLAR / BAĞLAÇLAR,A1,FILE8
+2497,believe,"верить, считать",FİİLLER,A1,FILE9
+2498,second,второй; секунда,SIFATLAR,A1,FILE10
+2499,though,хотя,EDATLAR / BAĞLAÇLAR,A1,FILE11
+2500,away,"прочь, далеко",ZARFLAR,A1,FILE6
+2501,happen,происходить,FİİLLER,A1,FILE8
+2502,program,программа,İSİMLER,A1,FILE12
+2503,lead,"вести, лидировать",FİİLLER,A1,FILE1
+2504,thank,благодарить,FİİLLER,A1,FILE4
+2505,less,меньше,ZARFLAR,A1,FILE1
+2506,until,до тех пор пока,EDATLAR / BAĞLAÇLAR,A1,FILE3
+2507,reason,причина,İSİMLER,A1,FILE4
+2508,able,способный,SIFATLAR,A1,FILE7
+2509,whether,ли,EDATLAR / BAĞLAÇLAR,A1,FILE9
+2510,side,сторона,İSİMLER,A1,FILE12
+2511,quite,"вполне, довольно",ZARFLAR,A1,FILE1
+2512,sure,уверенный,SIFATLAR,A1,FILE3
+2513,least,"наименее, по крайней мере",ZARFLAR,A1,FILE5
+2514,within,"внутри, в пределах",EDATLAR / BAĞLAÇLAR,A1,FILE9
+2515,process,процесс,İSİMLER,A1,FILE10
+2516,public,"общественный, публичный",SIFATLAR,A1,FILE11
+2517,actually,на самом деле,ZARFLAR,A1,FILE3
+2518,rather,"скорее, довольно",ZARFLAR,A1,FILE4
+2519,together,вместе,ZARFLAR,A1,FILE6
+2520,consider,"рассматривать, считать",FİİLLER,A1,FILE7
+2521,hard,"трудный, твёрдый",SIFATLAR,A1,FILE10
+2522,local,местный,SIFATLAR,A1,FILE12
+2523,control,"контроль, управление",İSİMLER,A1,FILE1
+2524,concern,"беспокойство, касательство",İSİMLER,A1,FILE3
+2525,almost,почти,ZARFLAR,A1,FILE7
+2526,continue,продолжать,FİİLLER,A1,FILE8
+2527,whole,"целый, весь",SIFATLAR,A1,FILE10
+2528,rate,"ставка, уровень",İSİMLER,A1,FILE12
+2529,care,забота,İSİMLER,A1,FILE1
+2530,effect,"эффект, влияние",İSİMLER,A1,FILE3
+2531,sort,"сорт, тип",İSİMLER,A1,FILE4
+2532,anything,что-нибудь,ZAMİRLER,A1,FILE6
+2533,cause,"вызывать, быть причиной",FİİLLER,A1,FILE7
+2534,deal,"иметь дело, договариваться",FİİLLER,A1,FILE9
+2535,allow,позволять,FİİLLER,A1,FILE12
+2536,base,"основа, база",İSİMLER,A1,FILE3
+2537,past,прошлое,İSİMLER,A1,FILE6
+2538,power,"сила, власть",İSİMLER,A1,FILE7
+2539,center,центр,İSİMLER,A1,FILE10
+2540,nothing,ничего,ZAMİRLER,A1,FILE12
+2541,matter,"дело, вопрос",İSİMLER,A1,FILE4
+2542,mind,"ум, разум",İSİMLER,A1,FILE5
+2543,value,"ценность, стоимость",İSİMLER,A1,FILE6
+2544,force,сила,İSİMLER,A1,FILE10
+2545,several,несколько,ZAMİRLER,A1,FILE12
+2546,bit,"немного, кусочек",İSİMLER,A1,FILE4
+2547,real,"настоящий, реальный",SIFATLAR,A1,FILE6
+2548,figure,"цифра, фигура",İSİMLER,A1,FILE9
+2549,development,развитие,İSİMLER,A1,FILE3
+2550,half,половина,İSİMLER,A1,FILE5
+2551,clear,"ясный, чистый",SIFATLAR,A1,FILE9
+2552,either,"любой из двух, тоже",ZAMİRLER,A1,FILE11
+2553,per,"на, в (расчёт)",EDATLAR / BAĞLAÇLAR,A1,FILE1
+2554,remain,оставаться,FİİLLER,A1,FILE2
+2555,top,"верх, вершина",İSİMLER,A1,FILE3
+2556,among,среди,EDATLAR / BAĞLAÇLAR,A1,FILE4
+2557,color,цвет,İSİMLER,A1,FILE6
+2558,involve,"вовлекать, включать",FİİLLER,A1,FILE7
+2559,reach,достигать,FİİLLER,A1,FILE8
+2560,social,"социальный, общественный",SIFATLAR,A1,FILE9
+2561,period,период,İSİMLER,A1,FILE10
+2562,across,"через, по ту сторону",EDATLAR / BAĞLAÇLAR,A1,FILE11
+2563,history,история,İSİMLER,A1,FILE1
+2564,create,создавать,FİİLLER,A1,FILE2
+2565,along,вдоль,EDATLAR / BAĞLAÇLAR,A1,FILE4
+2566,type,"тип, вид",İSİMLER,A1,FILE5
+2567,sound,звук,İSİMLER,A1,FILE6
+2568,political,политический,SIFATLAR,A1,FILE10
+2569,free,"свободный, бесплатный",SIFATLAR,A1,FILE11
+2570,receive,получать,FİİLLER,A1,FILE12
+2571,moment,"момент, мгновение",İSİMLER,A1,FILE1
+2572,further,"далее, дальше",ZARFLAR,A1,FILE4
+2573,require,требовать,FİİLLER,A1,FILE6
+2574,general,"общий, генеральный",SIFATLAR,A1,FILE8
+2575,appear,"появляться, казаться",FİİLLER,A1,FILE9
+2576,toward,"к, по направлению к",EDATLAR / BAĞLAÇLAR,A1,FILE10
+2577,individual,"индивид, отдельный человек",İSİMLER,A1,FILE1
+2578,sense,"смысл, чувство",İSİMLER,A1,FILE4
+2579,perhaps,"возможно, может быть",ZARFLAR,A1,FILE5
+2580,add,добавлять,FİİLLER,A1,FILE6
+2581,rule,правило,İSİMLER,A1,FILE7
+2582,produce,производить,FİİLLER,A1,FILE9
+2583,everything,всё,ZAMİRLER,A1,FILE2
+2584,cover,"покрывать, освещать",FİİLLER,A1,FILE4
+2585,position,"положение, должность",İSİMLER,A1,FILE6
+2586,human,человеческий,SIFATLAR,A1,FILE8
+2587,situation,ситуация,İSİMLER,A1,FILE10
+2588,war,война,İSİMLER,A1,FILE3
+2589,major,"главный, крупный",SIFATLAR,A1,FILE6
+2590,someone,кто-то,ZAMİRLER,A1,FILE7
+2591,above,"над, выше",EDATLAR / BAĞLAÇLAR,A1,FILE8
+2592,design,"дизайн, проект",İSİMLER,A1,FILE9
+2593,special,"особый, специальный",SIFATLAR,A1,FILE11
+2594,condition,"состояние, условие",İSİMLER,A1,FILE1
+2595,carry,"нести, возить",FİİLLER,A1,FILE2
+2596,certain,"определённый, уверенный",SIFATLAR,A1,FILE7
+2597,forward,вперёд,ZARFLAR,A1,FILE8
+2598,main,главный,SIFATLAR,A1,FILE9
+2599,describe,описывать,FİİLLER,A1,FILE1
+2600,himself,"себя, сам",ZAMİRLER,A1,FILE2
+2601,especially,особенно,ZARFLAR,A1,FILE4
+2602,rise,"подниматься, расти",FİİLLER,A1,FILE6
+2603,community,"сообщество, община",İSİMLER,A1,FILE9
+2604,else,"ещё, другой",ZARFLAR,A1,FILE10
+2605,particular,"конкретный, особенный",SIFATLAR,A1,FILE11
+2606,role,роль,İSİMLER,A1,FILE12
+2607,detail,"деталь, подробность",İSİMLER,A1,FILE4
+2608,difference,разница,İSİMLER,A1,FILE5
+2609,action,"действие, поступок",İSİMLER,A1,FILE6
+2610,step,шаг,İSİMLER,A1,FILE9
+2611,themselves,"себя, сами",ZAMİRLER,A1,FILE12
+2612,model,модель,İSİMLER,A1,FILE5
+2613,front,"перед, фасад",İSİMLER,A1,FILE8
+2614,outside,"снаружи, вне",EDATLAR / BAĞLAÇLAR,A1,FILE11
+2615,economic,экономический,SIFATLAR,A1,FILE1
+2616,site,"сайт, место",İSİMLER,A1,FILE2
+2617,approach,подход,İSİMLER,A1,FILE3
+2618,land,"земля, суша",İSİMLER,A1,FILE5
+2619,death,смерть,İSİMLER,A1,FILE1
+2620,amount,"количество, сумма",İSİMLER,A1,FILE3
+2621,regard,"отношение, внимание",İSİMLER,A1,FILE7
+2622,organization,организация,İSİMLER,A1,FILE8
+2623,act,действовать,FİİLLER,A1,FILE11
+2624,range,"диапазон, ряд",İSİMLER,A1,FILE12
+2625,round,вокруг; круг,EDATLAR / BAĞLAÇLAR,A1,FILE3
+2626,accord,"согласие, соответствие",İSİMLER,A1,FILE6
+2627,list,список,İSİMLER,A1,FILE7
+2628,wish,желать,FİİLLER,A1,FILE8
+2629,fund,финансировать,FİİLLER,A1,FILE11
+2630,kid,"ребёнок, малыш",İSİMLER,A1,FILE1
+2631,kill,убивать,FİİLLER,A1,FILE5
+2632,likely,вероятный,SIFATLAR,A1,FILE7
+2633,certainly,"конечно, несомненно",ZARFLAR,A1,FILE8
+2634,national,"национальный, государственный",SIFATLAR,A1,FILE9
+2635,itself,"сам, само",ZAMİRLER,A1,FILE10
+2636,field,"поле, область",İSİMLER,A1,FILE12
+2637,air,воздух,İSİMLER,A1,FILE2
+2638,benefit,"польза, пособие",İSİMLER,A1,FILE3
+2639,trade,торговля,İSİMLER,A1,FILE4
+2640,standard,стандарт,İSİMLER,A1,FILE7
+2641,percent,процент,İSİMLER,A1,FILE9
+2642,space,"пространство, космос",İSİMLER,A1,FILE12
+2643,instead,вместо этого,ZARFLAR,A1,FILE1
+2644,realize,"осознавать, понимать",FİİLLER,A1,FILE2
+2645,society,общество,İSİMLER,A1,FILE10
+2646,mention,упоминать,FİİLLER,A1,FILE12
+2647,common,"общий, обычный",SIFATLAR,A1,FILE3
+2648,culture,культура,İSİMLER,A1,FILE4
+2649,total,"общий, полный",SIFATLAR,A1,FILE5
+2650,demand,требовать,FİİLLER,A1,FILE6
+2651,material,материал,İSİMLER,A1,FILE7
+2652,limit,ограничивать,FİİLLER,A1,FILE8
+2653,due,"должный, обусловленный",SIFATLAR,A1,FILE10
+2654,effort,усилие,İSİMLER,A1,FILE1
+2655,attention,внимание,İSİMLER,A1,FILE2
+2656,upon,"на, по",EDATLAR / BAĞLAÇLAR,A1,FILE3
+2657,complete,завершать,FİİLLER,A1,FILE5
+2658,lie,"лежать, лгать",FİİLLER,A1,FILE6
+2659,pick,"выбирать, поднимать",FİİLLER,A1,FILE7
+2660,personal,личный,SIFATLAR,A1,FILE9
+2661,ground,"земля, основание",İSİMLER,A1,FILE10
+2662,current,"текущий, нынешний",SIFATLAR,A1,FILE2
+2663,century,"век, столетие",İSİMLER,A1,FILE3
+2664,exist,существовать,FİİLLER,A1,FILE5
+2665,similar,похожий,SIFATLAR,A1,FILE6
+2666,leader,"лидер, руководитель",İSİMLER,A1,FILE8
+2667,former,бывший,SIFATLAR,A1,FILE11
+2668,contact,связываться,FİİLLER,A1,FILE12
+2669,particularly,в особенности,ZARFLAR,A1,FILE1
+2670,discuss,обсуждать,FİİLLER,A1,FILE5
+2671,response,"ответ, реакция",İSİMLER,A1,FILE6
+2672,piece,"кусок, часть",İSİMLER,A1,FILE8
+2673,suppose,предполагать,FİİLLER,A1,FILE10
+2674,president,президент,İSİMLER,A1,FILE12
+2675,court,"суд, корт",İSİMLER,A1,FILE3
+2676,police,полиция,İSİMLER,A1,FILE4
+2677,store,"магазин, запас",İSİMLER,A1,FILE5
+2678,knowledge,знание,İSİMLER,A1,FILE7
+2679,laugh,смеяться,FİİLLER,A1,FILE8
+2680,employee,сотрудник,İSİMLER,A1,FILE12
+2681,simply,просто,ZARFLAR,A1,FILE2
+2682,firm,фирма; твёрдый,İSİMLER,A1,FILE4
+2683,cell,"клетка, ячейка",İSİMLER,A1,FILE5
+2684,attack,атаковать,FİİLLER,A1,FILE8
+2685,foreign,иностранный,SIFATLAR,A1,FILE9
+2686,surprise,удивлять,FİİLLER,A1,FILE10
+2687,feature,"особенность, черта",İSİMLER,A1,FILE11
+2688,factor,фактор,İSİMLER,A1,FILE12
+2689,affect,влиять,FİİLLER,A1,FILE3
+2690,drop,"ронять, падать",FİİLLER,A1,FILE4
+2691,recent,недавний,SIFATLAR,A1,FILE5
+2692,relate,"относиться, связывать",FİİLLER,A1,FILE6
+2693,official,официальный,SIFATLAR,A1,FILE7
+2694,financial,финансовый,SIFATLAR,A1,FILE8
+2695,private,"частный, личный",SIFATLAR,A1,FILE12
+2696,pause,делать паузу,FİİLLER,A1,FILE1
+2697,everyone,все,ZAMİRLER,A1,FILE2
+2698,worry,беспокоиться,FİİLLER,A1,FILE5
+2699,represent,представлять,FİİLLER,A1,FILE10
+2700,inside,внутри,EDATLAR / BAĞLAÇLAR,A1,FILE12
+2701,international,международный,SIFATLAR,A1,FILE2
+2702,contain,содержать,FİİLLER,A1,FILE3
+2703,notice,замечать,FİİLLER,A1,FILE4
+2704,wonder,"интересоваться, удивляться",FİİLLER,A1,FILE5
+2705,nature,природа,İSİMLER,A1,FILE6
+2706,structure,структура,İSİMLER,A1,FILE7
+2707,section,"раздел, секция",İSİMLER,A1,FILE8
+2708,myself,"себя, сам",ZAMİRLER,A1,FILE9
+2709,exactly,точно,ZARFLAR,A1,FILE10
+2710,worker,работник,İSİMLER,A1,FILE1
+2711,press,"нажимать, давить",FİİLLER,A1,FILE2
+2712,whatever,"что бы ни, любой",ZAMİRLER,A1,FILE3
+2713,region,регион,İSİMLER,A1,FILE5
+2714,growth,рост,İSİMLER,A1,FILE6
+2715,influence,влияние,İSİMLER,A1,FILE8
+2716,various,различный,SIFATLAR,A1,FILE10
+2717,thus,таким образом,ZARFLAR,A1,FILE12
+2718,simple,простой,SIFATLAR,A1,FILE4
+2719,medium,средство; средний,İSİMLER,A1,FILE5
+2720,average,средний,SIFATLAR,A1,FILE6
+2721,management,"управление, менеджмент",İSİMLER,A1,FILE8
+2722,establish,"устанавливать, основывать",FİİLLER,A1,FILE12
+2723,indeed,действительно,ZARFLAR,A1,FILE1
+2724,final,"окончательный, финальный",SIFATLAR,A1,FILE2
+2725,economy,экономика,İSİMLER,A1,FILE3
+2726,guy,парень,İSİMLER,A1,FILE5
+2727,function,функция,İSİMLER,A1,FILE6
+2728,image,"изображение, образ",İSİMLER,A1,FILE8
+2729,behavior,поведение,İSİMLER,A1,FILE10
+2730,addition,дополнение,İSİMLER,A1,FILE11
+2731,determine,определять,FİİLLER,A1,FILE12
+2732,population,население,İSİMLER,A1,FILE2
+2733,production,производство,İSİMLER,A1,FILE5
+2734,contract,"контракт, договор",İSİMLER,A1,FILE6
+2735,player,игрок,İSİMLER,A1,FILE7
+2736,enter,входить,FİİLLER,A1,FILE9
+2737,occur,происходить,FİİLLER,A1,FILE10
+2738,alone,"один, в одиночестве",ZARFLAR,A1,FILE11
+2739,significant,значительный,SIFATLAR,A1,FILE12
+2740,drug,"лекарство, наркотик",İSİMLER,A1,FILE1
+2741,direct,прямой,SIFATLAR,A1,FILE4
+2742,director,"директор, режиссёр",İSİMLER,A1,FILE7
+2743,clearly,"ясно, отчётливо",ZARFLAR,A1,FILE8
+2744,lack,нехватка,İSİMLER,A1,FILE9
+2745,depend,зависеть,FİİLLER,A1,FILE11
+2746,recognize,"узнавать, признавать",FİİLLER,A1,FILE1
+2747,purpose,"цель, назначение",İSİMLER,A1,FILE3
+2748,gain,"получать, приобретать",FİİLLER,A1,FILE5
+2749,church,церковь,İSİMLER,A1,FILE12
+2750,machine,"машина, механизм",İSİMLER,A1,FILE1
+2751,item,"пункт, предмет",İSİMLER,A1,FILE3
+2752,cent,цент,İSİMLER,A1,FILE5
+2753,stuff,"вещи, материал",İSİMLER,A1,FILE8
+2754,anyone,кто-нибудь,ZAMİRLER,A1,FILE10
+2755,method,метод,İSİMLER,A1,FILE11
+2756,analysis,анализ,İSİMLER,A1,FILE12
+2757,military,военный,SIFATLAR,A1,FILE2
+2758,below,"ниже, под",EDATLAR / BAĞLAÇLAR,A1,FILE5
+2759,movie,фильм,İSİMLER,A1,FILE6
+2760,discussion,обсуждение,İSİMLER,A1,FILE8
+2761,nation,"нация, страна",İSİMLER,A1,FILE11
+2762,nearly,почти,ZARFLAR,A1,FILE12
+2763,link,"связь, ссылка",İSİMLER,A1,FILE2
+2764,despite,несмотря на,EDATLAR / BAĞLAÇLAR,A1,FILE3
+2765,introduce,"представлять, вводить",FİİLLER,A1,FILE4
+2766,advantage,преимущество,İSİMLER,A1,FILE5
+2767,marry,"жениться, выходить замуж",FİİLLER,A1,FILE7
+2768,strike,"ударять, бастовать",FİİLLER,A1,FILE8
+2769,mile,миля,İSİMLER,A1,FILE9
+2770,seek,"искать, стремиться",FİİLLER,A1,FILE10
+2771,unit,"единица, блок",İSİMLER,A1,FILE12
+2772,quickly,быстро,ZARFLAR,A1,FILE3
+2773,agreement,"соглашение, согласие",İSİMLER,A1,FILE5
+2774,release,"выпуск, освобождение",İSİMLER,A1,FILE6
+2775,solution,решение,İSİMLER,A1,FILE8
+2776,capital,"столица, капитал",İSİMLER,A1,FILE9
+2777,popular,популярный,SIFATLAR,A1,FILE10
+2778,specific,"конкретный, особый",SIFATLAR,A1,FILE11
+2779,fear,страх,İSİMLER,A1,FILE1
+2780,television,телевидение,İSİMLER,A1,FILE3
+2781,pull,тянуть,FİİLLER,A1,FILE7
+2782,access,доступ,İSİMLER,A2,FILE2
+2783,movement,движение,İSİMLER,A2,FILE3
+2784,treat,"обращаться, лечить",FİİLLER,A2,FILE4
+2785,identify,"определять, опознавать",FİİLLER,A2,FILE5
+2786,loss,потеря,İSİMLER,A2,FILE6
+2787,shall,должен,FİİLLER,A2,FILE7
+2788,pressure,давление,İSİMLER,A2,FILE9
+2789,yourself,"себя, сам",ZAMİRLER,A2,FILE12
+2790,supply,поставлять,FİİLLER,A2,FILE1
+2791,worth,стоящий,SIFATLAR,A2,FILE3
+2792,natural,"природный, естественный",SIFATLAR,A2,FILE4
+2793,express,выражать,FİİLLER,A2,FILE5
+2794,investment,инвестиция,İSİMLER,A2,FILE9
+2795,organize,организовывать,FİİLLER,A2,FILE11
+2796,beyond,"за пределами, помимо",EDATLAR / BAĞLAÇLAR,A2,FILE1
+2797,potential,потенциальный,SIFATLAR,A2,FILE5
+2798,energy,энергия,İSİMLER,A2,FILE6
+2799,trouble,"проблема, беда",İSİMLER,A2,FILE7
+2800,relation,"отношение, родственник",İSİMLER,A2,FILE8
+2801,touch,прикосновение,İSİMLER,A2,FILE9
+2802,middle,середина,İSİMLER,A2,FILE11
+2803,bar,"бар, стойка",İSİMLER,A2,FILE12
+2804,suffer,страдать,FİİLLER,A2,FILE1
+2805,strategy,стратегия,İSİMLER,A2,FILE2
+2806,except,"кроме, за исключением",EDATLAR / BAĞLAÇLAR,A2,FILE4
+2807,tend,иметь тенденцию,FİİLLER,A2,FILE6
+2808,advance,"продвижение, аванс",İSİMLER,A2,FILE7
+2809,fill,наполнять,FİİLLER,A2,FILE8
+2810,star,звезда,İSİMLER,A2,FILE9
+2811,generally,"в целом, обычно",ZARFLAR,A2,FILE11
+2812,task,задача,İSİMLER,A2,FILE5
+2813,normal,нормальный,SIFATLAR,A2,FILE6
+2814,associate,"ассоциировать, связывать",İSİMLER,A2,FILE8
+2815,positive,положительный,SIFATLAR,A2,FILE10
+2816,option,"вариант, опция",İSİMLER,A2,FILE11
+2817,instance,"пример, случай",İSİMLER,A2,FILE3
+2818,style,стиль,İSİMLER,A2,FILE4
+2819,refer,ссылаться,FİİLLER,A2,FILE5
+2820,push,толкать,FİİLLER,A2,FILE7
+2821,quarter,"четверть, квартал",İSİMLER,A2,FILE8
+2822,assume,предполагать,FİİLLER,A2,FILE9
+2823,doubt,сомнение,İSİMLER,A2,FILE1
+2824,competition,"соревнование, конкуренция",İSİMLER,A2,FILE2
+2825,propose,предлагать,FİİLLER,A2,FILE4
+2826,fly,летать,FİİLLER,A2,FILE8
+2827,pattern,"образец, узор",İSİMLER,A2,FILE10
+2828,obviously,очевидно,ZARFLAR,A2,FILE1
+2829,unclear,неясный,SIFATLAR,A2,FILE2
+2830,separate,отдельный,SIFATLAR,A2,FILE5
+2831,anyway,в любом случае,ZARFLAR,A2,FILE8
+2832,speech,речь,İSİMLER,A2,FILE9
+2833,officer,"офицер, сотрудник",İSİMLER,A2,FILE11
+2834,throughout,"на протяжении, по всему",EDATLAR / BAĞLAÇLAR,A2,FILE12
+2835,profit,прибыль,İSİMLER,A2,FILE3
+2836,guess,"угадывать, предполагать",FİİLLER,A2,FILE4
+2837,resource,ресурс,İSİMLER,A2,FILE7
+2838,balance,"баланс, равновесие",İSİMLER,A2,FILE10
+2839,damage,"ущерб, повреждение",İSİMLER,A2,FILE11
+2840,basis,"основа, базис",İSİMLER,A2,FILE12
+2841,author,автор,İSİMLER,A2,FILE1
+2842,basic,"базовый, основной",SIFATLAR,A2,FILE2
+2843,encourage,"поощрять, ободрять",FİİLLER,A2,FILE3
+2844,male,мужской,SIFATLAR,A2,FILE5
+2845,operate,"работать, управлять",FİİLLER,A2,FILE6
+2846,reflect,отражать,FİİLLER,A2,FILE7
+2847,property,"собственность, свойство",İSİMLER,A2,FILE12
+2848,previous,предыдущий,SIFATLAR,A2,FILE1
+2849,imagine,"представлять, воображать",FİİLLER,A2,FILE3
+2850,okay,"хорошо, ладно",ZARFLAR,A2,FILE4
+2851,define,определять,FİİLLER,A2,FILE9
+2852,conclusion,"вывод, заключение",İSİMLER,A2,FILE10
+2853,clock,часы,İSİMLER,A2,FILE11
+2854,everybody,все,ZAMİRLER,A2,FILE12
+2855,professional,профессиональный,SIFATLAR,A2,FILE3
+2856,mine,мой,ZAMİRLER,A2,FILE4
+2857,object,"предмет, объект",İSİMLER,A2,FILE9
+2858,maintain,"поддерживать, сохранять",FİİLLER,A2,FILE10
+2859,credit,"кредит, заслуга",İSİMLER,A2,FILE11
+2860,dead,мёртвый,SIFATLAR,A2,FILE2
+2861,extend,"продлевать, расширять",FİİLLER,A2,FILE5
+2862,possibility,возможность,İSİMLER,A2,FILE6
+2863,direction,направление,İSİMLER,A2,FILE7
+2864,facility,"учреждение, объект",İSİMLER,A2,FILE8
+2865,variety,разнообразие,İSİMLER,A2,FILE9
+2866,daily,ежедневный,SIFATLAR,A2,FILE10
+2867,track,"дорожка, след",İSİMLER,A2,FILE1
+2868,completely,полностью,ZARFLAR,A2,FILE3
+2869,female,женский,SIFATLAR,A2,FILE4
+2870,responsibility,ответственность,İSİMLER,A2,FILE5
+2871,original,"оригинальный, первоначальный",SIFATLAR,A2,FILE6
+2872,rock,"скала, рок",İSİMLER,A2,FILE8
+2873,nor,"ни, и не",EDATLAR / BAĞLAÇLAR,A2,FILE10
+2874,easily,легко,ZARFLAR,A2,FILE12
+2875,dollar,доллар,İSİMLER,A2,FILE2
+2876,fix,"чинить, исправлять",FİİLLER,A2,FILE4
+2877,ahead,впереди,ZARFLAR,A2,FILE5
+2878,cross,пересекать,FİİLLER,A2,FILE6
+2879,yeah,"да, ага",ZARFLAR,A2,FILE7
+2880,proposal,предложение,İSİMLER,A2,FILE10
+2881,version,версия,İSİMLER,A2,FILE11
+2882,conversation,разговор,İSİMLER,A2,FILE12
+2883,somebody,кто-то,ZAMİRLER,A2,FILE1
+2884,pound,фунт,İSİMLER,A2,FILE2
+2885,shape,форма,İSİMLER,A2,FILE4
+2886,welcome,приветствовать,FİİLLER,A2,FILE7
+2887,communication,"общение, связь",İSİMLER,A2,FILE9
+2888,agent,агент,İSİMLER,A2,FILE10
+2889,judge,судить,FİİLLER,A2,FILE1
+2890,herself,"себя, сама",ZAMİRLER,A2,FILE2
+2891,estimate,оценивать,FİİLLER,A2,FILE5
+2892,favorite,любимый,SIFATLAR,A2,FILE6
+2893,difficulty,трудность,İSİMLER,A2,FILE7
+2894,purchase,покупать,FİİLLER,A2,FILE8
+2895,shoot,стрелять,FİİLLER,A2,FILE9
+2896,announce,объявлять,FİİLLER,A2,FILE10
+2897,unless,если не,EDATLAR / BAĞLAÇLAR,A2,FILE11
+2898,independent,независимый,SIFATLAR,A2,FILE12
+2899,survey,"опрос, обзор",İSİMLER,A2,FILE2
+2900,majority,большинство,İSİMLER,A2,FILE3
+2901,stick,"приклеивать, держаться",FİİLLER,A2,FILE4
+2902,request,"просить, запрашивать",FİİLLER,A2,FILE5
+2903,wind,ветер; наматывать,İSİMLER,A2,FILE7
+2904,none,"никто, ни один",ZAMİRLER,A2,FILE8
+2905,appropriate,подходящий,SIFATLAR,A2,FILE1
+2906,block,блокировать,FİİLLER,A2,FILE2
+2907,count,считать,FİİLLER,A2,FILE4
+2908,scene,"сцена, место происшествия",İSİMLER,A2,FILE5
+2909,content,содержание,İSİMLER,A2,FILE7
+2910,element,элемент,İSİMLER,A2,FILE12
+2911,effective,эффективный,SIFATLAR,A2,FILE1
+2912,correct,правильный,SIFATLAR,A2,FILE2
+2913,medical,медицинский,SIFATLAR,A2,FILE3
+2914,admit,"признавать, допускать",FİİLLER,A2,FILE4
+2915,telephone,телефон,İSİMLER,A2,FILE6
+2916,copy,копировать,FİİLLER,A2,FILE7
+2917,committee,комитет,İSİMLER,A2,FILE8
+2918,aware,осведомлённый,SIFATLAR,A2,FILE9
+2919,handle,"справляться, обрабатывать",FİİLLER,A2,FILE11
+2920,administration,"администрация, управление",İSİMLER,A2,FILE4
+2921,complex,сложный,SIFATLAR,A2,FILE5
+2922,context,контекст,İSİMLER,A2,FILE7
+2923,directly,напрямую,ZARFLAR,A2,FILE9
+2924,remove,"удалять, снимать",FİİLLER,A2,FILE11
+2925,conduct,проводить,FİİLLER,A2,FILE12
+2926,equipment,оборудование,İSİMLER,A2,FILE1
+2927,otherwise,иначе,ZARFLAR,A2,FILE2
+2928,title,"название, титул",İSİMLER,A2,FILE3
+2929,extra,дополнительный,SIFATLAR,A2,FILE4
+2930,executive,исполнительный,SIFATLAR,A2,FILE5
+2931,sample,образец,İSİMLER,A2,FILE8
+2932,sex,"пол, секс",İSİMLER,A2,FILE9
+2933,deliver,доставлять,FİİLLER,A2,FILE10
+2934,video,видео,İSİMLER,A2,FILE11
+2935,connection,"связь, соединение",İSİMLER,A2,FILE12
+2936,primary,"основной, первичный",SIFATLAR,A2,FILE1
+2937,inform,информировать,FİİLLER,A2,FILE4
+2938,principle,принцип,İSİMLER,A2,FILE5
+2939,straight,прямой,SIFATLAR,A2,FILE6
+2940,appeal,"обращаться, привлекать",FİİLLER,A2,FILE7
+2941,highly,"весьма, высоко",ZARFLAR,A2,FILE8
+2942,wonderful,замечательный,SIFATLAR,A2,FILE10
+2943,absolutely,абсолютно,ZARFLAR,A2,FILE12
+2944,flow,поток,İSİMLER,A2,FILE1
+2945,additional,дополнительный,SIFATLAR,A2,FILE3
+2946,responsible,ответственный,SIFATLAR,A2,FILE4
+2947,collection,"коллекция, сбор",İSİMLER,A2,FILE6
+2948,hang,"вешать, висеть",FİİLLER,A2,FILE7
+2949,negative,отрицательный,SIFATLAR,A2,FILE8
+2950,alternative,альтернативный,SIFATLAR,A2,FILE12
+2951,ship,корабль,İSİMLER,A2,FILE3
+2952,attitude,"отношение, позиция",İSİMLER,A2,FILE4
+2953,double,двойной,SIFATLAR,A2,FILE6
+2954,print,"печать, оттиск",İSİMLER,A2,FILE10
+2955,truth,правда,İSİMLER,A2,FILE12
+2956,nobody,никто,ZAMİRLER,A2,FILE1
+2957,examine,"изучать, осматривать",FİİLLER,A2,FILE2
+2958,lay,класть,FİİLLER,A2,FILE3
+2959,politics,политика,İSİMLER,A2,FILE5
+2960,reply,отвечать,FİİLLER,A2,FILE6
+2961,display,"показывать, отображать",FİİLLER,A2,FILE7
+2962,slightly,слегка,ZARFLAR,A2,FILE10
+2963,overall,в целом,ZARFLAR,A2,FILE11
+2964,user,пользователь,İSİMLER,A2,FILE1
+2965,respond,"реагировать, отвечать",FİİLLER,A2,FILE2
+2966,regular,"регулярный, обычный",SIFATLAR,A2,FILE5
+2967,physical,физический,SIFATLAR,A2,FILE6
+2968,apart,"отдельно, врозь",ZARFLAR,A2,FILE7
+2969,federal,федеральный,SIFATLAR,A2,FILE9
+2970,reveal,раскрывать,FİİLLER,A2,FILE10
+2971,percentage,"процент, доля",İSİMLER,A2,FILE11
+2972,peace,"мир, спокойствие",İSİMLER,A2,FILE12
+2973,status,статус,İSİMLER,A2,FILE1
+2974,decline,"снижаться, отклонять",FİİLLER,A2,FILE3
+2975,decade,десятилетие,İSİMLER,A2,FILE4
+2976,favor,оказывать предпочтение,FİİLLER,A2,FILE8
+2977,dry,сухой,SIFATLAR,A2,FILE9
+2978,institution,"учреждение, институт",İSİMLER,A2,FILE11
+2979,spot,"пятно, место",İSİMLER,A2,FILE12
+2980,heat,"жара, тепло",İSİMLER,A2,FILE3
+2981,excite,"волновать, возбуждать",FİİLLER,A2,FILE4
+2982,reader,читатель,İSİMLER,A2,FILE5
+2983,importance,важность,İSİMLER,A2,FILE6
+2984,distance,расстояние,İSİMLER,A2,FILE7
+2985,guide,направлять,FİİLLER,A2,FILE8
+2986,grant,предоставлять,FİİLLER,A2,FILE9
+2987,feed,кормить,FİİLLER,A2,FILE11
+2988,sector,сектор,İSİMLER,A2,FILE1
+2989,ensure,"обеспечивать, гарантировать",FİİLLER,A2,FILE3
+2990,satisfy,удовлетворять,FİİLLER,A2,FILE4
+2991,chief,"начальник, глава",İSİMLER,A2,FILE5
+2992,expert,эксперт,İSİMLER,A2,FILE7
+2993,wave,волна,İSİMLER,A2,FILE8
+2994,south,юг,İSİMLER,A2,FILE9
+2995,labor,"труд, рабочая сила",İSİMLER,A2,FILE10
+2996,surface,поверхность,İSİMLER,A2,FILE11
+2997,excellent,отличный,SIFATLAR,A2,FILE1
+2998,edge,"край, кромка",İSİMLER,A2,FILE2
+2999,camp,лагерь,İSİMLER,A2,FILE3
+3000,procedure,процедура,İSİMLER,A2,FILE6
+3001,global,глобальный,SIFATLAR,A2,FILE8
+3002,struggle,бороться,FİİLLER,A2,FILE9
+3003,select,выбирать,FİİLLER,A2,FILE11
+3004,surround,окружать,FİİLLER,A2,FILE12
+3005,extent,"степень, протяжённость",İSİMLER,A2,FILE1
+3006,annual,ежегодный,SIFATLAR,A2,FILE3
+3007,fully,полностью,ZARFLAR,A2,FILE4
+3008,contrast,контраст,İSİMLER,A2,FILE5
+3009,roll,"катить, сворачивать",FİİLLER,A2,FILE6
+3010,reality,реальность,İSİMLER,A2,FILE7
+3011,photograph,фотография,İSİMLER,A2,FILE8
+3012,entire,"весь, целый",SIFATLAR,A2,FILE11
+3013,presence,присутствие,İSİMLER,A2,FILE12
+3014,corner,угол,İSİMLER,A2,FILE2
+3015,gas,"газ, бензин",İSİMLER,A2,FILE3
+3016,net,"сеть, нетто",İSİMLER,A2,FILE5
+3017,category,категория,İSİMLER,A2,FILE6
+3018,secretary,секретарь,İSİMLER,A2,FILE7
+3019,defense,"оборона, защита",İSİMLER,A2,FILE8
+3020,quick,быстрый,SIFATLAR,A2,FILE9
+3021,spread,распространять,FİİLLER,A2,FILE11
+3022,nuclear,ядерный,SIFATLAR,A2,FILE12
+3023,scale,"масштаб, шкала",İSİMLER,A2,FILE1
+3024,cry,"плакать, кричать",FİİLLER,A2,FILE4
+3025,introduction,"введение, представление",İSİMLER,A2,FILE5
+3026,requirement,требование,İSİMLER,A2,FILE6
+3027,north,север,İSİMLER,A2,FILE7
+3028,confirm,подтверждать,FİİLLER,A2,FILE8
+3029,senior,старший,SIFATLAR,A2,FILE9
+3030,emerge,"появляться, возникать",FİİLLER,A2,FILE1
+3031,concept,"понятие, концепция",İSİMLER,A2,FILE3
+3032,reform,реформировать,FİİLLER,A2,FILE5
+3033,neither,ни тот ни другой,ZAMİRLER,A2,FILE6
+3034,left,"левый, оставшийся",SIFATLAR,A2,FILE10
+3035,solve,решать,FİİLLER,A2,FILE11
+3036,neighbor,сосед,İSİMLER,A2,FILE12
+3037,technique,"техника, метод",İSİMLER,A2,FILE2
+3038,improvement,улучшение,İSİMLER,A2,FILE4
+3039,tool,инструмент,İSİMLER,A2,FILE5
+3040,consequence,последствие,İSİMLER,A2,FILE6
+3041,circumstance,обстоятельство,İSİMLER,A2,FILE7
+3042,smoke,дым,İSİMLER,A2,FILE8
+3043,reaction,реакция,İSİMLER,A2,FILE9
+3044,brain,мозг,İSİMLER,A2,FILE1
+3045,mass,масса,İSİMLER,A2,FILE2
+3046,contribute,вносить вклад,FİİLLER,A2,FILE4
+3047,speaker,"оратор, динамик",İSİMLER,A2,FILE7
+3048,bottom,"низ, дно",İSİMLER,A2,FILE8
+3049,adopt,"принимать, усыновлять",FİİLLER,A2,FILE9
+3050,combine,объединять,FİİLLER,A2,FILE10
+3051,hide,прятать,FİİLLER,A2,FILE1
+3052,marriage,брак,İSİMLER,A2,FILE2
+3053,equal,равный,SIFATLAR,A2,FILE8
+3054,expression,выражение,İSİMLER,A2,FILE9
+3055,plus,"плюс, а также",EDATLAR / BAĞLAÇLAR,A2,FILE10
+3056,extremely,чрезвычайно,ZARFLAR,A2,FILE11
+3057,commercial,коммерческий,SIFATLAR,A2,FILE2
+3058,lady,"дама, женщина",İSİMLER,A2,FILE3
+3059,cultural,культурный,SIFATLAR,A2,FILE7
+3060,arrange,"организовывать, устраивать",FİİLLER,A2,FILE8
+3061,scheme,"схема, план",İSİMLER,A2,FILE9
+3062,payment,платёж,İSİMLER,A2,FILE10
+3063,unfortunately,к сожалению,ZARFLAR,A2,FILE11
+3064,brief,краткий,SIFATLAR,A2,FILE12
+3065,contribution,вклад,İSİMLER,A2,FILE3
+3066,chapter,глава,İSİMLER,A2,FILE5
+3067,secret,секрет,İSİMLER,A2,FILE6
+3068,apparently,по-видимому,ZARFLAR,A2,FILE7
+3069,union,"союз, профсоюз",İSİMLER,A2,FILE9
+3070,burn,"жечь, гореть",FİİLLER,A2,FILE10
+3071,trend,тенденция,İSİMLER,A2,FILE11
+3072,initial,первоначальный,SIFATLAR,A2,FILE12
+3073,pleasure,удовольствие,İSİMLER,A2,FILE1
+3074,suggestion,предложение,İSİMLER,A2,FILE2
+3075,critical,"критический, важный",SIFATLAR,A2,FILE3
+3076,gather,собирать,FİİLLER,A2,FILE4
+3077,mostly,в основном,ZARFLAR,A2,FILE5
+3078,earth,земля,İSİMLER,A2,FILE6
+3079,pop,поп-музыка,İSİMLER,A2,FILE7
+3080,essential,"существенный, необходимый",SIFATLAR,A2,FILE8
+3081,desire,желание,İSİMLER,A2,FILE9
+3082,employ,"нанимать, применять",FİİLLER,A2,FILE12
+3083,topic,тема,İSİMLER,A2,FILE2
+3084,attract,привлекать,FİİLLER,A2,FILE4
+3085,engage,вовлекать,FİİLLER,A2,FILE5
+3086,powerful,"мощный, влиятельный",SIFATLAR,A2,FILE6
+3087,crisis,кризис,İSİMLER,A2,FILE8
+3088,settle,"улаживать, поселяться",FİİLLER,A2,FILE9
+3089,boat,"лодка, судно",İSİMLER,A2,FILE10
+3090,fan,"фанат, вентилятор",İSİMLER,A2,FILE12
+3091,safety,безопасность,İSİMLER,A2,FILE5
+3092,divide,делить,FİİLLER,A2,FILE10
+3093,length,длина,İSİMLER,A2,FILE11
+3094,investigation,расследование,İSİMLER,A2,FILE12
+3095,somewhere,где-то,ZAMİRLER,A2,FILE2
+3096,expand,расширять,FİİLLER,A2,FILE3
+3097,commit,"совершать, обязываться",FİİLLER,A2,FILE4
+3098,obvious,очевидный,SIFATLAR,A2,FILE5
+3099,weapon,оружие,İSİMLER,A2,FILE7
+3100,relatively,относительно,ZARFLAR,A2,FILE8
+3101,district,"район, округ",İSİMLER,A2,FILE11
+3102,broad,широкий,SIFATLAR,A2,FILE12
+3103,tire,уставать,FİİLLER,A2,FILE1
+3104,spirit,дух,İSİMLER,A2,FILE3
+3105,actual,"фактический, настоящий",SIFATLAR,A2,FILE5
+3106,battle,битва,İSİMLER,A2,FILE7
+3107,hardly,"едва, вряд ли",ZARFLAR,A2,FILE10
+3108,award,награждать,FİİLLER,A2,FILE11
+3109,consideration,"рассмотрение, внимание",İSİMLER,A2,FILE2
+3110,strange,странный,SIFATLAR,A2,FILE3
+3111,code,"код, кодекс",İSİMLER,A2,FILE4
+3112,possibly,возможно,ZARFLAR,A2,FILE5
+3113,threat,угроза,İSİMLER,A2,FILE6
+3114,accident,несчастный случай,İSİMLER,A2,FILE7
+3115,revenue,"доход, выручка",İSİMLER,A2,FILE9
+3116,enable,давать возможность,FİİLLER,A2,FILE10
+3117,afraid,испуганный,SIFATLAR,A2,FILE11
+3118,active,активный,SIFATLAR,A2,FILE12
+3119,religious,религиозный,SIFATLAR,A2,FILE2
+3120,cancer,рак,İSİMLER,A2,FILE3
+3121,convince,убеждать,FİİLLER,A2,FILE4
+3122,vary,варьироваться,FİİLLER,A2,FILE5
+3123,environmental,экологический,SIFATLAR,A2,FILE6
+3124,sun,солнце,İSİMLER,A2,FILE7
+3125,healthy,здоровый,SIFATLAR,A2,FILE8
+3126,volume,"объём, том",İSİMLER,A2,FILE10
+3127,location,местоположение,İSİMLER,A2,FILE11
+3128,proceed,"продолжать, приступать",FİİLLER,A2,FILE1
+3129,glad,рад,SIFATLAR,A2,FILE4
+3130,tape,"лента, скотч",İSİMLER,A2,FILE5
+3131,stone,камень,İSİMLER,A2,FILE8
+3132,sum,сумма,İSİMLER,A2,FILE9
+3133,monitor,монитор,İSİMLER,A2,FILE11
+3134,finance,финансы,İSİMLER,A2,FILE1
+3135,shock,шок,İSİMLER,A2,FILE5
+3136,usual,обычный,SIFATLAR,A2,FILE7
+3137,carefully,осторожно,ZARFLAR,A2,FILE8
+3138,wine,вино,İSİMLER,A2,FILE11
+3139,manufacture,производить,FİİLLER,A2,FILE2
+3140,theater,театр,İSİMLER,A2,FILE3
+3141,totally,полностью,ZARFLAR,A2,FILE6
+3142,visitor,посетитель,İSİMLER,A2,FILE8
+3143,freedom,свобода,İSİMLER,A2,FILE9
+3144,construction,строительство,İSİMLER,A2,FILE10
+3145,dear,дорогой,SIFATLAR,A2,FILE11
+3146,moreover,более того,ZARFLAR,A2,FILE1
+3147,onto,на,EDATLAR / BAĞLAÇLAR,A2,FILE2
+3148,historical,исторический,SIFATLAR,A2,FILE3
+3149,oppose,противостоять,FİİLLER,A2,FILE4
+3150,branch,"ветвь, филиал",İSİMLER,A2,FILE5
+3151,vehicle,транспортное средство,İSİMLER,A2,FILE6
+3152,route,маршрут,İSİMLER,A2,FILE8
+3153,bind,связывать,FİİLLER,A2,FILE9
+3154,danger,опасность,İSİMLER,A2,FILE2
+3155,bomb,бомба,İSİMLER,A2,FILE3
+3156,army,армия,İSİMLER,A2,FILE4
+3157,decrease,уменьшать,FİİLLER,A2,FILE6
+3158,council,совет,İSİMLER,A2,FILE8
+3159,normally,обычно,ZARFLAR,A2,FILE10
+3160,sight,"зрение, вид",İSİMLER,A2,FILE11
+3161,generate,"производить, порождать",FİİLLER,A2,FILE12
+3162,deny,отрицать,FİİLLER,A2,FILE3
+3163,anybody,кто-нибудь,ZAMİRLER,A2,FILE5
+3164,quote,цитировать,FİİLLER,A2,FILE7
+3165,climb,карабкаться,FİİLLER,A2,FILE8
+3166,basically,в основном,ZARFLAR,A2,FILE9
+3167,violence,насилие,İSİMLER,A2,FILE10
+3168,minister,министр,İSİMLER,A2,FILE11
+3169,mainly,главным образом,ZARFLAR,A2,FILE12
+3170,noise,шум,İSİMLER,A2,FILE2
+3171,manner,"манера, способ",İSİMLER,A2,FILE3
+3172,gun,"пистолет, оружие",İSİMLER,A2,FILE4
+3173,square,"площадь, квадрат",İSİMLER,A2,FILE5
+3174,occasion,"случай, повод",İSİMLER,A2,FILE6
+3175,familiar,знакомый,SIFATLAR,A2,FILE7
+3176,ignore,игнорировать,FİİLLER,A2,FILE8
+3177,affair,"дело, роман",İSİMLER,A2,FILE10
+3178,locate,"находить, размещать",FİİLLER,A2,FILE12
+3179,gold,золото,İSİMLER,A2,FILE3
+3180,domestic,"внутренний, домашний",SIFATLAR,A2,FILE4
+3181,load,"нагрузка, груз",İSİMLER,A2,FILE5
+3182,belief,"убеждение, вера",İSİMLER,A2,FILE6
+3183,troop,войска,İSİMLER,A2,FILE7
+3184,technical,технический,SIFATLAR,A2,FILE8
+3185,acquire,приобретать,FİİLLER,A2,FILE2
+3186,corporate,корпоративный,SIFATLAR,A2,FILE3
+3187,fairly,"довольно, справедливо",ZARFLAR,A2,FILE4
+3188,wood,"дерево, древесина",İSİMLER,A2,FILE5
+3189,participate,участвовать,FİİLLER,A2,FILE6
+3190,tear,рвать,FİİLLER,A2,FILE8
+3191,representative,представитель,İSİMLER,A2,FILE9
+3192,capacity,"ёмкость, способность",İSİMLER,A2,FILE10
+3193,border,граница,İSİMLER,A2,FILE11
+3194,shake,трясти,FİİLLER,A2,FILE12
+3195,assessment,оценка,İSİMLER,A2,FILE1
+3196,shoe,"туфля, ботинок",İSİMLER,A2,FILE2
+3197,ought,следует,FİİLLER,A2,FILE3
+3198,ad,реклама,İSİMLER,A2,FILE4
+3199,regulation,"правило, регулирование",İSİMLER,A2,FILE7
+3200,escape,сбегать,FİİLLER,A2,FILE8
+3201,studio,студия,İSİMLER,A2,FILE9
+3202,proper,"надлежащий, правильный",SIFATLAR,A2,FILE10
+3203,component,компонент,İSİMLER,A2,FILE1
+3204,suspect,подозревать,FİİLLER,A2,FILE4
+3205,description,описание,İSİMLER,A2,FILE6
+3206,confidence,уверенность,İSİMLER,A2,FILE7
+3207,industrial,промышленный,SIFATLAR,A2,FILE8
+3208,perspective,"перспектива, взгляд",İSİMLER,A2,FILE10
+3209,error,ошибка,İSİMLER,A2,FILE11
+3210,assess,оценивать,FİİLLER,A2,FILE1
+3211,asset,"актив, имущество",İSİMLER,A2,FILE3
+3212,signal,сигнал,İSİMLER,A2,FILE4
+3213,relevant,уместный,SIFATLAR,A2,FILE6
+3214,leadership,руководство,İSİMLER,A2,FILE8
+3215,commitment,обязательство,İSİMLER,A2,FILE9
+3216,wake,"просыпаться, будить",FİİLLER,A2,FILE10
+3217,necessarily,обязательно,ZARFLAR,A2,FILE11
+3218,frame,"рамка, каркас",İSİMLER,A2,FILE1
+3219,slowly,медленно,ZARFLAR,A2,FILE2
+3220,hole,дыра,İSİMLER,A2,FILE5
+3221,internal,внутренний,SIFATLAR,A2,FILE7
+3222,chain,цепь,İSİMLER,A2,FILE8
+3223,literature,литература,İSİMLER,A2,FILE9
+3224,threaten,угрожать,FİİLLER,A2,FILE11
+3225,division,"разделение, дивизия",İSİMLER,A2,FILE12
+3226,secure,"безопасный, надёжный",SIFATLAR,A2,FILE1
+3227,amaze,изумлять,FİİLLER,A2,FILE2
+3228,birth,рождение,İSİMLER,A2,FILE4
+3229,label,"этикетка, ярлык",İSİMLER,A2,FILE6
+3230,root,корень,İSİMLER,A2,FILE7
+3231,recommendation,рекомендация,İSİMLER,A2,FILE12
+3232,rank,"ранг, звание",İSİMLER,A2,FILE1
+3233,west,запад,İSİMLER,A2,FILE3
+3234,resident,житель,İSİMLER,A2,FILE5
+3235,provision,"положение, обеспечение",İSİMLER,A2,FILE6
+3236,plenty,"множество, достаточно",İSİMLER,A2,FILE8
+3237,export,экспорт,İSİMLER,A2,FILE9
+3238,entirely,полностью,ZARFLAR,A2,FILE10
+3239,strongly,сильно,ZARFLAR,A2,FILE11
+3240,consist,состоять,FİİLLER,A2,FILE1
+3241,moral,"моральный, нравственный",SIFATLAR,A2,FILE4
+3242,insist,настаивать,FİİLLER,A2,FILE5
+3243,combination,сочетание,İSİMLER,A2,FILE6
+3244,abuse,"злоупотреблять, оскорблять",FİİLLER,A2,FILE7
+3245,principal,главный,SIFATLAR,A2,FILE9
+3246,master,"мастер, хозяин",İSİMLER,A2,FILE10
+3247,session,"сессия, занятие",İSİMLER,A2,FILE12
+3248,nevertheless,тем не менее,ZARFLAR,A2,FILE2
+3249,protection,защита,İSİMLER,A2,FILE5
+3250,largely,в значительной степени,ZARFLAR,A2,FILE6
+3251,wed,"венчать, жениться",FİİLLER,A2,FILE7
+3252,shot,"выстрел, кадр",İSİMLER,A2,FILE9
+3253,reasonable,разумный,SIFATLAR,A2,FILE11
+3254,till,до,EDATLAR / BAĞLAÇLAR,A2,FILE1
+3255,theme,тема,İSİMLER,A2,FILE2
+3256,judgment,"суждение, приговор",İSİMLER,A2,FILE3
+3257,odd,"странный, нечётный",SIFATLAR,A2,FILE4
+3258,approve,одобрять,FİİLLER,A2,FILE5
+3259,definition,определение,İSİMLER,A2,FILE7
+3260,atmosphere,атмосфера,İSİMLER,A2,FILE9
+3261,comparison,сравнение,İSİMLER,A2,FILE11
+3262,characteristic,"черта, характеристика",İSİMLER,A2,FILE12
+3263,license,лицензия,İSİMLER,A2,FILE1
+3264,rely,полагаться,FİİLLER,A2,FILE2
+3265,narrow,узкий,SIFATLAR,A2,FILE3
+3266,desk,письменный стол,İSİMLER,A2,FILE6
+3267,permit,разрешать,FİİLLER,A2,FILE7
+3268,seriously,серьёзно,ZARFLAR,A2,FILE8
+3269,wild,дикий,SIFATLAR,A2,FILE9
+3270,unique,уникальный,SIFATLAR,A2,FILE12
+3271,association,ассоциация,İSİMLER,A2,FILE1
+3272,instrument,инструмент,İSİMLER,A2,FILE2
+3273,investor,инвестор,İSİMLER,A2,FILE3
+3274,practical,практический,SIFATLAR,A2,FILE4
+3275,lovely,прелестный,SIFATLAR,A2,FILE6
+3276,soft,мягкий,SIFATLAR,A2,FILE7
+3277,row,ряд,İSİMLER,A2,FILE8
+3278,youth,"молодёжь, юность",İSİMLER,B1,FILE1
+3279,lock,запирать,FİİLLER,B1,FILE2
+3280,fuel,топливо,İSİMLER,B1,FILE3
+3281,expectation,ожидание,İSİMLER,B1,FILE4
+3282,employment,"занятость, работа",İSİMLER,B1,FILE5
+3283,sexual,"сексуальный, половой",SIFATLAR,B1,FILE7
+3284,breath,дыхание,İSİMLER,B1,FILE9
+3285,increasingly,всё более,ZARFLAR,B1,FILE10
+3286,import,импортировать,FİİLLER,B1,FILE11
+3287,ourselves,"себя, сами",ZAMİRLER,B1,FILE1
+3288,engine,двигатель,İSİMLER,B1,FILE3
+3289,cast,состав исполнителей,İSİMLER,B1,FILE4
+3290,notion,"понятие, представление",İSİMLER,B1,FILE5
+3291,conservative,консервативный,SIFATLAR,B1,FILE6
+3292,opposition,оппозиция,İSİMLER,B1,FILE8
+3293,relief,облегчение,İSİMLER,B1,FILE9
+3294,honor,честь,İSİMLER,B1,FILE11
+3295,outcome,"исход, результат",İSİMLER,B1,FILE12
+3296,blame,винить,FİİLLER,B1,FILE1
+3297,explanation,объяснение,İSİMLER,B1,FILE2
+3298,arise,возникать,FİİLLER,B1,FILE3
+3299,musical,музыкальный,SIFATLAR,B1,FILE4
+3300,stretch,растягивать,FİİLLER,B1,FILE7
+3301,declare,"заявлять, объявлять",FİİLLER,B1,FILE8
+3302,careful,осторожный,SIFATLAR,B1,FILE11
+3303,suitable,подходящий,SIFATLAR,B1,FILE12
+3304,native,"родной, местный",SIFATLAR,B1,FILE1
+3305,analyze,анализировать,FİİLLER,B1,FILE3
+3306,mail,почта,İSİMLER,B1,FILE5
+3307,terrible,ужасный,SIFATLAR,B1,FILE6
+3308,ordinary,обычный,SIFATLAR,B1,FILE8
+3309,selection,"выбор, отбор",İSİMLER,B1,FILE9
+3310,anywhere,где-нибудь,ZAMİRLER,B1,FILE10
+3311,mental,"умственный, психический",SIFATLAR,B1,FILE11
+3312,participant,участник,İSİMLER,B1,FILE12
+3313,vision,"зрение, видение",İSİMLER,B1,FILE1
+3314,specifically,"конкретно, специально",ZARFLAR,B1,FILE3
+3315,fat,"жирный, толстый",SIFATLAR,B1,FILE4
+3316,entry,"вход, запись",İSİMLER,B1,FILE5
+3317,fellow,"приятель, коллега",İSİMLER,B1,FILE6
+3318,chemical,химический,SIFATLAR,B1,FILE7
+3319,capture,захватывать,FİİLLER,B1,FILE8
+3320,peak,"пик, вершина",İSİMLER,B1,FILE11
+3321,chairman,председатель,İSİMLER,B1,FILE12
+3322,proportion,"пропорция, доля",İSİMLER,B1,FILE1
+3323,disappear,исчезать,FİİLLER,B1,FILE3
+3324,yard,"двор, ярд",İSİMLER,B1,FILE5
+3325,constant,постоянный,SIFATLAR,B1,FILE6
+3326,significantly,значительно,ZARFLAR,B1,FILE7
+3327,considerable,значительный,SIFATLAR,B1,FILE9
+3328,instruction,инструкция,İSİMLER,B1,FILE10
+3329,ideal,идеальный,SIFATLAR,B1,FILE12
+3330,folk,"народ, люди",İSİMLER,B1,FILE1
+3331,surely,несомненно,ZARFLAR,B1,FILE2
+3332,guard,"охрана, страж",İSİMLER,B1,FILE3
+3333,somewhat,"несколько, отчасти",ZARFLAR,B1,FILE5
+3334,kiss,целовать,FİİLLER,B1,FILE6
+3335,presentation,презентация,İSİMLER,B1,FILE7
+3336,joint,сустав; совместный,İSİMLER,B1,FILE8
+3337,poll,опрос,İSİMLER,B1,FILE10
+3338,faith,вера,İSİMLER,B1,FILE12
+3339,reduction,сокращение,İSİMLER,B1,FILE1
+3340,reserve,"запас, резерв",İSİMLER,B1,FILE2
+3341,bore,наскучить,FİİLLER,B1,FILE4
+3342,mission,миссия,İSİMLER,B1,FILE5
+3343,somehow,как-то,ZARFLAR,B1,FILE6
+3344,tone,тон,İSİMLER,B1,FILE7
+3345,neighborhood,"район, окрестности",İSİMLER,B1,FILE8
+3346,justice,"справедливость, юстиция",İSİMLER,B1,FILE10
+3347,phase,"фаза, этап",İSİMLER,B1,FILE11
+3348,rush,спешить,FİİLLER,B1,FILE1
+3349,religion,религия,İSİMLER,B1,FILE3
+3350,employer,работодатель,İSİMLER,B1,FILE4
+3351,reject,отклонять,FİİLLER,B1,FILE5
+3352,latter,последний из двух,SIFATLAR,B1,FILE6
+3353,index,"индекс, указатель",İSİMLER,B1,FILE11
+3354,frequently,часто,ZARFLAR,B1,FILE1
+3355,circle,круг,İSİMLER,B1,FILE2
+3356,helpful,полезный,SIFATLAR,B1,FILE3
+3357,command,"команда, приказ",İSİMLER,B1,FILE4
+3358,attractive,привлекательный,SIFATLAR,B1,FILE5
+3359,sick,больной,SIFATLAR,B1,FILE6
+3360,impression,впечатление,İSİMLER,B1,FILE7
+3361,unable,неспособный,SIFATLAR,B1,FILE8
+3362,joke,шутка,İSİMLER,B1,FILE9
+3363,sky,небо,İSİMLER,B1,FILE10
+3364,column,"колонка, колонна",İSİMLER,B1,FILE11
+3365,electronic,электронный,SIFATLAR,B1,FILE12
+3366,impose,"налагать, навязывать",FİİLLER,B1,FILE1
+3367,besides,"кроме, помимо",EDATLAR / BAĞLAÇLAR,B1,FILE3
+3368,properly,"правильно, как следует",ZARFLAR,B1,FILE4
+3369,ancient,древний,SIFATLAR,B1,FILE5
+3370,coast,побережье,İSİMLER,B1,FILE6
+3371,ill,больной,SIFATLAR,B1,FILE7
+3372,closely,"тесно, внимательно",ZARFLAR,B1,FILE9
+3373,multiple,множественный,SIFATLAR,B1,FILE10
+3374,yield,"давать, уступать",FİİLLER,B1,FILE11
+3375,via,"через, посредством",EDATLAR / BAĞLAÇLAR,B1,FILE12
+3376,legislation,законодательство,İSİMLER,B1,FILE1
+3377,county,округ,İSİMLER,B1,FILE2
+3378,unlike,в отличие от,EDATLAR / BAĞLAÇLAR,B1,FILE3
+3379,mobile,мобильный,SIFATLAR,B1,FILE4
+3380,assistant,помощник,İSİMLER,B1,FILE5
+3381,implement,осуществлять,FİİLLER,B1,FILE6
+3382,chart,"график, таблица",İSİMLER,B1,FILE7
+3383,attach,прикреплять,FİİLLER,B1,FILE8
+3384,hell,ад,İSİMLER,B1,FILE9
+3385,everywhere,везде,ZAMİRLER,B1,FILE10
+3386,advise,советовать,FİİLLER,B1,FILE11
+3387,household,домохозяйство,İSİMLER,B1,FILE12
+3388,acknowledge,признавать,FİİLLER,B1,FILE1
+3389,east,восток,İSİMLER,B1,FILE3
+3390,voter,избиратель,İSİMLER,B1,FILE6
+3391,furthermore,кроме того,ZARFLAR,B1,FILE8
+3392,scientific,научный,SIFATLAR,B1,FILE10
+3393,wage,зарплата,İSİMLER,B1,FILE11
+3394,absence,отсутствие,İSİMLER,B1,FILE12
+3395,construct,строить,FİİLLER,B1,FILE1
+3396,remark,замечание,İSİMLER,B1,FILE2
+3397,professor,профессор,İSİMLER,B1,FILE4
+3398,rare,редкий,SIFATLAR,B1,FILE5
+3399,intention,намерение,İSİMLER,B1,FILE6
+3400,dozen,дюжина,İSİMLER,B1,FILE7
+3401,settlement,"поселение, урегулирование",İSİMLER,B1,FILE8
+3402,gap,"разрыв, пробел",İSİMLER,B1,FILE9
+3403,widely,широко,ZARFLAR,B1,FILE10
+3404,minimum,минимум,İSİMLER,B1,FILE11
+3405,northern,северный,SIFATLAR,B1,FILE12
+3406,estate,"имущество, поместье",İSİMLER,B1,FILE1
+3407,equally,в равной степени,ZARFLAR,B1,FILE2
+3408,expose,"разоблачать, подвергать",FİİLLER,B1,FILE3
+3409,alive,живой,SIFATLAR,B1,FILE4
+3410,shut,закрывать,FİİLLER,B1,FILE5
+3411,victory,победа,İSİMLER,B1,FILE6
+3412,resolve,"разрешать, решать",FİİLLER,B1,FILE7
+3413,critic,критик,İSİMLER,B1,FILE8
+3414,variable,переменная,İSİMLER,B1,FILE9
+3415,enormous,огромный,SIFATLAR,B1,FILE10
+3416,permanent,постоянный,SIFATLAR,B1,FILE12
+3417,pursue,"преследовать, добиваться",FİİLLER,B1,FILE2
+3418,urge,настоятельно призывать,FİİLLER,B1,FILE4
+3419,enemy,враг,İSİMLER,B1,FILE5
+3420,appoint,назначать,FİİLLER,B1,FILE6
+3421,smell,"нюхать, пахнуть",FİİLLER,B1,FILE9
+3422,prior,предшествующий,SIFATLAR,B1,FILE10
+3423,stable,стабильный,SIFATLAR,B1,FILE3
+3424,merely,всего лишь,ZARFLAR,B1,FILE4
+3425,resolution,"резолюция, решимость",İSİMLER,B1,FILE5
+3426,communicate,общаться,FİİLLER,B1,FILE6
+3427,vast,обширный,SIFATLAR,B1,FILE8
+3428,producer,"производитель, продюсер",İSİMLER,B1,FILE10
+3429,regional,региональный,SIFATLAR,B1,FILE11
+3430,immediate,немедленный,SIFATLAR,B1,FILE12
+3431,incident,инцидент,İSİMLER,B1,FILE1
+3432,draft,"черновик, призыв",İSİMLER,B1,FILE3
+3433,slip,"скользить, оступиться",FİİLLER,B1,FILE4
+3434,accompany,сопровождать,FİİLLER,B1,FILE5
+3435,angry,сердитый,SIFATLAR,B1,FILE7
+3436,knock,стучать,FİİLLER,B1,FILE8
+3437,seed,семя,İSİMLER,B1,FILE9
+3438,illustrate,иллюстрировать,FİİLLER,B1,FILE11
+3439,temporary,временный,SIFATLAR,B1,FILE2
+3440,liberal,либеральный,SIFATLAR,B1,FILE3
+3441,truly,поистине,ZARFLAR,B1,FILE7
+3442,disk,диск,İSİMLER,B1,FILE11
+3443,core,"ядро, суть",İSİMLER,B1,FILE12
+3444,emotional,эмоциональный,SIFATLAR,B1,FILE1
+3445,aircraft,самолёт,İSİMLER,B1,FILE2
+3446,self,"я, самость",İSİMLER,B1,FILE3
+3447,metal,металл,İSİMLER,B1,FILE4
+3448,existence,существование,İSİMLER,B1,FILE5
+3449,bone,кость,İSİMLER,B1,FILE6
+3450,panel,"панель, комиссия",İSİMLER,B1,FILE7
+3451,prime,"главный, первоклассный",SIFATLAR,B1,FILE8
+3452,emphasize,подчёркивать,FİİLLER,B1,FILE10
+3453,maximum,максимум,İSİMLER,B1,FILE11
+3454,effectively,эффективно,ZARFLAR,B1,FILE12
+3455,elsewhere,в другом месте,ZARFLAR,B1,FILE1
+3456,bother,беспокоить,FİİLLER,B1,FILE2
+3457,initiative,инициатива,İSİMLER,B1,FILE3
+3458,motion,"движение, ходатайство",İSİMLER,B1,FILE6
+3459,gray,серый,SIFATLAR,B1,FILE7
+3460,complicate,усложнять,FİİLLER,B1,FILE9
+3461,discipline,дисциплина,İSİMLER,B1,FILE10
+3462,disappoint,разочаровывать,FİİLLER,B1,FILE11
+3463,extreme,"крайний, экстремальный",SIFATLAR,B1,FILE3
+3464,passage,"проход, отрывок",İSİMLER,B1,FILE4
+3465,reputation,репутация,İSİMLER,B1,FILE5
+3466,forth,"вперёд, далее",ZARFLAR,B1,FILE6
+3467,negotiation,переговоры,İSİMLER,B1,FILE7
+3468,mechanism,механизм,İSİMLER,B1,FILE8
+3469,democracy,демократия,İSİMLER,B1,FILE10
+3470,observation,наблюдение,İSİMLER,B1,FILE2
+3471,deserve,заслуживать,FİİLLER,B1,FILE6
+3472,unusual,необычный,SIFATLAR,B1,FILE7
+3473,defend,защищать,FİİLLER,B1,FILE8
+3474,classic,классический,SIFATLAR,B1,FILE9
+3475,king,король,İSİMLER,B1,FILE10
+3476,interaction,взаимодействие,İSİMLER,B1,FILE11
+3477,collapse,рушиться,FİİLLER,B1,FILE1
+3478,fundamental,фундаментальный,SIFATLAR,B1,FILE3
+3479,dish,"блюдо, тарелка",İSİMLER,B1,FILE4
+3480,abroad,за границей,ZARFLAR,B1,FILE5
+3481,soul,душа,İSİMLER,B1,FILE6
+3482,capable,способный,SIFATLAR,B1,FILE7
+3483,presidential,президентский,SIFATLAR,B1,FILE9
+3484,perfectly,совершенно,ZARFLAR,B1,FILE10
+3485,enhance,"усиливать, улучшать",FİİLLER,B1,FILE11
+3486,proud,гордый,SIFATLAR,B1,FILE12
+3487,educational,образовательный,SIFATLAR,B1,FILE2
+3488,distinguish,различать,FİİLLER,B1,FILE3
+3489,substantial,существенный,SIFATLAR,B1,FILE4
+3490,nearby,близлежащий,SIFATLAR,B1,FILE5
+3491,manufacturer,производитель,İSİMLER,B1,FILE6
+3492,slide,скользить,FİİLLER,B1,FILE7
+3493,valuable,ценный,SIFATLAR,B1,FILE8
+3494,personally,лично,ZARFLAR,B1,FILE9
+3495,breast,грудь,İSİMLER,B1,FILE10
+3496,approximately,приблизительно,ZARFLAR,B1,FILE12
+3497,highlight,выделять,FİİLLER,B1,FILE2
+3498,climate,климат,İSİMLER,B1,FILE4
+3499,exception,исключение,İSİMLER,B1,FILE6
+3500,corporation,корпорация,İSİMLER,B1,FILE7
+3501,chip,"чип, чипс",İSİMLER,B1,FILE8
+3502,winner,победитель,İSİMLER,B1,FILE9
+3503,encounter,сталкиваться,FİİLLER,B1,FILE10
+3504,excuse,"оправдание, извинение",İSİMLER,B1,FILE1
+3505,partly,частично,ZARFLAR,B1,FILE2
+3506,urban,городской,SIFATLAR,B1,FILE4
+3507,confuse,путать,FİİLLER,B1,FILE5
+3508,southern,южный,SIFATLAR,B1,FILE6
+3509,output,"выпуск, продукция",İSİMLER,B1,FILE7
+3510,beauty,красота,İSİMLER,B1,FILE8
+3511,massive,массивный,SIFATLAR,B1,FILE9
+3512,calculate,вычислять,FİİLLER,B1,FILE11
+3513,mathematics,математика,İSİMLER,B1,FILE1
+3514,upper,верхний,SIFATLAR,B1,FILE2
+3515,creation,создание,İSİMLER,B1,FILE3
+3516,occupy,занимать,FİİLLER,B1,FILE4
+3517,outline,намечать,FİİLLER,B1,FILE5
+3518,sufficient,достаточный,SIFATLAR,B1,FILE6
+3519,luck,удача,İSİMLER,B1,FILE8
+3520,preserve,сохранять,FİİLLER,B1,FILE9
+3521,split,разделять,FİİLLER,B1,FILE10
+3522,swing,качать,FİİLLER,B1,FILE11
+3523,sudden,внезапный,SIFATLAR,B1,FILE2
+3524,consistent,последовательный,SIFATLAR,B1,FILE4
+3525,originally,первоначально,ZARFLAR,B1,FILE5
+3526,aside,в сторону,ZARFLAR,B1,FILE6
+3527,comfort,комфорт,İSİMLER,B1,FILE7
+3528,secondly,во-вторых,ZARFLAR,B1,FILE8
+3529,prospect,перспектива,İSİMLER,B1,FILE11
+3530,criterion,критерий,İSİMLER,B1,FILE3
+3531,primarily,прежде всего,ZARFLAR,B1,FILE4
+3532,integrate,интегрировать,FİİLLER,B1,FILE5
+3533,criticism,критика,İSİMLER,B1,FILE6
+3534,convention,"соглашение, съезд",İSİMLER,B1,FILE7
+3535,bet,держать пари,FİİLLER,B1,FILE8
+3536,retain,"сохранять, удерживать",FİİLLER,B1,FILE9
+3537,sequence,последовательность,İSİMLER,B1,FILE10
+3538,plain,"простой, равнинный",SIFATLAR,B1,FILE11
+3539,rural,сельский,SIFATLAR,B1,FILE1
+3540,abandon,"бросать, покидать",FİİLLER,B1,FILE3
+3541,examination,"экзамен, осмотр",İSİMLER,B1,FILE4
+3542,silence,тишина,İSİMLER,B1,FILE5
+3543,rapidly,быстро,ZARFLAR,B1,FILE6
+3544,efficient,эффективный,SIFATLAR,B1,FILE7
+3545,revolution,революция,İSİMLER,B1,FILE8
+3546,delight,радовать,FİİLLER,B1,FILE9
+3547,lean,"клониться, опираться",FİİLLER,B1,FILE12
+3548,dramatic,драматичный,SIFATLAR,B1,FILE1
+3549,differ,отличаться,FİİLLER,B1,FILE2
+3550,grateful,благодарный,SIFATLAR,B1,FILE3
+3551,distribute,распределять,FİİLLER,B1,FILE6
+3552,intellectual,интеллектуальный,SIFATLAR,B1,FILE7
+3553,derive,"получать, происходить",FİİLLER,B1,FILE8
+3554,crucial,ключевой,SIFATLAR,B1,FILE9
+3555,wheel,колесо,İSİMLER,B1,FILE11
+3556,minority,меньшинство,İSİMLER,B1,FILE1
+3557,origin,происхождение,İSİMLER,B1,FILE2
+3558,interpretation,толкование,İSİMLER,B1,FILE3
+3559,gentleman,джентльмен,İSİMLER,B1,FILE4
+3560,landscape,пейзаж,İSİMLER,B1,FILE6
+3561,educate,обучать,FİİLLER,B1,FILE7
+3562,fault,"вина, недостаток",İSİMLER,B1,FILE9
+3563,exhibit,выставлять,FİİLLER,B1,FILE10
+3564,minor,незначительный,SIFATLAR,B1,FILE11
+3565,hunt,охотиться,FİİLLER,B1,FILE12
+3566,thick,"толстый, густой",SIFATLAR,B1,FILE2
+3567,dominate,доминировать,FİİLLER,B1,FILE5
+3568,supplier,поставщик,İSİMLER,B1,FILE6
+3569,prize,приз,İSİMLER,B1,FILE7
+3570,typically,как правило,ZARFLAR,B1,FILE8
+3571,peer,сверстник,İSİMLER,B1,FILE9
+3572,pension,пенсия,İSİMLER,B1,FILE10
+3573,wing,крыло,İSİMLER,B1,FILE11
+3574,acquisition,приобретение,İSİMLER,B1,FILE12
+3575,laughter,смех,İSİMLER,B1,FILE1
+3576,deeply,глубоко,ZARFLAR,B1,FILE2
+3577,recognition,признание,İSİMLER,B1,FILE3
+3578,electricity,электричество,İSİMLER,B1,FILE4
+3579,assistance,помощь,İSİMLER,B1,FILE5
+3580,retirement,"пенсия, отставка",İSİMLER,B1,FILE7
+3581,respectively,соответственно,ZARFLAR,B1,FILE8
+3582,variation,вариация,İSİMLER,B1,FILE9
+3583,ultimately,в конечном счёте,ZARFLAR,B1,FILE10
+3584,proof,доказательство,İSİMLER,B1,FILE11
+3585,soil,почва,İSİMLER,B1,FILE12
+3586,layer,слой,İSİMLER,B1,FILE2
+3587,upset,расстраивать,FİİLLER,B1,FILE3
+3588,representation,представление,İSİMLER,B1,FILE5
+3589,preparation,подготовка,İSİMLER,B1,FILE6
+3590,dispute,спор,İSİMLER,B1,FILE7
+3591,agenda,повестка дня,İSİMLER,B1,FILE8
+3592,emphasis,акцент,İSİMLER,B1,FILE9
+3593,edition,издание,İSİMLER,B1,FILE10
+3594,silver,серебро,İSİMLER,B1,FILE11
+3595,entertainment,развлечение,İSİMLER,B1,FILE12
+3596,undertake,предпринимать,FİİLLER,B1,FILE2
+3597,wire,провод,İSİMLER,B1,FILE4
+3598,unlikely,маловероятный,SIFATLAR,B1,FILE5
+3599,gay,гей,SIFATLAR,B1,FILE6
+3600,publication,публикация,İSİMLER,B1,FILE7
+3601,slight,незначительный,SIFATLAR,B1,FILE8
+3602,unknown,неизвестный,SIFATLAR,B1,FILE9
+3603,framework,"рамки, структура",İSİMLER,B1,FILE10
+3604,zone,зона,İSİMLER,B1,FILE11
+3605,restrict,ограничивать,FİİLLER,B1,FILE12
+3606,trace,прослеживать,FİİLLER,B1,FILE1
+3607,inch,дюйм,İSİMLER,B1,FILE2
+3608,equivalent,равносильный,SIFATLAR,B1,FILE3
+3609,solid,"твёрдый, надёжный",SIFATLAR,B1,FILE4
+3610,enterprise,предприятие,İSİMLER,B1,FILE5
+3611,elderly,пожилой,SIFATLAR,B1,FILE6
+3612,governor,губернатор,İSİMLER,B1,FILE8
+3613,port,порт,İSİMLER,B1,FILE10
+3614,pitch,"подача, высота тона",İSİMLER,B1,FILE11
+3615,contemporary,современный,SIFATLAR,B1,FILE1
+3616,ease,лёгкость,İSİMLER,B1,FILE3
+3617,beer,пиво,İSİMLER,B1,FILE4
+3618,assure,заверять,FİİLLER,B1,FILE6
+3619,crack,трескаться,FİİLLER,B1,FILE10
+3620,numerous,многочисленный,SIFATLAR,B1,FILE11
+3621,submit,"подавать, подчиняться",FİİLLER,B1,FILE12
+3622,virtually,практически,ZARFLAR,B1,FILE2
+3623,era,эпоха,İSİMLER,B1,FILE3
+3624,coverage,"освещение, покрытие",İSİMLER,B1,FILE4
+3625,tension,напряжение,İSİMLER,B1,FILE5
+3626,cable,кабель,İSİMLER,B1,FILE6
+3627,input,"ввод, вклад",İSİMLER,B1,FILE9
+3628,isolate,изолировать,FİİLLER,B1,FILE10
+3629,eliminate,устранять,FİİLLER,B1,FILE12
+3630,wet,мокрый,SIFATLAR,B1,FILE2
+3631,secondary,вторичный,SIFATLAR,B1,FILE3
+3632,recruit,набирать,FİİLLER,B1,FILE5
+3633,exclude,исключать,FİİLLER,B1,FILE6
+3634,string,"струна, нить",İSİMLER,B1,FILE7
+3635,persuade,убеждать,FİİLLER,B1,FILE9
+3636,grand,величественный,SIFATLAR,B1,FILE11
+3637,hence,"отсюда, следовательно",ZARFLAR,B1,FILE12
+3638,crew,экипаж,İSİMLER,B1,FILE1
+3639,phenomenon,явление,İSİMLER,B1,FILE2
+3640,pupil,"ученик, зрачок",İSİMLER,B1,FILE3
+3641,assist,помогать,FİİLLER,B1,FILE5
+3642,restore,восстанавливать,FİİLLER,B1,FILE6
+3643,formula,формула,İSİMLER,B1,FILE7
+3644,alter,изменять,FİİLLER,B1,FILE8
+3645,perceive,воспринимать,FİİLLER,B1,FILE9
+3646,anymore,больше не,ZARFLAR,B1,FILE1
+3647,hero,герой,İSİMLER,B1,FILE2
+3648,convert,преобразовывать,FİİLLER,B1,FILE4
+3649,steady,устойчивый,SIFATLAR,B1,FILE5
+3650,meter,"метр, счётчик",İSİMLER,B1,FILE6
+3651,truck,грузовик,İSİMLER,B1,FILE7
+3652,beside,рядом с,EDATLAR / BAĞLAÇLAR,B1,FILE9
+3653,sail,плыть под парусом,FİİLLER,B1,FILE10
+3654,disaster,бедствие,İSİMLER,B1,FILE11
+3655,heavily,"сильно, тяжело",ZARFLAR,B1,FILE1
+3656,devote,посвящать,FİİLLER,B1,FILE2
+3657,terrorist,террорист,İSİMLER,B1,FILE3
+3658,vital,жизненно важный,SIFATLAR,B1,FILE5
+3659,fascinate,очаровывать,FİİLLER,B1,FILE6
+3660,external,внешний,SIFATLAR,B1,FILE7
+3661,spare,запасной,SIFATLAR,B1,FILE8
+3662,whenever,когда бы ни,EDATLAR / BAĞLAÇLAR,B1,FILE9
+3663,underlie,лежать в основе,FİİLLER,B1,FILE12
+3664,mom,мама,İSİMLER,B1,FILE1
+3665,distinction,различие,İSİMLER,B1,FILE2
+3666,satisfaction,удовлетворение,İSİMLER,B1,FILE3
+3667,incorporate,"включать, учреждать",FİİLLER,B1,FILE4
+3668,sweep,подметать,FİİLLER,B1,FILE6
+3669,obligation,обязательство,İSİMLER,B1,FILE7
+3670,sir,сэр,İSİMLER,B1,FILE8
+3671,evaluate,оценивать,FİİLLER,B1,FILE9
+3672,anger,гнев,İSİMLER,B1,FILE10
+3673,perception,восприятие,İSİMLER,B1,FILE12
+3674,naturally,естественно,ZARFLAR,B1,FILE1
+3675,database,база данных,İSİMLER,B1,FILE3
+3676,initially,первоначально,ZARFLAR,B1,FILE4
+3677,territory,территория,İSİMLER,B1,FILE5
+3678,rarely,редко,ZARFLAR,B1,FILE7
+3679,apparent,"явный, кажущийся",SIFATLAR,B1,FILE9
+3680,western,западный,SIFATLAR,B1,FILE10
+3681,expansion,расширение,İSİMLER,B1,FILE11
+3682,constantly,постоянно,ZARFLAR,B1,FILE12
+3683,muscle,мышца,İSİMLER,B1,FILE1
+3684,scare,пугать,FİİLLER,B1,FILE2
+3685,badly,плохо,ZARFLAR,B1,FILE3
+3686,everyday,повседневный,SIFATLAR,B1,FILE4
+3687,ratio,соотношение,İSİMLER,B1,FILE6
+3688,scream,кричать,FİİLLER,B1,FILE8
+3689,disorder,"расстройство, беспорядок",İSİMLER,B1,FILE11
+3690,symbol,символ,İSİMLER,B1,FILE1
+3691,demonstration,демонстрация,İSİMLER,B1,FILE3
+3692,analyst,аналитик,İSİMLER,B1,FILE4
+3693,steel,сталь,İSİMLER,B1,FILE6
+3694,transform,преобразовывать,FİİLLER,B1,FILE8
+3695,restriction,ограничение,İSİMLER,B1,FILE10
+3696,foundation,"основа, фонд",İSİMLER,B1,FILE11
+3697,strain,напрягать,FİİLLER,B1,FILE1
+3698,album,альбом,İSİMLER,B1,FILE3
+3699,trail,идти по следу,FİİLLER,B1,FILE5
+3700,trap,ловить в ловушку,FİİLLER,B1,FILE6
+3701,extension,"расширение, пристройка",İSİMLER,B1,FILE8
+3702,wealth,богатство,İSİMLER,B1,FILE9
+3703,gradually,постепенно,ZARFLAR,B1,FILE10
+3704,tank,"танк, бак",İSİMLER,B1,FILE11
+3705,evil,злой,SIFATLAR,B1,FILE12
+3706,remarkable,замечательный,SIFATLAR,B1,FILE1
+3707,tune,мелодия,İSİMLER,B1,FILE2
+3708,grass,трава,İSİMLER,B1,FILE3
+3709,transition,переход,İSİMLER,B1,FILE5
+3710,frighten,пугать,FİİLLER,B1,FILE6
+3711,bid,делать ставку,FİİLLER,B1,FILE7
+3712,breed,разводить,FİİLLER,B1,FILE8
+3713,extraordinary,необычайный,SIFATLAR,B1,FILE9
+3714,brilliant,блестящий,SIFATLAR,B1,FILE10
+3715,adviser,советник,İSİMLER,B1,FILE11
+3716,stem,стебель,İSİMLER,B1,FILE12
+3717,mode,"режим, способ",İSİMLER,B1,FILE2
+3718,awful,ужасный,SIFATLAR,B1,FILE4
+3719,pose,"ставить, позировать",FİİLLER,B1,FILE5
+3720,adjust,настраивать,FİİLLER,B1,FILE6
+3721,creative,творческий,SIFATLAR,B1,FILE7
+3722,poem,стихотворение,İSİMLER,B1,FILE9
+3723,agricultural,сельскохозяйственный,SIFATLAR,B1,FILE10
+3724,competitor,конкурент,İSİMLER,B1,FILE11
+3725,alcohol,алкоголь,İSİMLER,B1,FILE12
+3726,planet,планета,İSİMLER,B1,FILE5
+3727,curve,"кривая, изгиб",İSİMLER,B1,FILE6
+3728,knee,колено,İSİMLER,B1,FILE7
+3729,overcome,преодолевать,FİİLLER,B1,FILE8
+3730,web,"сеть, паутина",İSİMLER,B1,FILE9
+3731,depth,глубина,İSİMLER,B1,FILE10
+3732,entrance,вход,İSİMLER,B1,FILE11
+3733,log,"бревно, журнал",İSİMLER,B1,FILE12
+3734,giant,гигантский,SIFATLAR,B1,FILE1
+3735,god,бог,İSİMLER,B1,FILE2
+3736,substance,вещество,İSİMLER,B1,FILE4
+3737,extensive,обширный,SIFATLAR,B1,FILE5
+3738,interpret,толковать,FİİLLER,B1,FILE6
+3739,independence,независимость,İSİMLER,B1,FILE7
+3740,inner,внутренний,SIFATLAR,B1,FILE9
+3741,harm,вредить,FİİLLER,B1,FILE10
+3742,consult,консультироваться,FİİLLER,B1,FILE11
+3743,shadow,тень,İSİMLER,B1,FILE1
+3744,strip,сдирать,FİİLLER,B1,FILE2
+3745,smooth,гладкий,SIFATLAR,B1,FILE3
+3746,intervention,вмешательство,İSİMLER,B1,FILE4
+3747,impress,впечатлять,FİİLLER,B1,FILE5
+3748,vice,порок,İSİMLER,B1,FILE7
+3749,radical,радикальный,SIFATLAR,B1,FILE8
+3750,similarly,подобным образом,ZARFLAR,B1,FILE9
+3751,behave,вести себя,FİİLLER,B1,FILE10
+3752,loud,громкий,SIFATLAR,B1,FILE11
+3753,dimension,"измерение, размер",İSİMLER,B1,FILE12
+3754,subsequent,последующий,SIFATLAR,B1,FILE1
+3755,infection,инфекция,İSİMLER,B1,FILE2
+3756,efficiency,эффективность,İSİMLER,B1,FILE4
+3757,statistic,"статистика, показатель",İSİMLER,B1,FILE6
+3758,regularly,регулярно,ZARFLAR,B1,FILE7
+3759,membership,членство,İSİMLER,B1,FILE11
+3760,blind,слепой,SIFATLAR,B1,FILE1
+3761,pure,чистый,SIFATLAR,B1,FILE2
+3762,bloody,кровавый,SIFATLAR,B1,FILE3
+3763,ally,союзник,İSİMLER,B1,FILE4
+3764,quantity,количество,İSİMLER,B1,FILE5
+3765,bend,сгибать,FİİLLER,B1,FILE6
+3766,mature,зрелый,SIFATLAR,B1,FILE7
+3767,briefly,кратко,ZARFLAR,B1,FILE8
+3768,alarm,"тревога, будильник",İSİMLER,B1,FILE9
+3769,disturb,беспокоить,FİİLLER,B1,FILE10
+3770,sustain,поддерживать,FİİLLER,B1,FILE11
+3771,poverty,бедность,İSİMLER,B1,FILE1
+3772,crazy,сумасшедший,SIFATLAR,B1,FILE2
+3773,cite,цитировать,FİİLLER,B1,FILE3
+3774,newly,недавно,ZARFLAR,B1,FILE4
+3775,parallel,параллельный,SIFATLAR,B1,FILE5
+3776,gender,"гендер, пол",İSİMLER,B1,FILE6
+3777,sponsor,спонсировать,FİİLLER,B1,FILE7
+3778,boot,ботинок,İSİMLER,B1,FILE8
+3779,dealer,дилер,İSİMLER,B1,FILE10
+3780,burden,бремя,İSİMLER,B1,FILE12
+3781,desert,пустыня,İSİMLER,B1,FILE1
+3782,mate,"товарищ, партнёр",İSİMLER,B1,FILE2
+3783,occasionally,изредка,ZARFLAR,B1,FILE3
+3784,shareholder,акционер,İSİMLER,B1,FILE4
+3785,resistance,сопротивление,İSİMLER,B1,FILE7
+3786,bath,ванна,İSİMLER,B1,FILE8
+3787,frequency,частота,İSİMLER,B1,FILE9
+3788,criticize,критиковать,FİİLLER,B1,FILE10
+3789,tap,постукивать,FİİLLER,B1,FILE11
+3790,philosophy,философия,İSİMLER,B1,FILE12
+3791,lip,губа,İSİMLER,B1,FILE1
+3792,attribute,приписывать,FİİLLER,B1,FILE2
+3793,apologize,извиняться,FİİLLER,B1,FILE3
+3794,approval,одобрение,İSİMLER,B1,FILE4
+3795,grab,хватать,FİİLLER,B2,FILE1
+3796,entitle,давать право,FİİLLER,B2,FILE2
+3797,involvement,участие,İSİMLER,B2,FILE4
+3798,exposure,"воздействие, разоблачение",İSİMLER,B2,FILE5
+3799,conventional,традиционный,SIFATLAR,B2,FILE6
+3800,digital,цифровой,SIFATLAR,B2,FILE7
+3801,edit,редактировать,FİİLLER,B2,FILE9
+3802,formation,формирование,İSİMLER,B2,FILE10
+3803,pleasant,приятный,SIFATLAR,B2,FILE12
+3804,overseas,зарубежный,SIFATLAR,B2,FILE1
+3805,advocate,"сторонник, адвокат",İSİMLER,B2,FILE2
+3806,establishment,"учреждение, истеблишмент",İSİMLER,B2,FILE3
+3807,summary,краткое изложение,İSİMLER,B2,FILE4
+3808,rough,"грубый, неровный",SIFATLAR,B2,FILE5
+3809,recovery,восстановление,İSİMLER,B2,FILE7
+3810,seal,печать,İSİMLER,B2,FILE8
+3811,tube,"труба, тюбик",İSİMLER,B2,FILE9
+3812,tower,башня,İSİMLER,B2,FILE10
+3813,characterize,характеризовать,FİİLLER,B2,FILE11
+3814,specify,указывать,FİİLLER,B2,FILE12
+3815,exact,точный,SIFATLAR,B2,FILE1
+3816,spin,крутить,FİİLLER,B2,FILE2
+3817,operator,оператор,İSİMLER,B2,FILE3
+3818,infant,младенец,İSİMLER,B2,FILE4
+3819,dig,копать,FİİLLER,B2,FILE5
+3820,drag,тащить,FİİLLER,B2,FILE6
+3821,mount,"монтировать, восходить",FİİLLER,B2,FILE7
+3822,wrap,заворачивать,FİİLLER,B2,FILE8
+3823,anticipate,предвидеть,FİİLLER,B2,FILE9
+3824,dependent,зависимый,SIFATLAR,B2,FILE10
+3825,specialize,специализироваться,FİİLLER,B2,FILE11
+3826,angle,угол,İSİMLER,B2,FILE12
+3827,virus,вирус,İSİMLER,B2,FILE3
+3828,precisely,точно,ZARFLAR,B2,FILE4
+3829,rival,соперник,İSİMLER,B2,FILE5
+3830,offense,"обида, правонарушение",İSİMLER,B2,FILE6
+3831,detect,обнаруживать,FİİLLER,B2,FILE7
+3832,admire,восхищаться,FİİLLER,B2,FILE9
+3833,moderate,умеренный,SIFATLAR,B2,FILE10
+3834,surgery,"операция, хирургия",İSİMLER,B2,FILE11
+3835,significance,значение,İSİMLER,B2,FILE1
+3836,charity,благотворительность,İSİMLER,B2,FILE4
+3837,universal,всеобщий,SIFATLAR,B2,FILE5
+3838,cigarette,сигарета,İSİMLER,B2,FILE6
+3839,constitute,составлять,FİİLLER,B2,FILE7
+3840,adequate,достаточный,SIFATLAR,B2,FILE8
+3841,consultant,консультант,İSİMLER,B2,FILE9
+3842,historian,историк,İSİMLER,B2,FILE10
+3843,visual,визуальный,SIFATLAR,B2,FILE12
+3844,keen,"острый, увлечённый",SIFATLAR,B2,FILE2
+3845,ethnic,этнический,SIFATLAR,B2,FILE3
+3846,clinical,клинический,SIFATLAR,B2,FILE5
+3847,eastern,восточный,SIFATLAR,B2,FILE6
+3848,segment,сегмент,İSİMLER,B2,FILE8
+3849,sand,песок,İSİMLER,B2,FILE11
+3850,prompt,побуждать,FİİLLER,B2,FILE1
+3851,charm,обаяние,İSİMLER,B2,FILE2
+3852,react,реагировать,FİİLLER,B2,FILE3
+3853,venture,"предприятие, авантюра",İSİMLER,B2,FILE5
+3854,compound,"соединение, комплекс",İSİMLER,B2,FILE6
+3855,mess,беспорядок,İSİMLER,B2,FILE8
+3856,preference,предпочтение,İSİMLER,B2,FILE9
+3857,comprehensive,всесторонний,SIFATLAR,B2,FILE10
+3858,incentive,стимул,İSİMLER,B2,FILE11
+3859,dialog,диалог,İSİMLER,B2,FILE1
+3860,cream,"крем, сливки",İSİMLER,B2,FILE2
+3861,rapid,быстрый,SIFATLAR,B2,FILE3
+3862,regret,сожалеть,FİİLLER,B2,FILE5
+3863,dismiss,"увольнять, отклонять",FİİLLER,B2,FILE6
+3864,margin,"край, маржа",İSİMLER,B2,FILE7
+3865,beneath,"под, ниже",EDATLAR / BAĞLAÇLAR,B2,FILE8
+3866,opponent,противник,İSİMLER,B2,FILE9
+3867,resist,сопротивляться,FİİLLER,B2,FILE10
+3868,capability,способность,İSİMLER,B2,FILE11
+3869,absolute,абсолютный,SIFATLAR,B2,FILE12
+3870,correspond,соответствовать,FİİLLER,B2,FILE1
+3871,stroke,"инсульт, удар",İSİMLER,B2,FILE2
+3872,dare,осмеливаться,FİİLLER,B2,FILE3
+3873,barrier,барьер,İSİMLER,B2,FILE4
+3874,rid,избавлять,FİİLLER,B2,FILE5
+3875,divorce,разводиться,FİİLLER,B2,FILE6
+3876,ruin,разрушать,FİİLLER,B2,FILE7
+3877,bury,хоронить,FİİLLER,B2,FILE8
+3878,counsel,"совет, адвокат",İSİMLER,B2,FILE9
+3879,tendency,тенденция,İSİMLER,B2,FILE10
+3880,frequent,частый,SIFATLAR,B2,FILE11
+3881,motor,мотор,İSİMLER,B2,FILE12
+3882,survival,выживание,İSİMLER,B2,FILE1
+3883,counter,"прилавок, счётчик",İSİMLER,B2,FILE2
+3884,possess,владеть,FİİLLER,B2,FILE3
+3885,permission,разрешение,İSİMLER,B2,FILE4
+3886,valley,долина,İSİMLER,B2,FILE5
+3887,float,плыть,FİİLLER,B2,FILE6
+3888,mad,"безумный, злой",SIFATLAR,B2,FILE7
+3889,greatly,весьма,ZARFLAR,B2,FILE8
+3890,visible,видимый,SIFATLAR,B2,FILE9
+3891,electric,электрический,SIFATLAR,B2,FILE10
+3892,impressive,впечатляющий,SIFATLAR,B2,FILE11
+3893,evolution,эволюция,İSİMLER,B2,FILE12
+3894,awareness,осведомлённость,İSİMLER,B2,FILE1
+3895,violent,жестокий,SIFATLAR,B2,FILE2
+3896,slave,раб,İSİMLER,B2,FILE3
+3897,architecture,архитектура,İSİMLER,B2,FILE5
+3898,acceptable,приемлемый,SIFATLAR,B2,FILE6
+3899,journal,журнал,İSİMLER,B2,FILE7
+3900,coal,уголь,İSİMLER,B2,FILE8
+3901,measurement,измерение,İSİMLER,B2,FILE9
+3902,random,случайный,SIFATLAR,B2,FILE10
+3903,successfully,успешно,ZARFLAR,B2,FILE11
+3904,depress,угнетать,FİİLLER,B2,FILE12
+3905,illustration,иллюстрация,İSİMLER,B2,FILE1
+3906,burst,"лопнуть, вспыхнуть",FİİLLER,B2,FILE2
+3907,buyer,покупатель,İSİMLER,B2,FILE4
+3908,mutual,взаимный,SIFATLAR,B2,FILE5
+3909,rail,рельс,İSİMLER,B2,FILE6
+3910,motivate,мотивировать,FİİLLER,B2,FILE7
+3911,laboratory,лаборатория,İSİMLER,B2,FILE8
+3912,passion,страсть,İSİMLER,B2,FILE11
+3913,fulfill,выполнять,FİİLLER,B2,FILE1
+3914,dust,пыль,İSİMLER,B2,FILE2
+3915,dedicate,посвящать,FİİLLER,B2,FILE3
+3916,roughly,примерно,ZARFLAR,B2,FILE4
+3917,province,провинция,İSİMLER,B2,FILE6
+3918,evaluation,оценка,İSİMLER,B2,FILE8
+3919,accomplish,"достигать, выполнять",FİİLLER,B2,FILE10
+3920,announcement,объявление,İSİMLER,B2,FILE12
+3921,opera,опера,İSİMLER,B2,FILE3
+3922,contest,конкурс,İSİMLER,B2,FILE4
+3923,brush,чистить щёткой,FİİLLER,B2,FILE5
+3924,embarrass,смущать,FİİLLER,B2,FILE6
+3925,genetic,генетический,SIFATLAR,B2,FILE8
+3926,aggressive,агрессивный,SIFATLAR,B2,FILE9
+3927,chest,"грудь, ящик",İSİMLER,B2,FILE10
+3928,format,формат,İSİMLER,B2,FILE11
+3929,literary,литературный,SIFATLAR,B2,FILE12
+3930,govern,управлять,FİİLLER,B2,FILE1
+3931,embrace,"обнимать, принимать",FİİLLER,B2,FILE2
+3932,praise,хвалить,FİİLLER,B2,FILE3
+3933,silent,"тихий, безмолвный",SIFATLAR,B2,FILE4
+3934,pump,качать,FİİLLER,B2,FILE5
+3935,publisher,издатель,İSİMLER,B2,FILE6
+3936,celebration,празднование,İSİMLER,B2,FILE7
+3937,compensation,компенсация,İSİMLER,B2,FILE9
+3938,classical,классический,SIFATLAR,B2,FILE10
+3939,weigh,"весить, взвешивать",FİİLLER,B2,FILE11
+3940,versus,против,EDATLAR / BAĞLAÇLAR,B2,FILE12
+3941,deficit,дефицит,İSİMLER,B2,FILE1
+3942,modify,изменять,FİİLLER,B2,FILE2
+3943,flash,вспыхивать,FİİLLER,B2,FILE3
+3944,friendship,дружба,İSİMLER,B2,FILE4
+3945,literally,буквально,ZARFLAR,B2,FILE6
+3946,equation,уравнение,İSİMLER,B2,FILE7
+3947,entertain,развлекать,FİİLLER,B2,FILE9
+3948,fantastic,фантастический,SIFATLAR,B2,FILE10
+3949,assign,назначать,FİİLLER,B2,FILE11
+3950,inflation,инфляция,İSİMLER,B2,FILE12
+3951,historic,исторический,SIFATLAR,B2,FILE1
+3952,injure,травмировать,FİİLLER,B2,FILE2
+3953,remote,удалённый,SIFATLAR,B2,FILE3
+3954,twist,скручивать,FİİLLER,B2,FILE6
+3955,personnel,персонал,İSİMLER,B2,FILE7
+3956,imagination,воображение,İSİMLER,B2,FILE8
+3957,throat,горло,İSİMLER,B2,FILE10
+3958,insight,"понимание, озарение",İSİMLER,B2,FILE11
+3959,forever,навсегда,ZARFLAR,B2,FILE1
+3960,exceed,превышать,FİİLLER,B2,FILE2
+3961,expenditure,расход,İSİMLER,B2,FILE3
+3962,joy,радость,İSİMLER,B2,FILE4
+3963,pregnant,беременная,SIFATLAR,B2,FILE5
+3964,gear,"передача, снаряжение",İSİMLER,B2,FILE7
+3965,poet,поэт,İSİMLER,B2,FILE8
+3966,fortune,"удача, состояние",İSİMLER,B2,FILE9
+3967,ceremony,церемония,İSİMLER,B2,FILE10
+3968,pile,складывать в кучу,FİİLLER,B2,FILE11
+3969,mixture,смесь,İSİMLER,B2,FILE1
+3970,automatically,автоматически,ZARFLAR,B2,FILE2
+3971,scholar,учёный,İSİMLER,B2,FILE3
+3972,psychological,психологический,SIFATLAR,B2,FILE4
+3973,dramatically,"резко, драматично",ZARFLAR,B2,FILE5
+3974,stake,"ставка, доля",İSİMLER,B2,FILE6
+3975,creature,существо,İSİMLER,B2,FILE7
+3976,partnership,партнёрство,İSİMLER,B2,FILE8
+3977,participation,участие,İSİMLER,B2,FILE9
+3978,clause,"пункт, придаточное",İSİMLER,B2,FILE10
+3979,penalty,"штраф, наказание",İSİMLER,B2,FILE11
+3980,chamber,"палата, камера",İSİMLER,B2,FILE12
+3981,fancy,"изысканный, причудливый",SIFATLAR,B2,FILE1
+3982,clothing,одежда,İSİMLER,B2,FILE4
+3983,evolve,развиваться,FİİLLER,B2,FILE5
+3984,sake,ради,İSİMLER,B2,FILE6
+3985,boost,повышать,FİİLLER,B2,FILE8
+3986,tail,хвост,İSİMLER,B2,FILE9
+3987,possession,владение,İSİMLER,B2,FILE10
+3988,abortion,аборт,İSİMLER,B2,FILE11
+3989,curious,любопытный,SIFATLAR,B2,FILE12
+3990,wooden,деревянный,SIFATLAR,B2,FILE1
+3991,boom,"бум, подъём",İSİMLER,B2,FILE2
+3992,tale,"сказка, история",İSİMLER,B2,FILE3
+3993,maintenance,обслуживание,İSİMLER,B2,FILE5
+3994,consequently,следовательно,ZARFLAR,B2,FILE6
+3995,strengthen,укреплять,FİİLLER,B2,FILE9
+3996,whilst,в то время как,EDATLAR / BAĞLAÇLAR,B2,FILE10
+3997,constraint,ограничение,İSİMLER,B2,FILE11
+3998,fold,складывать,FİİLLER,B2,FILE12
+3999,bin,"бак, корзина",İSİMLER,B2,FILE1
+4000,undergo,претерпевать,FİİLLER,B2,FILE2
+4001,potentially,потенциально,ZARFLAR,B2,FILE3
+4002,scope,"охват, рамки",İSİMLER,B2,FILE4
+4003,pretend,притворяться,FİİLLER,B2,FILE5
+4004,allege,утверждать,FİİLLER,B2,FILE7
+4005,pride,гордость,İSİMLER,B2,FILE8
+4006,intense,интенсивный,SIFATLAR,B2,FILE9
+4007,inquiry,"запрос, расследование",İSİMLER,B2,FILE10
+4008,craft,ремесло,İSİMLER,B2,FILE12
+4009,concrete,"конкретный, бетонный",SIFATLAR,B2,FILE2
+4010,shell,"оболочка, раковина",İSİMLER,B2,FILE3
+4011,damn,проклятый,SIFATLAR,B2,FILE4
+4012,distinct,"отчётливый, особый",SIFATLAR,B2,FILE5
+4013,humor,юмор,İSİMLER,B2,FILE6
+4014,limitation,ограничение,İSİMLER,B2,FILE7
+4015,indication,"признак, указание",İSİMLER,B2,FILE8
+4016,stability,стабильность,İSİMLER,B2,FILE9
+4017,wise,мудрый,SIFATLAR,B2,FILE10
+4018,neglect,пренебрегать,FİİLLER,B2,FILE11
+4019,jail,тюрьма,İSİMLER,B2,FILE1
+4020,mere,"простой, всего лишь",SIFATLAR,B2,FILE3
+4021,carbon,углерод,İSİMLER,B2,FILE4
+4022,regulate,регулировать,FİİLLER,B2,FILE5
+4023,trigger,запускать,FİİLLER,B2,FILE7
+4024,pipe,труба,İSİMLER,B2,FILE8
+4025,destruction,разрушение,İSİMLER,B2,FILE9
+4026,flag,флаг,İSİMLER,B2,FILE11
+4027,magic,магия,İSİMLER,B2,FILE1
+4028,mystery,тайна,İSİMLER,B2,FILE2
+4029,rear,задний,SIFATLAR,B2,FILE5
+4030,moon,луна,İSİMLER,B2,FILE8
+4031,presumably,предположительно,ZARFLAR,B2,FILE9
+4032,bless,благословлять,FİİLLER,B2,FILE10
+4033,airline,авиакомпания,İSİMLER,B2,FILE11
+4034,amendment,поправка,İSİMLER,B2,FILE12
+4035,jury,присяжные,İSİMLER,B2,FILE2
+4036,cooperation,сотрудничество,İSİMLER,B2,FILE3
+4037,civilian,гражданский,İSİMLER,B2,FILE4
+4038,composition,"состав, сочинение",İSİMLER,B2,FILE5
+4039,regardless,независимо от,ZARFLAR,B2,FILE7
+4040,scan,сканировать,FİİLLER,B2,FILE8
+4041,bunch,"связка, куча",İSİMLER,B2,FILE9
+4042,racial,расовый,SIFATLAR,B2,FILE10
+4043,greet,приветствовать,FİİLLER,B2,FILE11
+4044,hopefully,надеюсь,ZARFLAR,B2,FILE12
+4045,trick,"трюк, уловка",İSİMLER,B2,FILE2
+4046,paragraph,абзац,İSİMLER,B2,FILE3
+4047,maker,изготовитель,İSİMLER,B2,FILE4
+4048,stimulate,стимулировать,FİİLLER,B2,FILE6
+4049,tissue,ткань,İSİMLER,B2,FILE10
+4050,barely,едва,ZARFLAR,B2,FILE11
+4051,tourism,туризм,İSİMLER,B2,FILE1
+4052,pro,профессионал,İSİMLER,B2,FILE2
+4053,stair,ступенька,İSİMLER,B2,FILE3
+4054,hesitate,колебаться,FİİLLER,B2,FILE4
+4055,romantic,романтический,SIFATLAR,B2,FILE7
+4056,firmly,твёрдо,ZARFLAR,B2,FILE8
+4057,interior,интерьер,İSİMLER,B2,FILE9
+4058,nowhere,нигде,ZARFLAR,B2,FILE11
+4059,pray,молиться,FİİLLER,B2,FILE12
+4060,championship,чемпионат,İSİMLER,B2,FILE1
+4061,servant,слуга,İSİMLER,B2,FILE2
+4062,immigrant,иммигрант,İSİMLER,B2,FILE3
+4063,excess,избыток,İSİMLER,B2,FILE4
+4064,complexity,сложность,İSİMLER,B2,FILE5
+4065,surprisingly,удивительно,ZARFLAR,B2,FILE7
+4066,extract,извлекать,FİİLLER,B2,FILE8
+4067,implementation,реализация,İSİMLER,B2,FILE9
+4068,differently,иначе,ZARFLAR,B2,FILE11
+4069,catalog,каталог,İSİMLER,B2,FILE12
+4070,continuous,непрерывный,SIFATLAR,B2,FILE1
+4071,golden,золотой,SIFATLAR,B2,FILE2
+4072,guideline,"руководство, рекомендация",İSİMLER,B2,FILE4
+4073,biological,биологический,SIFATLAR,B2,FILE7
+4074,consume,потреблять,FİİLLER,B2,FILE8
+4075,luxury,роскошь,İSİMLER,B2,FILE9
+4076,weekly,еженедельный,SIFATLAR,B2,FILE10
+4077,wherever,где бы ни,EDATLAR / BAĞLAÇLAR,B2,FILE11
+4078,bite,кусать,FİİLLER,B2,FILE12
+4079,firstly,во-первых,ZARFLAR,B2,FILE2
+4080,anxious,тревожный,SIFATLAR,B2,FILE3
+4081,exhaust,"исчерпывать, изнурять",FİİLLER,B2,FILE6
+4082,attraction,"достопримечательность, влечение",İSİMLER,B2,FILE7
+4083,ocean,океан,İSİMLER,B2,FILE8
+4084,quietly,тихо,ZARFLAR,B2,FILE9
+4085,castle,замок,İSİMLER,B2,FILE10
+4086,veteran,ветеран,İSİMLER,B2,FILE11
+4087,reflection,отражение,İSİMLER,B2,FILE12
+4088,nerve,нерв,İSİMLER,B2,FILE1
+4089,determination,решимость,İSİMLER,B2,FILE2
+4090,altogether,"в целом, совсем",ZARFLAR,B2,FILE3
+4091,fiction,художественная литература,İSİMLER,B2,FILE4
+4092,cluster,"скопление, кластер",İSİMLER,B2,FILE6
+4093,confusion,путаница,İSİMLER,B2,FILE7
+4094,logic,логика,İSİMLER,B2,FILE9
+4095,hint,намекать,FİİLLER,B2,FILE2
+4096,hook,зацеплять,FİİLLER,B2,FILE3
+4097,bell,"колокол, звонок",İSİMLER,B2,FILE4
+4098,liquid,жидкость,İSİMLER,B2,FILE5
+4099,panic,паниковать,FİİLLER,B2,FILE6
+4100,slope,склон,İSİMLER,B2,FILE9
+4101,happiness,счастье,İSİMLER,B2,FILE10
+4102,genuine,подлинный,SIFATLAR,B2,FILE11
+4103,vessel,"сосуд, судно",İSİMLER,B2,FILE12
+4104,verb,глагол,İSİMLER,B2,FILE1
+4105,reckon,"считать, полагать",FİİLLER,B2,FILE2
+4106,silly,глупый,SIFATLAR,B2,FILE3
+4107,transportation,транспорт,İSİMLER,B2,FILE4
+4108,harbor,гавань,İSİMLER,B2,FILE5
+4109,chase,гнаться,FİİLLER,B2,FILE7
+4110,universe,вселенная,İSİMLER,B2,FILE9
+4111,horrible,ужасный,SIFATLAR,B2,FILE10
+4112,lover,возлюбленный,İSİMLER,B2,FILE12
+4113,rat,крыса,İSİMLER,B2,FILE1
+4114,portrait,портрет,İSİMLER,B2,FILE2
+4115,substitute,заменять,FİİLLER,B2,FILE4
+4116,supplement,дополнение,İSİMLER,B2,FILE5
+4117,adjustment,корректировка,İSİMLER,B2,FILE6
+4118,reasonably,разумно,ZARFLAR,B2,FILE7
+4119,filter,фильтровать,FİİLLER,B2,FILE8
+4120,flexible,гибкий,SIFATLAR,B2,FILE9
+4121,tent,палатка,İSİMLER,B2,FILE11
+4122,precise,точный,SIFATLAR,B2,FILE12
+4123,distant,далёкий,SIFATLAR,B2,FILE1
+4124,shade,"тень, оттенок",İSİMLER,B2,FILE3
+4125,grain,зерно,İSİMLER,B2,FILE4
+4126,situate,располагать,FİİLLER,B2,FILE5
+4127,summarize,суммировать,FİİLLER,B2,FILE6
+4128,leap,прыгать,FİİLLER,B2,FILE7
+4129,snap,"щёлкать, ломаться",FİİLLER,B2,FILE8
+4130,probability,вероятность,İSİMLER,B2,FILE9
+4131,uncertainty,неопределённость,İSİMLER,B2,FILE11
+4132,swear,"клясться, ругаться",FİİLLER,B2,FILE12
+4133,refugee,беженец,İSİMLER,B2,FILE1
+4134,shore,берег,İSİMLER,B2,FILE2
+4135,monthly,ежемесячный,SIFATLAR,B2,FILE3
+4136,comprise,включать в себя,FİİLLER,B2,FILE4
+4137,stir,помешивать,FİİLLER,B2,FILE5
+4138,excitement,волнение,İSİMLER,B2,FILE6
+4139,sigh,вздыхать,FİİLLER,B2,FILE7
+4140,pregnancy,беременность,İSİMLER,B2,FILE8
+4141,experimental,экспериментальный,SIFATLAR,B2,FILE9
+4142,institutional,институциональный,SIFATLAR,B2,FILE10
+4143,slice,ломтик,İSİMLER,B2,FILE11
+4144,wander,бродить,FİİLLER,B2,FILE12
+4145,empire,империя,İSİMLER,B2,FILE1
+4146,subsequently,впоследствии,ZARFLAR,B2,FILE2
+4147,gentle,"нежный, мягкий",SIFATLAR,B2,FILE3
+4148,attendance,посещаемость,İSİMLER,B2,FILE4
+4149,ownership,"собственность, владение",İSİMLER,B2,FILE5
+4150,suspend,приостанавливать,FİİLLER,B2,FILE7
+4151,functional,функциональный,SIFATLAR,B2,FILE8
+4152,voluntary,добровольный,SIFATLAR,B2,FILE9
+4153,pale,бледный,SIFATLAR,B2,FILE10
+4154,stain,пачкать,FİİLLER,B2,FILE11
+4155,tongue,язык,İSİMLER,B2,FILE2
+4156,server,сервер,İSİMLER,B2,FILE3
+4157,structural,структурный,SIFATLAR,B2,FILE4
+4158,fool,обманывать,FİİLLER,B2,FILE5
+4159,alongside,рядом с,EDATLAR / BAĞLAÇLAR,B2,FILE6
+4160,unite,объединять,FİİLLER,B2,FILE7
+4161,gently,нежно,ZARFLAR,B2,FILE8
+4162,compute,вычислять,FİİLLER,B2,FILE9
+4163,weird,странный,SIFATLAR,B2,FILE11
+4164,gaze,пристально смотреть,FİİLLER,B2,FILE12
+4165,fade,"увядать, тускнеть",FİİLLER,B2,FILE1
+4166,royal,королевский,SIFATLAR,B2,FILE4
+4167,theoretical,теоретический,SIFATLAR,B2,FILE5
+4168,mayor,мэр,İSİMLER,B2,FILE7
+4169,darkness,темнота,İSİMLER,B2,FILE8
+4170,tournament,турнир,İSİMLER,B2,FILE10
+4171,registration,регистрация,İSİMLER,B2,FILE11
+4172,fragment,фрагмент,İSİMLER,B2,FILE12
+4173,listener,слушатель,İSİMLER,B2,FILE1
+4174,density,плотность,İSİMLER,B2,FILE3
+4175,ugly,уродливый,SIFATLAR,B2,FILE4
+4176,module,модуль,İSİMLER,B2,FILE5
+4177,faithfully,"верно, преданно",ZARFLAR,B2,FILE6
+4178,cheek,щека,İSİMLER,B2,FILE8
+4179,attachment,"вложение, привязанность",İSİMLER,B2,FILE9
+4180,holder,держатель,İSİMLER,B2,FILE10
+4181,grin,ухмыляться,FİİLLER,B2,FILE11
+4182,noun,существительное,İSİMLER,B2,FILE12
+4183,fortunate,удачливый,SIFATLAR,B2,FILE1
+4184,alright,"хорошо, ладно",ZARFLAR,B2,FILE2
+4185,hunger,голод,İSİMLER,B2,FILE5
+4186,insure,страховать,FİİLLER,B2,FILE6
+4187,ashamed,пристыженный,SIFATLAR,B2,FILE7
+4188,found,основывать,FİİLLER,B2,FILE8
+4189,thirst,жажда,İSİMLER,B2,FILE9

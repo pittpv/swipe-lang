@@ -1,6 +1,20 @@
 import { track, captureReferralFromUrl, getStoredReferral, fetchPublicStats, api } from './track.js';
 import { showAchievements, dismissAchievements, achievementBadge } from './achievements.js';
 import { THEME_CHOICES, getThemePreference, setThemePreference } from './theme.js';
+import {
+  CHANGELOG,
+  formatChangelogDate,
+  hasUnseenChangelog,
+  markChangelogSeen,
+} from './changelog.js';
+import {
+  DEFAULT_LANG_PAIR,
+  LANG_PAIRS,
+  LANG_PAIR_META,
+  cefrLevelsForPair,
+  clampCefrToPair,
+  normalizeLangPair,
+} from '../server/lang-pairs.js';
 
 export { api } from './track.js';
 
@@ -18,6 +32,7 @@ export class App {
     this.password = '';
     this.goal = 'travel';
     this.cefrLevel = 'A1';
+    this.langPair = DEFAULT_LANG_PAIR;
     this.cards = [];
     this.cardIndex = 0;
     this.sessionId = null;
@@ -50,10 +65,18 @@ export class App {
     this.name = '';
     this._onboardingBusy = false;
     this.progressReset = false;
-    this.publicStats = { words: 3564, sessionSize: 18 };
+    this.publicStats = {
+      sessionSize: 18,
+      pairs: {
+        'tr-ru': { words: 3500, label: 'Турецкий' },
+        'en-ru': { words: 4100, label: 'Английский' },
+        'es-ru': { words: 3900, label: 'Испанский' },
+      },
+    };
     this.referralLink = '';
     this.referralCopied = false;
     this.referralCopiedTimer = null;
+    this.changelogUnseen = false;
     /** Level-up offer when current CEFR scope is fully known. */
     this.levelOffer = null;
     /** Achievements unlocked at session end — shown after leaving summary (iOS). */
@@ -78,11 +101,14 @@ export class App {
       this.view = 'landing';
     }
     if (this.user?.cefrLevel) this.cefrLevel = this.user.cefrLevel;
+    if (this.user?.langPair) this.langPair = normalizeLangPair(this.user.langPair);
+    this.cefrLevel = clampCefrToPair(this.cefrLevel, this.langPair);
     if (this.user?.name) this.name = this.user.name;
     if (this.view === 'landing') track('landing_view');
     if (this.user?.id) {
       await this.loadUserExtras();
     }
+    this.changelogUnseen = hasUnseenChangelog();
     this.render();
     this.armGesturePushHeal();
     this.initVersionWatch();
@@ -134,6 +160,12 @@ export class App {
     document.body.appendChild(toast);
   }
 
+  openUpdates() {
+    markChangelogSeen();
+    this.changelogUnseen = false;
+    this.setView('updates');
+  }
+
   /** Referral link + reminder state — needed by home/settings after any login path. */
   async loadUserExtras() {
     await Promise.all([this.loadReferralLink(), this.loadReminderStatus()]);
@@ -159,6 +191,9 @@ export class App {
     try {
       this.user = await api('/auth/login', { method: 'POST', body: { email: this.email, password: this.password } });
       if (this.user?.name) this.name = this.user.name;
+      if (this.user?.cefrLevel) this.cefrLevel = this.user.cefrLevel;
+      if (this.user?.langPair) this.langPair = normalizeLangPair(this.user.langPair);
+      this.cefrLevel = clampCefrToPair(this.cefrLevel, this.langPair);
       this.view = this.user.needsOnboarding ? 'onboarding' : 'home';
       if (!this.user.needsOnboarding) await this.loadUserExtras();
     } catch (e) {
@@ -199,7 +234,7 @@ export class App {
     try {
       const result = await api('/onboarding', {
         method: 'POST',
-        body: { goal: this.goal, cefrLevel: this.cefrLevel, name },
+        body: { goal: this.goal, cefrLevel: this.cefrLevel, langPair: this.langPair, name },
       });
       track('onboarding_complete');
       if (this.user) {
@@ -207,8 +242,11 @@ export class App {
         this.user.name = result.name ?? name;
         this.user.goal = result.goal ?? this.goal;
         this.user.cefrLevel = result.cefrLevel ?? this.cefrLevel;
+        this.user.langPair = result.langPair ?? this.langPair;
       }
       this.name = result.name ?? name;
+      this.cefrLevel = result.cefrLevel ?? this.cefrLevel;
+      this.langPair = normalizeLangPair(result.langPair ?? this.langPair);
       try {
         await this.loadUserExtras();
       } catch {
@@ -269,6 +307,10 @@ export class App {
       const result = await api('/profile', { method: 'PATCH', body: { cefrLevel: next } });
       this.cefrLevel = result.cefrLevel;
       if (this.user) this.user.cefrLevel = result.cefrLevel;
+      if (result.langPair) {
+        this.langPair = result.langPair;
+        if (this.user) this.user.langPair = result.langPair;
+      }
       this.levelOffer = null;
       track('level_up_accepted');
       await this.startSession();
@@ -391,24 +433,22 @@ export class App {
     if (!text) return;
     track('tap_audio');
     window.speechSynthesis?.cancel();
-    // Primary voice: free public Turkish TTS (natural-sounding, no API key).
-    // Falls back to the browser's built-in speechSynthesis when unavailable.
-    this.playNativeAudio(text).catch(() => this.speakWithBrowserTts(text));
+    const pair = normalizeLangPair(this.overlayWord?.langPair || this.langPair);
+    this.playNativeAudio(text, pair).catch(() => this.speakWithBrowserTts(text, pair));
   }
 
-  playNativeAudio(text) {
+  playNativeAudio(text, pair = this.langPair) {
+    const tts = LANG_PAIR_META[normalizeLangPair(pair)].tts;
+    const cacheKey = `${tts}:${text}`;
     return new Promise((resolve, reject) => {
-      let audio = this.audioCache.get(text);
+      let audio = this.audioCache.get(cacheKey);
       if (!audio) {
-        // Same-origin TTS proxy (/api/tts on the server): fetches the free
-        // public Turkish voice server-side and streams it back as audio/mpeg.
-        // Falls back to built-in speechSynthesis when unavailable.
-        audio = new Audio(`/api/tts?q=${encodeURIComponent(text)}`);
+        audio = new Audio(`/api/tts?q=${encodeURIComponent(text)}&lang=${encodeURIComponent(tts)}`);
         audio.preload = 'auto';
-        this.audioCache.set(text, audio);
+        this.audioCache.set(cacheKey, audio);
       }
       const fail = () => {
-        this.audioCache.delete(text); // don't keep broken clips cached
+        this.audioCache.delete(cacheKey);
         reject(new Error('native audio unavailable'));
       };
       audio.addEventListener('ended', resolve, { once: true });
@@ -422,10 +462,10 @@ export class App {
     });
   }
 
-  speakWithBrowserTts(text) {
+  speakWithBrowserTts(text, pair = this.langPair) {
     if (!('speechSynthesis' in window)) return;
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'tr-TR';
+    u.lang = LANG_PAIR_META[normalizeLangPair(pair)].ttsBcp;
     window.speechSynthesis.speak(u);
   }
 
@@ -492,7 +532,7 @@ export class App {
       section === 'examples'
         ? renderExamplesSection(examples)
         : section === 'forms'
-          ? renderFormsSection(forms)
+          ? renderFormsSection(forms, w.langPair)
           : '';
     const wasOpen = slot.classList.contains('is-open');
     inner.innerHTML = html;
@@ -765,11 +805,20 @@ export class App {
     this.render();
   }
 
-  async saveCefr() {
+  async saveStudyPrefs() {
     this.settingsError = '';
+    this.cefrLevel = clampCefrToPair(this.cefrLevel, this.langPair);
     try {
-      const result = await api('/profile', { method: 'PATCH', body: { cefrLevel: this.cefrLevel } });
-      if (this.user) this.user.cefrLevel = result.cefrLevel;
+      const result = await api('/profile', {
+        method: 'PATCH',
+        body: { cefrLevel: this.cefrLevel, langPair: this.langPair },
+      });
+      this.cefrLevel = result.cefrLevel;
+      this.langPair = normalizeLangPair(result.langPair ?? this.langPair);
+      if (this.user) {
+        this.user.cefrLevel = result.cefrLevel;
+        this.user.langPair = this.langPair;
+      }
       this.settingsSaved = true;
       this.render();
       setTimeout(() => {
@@ -783,6 +832,10 @@ export class App {
       this.settingsError = e.message;
     }
     this.render();
+  }
+
+  async saveCefr() {
+    return this.saveStudyPrefs();
   }
 
   async saveName() {
@@ -1025,6 +1078,7 @@ export class App {
       if (action === 'dismiss-level-up') this.dismissLevelUp();
       if (action === 'stats') this.loadStats();
       if (action === 'settings') this.setView('settings');
+      if (action === 'updates') this.openUpdates();
       if (action === 'save-name') this.saveName();
       if (action === 'reset-progress') this.resetProgress();
       if (action === 'home') this.setView('home');
@@ -1056,6 +1110,13 @@ export class App {
       }
       if (name === 'theme' && this.view === 'settings') {
         setThemePreference(value);
+        return;
+      }
+      if (name === 'langPair') {
+        this.langPair = normalizeLangPair(value);
+        this.cefrLevel = clampCefrToPair(this.cefrLevel, this.langPair);
+        if (this.view === 'settings') this.saveStudyPrefs();
+        else this.render();
         return;
       }
       if (name === 'cefrLevel' && this.view === 'settings') {
@@ -1095,15 +1156,16 @@ export class App {
     if (v === 'loading') {
       html += '';
     } else if (v === 'landing') {
-      const w = this.publicStats.words;
+      const sessionSize = this.publicStats.sessionSize ?? 18;
       html += `
         <section class="hero">
-          <p class="eyebrow">TR → RU · ${w}+ слов</p>
-          <h1>Учи турецкий свайпом</h1>
-          <p>Свайп влево — знаю, вправо — учу. Сессии по ${this.publicStats.sessionSize} карточек — без бесконечной ленты.</p>
+          <p class="eyebrow">Турецкий · английский · испанский</p>
+          <h1>Учи языки свайпом</h1>
+          <p>Три словаря с переводом на русский. Свайп влево — знаю, вправо — учу. Сессии по ${sessionSize} карточек — без бесконечной ленты.</p>
         </section>
         <div class="benefits">
-          <div class="benefit"><strong>18 карточек</strong><span>за 5 минут</span></div>
+          ${landingLangBenefits(this.publicStats)}
+          <div class="benefit"><strong>${sessionSize} карточек</strong><span>за 5 минут</span></div>
           <div class="benefit"><strong>SRS</strong><span>умные повторы</span></div>
           <div class="benefit"><strong>Тап</strong><span>перевод + аудио</span></div>
           <div class="benefit"><strong>Онбординг</strong><span>за 20 секунд</span></div>
@@ -1137,6 +1199,11 @@ export class App {
           <label>Имя
             <input name="name" type="text" value="${esc(this.name)}" maxlength="64" placeholder="Как к вам обращаться?" autocomplete="given-name" />
           </label>
+          <label>Язык
+            <select name="langPair">
+              ${langPairOptions(this.langPair)}
+            </select>
+          </label>
           <label>Цель
             <select name="goal">
               ${opt('travel', 'Путешествия', this.goal)}
@@ -1146,11 +1213,7 @@ export class App {
           </label>
           <label>Уровень
             <select name="cefrLevel">
-              ${opt('A1', 'A1 — начальный', this.cefrLevel)}
-              ${opt('A2', 'A2 — элементарный', this.cefrLevel)}
-              ${opt('B1', 'B1 — средний', this.cefrLevel)}
-              ${opt('B2', 'B2 — продвинутый', this.cefrLevel)}
-              ${opt('C1', 'C1 — свободный', this.cefrLevel)}
+              ${cefrOptions(this.cefrLevel, this.langPair)}
             </select>
           </label>
           ${this.error ? `<p class="error">${esc(this.error)}</p>` : ''}
@@ -1200,7 +1263,7 @@ export class App {
         <div class="referral-box">
           <div class="referral-copy">
             <p class="referral-title">Пригласи друга</p>
-            <p class="referral-muted">Поделись ссылкой — учите турецкий вместе</p>
+            <p class="referral-muted">Поделись ссылкой — учите вместе</p>
           </div>
           <button class="btn btn-primary" data-action="copy-referral" aria-live="polite">${this.referralCopied ? 'Ссылка скопирована' : 'Скопировать ссылку'}</button>
           ${this.user?.referralsCount ? `<p class="referral-muted">${this.user.referralsCount} приглашённых</p>` : ''}
@@ -1382,17 +1445,18 @@ export class App {
           <div class="settings-divider"></div>
           ${renderThemePicker(getThemePreference())}
           <div class="settings-divider"></div>
+          <label>Язык
+            <select name="langPair">
+              ${langPairOptions(this.langPair)}
+            </select>
+          </label>
           <label>Уровень языка
             <select name="cefrLevel">
-              ${opt('A1', 'A1 — начальный', this.cefrLevel)}
-              ${opt('A2', 'A2 — элементарный', this.cefrLevel)}
-              ${opt('B1', 'B1 — средний', this.cefrLevel)}
-              ${opt('B2', 'B2 — продвинутый', this.cefrLevel)}
-              ${opt('C1', 'C1 — свободный', this.cefrLevel)}
+              ${cefrOptions(this.cefrLevel, this.langPair)}
             </select>
           </label>
           ${this.settingsError ? `<p class="error">${esc(this.settingsError)}</p>` : ''}
-          <p class="settings-hint">Влияет на слова, которые попадают в сессии</p>
+          <p class="settings-hint">Язык и уровень влияют на слова в сессиях. Прогресс по каждому языку хранится отдельно.</p>
           <div class="settings-divider"></div>
           <p class="referral-title">🔔 Напоминания</p>
           <p class="referral-muted">Пуш в удобное время — повторяй слова каждый день</p>
@@ -1412,7 +1476,29 @@ export class App {
           <button class="btn btn-danger" data-action="reset-progress">Сбросить статистику и прогресс</button>
           <button class="btn btn-danger" data-action="delete-account">Удалить аккаунт</button>
         </div>
+        <p class="changelog-nav">
+          <button class="link-btn" data-action="updates">Что нового${this.changelogUnseen ? ' · новое' : ''}</button>
+        </p>
         <p class="app-version">LangApp v${esc(APP_VERSION)}</p>`;
+    } else if (v === 'updates') {
+      html += `
+        <section class="hero">
+          <h1>Что нового</h1>
+          <p>Краткая история обновлений приложения.</p>
+        </section>
+        <div class="card-form changelog">
+          ${CHANGELOG.map((entry) => `
+            <article class="changelog-entry">
+              <header class="changelog-meta">
+                <strong>v${esc(entry.version)}</strong>
+                <time datetime="${esc(entry.date)}">${esc(formatChangelogDate(entry.date))}</time>
+              </header>
+              <ul>
+                ${(entry.items || []).map((item) => `<li>${esc(item)}</li>`).join('')}
+              </ul>
+            </article>`).join('')}
+        </div>
+        <button class="btn btn-primary" data-action="settings" style="width:100%;margin-top:1rem">Назад в настройки</button>`;
     }
 
     html += '</div>';
@@ -1454,7 +1540,7 @@ export class App {
             <div class="overlay-section-slot${section ? ' is-open' : ''}">
               <div class="overlay-section-slot-inner">
                 ${section === 'examples' ? renderExamplesSection(examples) : ''}
-                ${section === 'forms' ? renderFormsSection(forms) : ''}
+                ${section === 'forms' ? renderFormsSection(forms, w.langPair) : ''}
               </div>
             </div>
             <button class="btn btn-ghost" data-action="close-overlay" style="width:100%;margin-top:0.5rem">Закрыть</button>
@@ -1501,14 +1587,85 @@ const TENSE_LABELS = {
   gelecek: 'Будущее время',
 };
 
-const PERSON_LABELS = {
-  ben: 'я (ben)',
-  sen: 'ты (sen)',
-  o: 'он/она (o)',
-  biz: 'мы (biz)',
-  siz: 'вы (siz)',
-  onlar: 'они (onlar)',
+const PERSON_LABELS_BY_PAIR = {
+  'tr-ru': {
+    ben: 'я (ben)',
+    sen: 'ты (sen)',
+    o: 'он/она (o)',
+    biz: 'мы (biz)',
+    siz: 'вы (siz)',
+    onlar: 'они (onlar)',
+  },
+  'en-ru': {
+    I: 'я (I)',
+    you: 'ты (you)',
+    'he/she': 'он/она (he/she)',
+    we: 'мы (we)',
+    'you (pl)': 'вы (you)',
+    they: 'они (they)',
+  },
+  'es-ru': {
+    yo: 'я (yo)',
+    tú: 'ты (tú)',
+    'él/ella': 'он/она (él/ella)',
+    nosotros: 'мы (nosotros)',
+    vosotros: 'вы (vosotros)',
+    ellos: 'они (ellos)',
+  },
 };
+
+const PERSON_ORDER_BY_PAIR = {
+  'tr-ru': ['ben', 'sen', 'o', 'biz', 'siz', 'onlar'],
+  'en-ru': ['I', 'you', 'he/she', 'we', 'you (pl)', 'they'],
+  'es-ru': ['yo', 'tú', 'él/ella', 'nosotros', 'vosotros', 'ellos'],
+};
+
+const CEFR_OPTION_LABELS = {
+  A1: 'A1 — начальный',
+  A2: 'A2 — элементарный',
+  B1: 'B1 — средний',
+  B2: 'B2 — продвинутый',
+  C1: 'C1 — свободный',
+};
+
+function langPairOptions(selected) {
+  return LANG_PAIRS.map((pair) => opt(pair, LANG_PAIR_META[pair].label, selected)).join('');
+}
+
+function cefrOptions(selected, pair) {
+  return cefrLevelsForPair(pair)
+    .map((level) => opt(level, CEFR_OPTION_LABELS[level] || level, selected))
+    .join('');
+}
+
+const LANDING_LANG_FALLBACK = {
+  'tr-ru': 3500,
+  'en-ru': 4100,
+  'es-ru': 3900,
+};
+
+function landingLangBenefits(stats) {
+  return LANG_PAIRS.map((pair) => {
+    const meta = LANG_PAIR_META[pair];
+    const raw = Number(stats?.pairs?.[pair]?.words);
+    const count = Number.isFinite(raw) && raw > 0 ? raw : LANDING_LANG_FALLBACK[pair];
+    return `<div class="benefit"><strong>${esc(meta.label)}</strong><span>${esc(formatWordCount(count))}</span></div>`;
+  }).join('');
+}
+
+function formatWordCount(n) {
+  const count = Math.max(0, Math.floor(Number(n) || 0));
+  return `${count.toLocaleString('ru-RU')} ${ruWordNoun(count)}`;
+}
+
+function ruWordNoun(n) {
+  const abs = Math.abs(n) % 100;
+  const last = abs % 10;
+  if (abs > 10 && abs < 15) return 'слов';
+  if (last === 1) return 'слово';
+  if (last >= 2 && last <= 4) return 'слова';
+  return 'слов';
+}
 
 function posLabel(pos) {
   return POS_LABELS[pos] || pos || '';
@@ -1534,10 +1691,13 @@ function renderExamplesSection(examples) {
     </div>`;
 }
 
-function renderFormsSection(forms) {
+function renderFormsSection(forms, langPair = DEFAULT_LANG_PAIR) {
   if (!forms.length) {
     return '<p class="overlay-empty">Словоформ для этого глагола нет.</p>';
   }
+  const pair = normalizeLangPair(langPair);
+  const personLabels = PERSON_LABELS_BY_PAIR[pair] || PERSON_LABELS_BY_PAIR[DEFAULT_LANG_PAIR];
+  const personOrder = PERSON_ORDER_BY_PAIR[pair] || PERSON_ORDER_BY_PAIR[DEFAULT_LANG_PAIR];
   const byTense = new Map();
   for (const f of forms) {
     const tense = f.tense || f.grammar || 'other';
@@ -1548,7 +1708,6 @@ function renderFormsSection(forms) {
     byPerson.get(person).push(f.form);
   }
   const tenseOrder = ['şimdi', 'di', 'gelecek'];
-  const personOrder = ['ben', 'sen', 'o', 'biz', 'siz', 'onlar'];
   const tenseKeys = [
     ...tenseOrder.filter((t) => byTense.has(t)),
     ...[...byTense.keys()].filter((t) => !tenseOrder.includes(t)),
@@ -1572,7 +1731,7 @@ function renderFormsSection(forms) {
                     const formText = byPerson.get(person).join(', ');
                     return `
                       <li class="forms-row">
-                        <span class="forms-person">${esc(PERSON_LABELS[person] || person)}</span>
+                        <span class="forms-person">${esc(personLabels[person] || person)}</span>
                         <span class="forms-value">${esc(formText)}</span>
                       </li>`;
                   })
