@@ -19,38 +19,94 @@ export function knownWordsByPair(db, userId) {
   return counts;
 }
 
-function pairWithMostKnown(knownByPair, fallbackPair) {
-  let best = fallbackPair;
-  let top = -1;
-  for (const pair of LANG_PAIRS) {
-    const n = Number(knownByPair?.[pair]) || 0;
-    if (n > top) {
-      top = n;
-      best = pair;
-    }
+function highestThresholdAtMost(n, thresholds) {
+  const value = Number(n) || 0;
+  let top = 0;
+  for (const t of thresholds) {
+    if (t <= value) top = t;
   }
-  return best;
+  return top;
+}
+
+function asLangPairKey(key) {
+  const v = String(key || '').toLowerCase().trim();
+  return isLangPair(v) ? v : null;
+}
+
+/** Parse `{ 'tr-ru': 10 }` from storage. Ignores leftover scalar-shaped junk. */
+export function storedWordsMap(raw) {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return {};
+  const out = {};
+  for (const [key, value] of Object.entries(raw)) {
+    const pair = asLangPairKey(key);
+    const n = Number(value);
+    if (pair && n > 0) out[pair] = Math.max(out[pair] ?? 0, n);
+  }
+  return out;
 }
 
 /**
- * Normalize stored word milestones to `{ 'tr-ru': 50, 'en-ru': 10 }`.
- * Legacy accounts kept a single number — attribute it to the pair with the
- * most known words (or the user's current pair if none).
+ * Split a pre-0.5.1 scalar `words: 50` across languages using actual known
+ * counts, so one number cannot be moved onto whichever dictionary is current.
+ */
+function migrateLegacyNumber(n, knownByPair = {}) {
+  const map = {};
+  const legacy = Number(n) || 0;
+  if (legacy <= 0) return map;
+  for (const pair of LANG_PAIRS) {
+    const known = Number(knownByPair?.[pair]) || 0;
+    const top = highestThresholdAtMost(Math.min(legacy, known), MILESTONES.words);
+    if (top) map[pair] = top;
+  }
+  return map;
+}
+
+function fillFromKnown(map, knownByPair = {}, skipPair = null) {
+  for (const pair of LANG_PAIRS) {
+    if (pair === skipPair) continue;
+    if (map[pair]) continue;
+    const fromKnown = highestThresholdAtMost(knownByPair?.[pair], MILESTONES.words);
+    if (fromKnown) map[pair] = fromKnown;
+  }
+  return map;
+}
+
+/**
+ * Effective per-language word milestones for display.
+ * Stored map wins; missing languages are restored from «Знаю» counts so a
+ * later session cannot hide badges already earned in another dictionary.
  */
 export function wordsMilestoneMap(milestones, knownByPair = {}, fallbackPair) {
   const raw = milestones?.words;
-  if (raw && typeof raw === 'object' && !Array.isArray(raw)) {
-    const out = {};
-    for (const [key, value] of Object.entries(raw)) {
-      const n = Number(value);
-      if (isLangPair(key) && n > 0) out[key] = n;
-    }
-    return out;
-  }
+  const map = storedWordsMap(raw);
   if (typeof raw === 'number' && raw > 0) {
-    return { [pairWithMostKnown(knownByPair, fallbackPair)]: raw };
+    Object.assign(map, migrateLegacyNumber(raw, knownByPair));
+    if (!Object.keys(map).length) {
+      const top = highestThresholdAtMost(raw, MILESTONES.words);
+      if (top && fallbackPair) map[fallbackPair] = top;
+    }
   }
-  return {};
+  fillFromKnown(map, knownByPair);
+  return map;
+}
+
+function mapsEqual(a, b) {
+  const keys = new Set([...Object.keys(a), ...Object.keys(b)]);
+  for (const key of keys) {
+    if ((a[key] ?? 0) !== (b[key] ?? 0)) return false;
+  }
+  return true;
+}
+
+/** Persist recovered per-language tops. Returns true when storage changed. */
+export function repairWordMilestones(user, knownByPair = {}) {
+  if (!user) return false;
+  if (!user.milestones || typeof user.milestones !== 'object') user.milestones = {};
+  const next = wordsMilestoneMap(user.milestones, knownByPair, userLangPair(user));
+  const prev = storedWordsMap(user.milestones.words);
+  const wasScalar = typeof user.milestones.words === 'number';
+  user.milestones.words = next;
+  return wasScalar || !mapsEqual(prev, next);
 }
 
 /**
@@ -72,13 +128,25 @@ export function collectMilestones(user, values, knownByPair = {}) {
     user.milestones.streak = newStreak[newStreak.length - 1];
   }
 
-  const map = wordsMilestoneMap(user.milestones, knownByPair, pair);
+  const raw = user.milestones.words;
+  const map = storedWordsMap(raw);
+  if (typeof raw === 'number' && raw > 0) {
+    const inferred = migrateLegacyNumber(raw, knownByPair);
+    for (const other of LANG_PAIRS) {
+      if (other === pair) continue;
+      if ((inferred[other] ?? 0) > (map[other] ?? 0)) map[other] = inferred[other];
+    }
+  }
+  fillFromKnown(map, knownByPair, pair);
+
   const wordValue = values.words ?? 0;
   const previouslyWords = map[pair] ?? 0;
   const newWords = MILESTONES.words.filter((t) => t > previouslyWords && wordValue >= t);
   if (newWords.length) {
     for (const t of newWords) unlocked.push({ type: 'words', value: t, langPair: pair });
     map[pair] = newWords[newWords.length - 1];
+  } else if (previouslyWords > 0) {
+    map[pair] = previouslyWords;
   }
   user.milestones.words = map;
 

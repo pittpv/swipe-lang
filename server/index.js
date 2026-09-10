@@ -21,7 +21,7 @@ import { db, dbMode } from './database.js';
 import { applySwipe } from './srs.js';
 import { buildSessionDeck, SESSION_SIZE } from './session.js';
 import { getLevelProgress, estimateEta, CEFR_ORDER } from './progress.js';
-import { collectMilestones, knownWordsByPair, listMilestones } from './milestones.js';
+import { collectMilestones, knownWordsByPair, listMilestones, repairWordMilestones } from './milestones.js';
 import {
   DEFAULT_LANG_PAIR,
   LANG_PAIRS,
@@ -657,14 +657,22 @@ app.get('/api/stats', requireAuth, async (req, res) => {
   // synced from any device (warm serverless instances keep stale snapshots).
   await db.reload();
   const userId = req.session.userId;
-  const user = findUser(userId);
+  let user = findUser(userId);
+  let knownByPair = knownWordsByPair(db, userId);
+  if (repairWordMilestones(user, knownByPair)) {
+    await db.transact(() => {
+      const u = findUser(userId);
+      repairWordMilestones(u, knownWordsByPair(db, userId));
+    });
+    user = findUser(userId);
+    knownByPair = knownWordsByPair(db, userId);
+  }
   const learned = countWordsKnown(userId);
   const sessions = db.data.study_sessions.filter(
     (s) => s.user_id === userId && s.ended_at,
   ).length;
   const levelProgress = getLevelProgress(db, userId);
   const eta = estimateEta(db, userId, levelProgress);
-  const knownByPair = knownWordsByPair(db, userId);
   res.json({
     streak: user.streak,
     cefrLevel: user.cefr_level,

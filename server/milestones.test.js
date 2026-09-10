@@ -43,9 +43,47 @@ test('listMilestones keeps Turkish and English word badges distinct', () => {
   assert.ok(listed.every((a) => a.type !== 'streak' || a.langPair == null));
 });
 
-test('legacy numeric word milestone is attributed to the strongest pair', () => {
+test('legacy numeric word milestone is split across languages by known counts', () => {
   const map = wordsMilestoneMap({ words: 50 }, { 'tr-ru': 80, 'en-ru': 12, 'es-ru': 0 }, 'en-ru');
-  assert.deepEqual(map, { 'tr-ru': 50 });
+  assert.equal(map['tr-ru'], 50);
+  assert.equal(map['en-ru'], 10);
+  assert.equal(map['es-ru'] ?? 0, 0);
+});
+
+test('new language session does not drop earlier language badges', () => {
+  const user = {
+    lang_pair: 'en-ru',
+    milestones: { streak: 3, words: { 'tr-ru': 10 } },
+  };
+  const unlocked = collectMilestones(
+    user,
+    { streak: 3, words: 5, langPair: 'en-ru' },
+    { 'tr-ru': 12, 'en-ru': 5, 'es-ru': 0 },
+  );
+  assert.deepEqual(unlocked, [{ type: 'words', value: 5, langPair: 'en-ru' }]);
+  assert.equal(user.milestones.words['tr-ru'], 10);
+  assert.equal(user.milestones.words['en-ru'], 5);
+});
+
+test('clobbered map is restored from known counts for other languages', () => {
+  const listed = listMilestones(
+    { lang_pair: 'en-ru', milestones: { words: { 'en-ru': 5 } } },
+    { 'tr-ru': 12, 'en-ru': 5, 'es-ru': 0 },
+  );
+  const words = listed.filter((a) => a.type === 'words');
+  assert.ok(words.some((a) => a.langPair === 'tr-ru' && a.value === 10));
+  assert.ok(words.some((a) => a.langPair === 'en-ru' && a.value === 5));
+});
+
+test('legacy scalar plus a new language keeps the original dictionary', () => {
+  const user = { lang_pair: 'en-ru', milestones: { words: 10 } };
+  collectMilestones(
+    user,
+    { streak: 1, words: 5, langPair: 'en-ru' },
+    { 'tr-ru': 12, 'en-ru': 5, 'es-ru': 0 },
+  );
+  assert.equal(user.milestones.words['tr-ru'], 10);
+  assert.equal(user.milestones.words['en-ru'], 5);
 });
 
 test('knownWordsByPair counts only known/mature cards', () => {
