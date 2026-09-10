@@ -59,6 +59,8 @@ Key implementation details:
 
 The client emits events (`session_start`, `card_shown`, `swipe_left/right`, `session_complete`), and `npm run report:weekly` generates a weekly **D1/D7 retention report** — measuring whether users come back the next day and the next week.
 
+Operators open `/admin/dashboard.html` with `ADMIN_API_KEY` for live metrics, a searchable user list, and account deletion. See `docs/DEPLOY.md` §Analytics.
+
 ---
 
 ## How It Maps to Learning Science

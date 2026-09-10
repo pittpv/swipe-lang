@@ -39,6 +39,7 @@ import {
   ensureReferralCode,
 } from './referral.js';
 import { buildAnalyticsDashboard } from './analytics-report.js';
+import { listAdminUsers, purgeUserRecords } from './admin-users.js';
 import {
   getVapidKeys,
   createReminderSchedule,
@@ -209,38 +210,29 @@ app.post('/api/auth/logout', (req, res) => {
   res.json({ ok: true });
 });
 
+/** Best-effort QStash cleanup before the user row is gone. Never throws. */
+async function cancelUserReminderSchedules(user) {
+  if (!user) return;
+  const ids = Array.isArray(user.orphan_schedule_ids) ? [...user.orphan_schedule_ids] : [];
+  if (user.push_schedule_id) ids.push(user.push_schedule_id);
+  await Promise.all(
+    ids.map(async (scheduleId) => {
+      try {
+        const ok = await deleteReminderSchedule(scheduleId);
+        if (!ok) console.error(`[reminders] account delete: schedule ${scheduleId} not removed`);
+      } catch (e) {
+        console.error(`[reminders] account delete: schedule ${scheduleId} failed: ${e?.message ?? e}`);
+      }
+    }),
+  );
+}
+
 app.delete('/api/account', requireAuth, async (req, res) => {
   const userId = req.session.userId;
-
-  // Best-effort: kill the reminders schedule(s) before the user row is gone.
-  const user = findUser(userId);
-  if (user) {
-    const ids = Array.isArray(user.orphan_schedule_ids) ? [...user.orphan_schedule_ids] : [];
-    if (user.push_schedule_id) ids.push(user.push_schedule_id);
-    await Promise.all(
-      ids.map(async (scheduleId) => {
-        try {
-          const ok = await deleteReminderSchedule(scheduleId);
-          if (!ok) console.error(`[reminders] account delete: schedule ${scheduleId} not removed`);
-        } catch (e) {
-          console.error(`[reminders] account delete: schedule ${scheduleId} failed: ${e?.message ?? e}`);
-        }
-      }),
-    );
-  }
-
+  await cancelUserReminderSchedules(findUser(userId));
   await db.transact(() => {
-    db.data.user_word_progress = db.data.user_word_progress.filter((p) => p.user_id !== userId);
-    db.data.study_sessions = db.data.study_sessions.filter((s) => s.user_id !== userId);
-    if (Array.isArray(db.data.analytics)) {
-      db.data.analytics = db.data.analytics.filter((a) => a.user_id !== userId);
-    }
-    for (const u of db.data.users) {
-      if (u.referred_by === userId) u.referred_by = null;
-    }
-    db.data.users = db.data.users.filter((u) => u.id !== userId);
+    purgeUserRecords(db, userId);
   });
-
   clearSessionCookie(res);
   res.json({ ok: true });
 });
@@ -725,8 +717,29 @@ app.get('/api/public/stats', (_req, res) => {
   });
 });
 
-app.get('/api/analytics/dashboard', requireAdmin, (_req, res) => {
+app.get('/api/analytics/dashboard', requireAdmin, async (_req, res) => {
+  await db.reload();
   res.json(buildAnalyticsDashboard(db));
+});
+
+app.get('/api/admin/users', requireAdmin, async (_req, res) => {
+  await db.reload();
+  res.json({ users: listAdminUsers(db) });
+});
+
+app.delete('/api/admin/users/:id', requireAdmin, async (req, res) => {
+  const userId = Number(req.params.id);
+  if (!Number.isInteger(userId) || userId <= 0) {
+    return res.status(400).json({ error: 'Invalid user id' });
+  }
+  await db.reload();
+  const user = findUser(userId);
+  if (!user) return res.status(404).json({ error: 'User not found' });
+  await cancelUserReminderSchedules(user);
+  await db.transact(() => {
+    purgeUserRecords(db, userId);
+  });
+  res.json({ ok: true, id: userId });
 });
 
 /**

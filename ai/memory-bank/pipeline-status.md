@@ -22,7 +22,7 @@
 ```powershell
 npm run dev                    # local
 npm run report:weekly          # retention report
-# Dashboard: /admin/dashboard.html + ADMIN_API_KEY
+# Dashboard: /admin/dashboard.html + ADMIN_API_KEY (users list + delete)
 ```
 
 ## Phase 6 (Operate)
@@ -39,3 +39,4 @@ npm run report:weekly          # retention report
 - 2026-09-10: достижения за слова с меткой языка; streak помечен как общий. Версия **0.5.1**.
 - 2026-09-10: бейджи за слова не затираются при смене языка; пропавшие восстанавливаются из «Знаю». Версия **0.5.2**.
 - 2026-09-10: кабинет секциями (главная, настройки, статистика), стрелка назад на FAQ/legal, скелетоны под новую вёрстку. Версия **0.5.3**.
+- 2026-09-10: админ-дашборд — таблица всех пользователей с поиском и удалением (`GET/DELETE /api/admin/users`).

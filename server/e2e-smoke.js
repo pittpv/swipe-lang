@@ -310,6 +310,55 @@ test('session start returns levelProgress; C1 allowed in profile', async () => {
   assert.equal(data.cefrLevel, 'C1');
 });
 
+test('admin users list and delete', { skip: !process.env.ADMIN_API_KEY }, async () => {
+  const adminKey = process.env.ADMIN_API_KEY;
+  const client = jar();
+  const adminEmail = `admin_del_${Date.now()}@langapp.test`;
+
+  await client.fetch('/api/public/stats');
+  let { res, data } = await client.fetch('/api/auth/register', {
+    method: 'POST',
+    body: JSON.stringify({ email: adminEmail, password }),
+  });
+  assert.equal(res.status, 200);
+  const userId = data.id;
+  assert.ok(userId);
+
+  const listRes = await fetch(`${BASE}/api/admin/users`, {
+    headers: { 'X-Admin-Key': adminKey },
+  });
+  assert.equal(listRes.status, 200);
+  const listed = await listRes.json();
+  const found = listed.users.find((u) => u.id === userId);
+  assert.ok(found, 'registered user should appear in admin list');
+  assert.equal(found.email, adminEmail);
+  assert.equal(found.password_hash, undefined);
+
+  const badKey = await fetch(`${BASE}/api/admin/users`, {
+    headers: { 'X-Admin-Key': 'wrong-key' },
+  });
+  assert.equal(badKey.status, 401);
+
+  const delRes = await fetch(`${BASE}/api/admin/users/${userId}`, {
+    method: 'DELETE',
+    headers: { 'X-Admin-Key': adminKey, 'Content-Type': 'application/json' },
+  });
+  assert.equal(delRes.status, 200);
+
+  const gone = await fetch(`${BASE}/api/admin/users`, {
+    headers: { 'X-Admin-Key': adminKey },
+  });
+  const after = await gone.json();
+  assert.equal(after.users.some((u) => u.id === userId), false);
+
+  await client.fetch('/api/public/stats');
+  ({ res } = await client.fetch('/api/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({ email: adminEmail, password }),
+  }));
+  assert.equal(res.status, 401);
+});
+
 test('public stats lists language pairs', async () => {
   const res = await fetch(`${BASE}/api/public/stats`);
   assert.equal(res.status, 200);

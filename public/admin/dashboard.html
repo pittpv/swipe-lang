@@ -5,30 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Analytics — LangApp</title>
   <style>
-    :root { --primary: #1a5f4a; --muted: #5c6b64; --bg: #f4f7f5; --surface: #fff; }
+    :root { --primary: #1a5f4a; --muted: #5c6b64; --bg: #f4f7f5; --surface: #fff; --danger: #b42318; --line: #d8e4de; }
     body { font-family: system-ui, sans-serif; margin: 0; background: var(--bg); color: #1c2421; }
-    .wrap { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
     h1 { color: var(--primary); }
+    h2 { margin: 0 0 0.75rem; font-size: 1.05rem; }
     .card { background: var(--surface); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
     .metric .num { font-size: 1.75rem; font-weight: 700; color: var(--primary); }
     .metric .lbl { font-size: 0.75rem; color: var(--muted); }
-    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid #d8e4de; }
-    input, button { padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid #d8e4de; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
+    th { color: var(--muted); font-weight: 600; white-space: nowrap; }
+    td.num { font-variant-numeric: tabular-nums; }
+    input, button, select { padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid var(--line); font: inherit; }
+    input:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
     button { background: var(--primary); color: #fff; border: none; cursor: pointer; }
-    button:disabled { opacity: 0.55; cursor: not-allowed; }
-    .error { color: #dc2626; }
+    button:hover { filter: brightness(1.08); }
+    button:disabled { opacity: 0.55; cursor: not-allowed; filter: none; }
+    button.danger { background: var(--danger); }
+    .error { color: var(--danger); }
     .ok { color: var(--primary); }
+    .muted { color: var(--muted); margin: 0; }
     .row { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.75rem; }
-    select { padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid #d8e4de; min-width: 16rem; }
+    .row input[type="search"] { flex: 1; min-width: 12rem; }
+    select { min-width: 16rem; }
+    .empty { color: var(--muted); margin: 0.75rem 0 0; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <h1>LangApp Analytics</h1>
     <div class="card" id="auth">
-      <label>Admin API Key <input type="password" id="key" style="width:100%;margin-top:0.25rem" /></label>
+      <label>Admin API Key <input type="password" id="key" autocomplete="current-password" style="width:100%;margin-top:0.25rem" /></label>
       <button id="load-btn" style="margin-top:0.75rem">Загрузить</button>
       <p class="error" id="err"></p>
     </div>

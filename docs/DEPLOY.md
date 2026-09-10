@@ -37,7 +37,7 @@ as a fallback.
    | Variable | Value |
    |----------|-------|
    | `SESSION_SECRET` | any random string, min 32 chars |
-   | `ADMIN_API_KEY` | key for `/admin/dashboard.html` |
+   | `ADMIN_API_KEY` | key for `/admin/dashboard.html` (analytics + user list/delete) |
 4. Deploy. On the first cold start the full vocabulary (TR + EN + ES) seeds itself into Redis.
    An existing Turkish-only store is extended with English and Spanish on the next request.
 
@@ -68,7 +68,7 @@ npx vercel --prod
 | `SESSION_SECRET` | prod | Min 32 chars (signs session cookies) |
 | `NODE_ENV` | prod | `production` |
 | `PORT` | no | Default 3000 (local only) |
-| `ADMIN_API_KEY` | recommended | Analytics dashboard access |
+| `ADMIN_API_KEY` | recommended | Admin dashboard: analytics, user list, and user deletion |
 | `POSTGRES_URL` / `DATABASE_URL` | optional | Neon Postgres storage — takes priority over Redis |
 | `UPSTASH_REDIS_REST_URL` | Vercel | Upstash REST endpoint (serverless storage) |
 | `UPSTASH_REDIS_REST_TOKEN` | Vercel | Upstash REST token |
@@ -106,7 +106,11 @@ docker run -p 3000:3000 -e SESSION_SECRET=... -e ADMIN_API_KEY=... -v langapp-da
 
 ## Analytics
 
-- Dashboard: `/admin/dashboard.html` (enter `ADMIN_API_KEY`)
+- Dashboard: `/admin/dashboard.html` (header `X-Admin-Key` = `ADMIN_API_KEY`)
+  - Metrics, D1/D7 retention, funnel, last 7 days, event counts
+  - User table with search; **Delete** removes the account, progress, sessions, and analytics (same purge as `DELETE /api/account`)
+  - Push subscriber test + VAPID key-pair diagnostic
+- APIs: `GET /api/analytics/dashboard`, `GET /api/admin/users`, `DELETE /api/admin/users/:id`, `GET /api/admin/push/subscribers`, `POST /api/admin/push/test`, `GET /api/admin/diag/vapid`
 - Weekly report: `npm run report:weekly`
 
 ## Backups
