@@ -87,3 +87,7 @@ The PWA and static pages follow the OS light/dark scheme by default. Signed-in u
 ## App version
 
 Settings footer shows `LangApp vX.Y.Z+abcdefg` — semver from `package.json` plus a short git SHA injected at Vite build time (see `docs/DEPLOY.md`). The **Что нового** link opens the in-app changelog (`src/changelog.js`). Add a new entry at the top of that file and bump `package.json` on each release.
+
+## Storage
+
+Production keeps **accounts, progress, sessions, and analytics** in Neon Postgres (`langapp_state` JSONB). The TR/EN/ES dictionary is loaded from `server/data/**/*.csv` on each serverless isolate and is **not** written back to Postgres or Redis — that blob was ~8 MB per request and exhausted Neon’s transfer quota. Word IDs stay stable via `_wordIdMap`. Local `database/langapp.json` still embeds words so `npm run backup` is self-contained. Details and a safe cutover order: `docs/DEPLOY.md`.

@@ -22,10 +22,17 @@ as a fallback.
    ```
 
 3. Add `POSTGRES_URL` to the project environment variables and deploy.
-   The state lives in one JSONB document (`langapp_state`); on an empty DB
-   the vocabulary for all language pairs seeds itself on first cold start
-   (Turkish, English, and Spanish CSVs under `server/data/`). Existing
-   databases that only have Turkish pick up the other packs on the next boot.
+   Accounts, progress, sessions, and analytics live in one JSONB document
+   (`langapp_state`). The TR/EN/ES dictionary is **not** stored there — each
+   cold start hydrates it from CSVs under `server/data/`, using `_wordIdMap`
+   so `user_word_progress.word_id` stays stable. Putting examples/forms in
+   JSONB exhausted Neon’s transfer quota (~8 MB per request).
+   `npm run migrate:pg` writes a slim document (no `words` array).
+
+   **Cutover for an existing fat document:** deploy this code **before**
+   stripping `words`. The first `/api/health` after deploy hydrates from CSV
+   and persists the slim blob (~600 KB). Do not empty `words` on the old
+   build — it would re-import the dictionary and can remap IDs.
 
 ### Storage option B — Upstash Redis
 
@@ -38,8 +45,8 @@ as a fallback.
    |----------|-------|
    | `SESSION_SECRET` | any random string, min 32 chars |
    | `ADMIN_API_KEY` | key for `/admin/dashboard.html` (analytics + user list/delete) |
-4. Deploy. On the first cold start the full vocabulary (TR + EN + ES) seeds itself into Redis.
-   An existing Turkish-only store is extended with English and Spanish on the next request.
+4. Deploy. Vocabulary is loaded from CSVs into memory on each cold start.
+   Redis, like Postgres, must not persist the dictionary blob.
 
 ### App version (Settings screen)
 
@@ -117,11 +124,12 @@ docker run -p 3000:3000 -e SESSION_SECRET=... -e ADMIN_API_KEY=... -v langapp-da
 
 ```powershell
 npm run backup   # -> database/backups/langapp-<timestamp>.json (keeps last 14)
+node scripts/_dump-all-stores.mjs   # local file + Redis + Neon into database/backups/
 ```
 
-Schedule daily via cron / Task Scheduler. Restore: stop server, copy snapshot over `database/langapp.json`, start server.
-On Neon Postgres no cron backup is needed: use Neon branches / point-in-time restore from the console
-(or run `npm run migrate:pg -- --from-file` in reverse by dumping `langapp_state`).
+`npm run backup` copies `database/langapp.json` (gitignored). Restore locally: stop server, copy a snapshot over that file, start server.
+
+On Neon, keep a JSON dump before risky deploys (`_dump-all-stores.mjs` needs `POSTGRES_URL`). Console PITR / branches remain the recovery path. After 0.5.5 a healthy dump has users/progress/`_wordIdMap` and **no** `words` array.
 
 ## Post-launch checklist
 

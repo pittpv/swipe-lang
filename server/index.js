@@ -17,7 +17,7 @@ import {
   setSessionCookie,
   clearSessionCookie,
 } from './security.js';
-import { db, dbMode } from './database.js';
+import { db, dbMode, persistableState } from './database.js';
 import { applySwipe } from './srs.js';
 import { buildSessionDeck, SESSION_SIZE } from './session.js';
 import { getLevelProgress, estimateEta, CEFR_ORDER } from './progress.js';
@@ -55,23 +55,16 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 {
-  const { importVocabulary, enrichVocabularyExtras, missingVocabPairs } = await import('./import-vocabulary.js');
-  if (!db.data.words.length) {
-    const stats = importVocabulary({ replace: true });
-    console.log(`Seeded ${stats.total} words into ${dbMode === 'postgres' ? 'Neon Postgres' : dbMode === 'redis' ? 'Redis' : 'file store'}`);
+  const { hydrateVocabulary } = await import('./import-vocabulary.js');
+  const stripRemoteVocab = dbMode !== 'file' && Array.isArray(db.data.words) && db.data.words.length > 0;
+  const stats = hydrateVocabulary({ persist: stripRemoteVocab });
+  console.log(
+    `Vocabulary ${stats.total} words in memory (${dbMode}${stripRemoteVocab ? ', stripped from remote document' : ''})`,
+  );
+  if (stripRemoteVocab) {
+    const slimKb = (Buffer.byteLength(JSON.stringify(persistableState())) / 1024).toFixed(0);
+    console.log(`Persisting slim ${dbMode} document without dictionary (${slimKb} KB)`);
     await db.flush();
-  } else {
-    const missing = missingVocabPairs();
-    if (missing.length) {
-      const stats = importVocabulary({ replace: false, pairs: missing });
-      console.log(`Added ${stats.added} words for ${missing.join(', ')}`);
-      await db.flush();
-    }
-    const enrich = enrichVocabularyExtras();
-    if (!enrich.skipped && enrich.updated) {
-      console.log(`Enriched examples/forms on ${enrich.updated} words (v${enrich.version})`);
-      await db.flush();
-    }
   }
 }
 

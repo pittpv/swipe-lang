@@ -17,7 +17,9 @@ const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
 const pgEnabled = Boolean(POSTGRES_URL);
 const redisEnabled = Boolean(REDIS_URL && REDIS_TOKEN);
 
-export const dbMode = pgEnabled ? 'postgres' : redisEnabled ? 'redis' : 'file';
+export let dbMode = pgEnabled ? 'postgres' : redisEnabled ? 'redis' : 'file';
+/** True when every remote backend failed this isolate — persist is in-memory only. */
+let remoteUnavailable = false;
 
 const DB_KEY = 'langapp:db';
 
@@ -28,6 +30,7 @@ const defaultData = () => ({
   study_sessions: [],
   analytics: [],
   _seq: { users: 0, words: 0, user_word_progress: 0, study_sessions: 0, analytics: 0 },
+  _wordIdMap: {},
 });
 
 async function redisCommand(command) {
@@ -62,25 +65,29 @@ function saveFile(data) {
 let cache = defaultData();
 let sql = null;
 
+async function loadPostgres() {
+  const rows = await sql`SELECT data FROM langapp_state WHERE id = 1`;
+  return rows.length && rows[0].data ? rows[0].data : null;
+}
+
+async function loadRedis() {
+  const blob = await redisCommand(['GET', DB_KEY]);
+  return blob ? JSON.parse(blob) : null;
+}
+
 /**
- * Fetches the latest shared document from the configured backend.
+ * Fetches the latest shared document from the active backend.
  * Returns null when nothing has been stored yet.
  */
 async function loadRemote() {
-  if (pgEnabled) {
-    const rows = await sql`SELECT data FROM langapp_state WHERE id = 1`;
-    return rows.length && rows[0].data ? rows[0].data : null;
-  }
-  if (redisEnabled) {
-    const blob = await redisCommand(['GET', DB_KEY]);
-    return blob ? JSON.parse(blob) : null;
-  }
+  if (dbMode === 'postgres') return loadPostgres();
+  if (dbMode === 'redis') return loadRedis();
   return loadFile();
 }
 
 if (pgEnabled) {
-  // Hydrate the full state from the single JSONB document before use.
-  // Cold start on empty DB keeps defaultData; index.js seeds words right after.
+  // Load the shared JSONB document (accounts/progress only — dictionary is CSV).
+  // Empty DB keeps defaultData; index.js hydrates words from server/data.
   sql = neon(POSTGRES_URL);
   try {
     await sql`CREATE TABLE IF NOT EXISTS langapp_state (
@@ -88,17 +95,31 @@ if (pgEnabled) {
       data jsonb NOT NULL,
       updated_at timestamptz NOT NULL DEFAULT now()
     )`;
-    const data = await loadRemote();
+    const data = await loadPostgres();
     if (data) cache = data;
   } catch (err) {
-    console.error('[db] Postgres load failed, starting empty:', err.message);
+    console.error('[db] Postgres load failed:', err.message);
+    if (redisEnabled) {
+      try {
+        const data = await loadRedis();
+        if (data) cache = data;
+        dbMode = 'redis';
+        console.error('[db] Falling back to Redis after Postgres failure');
+      } catch (redisErr) {
+        console.error('[db] Redis fallback failed:', redisErr.message);
+        remoteUnavailable = true;
+      }
+    } else {
+      remoteUnavailable = true;
+    }
   }
 } else if (redisEnabled) {
   try {
-    const data = await loadRemote();
+    const data = await loadRedis();
     if (data) cache = data;
   } catch (err) {
     console.error('[db] Redis load failed, starting empty:', err.message);
+    remoteUnavailable = true;
   }
 } else {
   cache = loadFile();
@@ -110,6 +131,30 @@ function currentRev() {
   return Number(cache._rev) || 0;
 }
 
+function wordMapKey(pair, lemma) {
+  return `${String(pair || 'tr-ru').toLowerCase().trim()}:${String(lemma || '').toLowerCase().trim()}`;
+}
+
+function wordIdMapFrom(data = cache) {
+  const map = { ...(data._wordIdMap || {}) };
+  for (const w of data.words || []) {
+    if (w?.id == null || !w.lemma) continue;
+    map[wordMapKey(w.lang_pair, w.lemma)] = w.id;
+  }
+  return map;
+}
+
+/**
+ * Remote stores must not embed the dictionary (examples/forms ≈ 8MB).
+ * File mode keeps words so local backups stay self-contained.
+ */
+export function persistableState(data = cache, mode = dbMode) {
+  const _wordIdMap = wordIdMapFrom(data);
+  if (mode === 'file') return { ...data, _wordIdMap };
+  const { words, ...rest } = data;
+  return { ...rest, _wordIdMap };
+}
+
 /**
  * Compare-and-swap write. Returns false when another instance already stored
  * a newer snapshot — callers must reload and retry instead of clobbering it.
@@ -118,8 +163,8 @@ function currentRev() {
  * day's QStash cron would fire and skip the reminder.
  */
 async function persistCas(data, expectedRev) {
-  const payload = JSON.stringify(data);
-  if (pgEnabled) {
+  const payload = JSON.stringify(persistableState(data));
+  if (dbMode === 'postgres') {
     const updated = await sql`
       UPDATE langapp_state
       SET data = ${payload}::jsonb, updated_at = now()
@@ -141,7 +186,7 @@ async function persistCas(data, expectedRev) {
       return false;
     }
   }
-  if (redisEnabled) {
+  if (dbMode === 'redis') {
     const script = `
       local current = redis.call('GET', KEYS[1])
       local expected = tonumber(ARGV[1])
@@ -168,19 +213,16 @@ async function persistCas(data, expectedRev) {
   return true;
 }
 
-function persistPostgres(data) {
-  pendingSave = persistCas(data, currentRev() - 1).then((ok) => {
-    if (!ok) console.error('[db] persist CAS conflict — skipped stale write');
-  });
-  pendingSave.catch((err) => console.error('[db] Postgres persist failed:', err.message));
-  waitUntil(pendingSave);
-}
-
-function persistRemote(data) {
-  pendingSave = persistCas(data, currentRev() - 1).then((ok) => {
-    if (!ok) console.error('[db] persist CAS conflict — skipped stale write');
-  });
-  pendingSave.catch((err) => console.error('[db] Redis persist failed:', err.message));
+function schedulePersist(data) {
+  // Chain .catch onto the promise waitUntil sees — a sibling .catch leaves
+  // the original rejection intact and Vercel then reports FUNCTION_INVOCATION_FAILED.
+  pendingSave = persistCas(data, currentRev() - 1)
+    .then((ok) => {
+      if (!ok) console.error('[db] persist CAS conflict — skipped stale write');
+    })
+    .catch((err) => {
+      console.error(`[db] ${dbMode} persist failed:`, err.message);
+    });
   waitUntil(pendingSave);
 }
 
@@ -201,8 +243,14 @@ export const db = {
       if (pendingSave) await pendingSave;
       const fresh = await loadRemote();
       if (!fresh) return;
+      const words = cache.words;
+      const wordIdMap = cache._wordIdMap;
       for (const key of Object.keys(cache)) delete cache[key];
       Object.assign(cache, fresh);
+      if (!cache.words?.length && words?.length) cache.words = words;
+      if ((!cache._wordIdMap || !Object.keys(cache._wordIdMap).length) && wordIdMap && Object.keys(wordIdMap).length) {
+        cache._wordIdMap = wordIdMap;
+      }
     } catch (err) {
       // Fail soft: stale data beats no data for a read-only refresh.
       console.error('[db] reload failed:', err.message);
@@ -214,9 +262,9 @@ export const db = {
    * must use this instead of mutate-then-`persist()`.
    */
   async transact(mutator) {
-    if (!pgEnabled && !redisEnabled) {
+    if (dbMode === 'file' || remoteUnavailable) {
       const result = await mutator();
-      saveFile(cache);
+      if (dbMode === 'file') saveFile(cache);
       return result;
     }
     for (let attempt = 0; attempt < 5; attempt++) {
@@ -238,8 +286,8 @@ export const db = {
   },
   persist() {
     cache._rev = currentRev() + 1;
-    if (pgEnabled) persistPostgres(cache);
-    else if (redisEnabled) persistRemote(cache);
+    if (remoteUnavailable) return;
+    if (dbMode === 'postgres' || dbMode === 'redis') schedulePersist(cache);
     else saveFile(cache);
   },
   data: cache,

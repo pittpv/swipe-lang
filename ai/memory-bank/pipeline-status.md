@@ -4,7 +4,7 @@
 |-------|-------|
 | **Phase** | 6 — Operate 🟢 |
 | **Production** | https://langapp-neon.vercel.app (Vercel, проект `pittpvs-projects/langapp`) |
-| **Storage** | Upstash Redis (`langapp:db`, serverless mode) |
+| **Storage** | Neon Postgres (`langapp_state` JSONB, dictionary from CSV) |
 | **Gate 5** | Studio Producer sign-off |
 
 ## Phase 5 Deliverables
@@ -41,3 +41,4 @@ npm run report:weekly          # retention report
 - 2026-09-10: кабинет секциями (главная, настройки, статистика), стрелка назад на FAQ/legal, скелетоны под новую вёрстку. Версия **0.5.3**.
 - 2026-09-10: админ-дашборд — таблица всех пользователей с поиском и удалением (`GET/DELETE /api/admin/users`).
 - 2026-09-10: лендинг — свайп-колода преимуществ; в справке настроек — политика и условия. Версия **0.5.4**.
+- 2026-09-11: словарь TR/EN/ES больше не пишется в JSONB (только аккаунты, прогресс, `_wordIdMap`); hydrate из CSV. Вход показывает ошибку, если API недоступен. Версия **0.5.5**.

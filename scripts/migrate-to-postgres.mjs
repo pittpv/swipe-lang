@@ -64,6 +64,19 @@ async function loadFromRedis() {
 
 const data = source === 'redis' ? await loadFromRedis() : await loadFromFile();
 
+function slimForPostgres(sourceData) {
+  const _wordIdMap = { ...(sourceData._wordIdMap || {}) };
+  for (const w of sourceData.words || []) {
+    if (w?.id == null || !w.lemma) continue;
+    const pair = String(w.lang_pair || 'tr-ru').toLowerCase().trim();
+    _wordIdMap[`${pair}:${String(w.lemma).toLowerCase().trim()}`] = w.id;
+  }
+  const { words, ...rest } = sourceData;
+  return { ...rest, _wordIdMap };
+}
+
+const payload = slimForPostgres(data);
+
 const sql = neon(pgUrl);
 await sql`CREATE TABLE IF NOT EXISTS langapp_state (
   id integer PRIMARY KEY,
@@ -72,23 +85,28 @@ await sql`CREATE TABLE IF NOT EXISTS langapp_state (
 )`;
 await sql`
   INSERT INTO langapp_state (id, data, updated_at)
-  VALUES (1, ${JSON.stringify(data)}::jsonb, now())
+  VALUES (1, ${JSON.stringify(payload)}::jsonb, now())
   ON CONFLICT (id) DO UPDATE
     SET data = EXCLUDED.data, updated_at = now()
 `;
 
-// Verify round-trip.
+// Verify round-trip. Dictionary stays in CSV, not in the JSONB document.
 const rows = await sql`SELECT data FROM langapp_state WHERE id = 1`;
 const saved = rows[0]?.data;
-if (!saved || (saved.words?.length ?? 0) !== (data.words?.length ?? 0)) {
-  console.error('ERROR: verification failed — stored state does not match the source.');
+if (!saved || saved.words?.length) {
+  console.error('ERROR: verification failed — Postgres document still contains words.');
+  process.exit(1);
+}
+if ((saved.users?.length ?? 0) !== (data.users?.length ?? 0)
+  || (saved.user_word_progress?.length ?? 0) !== (data.user_word_progress?.length ?? 0)) {
+  console.error('ERROR: verification failed — stored user state does not match the source.');
   process.exit(1);
 }
 
 console.log('Migration complete ✔');
 console.log(`  users:              ${saved.users?.length ?? 0}`);
-console.log(`  words:              ${saved.words?.length ?? 0}`);
+console.log(`  word id map:        ${Object.keys(saved._wordIdMap || {}).length}`);
 console.log(`  user_word_progress: ${saved.user_word_progress?.length ?? 0}`);
 console.log(`  study_sessions:     ${saved.study_sessions?.length ?? 0}`);
 console.log(`  analytics events:   ${saved.analytics?.length ?? 0}`);
-console.log('\nDeploy with POSTGRES_URL set — the app will use Neon automatically.');
+console.log('\nDeploy with POSTGRES_URL set — the app hydrates TR/EN/ES from CSV and keeps accounts in Neon.');

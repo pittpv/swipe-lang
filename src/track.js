@@ -23,7 +23,7 @@ export async function api(path, options = {}, isRetry = false) {
     await new Promise((r) => setTimeout(r, 50));
     return api(path, options, true);
   }
-  if (!res.ok) throw new Error(data.error || res.statusText);
+  if (!res.ok) throw new Error(data.error || res.statusText || 'Сервер временно недоступен');
   return data;
 }
 

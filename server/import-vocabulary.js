@@ -2,7 +2,7 @@ import { readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { parseCsvFile } from './lib/csv-parse.js';
-import { db } from './database.js';
+import { db, dbMode } from './database.js';
 import { LANG_PAIRS, isLangPair, normalizeLangPair, wordLangPair } from './lang-pairs.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -171,8 +171,62 @@ function loadPackWords(pack) {
 }
 
 export function missingVocabPairs() {
-  const present = new Set(db.data.words.map((w) => wordLangPair(w)));
+  const present = new Set((db.data.words || []).map((w) => wordLangPair(w)));
   return LANG_PAIRS.filter((p) => !present.has(p));
+}
+
+function wordMapKey(pair, lemma) {
+  return `${normalizeLangPair(pair)}:${normalizeKey(lemma)}`;
+}
+
+export function buildWordIdMap(words) {
+  const map = {};
+  for (const w of words || []) {
+    if (w?.id == null || !w.lemma) continue;
+    map[wordMapKey(wordLangPair(w), w.lemma)] = w.id;
+  }
+  return map;
+}
+
+/**
+ * Load TR/EN/ES dictionaries from CSV into memory. IDs stay stable via
+ * `_wordIdMap` and any previously embedded `words` rows (one-time migration).
+ * Does not persist the dictionary itself.
+ */
+export function hydrateVocabulary({ persist = false } = {}) {
+  const byPair = extrasByPair();
+  const incoming = [];
+  for (const pack of VOCAB_PACKS) {
+    const { words } = loadPackWords(pack);
+    const extras = byPair.get(pack.lang_pair);
+    for (const word of words) {
+      if (extras) attachExtras(word, extras.examples, extras.forms);
+      incoming.push(word);
+    }
+  }
+
+  const idMap = { ...(db.data._wordIdMap || {}), ...buildWordIdMap(db.data.words) };
+  const knownIds = Object.values(idMap).map(Number).filter((n) => Number.isFinite(n));
+  let maxId = Math.max(0, db.data._seq?.words ?? 0, ...knownIds);
+
+  const hydrated = incoming.map((word) => {
+    const key = wordMapKey(word.lang_pair, word.lemma);
+    let id = idMap[key];
+    if (id == null) {
+      maxId += 1;
+      id = maxId;
+      idMap[key] = id;
+    }
+    return { id, ...word };
+  });
+
+  if (!db.data._seq) db.data._seq = {};
+  db.data.words = hydrated;
+  db.data._wordIdMap = idMap;
+  db.data._seq.words = maxId;
+  db.data._vocabExtrasVersion = VOCAB_EXTRAS_VERSION;
+  if (persist) db.persist();
+  return { total: hydrated.length, mapped: Object.keys(idMap).length };
 }
 
 /**
@@ -202,7 +256,7 @@ export function enrichVocabularyExtras({ force = false } = {}) {
   }
 
   db.data._vocabExtrasVersion = VOCAB_EXTRAS_VERSION;
-  db.persist();
+  if (dbMode === 'file') db.persist();
 
   return {
     updated,
@@ -260,8 +314,7 @@ export function importVocabulary({ replace = false, pairs } = {}) {
     attachWordExtras(word, byPair);
   }
   db.data._vocabExtrasVersion = VOCAB_EXTRAS_VERSION;
-
-  db.persist();
+  if (dbMode === 'file') db.persist();
 
   return {
     added,
