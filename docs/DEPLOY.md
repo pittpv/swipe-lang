@@ -7,6 +7,17 @@ lives in **Neon Postgres** when `POSTGRES_URL` is set (recommended), otherwise i
 Upstash Redis when `UPSTASH_REDIS_REST_*` env vars are set, or a local JSON file
 as a fallback.
 
+**Production URL:** [https://www.langswipe.xyz](https://www.langswipe.xyz).
+Apex `https://langswipe.xyz` permanently redirects to `www`. The Vercel default
+host (`langapp-neon.vercel.app`) still serves the same deployment; treat `www`
+as canonical. Set `APP_URL=https://www.langswipe.xyz` (no trailing slash) so
+referral links and Web Push VAPID subject use that origin. After changing
+`APP_URL`, redeploy Production.
+
+PWAs installed from the old `*.vercel.app` host are a separate origin: users
+should remove the home-screen icon, open `https://www.langswipe.xyz` in the
+browser, and add to home screen again. Accounts and progress are unchanged.
+
 ### Storage option A — Neon Postgres (recommended)
 
 1. Create a free project at [neon.tech](https://neon.tech) and copy the
@@ -73,6 +84,7 @@ npx vercel --prod
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `SESSION_SECRET` | prod | Min 32 chars (signs session cookies) |
+| `APP_URL` | prod | Canonical origin, no trailing slash: `https://www.langswipe.xyz`. Used for referral links and Web Push VAPID subject |
 | `NODE_ENV` | prod | `production` |
 | `PORT` | no | Default 3000 (local only) |
 | `ADMIN_API_KEY` | recommended | Admin dashboard: analytics, user list, and user deletion |
@@ -133,6 +145,6 @@ On Neon, keep a JSON dump before risky deploys (`_dump-all-stores.mjs` needs `PO
 
 ## Post-launch checklist
 
-- [ ] HTTPS reverse proxy (Caddy / nginx)
+- [x] Custom domain HTTPS (`www.langswipe.xyz`; apex → www)
 - [x] Backup `database/langapp.json` daily — automated via `npm run backup`
 - [ ] Monitor `/api/health`

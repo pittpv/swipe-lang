@@ -3,7 +3,7 @@
 | Field | Value |
 |-------|-------|
 | **Phase** | 6 — Operate 🟢 |
-| **Production** | https://langapp-neon.vercel.app (Vercel, проект `pittpvs-projects/langapp`) |
+| **Production** | https://www.langswipe.xyz (Vercel, проект `pittpvs-projects/langapp`; apex `langswipe.xyz` → www) |
 | **Storage** | Neon Postgres (`langapp_state` JSONB, dictionary from CSV) |
 | **Gate 5** | Studio Producer sign-off |
 
@@ -43,3 +43,4 @@ npm run report:weekly          # retention report
 - 2026-09-10: лендинг — свайп-колода преимуществ; в справке настроек — политика и условия. Версия **0.5.4**.
 - 2026-09-11: словарь TR/EN/ES больше не пишется в JSONB (только аккаунты, прогресс, `_wordIdMap`); hydrate из CSV. Вход показывает ошибку, если API недоступен. Версия **0.5.5**.
 - 2026-09-12: подсказка установки PWA в Safari на iPhone; однобуквенное имя в онбординге; кабинет не зависает на скелетоне, если iOS потеряла ответ. Версия **0.5.6**.
+- 2026-09-12: кастомный домен **https://www.langswipe.xyz**, `APP_URL` в Production; PWA со старого `*.vercel.app` нужно переустановить с нового адреса. Версия **0.5.7**.

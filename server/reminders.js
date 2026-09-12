@@ -121,7 +121,7 @@ export function dueWordsCount(db, userId) {
 }
 
 function vapidSubject() {
-  return process.env.APP_URL || 'https://langapp-neon.vercel.app';
+  return process.env.APP_URL || 'https://www.langswipe.xyz';
 }
 
 export function pushEndpointHost(subscription) {
