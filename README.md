@@ -78,7 +78,7 @@ Operators open `/admin/dashboard.html` with `ADMIN_API_KEY` for live metrics, a 
 
 ## First-run onboarding
 
-After registration the app asks for a **display name**, study **language** (Turkish / English / Spanish), goal, and CEFR level (`POST /api/onboarding`). Name is required in the UI so Home can greet the user; a single character is valid. Spanish CEFR is capped at B2. While the profile is saved, a short setup screen shows a home skeleton; if the iOS PWA drops the response, Home still opens once the account exists. On iPhone Safari (not already installed) a dismissible hint explains Share → Add to Home Screen. Name, language, and level can be changed later via `PATCH /api/profile`.
+After registration the app asks for a **display name**, study **language** (Turkish / English / Spanish), goal, and CEFR level (`POST /api/onboarding`). Name is required in the UI so Home can greet the user; a single character is valid. Spanish CEFR is capped at B2. While the profile is saved, a short setup screen shows a home skeleton; if the iOS PWA drops the response, Home still opens once the account exists. After onboarding, Home on iPhone Safari (not already installed) shows a dismissible «Установить приложение» hint (Share → Add to Home Screen). Name, language, and level can be changed later via `PATCH /api/profile`.
 
 ## Appearance
 

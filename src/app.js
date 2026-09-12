@@ -123,7 +123,7 @@ export class App {
     this.render();
     this.armGesturePushHeal();
     this.initVersionWatch();
-    this.mountIosInstallHint();
+    this.syncIosInstallHint();
     const onForeground = () => {
       if (document.hidden) return;
       if (this.view === 'onboarding-setup') void this.resumeOnboardingSetup();
@@ -214,10 +214,7 @@ export class App {
 
   /** Safari has no system install prompt — guide iPhone users to Add to Home Screen. */
   mountIosInstallHint() {
-    if (document.querySelector('.ios-install')) {
-      this.syncIosInstallHint();
-      return;
-    }
+    if (document.querySelector('.ios-install')) return;
     if (!shouldShowIosInstallHint()) return;
 
     const el = document.createElement('aside');
@@ -233,7 +230,7 @@ export class App {
     const body = document.createElement('p');
 
     if (isIosSafari()) {
-      title.textContent = 'На экран «Домой»';
+      title.textContent = 'Установить приложение';
       body.append('Нажмите ');
       const icon = document.createElement('span');
       icon.className = 'ios-install-share-wrap';
@@ -241,7 +238,7 @@ export class App {
       icon.innerHTML = IOS_SHARE_SVG;
       body.append(icon, ' Поделиться, затем «На экран Домой».');
     } else {
-      title.textContent = 'Откройте в Safari';
+      title.textContent = 'Установить приложение';
       body.textContent = 'Иконка на экране появляется только из Safari: Поделиться → На экран «Домой».';
     }
 
@@ -263,14 +260,14 @@ export class App {
 
     el.append(copy, close);
     document.body.appendChild(el);
-    this.syncIosInstallHint();
   }
 
   syncIosInstallHint() {
+    const onHome = this.view === 'home' && Boolean(this.user);
+    if (onHome) this.mountIosInstallHint();
     const el = document.querySelector('.ios-install');
     if (!el) return;
-    const blocking = this.view === 'session' || this.view === 'onboarding-setup' || this.overlayWord;
-    el.hidden = Boolean(blocking);
+    el.hidden = !onHome;
   }
 
   openUpdates() {
