@@ -419,6 +419,7 @@ body {
 }
 
 .card-form {
+  margin: 0;
   background: var(--color-surface);
   border-radius: var(--radius);
   padding: 1.5rem;
@@ -1466,6 +1467,86 @@ select:focus-visible,
   touch-action: manipulation;
 }
 
+.ios-install {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  z-index: 1050;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  max-width: 420px;
+  margin: 0 auto;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.9rem 0.5rem 0.9rem 1rem;
+  box-shadow: var(--shadow);
+  animation: cardEnter 0.25s ease-out;
+}
+
+.ios-install[hidden] {
+  display: none;
+}
+
+.ios-install-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.ios-install-copy strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  margin: 0 0 0.2rem;
+}
+
+.ios-install-copy p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--color-muted);
+}
+
+.ios-install-share-wrap {
+  display: inline-flex;
+  vertical-align: -0.2em;
+}
+
+.ios-install-share {
+  display: block;
+  color: var(--color-heading);
+}
+
+.ios-install-close {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: -0.35rem 0 0;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--color-muted);
+  font: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.ios-install-close:hover,
+.ios-install-close:focus-visible {
+  color: var(--color-heading);
+}
+
+.ios-install-close:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .hidden {
   display: none !important;
 }
@@ -2015,7 +2096,9 @@ select:focus-visible,
   .ach-time,
   .skeleton-bone,
   .word-card.card-enter,
-  .home-start-card:active .home-start-label {
+  .home-start-card:active .home-start-label,
+  .update-toast,
+  .ios-install {
     animation: none !important;
     transition: none !important;
     transform: none;

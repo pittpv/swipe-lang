@@ -217,6 +217,28 @@ test('onboarding saves name with goal and level', async () => {
   assert.equal(data.needsOnboarding, false);
 });
 
+test('onboarding accepts a one-letter name', async () => {
+  const client = jar();
+  await client.fetch('/api/public/stats');
+  let { res, data } = await client.fetch('/api/auth/register', {
+    method: 'POST',
+    body: JSON.stringify({ email: `onboard_short_${Date.now()}@langapp.test`, password }),
+  });
+  assert.equal(res.status, 200);
+
+  ({ res, data } = await client.fetch('/api/onboarding', {
+    method: 'POST',
+    body: JSON.stringify({ goal: 'travel', cefrLevel: 'A1', name: 'Я' }),
+  }));
+  assert.equal(res.status, 200);
+  assert.equal(data.name, 'Я');
+
+  ({ res, data } = await client.fetch('/api/auth/me'));
+  assert.equal(res.status, 200);
+  assert.equal(data.name, 'Я');
+  assert.equal(data.needsOnboarding, false);
+});
+
 test('profile name update and progress reset', async () => {
   const client = jar();
   await client.fetch('/api/public/stats');

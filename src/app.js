@@ -20,6 +20,7 @@ export { api } from './track.js';
 
 /** Injected at build/dev time from package.json via vite.config.js */
 const APP_VERSION = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.1.0';
+const IOS_INSTALL_DISMISS_KEY = 'langapp.iosInstallDismissed';
 
 export class App {
   constructor(root) {
@@ -72,6 +73,7 @@ export class App {
     this.nameSavedTimer = null;
     this.name = '';
     this._onboardingBusy = false;
+    this._onboardingToken = 0;
     this.progressReset = false;
     this.publicStats = {
       sessionSize: 18,
@@ -121,12 +123,22 @@ export class App {
     this.render();
     this.armGesturePushHeal();
     this.initVersionWatch();
+    this.mountIosInstallHint();
+    const onForeground = () => {
+      if (document.hidden) return;
+      if (this.view === 'onboarding-setup') void this.resumeOnboardingSetup();
+    };
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) this.clearLandingAuto();
-      else if (this.view === 'landing' && !this._landingSwiping && !this._landingDrag.active) {
+      if (document.hidden) {
+        this.clearLandingAuto();
+        return;
+      }
+      onForeground();
+      if (this.view === 'landing' && !this._landingSwiping && !this._landingDrag.active) {
         this.scheduleLandingAuto();
       }
     });
+    window.addEventListener('pageshow', onForeground);
   }
 
   consumeOpenView() {
@@ -200,6 +212,67 @@ export class App {
     document.body.appendChild(toast);
   }
 
+  /** Safari has no system install prompt — guide iPhone users to Add to Home Screen. */
+  mountIosInstallHint() {
+    if (document.querySelector('.ios-install')) {
+      this.syncIosInstallHint();
+      return;
+    }
+    if (!shouldShowIosInstallHint()) return;
+
+    const el = document.createElement('aside');
+    el.className = 'ios-install';
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
+    el.setAttribute('aria-labelledby', 'ios-install-title');
+
+    const copy = document.createElement('div');
+    copy.className = 'ios-install-copy';
+    const title = document.createElement('strong');
+    title.id = 'ios-install-title';
+    const body = document.createElement('p');
+
+    if (isIosSafari()) {
+      title.textContent = 'На экран «Домой»';
+      body.append('Нажмите ');
+      const icon = document.createElement('span');
+      icon.className = 'ios-install-share-wrap';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.innerHTML = IOS_SHARE_SVG;
+      body.append(icon, ' Поделиться, затем «На экран Домой».');
+    } else {
+      title.textContent = 'Откройте в Safari';
+      body.textContent = 'Иконка на экране появляется только из Safari: Поделиться → На экран «Домой».';
+    }
+
+    copy.append(title, body);
+
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'ios-install-close';
+    close.setAttribute('aria-label', 'Закрыть подсказку');
+    close.textContent = '×';
+    close.addEventListener('click', () => {
+      try {
+        localStorage.setItem(IOS_INSTALL_DISMISS_KEY, '1');
+      } catch {
+        /* private mode */
+      }
+      el.remove();
+    });
+
+    el.append(copy, close);
+    document.body.appendChild(el);
+    this.syncIosInstallHint();
+  }
+
+  syncIosInstallHint() {
+    const el = document.querySelector('.ios-install');
+    if (!el) return;
+    const blocking = this.view === 'session' || this.view === 'onboarding-setup' || this.overlayWord;
+    el.hidden = Boolean(blocking);
+  }
+
   openUpdates() {
     markChangelogSeen();
     this.changelogUnseen = false;
@@ -240,7 +313,7 @@ export class App {
       this.view = this.user.needsOnboarding ? 'onboarding' : 'home';
       if (!this.user.needsOnboarding) await this.loadUserExtras();
     } catch (e) {
-      this.error = e.message;
+      this.error = friendlyError(e.message);
     }
     this.render();
     this.armGesturePushHeal();
@@ -256,9 +329,62 @@ export class App {
       track('register_complete');
       this.view = 'onboarding';
     } catch (e) {
-      this.error = e.message;
+      this.error = friendlyError(e.message);
     }
     this.render();
+  }
+
+  applyOnboardedProfile(source, fallbackName = '') {
+    const name = source?.name ?? fallbackName;
+    const goal = source?.goal ?? this.goal;
+    const cefrLevel = source?.cefrLevel ?? this.cefrLevel;
+    const langPair = normalizeLangPair(source?.langPair ?? this.langPair);
+    if (this.user) {
+      this.user.needsOnboarding = false;
+      if (name) this.user.name = name;
+      if (goal) this.user.goal = goal;
+      this.user.cefrLevel = cefrLevel;
+      this.user.langPair = langPair;
+    } else if (source?.id) {
+      this.user = source;
+      this.user.needsOnboarding = false;
+    }
+    if (name) this.name = name;
+    this.cefrLevel = clampCefrToPair(cefrLevel, langPair);
+    this.langPair = langPair;
+  }
+
+  async recoverOnboardedUser() {
+    try {
+      const me = await withTimeout(api('/auth/me'), 5000);
+      if (!me || me.needsOnboarding) return false;
+      this.user = me;
+      this.applyOnboardedProfile(me);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  enterHomeAfterOnboarding() {
+    this._onboardingBusy = false;
+    this.view = 'home';
+    this.render();
+    this.armGesturePushHeal();
+    void this.loadUserExtras()
+      .then(() => {
+        if (this.view === 'home') this.render();
+      })
+      .catch(() => {});
+  }
+
+  /** iOS PWAs often kill the in-flight /onboarding response; reopen should not stay on the skeleton. */
+  async resumeOnboardingSetup() {
+    if (this.view !== 'onboarding-setup') return;
+    const recovered = await this.recoverOnboardedUser();
+    if (!recovered || this.view !== 'onboarding-setup') return;
+    this._onboardingToken += 1;
+    this.enterHomeAfterOnboarding();
   }
 
   async saveOnboarding() {
@@ -270,41 +396,40 @@ export class App {
       return;
     }
     this._onboardingBusy = true;
+    const token = ++this._onboardingToken;
     this.error = '';
     this.view = 'onboarding-setup';
     this.render();
     const started = Date.now();
     try {
-      const result = await api('/onboarding', {
-        method: 'POST',
-        body: { goal: this.goal, cefrLevel: this.cefrLevel, langPair: this.langPair, name },
-      });
+      const result = await withTimeout(
+        api('/onboarding', {
+          method: 'POST',
+          body: { goal: this.goal, cefrLevel: this.cefrLevel, langPair: this.langPair, name },
+        }),
+        12000,
+      );
+      if (token !== this._onboardingToken) return;
       track('onboarding_complete');
-      if (this.user) {
-        this.user.needsOnboarding = false;
-        this.user.name = result.name ?? name;
-        this.user.goal = result.goal ?? this.goal;
-        this.user.cefrLevel = result.cefrLevel ?? this.cefrLevel;
-        this.user.langPair = result.langPair ?? this.langPair;
-      }
-      this.name = result.name ?? name;
-      this.cefrLevel = result.cefrLevel ?? this.cefrLevel;
-      this.langPair = normalizeLangPair(result.langPair ?? this.langPair);
-      try {
-        await this.loadUserExtras();
-      } catch {
-        /* Home still works without referral/reminder extras. */
-      }
-      const wait = 1100 - (Date.now() - started);
-      if (wait > 0) await new Promise((r) => setTimeout(r, wait));
-      this.view = 'home';
+      this.applyOnboardedProfile(result, name);
     } catch (e) {
-      this.error = e.message;
-      this.view = 'onboarding';
+      if (token !== this._onboardingToken) return;
+      const recovered = await this.recoverOnboardedUser();
+      if (token !== this._onboardingToken) return;
+      if (!recovered) {
+        this.error = e.message === 'timeout' ? 'Не удалось создать кабинет. Попробуйте ещё раз.' : friendlyError(e.message);
+        this.view = 'onboarding';
+        this._onboardingBusy = false;
+        this.render();
+        return;
+      }
+      track('onboarding_complete');
     }
-    this._onboardingBusy = false;
-    this.render();
-    this.armGesturePushHeal();
+    if (token !== this._onboardingToken) return;
+    const wait = 1100 - (Date.now() - started);
+    if (wait > 0) await new Promise((r) => setTimeout(r, wait));
+    if (token !== this._onboardingToken) return;
+    this.enterHomeAfterOnboarding();
   }
 
   async startSession() {
@@ -899,7 +1024,7 @@ export class App {
     const current = String(this.user?.name ?? '').trim();
     if (!name) {
       this.name = current;
-      const input = this.root.querySelector('input[name="name"]');
+      const input = this.root.querySelector('input[name="displayName"]');
       if (input) input.value = current;
       if (!current) {
         this.settingsError = 'Введите имя';
@@ -1330,6 +1455,7 @@ export class App {
   }
 
   bindEvents() {
+    this.root.onsubmit = (e) => e.preventDefault();
     this.root.onclick = (e) => {
       if (Date.now() < this._suppressClickUntil) {
         e.preventDefault();
@@ -1416,6 +1542,10 @@ export class App {
         this.saveCefr();
         return;
       }
+      if (name === 'displayName') {
+        this.name = value;
+        return;
+      }
       if (name in this) this[name] = value;
     };
 
@@ -1425,16 +1555,16 @@ export class App {
     };
 
     this.root.onfocusout = (e) => {
-      if (this.view === 'settings' && e.target?.name === 'name') this.saveNameIfChanged();
+      if (this.view === 'settings' && e.target?.name === 'displayName') this.saveNameIfChanged();
     };
 
     this.root.onkeydown = (e) => {
-      if (this.view === 'onboarding' && e.key === 'Enter' && e.target.name === 'name') {
+      if (this.view === 'onboarding' && e.key === 'Enter' && e.target.name === 'displayName') {
         e.preventDefault();
         this.saveOnboarding();
         return;
       }
-      if (this.view === 'settings' && e.key === 'Enter' && e.target.name === 'name') {
+      if (this.view === 'settings' && e.key === 'Enter' && e.target.name === 'displayName') {
         e.preventDefault();
         e.target.blur();
         return;
@@ -1501,24 +1631,25 @@ export class App {
           backAction: 'landing',
           backLabel: 'На экран приветствия',
         })}
-        <div class="card-form">
-          <label>Email<input name="email" type="email" value="${esc(this.email)}" autocomplete="email" /></label>
+        <form class="card-form" autocomplete="on">
+          <label>Email<input name="email" type="email" value="${esc(this.email)}" autocomplete="username" inputmode="email" /></label>
           <label>Пароль<input name="password" type="password" value="${esc(this.password)}" autocomplete="${this.authMode === 'login' ? 'current-password' : 'new-password'}" /></label>
           ${this.error ? `<p class="error">${esc(this.error)}</p>` : ''}
-          <button class="btn btn-primary" data-action="${this.authMode}">${this.authMode === 'login' ? 'Войти' : 'Создать аккаунт'}</button>
+          <button type="button" class="btn btn-primary" data-action="${this.authMode}">${this.authMode === 'login' ? 'Войти' : 'Создать аккаунт'}</button>
           <p class="auth-switch">
-            <button class="link-btn" data-action="${this.authMode === 'login' ? 'show-register' : 'show-login'}">${this.authMode === 'login' ? 'Создать аккаунт' : 'Войти'}</button>
+            <button type="button" class="link-btn" data-action="${this.authMode === 'login' ? 'show-register' : 'show-login'}">${this.authMode === 'login' ? 'Создать аккаунт' : 'Войти'}</button>
           </p>
-        </div>`;
+        </form>`;
     } else if (v === 'onboarding') {
       html += `
         ${pageBar({
           title: 'Настройка',
           subtitle: 'Коротко — и к первой сессии',
         })}
-        <div class="card-form">
+        <form class="card-form" autocomplete="off">
+          ${accountUsernameField(this.email || this.user?.email)}
           <label>Имя
-            <input name="name" type="text" value="${esc(this.name)}" maxlength="64" placeholder="Как к вам обращаться?" autocomplete="given-name" />
+            ${nameFieldHtml(this.name)}
           </label>
           <label>Язык
             <select name="langPair">
@@ -1538,9 +1669,9 @@ export class App {
             </select>
           </label>
           ${this.error ? `<p class="error">${esc(this.error)}</p>` : ''}
-          <button class="btn btn-primary" data-action="onboarding"${this._onboardingBusy ? ' disabled' : ''}>Продолжить</button>
+          <button type="button" class="btn btn-primary" data-action="onboarding"${this._onboardingBusy ? ' disabled' : ''}>Продолжить</button>
           <p class="settings-hint onboarding-install">📲 Совет: установите LangApp как приложение — инструкция для <a href="/help/faq.html#install" target="_blank" rel="noopener">iPhone и Android — в FAQ</a>.</p>
-        </div>`;
+        </form>`;
     } else if (v === 'onboarding-setup') {
       html += `
         ${pageBar({
@@ -1855,7 +1986,7 @@ export class App {
           ${settingsGroup('Профиль', `
             <div class="card-form">
               <label>Имя
-                <input name="name" type="text" value="${esc(this.name)}" maxlength="64" placeholder="Как к вам обращаться?" autocomplete="given-name" enterkeyhint="done" />
+                ${nameFieldHtml(this.name, ' enterkeyhint="done"')}
               </label>
               <p class="saved-hint" data-name-saved hidden>Сохранено ✓</p>
               ${nameError}
@@ -2006,9 +2137,10 @@ export class App {
       card.addEventListener('pointerdown', (e) => this.onPointerDown(e));
     }
     if (v === 'landing') this.mountLandingDeck();
-    if (v === 'onboarding') {
-      this.root.querySelector('input[name="name"]')?.focus();
+    if (v === 'onboarding' && !window.navigator.standalone) {
+      this.root.querySelector('input[name="displayName"]')?.focus();
     }
+    this.syncIosInstallHint();
   }
 }
 
@@ -2018,6 +2150,69 @@ function esc(s) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+const IOS_SHARE_SVG =
+  '<svg class="ios-install-share" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 9H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-2M12 3v12M8.5 6.5 12 3l3.5 3.5"/></svg>';
+
+function isIosDevice() {
+  const ua = navigator.userAgent || '';
+  if (/iPad|iPhone|iPod/.test(ua)) return true;
+  return navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+}
+
+function isStandaloneDisplay() {
+  if (window.navigator.standalone) return true;
+  return Boolean(window.matchMedia?.('(display-mode: standalone), (display-mode: fullscreen)').matches);
+}
+
+function isIosSafari() {
+  if (!isIosDevice()) return false;
+  const ua = navigator.userAgent || '';
+  return !/CriOS|FxiOS|OPiOS|EdgiOS|YaBrowser|YaApp|GSA|FBAN|FBAV|Instagram|Line\/|Twitter|Telegram|MicroMessenger/i.test(ua);
+}
+
+function shouldShowIosInstallHint() {
+  if (!isIosDevice() || isStandaloneDisplay()) return false;
+  try {
+    return localStorage.getItem(IOS_INSTALL_DISMISS_KEY) !== '1';
+  } catch {
+    return true;
+  }
+}
+
+/** iOS treats `name="name"` as a username and shows a login/password error for short values. */
+function nameFieldHtml(value, extra = '') {
+  return `<input name="displayName" type="text" value="${esc(value)}" maxlength="64" placeholder="Как к вам обращаться?" autocomplete="given-name" autocapitalize="words" spellcheck="false"${extra} />`;
+}
+
+/** Keeps iCloud Keychain bound to the account email so the visible name field is not used as a login. */
+function accountUsernameField(email) {
+  if (!email) return '';
+  return `<input class="sr-only" type="email" value="${esc(email)}" autocomplete="username" tabindex="-1" readonly aria-hidden="true" />`;
+}
+
+function withTimeout(promise, ms, timeoutMessage = 'timeout') {
+  let timer;
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => {
+      timer = setTimeout(() => reject(new Error(timeoutMessage)), ms);
+    }),
+  ]).finally(() => clearTimeout(timer));
+}
+
+function friendlyError(message) {
+  switch (message) {
+    case 'Valid email and password (8–128 chars) required':
+      return 'Введите корректный email и пароль от 8 символов';
+    case 'Email already registered':
+      return 'Этот email уже зарегистрирован';
+    case 'Invalid credentials':
+      return 'Неверный email или пароль';
+    default:
+      return message || 'Сервер временно недоступен';
+  }
 }
 
 function isReturnFromInfoPage() {
