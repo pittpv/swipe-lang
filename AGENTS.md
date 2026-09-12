@@ -1,6 +1,6 @@
 # LangApp — AI tooling setup
 
-This project is wired for Cursor with three design/agent layers:
+This project is wired for Cursor with two design/agent layers:
 
 ## 1. Agency Agents ([agency-agents](https://github.com/msitarzewski/agency-agents))
 
@@ -36,32 +36,6 @@ Update:
 ```powershell
 npx impeccable update --providers=cursor --scope=project
 ```
-
-## 3. Refero Styles ([styles.refero.design](https://styles.refero.design/))
-
-- **Skill:** `.cursor/skills/refero-design/` — research-first design workflow (typography, color, anti-slop).
-- **MCP:** `.cursor/mcp.json` — connects to `https://api.refero.design/mcp`.
-
-### Refero MCP setup (one-time)
-
-1. Open **Cursor Settings → MCP** and enable the `refero` server (or reload the window).
-2. On first use, sign in via the browser OAuth flow, **or** add your Bearer token to `.cursor/mcp.json`:
-
-```json
-"headers": { "Authorization": "Bearer YOUR_TOKEN" }
-```
-
-Get a token at [refero.design/mcp](https://refero.design/mcp) (Refero Pro required for live search).
-
-### Using Refero styles
-
-Ask the agent to search styles before building UI:
-
-```
-Search Refero styles for a clean language-learning app with soft colors.
-```
-
-Browse curated `DESIGN.md` examples at [styles.refero.design](https://styles.refero.design/) and paste a style into context for a specific visual direction.
 
 ---
 
