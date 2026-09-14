@@ -940,7 +940,12 @@ export class App {
       await this.pushSubscribe({ interactive: nextInteractive });
       return;
     }
-    if (interactive || this.view === 'settings') this.render();
+    // A failed silent heal must not re-render Settings. On iOS Safari (not PWA)
+    // PushManager rejects in a microtask; replacing innerHTML then drops the
+    // tap's click, so every control on the page looks dead.
+    if (interactive || (this.view === 'settings' && !this.reminderNeedsGestureHeal)) {
+      this.render();
+    }
     if (this.reminderNeedsGestureHeal) this.armGesturePushHeal();
   }
 
