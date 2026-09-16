@@ -20,6 +20,7 @@ export { api } from './track.js';
 
 /** Injected at build/dev time from package.json via vite.config.js */
 const APP_VERSION = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.1.0';
+const SUPPORT_TELEGRAM_URL = 'https://t.me/+mf9HThpx2m4xNzQ8';
 const IOS_INSTALL_DISMISS_KEY = 'langapp.iosInstallDismissed';
 
 export class App {
@@ -1622,6 +1623,7 @@ export class App {
           </div>
           <p class="footer-links">
             <a href="/help/faq.html">FAQ</a>
+            · <a href="${SUPPORT_TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Поддержка</a>
             · <a href="/legal/privacy.html">Конфиденциальность</a>
             · <a href="/legal/terms.html">Условия</a>
           </p>
@@ -1755,6 +1757,9 @@ export class App {
             <button class="btn btn-primary" data-action="copy-referral" aria-live="polite">${this.referralCopied ? 'Ссылка скопирована' : 'Скопировать ссылку'}</button>
             ${this.user?.referralsCount ? `<p class="referral-muted">${this.user.referralsCount} приглашённых</p>` : ''}
           </div>` : ''}
+          <p class="home-support">
+            <a href="${SUPPORT_TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Группа поддержки в Telegram</a>
+          </p>
         </div>`;
     } else if (v === 'session') {
       const card = this.currentCard();
@@ -2028,6 +2033,10 @@ export class App {
             </div>`)}
           ${settingsGroup('Справка', `
             <nav class="card-form settings-list" aria-label="Справка">
+              <a class="settings-row" href="${SUPPORT_TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">
+                Группа поддержки в Telegram
+                <span class="settings-row-go" aria-hidden="true">›</span>
+              </a>
               <a class="settings-row" href="/help/faq.html?from=settings">
                 FAQ
                 <span class="settings-row-go" aria-hidden="true">›</span>

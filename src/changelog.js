@@ -4,6 +4,13 @@
  */
 export const CHANGELOG = [
   {
+    version: '0.5.9',
+    date: '2026-09-16',
+    items: [
+      'Официальная группа поддержки в Telegram — ссылка в справке, на главной и в FAQ',
+    ],
+  },
+  {
     version: '0.5.8',
     date: '2026-09-14',
     items: [

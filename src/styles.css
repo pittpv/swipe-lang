@@ -217,6 +217,17 @@ body {
   margin-top: 0.75rem;
 }
 
+.home-support {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.home-support a {
+  color: var(--color-muted);
+}
+
 .settings-stack {
   display: flex;
   flex-direction: column;
