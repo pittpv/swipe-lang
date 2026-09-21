@@ -1,0 +1,21 @@
+# LangSwipe — https://www.langswipe.xyz
+
+User-agent: Googlebot
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: Yandex
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Host: https://www.langswipe.xyz
+Clean-param: ref&utm_source&utm_medium&utm_campaign&utm_content&utm_term /
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+Sitemap: https://www.langswipe.xyz/sitemap.xml

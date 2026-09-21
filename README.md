@@ -2,6 +2,8 @@
 
 Production: [https://www.langswipe.xyz](https://www.langswipe.xyz)
 
+Crawlers: [robots.txt](https://www.langswipe.xyz/robots.txt) (Google, Yandex, and others) and [sitemap.xml](https://www.langswipe.xyz/sitemap.xml). Details: `docs/DEPLOY.md` §Crawl / SEO.
+
 LangSwipe is a PWA for learning **Turkish, English, or Spanish vocabulary with a Russian UI**. Each language has its own dictionary (about 3,500–4,200 lemmas). The learning methodology is a proven combination of **spaced repetition + microlearning + gamification** — the same principles behind Anki and Duolingo, delivered through a Tinder-style swipe interface.
 
 Study language is chosen at onboarding and can be changed in Settings. Progress is stored per language, so switching decks does not mix cards.

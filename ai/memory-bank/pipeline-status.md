@@ -45,3 +45,4 @@ npm run report:weekly          # retention report
 - 2026-09-12: подсказка установки PWA в Safari на iPhone; однобуквенное имя в онбординге; кабинет не зависает на скелетоне, если iOS потеряла ответ. Версия **0.5.6**.
 - 2026-09-12: кастомный домен **https://www.langswipe.xyz**, `APP_URL` в Production; PWA со старого `*.vercel.app` нужно переустановить с нового адреса. Версия **0.5.7**.
 - 2026-09-14: кнопки в Настройках снова работают в мобильном Safari (не PWA) — тихий retry Web Push больше не перерисовывает экран до click. Версия **0.5.8**.
+- 2026-09-21: `public/robots.txt` (Google / Yandex / `*`) и `public/sitemap.xml`; SPA-rewrite в `vercel.json` их не перехватывает. Главная кабинета влезает в видимый экран iPhone (safe-area + `100svh`).

@@ -143,8 +143,21 @@ node scripts/_dump-all-stores.mjs   # local file + Redis + Neon into database/ba
 
 On Neon, keep a JSON dump before risky deploys (`_dump-all-stores.mjs` needs `POSTGRES_URL`). Console PITR / branches remain the recovery path. After 0.5.5 a healthy dump has users/progress/`_wordIdMap` and **no** `words` array.
 
+## Crawl / SEO
+
+Static files in `public/` are copied to the Vite `dist` root and must not be
+swallowed by the SPA rewrite (`vercel.json` excludes them):
+
+| Path | Role |
+|------|------|
+| `/robots.txt` | Separate rules for Googlebot, Yandex, and `*`. Disallows `/api/` and `/admin/`. Yandex gets `Host` (www) and `Clean-param` for `ref` / UTM. |
+| `/sitemap.xml` | Canonical public pages only: `/`, FAQ, privacy, terms. No admin, API, or app views. |
+
+Canonical host in Search Console / Webmaster: `https://www.langswipe.xyz`.
+
 ## Post-launch checklist
 
 - [x] Custom domain HTTPS (`www.langswipe.xyz`; apex → www)
+- [x] `robots.txt` + `sitemap.xml` (Google / Yandex / others)
 - [x] Backup `database/langapp.json` daily — automated via `npm run backup`
 - [ ] Monitor `/api/health`
