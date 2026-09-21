@@ -1,4 +1,4 @@
-# LangApp — Workflow: Swipe Vocabulary Session
+# LangSwipe — Workflow: Swipe Vocabulary Session
 
 > **Author:** Workflow Architect (Phase 0)  
 > **Status:** Approved for build  

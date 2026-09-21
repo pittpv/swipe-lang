@@ -851,7 +851,7 @@ if (existsSync(distPath)) {
 
 if (!process.env.VERCEL) {
   app.listen(PORT, () => {
-    console.log(`LangApp API http://localhost:${PORT}`);
+    console.log(`LangSwipe API http://localhost:${PORT}`);
   });
 }
 

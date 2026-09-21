@@ -1,4 +1,4 @@
-# LangApp MVP — План команды и пайплайн NEXUS
+# LangSwipe MVP — План команды и пайплайн NEXUS
 
 > **Режим:** NEXUS-Sprint (Startup MVP Runbook)  
 > **Срок:** 4–6 недель  
@@ -11,7 +11,7 @@
 
 ## Executive Summary
 
-LangApp — PWA для изучения лексики: свайп влево = знаю, вправо = учу, тапы = перевод/аудио/примеры. MVP: одна пара EN→RU, SRS, короткие сессии, anti-routine UX. Социальный слой — фаза 2.
+LangSwipe — PWA для изучения лексики: свайп влево = знаю, вправо = учу, тапы = перевод/аудио/примеры. MVP: одна пара EN→RU, SRS, короткие сессии, anti-routine UX. Социальный слой — фаза 2.
 
 Команда собрана по **NEXUS-Sprint** + **scenario-startup-mvp.md** с дополнениями под edtech (Behavioral Nudge Engine, Workflow Architect, Voice AI).
 
@@ -24,7 +24,7 @@ LangApp — PWA для изучения лексики: свайп влево = 
 ```
 Activate Agents Orchestrator in NEXUS-Sprint mode.
 
-Project: LangApp — Swipe Vocab PWA
+Project: LangSwipe — Swipe Vocab PWA
 Specification: ai/memory-bank/site-setup.md
 Task list: ai/memory-bank/tasks/langapp-swipe-vocab-tasklist.md
 Timeline: 4-6 weeks
@@ -43,7 +43,7 @@ Maximum 3 retries per task before escalation.
 
 ### 2.1 Command & PM
 
-| Агент | Cursor rule | Роль в LangApp | Фаза |
+| Агент | Cursor rule | Роль в LangSwipe | Фаза |
 |-------|-------------|----------------|------|
 | **Agents Orchestrator** | `@agents-orchestrator` | Контроллер пайплайна, Dev↔QA loop, эскалации | 1–6 |
 | **Senior Project Manager** | `@senior-project-manager` | Spec → tasks, acceptance criteria, scope control | 1, 3 |
@@ -53,7 +53,7 @@ Maximum 3 retries per task before escalation.
 
 ### 2.2 Product & Discovery
 
-| Агент | Cursor rule | Роль в LangApp | Фаза |
+| Агент | Cursor rule | Роль в LangSwipe | Фаза |
 |-------|-------------|----------------|------|
 | **Product Manager** | `@product-manager` | PRD alignment, outcome metrics, GTM framing | 0–1 |
 | **Trend Researcher** | `@trend-researcher` | Конкуренты (Duolingo, Anki, Drops, Memrise) — 1 день | 0 |
@@ -63,7 +63,7 @@ Maximum 3 retries per task before escalation.
 
 ### 2.3 Design
 
-| Агент | Cursor rule | Роль в LangApp | Фаза |
+| Агент | Cursor rule | Роль в LangSwipe | Фаза |
 |-------|-------------|----------------|------|
 | **UX Architect** | `@ux-architect` | CSS design system, layout, component architecture | 1–2 |
 | **UI Designer** | `@ui-designer` | Карточка слова, свайп-анимации, session summary | 1–3 |
@@ -72,7 +72,7 @@ Maximum 3 retries per task before escalation.
 
 ### 2.4 Engineering
 
-| Агент | Cursor rule | Роль в LangApp | Фаза |
+| Агент | Cursor rule | Роль в LangSwipe | Фаза |
 |-------|-------------|----------------|------|
 | **Backend Architect** | `@backend-architect` | API, SRS engine, схема БД, auth | 1–4 |
 | **Frontend Developer** | `@frontend-developer` | Livewire swipe deck, тап-overlay, PWA shell | 2–4 |
@@ -84,7 +84,7 @@ Maximum 3 retries per task before escalation.
 
 ### 2.5 QA & Hardening
 
-| Агент | Cursor rule | Роль в LangApp | Фаза |
+| Агент | Cursor rule | Роль в LangSwipe | Фаза |
 |-------|-------------|----------------|------|
 | **Evidence Collector** | `@evidence-collector` | Screenshots каждой задачи (desktop/tablet/mobile) | 3–4 |
 | **Reality Checker** | `@reality-checker` | Финальный gate перед launch | 4 |
@@ -94,7 +94,7 @@ Maximum 3 retries per task before escalation.
 
 ### 2.6 Launch & Ops (Week 5+)
 
-| Агент | Cursor rule | Роль в LangApp | Фаза |
+| Агент | Cursor rule | Роль в LangSwipe | Фаза |
 |-------|-------------|----------------|------|
 | **Growth Hacker** | `@growth-hacker` | Каналы привлечения, referral hook (фаза 2 prep) | 5 |
 | **Analytics Reporter** | `@analytics-reporter` | D1/D7 dashboards, funnel свайпов | 5–6 |
@@ -330,7 +330,7 @@ Track C: Design Support        Track D: Compliance
 ### Workflow Architect (Phase 0)
 
 ```
-Activate Workflow Architect for LangApp swipe vocabulary flows.
+Activate Workflow Architect for LangSwipe swipe vocabulary flows.
 
 Input: ai/memory-bank/site-setup.md
 Deliverables:
@@ -344,7 +344,7 @@ Format: Markdown in ai/memory-bank/workflow-swipe-vocab.md
 ### Behavioral Nudge Engine (Phase 0)
 
 ```
-Activate Behavioral Nudge Engine for LangApp anti-routine design.
+Activate Behavioral Nudge Engine for LangSwipe anti-routine design.
 
 Input: site-setup.md Section "Anti-routine"
 Deliverables:
@@ -359,7 +359,7 @@ Handoff to: UI Designer, Frontend Developer
 ### Frontend Developer — Swipe Deck (Phase 3)
 
 ```
-Activate Frontend Developer in NEXUS pipeline for LangApp.
+Activate Frontend Developer in NEXUS pipeline for LangSwipe.
 
 Phase: 3 — Build
 Task: T-08 — Swipe card component

@@ -1,4 +1,4 @@
-# LangApp Swipe Vocab — Development Tasks
+# LangSwipe Swipe Vocab — Development Tasks
 
 ## Specification Summary
 

@@ -142,7 +142,7 @@ export async function sendReminderPush(db, user) {
   // VAPID "sub" must be a reachable mailto: or https: URL — Apple rejects
   // pushes with 403 when the domain doesn't exist (e.g. ".example").
   webpush.setVapidDetails(vapidSubject(), keys.publicKey, keys.privateKey);
-  // iOS shows "<title> from LangApp" — the "from LangApp" suffix comes from
+  // iOS shows "<title> from LangSwipe" — the "from LangSwipe" suffix comes from
   // the manifest name, so the title itself must carry the actual message.
   const meta = LANG_PAIR_META[userLangPair(user)];
   const { title, body } =
@@ -186,7 +186,7 @@ export async function sendTestPush(user) {
   const subject = vapidSubject();
   webpush.setVapidDetails(subject, keys.publicKey, keys.privateKey);
   const payload = JSON.stringify({
-    title: 'Тест LangApp',
+    title: 'Тест LangSwipe',
     body: 'Пуш работает — это проверка 🔔',
     url: '/',
   });

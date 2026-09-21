@@ -93,7 +93,7 @@ export function buildAnalyticsDashboard(db) {
 
 export function formatWeeklyReport(dashboard) {
   const lines = [
-    `# LangApp Weekly Report`,
+    `# LangSwipe Weekly Report`,
     ``,
     `Generated: ${dashboard.generatedAt}`,
     ``,

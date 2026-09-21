@@ -1,4 +1,4 @@
-# LangApp — Deploy
+# LangSwipe — Deploy
 
 ## Vercel (recommended)
 
@@ -61,7 +61,7 @@ browser, and add to home screen again. Accounts and progress are unchanged.
 
 ### App version (Settings screen)
 
-The UI shows `LangApp vX.Y.Z+abcdefg`: semver from `package.json` plus a short
+The UI shows `LangSwipe vX.Y.Z+abcdefg`: semver from `package.json` plus a short
 git commit SHA injected at build time (`VERCEL_GIT_COMMIT_SHA` on Vercel, else
 `git rev-parse`). User-facing notes live in `src/changelog.js` (Settings → Что нового).
 Bump the marketed semver only when you intend a release:
@@ -119,8 +119,8 @@ Open http://localhost:3000
 ## Docker
 
 ```powershell
-docker build -t langapp .
-docker run -p 3000:3000 -e SESSION_SECRET=... -e ADMIN_API_KEY=... -v langapp-data:/app/database langapp
+docker build -t langswipe .
+docker run -p 3000:3000 -e SESSION_SECRET=... -e ADMIN_API_KEY=... -v langswipe-data:/app/database langswipe
 ```
 
 ## Analytics

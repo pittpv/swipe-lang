@@ -5,10 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1a5f4a" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121916" />
-    <meta name="description" content="LangApp — турецкий, английский и испанский свайпом, без рутины" />
+    <title>LangSwipe — изучай языки без рутины</title>
+    <meta name="description" content="LangSwipe — учи турецкий, английский и испанский свайпом. Карточки с интервальными повторениями, короткие сессии по 5 минут и ежедневный прогресс без зубрёжки." />
+    <link rel="canonical" href="https://www.langswipe.xyz/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="LangSwipe" />
+    <meta property="og:url" content="https://www.langswipe.xyz/" />
+    <meta property="og:title" content="LangSwipe — изучай языки без рутины" />
+    <meta property="og:description" content="LangSwipe — учи турецкий, английский и испанский свайпом. Карточки с интервальными повторениями, короткие сессии по 5 минут и ежедневный прогресс без зубрёжки." />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LangSwipe — изучай языки без рутины" />
+    <meta name="twitter:description" content="LangSwipe — учи турецкий, английский и испанский свайпом. Карточки с интервальными повторениями, короткие сессии по 5 минут и ежедневный прогресс без зубрёжки." />
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>LangApp</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.langswipe.xyz/#organization",
+            "name": "LangSwipe",
+            "url": "https://www.langswipe.xyz/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.langswipe.xyz/favicon.svg"
+            },
+            "sameAs": ["https://t.me/+mf9HThpx2m4xNzQ8"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.langswipe.xyz/#website",
+            "name": "LangSwipe",
+            "url": "https://www.langswipe.xyz/",
+            "inLanguage": "ru",
+            "description": "LangSwipe — учи турецкий, английский и испанский свайпом. Карточки с интервальными повторениями, короткие сессии по 5 минут и ежедневный прогресс без зубрёжки.",
+            "publisher": { "@id": "https://www.langswipe.xyz/#organization" }
+          },
+          {
+            "@type": ["WebApplication", "SoftwareApplication"],
+            "@id": "https://www.langswipe.xyz/#app",
+            "name": "LangSwipe",
+            "url": "https://www.langswipe.xyz/",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Web, iOS, Android",
+            "browserRequirements": "Requires JavaScript. Works in a modern browser and as a PWA.",
+            "inLanguage": "ru",
+            "description": "LangSwipe — учи турецкий, английский и испанский свайпом. Карточки с интервальными повторениями, короткие сессии по 5 минут и ежедневный прогресс без зубрёжки.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "RUB"
+            },
+            "featureList": [
+              "Свайп-карточки для турецкого, английского и испанского",
+              "Интервальные повторения (SRS)",
+              "Сессии по 18 карточек — около 5 минут",
+              "Прогресс, streak и ежедневные напоминания"
+            ],
+            "publisher": { "@id": "https://www.langswipe.xyz/#organization" }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.langswipe.xyz/#webpage",
+            "url": "https://www.langswipe.xyz/",
+            "name": "LangSwipe — изучай языки без рутины",
+            "description": "LangSwipe — учи турецкий, английский и испанский свайпом. Карточки с интервальными повторениями, короткие сессии по 5 минут и ежедневный прогресс без зубрёжки.",
+            "inLanguage": "ru",
+            "isPartOf": { "@id": "https://www.langswipe.xyz/#website" },
+            "about": { "@id": "https://www.langswipe.xyz/#app" },
+            "publisher": { "@id": "https://www.langswipe.xyz/#organization" }
+          }
+        ]
+      }
+    </script>
     <script src="/theme-boot.js"></script>
     <link rel="stylesheet" href="/theme.css" />
     <link rel="stylesheet" href="./splash.css" />
@@ -41,10 +112,10 @@
             </g>
           </svg>
         </div>
-        <p class="splash-wordmark">LangApp</p>
+        <p class="splash-wordmark">LangSwipe</p>
         <div class="splash-bar" aria-hidden="true"></div>
       </div>
-      <p class="splash-sr">Загрузка LangApp</p>
+      <p class="splash-sr">Загрузка LangSwipe</p>
     </div>
     <div id="app" aria-hidden="true"></div>
     <script type="module" src="/main.js"></script>

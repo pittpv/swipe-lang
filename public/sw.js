@@ -1,4 +1,4 @@
-/* LangApp service worker — Web Push delivery for study reminders. */
+/* LangSwipe service worker — Web Push delivery for study reminders. */
 
 self.addEventListener('install', () => self.skipWaiting());
 
@@ -13,7 +13,7 @@ self.addEventListener('push', (event) => {
   }
   // Declarative payloads nest fields under `notification`; classic keeps them top-level.
   const notif = data.notification && typeof data.notification === 'object' ? data.notification : {};
-  const title = notif.title || data.title || 'LangApp';
+  const title = notif.title || data.title || 'LangSwipe';
   const body = notif.body || data.body || 'Пора повторить слова!';
   const url = notif.navigate || data.url || '/';
   event.waitUntil(

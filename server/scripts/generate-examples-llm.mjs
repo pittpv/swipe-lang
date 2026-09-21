@@ -302,7 +302,7 @@ async function runLang(apiKey, model, lang, opts) {
 
 const args = parseArgs(process.argv.slice(2));
 if (!args.envFile) {
-  console.error('Pass --env-file with OPENAI_API_KEY (do not copy the key into LangApp).');
+  console.error('Pass --env-file with OPENAI_API_KEY (do not copy the key into LangSwipe).');
   process.exit(1);
 }
 const fileEnv = loadEnvFile(args.envFile);

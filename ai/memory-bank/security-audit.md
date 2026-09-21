@@ -1,4 +1,4 @@
-# Security Audit — LangApp (Senior SecOps)
+# Security Audit — LangSwipe (Senior SecOps)
 
 > **Agent:** `@senior-secops-engineer`  
 > **Date:** 2026-07-01  

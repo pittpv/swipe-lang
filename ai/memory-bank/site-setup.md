@@ -1,7 +1,7 @@
-# LangApp — Site / Product Specification
+# LangSwipe — Site / Product Specification
 
 > **Проект:** веб-сервис / PWA для изучения иностранного языка  
-> **Кодовое имя:** LangApp (Swipe Vocab)  
+> **Кодовое имя:** LangSwipe (Swipe Vocab)  
 > **Версия спеки:** 1.1  
 > **Дата:** 2026-09-10
 

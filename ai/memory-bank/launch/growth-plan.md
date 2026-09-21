@@ -5,7 +5,7 @@
 
 ## Positioning
 
-**LangApp** — турецкий словарь TR→RU со свайп-механикой. Не «ещё один Anki», а 5-минутные сессии.
+**LangSwipe** — турецкий словарь TR→RU со свайп-механикой. Не «ещё один Anki», а 5-минутные сессии.
 
 ## Landing optimizations (shipped)
 

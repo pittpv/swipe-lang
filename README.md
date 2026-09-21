@@ -1,8 +1,8 @@
-# LangApp — Swipe Vocab
+# LangSwipe — Swipe Vocab
 
 Production: [https://www.langswipe.xyz](https://www.langswipe.xyz)
 
-LangApp is a PWA for learning **Turkish, English, or Spanish vocabulary with a Russian UI**. Each language has its own dictionary (about 3,500–4,200 lemmas). The learning methodology is a proven combination of **spaced repetition + microlearning + gamification** — the same principles behind Anki and Duolingo, delivered through a Tinder-style swipe interface.
+LangSwipe is a PWA for learning **Turkish, English, or Spanish vocabulary with a Russian UI**. Each language has its own dictionary (about 3,500–4,200 lemmas). The learning methodology is a proven combination of **spaced repetition + microlearning + gamification** — the same principles behind Anki and Duolingo, delivered through a Tinder-style swipe interface.
 
 Study language is chosen at onboarding and can be changed in Settings. Progress is stored per language, so switching decks does not mix cards.
 
@@ -88,7 +88,7 @@ The PWA and static pages follow the OS light/dark scheme by default. Signed-in u
 
 ## App version
 
-Settings footer shows `LangApp vX.Y.Z+abcdefg` — semver from `package.json` plus a short git SHA injected at Vite build time (see `docs/DEPLOY.md`). The **Что нового** link opens the in-app changelog (`src/changelog.js`). Add a new entry at the top of that file and bump `package.json` on each release.
+Settings footer shows `LangSwipe vX.Y.Z+abcdefg` — semver from `package.json` plus a short git SHA injected at Vite build time (see `docs/DEPLOY.md`). The **Что нового** link opens the in-app changelog (`src/changelog.js`). Add a new entry at the top of that file and bump `package.json` on each release.
 
 ## Storage
 

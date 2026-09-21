@@ -1,7 +1,7 @@
 # Evidence Collector — QA Checklist
 
 > **Agent:** `@evidence-collector`  
-> **Project:** LangApp TR→RU  
+> **Project:** LangSwipe TR→RU  
 > **Date:** 2026-07-01
 
 ## Automated Evidence

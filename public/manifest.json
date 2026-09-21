@@ -1,7 +1,7 @@
 {
-  "name": "LangApp — Swipe Vocab",
-  "short_name": "LangApp",
-  "description": "Изучай иностранные слова свайпом",
+  "name": "LangSwipe — изучай языки без рутины",
+  "short_name": "LangSwipe",
+  "description": "LangSwipe — учи турецкий, английский и испанский свайпом. Карточки с интервальными повторениями, короткие сессии по 5 минут и ежедневный прогресс без зубрёжки.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f4f7f5",

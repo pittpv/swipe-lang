@@ -1,4 +1,4 @@
-# LangApp — AI tooling setup
+# LangSwipe — AI tooling setup
 
 This project is wired for Cursor with two design/agent layers:
 

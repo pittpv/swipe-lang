@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * One-time migration: load the LangApp state into Neon Postgres.
+ * One-time migration: load the LangSwipe state into Neon Postgres.
  *
  * Sources (by flag):
  *   --from-file   database/langapp.json (default)

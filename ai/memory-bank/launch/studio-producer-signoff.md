@@ -1,7 +1,7 @@
 # Studio Producer — Launch Sign-Off
 
 > **Date:** 2026-07-01  
-> **Project:** LangApp Swipe Vocab PWA  
+> **Project:** LangSwipe Swipe Vocab PWA  
 > **Verdict:** ✅ **APPROVED for public beta**
 
 ## Launch criteria

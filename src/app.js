@@ -1674,7 +1674,7 @@ export class App {
           </label>
           ${this.error ? `<p class="error">${esc(this.error)}</p>` : ''}
           <button type="button" class="btn btn-primary" data-action="onboarding"${this._onboardingBusy ? ' disabled' : ''}>Продолжить</button>
-          <p class="settings-hint onboarding-install">📲 Совет: установите LangApp как приложение — инструкция для <a href="/help/faq.html#install" target="_blank" rel="noopener">iPhone и Android — в FAQ</a>.</p>
+          <p class="settings-hint onboarding-install">📲 Совет: установите LangSwipe как приложение — инструкция для <a href="/help/faq.html#install" target="_blank" rel="noopener">iPhone и Android — в FAQ</a>.</p>
         </form>`;
     } else if (v === 'onboarding-setup') {
       html += `
@@ -2061,7 +2061,7 @@ export class App {
             <div class="card-form settings-list">
               <button type="button" class="settings-row" data-action="logout">Выйти</button>
             </div>
-            <p class="app-version">LangApp v${esc(APP_VERSION)}</p>
+            <p class="app-version">LangSwipe v${esc(APP_VERSION)}</p>
             ${this.progressReset ? '<p class="saved-hint reset-hint">Прогресс сброшен ✓</p>' : ''}
             <div class="card-form settings-list">
               <button type="button" class="settings-row settings-row-danger" data-action="reset-progress">Сбросить статистику и прогресс</button>

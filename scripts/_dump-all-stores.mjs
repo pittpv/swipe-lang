@@ -1,5 +1,5 @@
 /**
- * Snapshot every reachable LangApp store into database/backups/.
+ * Snapshot every reachable LangSwipe store into database/backups/.
  * Loads .env.production.local if present. Does not print secrets.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync, statSync } from 'fs';

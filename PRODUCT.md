@@ -10,7 +10,7 @@ Russian speakers learning Turkish, English, or Spanish vocabulary on a phone, in
 
 ## Product Purpose
 
-LangApp teaches Turkish, English, or Spanish (study language → Russian UI) through Tinder-style card swipes. Each language has its own dictionary; progress does not mix across languages. Word-count achievements are tagged by language and kept when the user switches dictionaries; the daily streak is shared. Success is a completed 18-card session, a preserved streak, and coming back the next day. The product exists to make spaced repetition feel like a gesture, not homework.
+LangSwipe teaches Turkish, English, or Spanish (study language → Russian UI) through Tinder-style card swipes. Each language has its own dictionary; progress does not mix across languages. Word-count achievements are tagged by language and kept when the user switches dictionaries; the daily streak is shared. Success is a completed 18-card session, a preserved streak, and coming back the next day. The product exists to make spaced repetition feel like a gesture, not homework.
 
 ## Brand Personality
 

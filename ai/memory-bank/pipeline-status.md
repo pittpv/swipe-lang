@@ -1,4 +1,4 @@
-# NEXUS Pipeline Status — LangApp
+# NEXUS Pipeline Status — LangSwipe
 
 | Field | Value |
 |-------|-------|
