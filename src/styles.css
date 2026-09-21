@@ -133,7 +133,7 @@ body {
   gap: 1.15rem;
   width: 100%;
   margin: 0;
-  padding: 0.45rem 0.6rem 0;
+  padding: 0.45rem 0 0;
   overflow: hidden;
   border: none;
   background: none;
@@ -238,7 +238,7 @@ body {
 
 .home-support {
   margin-top: auto;
-  padding-top: 0.85rem;
+  padding-top: 2rem;
   text-align: center;
   font-size: 0.8rem;
   flex-shrink: 0;
@@ -274,7 +274,7 @@ body {
   }
 
   .home-support {
-    padding-top: 0.65rem;
+    padding-top: 1.5rem;
   }
 
   .landing .hero {
