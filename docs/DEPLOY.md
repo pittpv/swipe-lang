@@ -70,6 +70,11 @@ Bump the marketed semver only when you intend a release:
 npm version patch   # or minor / major — then commit & push
 ```
 
+The service worker (`public/sw.js`) delivers Web Push and precaches `/offline.html`.
+If a later navigation fails with no network, that page is shown instead of a blank
+PWA window. Keep `/offline.html`, `/offline.css`, `/offline.js`, and `/sw.js` out
+of the SPA rewrite in `vercel.json` so Vercel serves the real files.
+
 CLI alternative:
 
 ```powershell

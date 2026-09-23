@@ -88,6 +88,8 @@ After registration the app asks for a **display name**, study **language** (Turk
 
 The PWA and static pages follow the OS light/dark scheme by default. Signed-in users can pin **Система / Светлая / Тёмная** in Settings. The choice is stored on-device (`localStorage`, key `langapp.theme`) and applied before first paint so splash and browser chrome match.
 
+After the app has been opened once with a network, launching the installed PWA offline shows a branded «Нет интернета» screen instead of a blank page. It retries when connectivity returns.
+
 ## App version
 
 Settings footer shows `LangSwipe vX.Y.Z+abcdefg` — semver from `package.json` plus a short git SHA injected at Vite build time (see `docs/DEPLOY.md`). The **Что нового** link opens the in-app changelog (`src/changelog.js`). Add a new entry at the top of that file and bump `package.json` on each release.

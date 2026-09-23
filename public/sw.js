@@ -1,8 +1,63 @@
-/* LangSwipe service worker — Web Push delivery for study reminders. */
+/* LangSwipe service worker — Web Push + offline navigation fallback. */
 
-self.addEventListener('install', () => self.skipWaiting());
+const OFFLINE_CACHE = 'langswipe-offline-v1';
+const OFFLINE_URL = '/offline.html';
+const PRECACHE_URLS = [
+  OFFLINE_URL,
+  '/offline.css',
+  '/offline.js',
+  '/theme.css',
+  '/theme-boot.js',
+  '/favicon.svg',
+];
 
-self.addEventListener('activate', (event) => event.waitUntil(clients.claim()));
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    (async () => {
+      const cache = await caches.open(OFFLINE_CACHE);
+      await Promise.all(
+        PRECACHE_URLS.map((url) => cache.add(url).catch(() => {})),
+      );
+      await self.skipWaiting();
+    })(),
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    (async () => {
+      const keys = await caches.keys();
+      await Promise.all(
+        keys
+          .filter((key) => key.startsWith('langswipe-offline-') && key !== OFFLINE_CACHE)
+          .map((key) => caches.delete(key)),
+      );
+      await clients.claim();
+    })(),
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  const request = event.request;
+  if (request.method !== 'GET') return;
+  if (request.mode !== 'navigate') return;
+
+  event.respondWith(
+    (async () => {
+      try {
+        return await fetch(request);
+      } catch {
+        const cache = await caches.open(OFFLINE_CACHE);
+        const cached = await cache.match(OFFLINE_URL);
+        if (cached) return cached;
+        return new Response('Нет интернета', {
+          status: 503,
+          headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+        });
+      }
+    })(),
+  );
+});
 
 self.addEventListener('push', (event) => {
   let data = {};

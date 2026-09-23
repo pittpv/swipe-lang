@@ -100,6 +100,33 @@ html.is-booting body {
     splashBarGlow 1.35s var(--splash-ease) 0.9s both;
 }
 
+/* Real boot progress, driven by splash-pct.js — never 100% until dismiss. */
+.splash-pct {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(1.35rem + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--color-text, #1c2421);
+  font-synthesis: none;
+  animation: splashPctIn 0.45s var(--splash-ease) 0.2s both;
+}
+
+.splash-pct-num {
+  display: inline-block;
+  min-width: 3.25ch;
+  text-align: right;
+}
+
 .splash-sr {
   position: absolute;
   width: 1px;
@@ -211,6 +238,15 @@ html.is-booting body {
   }
 }
 
+@keyframes splashPctIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes splashLeave {
   from {
     opacity: 1;
@@ -247,7 +283,8 @@ html[data-theme='dark'] .splash-card-front rect {
   .splash-card-front,
   .splash-pip,
   .splash-wordmark,
-  .splash-bar {
+  .splash-bar,
+  .splash-pct {
     animation: none;
     opacity: 1;
     transform: none;

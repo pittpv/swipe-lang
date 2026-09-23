@@ -23,6 +23,10 @@ const APP_VERSION = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '
 const SUPPORT_TELEGRAM_URL = 'https://t.me/+mf9HThpx2m4xNzQ8';
 const IOS_INSTALL_DISMISS_KEY = 'langapp.iosInstallDismissed';
 
+function splashProgress(n) {
+  window.__langSplash?.set(n);
+}
+
 export class App {
   constructor(root) {
     this.root = root;
@@ -100,17 +104,20 @@ export class App {
 
   async init() {
     captureReferralFromUrl();
+    splashProgress(58);
     try {
       this.publicStats = await fetchPublicStats();
     } catch {
       /* use defaults */
     }
+    splashProgress(70);
     try {
       this.user = await api('/auth/me');
       this.view = this.user.needsOnboarding ? 'onboarding' : 'home';
     } catch {
       this.view = 'landing';
     }
+    splashProgress(82);
     if (this.user?.cefrLevel) this.cefrLevel = this.user.cefrLevel;
     if (this.user?.langPair) this.langPair = normalizeLangPair(this.user.langPair);
     this.cefrLevel = clampCefrToPair(this.cefrLevel, this.langPair);
@@ -119,6 +126,7 @@ export class App {
     if (this.user?.id) {
       await this.loadUserExtras();
     }
+    splashProgress(94);
     this.changelogUnseen = hasUnseenChangelog();
     this.consumeOpenView();
     this.render();

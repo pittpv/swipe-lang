@@ -51,6 +51,7 @@ function dismissSplash(el) {
 
     el.classList.add('is-leaving');
     el.setAttribute('aria-busy', 'false');
+    window.__langSplash?.finish();
     el.addEventListener('animationend', (event) => {
       if (event.target === el) finish();
     });
@@ -63,6 +64,7 @@ async function boot() {
   const started = performance.now();
   const root = document.getElementById('app');
   const app = new App(root);
+  window.__langSplash?.set(54);
 
   try {
     await app.init();
@@ -70,8 +72,13 @@ async function boot() {
     /* still dismiss so the user is never stuck on the splash */
   }
 
+  window.__langSplash?.set(96);
   const minMs = prefersReducedMotion() ? 0 : SPLASH_MIN_MS;
-  await wait(minMs - (performance.now() - started));
+  const remaining = minMs - (performance.now() - started);
+  if (remaining > 0) {
+    window.__langSplash?.set(99);
+    await wait(remaining);
+  }
   await dismissSplash(splash);
 }
 
