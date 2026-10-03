@@ -2183,7 +2183,7 @@ export class App {
             ${this.user?.referralsCount ? `<p class="referral-muted">${this.user.referralsCount} приглашённых</p>` : ''}
           </div>` : ''}
           <p class="home-support">
-            <a href="${SUPPORT_TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Группа поддержки в Telegram</a>
+            <a href="/help/faq.html?from=home">FAQ</a>
           </p>
           </div>`;
     } else if (v === 'circle') {
