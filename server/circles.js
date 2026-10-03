@@ -1,5 +1,5 @@
 import { generateReferralCode } from './referral.js';
-import { normalizeLangPair, userLangPair } from './lang-pairs.js';
+import { normalizeLangPair, userLangPair, LANG_PAIR_META } from './lang-pairs.js';
 
 export const CIRCLE_MAX_MEMBERS = 8;
 export const CIRCLE_NAME_MIN = 2;
@@ -122,8 +122,14 @@ export function circleState(db, userId) {
   const pairIndex = pairByWordId(db);
   const mine = progressWordIds(db, userId, pair, pairIndex);
   const circle = circleForUser(db, userId, pair);
+  const social = socialContext(db, userId, pair, circle);
   if (!circle) {
-    return { circle: null, langPair: pair, suggestions: suggestionsFor(db, userId, pair, mine, pairIndex) };
+    return {
+      circle: null,
+      langPair: pair,
+      suggestions: suggestionsFor(db, userId, pair, mine, pairIndex),
+      ...social,
+    };
   }
   const shared = sharedWordIds(memberSets(db, circle, pairIndex));
   return {
@@ -141,7 +147,70 @@ export function circleState(db, userId) {
     },
     langPair: pair,
     suggestions: [],
+    ...social,
   };
+}
+
+function invitesOf(db) {
+  return Array.isArray(db.data.circle_invites) ? db.data.circle_invites : [];
+}
+
+function ensureInvites(db) {
+  if (!Array.isArray(db.data.circle_invites)) db.data.circle_invites = [];
+  if (!db.data._seq || typeof db.data._seq !== 'object') db.data._seq = {};
+  if (db.data._seq.circle_invites == null) {
+    db.data._seq.circle_invites = db.data.circle_invites.reduce((max, invite) => Math.max(max, invite.id || 0), 0);
+  }
+}
+
+function dropInvites(db, predicate) {
+  if (!Array.isArray(db.data.circle_invites)) return;
+  db.data.circle_invites = db.data.circle_invites.filter((invite) => !predicate(invite));
+}
+
+function socialContext(db, userId, pair, circle) {
+  return {
+    referrals: listReferrals(db, userId, pair, circle),
+    invites: listIncomingInvites(db, userId, pair),
+  };
+}
+
+function listReferrals(db, userId, pair, circle) {
+  const pending = invitesOf(db);
+  return (db.data.users ?? [])
+    .filter((person) => person.referred_by === userId && person.id !== userId)
+    .map((person) => {
+      const theirPair = userLangPair(person);
+      const sameLanguage = theirPair === pair;
+      const theirCircle = sameLanguage ? circleForUser(db, person.id, pair) : null;
+      return {
+        id: person.id,
+        name: displayName(db, person.id),
+        langLabel: LANG_PAIR_META[theirPair].label,
+        sameLanguage,
+        inThisCircle: Boolean(circle && theirCircle && theirCircle.id === circle.id),
+        inOtherCircle: Boolean(theirCircle && (!circle || theirCircle.id !== circle.id)),
+        invited: Boolean(circle && pending.some((invite) => invite.circle_id === circle.id && invite.to_user_id === person.id)),
+      };
+    })
+    .sort((a, b) => Number(b.sameLanguage) - Number(a.sameLanguage) || a.name.localeCompare(b.name, 'ru'));
+}
+
+function listIncomingInvites(db, userId, pair) {
+  return invitesOf(db)
+    .filter((invite) => invite.to_user_id === userId)
+    .map((invite) => {
+      const circle = circlesOf(db).find((row) => row.id === invite.circle_id);
+      if (!circle || circle.lang_pair !== pair) return null;
+      return {
+        circleId: circle.id,
+        circleName: circle.name,
+        fromName: displayName(db, invite.from_user_id),
+        memberCount: circle.member_ids.length,
+        maxMembers: CIRCLE_MAX_MEMBERS,
+      };
+    })
+    .filter(Boolean);
 }
 
 function ensureCircleStore(db) {
@@ -203,6 +272,7 @@ export function joinCircle(db, userId, { code, circleId } = {}) {
   if (circle.lang_pair !== pair) throw new CircleError('Этот кружок для другого языка', 400);
   if ((circle.member_ids?.length ?? 0) >= CIRCLE_MAX_MEMBERS) throw new CircleError('В кружке больше нет мест', 409);
   if (!circle.member_ids.includes(userId)) circle.member_ids.push(userId);
+  dropInvites(db, (invite) => invite.circle_id === circle.id && invite.to_user_id === userId);
   return circleState(db, userId);
 }
 
@@ -214,8 +284,61 @@ export function leaveCircle(db, userId) {
   if (!circle) throw new CircleError('Вы не в кружке', 404);
   circle.member_ids = circle.member_ids.filter((id) => id !== userId);
   if (!circle.member_ids.length) {
-    db.data.study_circles = circlesOf(db).filter((row) => row.id !== circle.id);
+    const goneId = circle.id;
+    db.data.study_circles = circlesOf(db).filter((row) => row.id !== goneId);
+    dropInvites(db, (invite) => invite.circle_id === goneId);
   }
+  return circleState(db, userId);
+}
+
+/**
+ * Asks someone who signed up with this user's referral link to join
+ * the current circle. They confirm on their own screen.
+ */
+export function inviteReferral(db, userId, rawToId) {
+  ensureCircleStore(db);
+  ensureInvites(db);
+  const me = db.data.users?.find((row) => row.id === userId);
+  if (!me) throw new CircleError('Пользователь не найден', 404);
+  const pair = userLangPair(me);
+  const circle = circleForUser(db, userId, pair);
+  if (!circle) throw new CircleError('Сначала создайте кружок', 400);
+  const toId = Number(rawToId);
+  const person = db.data.users?.find((row) => row.id === toId);
+  if (!person || person.referred_by !== userId) throw new CircleError('Этого человека нет среди приглашённых', 404);
+  if (userLangPair(person) !== pair) throw new CircleError('Этот человек учит другой язык', 400);
+  if (circle.member_ids.includes(toId)) throw new CircleError('Уже в кружке', 409);
+  if (circleForUser(db, toId, pair)) throw new CircleError('Уже в другом кружке', 409);
+  if (circle.member_ids.length >= CIRCLE_MAX_MEMBERS) throw new CircleError('В кружке больше нет мест', 409);
+  const already = db.data.circle_invites.some((invite) => invite.circle_id === circle.id && invite.to_user_id === toId);
+  if (!already) {
+    db.data.circle_invites.push({
+      id: db.nextId('circle_invites'),
+      circle_id: circle.id,
+      from_user_id: userId,
+      to_user_id: toId,
+      created_at: new Date().toISOString(),
+    });
+  }
+  return circleState(db, userId);
+}
+
+export function acceptCircleInvite(db, userId, circleId) {
+  ensureInvites(db);
+  const id = Number(circleId);
+  const invite = db.data.circle_invites.find((row) => row.circle_id === id && row.to_user_id === userId);
+  if (!invite) throw new CircleError('Приглашение не найдено', 404);
+  const state = joinCircle(db, userId, { circleId: id });
+  dropInvites(db, (row) => row.circle_id === id && row.to_user_id === userId);
+  return state;
+}
+
+export function declineCircleInvite(db, userId, circleId) {
+  ensureInvites(db);
+  const id = Number(circleId);
+  const had = db.data.circle_invites.some((row) => row.circle_id === id && row.to_user_id === userId);
+  if (!had) throw new CircleError('Приглашение не найдено', 404);
+  dropInvites(db, (row) => row.circle_id === id && row.to_user_id === userId);
   return circleState(db, userId);
 }
 
@@ -228,6 +351,11 @@ export function removeUserFromCircles(db, userId) {
       member_ids: (circle.member_ids ?? []).filter((id) => id !== userId),
     }))
     .filter((circle) => circle.member_ids.length > 0);
+  if (!Array.isArray(db.data.circle_invites)) return;
+  const liveIds = new Set(db.data.study_circles.map((circle) => circle.id));
+  db.data.circle_invites = db.data.circle_invites.filter(
+    (invite) => invite.from_user_id !== userId && invite.to_user_id !== userId && liveIds.has(invite.circle_id),
+  );
 }
 
 /** Stable word ids for a circle practice session. Empty when there is no intersection. */

@@ -38,6 +38,8 @@ export class App {
     this._streakRiskTimer = null;
     this.circle = null;
     this.circleSuggestions = [];
+    this.circleReferrals = [];
+    this.circleInvites = [];
     this.circleLangPair = DEFAULT_LANG_PAIR;
     this.circleLoading = false;
     this.circleError = '';
@@ -490,6 +492,8 @@ export class App {
   applyCircle(data) {
     this.circle = data?.circle ?? null;
     this.circleSuggestions = data?.suggestions ?? [];
+    this.circleReferrals = data?.referrals ?? [];
+    this.circleInvites = data?.invites ?? [];
     if (data?.langPair) this.circleLangPair = data.langPair;
   }
 
@@ -575,6 +579,27 @@ export class App {
     this.render();
   }
 
+  async inviteReferral(userId) {
+    this.circleError = '';
+    try {
+      this.applyCircle(await api('/circles/invite', { method: 'POST', body: { userId: Number(userId) } }));
+    } catch (e) {
+      this.circleError = e.message;
+    }
+    this.render();
+  }
+
+  async respondToInvite(circleId, accept) {
+    this.circleError = '';
+    const path = accept ? '/circles/invites/accept' : '/circles/invites/decline';
+    try {
+      this.applyCircle(await api(path, { method: 'POST', body: { circleId: Number(circleId) } }));
+    } catch (e) {
+      this.circleError = e.message;
+    }
+    this.render();
+  }
+
   async copyCircleLink() {
     const link = this.circle?.inviteLink;
     if (!link || !navigator.clipboard?.writeText) return;
@@ -624,59 +649,161 @@ export class App {
     this.render();
   }
 
+  renderCircleSkeleton() {
+    return `
+      <section class="circle-card circle-card-primary circle-skeleton" aria-busy="true" aria-live="polite">
+        <span class="sr-only">Загружаю кружок</span>
+        <div class="skeleton-bone skeleton-circle-title"></div>
+        <div class="skeleton-bone skeleton-circle-meta"></div>
+        <div class="skeleton-bone skeleton-circle-btn"></div>
+      </section>
+      <section class="circle-card circle-skeleton" aria-hidden="true">
+        <div class="skeleton-bone skeleton-circle-kicker"></div>
+        <div class="skeleton-bone skeleton-circle-row"></div>
+        <div class="skeleton-bone skeleton-circle-row short"></div>
+      </section>`;
+  }
+
   renderCircleMember() {
     const circle = this.circle;
     const words = circle.sharedPreview ?? [];
+    const hint = circle.sharedCount
+      ? `${circle.sharedCount} ${this.pluralWords(circle.sharedCount)} уже есть у каждого`
+      : 'Общая сессия откроется, когда двое отметят одни и те же слова';
     return `
-      <section class="circle-card">
-        <h2>${esc(circle.name)}</h2>
-        <p class="referral-muted">${circle.memberCount} из ${circle.maxMembers}</p>
-        <ul class="circle-members">
-          ${circle.members.map((member) => `<li>${esc(member.name)}</li>`).join('')}
-        </ul>
-        <p class="circle-shared">${circle.sharedCount ? `${circle.sharedCount} общих слов` : 'Общих слов пока нет'}</p>
-        <p class="settings-hint">${circle.sharedCount
-          ? 'Это слова, которые уже отмечены у каждого участника с непустой колодой.'
-          : 'Пересечение появится, когда в кружке будут двое с отмеченными словами.'}</p>
-        ${words.length ? `<ul class="circle-words">${words.map((word) => `<li><strong>${esc(word.lemma)}</strong><span>${esc(word.translation)}</span></li>`).join('')}</ul>` : ''}
+      <section class="circle-card circle-card-primary">
+        <div class="circle-heading">
+          <h2 class="circle-title">${esc(circle.name)}</h2>
+          <p class="circle-meta">${circle.memberCount} из ${circle.maxMembers}</p>
+        </div>
         <button type="button" class="btn btn-primary" data-action="start-circle"${circle.canStart ? '' : ' disabled'}>Сессия по общим словам</button>
+        <p class="circle-note">${esc(hint)}</p>
+      </section>
+      ${words.length ? `
+      <section class="circle-card">
+        <h2 class="circle-kicker">Общие слова</h2>
+        <ul class="circle-people">
+          ${words.map((word) => `<li><div class="circle-person"><strong>${esc(word.lemma)}</strong><span>${esc(word.translation)}</span></div></li>`).join('')}
+        </ul>
+      </section>` : ''}
+      <section class="circle-card">
+        <h2 class="circle-kicker">Участники</h2>
+        <ul class="circle-people">
+          ${circle.members.map((member) => `<li><div class="circle-person"><strong>${esc(member.name)}</strong>${member.id === this.user?.id ? '<span>Это вы</span>' : ''}</div></li>`).join('')}
+        </ul>
+      </section>
+      ${this.renderCircleInvites()}
+      ${this.renderCircleReferrals()}
+      <section class="circle-card">
+        <h2 class="circle-kicker">Пригласить по ссылке</h2>
+        <p class="circle-note">Человек откроет ссылку и войдёт, если учит тот же язык.</p>
         <button type="button" class="btn btn-ghost btn-ghost-border" data-action="copy-circle">${this.circleCopied ? 'Ссылка скопирована' : 'Скопировать приглашение'}</button>
-        <button type="button" class="btn btn-danger" data-action="leave-circle">Выйти из кружка</button>
-      </section>`;
+      </section>
+      <button type="button" class="btn btn-danger circle-leave" data-action="leave-circle">Выйти из кружка</button>`;
   }
 
   renderCircleLobby() {
     const suggestions = this.circleSuggestions ?? [];
-    return `
-      <section class="circle-card">
-        <p>Кружок собирает людей с тем же языком и похожим словарём. Общая сессия идёт по словам, которые уже есть у каждого.</p>
+    const inviteFirst = (this.circleInvites ?? []).length > 0;
+    const createPrimary = suggestions.length === 0 && !inviteFirst;
+    const create = `
+      <section class="circle-card${createPrimary ? ' circle-card-primary' : ''}">
+        <h2 class="circle-kicker">Новый кружок</h2>
+        <p class="circle-lead">До 8 человек с тем же языком. Общая сессия — по словам, которые уже есть у каждого.</p>
         <form class="card-form">
-          <label>Новый кружок
-            <input name="circleName" maxlength="40" placeholder="Название" value="${esc(this.circleName)}" autocomplete="off">
+          <label>Название
+            <input name="circleName" maxlength="40" placeholder="Например, утро" value="${esc(this.circleName)}" autocomplete="off">
           </label>
-          <button type="button" class="btn btn-primary" data-action="create-circle">Создать</button>
+          <button type="button" class="btn ${createPrimary ? 'btn-primary' : 'btn-ghost btn-ghost-border'}" data-action="create-circle">Создать</button>
         </form>
+      </section>`;
+    const discovery = suggestions.length ? `
+      <section class="circle-card${inviteFirst ? '' : ' circle-card-primary'}">
+        <h2 class="circle-kicker">Похожий словарь</h2>
+        <ul class="circle-people">
+          ${suggestions.map((row, index) => `
+            <li>
+              <div class="circle-person">
+                <strong>${esc(row.name)}</strong>
+                <span>${row.overlapCount} общих · ${row.overlapPct}% · ${row.memberCount} из ${row.maxMembers}</span>
+              </div>
+              <button type="button" class="btn ${index === 0 && !inviteFirst ? 'btn-primary' : 'btn-ghost btn-ghost-border'}" data-action="join-circle" data-circle-id="${row.id}">Войти</button>
+            </li>`).join('')}
+        </ul>
+      </section>` : '';
+    return `
+      ${this.renderCircleInvites()}
+      ${discovery || create}
+      ${discovery ? create : ''}
+      ${this.renderCircleReferrals()}
+      <section class="circle-card">
+        <h2 class="circle-kicker">Есть код</h2>
         <form class="card-form">
           <label>Код приглашения
-            <input name="circleCode" maxlength="16" placeholder="код из ссылки" value="${esc(this.circleCode)}" autocomplete="off" autocapitalize="off" spellcheck="false">
+            <input name="circleCode" maxlength="16" placeholder="Код из ссылки" value="${esc(this.circleCode)}" autocomplete="off" autocapitalize="off" spellcheck="false">
           </label>
           <button type="button" class="btn btn-ghost btn-ghost-border" data-action="join-code">Войти по коду</button>
         </form>
       </section>
-      ${suggestions.length ? `
-        <section class="circle-card">
-          <h2>Похожий словарь</h2>
-          <ul class="circle-suggest">
-            ${suggestions.map((row) => `
-              <li>
-                <div>
-                  <strong>${esc(row.name)}</strong>
-                  <span>${row.overlapCount} общих · ${row.overlapPct}% · ${row.memberCount} из ${row.maxMembers}</span>
-                </div>
-                <button type="button" class="btn btn-primary" data-action="join-circle" data-circle-id="${row.id}">Войти</button>
-              </li>`).join('')}
-          </ul>
-        </section>` : '<p class="settings-hint">Подбор появится, когда ваши слова пересекутся с чужим кружком этого языка. Можно создать свой и отправить ссылку.</p>'}`;
+      ${suggestions.length ? '' : '<p class="circle-footnote">Подбор появится, когда ваши слова пересекутся с чужим кружком этого языка.</p>'}`;
+  }
+
+  renderCircleInvites() {
+    const invites = this.circleInvites ?? [];
+    if (!invites.length) return '';
+    const busy = Boolean(this.circle);
+    return invites.map((invite) => `
+      <section class="circle-card circle-card-invite">
+        <h2 class="circle-kicker">Вас зовут</h2>
+        <p class="circle-lead"><strong>${esc(invite.fromName)}</strong> зовёт в «${esc(invite.circleName)}» · ${invite.memberCount} из ${invite.maxMembers}</p>
+        ${busy ? '<p class="circle-note">Сначала выйдите из текущего кружка этого языка.</p>' : ''}
+        <div class="circle-actions">
+          ${busy ? '' : `<button type="button" class="btn btn-primary" data-action="accept-invite" data-circle-id="${invite.circleId}">Принять</button>`}
+          <button type="button" class="btn btn-ghost btn-ghost-border" data-action="decline-invite" data-circle-id="${invite.circleId}">Отклонить</button>
+        </div>
+      </section>`).join('');
+  }
+
+  renderCircleReferrals() {
+    const people = this.circleReferrals ?? [];
+    if (!people.length) return '';
+    const hasCircle = Boolean(this.circle);
+    return `
+      <section class="circle-card">
+        <h2 class="circle-kicker">Пришли по вашей ссылке</h2>
+        ${hasCircle ? '' : '<p class="circle-note">Создайте кружок — и можно позвать тех, кто учит тот же язык. Они подтвердят сами.</p>'}
+        <ul class="circle-people">
+          ${people.map((person) => {
+            const row = this.referralRow(person, hasCircle);
+            return `<li>
+              <div class="circle-person">
+                <strong>${esc(person.name)}</strong>
+                <span>${esc(row.label)}</span>
+              </div>
+              ${row.canInvite ? `<button type="button" class="btn btn-ghost btn-ghost-border" data-action="invite-referral" data-user-id="${person.id}">Пригласить</button>` : ''}
+            </li>`;
+          }).join('')}
+        </ul>
+      </section>`;
+  }
+
+  referralRow(person, hasCircle) {
+    const lang = String(person.langLabel || '');
+    if (!person.sameLanguage) return { label: lang ? `Учит ${lang.toLowerCase()}` : 'Другой язык', canInvite: false };
+    if (person.inThisCircle) return { label: 'В кружке', canInvite: false };
+    if (person.inOtherCircle) return { label: 'Уже в другом кружке', canInvite: false };
+    if (person.invited) return { label: 'Ждёт ответа', canInvite: false };
+    if (!hasCircle) return { label: 'Тот же язык', canInvite: false };
+    return { label: 'Тот же язык', canInvite: true };
+  }
+
+  pluralWords(count) {
+    const n = Math.abs(count) % 100;
+    const n1 = n % 10;
+    if (n > 10 && n < 20) return 'слов';
+    if (n1 === 1) return 'слово';
+    if (n1 >= 2 && n1 <= 4) return 'слова';
+    return 'слов';
   }
 
   async acceptLevelUp() {
@@ -1741,6 +1868,9 @@ export class App {
       if (action === 'join-code') this.joinCircle(null, this.circleCode);
       if (action === 'leave-circle') this.leaveCircle();
       if (action === 'copy-circle') this.copyCircleLink();
+      if (action === 'invite-referral') this.inviteReferral(t.dataset.userId);
+      if (action === 'accept-invite') this.respondToInvite(t.dataset.circleId, true);
+      if (action === 'decline-invite') this.respondToInvite(t.dataset.circleId, false);
       if (action === 'level-up') this.acceptLevelUp();
       if (action === 'dismiss-level-up') this.dismissLevelUp();
       if (action === 'stats') this.loadStats();
@@ -2016,8 +2146,10 @@ export class App {
       const langLabel = LANG_PAIR_META[normalizeLangPair(this.circleLangPair || this.langPair)].label;
       html += `
         ${pageBar({ title: 'Кружок', subtitle: esc(langLabel), backAction: 'home' })}
-        ${this.circleError ? `<p class="error">${esc(this.circleError)}</p>` : ''}
-        ${this.circleLoading ? '<p class="settings-hint">Загружаю кружок…</p>' : this.circle ? this.renderCircleMember() : this.renderCircleLobby()}`;
+        <div class="circle-screen">
+          ${this.circleError ? `<p class="error">${esc(this.circleError)}</p>` : ''}
+          ${this.circleLoading ? this.renderCircleSkeleton() : this.circle ? this.renderCircleMember() : this.renderCircleLobby()}
+        </div>`;
     } else if (v === 'session') {
       const card = this.currentCard();
       const progressNum = this.awaitingNext

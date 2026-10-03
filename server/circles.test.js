@@ -1,9 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  acceptCircleInvite,
   circleSessionWordIds,
   circleState,
   createCircle,
+  declineCircleInvite,
+  inviteReferral,
   jaccard,
   joinCircle,
   leaveCircle,
@@ -122,4 +125,35 @@ test('removeUserFromCircles drops membership and deletes an empty circle', () =>
 test('short names are rejected', () => {
   const db = mockDb();
   assert.throws(() => createCircle(db, 1, ' Я '), /2 символов/);
+});
+
+test('a referral can be invited and must accept before joining', () => {
+  const db = mockDb();
+  db.data.users.push(
+    { id: 4, name: 'Галя', lang_pair: 'tr-ru', referred_by: 1 },
+    { id: 5, name: 'Иван', lang_pair: 'en-ru', referred_by: 1 },
+    { id: 6, name: 'Чужой', lang_pair: 'tr-ru', referred_by: 2 },
+  );
+  const created = createCircle(db, 1, 'Утро');
+  const listed = circleState(db, 1).referrals.map((person) => person.name);
+  assert.deepEqual(listed, ['Галя', 'Иван']);
+
+  assert.throws(() => inviteReferral(db, 1, 6), /нет среди приглашённых/);
+  assert.throws(() => inviteReferral(db, 1, 5), /другой язык/);
+
+  const invited = inviteReferral(db, 1, 4);
+  assert.equal(invited.referrals.find((person) => person.id === 4).invited, true);
+  assert.equal(circleState(db, 4).invites[0].circleName, 'Утро');
+  assert.equal(circleState(db, 4).invites[0].fromName, 'Аня');
+  assert.equal(circleState(db, 4).circle, null);
+
+  const declined = declineCircleInvite(db, 4, created.circle.id);
+  assert.equal(declined.invites.length, 0);
+
+  inviteReferral(db, 1, 4);
+  const accepted = acceptCircleInvite(db, 4, created.circle.id);
+  assert.equal(accepted.circle.memberCount, 2);
+  assert.deepEqual(accepted.circle.members.map((member) => member.name), ['Аня', 'Галя']);
+  assert.equal(circleState(db, 1).referrals.find((person) => person.id === 4).inThisCircle, true);
+  assert.equal(db.data.circle_invites.length, 0);
 });

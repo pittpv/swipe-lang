@@ -47,6 +47,9 @@ import {
   createCircle,
   joinCircle,
   leaveCircle,
+  inviteReferral,
+  acceptCircleInvite,
+  declineCircleInvite,
 } from './circles.js';
 import {
   getVapidKeys,
@@ -308,6 +311,36 @@ app.post('/api/circles/join', requireAuth, async (req, res) => {
 app.post('/api/circles/leave', requireAuth, async (req, res) => {
   try {
     const payload = await db.transact(() => leaveCircle(db, req.session.userId));
+    res.json(withCircleLink(payload, req));
+  } catch (err) {
+    if (err instanceof CircleError) return res.status(err.status).json({ error: err.message });
+    throw err;
+  }
+});
+
+app.post('/api/circles/invite', requireAuth, async (req, res) => {
+  try {
+    const payload = await db.transact(() => inviteReferral(db, req.session.userId, req.body?.userId));
+    res.json(withCircleLink(payload, req));
+  } catch (err) {
+    if (err instanceof CircleError) return res.status(err.status).json({ error: err.message });
+    throw err;
+  }
+});
+
+app.post('/api/circles/invites/accept', requireAuth, async (req, res) => {
+  try {
+    const payload = await db.transact(() => acceptCircleInvite(db, req.session.userId, req.body?.circleId));
+    res.json(withCircleLink(payload, req));
+  } catch (err) {
+    if (err instanceof CircleError) return res.status(err.status).json({ error: err.message });
+    throw err;
+  }
+});
+
+app.post('/api/circles/invites/decline', requireAuth, async (req, res) => {
+  try {
+    const payload = await db.transact(() => declineCircleInvite(db, req.session.userId, req.body?.circleId));
     res.json(withCircleLink(payload, req));
   } catch (err) {
     if (err instanceof CircleError) return res.status(err.status).json({ error: err.message });
