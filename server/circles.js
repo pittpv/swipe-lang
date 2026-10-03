@@ -1,5 +1,6 @@
 import { generateReferralCode } from './referral.js';
 import { normalizeLangPair, userLangPair, LANG_PAIR_META } from './lang-pairs.js';
+import { compareRank, weekSummary } from './rating.js';
 
 export const CIRCLE_MAX_MEMBERS = 8;
 export const CIRCLE_NAME_MIN = 2;
@@ -77,6 +78,33 @@ function displayName(db, userId) {
   return name || 'Участник';
 }
 
+function rankedMembers(db, circle, viewerId) {
+  const rows = (circle.member_ids ?? []).map((id) => {
+    const person = db.data.users?.find((row) => row.id === id);
+    const week = weekSummary(person, circle.lang_pair);
+    return {
+      id,
+      name: displayName(db, id),
+      days: week.dayCount,
+      reviews: week.reviews,
+      returns: week.returns,
+      closedToday: week.closedToday,
+      closedTodayAt: week.closedTodayAt,
+    };
+  });
+  rows.sort(compareRank);
+  return rows.map((row, index) => ({
+    id: row.id,
+    name: row.name,
+    days: row.days,
+    reviews: row.reviews,
+    returns: row.returns,
+    closedToday: row.closedToday,
+    place: index + 1,
+    you: row.id === viewerId,
+  }));
+}
+
 function wordPreview(db, ids) {
   const byId = new Map((db.data.words ?? []).map((word) => [word.id, word]));
   return [...ids]
@@ -132,15 +160,17 @@ export function circleState(db, userId) {
     };
   }
   const shared = sharedWordIds(memberSets(db, circle, pairIndex));
+  const members = rankedMembers(db, circle, userId);
   return {
     circle: {
       id: circle.id,
       name: circle.name,
       langPair: circle.lang_pair,
       inviteCode: circle.invite_code,
-      members: (circle.member_ids ?? []).map((id) => ({ id, name: displayName(db, id) })),
-      memberCount: circle.member_ids.length,
+      members,
+      memberCount: members.length,
       maxMembers: CIRCLE_MAX_MEMBERS,
+      todayClosed: members.filter((member) => member.closedToday).length,
       sharedCount: shared.size,
       sharedPreview: wordPreview(db, shared),
       canStart: shared.size > 0,

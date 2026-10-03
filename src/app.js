@@ -47,6 +47,8 @@ export class App {
     this.circleName = '';
     this.circleCode = '';
     this.circleCopied = false;
+    this.ranks = null;
+    this.ranksError = '';
     this.error = '';
     this.authMode = 'login';
     this.email = '';
@@ -723,6 +725,7 @@ export class App {
         <button type="button" class="btn btn-primary" data-action="start-circle"${circle.canStart ? '' : ' disabled'}>Сессия по общим словам</button>
         <p class="circle-note">${esc(hint)}</p>
       </section>
+      ${this.renderCircleRhythm()}
       ${words.length ? `
       <section class="circle-card">
         <h2 class="circle-kicker">Общие слова</h2>
@@ -733,7 +736,7 @@ export class App {
       <section class="circle-card">
         <h2 class="circle-kicker">Участники</h2>
         <ul class="circle-people">
-          ${circle.members.map((member) => `<li><div class="circle-person"><strong>${esc(member.name)}</strong>${member.id === this.user?.id ? '<span>Это вы</span>' : ''}</div></li>`).join('')}
+          ${renderRankItems(circle.members)}
         </ul>
       </section>
       ${this.renderCircleInvites()}
@@ -839,6 +842,24 @@ export class App {
     if (person.invited) return { label: 'Ждёт ответа', canInvite: false };
     if (!hasCircle) return { label: 'Тот же язык', canInvite: false };
     return { label: 'Тот же язык', canInvite: true };
+  }
+
+  renderCircleRhythm() {
+    const circle = this.circle;
+    if (!circle || circle.memberCount < 2) return '';
+    const closed = circle.todayClosed ?? 0;
+    const total = circle.memberCount;
+    const pct = total ? Math.round((closed / total) * 100) : 0;
+    const youClosed = circle.members?.some((member) => member.you && member.closedToday);
+    return `
+      <section class="circle-card">
+        <h2 class="circle-kicker">Сегодня в кружке</h2>
+        <p class="circle-lead">${closed} из ${total} уже закрыли день</p>
+        <div class="progress-bar rhythm-meter" role="meter" aria-valuenow="${closed}" aria-valuemin="0" aria-valuemax="${total}" aria-label="Сколько человек закрыли день">
+          <div class="progress-bar-fill" style="width:${pct}%"></div>
+        </div>
+        <p class="circle-note">${esc(circleRhythmNote(closed, total, youClosed))}</p>
+      </section>`;
   }
 
   pluralWords(count) {
@@ -1120,6 +1141,22 @@ export class App {
     } catch (e) {
       this.error = e.message;
       if (this.view === 'stats-loading') this.view = 'home';
+    }
+    this.render();
+  }
+
+  async openRanks() {
+    if (this.view === 'ranks-loading') return;
+    this.ranksError = '';
+    this.view = 'ranks-loading';
+    this.render();
+    try {
+      this.ranks = await api('/ranks');
+      if (this.view === 'ranks-loading') this.view = 'ranks';
+    } catch (e) {
+      this.ranks = null;
+      this.ranksError = e.message;
+      if (this.view === 'ranks-loading') this.view = 'ranks';
     }
     this.render();
   }
@@ -1918,6 +1955,7 @@ export class App {
       if (action === 'level-up') this.acceptLevelUp();
       if (action === 'dismiss-level-up') this.dismissLevelUp();
       if (action === 'stats') this.loadStats();
+      if (action === 'open-ranks') this.openRanks();
       if (action === 'settings') this.setView('settings');
       if (action === 'updates') this.openUpdates();
       if (action === 'save-name') this.saveName();
@@ -2154,6 +2192,7 @@ export class App {
             </div>
             ${this.streakBadgeHtml(false)}
           </header>
+          ${this.homeRhythmHtml()}
           ${this.error ? `<p class="error home-error">${esc(this.error)}</p>` : ''}
           <div class="home-main">
             <button type="button" class="home-start-card" data-action="start" aria-label="Начать сессию">
@@ -2259,6 +2298,7 @@ export class App {
               <div class="stat-box"><div class="num">${this.summary.streak}</div><div class="lbl">Streak</div></div>
               <div class="stat-box"><div class="num">${this.summary.wordsDueTomorrow}</div><div class="lbl">На завтра</div></div>
             </div>
+            ${summaryRhythmHtml(this.summary)}
             ${offerUp ? `
             <div class="level-up-banner">
               <p class="level-up-title">Уровень ${esc(lp.cefrLevel)} освоен!</p>
@@ -2312,6 +2352,11 @@ export class App {
                 ${statsHeroSkeleton()}
               </div>
             </div>`)}
+          ${settingsGroup('Эта неделя', `
+            <div class="card-form" aria-hidden="true">
+              <div class="skeleton-bone skeleton-progress-track"></div>
+              <div class="skeleton-bone skeleton-section-sub"></div>
+            </div>`)}
           ${settingsGroup('Прогресс уровня', `
             <div class="card-form">
               <div class="stats-progress-head" aria-hidden="true">
@@ -2357,6 +2402,7 @@ export class App {
                 ${statsHeroItem(this.stats.sessionsCompleted, 'Сессии')}
               </div>
             </div>`)}
+          ${renderWeekBlock(this.stats.week)}
           ${lp ? settingsGroup('Прогресс уровня', `
             <div class="card-form">
               <div class="stats-progress-head">
@@ -2408,6 +2454,37 @@ export class App {
                   </div>`
                 : '<p class="settings-lead">После первой сессии появится первое достижение.</p>'}
             </div>`)}
+        </div>`;
+    } else if (v === 'ranks-loading') {
+      const langLabel = LANG_PAIR_META[normalizeLangPair(this.langPair)].label;
+      html += `
+        ${pageBar({
+          title: 'Рейтинг',
+          subtitle: esc(langLabel),
+          backAction: 'stats',
+          backLabel: 'К статистике',
+        })}
+        <div class="circle-screen">
+          ${renderRankSkeleton()}
+        </div>`;
+    } else if (v === 'ranks') {
+      const langLabel = LANG_PAIR_META[normalizeLangPair(this.ranks?.langPair || this.langPair)].label;
+      const rows = this.ranks?.rows ?? [];
+      html += `
+        ${pageBar({
+          title: 'Рейтинг',
+          subtitle: esc(langLabel),
+          backAction: 'stats',
+          backLabel: 'К статистике',
+        })}
+        <div class="circle-screen">
+          ${this.ranksError ? `<p class="error">${esc(this.ranksError)}</p>` : ''}
+          ${renderPinnedRank(this.ranks?.me)}
+          ${rows.length ? `
+            <section class="circle-card">
+              <ul class="circle-people">${renderRankItems(rows)}</ul>
+            </section>` : ''}
+          ${rows.length || this.ranksError ? '' : '<p class="circle-lead">Рейтинг появится, когда на этой неделе кто-то закроет сессию.</p>'}
         </div>`;
     } else if (v === 'settings') {
       const nameError = this.settingsErrorSource === 'name' && this.settingsError
@@ -2599,6 +2676,12 @@ export class App {
       : '';
     const aria = count ? ` aria-label="${esc(`${label}, ${noticeFor(count)}`)}"` : '';
     return `<button type="button" class="btn btn-ghost" data-action="${action}"${aria}>${esc(label)}${badge}</button>`;
+  }
+
+  homeRhythmHtml() {
+    const circle = this.circle;
+    if (!circle || circle.memberCount < 2 || circle.todayClosed == null) return '';
+    return `<p class="home-rhythm">В кружке сегодня ${circle.todayClosed} из ${circle.memberCount}</p>`;
   }
 
   streakBadgeHtml(compact) {
@@ -2816,6 +2899,82 @@ const CEFR_OPTION_LABELS = {
 
 function settingsGroup(label, inner) {
   return `<section class="settings-group"><h2 class="settings-group-label">${label}</h2>${inner}</section>`;
+}
+
+function rankScoreLabel(row) {
+  if (row?.closedToday) return 'сегодня';
+  const days = row?.days ?? 0;
+  return `${days} ${pluralRu(days, 'день', 'дня', 'дней')}`;
+}
+
+function circleRhythmNote(closed, total, youClosed) {
+  if (closed === total) return 'Сегодня все на месте';
+  const left = total - closed;
+  if (youClosed) {
+    return left === 1 ? 'День закрыт · ждёт ещё 1' : `День закрыт · ждут ещё ${left}`;
+  }
+  return 'Сессия закроет сегодняшний день';
+}
+
+function renderRankItems(rows) {
+  return (rows ?? []).map((row) => `
+    <li class="${row.you ? 'is-you' : ''}">
+      <div class="circle-person">
+        <strong>${row.place ? `<span class="rank-place">${row.place}</span>` : ''}${esc(row.name)}</strong>
+        ${row.you ? '<span>Это вы</span>' : ''}
+      </div>
+      <span class="rank-score">${esc(rankScoreLabel(row))}</span>
+    </li>`).join('');
+}
+
+function renderPinnedRank(me) {
+  if (!me?.pinned) return '';
+  return `
+    <section class="circle-card">
+      <ul class="circle-people">${renderRankItems([{ ...me, you: true }])}</ul>
+    </section>`;
+}
+
+function renderRankSkeleton() {
+  return `
+    <section class="circle-card circle-skeleton" aria-busy="true" aria-live="polite">
+      <span class="sr-only">Загружаю рейтинг</span>
+      <div class="skeleton-bone skeleton-circle-row"></div>
+      <div class="skeleton-bone skeleton-circle-row"></div>
+      <div class="skeleton-bone skeleton-circle-row short"></div>
+    </section>`;
+}
+
+function renderWeekBlock(week) {
+  if (!week?.marks?.length) return '';
+  const marks = week.marks.map((mark) => `
+    <li class="${mark.closed ? 'is-closed' : ''}">
+      <span class="week-mark" aria-hidden="true"></span>
+      <span class="week-mark-label" aria-hidden="true">${esc(mark.label)}</span>
+      <span class="sr-only">${esc(mark.label)}, ${mark.closed ? 'закрыт' : 'открыт'}</span>
+    </li>`).join('');
+  const holds = week.holds
+    ? `<p class="week-note">${week.holds} ${pluralRu(week.holds, 'удержание', 'удержания', 'удержаний')}</p>`
+    : '';
+  const note = week.closedToday ? '' : '<p class="week-note">Сессия закроет сегодняшний день</p>';
+  return settingsGroup('Эта неделя', `
+    <div class="card-form">
+      <ol class="week-marks" aria-label="Дни этой недели">${marks}</ol>
+      <p class="week-count">${week.dayCount} из 7</p>
+      ${note}
+      ${holds}
+      <button type="button" class="btn btn-ghost btn-ghost-border" data-action="open-ranks">Смотреть рейтинг</button>
+    </div>`);
+}
+
+function summaryRhythmHtml(summary) {
+  const rating = summary?.rating;
+  if (!rating) return '';
+  if (!rating.dayClosed) return '<p class="summary-rhythm">День в рейтинге ещё открыт</p>';
+  if (rating.circle && rating.circle.total >= 2) {
+    return `<p class="summary-rhythm">День закрыт · в кружке сегодня ${rating.circle.closed} из ${rating.circle.total}</p>`;
+  }
+  return `<p class="summary-rhythm">День закрыт · ${rating.weekDays} из 7 на этой неделе</p>`;
 }
 
 function statsHeroItem(value, label) {

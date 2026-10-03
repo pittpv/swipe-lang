@@ -52,6 +52,14 @@ import {
   declineCircleInvite,
 } from './circles.js';
 import {
+  countHolds,
+  languageBoard,
+  noteRatingSwipe,
+  ratingDeckMeta,
+  settleSession,
+  weekPayload,
+} from './rating.js';
+import {
   getVapidKeys,
   createReminderSchedule,
   deleteReminderSchedule,
@@ -348,6 +356,18 @@ app.post('/api/circles/invites/decline', requireAuth, async (req, res) => {
   }
 });
 
+function stampRatingSession(userId, sessionRow, cards, now = new Date()) {
+  const user = findUser(userId);
+  sessionRow.lang_pair = userLangPair(user);
+  sessionRow.rating_deck = ratingDeckMeta(
+    db.data.user_word_progress.filter((row) => row.user_id === userId),
+    cards.map((card) => card.id),
+    now,
+  );
+  sessionRow.rating_hits = [];
+  sessionRow.rating_last_at = null;
+}
+
 app.post('/api/circles/session', requireAuth, async (req, res) => {
   await db.reload();
   let ids;
@@ -373,6 +393,7 @@ app.post('/api/circles/session', requireAuth, async (req, res) => {
       cards_reviewed: 0,
       cards_learned: 0,
     };
+    stampRatingSession(req.session.userId, row, cards);
     db.data.study_sessions.push(row);
     return row;
   });
@@ -605,12 +626,14 @@ app.post('/api/profile/reset-progress', requireAuth, async (req, res) => {
       user.streak = 0;
       user.last_session_date = null;
       delete user.milestones;
+      delete user.rating_days;
     }
   });
   res.json({ ok: true });
 });
 
 app.post('/api/session/start', requireAuth, async (req, res) => {
+  await db.reload();
   const userId = req.session.userId;
   const levelProgress = getLevelProgress(db, userId);
   const deck = buildSessionDeck(db, userId);
@@ -636,6 +659,7 @@ app.post('/api/session/start', requireAuth, async (req, res) => {
       cards_reviewed: 0,
       cards_learned: 0,
     };
+    stampRatingSession(userId, row, deck);
     db.data.study_sessions.push(row);
     return row;
   });
@@ -656,7 +680,9 @@ app.post('/api/session/swipe', requireAuth, async (req, res) => {
   if (!wordId || !['left', 'right'].includes(direction)) {
     return res.status(400).json({ error: 'wordId and direction (left|right) required' });
   }
+  await db.reload();
   const userId = req.session.userId;
+  const swipedAt = new Date();
   const updated = await db.transact(() => {
     const existing = db.data.user_word_progress.find(
       (p) => p.user_id === userId && p.word_id === wordId,
@@ -669,7 +695,7 @@ app.post('/api/session/swipe', requireAuth, async (req, res) => {
         interval_days: next.interval_days,
         repetitions: next.repetitions,
         next_review_at: next.next_review_at,
-        updated_at: new Date().toISOString(),
+        updated_at: swipedAt.toISOString(),
       });
     } else {
       db.data.user_word_progress.push({
@@ -677,9 +703,13 @@ app.post('/api/session/swipe', requireAuth, async (req, res) => {
         user_id: userId,
         word_id: wordId,
         ...next,
-        updated_at: new Date().toISOString(),
+        updated_at: swipedAt.toISOString(),
       });
     }
+    const sessionRow = db.data.study_sessions.find(
+      (row) => row.id === req.session.activeSessionId && row.user_id === userId && !row.ended_at,
+    );
+    if (sessionRow) noteRatingSwipe(sessionRow, wordId, swipedAt);
     return next;
   });
 
@@ -704,20 +734,32 @@ function countWordsKnown(userId) {
 }
 
 app.post('/api/session/complete', requireAuth, async (req, res) => {
+  await db.reload();
   const userId = req.session.userId;
   const sessionId = req.session.activeSessionId;
   const stats = req.session.sessionStats ?? { reviewed: 0, learned: 0 };
 
   const payload = await db.transact(() => {
-    const sessionRow = db.data.study_sessions.find((s) => s.id === sessionId);
-    if (sessionRow) {
-      sessionRow.ended_at = new Date().toISOString();
+    const now = new Date();
+    const sessionRow = db.data.study_sessions.find((s) => s.id === sessionId && s.user_id === userId);
+    const user = findUser(userId);
+    let settled = null;
+    if (sessionRow && !sessionRow.ended_at) {
+      settled = settleSession(user, sessionRow, db.data.user_word_progress, now);
+      sessionRow.ended_at = now.toISOString();
       sessionRow.cards_reviewed = stats.reviewed;
       sessionRow.cards_learned = stats.learned;
+      delete sessionRow.rating_deck;
+      delete sessionRow.rating_hits;
+      delete sessionRow.rating_last_at;
     }
 
-    const user = findUser(userId);
-    const today = new Date().toISOString().slice(0, 10);
+    if (!user) {
+      const err = new Error('User not found');
+      err.status = 404;
+      throw err;
+    }
+    const today = now.toISOString().slice(0, 10);
     let streak = user.streak ?? 0;
     if (user.last_session_date !== today) {
       const yesterday = new Date();
@@ -741,9 +783,20 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
     const eta = estimateEta(db, userId, levelProgress);
     const knownByPair = knownWordsByPair(db, userId);
 
-    const achievements = user
-      ? collectMilestones(user, { streak, words: wordsLearned, langPair: userLangPair(user) }, knownByPair)
-      : [];
+    const achievements = collectMilestones(
+      user,
+      { streak, words: wordsLearned, langPair: userLangPair(user) },
+      knownByPair,
+    );
+    if (!settled) settled = settleSession(user, null, [], now);
+    const circle = circleState(db, userId).circle;
+    const rating = {
+      dayClosed: settled.dayClosed,
+      weekDays: settled.weekDays,
+      circle: circle && circle.memberCount >= 2
+        ? { closed: circle.todayClosed, total: circle.memberCount }
+        : null,
+    };
 
     return {
       cardsReviewed: stats.reviewed,
@@ -756,6 +809,7 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
       levelComplete: levelProgress.complete,
       levelProgress,
       eta,
+      rating,
     };
   });
 
@@ -787,17 +841,24 @@ app.get('/api/stats', requireAuth, async (req, res) => {
   ).length;
   const levelProgress = getLevelProgress(db, userId);
   const eta = estimateEta(db, userId, levelProgress);
+  const pair = userLangPair(user);
   res.json({
     streak: user.streak,
     cefrLevel: user.cefr_level,
-    langPair: userLangPair(user),
+    langPair: pair,
     goal: user.goal,
     wordsLearned: learned,
     sessionsCompleted: sessions,
     achievements: listMilestones(user, knownByPair),
     levelProgress,
     eta,
+    week: weekPayload(user, pair, countHolds(db, userId, pair)),
   });
+});
+
+app.get('/api/ranks', requireAuth, async (req, res) => {
+  await db.reload();
+  res.json(languageBoard(db, req.session.userId));
 });
 
 const distPath = join(__dirname, '..', 'dist');
