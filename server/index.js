@@ -95,6 +95,7 @@ function publicUserFields(user) {
     cefrLevel: user.cefr_level,
     langPair: userLangPair(user),
     streak: user.streak,
+    lastSessionDate: user.last_session_date ?? null,
   };
 }
 
@@ -621,6 +622,7 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
       cardsReviewed: stats.reviewed,
       cardsLearned: stats.learned,
       streak,
+      lastSessionDate: user.last_session_date,
       wordsDueTomorrow,
       wordsLearned,
       achievements,

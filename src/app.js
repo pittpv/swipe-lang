@@ -15,6 +15,7 @@ import {
   clampCefrToPair,
   normalizeLangPair,
 } from '../server/lang-pairs.js';
+import { formatStreakRiskHint, msUntilStreakWarning, streakResetRisk } from './streak-risk.js';
 
 export { api } from './track.js';
 
@@ -32,6 +33,9 @@ export class App {
     this.root = root;
     this.view = 'loading';
     this.user = null;
+    /** Explanation under the streak badge while the reset warning is open. */
+    this.streakRiskOpen = false;
+    this._streakRiskTimer = null;
     this.error = '';
     this.authMode = 'login';
     this.email = '';
@@ -585,7 +589,11 @@ export class App {
       this.render();
       try {
         this.summary = await api('/session/complete', { method: 'POST' });
-        if (this.user) this.user.streak = this.summary.streak;
+        if (this.user) {
+          this.user.streak = this.summary.streak;
+          if (this.summary.lastSessionDate) this.user.lastSessionDate = this.summary.lastSessionDate;
+          this.streakRiskOpen = false;
+        }
         if (this.summary.levelComplete) this.levelOffer = this.summary.levelProgress;
         track('session_complete');
         this.view = 'summary';
@@ -1086,7 +1094,11 @@ export class App {
     if (!confirm('Сбросить статистику и прогресс? Streak, изученные слова и сессии будут удалены. Это действие нельзя отменить.')) return;
     try {
       await api('/profile/reset-progress', { method: 'POST' });
-      if (this.user) this.user.streak = 0;
+      if (this.user) {
+        this.user.streak = 0;
+        this.user.lastSessionDate = null;
+      }
+      this.streakRiskOpen = false;
       this.stats = null;
       this.progressReset = true;
       this.render();
@@ -1481,8 +1493,14 @@ export class App {
           /* private mode */
         }
       }
+      const inStreak = e.target.closest('.streak-badge-wrap');
+      const closedStreakNote = this.streakRiskOpen && !inStreak;
+      if (closedStreakNote) this.streakRiskOpen = false;
       const t = e.target.closest('[data-action]');
-      if (!t) return;
+      if (!t) {
+        if (closedStreakNote) this.render();
+        return;
+      }
       const action = t.dataset.action;
       // Already handled in onSummaryPointerUp (iOS post-swipe path).
       if (this._summaryTapHandled && (action === 'home' || action === 'start' || action === 'level-up' || action === 'dismiss-level-up')) return;
@@ -1524,6 +1542,10 @@ export class App {
       if (action === 'swipe-left') this.swipe('left');
       if (action === 'swipe-right') this.swipe('right');
       if (action === 'copy-referral') this.copyReferral();
+      if (action === 'streak-risk') {
+        this.streakRiskOpen = !this.streakRiskOpen;
+        this.render();
+      }
       if (action === 'reminder-enable') this.enableReminders();
       if (action === 'reminder-disable') this.disableReminders();
     };
@@ -1736,7 +1758,7 @@ export class App {
               <h1>${this.user?.name ? `Привет, ${esc(this.user.name)}!` : 'Привет!'}</h1>
               <p>${esc(langLabel)} · ${esc(this.cefrLevel)}</p>
             </div>
-            ${this.user?.streak ? `<span class="streak-badge">🔥 ${this.user.streak} дней</span>` : ''}
+            ${this.streakBadgeHtml(false)}
           </header>
           ${this.error ? `<p class="error home-error">${esc(this.error)}</p>` : ''}
           <div class="home-main">
@@ -1778,7 +1800,7 @@ export class App {
         <div class="session-header">
           <button class="session-exit" data-action="exit-session" title="Выйти из сессии" aria-label="Выйти из сессии">✕</button>
           <span class="progress">${progressNum} / ${this.cards.length}</span>
-          ${this.user?.streak ? `<span class="streak-badge">🔥 ${this.user.streak}</span>` : ''}
+          ${this.streakBadgeHtml(true)}
         </div>
         <div class="deck-area" id="deck">
           ${this.awaitingNext ? `
@@ -2160,6 +2182,57 @@ export class App {
       this.root.querySelector('input[name="displayName"]')?.focus();
     }
     this.syncIosInstallHint();
+    this.scheduleStreakRiskRefresh();
+  }
+
+  /**
+   * Streak chip in the top corner. Within 3 hours of the reset deadline it
+   * shows a warning and opens a short explanation on tap.
+   * @param {boolean} compact session header omits the word «дней»
+   */
+  streakBadgeHtml(compact) {
+    const days = this.user?.streak;
+    if (!days) return '';
+    const risk = streakResetRisk(this.user);
+    const count = compact ? `🔥 ${days}` : `🔥 ${days} дней`;
+    if (!risk) {
+      this.streakRiskOpen = false;
+      return `<span class="streak-badge">${count}</span>`;
+    }
+    const open = this.streakRiskOpen;
+    const hint = formatStreakRiskHint(risk);
+    return `
+      <span class="streak-badge-wrap">
+        <button
+          type="button"
+          class="streak-badge streak-badge-risk"
+          data-action="streak-risk"
+          aria-expanded="${open ? 'true' : 'false'}"
+          aria-controls="streak-risk-note"
+          aria-label="Серия ${days} дней, скоро сбросится"
+        ><span class="streak-warn-mark" aria-hidden="true">⚠️</span>${count}</button>
+        ${open ? `<span class="streak-risk-note" id="streak-risk-note" role="status">${esc(hint)}</span>` : ''}
+      </span>`;
+  }
+
+  /** Re-render when the 3-hour window opens, and keep an open hint fresh. */
+  scheduleStreakRiskRefresh() {
+    clearTimeout(this._streakRiskTimer);
+    this._streakRiskTimer = null;
+    if ((this.view !== 'home' && this.view !== 'session') || !this.user?.streak) return;
+    const now = Date.now();
+    const risk = streakResetRisk(this.user, now);
+    let delay = null;
+    if (risk) {
+      delay = this.streakRiskOpen ? Math.min(60_000, risk.remainingMs) : risk.remainingMs;
+    } else {
+      const until = msUntilStreakWarning(this.user, now);
+      if (until != null && until > 0) delay = until;
+    }
+    if (delay == null) return;
+    this._streakRiskTimer = setTimeout(() => {
+      if (this.view === 'home' || this.view === 'session') this.render();
+    }, Math.max(1000, delay));
   }
 }
 
