@@ -9,7 +9,7 @@ const SPLASH_MIN_MS = 2400;
 const SPLASH_LEAVE_FALLBACK_MS = 500;
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(() => {});
+  navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(() => {});
 }
 
 function prefersReducedMotion() {

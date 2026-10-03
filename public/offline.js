@@ -48,7 +48,8 @@
     if (!stayOnPage && document.visibilityState === 'visible') probe(false);
   });
 
-  retryBtn?.addEventListener('click', () => {
+  retryBtn?.addEventListener('click', (event) => {
+    event.preventDefault();
     probe(true);
   });
 

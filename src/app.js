@@ -847,7 +847,7 @@ export class App {
       this.vapidPublicKey = publicKey;
     }
     let registration = await navigator.serviceWorker.getRegistration();
-    if (!registration) registration = await navigator.serviceWorker.register('/sw.js');
+    if (!registration) registration = await navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' });
     await navigator.serviceWorker.ready;
     let subscription = await registration.pushManager.getSubscription();
     // Only rotate when WebKit exposes the key AND it disagrees. An empty key

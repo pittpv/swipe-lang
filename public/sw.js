@@ -1,22 +1,104 @@
 /* LangSwipe service worker — Web Push + offline navigation fallback. */
 
-const OFFLINE_CACHE = 'langswipe-offline-v1';
+const OFFLINE_CACHE = 'langswipe-offline-v3';
 const OFFLINE_URL = '/offline.html';
 const PRECACHE_URLS = [
   OFFLINE_URL,
-  '/offline.css',
   '/offline.js',
-  '/theme.css',
-  '/theme-boot.js',
+  '/offline.css',
   '/favicon.svg',
 ];
+
+function isHtmlNavigation(request) {
+  if (request.method !== 'GET') return false;
+  if (request.mode === 'navigate') return true;
+  if (request.destination === 'document') return true;
+  const accept = request.headers.get('accept') || '';
+  if (accept.includes('text/html')) return true;
+  try {
+    const path = new URL(request.url, self.location.origin).pathname;
+    return path === '/' || path === '/index.html' || path.endsWith('.html');
+  } catch {
+    return false;
+  }
+}
+
+function precachePath(url) {
+  try {
+    const path = new URL(url, self.location.origin).pathname;
+    return PRECACHE_URLS.indexOf(path) !== -1;
+  } catch {
+    return false;
+  }
+}
+
+function offlineFallbackHtml() {
+  return new Response(
+    '<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Нет интернета</title></head><body style="margin:0;min-height:100dvh;display:grid;place-items:center;font-family:system-ui;background:#f4f7f5;color:#1a5f4a;text-align:center;padding:1.5rem"><div><p style="font-size:1.75rem;font-weight:700;margin:0">LangSwipe</p><h1 style="font-size:1.5rem;margin:1rem 0 0.5rem">Нет интернета</h1><p style="color:#5c6b64">Появится связь — откроется само.</p><p><a href="/" style="color:#1a5f4a">Повторить</a></p></div></body></html>',
+    {
+      status: 200,
+      headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
+    },
+  );
+}
+
+function asOfflineDocument(response) {
+  const headers = new Headers(response.headers);
+  headers.set('Content-Type', 'text/html; charset=utf-8');
+  headers.set('Cache-Control', 'no-store');
+  return response.blob().then(
+    (body) => new Response(body, { status: 200, statusText: 'OK', headers }),
+  );
+}
+
+async function fromPrecache() {
+  try {
+    const cache = await caches.open(OFFLINE_CACHE);
+    const cached = await cache.match(OFFLINE_URL, { ignoreSearch: true });
+    if (cached) return asOfflineDocument(cached);
+  } catch {
+    /* Cache Storage unavailable */
+  }
+  return offlineFallbackHtml();
+}
+
+function isUsableDocument(response) {
+  if (!response) return false;
+  if (response.ok) return true;
+  return response.status === 304;
+}
+
+async function networkOrOffline(request) {
+  try {
+    const response = await fetch(request.url, {
+      credentials: 'same-origin',
+      redirect: 'follow',
+    });
+    if (isUsableDocument(response)) return response;
+  } catch {
+    /* offline or failed revalidation */
+  }
+  return fromPrecache();
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(OFFLINE_CACHE);
+      const offline = await fetch(OFFLINE_URL, { cache: 'reload', credentials: 'same-origin' });
+      if (!offline.ok) throw new Error('offline.html');
+      const text = await offline.clone().text();
+      if (text.indexOf('Нет интернета') === -1) throw new Error('offline.html mismatch');
+      await cache.put(OFFLINE_URL, offline);
       await Promise.all(
-        PRECACHE_URLS.map((url) => cache.add(url).catch(() => {})),
+        PRECACHE_URLS.filter((url) => url !== OFFLINE_URL).map(async (url) => {
+          try {
+            const res = await fetch(url, { cache: 'reload', credentials: 'same-origin' });
+            if (res.ok) await cache.put(url, res);
+          } catch {
+            /* page still works without extras */
+          }
+        }),
       );
       await self.skipWaiting();
     })(),
@@ -32,6 +114,13 @@ self.addEventListener('activate', (event) => {
           .filter((key) => key.startsWith('langswipe-offline-') && key !== OFFLINE_CACHE)
           .map((key) => caches.delete(key)),
       );
+      if (self.registration.navigationPreload) {
+        try {
+          await self.registration.navigationPreload.enable();
+        } catch {
+          /* Safari */
+        }
+      }
       await clients.claim();
     })(),
   );
@@ -40,23 +129,41 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   if (request.method !== 'GET') return;
-  if (request.mode !== 'navigate') return;
 
-  event.respondWith(
-    (async () => {
-      try {
-        return await fetch(request);
-      } catch {
+  if (isHtmlNavigation(request)) {
+    event.respondWith(
+      (async () => {
+        try {
+          const preload = await event.preloadResponse;
+          if (isUsableDocument(preload)) return preload;
+        } catch {
+          /* no preload */
+        }
+        return networkOrOffline(request);
+      })(),
+    );
+    return;
+  }
+
+  if (precachePath(request.url)) {
+    event.respondWith(
+      (async () => {
         const cache = await caches.open(OFFLINE_CACHE);
-        const cached = await cache.match(OFFLINE_URL);
+        const cached = await cache.match(request);
         if (cached) return cached;
-        return new Response('Нет интернета', {
-          status: 503,
-          headers: { 'Content-Type': 'text/plain; charset=utf-8' },
-        });
-      }
-    })(),
-  );
+        try {
+          const response = await fetch(request);
+          if (response && response.ok) {
+            cache.put(request, response.clone()).catch(() => {});
+            return response;
+          }
+        } catch {
+          /* miss */
+        }
+        return Response.error();
+      })(),
+    );
+  }
 });
 
 self.addEventListener('push', (event) => {
@@ -66,7 +173,6 @@ self.addEventListener('push', (event) => {
   } catch {
     data = { body: event.data?.text() };
   }
-  // Declarative payloads nest fields under `notification`; classic keeps them top-level.
   const notif = data.notification && typeof data.notification === 'object' ? data.notification : {};
   const title = notif.title || data.title || 'LangSwipe';
   const body = notif.body || data.body || 'Пора повторить слова!';

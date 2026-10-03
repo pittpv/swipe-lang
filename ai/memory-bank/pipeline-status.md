@@ -47,3 +47,4 @@ npm run report:weekly          # retention report
 - 2026-09-14: кнопки в Настройках снова работают в мобильном Safari (не PWA) — тихий retry Web Push больше не перерисовывает экран до click. Версия **0.5.8**.
 - 2026-09-21: `public/robots.txt` (Google / Yandex / `*`) и `public/sitemap.xml`; SPA-rewrite в `vercel.json` их не перехватывает. Главная кабинета влезает в видимый экран iPhone (safe-area + `100svh`).
 - 2026-09-23: установленный PWA без сети показывает экран «Нет интернета» вместо белого (service worker кэширует `offline.html`). Версия **0.5.11**.
+- 2026-10-03: offline fallback ловит не только `mode=navigate` (WebKit), отдаёт HTML со статусом 200, страница самодостаточная, SW без HTTP-кэша. Версия **0.5.12**.

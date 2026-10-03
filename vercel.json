@@ -9,6 +9,25 @@
   },
   "headers": [
     {
+      "source": "/sw.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
+        { "key": "Service-Worker-Allowed", "value": "/" }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400, stale-if-error=86400" }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=86400, stale-if-error=86400" }
+      ]
+    },
+    {
       "source": "/robots.txt",
       "headers": [
         { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
@@ -39,6 +58,6 @@
   ],
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api" },
-    { "source": "/((?!api/|robots.txt|sitemap.xml|offline.html|offline.css|offline.js|sw.js).*)", "destination": "/index.html" }
+    { "source": "/((?!api/|robots.txt|sitemap.xml|offline.html|offline.css|offline.js|sw.js|sw-register.js).*)", "destination": "/index.html" }
   ]
 }

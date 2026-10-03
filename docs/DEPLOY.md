@@ -72,8 +72,11 @@ npm version patch   # or minor / major — then commit & push
 
 The service worker (`public/sw.js`) delivers Web Push and precaches `/offline.html`.
 If a later navigation fails with no network, that page is shown instead of a blank
-PWA window. Keep `/offline.html`, `/offline.css`, `/offline.js`, and `/sw.js` out
-of the SPA rewrite in `vercel.json` so Vercel serves the real files.
+PWA window. Keep `/offline.html`, `/offline.css`, `/offline.js`, `/sw.js`, and
+`/sw-register.js` out of the SPA rewrite in `vercel.json` so Vercel serves the real
+files. `/sw.js` must be `Cache-Control: no-cache` so installed clients pick up SW
+updates. The HTML document uses `stale-if-error` so a cold PWA launch can still
+paint if WebKit skips the fetch handler.
 
 CLI alternative:
 
