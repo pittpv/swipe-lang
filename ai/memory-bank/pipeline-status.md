@@ -3,7 +3,7 @@
 | Field | Value |
 |-------|-------|
 | **Phase** | 6 — Operate 🟢 |
-| **App version** | 0.5.15 (`package.json`, `src/changelog.js`) |
+| **App version** | 0.5.16 (`package.json`, `src/changelog.js`) |
 | **Production** | https://www.langswipe.xyz (Vercel, проект `pittpvs-projects/langapp`; apex `langswipe.xyz` → www) |
 | **Storage** | Neon Postgres (`langapp_state` JSONB, dictionary from CSV) |
 | **Gate 5** | Studio Producer sign-off |
@@ -51,6 +51,7 @@ npm run report:weekly          # retention report
 - 2026-10-03: предупреждение серии — если до сброса меньше 3 часов, на значке ⚠️, нажатие показывает время (`src/streak-risk.js`). Версия **0.5.13**.
 - 2026-10-03: кружки по пересечению словаря — до 8 человек одного языка, подбор по общим словам, приглашение `/?circle=`, сессия по пересечению. Версия **0.5.14**.
 - 2026-10-03: экран кружка — приоритеты, отступы, скелетон; приглашение людей с реферальной ссылки по имени, с подтверждением. FAQ про кружок. Версия **0.5.15**.
+- 2026-10-03: счётчики на кнопках «Кружок» и «Настройки» на главной — приглашение и обновление. Снимаются после просмотра. Версия **0.5.16**.
 
 ## Дальше
 

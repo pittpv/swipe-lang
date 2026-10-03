@@ -143,6 +143,7 @@ test('a referral can be invited and must accept before joining', () => {
 
   const invited = inviteReferral(db, 1, 4);
   assert.equal(invited.referrals.find((person) => person.id === 4).invited, true);
+  assert.equal(Number.isInteger(circleState(db, 4).invites[0].id), true);
   assert.equal(circleState(db, 4).invites[0].circleName, 'Утро');
   assert.equal(circleState(db, 4).invites[0].fromName, 'Аня');
   assert.equal(circleState(db, 4).circle, null);

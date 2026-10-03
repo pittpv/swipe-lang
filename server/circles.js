@@ -203,6 +203,7 @@ function listIncomingInvites(db, userId, pair) {
       const circle = circlesOf(db).find((row) => row.id === invite.circle_id);
       if (!circle || circle.lang_pair !== pair) return null;
       return {
+        id: invite.id,
         circleId: circle.id,
         circleName: circle.name,
         fromName: displayName(db, invite.from_user_id),

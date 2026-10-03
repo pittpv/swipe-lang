@@ -23,6 +23,7 @@ export { api } from './track.js';
 const APP_VERSION = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.1.0';
 const SUPPORT_TELEGRAM_URL = 'https://t.me/+mf9HThpx2m4xNzQ8';
 const IOS_INSTALL_DISMISS_KEY = 'langapp.iosInstallDismissed';
+const SEEN_CIRCLE_INVITES_KEY = 'langapp.seenCircleInvites';
 
 function splashProgress(n) {
   window.__langSplash?.set(n);
@@ -303,9 +304,40 @@ export class App {
     this.setView('updates');
   }
 
-  /** Referral link + reminder state — needed by home/settings after any login path. */
+  /** Referral link, reminders, and circle notices — needed by home after any login path. */
   async loadUserExtras() {
-    await Promise.all([this.loadReferralLink(), this.loadReminderStatus()]);
+    await Promise.all([this.loadReferralLink(), this.loadReminderStatus(), this.refreshCircleNotices()]);
+  }
+
+  /** Pending circle invites for the home badge. Skips itself if a circle screen fetch is in flight. */
+  async refreshCircleNotices() {
+    if (!this.user || this.user.needsOnboarding || this.view === 'circle') return;
+    const ticket = (this._circleNoticeTicket ?? 0) + 1;
+    this._circleNoticeTicket = ticket;
+    try {
+      const data = await api('/circles');
+      if (ticket !== this._circleNoticeTicket || this.view === 'circle') return;
+      this.applyCircle(data);
+    } catch {
+      /* home still works without the badge */
+    }
+  }
+
+  bumpCircleFetch() {
+    this._circleNoticeTicket = (this._circleNoticeTicket ?? 0) + 1;
+  }
+
+  unseenCircleInviteCount() {
+    const seen = readSeenInviteIds();
+    return (this.circleInvites ?? []).filter((invite) => Number.isInteger(invite.id) && !seen.has(invite.id)).length;
+  }
+
+  /** Opening the circle screen is enough: the invite has been read. */
+  noteCircleInvitesSeen() {
+    if (this.view !== 'circle' || this.circleLoading) return;
+    const ids = (this.circleInvites ?? []).map((invite) => invite.id).filter((id) => Number.isInteger(id));
+    if (!ids.length) return;
+    rememberSeenInviteIds(ids);
   }
 
   setView(view) {
@@ -318,7 +350,12 @@ export class App {
     dismissAchievements();
     this.render();
     window.scrollTo(0, 0);
-    if (view === 'home') this.flushPendingAchievements();
+    if (view === 'home') {
+      this.flushPendingAchievements();
+      void this.refreshCircleNotices().then(() => {
+        if (this.view === 'home') this.render();
+      });
+    }
   }
 
   flushPendingAchievements() {
@@ -500,6 +537,7 @@ export class App {
   async maybeJoinStoredCircle() {
     const code = takeStoredCircleCode();
     if (!code || !this.user || this.user.needsOnboarding) return;
+    this.bumpCircleFetch();
     this.view = 'circle';
     this.circleLoading = true;
     this.circleError = '';
@@ -515,9 +553,11 @@ export class App {
       }
     }
     this.circleLoading = false;
+    this.noteCircleInvitesSeen();
   }
 
   async openCircle() {
+    this.bumpCircleFetch();
     this.circleError = '';
     this.circleCopied = false;
     this.circleLoading = true;
@@ -529,7 +569,10 @@ export class App {
       this.circleError = e.message;
     }
     this.circleLoading = false;
-    if (this.view === 'circle') this.render();
+    if (this.view === 'circle') {
+      this.noteCircleInvitesSeen();
+      this.render();
+    }
   }
 
   async createCircle() {
@@ -597,6 +640,7 @@ export class App {
     } catch (e) {
       this.circleError = e.message;
     }
+    if (this.view === 'circle') this.noteCircleInvitesSeen();
     this.render();
   }
 
@@ -2125,8 +2169,8 @@ export class App {
             </button>
             <nav class="home-nav" aria-label="Кабинет">
               <button type="button" class="btn btn-ghost" data-action="stats">Статистика</button>
-              <button type="button" class="btn btn-ghost" data-action="open-circle">Кружок</button>
-              <button type="button" class="btn btn-ghost" data-action="settings">Настройки</button>
+              ${this.homeNavButton('open-circle', 'Кружок', this.unseenCircleInviteCount(), (count) => `${count} ${pluralRu(count, 'новое приглашение', 'новых приглашения', 'новых приглашений')}`)}
+              ${this.homeNavButton('settings', 'Настройки', this.changelogUnseen ? 1 : 0, () => 'есть обновление')}
             </nav>
           </div>
           ${this.referralLink ? `
@@ -2549,6 +2593,14 @@ export class App {
    * shows a warning and opens a short explanation on tap.
    * @param {boolean} compact session header omits the word «дней»
    */
+  homeNavButton(action, label, count, noticeFor) {
+    const badge = count
+      ? `<span class="nav-badge" aria-hidden="true">${count > 9 ? '9+' : count}</span>`
+      : '';
+    const aria = count ? ` aria-label="${esc(`${label}, ${noticeFor(count)}`)}"` : '';
+    return `<button type="button" class="btn btn-ghost" data-action="${action}"${aria}>${esc(label)}${badge}</button>`;
+  }
+
   streakBadgeHtml(compact) {
     const days = this.user?.streak;
     if (!days) return '';
@@ -2633,6 +2685,35 @@ function shouldShowIosInstallHint() {
 }
 
 /** iOS treats `name="name"` as a username and shows a login/password error for short values. */
+function readSeenInviteIds() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(SEEN_CIRCLE_INVITES_KEY) || '[]');
+    if (!Array.isArray(raw)) return new Set();
+    return new Set(raw.filter((id) => Number.isInteger(id)));
+  } catch {
+    return new Set();
+  }
+}
+
+function rememberSeenInviteIds(ids) {
+  const seen = readSeenInviteIds();
+  for (const id of ids) seen.add(id);
+  try {
+    localStorage.setItem(SEEN_CIRCLE_INVITES_KEY, JSON.stringify([...seen].slice(-80)));
+  } catch {
+    /* private mode */
+  }
+}
+
+function pluralRu(count, one, few, many) {
+  const n = Math.abs(count) % 100;
+  const n1 = n % 10;
+  if (n > 10 && n < 20) return many;
+  if (n1 === 1) return one;
+  if (n1 >= 2 && n1 <= 4) return few;
+  return many;
+}
+
 function nameFieldHtml(value, extra = '') {
   return `<input name="displayName" type="text" value="${esc(value)}" maxlength="64" placeholder="Как к вам обращаться?" autocomplete="given-name" autocapitalize="words" spellcheck="false"${extra} />`;
 }

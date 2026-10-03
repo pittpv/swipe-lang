@@ -226,8 +226,27 @@ body {
 }
 
 .home-nav .btn {
+  position: relative;
   padding: 0.75rem 0.35rem;
   font-size: 0.85rem;
+}
+
+.nav-badge {
+  position: absolute;
+  top: 0.28rem;
+  right: 0.28rem;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding: 0 0.28rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.15rem;
+  text-align: center;
+  box-shadow: 0 0 0 2px var(--color-bg);
+  pointer-events: none;
 }
 
 .home-nav .btn-ghost,
