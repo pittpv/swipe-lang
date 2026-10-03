@@ -28,8 +28,9 @@ const defaultData = () => ({
   words: [],
   user_word_progress: [],
   study_sessions: [],
+  study_circles: [],
   analytics: [],
-  _seq: { users: 0, words: 0, user_word_progress: 0, study_sessions: 0, analytics: 0 },
+  _seq: { users: 0, words: 0, user_word_progress: 0, study_sessions: 0, analytics: 0, study_circles: 0 },
   _wordIdMap: {},
 });
 

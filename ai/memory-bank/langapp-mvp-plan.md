@@ -1,17 +1,18 @@
 # LangSwipe MVP — План команды и пайплайн NEXUS
 
-> **Режим:** NEXUS-Sprint (Startup MVP Runbook)  
-> **Срок:** 4–6 недель  
-> **Оркестратор:** Agents Orchestrator  
-> **Спецификация:** [`site-setup.md`](./site-setup.md)  
-> **Task list:** [`tasks/langapp-swipe-vocab-tasklist.md`](./tasks/langapp-swipe-vocab-tasklist.md)  
+> **Режим:** NEXUS-Sprint (Startup MVP Runbook) — **закрыт**  
+> **Статус на 2026-10-03:** фаза 6 Operate. Прод https://www.langswipe.xyz, код **0.5.14**. Журнал: [`pipeline-status.md`](./pipeline-status.md)  
+> **Спека текущего продукта:** [`site-setup.md`](./site-setup.md) v1.2  
+> **Исторический task list:** [`tasks/langapp-swipe-vocab-tasklist.md`](./tasks/langapp-swipe-vocab-tasklist.md) (Laravel-черновик, не соответствует собранному стеку)  
 > **Методология:** [`.vendor/agency-agents/strategy/nexus-strategy.md`](../../.vendor/agency-agents/strategy/nexus-strategy.md)
+
+Фазы 0–5 ниже — план, по которому MVP довели до запуска. Стек в фазах 2–3 (Laravel, Livewire, Alpine) **не был собран**. Продукт живёт как Vite + Express + Neon. Не сверять задачи T-* с репозиторием: сверять `site-setup.md` и код.
 
 ---
 
 ## Executive Summary
 
-LangSwipe — PWA для изучения лексики: свайп влево = знаю, вправо = учу, тапы = перевод/аудио/примеры. MVP: одна пара EN→RU, SRS, короткие сессии, anti-routine UX. Социальный слой — фаза 2.
+Исходный MVP (этот абзац не описывает прод): PWA, свайп влево = знаю, вправо = учу, тапы = перевод/аудио/примеры, одна пара EN→RU, SRS, короткие сессии. Сейчас в проде три пары TR/EN/ES→RU. Социальный слой по-прежнему фаза 2.
 
 Команда собрана по **NEXUS-Sprint** + **scenario-startup-mvp.md** с дополнениями под edtech (Behavioral Nudge Engine, Workflow Architect, Voice AI).
 
@@ -385,19 +386,26 @@ QA: Evidence Collector will screenshot desktop/tablet/mobile.
 
 | Файл | Назначение |
 |------|------------|
-| `ai/memory-bank/site-setup.md` | Единственный source of truth — спека |
-| `ai/memory-bank/langapp-mvp-plan.md` | Этот документ — команда и фазы |
-| `ai/memory-bank/tasks/langapp-swipe-vocab-tasklist.md` | Задачи для разработки |
-| `ai/memory-bank/workflow-swipe-vocab.md` | *(создаст Workflow Architect)* |
-| `public/qa-screenshots/` | Evidence Collector output |
+| `ai/memory-bank/site-setup.md` | Спека текущего продукта |
+| `ai/memory-bank/pipeline-status.md` | Где мы в фазе 6 и что вышло в прод |
+| `ai/memory-bank/langapp-mvp-plan.md` | Этот документ — как MVP планировали |
+| `ai/memory-bank/workflow-swipe-vocab.md` | Состояния сессии |
+| `ai/memory-bank/launch/growth-plan.md` | Позиционирование и каналы |
+| `README.md` | Как устроены SRS, сессии, streak |
 
 ---
 
 ## 12. Следующий шаг
 
-1. Запустить **Agents Orchestrator** промптом из Section 1  
-2. Phase 0 Day 1: параллельно `@trend-researcher`, `@ux-researcher`, `@rapid-prototyper`  
-3. После Gate 0 → Phase 1 architecture sprint
+MVP-пайплайн не перезапускать. Кружки по пересечению словаря уже в коде 0.5.14.
+
+Дальше по спеке:
+
+1. Склонения (формы глагола уже в оверлее)
+2. Пользовательские колоды
+3. Другие форматы карточек, отмена свайпа, hard mode (ввод перевода)
+
+Пуш-напоминания, три словаря, реферал, офлайн-экран, предупреждение серии (< 3 ч) и кружки уже в коде 0.5.14.
 
 ---
 

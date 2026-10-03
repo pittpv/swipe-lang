@@ -19,7 +19,7 @@ import {
 } from './security.js';
 import { db, dbMode, persistableState } from './database.js';
 import { applySwipe } from './srs.js';
-import { buildSessionDeck, SESSION_SIZE } from './session.js';
+import { buildSessionDeck, formatWord, SESSION_SIZE } from './session.js';
 import { getLevelProgress, estimateEta, CEFR_ORDER } from './progress.js';
 import { collectMilestones, knownWordsByPair, listMilestones, repairWordMilestones } from './milestones.js';
 import {
@@ -40,6 +40,14 @@ import {
 } from './referral.js';
 import { buildAnalyticsDashboard } from './analytics-report.js';
 import { listAdminUsers, purgeUserRecords } from './admin-users.js';
+import {
+  CircleError,
+  circleSessionWordIds,
+  circleState,
+  createCircle,
+  joinCircle,
+  leaveCircle,
+} from './circles.js';
 import {
   getVapidKeys,
   createReminderSchedule,
@@ -253,6 +261,92 @@ app.get('/api/referral', requireAuth, async (req, res) => {
     link: `${origin}/?ref=${code}`,
     referralsCount: findUser(req.session.userId)?.referrals_count ?? 0,
   });
+});
+
+function circleOrigin(req) {
+  return process.env.APP_URL || `${req.protocol}://${req.get('host')}`;
+}
+
+function withCircleLink(payload, req) {
+  if (!payload?.circle?.inviteCode) return payload;
+  return {
+    ...payload,
+    circle: {
+      ...payload.circle,
+      inviteLink: `${circleOrigin(req)}/?circle=${payload.circle.inviteCode}`,
+    },
+  };
+}
+
+app.get('/api/circles', requireAuth, async (req, res) => {
+  await db.reload();
+  res.json(withCircleLink(circleState(db, req.session.userId), req));
+});
+
+app.post('/api/circles', requireAuth, async (req, res) => {
+  try {
+    const payload = await db.transact(() => createCircle(db, req.session.userId, req.body?.name));
+    res.status(201).json(withCircleLink(payload, req));
+  } catch (err) {
+    if (err instanceof CircleError) return res.status(err.status).json({ error: err.message });
+    throw err;
+  }
+});
+
+app.post('/api/circles/join', requireAuth, async (req, res) => {
+  try {
+    const payload = await db.transact(() =>
+      joinCircle(db, req.session.userId, { code: req.body?.code, circleId: req.body?.circleId }),
+    );
+    res.json(withCircleLink(payload, req));
+  } catch (err) {
+    if (err instanceof CircleError) return res.status(err.status).json({ error: err.message });
+    throw err;
+  }
+});
+
+app.post('/api/circles/leave', requireAuth, async (req, res) => {
+  try {
+    const payload = await db.transact(() => leaveCircle(db, req.session.userId));
+    res.json(withCircleLink(payload, req));
+  } catch (err) {
+    if (err instanceof CircleError) return res.status(err.status).json({ error: err.message });
+    throw err;
+  }
+});
+
+app.post('/api/circles/session', requireAuth, async (req, res) => {
+  await db.reload();
+  let ids;
+  try {
+    ids = circleSessionWordIds(db, req.session.userId, SESSION_SIZE);
+  } catch (err) {
+    if (err instanceof CircleError) return res.status(err.status).json({ error: err.message });
+    throw err;
+  }
+  const cards = ids
+    .map((id) => db.data.words.find((word) => word.id === id))
+    .filter(Boolean)
+    .map(formatWord);
+  if (!cards.length) {
+    return res.status(400).json({ error: 'Общих слов пока нет — нужна ещё одна колода в кружке' });
+  }
+  const sessionRow = await db.transact(() => {
+    const row = {
+      id: db.nextId('study_sessions'),
+      user_id: req.session.userId,
+      started_at: new Date().toISOString(),
+      ended_at: null,
+      cards_reviewed: 0,
+      cards_learned: 0,
+    };
+    db.data.study_sessions.push(row);
+    return row;
+  });
+  req.session.activeSessionId = sessionRow.id;
+  req.session.sessionStats = { reviewed: 0, learned: 0 };
+  setSessionCookie(res, req.session);
+  res.json({ sessionId: sessionRow.id, sessionSize: cards.length, cards });
 });
 
 // --- Word pronunciation (free Google TTS, proxied same-origin) ---
@@ -814,6 +908,8 @@ const ALLOWED_EVENTS = new Set([
   'tap_audio',
   'session_complete',
   'referral_share',
+  'circle_create',
+  'circle_join',
 ]);
 
 app.post('/api/analytics', (req, res, next) => {

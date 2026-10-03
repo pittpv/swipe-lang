@@ -1,11 +1,11 @@
 # Growth Plan — Phase 5 Launch
 
 > **Agent:** `@growth-hacker`  
-> **Date:** 2026-07-01
+> **Date:** 2026-07-01 · актуализировано 2026-10-03 по коду 0.5.13
 
 ## Positioning
 
-**LangSwipe** — турецкий словарь TR→RU со свайп-механикой. Не «ещё один Anki», а 5-минутные сессии.
+**LangSwipe** — словари TR/EN/ES → RU со свайп-механикой и русским интерфейсом. Не «ещё один Anki», а сессии по 18 карточек. Прод: https://www.langswipe.xyz.
 
 ## Landing optimizations (shipped)
 
@@ -21,15 +21,18 @@
 - Блок «Пригласи друга» на home
 - Event: `referral_share`
 
-## Acquisition channels (next manual)
+## Acquisition channels
 
-| Channel | Action |
+Группа поддержки в Telegram уже есть в продукте (справка, главная, FAQ, 0.5.9). Посты в чужих сообществах планом не закрыты.
+
+| Channel | Статус |
 |---------|--------|
-| Telegram | Пост в группах изучающих турецкий |
-| Reddit | r/Turkish, r/languagelearning — «I built a swipe vocab app» |
-| Product Hunt | После 50+ реальных пользователей |
-| SEO | Landing title: «турецкий словарь свайп» |
+| Telegram-группа поддержки | В продукте |
+| Посты в группах изучающих язык | Не сделано |
+| Reddit | Не сделано |
+| Product Hunt | После реальных пользователей, не тестовых аккаунтов |
+| SEO | `robots.txt` и `sitemap.xml` на проде; лендинг больше не только про турецкий |
 
 ## North star
 
-**D7 retention ≥ 25%** — главная метрика launch week.
+**D7 retention ≥ 25%** остаётся северной звездой запуска. Кружки по пересечению словаря уже в продукте (0.5.14), не дожидаясь порога. Считать `npm run report:weekly`; тестовые аккаунты в метрики запуска не входят (см. `pipeline-status.md`).

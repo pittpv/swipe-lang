@@ -53,6 +53,22 @@ export function captureReferralFromUrl() {
   return ref;
 }
 
+export function captureCircleFromUrl() {
+  const code = new URLSearchParams(window.location.search).get('circle');
+  if (code) sessionStorage.setItem('langapp_circle', code.trim().toLowerCase());
+  return code;
+}
+
+export function takeStoredCircleCode() {
+  try {
+    const code = sessionStorage.getItem('langapp_circle');
+    if (code) sessionStorage.removeItem('langapp_circle');
+    return code;
+  } catch {
+    return null;
+  }
+}
+
 export function getStoredReferral() {
   return sessionStorage.getItem('langapp_ref') || null;
 }

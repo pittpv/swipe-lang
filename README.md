@@ -47,7 +47,7 @@ Key implementation details:
 
 ## 4. Habit Building: Streaks & Push Reminders
 
-- **Streaks** are computed server-side (`server/index.js`): study today = streak preserved, studied yesterday = +1 day, otherwise reset to 1
+- **Streaks** are computed server-side (`server/index.js`): study today = streak preserved, studied yesterday = +1 day, otherwise reset to 1. The streak survives through the end of the UTC day after `lastSessionDate`. If fewer than three hours remain, Home shows ⚠️; tapping it states the local reset time (`src/streak-risk.js`)
 - **Web Push via QStash** (`server/reminders.js`): daily reminders at the user's chosen local time, with smart copy:
   - Words due → *"N words are waiting for review. Five minutes and you're done 🔥"*
   - All reviewed → *"Today's plan is complete — see you tomorrow 🎉"*
@@ -79,6 +79,10 @@ Operators open `/admin/dashboard.html` with `ADMIN_API_KEY` for live metrics, a 
 | Level completion | Offer next CEFR when scope is fully «known» (`progress.js`) |
 | Progress foresight | ETA on stats from remaining words + recent pace |
 | Data-driven improvement | Event analytics + D1/D7 retention reports |
+
+## Study circles
+
+Home → **Кружок**. A circle holds up to 8 people on the same language pair. Suggestions rank circles by Jaccard overlap of swiped words. The shared session is the intersection of members who already have cards (`server/circles.js`). Invite links use `/?circle=CODE`. Emails are not shown — only display names.
 
 ## First-run onboarding
 

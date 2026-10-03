@@ -1,7 +1,7 @@
 # LangSwipe — Workflow: Swipe Vocabulary Session
 
 > **Author:** Workflow Architect (Phase 0)  
-> **Status:** Approved for build  
+> **Status:** сверено с кодом 0.5.13 (2026-10-03)  
 > **Reference:** `site-setup.md`
 
 ## State Machine
@@ -34,20 +34,22 @@
 
 ## Onboarding
 
-- Collects **name** (UI-required), **goal**, **CEFR**. `POST /api/onboarding` may omit name (backward compatible); UI blocks empty name.
+- Collects **name** (UI-required, one character is valid), **language** (`tr-ru` / `en-ru` / `es-ru`), **goal** (travel / work / exam), **CEFR**. Spanish stops at B2. `POST /api/onboarding` may omit name (backward compatible); UI blocks empty name.
 - After «Продолжить»: setup-wait screen (home skeleton + install/reminder/5-min tips) while profile + extras save, then Home greets by name.
 
 ## Edge Cases
 
 | Case | Behavior |
 |------|----------|
-| Empty review queue | Show only new words up to session cap (20) |
+| Empty review queue | Show only new words up to session cap (18) |
 | No new words left | Review-only session |
 | Both queues empty | Celebrate + suggest level up (`levelComplete` from `/api/session/start`; UI: level-up screen / stats CTA) |
 | Level complete but reviews due | Review-only session; level-up still offered on summary/stats |
+| Streak < 3h from reset | Home badge ⚠️; tap shows local reset time (`src/streak-risk.js`). Deadline matches the server: end of the UTC day after `lastSessionDate` |
+| Installed PWA, no network | `offline.html` instead of a blank screen; reload when online |
 | Offline mid-session | Complete current card; sync on reconnect |
-| Undo last swipe | Phase 2 — not MVP |
-| Session cap reached | Force [Session Summary] after card 20 |
+| Undo last swipe | Not built — phase 2 |
+| Session cap reached | Force [Session Summary] after card 18 |
 
 ## SRS Transitions
 

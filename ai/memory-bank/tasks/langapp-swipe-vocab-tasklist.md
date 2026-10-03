@@ -1,8 +1,10 @@
 # LangSwipe Swipe Vocab — Development Tasks
 
+> **2026-10-03.** Этот список — черновик NEXUS под Laravel/Livewire. Приложение собрано иначе (Vite + Express + Neon) и уже в фазе 6. Галочки ниже **не** отражают прод. Текущая спека: `../site-setup.md`. Кружки по пересечению словаря есть в 0.5.14. Дальше: склонения, свои колоды, другие форматы карточек, отмена свайпа, hard mode.
+
 ## Specification Summary
 
-**Original Requirements** (from `site-setup.md`):
+**Original Requirements** (спека на старте MVP, не текущий `site-setup.md`):
 
 - Tinder-механика: свайп влево = знаю, вправо = учу
 - Тапы: перевод, TTS, 2 примера, часть речи

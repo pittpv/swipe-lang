@@ -1,4 +1,4 @@
-import { track, captureReferralFromUrl, getStoredReferral, fetchPublicStats, api } from './track.js';
+import { track, captureReferralFromUrl, captureCircleFromUrl, getStoredReferral, takeStoredCircleCode, fetchPublicStats, api } from './track.js';
 import { showAchievements, dismissAchievements, achievementBadge, achievementScope } from './achievements.js';
 import { THEME_CHOICES, getThemePreference, setThemePreference } from './theme.js';
 import {
@@ -36,6 +36,14 @@ export class App {
     /** Explanation under the streak badge while the reset warning is open. */
     this.streakRiskOpen = false;
     this._streakRiskTimer = null;
+    this.circle = null;
+    this.circleSuggestions = [];
+    this.circleLangPair = DEFAULT_LANG_PAIR;
+    this.circleLoading = false;
+    this.circleError = '';
+    this.circleName = '';
+    this.circleCode = '';
+    this.circleCopied = false;
     this.error = '';
     this.authMode = 'login';
     this.email = '';
@@ -46,6 +54,8 @@ export class App {
     this.cards = [];
     this.cardIndex = 0;
     this.sessionId = null;
+    /** 'circle' when the deck came from a study circle, so summary returns there. */
+    this.sessionSource = null;
     this.summary = null;
     this.stats = null;
     this.overlayWord = null;
@@ -108,6 +118,7 @@ export class App {
 
   async init() {
     captureReferralFromUrl();
+    captureCircleFromUrl();
     splashProgress(58);
     try {
       this.publicStats = await fetchPublicStats();
@@ -133,6 +144,7 @@ export class App {
     splashProgress(94);
     this.changelogUnseen = hasUnseenChangelog();
     this.consumeOpenView();
+    if (this.view === 'home') await this.maybeJoinStoredCircle();
     this.render();
     this.armGesturePushHeal();
     this.initVersionWatch();
@@ -382,8 +394,9 @@ export class App {
     this.render();
     this.armGesturePushHeal();
     void this.loadUserExtras()
+      .then(() => this.maybeJoinStoredCircle())
       .then(() => {
-        if (this.view === 'home') this.render();
+        if (this.view === 'home' || this.view === 'circle') this.render();
       })
       .catch(() => {});
   }
@@ -444,6 +457,7 @@ export class App {
 
   async startSession() {
     this.pendingAchievements = null;
+    this.sessionSource = null;
     dismissAchievements();
     try {
       const data = await api('/session/start', { method: 'POST' });
@@ -471,6 +485,198 @@ export class App {
       this.error = e.message;
     }
     this.render();
+  }
+
+  applyCircle(data) {
+    this.circle = data?.circle ?? null;
+    this.circleSuggestions = data?.suggestions ?? [];
+    if (data?.langPair) this.circleLangPair = data.langPair;
+  }
+
+  async maybeJoinStoredCircle() {
+    const code = takeStoredCircleCode();
+    if (!code || !this.user || this.user.needsOnboarding) return;
+    this.view = 'circle';
+    this.circleLoading = true;
+    this.circleError = '';
+    try {
+      this.applyCircle(await api('/circles/join', { method: 'POST', body: { code } }));
+      track('circle_join');
+    } catch (e) {
+      this.circleError = e.message;
+      try {
+        this.applyCircle(await api('/circles'));
+      } catch {
+        /* keep the join error */
+      }
+    }
+    this.circleLoading = false;
+  }
+
+  async openCircle() {
+    this.circleError = '';
+    this.circleCopied = false;
+    this.circleLoading = true;
+    this.sessionSource = null;
+    this.setView('circle');
+    try {
+      this.applyCircle(await api('/circles'));
+    } catch (e) {
+      this.circleError = e.message;
+    }
+    this.circleLoading = false;
+    if (this.view === 'circle') this.render();
+  }
+
+  async createCircle() {
+    const name = String(this.circleName ?? '').trim();
+    if (name.length < 2) {
+      this.circleError = 'Название — от 2 символов';
+      this.render();
+      return;
+    }
+    this.circleError = '';
+    try {
+      this.applyCircle(await api('/circles', { method: 'POST', body: { name } }));
+      this.circleName = '';
+      track('circle_create');
+    } catch (e) {
+      this.circleError = e.message;
+    }
+    this.render();
+  }
+
+  async joinCircle(circleId, code) {
+    if (code != null && !String(code).trim()) {
+      this.circleError = 'Введите код';
+      this.render();
+      return;
+    }
+    this.circleError = '';
+    try {
+      const body = code ? { code } : { circleId: Number(circleId) };
+      this.applyCircle(await api('/circles/join', { method: 'POST', body }));
+      this.circleCode = '';
+      track('circle_join');
+    } catch (e) {
+      this.circleError = e.message;
+    }
+    this.render();
+  }
+
+  async leaveCircle() {
+    if (!confirm('Выйти из кружка?')) return;
+    this.circleError = '';
+    try {
+      this.applyCircle(await api('/circles/leave', { method: 'POST', body: {} }));
+    } catch (e) {
+      this.circleError = e.message;
+    }
+    this.render();
+  }
+
+  async copyCircleLink() {
+    const link = this.circle?.inviteLink;
+    if (!link || !navigator.clipboard?.writeText) return;
+    try {
+      await navigator.clipboard.writeText(link);
+    } catch {
+      this.circleError = 'Не удалось скопировать ссылку';
+      this.render();
+      return;
+    }
+    this.circleCopied = true;
+    clearTimeout(this.circleCopiedTimer);
+    this.circleCopiedTimer = setTimeout(() => {
+      this.circleCopied = false;
+      this.circleCopiedTimer = null;
+      if (this.view === 'circle') this.render();
+    }, 1000);
+    this.render();
+  }
+
+  async startCircleSession() {
+    this.pendingAchievements = null;
+    dismissAchievements();
+    this.circleError = '';
+    try {
+      const data = await api('/circles/session', { method: 'POST' });
+      if (!data.cards?.length) {
+        this.circleError = 'Общих слов пока нет';
+        this.view = 'circle';
+        this.render();
+        return;
+      }
+      this.sessionSource = 'circle';
+      this.sessionId = data.sessionId;
+      this.cards = data.cards;
+      this.cardIndex = 0;
+      this.summary = null;
+      this.awaitingNext = false;
+      this.levelOffer = null;
+      this.view = 'session';
+      track('session_start');
+    } catch (e) {
+      this.sessionSource = null;
+      this.circleError = e.message;
+      this.view = 'circle';
+    }
+    this.render();
+  }
+
+  renderCircleMember() {
+    const circle = this.circle;
+    const words = circle.sharedPreview ?? [];
+    return `
+      <section class="circle-card">
+        <h2>${esc(circle.name)}</h2>
+        <p class="referral-muted">${circle.memberCount} из ${circle.maxMembers}</p>
+        <ul class="circle-members">
+          ${circle.members.map((member) => `<li>${esc(member.name)}</li>`).join('')}
+        </ul>
+        <p class="circle-shared">${circle.sharedCount ? `${circle.sharedCount} общих слов` : 'Общих слов пока нет'}</p>
+        <p class="settings-hint">${circle.sharedCount
+          ? 'Это слова, которые уже отмечены у каждого участника с непустой колодой.'
+          : 'Пересечение появится, когда в кружке будут двое с отмеченными словами.'}</p>
+        ${words.length ? `<ul class="circle-words">${words.map((word) => `<li><strong>${esc(word.lemma)}</strong><span>${esc(word.translation)}</span></li>`).join('')}</ul>` : ''}
+        <button type="button" class="btn btn-primary" data-action="start-circle"${circle.canStart ? '' : ' disabled'}>Сессия по общим словам</button>
+        <button type="button" class="btn btn-ghost btn-ghost-border" data-action="copy-circle">${this.circleCopied ? 'Ссылка скопирована' : 'Скопировать приглашение'}</button>
+        <button type="button" class="btn btn-danger" data-action="leave-circle">Выйти из кружка</button>
+      </section>`;
+  }
+
+  renderCircleLobby() {
+    const suggestions = this.circleSuggestions ?? [];
+    return `
+      <section class="circle-card">
+        <p>Кружок собирает людей с тем же языком и похожим словарём. Общая сессия идёт по словам, которые уже есть у каждого.</p>
+        <form class="card-form">
+          <label>Новый кружок
+            <input name="circleName" maxlength="40" placeholder="Название" value="${esc(this.circleName)}" autocomplete="off">
+          </label>
+          <button type="button" class="btn btn-primary" data-action="create-circle">Создать</button>
+        </form>
+        <form class="card-form">
+          <label>Код приглашения
+            <input name="circleCode" maxlength="16" placeholder="код из ссылки" value="${esc(this.circleCode)}" autocomplete="off" autocapitalize="off" spellcheck="false">
+          </label>
+          <button type="button" class="btn btn-ghost btn-ghost-border" data-action="join-code">Войти по коду</button>
+        </form>
+      </section>
+      ${suggestions.length ? `
+        <section class="circle-card">
+          <h2>Похожий словарь</h2>
+          <ul class="circle-suggest">
+            ${suggestions.map((row) => `
+              <li>
+                <div>
+                  <strong>${esc(row.name)}</strong>
+                  <span>${row.overlapCount} общих · ${row.overlapPct}% · ${row.memberCount} из ${row.maxMembers}</span>
+                </div>
+                <button type="button" class="btn btn-primary" data-action="join-circle" data-circle-id="${row.id}">Войти</button>
+              </li>`).join('')}
+          </ul>
+        </section>` : '<p class="settings-hint">Подбор появится, когда ваши слова пересекутся с чужим кружком этого языка. Можно создать свой и отправить ссылку.</p>'}`;
   }
 
   async acceptLevelUp() {
@@ -1141,6 +1347,11 @@ export class App {
     this.cardEnter = false;
     this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
     this.endPointerTracking();
+    if (this.sessionSource === 'circle') {
+      this.sessionSource = null;
+      this.openCircle();
+      return;
+    }
     this.setView('home');
   }
 
@@ -1454,7 +1665,7 @@ export class App {
   onSummaryPointerUp(e) {
     if ((this.view !== 'summary' && this.view !== 'level-up') || this._summaryTapHandled) return;
     if (e.pointerType === 'mouse' && e.button !== 0) return;
-    const t = e.target.closest('[data-action="home"], [data-action="start"], [data-action="level-up"], [data-action="dismiss-level-up"]');
+    const t = e.target.closest('[data-action="home"], [data-action="start"], [data-action="start-circle"], [data-action="open-circle"], [data-action="level-up"], [data-action="dismiss-level-up"]');
     if (!t) return;
     this._summaryTapHandled = true;
     this._suppressClickUntil = Date.now() + 450;
@@ -1472,8 +1683,10 @@ export class App {
       this._summaryTapHandled = false;
     }, 450);
     if (t.dataset.action === 'home') this.setView('home');
+    else if (t.dataset.action === 'open-circle') this.openCircle();
     else if (t.dataset.action === 'level-up') this.acceptLevelUp();
     else if (t.dataset.action === 'dismiss-level-up') this.dismissLevelUp();
+    else if (t.dataset.action === 'start-circle') this.startCircleSession();
     else this.startSession();
   }
 
@@ -1503,7 +1716,7 @@ export class App {
       }
       const action = t.dataset.action;
       // Already handled in onSummaryPointerUp (iOS post-swipe path).
-      if (this._summaryTapHandled && (action === 'home' || action === 'start' || action === 'level-up' || action === 'dismiss-level-up')) return;
+      if (this._summaryTapHandled && (action === 'home' || action === 'start' || action === 'start-circle' || action === 'open-circle' || action === 'level-up' || action === 'dismiss-level-up')) return;
       if (action === 'show-login') {
         this.authMode = 'login';
         this.setView('auth');
@@ -1521,6 +1734,13 @@ export class App {
       if (action === 'register') this.register();
       if (action === 'onboarding') this.saveOnboarding();
       if (action === 'start') this.startSession();
+      if (action === 'start-circle') this.startCircleSession();
+      if (action === 'open-circle') this.openCircle();
+      if (action === 'create-circle') this.createCircle();
+      if (action === 'join-circle') this.joinCircle(t.dataset.circleId);
+      if (action === 'join-code') this.joinCircle(null, this.circleCode);
+      if (action === 'leave-circle') this.leaveCircle();
+      if (action === 'copy-circle') this.copyCircleLink();
       if (action === 'level-up') this.acceptLevelUp();
       if (action === 'dismiss-level-up') this.dismissLevelUp();
       if (action === 'stats') this.loadStats();
@@ -1775,6 +1995,7 @@ export class App {
             </button>
             <nav class="home-nav" aria-label="Кабинет">
               <button type="button" class="btn btn-ghost" data-action="stats">Статистика</button>
+              <button type="button" class="btn btn-ghost" data-action="open-circle">Кружок</button>
               <button type="button" class="btn btn-ghost" data-action="settings">Настройки</button>
             </nav>
           </div>
@@ -1790,7 +2011,13 @@ export class App {
           <p class="home-support">
             <a href="${SUPPORT_TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Группа поддержки в Telegram</a>
           </p>
-        </div>`;
+          </div>`;
+    } else if (v === 'circle') {
+      const langLabel = LANG_PAIR_META[normalizeLangPair(this.circleLangPair || this.langPair)].label;
+      html += `
+        ${pageBar({ title: 'Кружок', subtitle: esc(langLabel), backAction: 'home' })}
+        ${this.circleError ? `<p class="error">${esc(this.circleError)}</p>` : ''}
+        ${this.circleLoading ? '<p class="settings-hint">Загружаю кружок…</p>' : this.circle ? this.renderCircleMember() : this.renderCircleLobby()}`;
     } else if (v === 'session') {
       const card = this.currentCard();
       const progressNum = this.awaitingNext
@@ -1868,8 +2095,8 @@ export class App {
               <p class="level-up-text">Вы отметили «Знаю» все слова до C1. Можно повторять due-карточки.</p>
             </div>` : ''}
             <div class="screen-actions">
-              ${!offerUp ? '<button class="btn btn-primary" data-action="start">Ещё сессия</button>' : ''}
-              <button class="btn btn-ghost" data-action="home">На главную</button>
+              ${!offerUp ? `<button class="btn btn-primary" data-action="${this.sessionSource === 'circle' ? 'start-circle' : 'start'}">${this.sessionSource === 'circle' ? 'Ещё общие слова' : 'Ещё сессия'}</button>` : ''}
+              <button class="btn btn-ghost" data-action="${this.sessionSource === 'circle' ? 'open-circle' : 'home'}">${this.sessionSource === 'circle' ? 'В кружок' : 'На главную'}</button>
             </div>
           </div>
         </div>`;

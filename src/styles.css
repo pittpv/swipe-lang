@@ -221,8 +221,13 @@ body {
 
 .home-nav {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5rem;
+}
+
+.home-nav .btn {
+  padding: 0.75rem 0.35rem;
+  font-size: 0.85rem;
 }
 
 .home-nav .btn-ghost,
@@ -2028,6 +2033,66 @@ button.streak-badge {
 .btn-danger {
   background: transparent;
   color: var(--color-danger);
+}
+
+.circle-card {
+  margin-top: 0.75rem;
+  padding: 1.15rem;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.circle-card h2,
+.circle-card p {
+  margin: 0;
+}
+
+.circle-card .btn {
+  width: 100%;
+}
+
+.circle-members,
+.circle-words,
+.circle-suggest {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.circle-members li,
+.circle-words li,
+.circle-suggest li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.circle-words li span,
+.circle-suggest li span,
+.circle-shared {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.circle-suggest li .btn {
+  width: auto;
+  flex-shrink: 0;
+  padding: 0.55rem 0.8rem;
+}
+
+.circle-suggest li div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
 }
 
 .app-version {

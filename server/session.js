@@ -101,7 +101,7 @@ function formatExamples(raw) {
     .filter(Boolean);
 }
 
-function formatWord(row) {
+export function formatWord(row) {
   const examples = formatExamples(row.examples);
   const forms = row.pos === 'verb' ? parseJsonArray(row.forms) : [];
   return {

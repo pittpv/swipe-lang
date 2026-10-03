@@ -1,7 +1,9 @@
 import { userLangPair } from './lang-pairs.js';
+import { removeUserFromCircles } from './circles.js';
 
-/** Removes a user and their progress, sessions, and analytics. Mutates db.data. */
+/** Removes a user and their progress, sessions, analytics, and circle membership. Mutates db.data. */
 export function purgeUserRecords(db, userId) {
+  removeUserFromCircles(db, userId);
   db.data.user_word_progress = (db.data.user_word_progress ?? []).filter((p) => p.user_id !== userId);
   db.data.study_sessions = (db.data.study_sessions ?? []).filter((s) => s.user_id !== userId);
   if (Array.isArray(db.data.analytics)) {
