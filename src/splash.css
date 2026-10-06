@@ -9,6 +9,11 @@ html.is-booting body {
   overflow: hidden;
 }
 
+/* The cabinet is painted underneath. Keep it invisible until the splash is gone. */
+html.is-booting #app {
+  visibility: hidden;
+}
+
 .app-splash {
   position: fixed;
   inset: 0;
@@ -141,8 +146,14 @@ html.is-booting body {
 
 .app-splash.is-leaving {
   pointer-events: none;
+  /* Fade the mark only. The plate stays opaque so the home screen cannot show through. */
+  animation: none;
+  background: var(--color-bg, #f4f7f5);
+}
+
+.app-splash.is-leaving .splash-stage,
+.app-splash.is-leaving .splash-pct {
   animation: splashLeave 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
-  will-change: transform, opacity;
 }
 
 .app-splash.is-leaving .splash-mark {

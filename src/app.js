@@ -147,25 +147,17 @@ export class App {
     if (this.user?.langPair) this.langPair = normalizeLangPair(this.user.langPair);
     this.cefrLevel = clampCefrToPair(this.cefrLevel, this.langPair);
     if (this.user?.name) this.name = this.user.name;
-    if (this.view === 'landing') {
-      track('landing_view');
-      await statsPromise;
-    } else {
-      void statsPromise.then(() => {
-        if (this.view !== 'home') return;
-        const facts = this.root.querySelector('.home-deck-facts');
-        if (facts) facts.textContent = `${this.publicStats.sessionSize ?? 18} слов`;
-      });
-    }
-    if (this.user?.id) {
-      void this.loadUserExtras().then(() => {
-        if (this.view === 'home') this.render();
-      });
-    }
-    splashProgress(94);
+    if (this.view === 'landing') track('landing_view');
+    splashProgress(88);
     this.changelogUnseen = hasUnseenChangelog();
     this.consumeOpenView();
     if (this.view === 'home') await this.maybeJoinStoredCircle();
+    if (this.view === 'landing') {
+      await statsPromise;
+    } else if (this.user?.id && this.view === 'home') {
+      await Promise.all([statsPromise, this.loadUserExtras()]);
+    }
+    splashProgress(94);
     this.render();
     this.armGesturePushHeal();
     this.initVersionWatch();
@@ -446,17 +438,17 @@ export class App {
     }
   }
 
-  enterHomeAfterOnboarding() {
+  async enterHomeAfterOnboarding() {
     this._onboardingBusy = false;
     this.view = 'home';
-    this.render();
+    try {
+      await this.loadUserExtras();
+      await this.maybeJoinStoredCircle();
+    } catch {
+      /* home still opens without the invite row */
+    }
+    if (this.view === 'home' || this.view === 'circle') this.render();
     this.armGesturePushHeal();
-    void this.loadUserExtras()
-      .then(() => this.maybeJoinStoredCircle())
-      .then(() => {
-        if (this.view === 'home' || this.view === 'circle') this.render();
-      })
-      .catch(() => {});
   }
 
   /** iOS PWAs often kill the in-flight /onboarding response; reopen should not stay on the skeleton. */
@@ -761,7 +753,7 @@ export class App {
       </section>` : ''}
       <section class="circle-card">
         <h2 class="circle-kicker">Участники</h2>
-        <ul class="circle-people">
+        <ul class="circle-people circle-ranks">
           ${renderRankItems(circle.members)}
         </ul>
       </section>
@@ -2407,6 +2399,7 @@ export class App {
               <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
               <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
             </div>
+            <p class="summary-rhythm summary-rhythm-skeleton" aria-hidden="true"><span class="skeleton-bone skeleton-summary-rhythm"></span></p>
             <div class="screen-actions">
               <div class="skeleton-bone skeleton-summary-btn"></div>
               <div class="skeleton-bone skeleton-summary-btn ghost"></div>
@@ -2612,7 +2605,7 @@ export class App {
           ${renderPinnedRank(this.ranks?.me)}
           ${rows.length ? `
             <section class="circle-card">
-              <ul class="circle-people">${renderRankItems(rows)}</ul>
+              <ul class="circle-people circle-ranks">${renderRankItems(rows)}</ul>
             </section>` : ''}
           ${rows.length || this.ranksError ? '' : '<p class="circle-lead">Рейтинг появится, когда на этой неделе кто-то закроет сессию.</p>'}
         </div>`;
@@ -3078,8 +3071,7 @@ function renderRankItems(rows) {
   return (rows ?? []).map((row) => `
     <li class="${row.you ? 'is-you' : ''}">
       <div class="circle-person">
-        <strong>${row.place ? `<span class="rank-place">${row.place}</span>` : ''}${esc(row.name)}</strong>
-        ${row.you ? '<span>Это вы</span>' : ''}
+        <strong class="circle-person-line">${row.place ? `<span class="rank-place">${row.place}</span>` : ''}<span class="circle-person-name">${esc(row.name)}</span>${row.you ? '<span class="you-tag">Это вы</span>' : ''}</strong>
       </div>
       <span class="rank-score">${esc(rankScoreLabel(row))}</span>
     </li>`).join('');
@@ -3089,7 +3081,7 @@ function renderPinnedRank(me) {
   if (!me?.pinned) return '';
   return `
     <section class="circle-card">
-      <ul class="circle-people">${renderRankItems([{ ...me, you: true }])}</ul>
+      <ul class="circle-people circle-ranks">${renderRankItems([{ ...me, you: true }])}</ul>
     </section>`;
 }
 

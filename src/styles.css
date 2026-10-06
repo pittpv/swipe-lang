@@ -551,12 +551,14 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid var(--color-border);
   border-radius: 12px;
   font: inherit;
+  font-size: 1rem;
   color: var(--color-text);
   background: var(--color-bg);
   color-scheme: inherit;
@@ -1309,11 +1311,30 @@ button.streak-badge {
   line-height: 1.45;
 }
 
+.summary-card .stat-grid:has(+ .summary-rhythm) {
+  margin-bottom: 0;
+}
+
 .summary-rhythm {
-  margin: 0.85rem 0 0;
+  margin: 1.5rem 0 0;
   color: var(--color-text);
   font-size: 0.95rem;
   line-height: 1.45;
+}
+
+.summary-card .summary-rhythm + .screen-actions,
+.summary-card .summary-rhythm + .level-up-banner {
+  margin-top: 1.5rem;
+}
+
+.summary-rhythm-skeleton {
+  display: flex;
+  justify-content: center;
+}
+
+.skeleton-summary-rhythm {
+  width: min(86%, 16.5rem);
+  height: calc(0.95rem * 1.45);
 }
 
 .stat-grid {
@@ -2208,10 +2229,35 @@ button.streak-badge {
   gap: 0.15rem;
 }
 
+.circle-person-line {
+  display: flex;
+  align-items: baseline;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.circle-person .circle-person-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: inherit;
+  font-size: inherit;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
 .circle-person span {
   color: var(--color-muted);
   font-size: 0.8rem;
   line-height: 1.35;
+}
+
+.circle-person .you-tag {
+  flex-shrink: 0;
+  margin-left: 0.45rem;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .circle-people .btn {
@@ -2221,15 +2267,39 @@ button.streak-badge {
   font-size: 0.875rem;
 }
 
+.circle-ranks li {
+  position: relative;
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+  border-top: 0;
+}
+
+.circle-ranks li + li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 1px;
+  background: var(--color-border);
+}
+
 .circle-people li.is-you {
   background: color-mix(in srgb, var(--color-primary) 14%, transparent);
   border-radius: 12px;
-  padding-left: 0.65rem;
-  padding-right: 0.65rem;
+}
+
+.circle-people li.is-you:first-child {
+  padding-top: 0.6rem;
+}
+
+.circle-people li.is-you:last-child {
+  padding-bottom: 0.6rem;
 }
 
 .rank-place {
   display: inline-block;
+  flex-shrink: 0;
   min-width: 1.15rem;
   margin-right: 0.35rem;
   color: var(--color-muted);
