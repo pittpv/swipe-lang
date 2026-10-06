@@ -3,6 +3,20 @@ import { userLangPair, wordLangPair } from './lang-pairs.js';
 /** Minimum gap between swipes that count toward the weekly rating. */
 export const RATING_SWIPE_GAP_MS = 1000;
 
+/**
+ * Gesture time from the client, when it is close to the server clock.
+ * A queued swipe can arrive late; the gap should follow the finger, not the queue.
+ * Times far in the future or older than two minutes fall back to the server clock.
+ */
+export function swipeInstant(clientIso, now = new Date()) {
+  const nowMs = now.getTime();
+  const clientMs = Date.parse(clientIso ?? '');
+  if (!Number.isFinite(clientMs)) return now;
+  if (clientMs > nowMs + 2000) return now;
+  if (nowMs - clientMs > 120000) return now;
+  return new Date(clientMs);
+}
+
 const WEEKDAY_LABELS = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 
 export function utcDay(now = new Date()) {

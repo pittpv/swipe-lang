@@ -5,6 +5,7 @@ import {
   languageBoard,
   noteRatingSwipe,
   ratingDeckMeta,
+  swipeInstant,
   settleSession,
   weekDates,
   weekSummary,
@@ -40,6 +41,15 @@ test('deck meta marks due reviews and same-day returns', () => {
     { id: 3, due: false, scheduled: false, interval: 6 },
     { id: 4, due: false, scheduled: false, interval: 0 },
   ]);
+});
+
+test('swipe instant keeps a recent client time', () => {
+  const now = new Date('2026-10-06T12:00:00.000Z');
+  assert.equal(swipeInstant('2026-10-06T11:59:58.500Z', now).toISOString(), '2026-10-06T11:59:58.500Z');
+  assert.equal(swipeInstant('2026-10-06T12:00:01.000Z', now).toISOString(), '2026-10-06T12:00:01.000Z');
+  assert.equal(swipeInstant('2026-10-06T12:00:05.000Z', now).getTime(), now.getTime());
+  assert.equal(swipeInstant('2026-10-06T11:57:00.000Z', now).getTime(), now.getTime());
+  assert.equal(swipeInstant('nope', now).getTime(), now.getTime());
 });
 
 test('rating swipes ignore words outside the deck and gaps under a second', () => {

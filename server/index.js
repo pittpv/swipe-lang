@@ -56,6 +56,7 @@ import {
   languageBoard,
   noteRatingSwipe,
   ratingDeckMeta,
+  swipeInstant,
   settleSession,
   weekPayload,
 } from './rating.js';
@@ -680,9 +681,13 @@ app.post('/api/session/swipe', requireAuth, async (req, res) => {
   if (!wordId || !['left', 'right'].includes(direction)) {
     return res.status(400).json({ error: 'wordId and direction (left|right) required' });
   }
-  await db.reload();
   const userId = req.session.userId;
-  const swipedAt = new Date();
+  const requestedId = Number(req.body?.sessionId);
+  const sessionId =
+    Number.isInteger(requestedId) && requestedId > 0 ? requestedId : req.session.activeSessionId;
+  const recordedAt = new Date();
+  const ratedAt = swipeInstant(req.body?.swipedAt, recordedAt);
+  // No reload up front: transact writes once and re-reads only after a conflict.
   const updated = await db.transact(() => {
     const existing = db.data.user_word_progress.find(
       (p) => p.user_id === userId && p.word_id === wordId,
@@ -695,7 +700,7 @@ app.post('/api/session/swipe', requireAuth, async (req, res) => {
         interval_days: next.interval_days,
         repetitions: next.repetitions,
         next_review_at: next.next_review_at,
-        updated_at: swipedAt.toISOString(),
+        updated_at: recordedAt.toISOString(),
       });
     } else {
       db.data.user_word_progress.push({
@@ -703,17 +708,17 @@ app.post('/api/session/swipe', requireAuth, async (req, res) => {
         user_id: userId,
         word_id: wordId,
         ...next,
-        updated_at: swipedAt.toISOString(),
+        updated_at: recordedAt.toISOString(),
       });
     }
     const sessionRow = db.data.study_sessions.find(
-      (row) => row.id === req.session.activeSessionId && row.user_id === userId && !row.ended_at,
+      (row) => row.id === sessionId && row.user_id === userId && !row.ended_at,
     );
-    if (sessionRow) noteRatingSwipe(sessionRow, wordId, swipedAt);
+    if (sessionRow) noteRatingSwipe(sessionRow, wordId, ratedAt);
     return next;
   });
 
-  if (req.session.sessionStats) {
+  if (req.session.sessionStats && sessionId === req.session.activeSessionId) {
     req.session.sessionStats.reviewed += 1;
     if (direction === 'right') req.session.sessionStats.learned += 1;
     setSessionCookie(res, req.session);

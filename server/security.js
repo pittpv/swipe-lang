@@ -17,14 +17,13 @@ export function resolveSessionSecret() {
 }
 
 // Strict CSP — no unsafe-inline scripts. App JS is bundled by Vite; admin lives
-// in /admin/dashboard.js. The homepage Metrika snippet is allowlisted by sha256
-// (update the hash if src/index.html counter code changes). Other pages load
-// /yandex-metrika.js from 'self'. tag.js / pixel / webvisor talk to Yandex.
+// in /admin/dashboard.js. Metrika loads from /yandex-metrika.js. tag.js, the
+// pixel, and webvisor talk to Yandex. Fonts are self-hosted under /fonts.
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'sha256-nDNoLMVOsmiRrx2XRf/vA2U3r7iab/wgBGVmSVkn0gc=' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "font-src 'self' https://fonts.gstatic.com",
+  "script-src 'self' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net",
+  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self'",
   "img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com https://*.mc.yandex.ru",
   "connect-src 'self' https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com https://mc.webvisor.com https://mc.webvisor.org",
   "frame-src 'self' blob: https://mc.yandex.ru https://mc.yandex.com https://mc.webvisor.com https://mc.webvisor.org",

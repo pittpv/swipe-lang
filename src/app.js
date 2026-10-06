@@ -119,18 +119,23 @@ export class App {
     this._suppressClickUntil = 0;
     /** @type {Map<string, HTMLAudioElement>} cached pronunciation clips */
     this.audioCache = new Map();
+    /** Serial swipe saves so session counts stay in order. The card does not wait on this. */
+    this._swipeChain = Promise.resolve();
+    this._swipeHalted = false;
+    this._swipeFailure = null;
+    this._deckPrefetch = null;
+    this._deckGen = 0;
   }
 
   async init() {
     captureReferralFromUrl();
     captureCircleFromUrl();
     splashProgress(58);
-    try {
-      this.publicStats = await fetchPublicStats();
-    } catch {
-      /* use defaults */
-    }
-    splashProgress(70);
+    const statsPromise = fetchPublicStats()
+      .then((stats) => {
+        this.publicStats = stats;
+      })
+      .catch(() => {});
     try {
       this.user = await api('/auth/me');
       this.view = this.user.needsOnboarding ? 'onboarding' : 'home';
@@ -142,9 +147,20 @@ export class App {
     if (this.user?.langPair) this.langPair = normalizeLangPair(this.user.langPair);
     this.cefrLevel = clampCefrToPair(this.cefrLevel, this.langPair);
     if (this.user?.name) this.name = this.user.name;
-    if (this.view === 'landing') track('landing_view');
+    if (this.view === 'landing') {
+      track('landing_view');
+      await statsPromise;
+    } else {
+      void statsPromise.then(() => {
+        if (this.view !== 'home') return;
+        const facts = this.root.querySelector('.home-deck-facts');
+        if (facts) facts.textContent = `${this.publicStats.sessionSize ?? 18} слов`;
+      });
+    }
     if (this.user?.id) {
-      await this.loadUserExtras();
+      void this.loadUserExtras().then(() => {
+        if (this.view === 'home') this.render();
+      });
     }
     splashProgress(94);
     this.changelogUnseen = hasUnseenChangelog();
@@ -501,8 +517,10 @@ export class App {
     this.pendingAchievements = null;
     this.sessionSource = null;
     dismissAchievements();
+    this._swipeHalted = false;
+    this._swipeFailure = null;
     try {
-      const data = await api('/session/start', { method: 'POST' });
+      const data = await this.takePrefetchedDeck();
       if (!data.cards?.length) {
         if (data.levelComplete) {
           this.levelOffer = data.levelProgress;
@@ -671,6 +689,13 @@ export class App {
     this.pendingAchievements = null;
     dismissAchievements();
     this.circleError = '';
+    this._swipeHalted = false;
+    this._swipeFailure = null;
+    this._deckGen += 1;
+    const pendingDeck = this._deckPrefetch;
+    this._deckPrefetch = null;
+    await this._swipeChain;
+    if (pendingDeck) await pendingDeck.promise.catch(() => {});
     try {
       const data = await api('/circles/session', { method: 'POST' });
       if (!data.cards?.length) {
@@ -911,6 +936,7 @@ export class App {
   /**
    * Animates the current card flying out in the swipe direction.
    * Resolves on transitionend (or a timeout fallback).
+   * The entrance animation is cleared first so it cannot fight the exit transform.
    */
   flyCardOut(direction, fromX = 0, fromY = 0) {
     return new Promise((resolve) => {
@@ -921,72 +947,114 @@ export class App {
       // transform interpolates smoothly from the current drag position (a
       // percentage-based target made the card jump on release).
       const exitX = off * (Math.abs(fromX) + Math.max(window.innerWidth * 0.6, 320));
+      el.classList.remove('card-enter');
+      el.style.animation = 'none';
       el.style.pointerEvents = 'none';
       el.style.transition = 'transform 0.28s ease-in, opacity 0.28s ease-in';
       el.style.transform = `translate(${exitX}px, ${fromY}px) rotate(${off * 22}deg)`;
       el.style.opacity = '0';
       let done = false;
+      const started = performance.now();
       const finish = () => {
         if (!done) {
           done = true;
           resolve();
         }
       };
-      el.addEventListener('transitionend', finish, { once: true });
+      const onEnd = (event) => {
+        if (event.target !== el || event.propertyName !== 'transform') return;
+        if (performance.now() - started < 40) return;
+        el.removeEventListener('transitionend', onEnd);
+        finish();
+      };
+      el.addEventListener('transitionend', onEnd);
       setTimeout(finish, 340);
     });
   }
 
+  enqueueSwipe(wordId, direction) {
+    const swipedAt = new Date().toISOString();
+    const sessionId = this.sessionId;
+    this._swipeChain = this._swipeChain.then(async () => {
+      if (this._swipeHalted) return;
+      try {
+        await api('/session/swipe', {
+          method: 'POST',
+          body: { wordId, direction, swipedAt, sessionId },
+        });
+      } catch (error) {
+        this._swipeHalted = true;
+        this._swipeFailure = { wordId, error };
+        if (!this.swiping) this.applySwipeFailure();
+      }
+    });
+  }
+
+  applySwipeFailure() {
+    const failure = this._swipeFailure;
+    if (!failure || failure.applied) return;
+    failure.applied = true;
+    const index = this.cards.findIndex((card) => card.id === failure.wordId);
+    this.error = failure.error?.message || 'Не удалось сохранить свайп';
+    if (index >= 0) this.cardIndex = index;
+    this.view = 'session';
+    this.swiping = false;
+    this.awaitingNext = false;
+    this.cardEnter = false;
+    this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
+    this.endPointerTracking();
+    this.render();
+  }
+
+  /** Swap the word card in place so the header and buttons do not remount. */
+  presentNextCard() {
+    const deck = this.root.querySelector('#deck');
+    const card = this.currentCard();
+    if (!deck || this.overlayWord || this.view !== 'session' || !card) {
+      this.render();
+      return;
+    }
+    const progress = this.root.querySelector('.session-header .progress');
+    if (progress) progress.textContent = `${this.cardIndex + 1} / ${this.cards.length}`;
+    deck.innerHTML = sessionCardHtml(card, true);
+    deck.querySelector('#active-card')?.addEventListener('pointerdown', (e) => this.onPointerDown(e));
+    this.cardEnter = false;
+    this.prefetchUpcomingAudio();
+  }
+
   async swipe(direction, from = { x: 0, y: 0 }) {
     const card = this.currentCard();
-    if (!card || this.swiping) return;
+    if (!card || this.swiping || this._swipeHalted || this.view !== 'session') return;
     this.swiping = true;
     this.awaitingNext = false;
     this.drag.active = false;
     this.drag.pointerId = null;
     this.endPointerTracking();
     track(direction === 'left' ? 'swipe_left' : 'swipe_right');
+    const wordId = card.id;
     const isLast = this.cardIndex >= this.cards.length - 1;
-    // Fly away while the request is in flight — no dead waiting time.
-    const flight = this.flyCardOut(direction, from.x, from.y);
-    const request = api('/session/swipe', { method: 'POST', body: { wordId: card.id, direction } });
-    // If the network outlasts the exit animation, fill the gap with a skeleton
-    // (or the wrapping screen on the final card).
-    let swipeSettled = false;
-    flight.then(() => {
-      if (swipeSettled || !this.swiping) return;
-      if (isLast) {
-        this.view = 'session-wrapping';
-        this.render();
-      } else {
-        this.awaitingNext = true;
-        this.render();
-      }
-    });
-    try {
-      await request;
-    } catch (e) {
-      swipeSettled = true;
-      this.error = e.message;
+    this.enqueueSwipe(wordId, direction);
+    await this.flyCardOut(direction, from.x, from.y);
+    if (this._swipeHalted) {
       this.swiping = false;
-      this.awaitingNext = false;
-      this.view = 'session';
-      this.render(); // card comes back on failure
+      this.applySwipeFailure();
       return;
     }
-    swipeSettled = true;
-    await flight;
-    this.awaitingNext = false;
     this.cardIndex += 1;
     this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
     this.cardEnter = true;
-    if (this.cardIndex >= this.cards.length) {
+    if (isLast) {
       this.overlayWord = null;
       this.overlaySection = null;
       this.swiping = false;
       this.view = 'session-wrapping';
       this.render();
       try {
+        await this._swipeChain;
+        if (this._swipeHalted) {
+          this.applySwipeFailure();
+          return;
+        }
         this.summary = await api('/session/complete', { method: 'POST' });
         if (this.user) {
           this.user.streak = this.summary.streak;
@@ -1007,7 +1075,67 @@ export class App {
       return;
     }
     this.swiping = false;
-    this.render();
+    this.presentNextCard();
+  }
+
+  deckCacheKey() {
+    return `${normalizeLangPair(this.langPair)}:${this.cefrLevel}`;
+  }
+
+  scheduleDeckPrefetch() {
+    if (this.view !== 'home' || !this.user || this.user.needsOnboarding) return;
+    if (typeof navigator !== 'undefined' && navigator.onLine === false) return;
+    const key = this.deckCacheKey();
+    if (this._deckPrefetch?.key === key) return;
+    const gen = this._deckGen + 1;
+    this._deckGen = gen;
+    const previous = this._deckPrefetch?.promise || this._swipeChain;
+    const promise = previous.catch(() => {}).then(async () => {
+      if (this._deckGen !== gen || this.deckCacheKey() !== key || this.view !== 'home') {
+        return { ok: false, skipped: true };
+      }
+      try {
+        const data = await api('/session/start', { method: 'POST' });
+        if (this._deckGen !== gen) return { ok: false, skipped: true };
+        return { ok: true, data };
+      } catch (error) {
+        return { ok: false, error };
+      }
+    });
+    this._deckPrefetch = { key, gen, promise };
+  }
+
+  async takePrefetchedDeck() {
+    const key = this.deckCacheKey();
+    const pending = this._deckPrefetch;
+    if (pending?.key === key) {
+      this._deckPrefetch = null;
+      const result = await pending.promise;
+      if (result?.ok && this.deckCacheKey() === key) return result.data;
+    }
+    this._deckGen += 1;
+    this._deckPrefetch = null;
+    await this._swipeChain;
+    return api('/session/start', { method: 'POST' });
+  }
+
+  warmAudio(text, pair) {
+    if (!text) return;
+    const tts = LANG_PAIR_META[normalizeLangPair(pair)].tts;
+    const cacheKey = `${tts}:${text}`;
+    if (this.audioCache.has(cacheKey)) return;
+    const audio = new Audio(`/api/tts?q=${encodeURIComponent(text)}&lang=${encodeURIComponent(tts)}`);
+    audio.preload = 'auto';
+    this.audioCache.set(cacheKey, audio);
+  }
+
+  prefetchUpcomingAudio() {
+    if (this.view !== 'session') return;
+    const pair = normalizeLangPair(this.langPair);
+    const upcoming = [this.currentCard(), this.cards[this.cardIndex + 1]];
+    for (const card of upcoming) {
+      if (card?.lemma) this.warmAudio(card.lemma, card.langPair || pair);
+    }
   }
 
   speak(text) {
@@ -1531,6 +1659,10 @@ export class App {
   }
 
   async logout() {
+    this._deckGen += 1;
+    const pendingDeck = this._deckPrefetch;
+    this._deckPrefetch = null;
+    if (pendingDeck) await pendingDeck.promise.catch(() => {});
     await api('/auth/logout', { method: 'POST' });
     this.cancelPendingReminderSave();
     this.user = null;
@@ -1582,7 +1714,9 @@ export class App {
   onPointerDown(e) {
     if (this.view !== 'session' || this.overlayWord || this.swiping) return;
     if (e.pointerType === 'mouse' && e.button !== 0) return;
-    // Drop a leftover spring-back transition so dragging follows the finger 1:1.
+    // Drop a leftover spring-back or entrance animation so dragging follows the finger 1:1.
+    e.currentTarget.classList.remove('card-enter');
+    e.currentTarget.style.animation = 'none';
     e.currentTarget.style.transition = '';
     this.drag = {
       active: true,
@@ -2245,18 +2379,13 @@ export class App {
           <span class="progress">${progressNum} / ${this.cards.length}</span>
           ${this.streakBadgeHtml(true)}
         </div>
+        ${this.error ? `<p class="error">${esc(this.error)}</p>` : ''}
         <div class="deck-area" id="deck">
           ${this.awaitingNext ? `
           <div class="word-card word-card-skeleton" aria-busy="true" aria-label="Загрузка карточки">
             <div class="skeleton-bone skeleton-lemma"></div>
             <div class="skeleton-bone skeleton-hint"></div>
-          </div>` : card ? `
-          <div class="word-card${this.cardEnter ? ' card-enter' : ''}" data-action="overlay" id="active-card">
-            <span class="swipe-label know">ЗНАЮ</span>
-            <span class="swipe-label learn">УЧУ</span>
-            <p class="lemma">${esc(card.lemma)}</p>
-            <p class="hint">Тап — подробнее · ← знаю · → учу</p>
-          </div>` : ''}
+          </div>` : card ? sessionCardHtml(card, this.cardEnter) : ''}
         </div>
         <div class="swipe-hints">
           <span>← Знаю</span>
@@ -2654,6 +2783,8 @@ export class App {
     this.cardEnter = false;
     this.overlayEnter = false;
     this.bindEvents();
+    if (v === 'home') this.scheduleDeckPrefetch();
+    if (v === 'session' && !this.swiping) this.prefetchUpcomingAudio();
     const card = this.root.querySelector('#active-card');
     if (card) {
       card.addEventListener('pointerdown', (e) => this.onPointerDown(e));
@@ -2745,6 +2876,16 @@ export class App {
       this.refreshStreakRisk();
     }, Math.min(Math.max(1000, delay), cap));
   }
+}
+
+function sessionCardHtml(card, enter) {
+  return `
+    <div class="word-card${enter ? ' card-enter' : ''}" data-action="overlay" id="active-card">
+      <span class="swipe-label know">ЗНАЮ</span>
+      <span class="swipe-label learn">УЧУ</span>
+      <p class="lemma">${esc(card.lemma)}</p>
+      <p class="hint">Тап — подробнее · ← знаю · → учу</p>
+    </div>`;
 }
 
 function esc(s) {

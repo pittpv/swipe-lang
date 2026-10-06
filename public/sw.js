@@ -1,6 +1,7 @@
 /* LangSwipe service worker — Web Push + offline navigation fallback. */
 
 const OFFLINE_CACHE = 'langswipe-offline-v4';
+const STATIC_CACHE = 'langswipe-static-v1';
 /* Phone often stays "online" with no route, and the hung fetch is the blank wait. */
 const FAST_FAIL_MS = 700;
 const PATIENT_MS = 8000;
@@ -23,6 +24,29 @@ function isHtmlNavigation(request) {
     return path === '/' || path === '/index.html' || path.endsWith('.html');
   } catch {
     return false;
+  }
+}
+
+function isStaticAsset(url) {
+  try {
+    const path = new URL(url, self.location.origin).pathname;
+    if (path.startsWith('/assets/')) return true;
+    return path.startsWith('/fonts/') && path.endsWith('.woff2');
+  } catch {
+    return false;
+  }
+}
+
+async function cacheFirstStatic(request) {
+  const cache = await caches.open(STATIC_CACHE);
+  const cached = await cache.match(request);
+  if (cached) return cached;
+  try {
+    const response = await fetch(request);
+    if (response && response.ok) cache.put(request, response.clone()).catch(() => {});
+    return response;
+  } catch {
+    return Response.error();
   }
 }
 
@@ -166,7 +190,11 @@ self.addEventListener('activate', (event) => {
       const keys = await caches.keys();
       await Promise.all(
         keys
-          .filter((key) => key.startsWith('langswipe-offline-') && key !== OFFLINE_CACHE)
+          .filter(
+            (key) =>
+              (key.startsWith('langswipe-offline-') && key !== OFFLINE_CACHE) ||
+              (key.startsWith('langswipe-static-') && key !== STATIC_CACHE),
+          )
           .map((key) => caches.delete(key)),
       );
       if (self.registration.navigationPreload) {
@@ -197,6 +225,11 @@ self.addEventListener('fetch', (event) => {
         return networkOrOffline(request);
       })(),
     );
+    return;
+  }
+
+  if (isStaticAsset(request.url)) {
+    event.respondWith(cacheFirstStatic(request));
     return;
   }
 

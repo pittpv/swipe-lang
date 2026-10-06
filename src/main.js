@@ -4,13 +4,9 @@ import { api, App } from './app.js';
 
 initTheme();
 
-/** Enter + hold before the 400ms exit — total splash ~2.8s on a fast boot. */
-const SPLASH_MIN_MS = 2400;
+/** Long enough to read the mark, then leave as soon as the cabinet is ready. */
+const SPLASH_MIN_MS = 800;
 const SPLASH_LEAVE_FALLBACK_MS = 500;
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(() => {});
-}
 
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;

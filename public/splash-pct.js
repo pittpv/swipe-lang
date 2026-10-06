@@ -66,8 +66,8 @@
       'splash-pct.js',
       'main.js',
       '/assets/',
-      'fonts.googleapis',
-      'fonts.gstatic',
+      'fonts.css',
+      'dm-sans-latin',
     ];
     var hits = 0;
     for (var i = 0; i < keys.length; i++) {
