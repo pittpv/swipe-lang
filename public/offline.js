@@ -10,7 +10,9 @@
   }
 
   function goHome() {
-    location.replace('/');
+    // `online=1` tells the service worker this navigation already passed a
+    // live probe, so it may wait for a slow document instead of failing fast.
+    location.replace('/?online=1');
   }
 
   async function probe(fromUser) {

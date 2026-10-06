@@ -1,7 +1,9 @@
 /* LangSwipe service worker — Web Push + offline navigation fallback. */
 
 const OFFLINE_CACHE = 'langswipe-offline-v4';
-const NETWORK_TIMEOUT_MS = 8000;
+/* Phone often stays "online" with no route, and the hung fetch is the blank wait. */
+const FAST_FAIL_MS = 700;
+const PATIENT_MS = 8000;
 const OFFLINE_URL = '/offline.html';
 const PRECACHE_URLS = [
   OFFLINE_URL,
@@ -87,15 +89,39 @@ async function isUsableDocument(response) {
   }
 }
 
+function isDefinitelyOffline() {
+  const nav = self.navigator;
+  if (!nav) return false;
+  if (nav.onLine === false) return true;
+  const conn = nav.connection;
+  return Boolean(conn && (conn.type === 'none' || conn.downlink === 0));
+}
+
+/** Probe already proved the network; this navigation may take longer. */
+function patientNavigation(url) {
+  try {
+    return new URL(url).searchParams.get('online') === '1';
+  } catch {
+    return false;
+  }
+}
+
+function documentUrl(url) {
+  const target = new URL(url);
+  target.searchParams.delete('online');
+  return target.href;
+}
+
 async function networkOrOffline(request) {
   // A cached index.html (stale-if-error) is still a 200 while the radio is off.
   // Treating that as success loads the app shell without its scripts: a white screen.
-  if (self.navigator && self.navigator.onLine === false) return fromPrecache();
+  const patient = patientNavigation(request.url);
+  if (!patient && isDefinitelyOffline()) return fromPrecache();
 
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), NETWORK_TIMEOUT_MS);
+  const timer = setTimeout(() => controller.abort(), patient ? PATIENT_MS : FAST_FAIL_MS);
   try {
-    const response = await fetch(request.url, {
+    const response = await fetch(documentUrl(request.url), {
       credentials: 'same-origin',
       redirect: 'follow',
       cache: 'no-store',
@@ -164,16 +190,10 @@ self.addEventListener('fetch', (event) => {
   if (isHtmlNavigation(request)) {
     event.respondWith(
       (async () => {
-        // Drain a preload left from the previous worker, but never paint it:
-        // waiting on it while offline hangs the navigation on a blank window.
+        // Don't paint a preload and don't wait on it: an offline preload
+        // hangs the navigation on a blank window.
         const preload = event.preloadResponse;
-        if (preload) {
-          const drain = preload.then(() => {}, () => {});
-          await Promise.race([
-            drain,
-            new Promise((resolve) => setTimeout(resolve, 400)),
-          ]);
-        }
+        if (preload) preload.then(() => {}, () => {});
         return networkOrOffline(request);
       })(),
     );
