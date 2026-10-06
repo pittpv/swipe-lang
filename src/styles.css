@@ -710,14 +710,15 @@ button.streak-badge {
 }
 
 .streak-warn-mark {
-  display: inline-grid;
-  place-items: center;
-  width: 1.15rem;
-  height: 1.15rem;
-  margin-left: -0.2rem;
+  display: inline-block;
+  margin-right: 0.05rem;
+  padding: 0.02rem 0.12rem 0.06rem;
   border-radius: 999px;
   background: var(--color-bg);
-  font-size: 0.8rem;
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', emoji, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  font-variant-emoji: emoji;
   line-height: 1;
 }
 

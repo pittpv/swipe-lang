@@ -23,6 +23,7 @@
         method: 'GET',
         cache: 'no-store',
         credentials: 'same-origin',
+        signal: AbortSignal.timeout(4000),
       });
       if (res.ok) {
         setStatus('Есть сеть, открываю…');
@@ -38,14 +39,12 @@
     }
   }
 
-  const stayOnPage = /\/offline\.html$/i.test(location.pathname);
-
   window.addEventListener('online', () => {
-    if (!stayOnPage) probe(false);
+    probe(false);
   });
 
   document.addEventListener('visibilitychange', () => {
-    if (!stayOnPage && document.visibilityState === 'visible') probe(false);
+    if (document.visibilityState === 'visible') probe(false);
   });
 
   retryBtn?.addEventListener('click', (event) => {
@@ -53,11 +52,9 @@
     probe(true);
   });
 
-  if (!stayOnPage) {
-    setInterval(() => {
-      if (document.visibilityState === 'visible') probe(false);
-    }, 4000);
+  setInterval(() => {
+    if (document.visibilityState === 'visible') probe(false);
+  }, 4000);
 
-    if (navigator.onLine) probe(false);
-  }
+  if (navigator.onLine) probe(false);
 })();

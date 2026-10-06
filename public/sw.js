@@ -1,6 +1,7 @@
 /* LangSwipe service worker — Web Push + offline navigation fallback. */
 
-const OFFLINE_CACHE = 'langswipe-offline-v3';
+const OFFLINE_CACHE = 'langswipe-offline-v4';
+const NETWORK_TIMEOUT_MS = 8000;
 const OFFLINE_URL = '/offline.html';
 const PRECACHE_URLS = [
   OFFLINE_URL,
@@ -42,13 +43,25 @@ function offlineFallbackHtml() {
   );
 }
 
-function asOfflineDocument(response) {
-  const headers = new Headers(response.headers);
-  headers.set('Content-Type', 'text/html; charset=utf-8');
-  headers.set('Cache-Control', 'no-store');
-  return response.blob().then(
-    (body) => new Response(body, { status: 200, statusText: 'OK', headers }),
-  );
+/**
+ * Rebuild the offline page with a decoded body and fresh headers.
+ * Copying Content-Encoding / Content-Length off the cached response makes
+ * WebKit and Chromium decode the HTML a second time and paint a blank page.
+ */
+async function asOfflineDocument(response) {
+  try {
+    const html = await response.text();
+    if (html.indexOf('Нет интернета') === -1) return offlineFallbackHtml();
+    return new Response(html, {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/html; charset=utf-8',
+        'Cache-Control': 'no-store',
+      },
+    });
+  } catch {
+    return offlineFallbackHtml();
+  }
 }
 
 async function fromPrecache() {
@@ -62,21 +75,37 @@ async function fromPrecache() {
   return offlineFallbackHtml();
 }
 
-function isUsableDocument(response) {
-  if (!response) return false;
-  if (response.ok) return true;
-  return response.status === 304;
+async function isUsableDocument(response) {
+  if (!response || response.type === 'error' || response.status === 304 || !response.ok) return false;
+  const type = response.headers.get('content-type') || '';
+  if (type && !/text\/html/i.test(type)) return false;
+  try {
+    const text = await response.clone().text();
+    return text.indexOf('<html') !== -1 || text.indexOf('<HTML') !== -1;
+  } catch {
+    return false;
+  }
 }
 
 async function networkOrOffline(request) {
+  // A cached index.html (stale-if-error) is still a 200 while the radio is off.
+  // Treating that as success loads the app shell without its scripts: a white screen.
+  if (self.navigator && self.navigator.onLine === false) return fromPrecache();
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), NETWORK_TIMEOUT_MS);
   try {
     const response = await fetch(request.url, {
       credentials: 'same-origin',
       redirect: 'follow',
+      cache: 'no-store',
+      signal: controller.signal,
     });
-    if (isUsableDocument(response)) return response;
+    if (await isUsableDocument(response)) return response;
   } catch {
-    /* offline or failed revalidation */
+    /* offline, timeout, or failed revalidation */
+  } finally {
+    clearTimeout(timer);
   }
   return fromPrecache();
 }
@@ -116,7 +145,9 @@ self.addEventListener('activate', (event) => {
       );
       if (self.registration.navigationPreload) {
         try {
-          await self.registration.navigationPreload.enable();
+          // Preload is satisfied from HTTP cache while offline and comes back
+          // as an empty 304 or a cached shell. Either one paints white.
+          await self.registration.navigationPreload.disable();
         } catch {
           /* Safari */
         }
@@ -133,11 +164,15 @@ self.addEventListener('fetch', (event) => {
   if (isHtmlNavigation(request)) {
     event.respondWith(
       (async () => {
-        try {
-          const preload = await event.preloadResponse;
-          if (isUsableDocument(preload)) return preload;
-        } catch {
-          /* no preload */
+        // Drain a preload left from the previous worker, but never paint it:
+        // waiting on it while offline hangs the navigation on a blank window.
+        const preload = event.preloadResponse;
+        if (preload) {
+          const drain = preload.then(() => {}, () => {});
+          await Promise.race([
+            drain,
+            new Promise((resolve) => setTimeout(resolve, 400)),
+          ]);
         }
         return networkOrOffline(request);
       })(),

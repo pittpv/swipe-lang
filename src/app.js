@@ -15,7 +15,7 @@ import {
   clampCefrToPair,
   normalizeLangPair,
 } from '../server/lang-pairs.js';
-import { formatStreakRiskHint, msUntilStreakWarning, streakResetRisk } from './streak-risk.js';
+import { STREAK_WARN_MS, formatStreakRiskHint, msUntilStreakWarning, streakResetRisk } from './streak-risk.js';
 
 export { api } from './track.js';
 
@@ -157,6 +157,7 @@ export class App {
     const onForeground = () => {
       if (document.hidden) return;
       if (this.view === 'onboarding-setup') void this.resumeOnboardingSetup();
+      this.refreshStreakRisk();
     };
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
@@ -2709,6 +2710,21 @@ export class App {
       </span>`;
   }
 
+  /**
+   * The 3-hour window often opens while the phone is locked. Background timers
+   * do not run there, so a stale home screen kept the badge without ⚠️.
+   */
+  refreshStreakRisk() {
+    if (this.view !== 'home' && this.view !== 'session') return;
+    const risk = streakResetRisk(this.user);
+    const showing = Boolean(this.root?.querySelector('[data-action="streak-risk"]'));
+    if (Boolean(risk) !== showing || (risk && this.streakRiskOpen)) {
+      this.render();
+      return;
+    }
+    this.scheduleStreakRiskRefresh();
+  }
+
   /** Re-render when the 3-hour window opens, and keep an open hint fresh. */
   scheduleStreakRiskRefresh() {
     clearTimeout(this._streakRiskTimer);
@@ -2724,9 +2740,10 @@ export class App {
       if (until != null && until > 0) delay = until;
     }
     if (delay == null) return;
+    const cap = delay > STREAK_WARN_MS ? 5 * 60 * 1000 : 60_000;
     this._streakRiskTimer = setTimeout(() => {
-      if (this.view === 'home' || this.view === 'session') this.render();
-    }, Math.max(1000, delay));
+      this.refreshStreakRisk();
+    }, Math.min(Math.max(1000, delay), cap));
   }
 }
 

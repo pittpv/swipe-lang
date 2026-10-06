@@ -69,7 +69,10 @@ async function boot() {
   try {
     await app.init();
   } catch {
-    /* still dismiss so the user is never stuck on the splash */
+    if (!root?.innerHTML.trim() && navigator.onLine === false) {
+      location.replace('/offline.html');
+      return;
+    }
   }
 
   window.__langSplash?.set(96);
