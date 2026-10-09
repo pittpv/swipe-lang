@@ -1,7 +1,7 @@
 /* LangSwipe service worker — Web Push + offline navigation fallback. */
 
 const OFFLINE_CACHE = 'langswipe-offline-v4';
-const STATIC_CACHE = 'langswipe-static-v1';
+const STATIC_CACHE = 'langswipe-static-v2';
 /* Phone often stays "online" with no route, and the hung fetch is the blank wait. */
 const FAST_FAIL_MS = 700;
 const PATIENT_MS = 8000;
