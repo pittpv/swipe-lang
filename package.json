@@ -1,6 +1,6 @@
 {
   "name": "langapp",
-  "version": "0.5.22",
+  "version": "0.5.23",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,7 +14,7 @@
     "generate:vocab-courses": "node server/scripts/generate-course-vocab.mjs",
     "generate:vocab-examples": "node server/scripts/generate-examples-llm.mjs",
     "generate:associations": "node server/scripts/generate-associations-tr.js",
-    "test": "node --test server/srs.test.js server/reminders.test.js server/progress.test.js server/session.test.js server/milestones.test.js server/admin-users.test.js server/database-persist.test.js server/circles.test.js server/rating.test.js server/tr-association.test.js src/streak-risk.test.js",
+    "test": "node --test server/srs.test.js server/reminders.test.js server/progress.test.js server/session.test.js server/milestones.test.js server/admin-users.test.js server/database-persist.test.js server/circles.test.js server/rating.test.js server/tr-association.test.js server/association-ratings.test.js src/streak-risk.test.js",
     "test:e2e": "node server/e2e-smoke.js",
     "report:weekly": "node server/scripts/weekly-report.js",
     "backup": "node scripts/backup-db.mjs",

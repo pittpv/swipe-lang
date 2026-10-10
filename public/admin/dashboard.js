@@ -37,15 +37,16 @@ async function load() {
   err.textContent = '';
   btn.disabled = true;
   try {
-    const [data, push, usersRes, vapid] = await Promise.all([
+    const [data, push, usersRes, vapid, associations] = await Promise.all([
       adminFetch('/api/analytics/dashboard'),
       adminFetch('/api/admin/push/subscribers'),
       adminFetch('/api/admin/users'),
       adminFetch('/api/admin/diag/vapid'),
+      adminFetch('/api/admin/associations'),
     ]);
     sessionStorage.setItem(KEY_STORAGE, adminKey);
     usersCache = usersRes.users ?? [];
-    render(data, push.subscribers, vapid);
+    render(data, push.subscribers, vapid, associations);
     document.getElementById('dash').style.display = 'block';
   } catch (e) {
     err.textContent = e.message;
@@ -54,7 +55,7 @@ async function load() {
   }
 }
 
-function render(d, subscribers, vapid) {
+function render(d, subscribers, vapid, associations) {
   const el = document.getElementById('dash');
   const rows = d.last7Days.map((r) => `<tr><td>${r.date}</td><td>${r.signups}</td><td>${r.activeUsers}</td><td>${r.sessions}</td></tr>`).join('');
   const eventItems = Object.entries(d.eventCounts).map(([k, v]) => `<li>${k}: ${v}</li>`).join('');
@@ -100,6 +101,7 @@ function render(d, subscribers, vapid) {
       <p id="users-empty" class="empty" hidden></p>
       <p id="users-msg" class="ok"></p>
     </div>
+    ${renderAssociations(associations)}
     <div class="card">
       <h2>Тест пуш-уведомления</h2>
       <p class="muted">${vapidLine}</p>
@@ -125,6 +127,37 @@ function render(d, subscribers, vapid) {
   document.getElementById('user-search')?.addEventListener('input', () => renderUsersTable());
   document.getElementById('users-body')?.addEventListener('click', onUsersClick);
   renderUsersTable();
+}
+
+function renderAssociations(summary) {
+  const rows = summary?.rows ?? [];
+  const totals = summary?.totals ?? { up: 0, down: 0, words: 0 };
+  const body = rows.map((row) => `
+    <tr>
+      <td>${esc(row.lemma)}</td>
+      <td>${esc(row.langPair)}</td>
+      <td>${esc(row.hook || '—')}</td>
+      <td>${esc(row.image || '—')}</td>
+      <td class="num">${row.up}</td>
+      <td class="num">${row.down}</td>
+      <td class="num">${row.likeRate == null ? '—' : `${row.likeRate}%`}</td>
+    </tr>`).join('');
+  return `
+    <div class="card">
+      <h2>Ассоциации</h2>
+      <p class="muted">Сначала слова, которые чаще отклоняют. У человека одна оценка на слово.</p>
+      <div class="grid" style="margin-top:0.75rem">
+        <div class="metric"><div class="num">${totals.up}</div><div class="lbl">Подходит</div></div>
+        <div class="metric"><div class="num">${totals.down}</div><div class="lbl">Не подходит</div></div>
+        <div class="metric"><div class="num">${totals.words}</div><div class="lbl">Слов с оценкой</div></div>
+      </div>
+      ${rows.length
+        ? `<div class="table-wrap" style="margin-top:0.75rem"><table>
+            <thead><tr><th>Слово</th><th>Язык</th><th>Зацепка</th><th>Сцена</th><th>Подходит</th><th>Нет</th><th>Доля</th></tr></thead>
+            <tbody>${body}</tbody>
+          </table></div>`
+        : '<p class="empty">Пока никто не оценил ассоциацию.</p>'}
+    </div>`;
 }
 
 function vapidStatus(vapid) {

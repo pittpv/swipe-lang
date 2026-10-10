@@ -73,6 +73,10 @@ test('listAdminUsers omits secrets and sorts newest first', () => {
 
 test('purgeUserRecords removes user and related data', () => {
   const db = mockDb();
+  db.data.association_ratings = [
+    { user_id: 1, lemma: 'kitap' },
+    { user_id: 2, lemma: 'ev' },
+  ];
   purgeUserRecords(db, 1);
   assert.deepEqual(db.data.users.map((u) => u.id), [2]);
   assert.equal(db.data.users[0].referred_by, null);
@@ -81,4 +85,5 @@ test('purgeUserRecords removes user and related data', () => {
   assert.equal(db.data.study_sessions.length, 0);
   assert.equal(db.data.analytics.length, 1);
   assert.equal(db.data.analytics[0].user_id, 2);
+  assert.deepEqual(db.data.association_ratings.map((row) => row.user_id), [2]);
 });

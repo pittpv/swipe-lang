@@ -9,6 +9,9 @@ export function purgeUserRecords(db, userId) {
   if (Array.isArray(db.data.analytics)) {
     db.data.analytics = db.data.analytics.filter((a) => a.user_id !== userId);
   }
+  if (Array.isArray(db.data.association_ratings)) {
+    db.data.association_ratings = db.data.association_ratings.filter((row) => row.user_id !== userId);
+  }
   for (const u of db.data.users ?? []) {
     if (u.referred_by === userId) u.referred_by = null;
   }

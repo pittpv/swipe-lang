@@ -68,6 +68,8 @@ export class App {
     this.overlaySection = null;
     /** Play bottom-sheet enter animation only on first open, not on section toggle. */
     this.overlayEnter = false;
+    /** word id → 'up' | 'down' | null, so a reopened card keeps the vote */
+    this.associationVotes = new Map();
     this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
     this._onWinPointerMove = (e) => this.onPointerMove(e);
     this._onWinPointerUp = (e) => this.onPointerUp(e);
@@ -1188,6 +1190,29 @@ export class App {
     this.render();
   }
 
+  rateAssociation(vote) {
+    const word = this.overlayWord;
+    if (!word?.association || (vote !== 'up' && vote !== 'down')) return;
+    const prev = this.associationVotes.get(word.id) ?? null;
+    const next = prev === vote ? null : vote;
+    this.associationVotes.set(word.id, next);
+    this.syncAssociationVote();
+    api('/associations/rate', { method: 'POST', body: { wordId: word.id, vote: next } }).catch(() => {
+      if (prev) this.associationVotes.set(word.id, prev);
+      else this.associationVotes.delete(word.id);
+      this.syncAssociationVote();
+    });
+  }
+
+  syncAssociationVote() {
+    const vote = this.associationVotes.get(this.overlayWord?.id) ?? null;
+    for (const btn of this.root.querySelectorAll('[data-action="rate-association"]')) {
+      const on = btn.dataset.vote === vote;
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.classList.toggle('is-on', on);
+    }
+  }
+
   toggleOverlaySection(section) {
     this.overlaySection = this.overlaySection === section ? null : section;
     if (this.overlaySection) track(`overlay_${this.overlaySection}`);
@@ -2098,6 +2123,7 @@ export class App {
         if (this.view === 'session' && !this.swiping) this.openOverlay();
       }
       if (action === 'close-overlay') this.closeOverlay();
+      if (action === 'rate-association') this.rateAssociation(t.dataset.vote);
       if (action === 'speak') this.speak(this.overlayWord?.lemma);
       if (action === 'overlay-examples') this.toggleOverlaySection('examples');
       if (action === 'overlay-forms') this.toggleOverlaySection('forms');
@@ -2740,16 +2766,21 @@ export class App {
       const hasForms = w.pos === 'verb' && forms.length > 0;
       const section = this.overlaySection;
       const enterClass = this.overlayEnter ? ' overlay-panel--enter' : '';
+      const vote = this.associationVotes.get(w.id) ?? null;
       html += `
         <div class="overlay" data-action="close-overlay">
           <div class="overlay-panel${enterClass}">
-            <h2>${esc(w.lemma)}</h2>
+            <div class="overlay-head">
+              <h2>${esc(w.lemma)}</h2>
+              <button type="button" class="overlay-close" data-action="close-overlay" aria-label="Закрыть">×</button>
+            </div>
             ${meanings.map((m) => `<p class="translation">${esc(m)}</p>`).join('')}
-            <span class="pos">${esc(posLabel(w.pos))} · ${esc(w.cefrLevel)}${w.unit ? ` · ${esc(w.unit)}` : ''}</span>
-            ${renderAssociation(w.association)}
-            <button class="btn btn-primary" data-action="speak" style="width:100%">🔊 Произношение</button>
+            <p class="overlay-meta">${esc(posLabel(w.pos))} · ${esc(w.cefrLevel)}${w.unit ? ` · ${esc(w.unit)}` : ''}</p>
+            ${renderAssociation(w.association, vote)}
+            <button type="button" class="btn btn-primary overlay-speak" data-action="speak">🔊 Произношение</button>
             <div class="overlay-actions">
               <button
+                type="button"
                 class="btn btn-soft${section === 'examples' ? ' is-active' : ''}"
                 data-action="overlay-examples"
                 ${hasExamples ? '' : 'disabled'}
@@ -2757,6 +2788,7 @@ export class App {
               >Примеры</button>
               ${hasForms
                 ? `<button
+                    type="button"
                     class="btn btn-soft${section === 'forms' ? ' is-active' : ''}"
                     data-action="overlay-forms"
                     aria-expanded="${section === 'forms'}"
@@ -2769,7 +2801,6 @@ export class App {
                 ${section === 'forms' ? renderFormsSection(forms, w.langPair) : ''}
               </div>
             </div>
-            <button class="btn btn-ghost" data-action="close-overlay" style="width:100%;margin-top:0.5rem">Закрыть</button>
           </div>
         </div>`;
     }
@@ -3235,15 +3266,34 @@ function posLabel(pos) {
   return POS_LABELS[pos] || pos || '';
 }
 
-function renderAssociation(association) {
+function voteButtons(vote) {
+  const upOn = vote === 'up';
+  const downOn = vote === 'down';
+  return `
+    <div class="association-votes" role="group" aria-label="Оценка ассоциации">
+      <button type="button" class="vote-btn${upOn ? ' is-on' : ''}" data-action="rate-association" data-vote="up" aria-pressed="${upOn}" aria-label="Подходит">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3zm2 10h7.2a2 2 0 0 0 2-1.6l1.2-6A2 2 0 0 0 17.4 11H14V6.4A2.4 2.4 0 0 0 11.6 4L9 11v10z"/></svg>
+      </button>
+      <button type="button" class="vote-btn${downOn ? ' is-on' : ''}" data-action="rate-association" data-vote="down" aria-pressed="${downOn}" aria-label="Не подходит">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 13V4H4a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h3zm2-10h7.2a2 2 0 0 1 2 1.6l1.2 6A2 2 0 0 1 17.4 13H14v4.6A2.4 2.4 0 0 1 11.6 20L9 13V3z"/></svg>
+      </button>
+    </div>`;
+}
+
+function renderAssociation(association, vote = null) {
   if (!association || typeof association !== 'object') return '';
   const kind = association.kind;
+  const head = `
+    <div class="association-head">
+      <p class="association-label">Чтобы запомнить</p>
+      ${voteButtons(vote)}
+    </div>`;
   if (kind === 'cognate') {
     const like = Array.isArray(association.hooks) ? association.hooks[0] : '';
     if (!like) return '';
     return `
       <div class="association" role="note">
-        <p class="association-label">Чтобы запомнить</p>
+        ${head}
         <p class="association-line">Похоже на «${esc(like)}»</p>
       </div>`;
   }
@@ -3251,7 +3301,7 @@ function renderAssociation(association) {
     if (!association.image) return '';
     return `
       <div class="association" role="note">
-        <p class="association-label">Чтобы запомнить</p>
+        ${head}
         <p class="association-line">${esc(association.image)}</p>
       </div>`;
   }
@@ -3260,7 +3310,7 @@ function renderAssociation(association) {
   if (!association.phonetic || !hooks.length || !association.image) return '';
   return `
     <div class="association" role="note">
-      <p class="association-label">Чтобы запомнить</p>
+      ${head}
       <p class="association-sound">${esc(association.phonetic)} → ${esc(hooks.join(' + '))}</p>
       <p class="association-image">${esc(association.image)}</p>
     </div>`;

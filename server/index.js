@@ -19,7 +19,7 @@ import {
 } from './security.js';
 import { db, dbMode, persistableState } from './database.js';
 import { applySwipe } from './srs.js';
-import { buildSessionDeck, formatWord, SESSION_SIZE } from './session.js';
+import { buildSessionDeck, formatAssociation, formatWord, SESSION_SIZE } from './session.js';
 import { getLevelProgress, estimateEta, CEFR_ORDER } from './progress.js';
 import { collectMilestones, knownWordsByPair, listMilestones, repairWordMilestones } from './milestones.js';
 import {
@@ -39,6 +39,7 @@ import {
   ensureReferralCode,
 } from './referral.js';
 import { buildAnalyticsDashboard } from './analytics-report.js';
+import { applyAssociationVote, summarizeAssociationRatings } from './association-ratings.js';
 import { listAdminUsers, purgeUserRecords } from './admin-users.js';
 import {
   CircleError,
@@ -919,6 +920,48 @@ app.get('/api/public/stats', (_req, res) => {
     sessionSize: SESSION_SIZE,
     tagline: 'Словарь со свайп-механикой: турецкий, английский и испанский',
   });
+});
+
+app.post('/api/associations/rate', requireAuth, async (req, res) => {
+  const wordId = Number(req.body?.wordId);
+  const vote = req.body?.vote ?? null;
+  if (!Number.isInteger(wordId) || wordId <= 0) {
+    return res.status(400).json({ error: 'wordId required' });
+  }
+  if (vote !== 'up' && vote !== 'down' && vote !== null) {
+    return res.status(400).json({ error: 'vote must be up, down, or null' });
+  }
+  await db.reload();
+  const word = db.data.words.find((row) => row.id === wordId);
+  const association = formatAssociation(word?.association);
+  if (!word || !association) return res.status(404).json({ error: 'Association not found' });
+  const hook = association.hooks.join(' + ');
+  const image = association.kind === 'cognate'
+    ? `похоже на ${association.hooks[0]}`
+    : association.image;
+  await db.transact(() => {
+    if (!Array.isArray(db.data.association_ratings)) db.data.association_ratings = [];
+    const existing = db.data.association_ratings.find(
+      (row) => row.user_id === req.session.userId && row.word_id === wordId,
+    );
+    applyAssociationVote(db.data.association_ratings, {
+      id: existing?.id ?? db.nextId('association_ratings'),
+      user_id: req.session.userId,
+      word_id: wordId,
+      lemma: word.lemma,
+      lang_pair: wordLangPair(word),
+      hook,
+      image: String(image || '').slice(0, 180),
+      vote,
+      updated_at: new Date().toISOString(),
+    });
+  });
+  res.json({ ok: true, vote });
+});
+
+app.get('/api/admin/associations', requireAdmin, async (_req, res) => {
+  await db.reload();
+  res.json(summarizeAssociationRatings(db.data.association_ratings));
 });
 
 app.get('/api/analytics/dashboard', requireAdmin, async (_req, res) => {
