@@ -53,6 +53,24 @@ test('validateAssociation rejects a hook that does not share the sound', () => {
   assert.ok(errors.includes('bigram'));
 });
 
+test('a keyword may echo the syllable, not only a consonant pair', () => {
+  const saat = validateAssociation({
+    kind: 'keyword',
+    phonetic: 'саа́т',
+    hooks: ['салат'],
+    image: 'Салат остыл на тарелке прямо возле больших часов.',
+  }, { lemma: 'saat', translation: 'час, часы', type: 'İSİMLER' });
+  assert.deepEqual(saat, []);
+
+  const deniz = validateAssociation({
+    kind: 'keyword',
+    phonetic: 'дени́з',
+    hooks: ['чайка'],
+    image: 'Чайка кружит над морем и кричит на рыбаков.',
+  }, { lemma: 'deniz', translation: 'море', type: 'İSİMLER' });
+  assert.ok(deniz.includes('bigram'));
+});
+
 test('validateAssociation rejects an abstract image', () => {
   const word = { lemma: 'kitap', translation: 'книга', type: 'İSİMLER' };
   const errors = validateAssociation({

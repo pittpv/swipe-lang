@@ -638,6 +638,41 @@ function sharesBigram(hook, phonetic) {
     || hasBigram(glideCons(hook), glideCons(phonetic));
 }
 
+function foldSound(text) {
+  return String(text || '')
+    .toLowerCase()
+    .replace(/\u0301/g, '')
+    .replace(/ё/g, 'е')
+    .replace(/ю/g, 'у')
+    .replace(/я/g, 'а')
+    .replace(/й/g, '')
+    .replace(/[^а-я]/g, '');
+}
+
+/** A listener match: a real syllable of the phonetic sits inside the keyword. */
+function auditoryMatch(hook, phonetic) {
+  const bare = String(phonetic || '').replace(/\u0301/g, '');
+  const phonCons = consOf(bare).join('');
+  if (phonCons.length < 2) return shortHookOk(hook, phonetic);
+  if (sharesBigram(hook, bare)) return true;
+  const p = foldSound(bare);
+  const h = foldSound(hook);
+  if (!p || !h) return false;
+  const need = Math.min(3, p.length);
+  for (let i = 0; i <= p.length - need; i++) {
+    if (h.includes(p.slice(i, i + need))) return true;
+  }
+  const minLen = Math.max(2, p.length - 1);
+  const maxLen = p.length + 1;
+  for (let len = minLen; len <= maxLen; len++) {
+    if (len > h.length) continue;
+    for (let i = 0; i + len <= h.length; i++) {
+      if (levenshtein(p, h.slice(i, i + len)) <= 1) return true;
+    }
+  }
+  return false;
+}
+
 function shortHookOk(hook, phonetic) {
   const p = phonetic.replace(/\u0301/g, '').replace(/\s/g, '').toLowerCase();
   const h = hook.toLowerCase();
@@ -720,7 +755,7 @@ export function validateAssociation(entry, word) {
   for (const hook of hooks) {
     if (!/^[а-яё-]+$/i.test(hook)) errors.push('hook-script');
     if (!hasWord(image, hook)) errors.push('hook-in-image');
-    const ok = phonCons.length < 2 ? shortHookOk(hook, phonetic) : sharesBigram(hook, bare);
+    const ok = auditoryMatch(hook, phonetic);
     if (!ok) errors.push('bigram');
   }
   const stem = senseStem(word?.translation);

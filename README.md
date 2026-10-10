@@ -47,7 +47,7 @@ Key implementation details:
   - **keyword** — a Cyrillic phonetic, one or two Russian sound hooks, and a single concrete scene that ties the hook to the meaning (`кита́п → кит`, «Кит читает книгу»)
   - **cognate** — a familiar loanword note («похоже на телефон»), with no invented scene
   - **usage** — one short formula for a fixed phrase (`merhaba`, `lütfen`), with no fake picture
-- Rows are attached by lowercase lemma in `server/import-vocabulary.js` and returned as `association` from `formatWord`. `npm run generate:associations` rebuilds the Turkish file; it checks phonetics before writing and skips lemmas that are already present
+- Rows are attached by lowercase lemma in `server/import-vocabulary.js` and returned as `association` from `formatWord`. The A1 file is curated: each keyword hook is used once, it echoes a syllable of the phonetic (not just two consonants), and the scene is specific to that pair. `npm run generate:associations` only fills lemmas that are not already in the file. Do not pass `--force`: that replaces the curated rows with the template draft.
 - Analytics events (`tap_translation`, `tap_audio`) measure how often users need help
 
 ## 4. Habit Building: Streaks & Push Reminders
