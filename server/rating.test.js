@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {
   compareRank,
   languageBoard,
+  finishPlayedSession,
   noteRatingSwipe,
   ratingDeckMeta,
   swipeInstant,
@@ -122,6 +123,87 @@ test('interval 21 awards both holds once', () => {
     new Date('2026-10-04T12:00:00.000Z'),
   );
   assert.deepEqual(repeat.holds, []);
+});
+
+test('a finished session closes the day when hits were saved on another open session', () => {
+  const user = { id: 1, lang_pair: 'tr-ru', rating_days: [] };
+  const played = {
+    id: 2,
+    user_id: 1,
+    lang_pair: 'tr-ru',
+    started_at: '2026-10-03T12:00:00.000Z',
+    ended_at: null,
+    cards_reviewed: 2,
+    rating_deck: [
+      { id: 1, due: false, scheduled: false, interval: 0 },
+      { id: 2, due: false, scheduled: false, interval: 0 },
+    ],
+    rating_hits: [1],
+  };
+  const prefetch = {
+    id: 3,
+    user_id: 1,
+    lang_pair: 'tr-ru',
+    started_at: '2026-10-03T12:05:00.000Z',
+    ended_at: null,
+    cards_reviewed: 0,
+    rating_deck: [{ id: 9, due: false, scheduled: false, interval: 0 }],
+    rating_hits: [],
+  };
+  const settled = finishPlayedSession(
+    user,
+    [played, prefetch],
+    { sessionId: 3, reviewed: 0, wordIds: [1, 2] },
+    [],
+    NOW,
+  );
+  assert.equal(settled.dayClosed, true);
+  assert.equal(settled.counted, true);
+  assert.equal(user.rating_days.length, 1);
+  assert.equal(user.rating_days[0].lang_pair, 'tr-ru');
+  assert.equal(played.ended_at != null, true);
+  assert.equal(prefetch.ended_at != null, true);
+});
+
+test('one recorded swipe still closes the day when the deck list is short', () => {
+  const user = { id: 1, lang_pair: 'tr-ru', rating_days: [] };
+  const session = {
+    id: 1,
+    user_id: '1',
+    lang_pair: 'tr-ru',
+    started_at: NOW.toISOString(),
+    ended_at: null,
+    cards_reviewed: 1,
+    rating_deck: [
+      { id: 1, due: true, scheduled: true, interval: 6 },
+      { id: 2, due: false, scheduled: false, interval: 0 },
+    ],
+    rating_hits: [1],
+  };
+  const settled = finishPlayedSession(user, [session], { sessionId: 1, reviewed: 0, wordIds: [] }, [], NOW);
+  assert.equal(settled.counted, true);
+  assert.equal(user.rating_days.length, 1);
+  const again = finishPlayedSession(user, [session], { sessionId: 1, reviewed: 1, wordIds: [1, 2] }, [], NOW);
+  assert.equal(again.counted, false);
+  assert.equal(again.dayClosed, true);
+  assert.equal(user.rating_days.length, 1);
+});
+
+test('complete with no swipes leaves the day open', () => {
+  const user = { id: 1, lang_pair: 'tr-ru', rating_days: [] };
+  const session = {
+    id: 1,
+    user_id: 1,
+    lang_pair: 'tr-ru',
+    started_at: NOW.toISOString(),
+    ended_at: null,
+    cards_reviewed: 0,
+    rating_deck: [{ id: 1, due: false, scheduled: false, interval: 0 }],
+    rating_hits: [],
+  };
+  const settled = finishPlayedSession(user, [session], { sessionId: 1, reviewed: 0, wordIds: [] }, [], NOW);
+  assert.equal(settled.dayClosed, false);
+  assert.equal(user.rating_days?.length ?? 0, 0);
 });
 
 test('more days outrank more reviews', () => {

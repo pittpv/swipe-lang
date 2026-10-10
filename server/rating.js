@@ -105,9 +105,10 @@ export function weekSummary(user, pair, now = new Date()) {
  * Closes today's rating when every issued card was swiped,
  * and this language does not already have a closed day.
  * A second session still updates SRS elsewhere; it does not add points.
+ * The day is filed under the user's current language — that is the week the app shows.
  */
 export function settleSession(user, session, progressRows, now = new Date()) {
-  const pair = session?.lang_pair || (user ? userLangPair(user) : null);
+  const pair = user ? userLangPair(user) : session?.lang_pair || null;
   const summary = weekSummary(user, pair, now);
   const deck = Array.isArray(session?.rating_deck) ? session.rating_deck : [];
   const hits = new Set((session?.rating_hits ?? []).map(wordKey).filter((id) => id != null));
@@ -164,6 +165,85 @@ export function settleSession(user, session, progressRows, now = new Date()) {
     returns,
     holds,
   };
+}
+
+function emptySettle(summary, already = false) {
+  return {
+    dayClosed: Boolean(already),
+    counted: false,
+    weekDays: summary?.dayCount || 0,
+    reviews: 0,
+    returns: 0,
+    holds: [],
+  };
+}
+
+/** Closes today for the user's language when the deck check already passed or was skipped. */
+export function ensureRatingDay(user, now = new Date()) {
+  const pair = user ? userLangPair(user) : null;
+  const summary = weekSummary(user, pair, now);
+  if (!user || !pair || summary.closedToday) return emptySettle(summary, summary.closedToday);
+  if (!Array.isArray(user.rating_days)) user.rating_days = [];
+  user.rating_days.push({
+    date: utcDay(now),
+    lang_pair: pair,
+    reviews: 0,
+    returns: 0,
+    closed_at: now.toISOString(),
+  });
+  return {
+    dayClosed: true,
+    counted: true,
+    weekDays: summary.dayCount + 1,
+    reviews: 0,
+    returns: 0,
+    holds: [],
+  };
+}
+
+/**
+ * Closes the rating day for a session the learner actually finished.
+ * Swipes can land on a different open session than the cookie, and a short
+ * gap used to drop cards, so a partial hit list must not leave the day open.
+ */
+export function finishPlayedSession(user, sessions, { sessionId, reviewed = 0, wordIds = [] } = {}, progressRows, now = new Date()) {
+  const today = utcDay(now);
+  const uid = Number(user?.id);
+  const open = (sessions ?? []).filter(
+    (session) =>
+      Number(session.user_id) === uid &&
+      !session.ended_at &&
+      String(session.started_at || '').slice(0, 10) === today,
+  );
+  const wordList = (Array.isArray(wordIds) ? wordIds : []).slice(0, 40);
+  for (const session of open) {
+    for (const id of wordList) noteRatingSwipe(session, id, now);
+  }
+  const score = (session) => (session.rating_hits?.length || 0) * 100 + (Number(session.cards_reviewed) || 0);
+  const played = [...open].sort((a, b) => score(b) - score(a))[0] ?? null;
+  let settled = settleSession(user, played, progressRows, now);
+  const activity = Math.max(
+    Number(reviewed) || 0,
+    wordList.length,
+    ...open.map((session) => Number(session.cards_reviewed) || 0),
+    ...open.map((session) => session.rating_hits?.length || 0),
+  );
+  if (activity > 0 && !settled.dayClosed) settled = ensureRatingDay(user, now);
+  const learnedSession = open.find((session) => Number(session.id) === Number(sessionId)) ?? played;
+  if (learnedSession) {
+    learnedSession.cards_reviewed = Math.max(
+      Number(learnedSession.cards_reviewed) || 0,
+      Number(reviewed) || 0,
+      wordList.length,
+    );
+  }
+  for (const session of open) {
+    session.ended_at = now.toISOString();
+    delete session.rating_deck;
+    delete session.rating_hits;
+    delete session.rating_last_at;
+  }
+  return settled;
 }
 
 export function countHolds(db, userId, pair) {

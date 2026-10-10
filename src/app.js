@@ -1049,7 +1049,7 @@ export class App {
         }
         this.summary = await api('/session/complete', {
           method: 'POST',
-          body: { sessionId: this.sessionId },
+          body: { sessionId: this.sessionId, wordIds: this.cards.map((card) => card.id) },
         });
         if (this.user) {
           this.user.streak = this.summary.streak;

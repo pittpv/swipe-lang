@@ -57,7 +57,7 @@ import {
   noteRatingSwipe,
   ratingDeckMeta,
   swipeInstant,
-  settleSession,
+  finishPlayedSession,
   weekPayload,
 } from './rating.js';
 import {
@@ -718,7 +718,7 @@ app.post('/api/session/swipe', requireAuth, async (req, res) => {
       });
     }
     const sessionRow = db.data.study_sessions.find(
-      (row) => Number(row.id) === sessionId && row.user_id === userId && !row.ended_at,
+      (row) => Number(row.id) === sessionId && Number(row.user_id) === Number(userId) && !row.ended_at,
     );
     if (sessionRow) {
       noteRatingSwipe(sessionRow, wordId, ratedAt);
@@ -758,27 +758,28 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
       ? (req.session.sessionStats ?? { reviewed: 0, learned: 0 })
       : { reviewed: 0, learned: 0 };
 
+  const wordIds = Array.isArray(req.body?.wordIds) ? req.body.wordIds : [];
+
   const payload = await db.transact(() => {
     const now = new Date();
-    const sessionRow = db.data.study_sessions.find(
-      (s) => Number(s.id) === sessionId && s.user_id === userId,
-    );
     const user = findUser(userId);
-    let settled = null;
-    if (sessionRow && !sessionRow.ended_at) {
-      settled = settleSession(user, sessionRow, db.data.user_word_progress, now);
-      sessionRow.ended_at = now.toISOString();
-      sessionRow.cards_reviewed = Math.max(stats.reviewed, Number(sessionRow.cards_reviewed) || 0);
-      sessionRow.cards_learned = Math.max(stats.learned, Number(sessionRow.cards_learned) || 0);
-      delete sessionRow.rating_deck;
-      delete sessionRow.rating_hits;
-      delete sessionRow.rating_last_at;
-    }
-
     if (!user) {
       const err = new Error('User not found');
       err.status = 404;
       throw err;
+    }
+    const settled = finishPlayedSession(
+      user,
+      db.data.study_sessions,
+      { sessionId, reviewed: stats.reviewed, wordIds },
+      db.data.user_word_progress,
+      now,
+    );
+    const sessionRow = db.data.study_sessions.find(
+      (s) => Number(s.id) === sessionId && Number(s.user_id) === Number(userId),
+    );
+    if (sessionRow) {
+      sessionRow.cards_learned = Math.max(stats.learned, Number(sessionRow.cards_learned) || 0);
     }
     const today = now.toISOString().slice(0, 10);
     let streak = user.streak ?? 0;
@@ -809,7 +810,6 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
       { streak, words: wordsLearned, langPair: userLangPair(user) },
       knownByPair,
     );
-    if (!settled) settled = settleSession(user, null, [], now);
     const circle = circleState(db, userId).circle;
     const rating = {
       dayClosed: settled.dayClosed,
@@ -820,7 +820,7 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
     };
 
     return {
-      cardsReviewed: stats.reviewed,
+      cardsReviewed: Math.max(stats.reviewed, wordIds.length),
       cardsLearned: stats.learned,
       streak,
       lastSessionDate: user.last_session_date,
