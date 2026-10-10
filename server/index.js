@@ -357,6 +357,14 @@ app.post('/api/circles/invites/decline', requireAuth, async (req, res) => {
   }
 });
 
+function studySessionId(req) {
+  const requestedId = Number(req.body?.sessionId);
+  if (Number.isInteger(requestedId) && requestedId > 0) return requestedId;
+  const cookieId = Number(req.session.activeSessionId);
+  if (Number.isInteger(cookieId) && cookieId > 0) return cookieId;
+  return null;
+}
+
 function stampRatingSession(userId, sessionRow, cards, now = new Date()) {
   const user = findUser(userId);
   sessionRow.lang_pair = userLangPair(user);
@@ -682,9 +690,7 @@ app.post('/api/session/swipe', requireAuth, async (req, res) => {
     return res.status(400).json({ error: 'wordId and direction (left|right) required' });
   }
   const userId = req.session.userId;
-  const requestedId = Number(req.body?.sessionId);
-  const sessionId =
-    Number.isInteger(requestedId) && requestedId > 0 ? requestedId : req.session.activeSessionId;
+  const sessionId = studySessionId(req);
   const recordedAt = new Date();
   const ratedAt = swipeInstant(req.body?.swipedAt, recordedAt);
   // No reload up front: transact writes once and re-reads only after a conflict.
@@ -712,13 +718,17 @@ app.post('/api/session/swipe', requireAuth, async (req, res) => {
       });
     }
     const sessionRow = db.data.study_sessions.find(
-      (row) => row.id === sessionId && row.user_id === userId && !row.ended_at,
+      (row) => Number(row.id) === sessionId && row.user_id === userId && !row.ended_at,
     );
-    if (sessionRow) noteRatingSwipe(sessionRow, wordId, ratedAt);
+    if (sessionRow) {
+      noteRatingSwipe(sessionRow, wordId, ratedAt);
+      sessionRow.cards_reviewed = (Number(sessionRow.cards_reviewed) || 0) + 1;
+      if (direction === 'right') sessionRow.cards_learned = (Number(sessionRow.cards_learned) || 0) + 1;
+    }
     return next;
   });
 
-  if (req.session.sessionStats && sessionId === req.session.activeSessionId) {
+  if (req.session.sessionStats && sessionId != null && sessionId === Number(req.session.activeSessionId)) {
     req.session.sessionStats.reviewed += 1;
     if (direction === 'right') req.session.sessionStats.learned += 1;
     setSessionCookie(res, req.session);
@@ -741,19 +751,25 @@ function countWordsKnown(userId) {
 app.post('/api/session/complete', requireAuth, async (req, res) => {
   await db.reload();
   const userId = req.session.userId;
-  const sessionId = req.session.activeSessionId;
-  const stats = req.session.sessionStats ?? { reviewed: 0, learned: 0 };
+  const sessionId = studySessionId(req);
+  const cookieId = Number(req.session.activeSessionId);
+  const stats =
+    sessionId != null && sessionId === cookieId
+      ? (req.session.sessionStats ?? { reviewed: 0, learned: 0 })
+      : { reviewed: 0, learned: 0 };
 
   const payload = await db.transact(() => {
     const now = new Date();
-    const sessionRow = db.data.study_sessions.find((s) => s.id === sessionId && s.user_id === userId);
+    const sessionRow = db.data.study_sessions.find(
+      (s) => Number(s.id) === sessionId && s.user_id === userId,
+    );
     const user = findUser(userId);
     let settled = null;
     if (sessionRow && !sessionRow.ended_at) {
       settled = settleSession(user, sessionRow, db.data.user_word_progress, now);
       sessionRow.ended_at = now.toISOString();
-      sessionRow.cards_reviewed = stats.reviewed;
-      sessionRow.cards_learned = stats.learned;
+      sessionRow.cards_reviewed = Math.max(stats.reviewed, Number(sessionRow.cards_reviewed) || 0);
+      sessionRow.cards_learned = Math.max(stats.learned, Number(sessionRow.cards_learned) || 0);
       delete sessionRow.rating_deck;
       delete sessionRow.rating_hits;
       delete sessionRow.rating_last_at;

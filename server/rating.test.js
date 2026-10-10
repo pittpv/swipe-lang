@@ -52,14 +52,13 @@ test('swipe instant keeps a recent client time', () => {
   assert.equal(swipeInstant('nope', now).getTime(), now.getTime());
 });
 
-test('rating swipes ignore words outside the deck and gaps under a second', () => {
-  const session = { rating_deck: [{ id: 1 }, { id: 2 }], rating_hits: [], rating_last_at: null };
+test('rating swipes ignore words outside the deck and still count a fast follow-up', () => {
+  const session = { rating_deck: [{ id: 1 }, { id: '2' }], rating_hits: [], rating_last_at: null };
   assert.equal(noteRatingSwipe(session, 1, NOW), true);
-  assert.equal(noteRatingSwipe(session, 2, new Date(NOW.getTime() + 400)), false);
+  assert.equal(noteRatingSwipe(session, 2, new Date(NOW.getTime() + 400)), true);
   assert.equal(noteRatingSwipe(session, 9, new Date(NOW.getTime() + 1200)), false);
-  assert.equal(noteRatingSwipe(session, 2, new Date(NOW.getTime() + 1000)), true);
   assert.deepEqual(session.rating_hits, [1, 2]);
-  assert.equal(noteRatingSwipe(session, 1, new Date(NOW.getTime() + 5000)), false);
+  assert.equal(noteRatingSwipe(session, '1', new Date(NOW.getTime() + 5000)), false);
 });
 
 function sessionWith(deck, hits) {

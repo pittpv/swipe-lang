@@ -1,11 +1,8 @@
 import { userLangPair, wordLangPair } from './lang-pairs.js';
 
-/** Minimum gap between swipes that count toward the weekly rating. */
-export const RATING_SWIPE_GAP_MS = 1000;
-
 /**
  * Gesture time from the client, when it is close to the server clock.
- * A queued swipe can arrive late; the gap should follow the finger, not the queue.
+ * A queued swipe can arrive late; the instant should follow the finger, not the queue.
  * Times far in the future or older than two minutes fall back to the server clock.
  */
 export function swipeInstant(clientIso, now = new Date()) {
@@ -65,17 +62,24 @@ export function ratingDeckMeta(progressRows, wordIds, now = new Date()) {
   });
 }
 
-/** Records a deck card toward the rating when the previous counted swipe is old enough. */
+function wordKey(id) {
+  const n = Number(id);
+  return Number.isInteger(n) && n > 0 ? n : null;
+}
+
+/**
+ * Records one issued card toward today's rating.
+ * The next card is on screen in under a second, so a short gap must not drop
+ * the card — one missing hit used to leave the whole day open.
+ */
 export function noteRatingSwipe(session, wordId, now = new Date()) {
-  const id = Number(wordId);
+  const id = wordKey(wordId);
   const deck = session?.rating_deck;
-  if (!Array.isArray(deck) || !deck.some((card) => card.id === id)) return false;
+  if (id == null || !Array.isArray(deck) || !deck.some((card) => wordKey(card.id) === id)) return false;
   if (!Array.isArray(session.rating_hits)) session.rating_hits = [];
-  if (session.rating_hits.includes(id)) return false;
-  const at = now.getTime();
-  if (session.rating_last_at != null && at - session.rating_last_at < RATING_SWIPE_GAP_MS) return false;
+  if (session.rating_hits.some((hit) => wordKey(hit) === id)) return false;
   session.rating_hits.push(id);
-  session.rating_last_at = at;
+  session.rating_last_at = now.getTime();
   return true;
 }
 
@@ -98,7 +102,7 @@ export function weekSummary(user, pair, now = new Date()) {
 }
 
 /**
- * Closes today's rating when every issued card was swiped slowly enough,
+ * Closes today's rating when every issued card was swiped,
  * and this language does not already have a closed day.
  * A second session still updates SRS elsewhere; it does not add points.
  */
@@ -106,9 +110,9 @@ export function settleSession(user, session, progressRows, now = new Date()) {
   const pair = session?.lang_pair || (user ? userLangPair(user) : null);
   const summary = weekSummary(user, pair, now);
   const deck = Array.isArray(session?.rating_deck) ? session.rating_deck : [];
-  const hits = new Set(session?.rating_hits ?? []);
+  const hits = new Set((session?.rating_hits ?? []).map(wordKey).filter((id) => id != null));
   const already = summary.closedToday;
-  const full = deck.length > 0 && deck.every((card) => hits.has(card.id));
+  const full = deck.length > 0 && deck.every((card) => hits.has(wordKey(card.id)));
   if (!user || !pair || !full || already) {
     return {
       dayClosed: already,
@@ -121,7 +125,9 @@ export function settleSession(user, session, progressRows, now = new Date()) {
   }
 
   const mine = new Map(
-    (progressRows ?? []).filter((row) => row.user_id === user.id).map((row) => [row.word_id, row]),
+    (progressRows ?? [])
+      .filter((row) => row.user_id === user.id)
+      .map((row) => [wordKey(row.word_id), row]),
   );
   let reviews = 0;
   let returns = 0;
@@ -130,7 +136,7 @@ export function settleSession(user, session, progressRows, now = new Date()) {
     if (card.due) reviews += 1;
     if (!card.scheduled) continue;
     returns += 1;
-    const row = mine.get(card.id);
+    const row = mine.get(wordKey(card.id));
     if (!row) continue;
     if (card.interval >= 6 && !row.held_6) {
       row.held_6 = true;

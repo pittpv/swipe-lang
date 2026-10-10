@@ -1047,7 +1047,10 @@ export class App {
           this.applySwipeFailure();
           return;
         }
-        this.summary = await api('/session/complete', { method: 'POST' });
+        this.summary = await api('/session/complete', {
+          method: 'POST',
+          body: { sessionId: this.sessionId },
+        });
         if (this.user) {
           this.user.streak = this.summary.streak;
           if (this.summary.lastSessionDate) this.user.lastSessionDate = this.summary.lastSessionDate;
