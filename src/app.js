@@ -2746,6 +2746,7 @@ export class App {
             <h2>${esc(w.lemma)}</h2>
             ${meanings.map((m) => `<p class="translation">${esc(m)}</p>`).join('')}
             <span class="pos">${esc(posLabel(w.pos))} · ${esc(w.cefrLevel)}${w.unit ? ` · ${esc(w.unit)}` : ''}</span>
+            ${renderAssociation(w.association)}
             <button class="btn btn-primary" data-action="speak" style="width:100%">🔊 Произношение</button>
             <div class="overlay-actions">
               <button
@@ -3232,6 +3233,37 @@ function ruWordNoun(n) {
 
 function posLabel(pos) {
   return POS_LABELS[pos] || pos || '';
+}
+
+function renderAssociation(association) {
+  if (!association || typeof association !== 'object') return '';
+  const kind = association.kind;
+  if (kind === 'cognate') {
+    const like = Array.isArray(association.hooks) ? association.hooks[0] : '';
+    if (!like) return '';
+    return `
+      <div class="association" role="note">
+        <p class="association-label">Чтобы запомнить</p>
+        <p class="association-line">Похоже на «${esc(like)}»</p>
+      </div>`;
+  }
+  if (kind === 'usage') {
+    if (!association.image) return '';
+    return `
+      <div class="association" role="note">
+        <p class="association-label">Чтобы запомнить</p>
+        <p class="association-line">${esc(association.image)}</p>
+      </div>`;
+  }
+  if (kind !== 'keyword') return '';
+  const hooks = (Array.isArray(association.hooks) ? association.hooks : []).filter(Boolean);
+  if (!association.phonetic || !hooks.length || !association.image) return '';
+  return `
+    <div class="association" role="note">
+      <p class="association-label">Чтобы запомнить</p>
+      <p class="association-sound">${esc(association.phonetic)} → ${esc(hooks.join(' + '))}</p>
+      <p class="association-image">${esc(association.image)}</p>
+    </div>`;
 }
 
 function renderExamplesSection(examples) {

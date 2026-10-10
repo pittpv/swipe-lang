@@ -43,6 +43,11 @@ Key implementation details:
 
 - The swipe forces **recall before the hint**: decision first, verification second
 - **Tapping a card** reveals the translation, audio pronunciation, and usage examples (context-based learning)
+- **Turkish A1 mnemonic row** (`server/data/vocabulary/associations.json`): after the tap, under the part of speech and before pronunciation, a block titled «Чтобы запомнить». The card face stays recall-only; English and Spanish cards have no row yet. Three kinds:
+  - **keyword** — a Cyrillic phonetic, one or two Russian sound hooks, and a single concrete scene that ties the hook to the meaning (`кита́п → кит`, «Кит читает книгу»)
+  - **cognate** — a familiar loanword note («похоже на телефон»), with no invented scene
+  - **usage** — one short formula for a fixed phrase (`merhaba`, `lütfen`), with no fake picture
+- Rows are attached by lowercase lemma in `server/import-vocabulary.js` and returned as `association` from `formatWord`. `npm run generate:associations` rebuilds the Turkish file; it checks phonetics before writing and skips lemmas that are already present
 - Analytics events (`tap_translation`, `tap_audio`) measure how often users need help
 
 ## 4. Habit Building: Streaks & Push Reminders
@@ -73,6 +78,7 @@ Operators open `/admin/dashboard.html` with `ADMIN_API_KEY` for live metrics, a 
 |---|---|
 | Spaced Repetition (SM-2) | `server/srs.js` — simplified version with an ease factor |
 | Active Recall | Swipe before the translation is shown |
+| Keyword method | Turkish A1 overlay: sound hook plus one image, only after the tap |
 | Microlearning / consistency | 18-card sessions + daily streak + push reminders |
 | Gamification | Milestones, animated achievements |
 | Adaptivity (zone of proximal development) | CEFR filtering of new words by level and language pair |

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildSessionDeck } from './session.js';
+import { buildSessionDeck, formatWord } from './session.js';
 
 function mockDb({ cefr = 'A1', words, progress = [] }) {
   return {
@@ -50,6 +50,42 @@ test('buildSessionDeck stays on the user language pair', () => {
   assert.ok(deck.length >= 2);
   assert.ok(deck.every((card) => card.langPair === 'tr-ru'));
   assert.ok(deck.every((card) => card.lemma !== 'hello'));
+});
+
+test('formatWord parses a keyword association', () => {
+  const card = formatWord({
+    id: 7,
+    lemma: 'kitap',
+    translation: 'книга',
+    pos: 'noun',
+    cefr_level: 'A1',
+    examples: '[]',
+    forms: '[]',
+    lang_pair: 'tr-ru',
+    association: JSON.stringify({
+      kind: 'keyword',
+      phonetic: 'кита́п',
+      hooks: ['кит'],
+      image: 'Кит читает толстую книгу у окна.',
+    }),
+  });
+  assert.equal(card.association.kind, 'keyword');
+  assert.equal(card.association.phonetic, 'кита́п');
+  assert.deepEqual(card.association.hooks, ['кит']);
+  assert.match(card.association.image, /книг/);
+});
+
+test('formatWord drops empty and broken associations', () => {
+  const base = { id: 1, lemma: 'ev', translation: 'дом', pos: 'noun', examples: '[]' };
+  assert.equal(formatWord(base).association, null);
+  assert.equal(formatWord({ ...base, association: '' }).association, null);
+  assert.equal(formatWord({ ...base, association: 'null' }).association, null);
+  assert.equal(formatWord({ ...base, association: '{' }).association, null);
+  assert.equal(formatWord({ ...base, association: '{"kind":"note"}' }).association, null);
+  assert.equal(
+    formatWord({ ...base, association: '{"kind":"keyword","phonetic":"ев","hooks":[],"image":"x"}' }).association,
+    null,
+  );
 });
 
 test('buildSessionDeck serves English when lang_pair is en-ru', () => {

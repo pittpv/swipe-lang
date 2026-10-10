@@ -1,0 +1,6038 @@
+{
+  "abla": {
+    "kind": "keyword",
+    "phonetic": "абла́",
+    "hooks": [
+      "блин"
+    ],
+    "image": "Блин сегодня выглядит старшая сестра."
+  },
+  "aç": {
+    "kind": "keyword",
+    "phonetic": "а́ч",
+    "hooks": [
+      "дача"
+    ],
+    "image": "Дача сегодня выглядит голодный."
+  },
+  "açık": {
+    "kind": "keyword",
+    "phonetic": "ачы́к",
+    "hooks": [
+      "очки"
+    ],
+    "image": "Очки сегодня выглядит открытый."
+  },
+  "açık büfe": {
+    "kind": "keyword",
+    "phonetic": "ачык бюфе́",
+    "hooks": [
+      "буфет"
+    ],
+    "image": "Буфет сегодня выглядит свободный доступ."
+  },
+  "açmak": {
+    "kind": "keyword",
+    "phonetic": "а́чмак",
+    "hooks": [
+      "чум"
+    ],
+    "image": "Чум прямо сейчас умеет открывать."
+  },
+  "ad (isim)": {
+    "kind": "keyword",
+    "phonetic": "а́д",
+    "hooks": [
+      "адрес"
+    ],
+    "image": "Адрес держит имя в руках."
+  },
+  "adres": {
+    "kind": "cognate",
+    "phonetic": "адре́с",
+    "hooks": [
+      "адрес"
+    ],
+    "image": ""
+  },
+  "affedersiniz.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Говорят, когда задевают человека и просят извинить."
+  },
+  "afrika": {
+    "kind": "cognate",
+    "phonetic": "африка́",
+    "hooks": [
+      "Африка"
+    ],
+    "image": ""
+  },
+  "ağabey": {
+    "kind": "keyword",
+    "phonetic": "аабе́й",
+    "hooks": [
+      "баян"
+    ],
+    "image": "Баян сегодня выглядит старший брат."
+  },
+  "ağaç": {
+    "kind": "keyword",
+    "phonetic": "аа́ч",
+    "hooks": [
+      "дача"
+    ],
+    "image": "Дача стоит прямо возле высокого дерева."
+  },
+  "ağız": {
+    "kind": "keyword",
+    "phonetic": "аы́з",
+    "hooks": [
+      "таз"
+    ],
+    "image": "Таз держит рот в руках."
+  },
+  "ağrı kesici": {
+    "kind": "keyword",
+    "phonetic": "ары кесиджи́",
+    "hooks": [
+      "джинсы"
+    ],
+    "image": "Джинсы держит обезболивающее в руках."
+  },
+  "ağrımak": {
+    "kind": "keyword",
+    "phonetic": "ары́мак",
+    "hooks": [
+      "рамка"
+    ],
+    "image": "Рамка прямо сейчас умеет болеть."
+  },
+  "ağustos": {
+    "kind": "keyword",
+    "phonetic": "аусто́с",
+    "hooks": [
+      "тесак"
+    ],
+    "image": "Тесак держит август в руках."
+  },
+  "aile": {
+    "kind": "keyword",
+    "phonetic": "аиле́",
+    "hooks": [
+      "гель"
+    ],
+    "image": "Гель держит семью в руках."
+  },
+  "ajanda": {
+    "kind": "keyword",
+    "phonetic": "ажанда́",
+    "hooks": [
+      "индюк"
+    ],
+    "image": "Индюк держит ежедневник в руках."
+  },
+  "akıl": {
+    "kind": "keyword",
+    "phonetic": "акы́л",
+    "hooks": [
+      "клык"
+    ],
+    "image": "Клык держит ум в руках."
+  },
+  "akraba": {
+    "kind": "keyword",
+    "phonetic": "акраба́",
+    "hooks": [
+      "краб"
+    ],
+    "image": "Краб держит родственник в руках."
+  },
+  "akşam": {
+    "kind": "keyword",
+    "phonetic": "акша́м",
+    "hooks": [
+      "шум"
+    ],
+    "image": "Шум держит вечер в руках."
+  },
+  "aktör": {
+    "kind": "cognate",
+    "phonetic": "актё́р",
+    "hooks": [
+      "актёр"
+    ],
+    "image": ""
+  },
+  "alın": {
+    "kind": "keyword",
+    "phonetic": "алы́н",
+    "hooks": [
+      "луна"
+    ],
+    "image": "Луна держит лоб в руках."
+  },
+  "alışveriş": {
+    "kind": "keyword",
+    "phonetic": "алышвери́ш",
+    "hooks": [
+      "ерш"
+    ],
+    "image": "Ерш держит шопинг в руках."
+  },
+  "alışveriş merkezi": {
+    "kind": "keyword",
+    "phonetic": "алышвериш меркези́",
+    "hooks": [
+      "козёл"
+    ],
+    "image": "Козёл сегодня выглядит торговый центр."
+  },
+  "alkol": {
+    "kind": "cognate",
+    "phonetic": "алко́л",
+    "hooks": [
+      "алкоголь"
+    ],
+    "image": ""
+  },
+  "almak": {
+    "kind": "keyword",
+    "phonetic": "а́лмак",
+    "hooks": [
+      "лампа"
+    ],
+    "image": "Лампа прямо сейчас умеет брать."
+  },
+  "alman": {
+    "kind": "keyword",
+    "phonetic": "алма́н",
+    "hooks": [
+      "лимон"
+    ],
+    "image": "Лимон держит немец в руках."
+  },
+  "almanya": {
+    "kind": "keyword",
+    "phonetic": "алманя́",
+    "hooks": [
+      "лимон"
+    ],
+    "image": "Лимон держит Германию в руках."
+  },
+  "alt": {
+    "kind": "keyword",
+    "phonetic": "а́лт",
+    "hooks": [
+      "лето"
+    ],
+    "image": "Лето держит низ в руках."
+  },
+  "amca": {
+    "kind": "keyword",
+    "phonetic": "амджа́",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит дядю в руках."
+  },
+  "amerika": {
+    "kind": "cognate",
+    "phonetic": "америка́",
+    "hooks": [
+      "Америка"
+    ],
+    "image": ""
+  },
+  "anadil": {
+    "kind": "keyword",
+    "phonetic": "анади́л",
+    "hooks": [
+      "одеяло"
+    ],
+    "image": "Одеяло сегодня выглядит родной язык."
+  },
+  "anahtar": {
+    "kind": "keyword",
+    "phonetic": "анахта́р",
+    "hooks": [
+      "трап"
+    ],
+    "image": "Трап держит ключ в руках."
+  },
+  "anaokulu": {
+    "kind": "keyword",
+    "phonetic": "анаокулу́",
+    "hooks": [
+      "клей"
+    ],
+    "image": "Клей сегодня выглядит детский сад."
+  },
+  "anlamak": {
+    "kind": "keyword",
+    "phonetic": "анла́мак",
+    "hooks": [
+      "ноль"
+    ],
+    "image": "Ноль прямо сейчас умеет понимать."
+  },
+  "anma": {
+    "kind": "keyword",
+    "phonetic": "анма́",
+    "hooks": [
+      "нимб"
+    ],
+    "image": "Нимб держит память в руках."
+  },
+  "anne": {
+    "kind": "keyword",
+    "phonetic": "анне́",
+    "hooks": [
+      "анна"
+    ],
+    "image": "Анна держит мать в руках."
+  },
+  "anneanne": {
+    "kind": "keyword",
+    "phonetic": "аннеанне́",
+    "hooks": [
+      "анна"
+    ],
+    "image": "Анна держит бабушку в руках."
+  },
+  "anneler günü": {
+    "kind": "keyword",
+    "phonetic": "аннелер гюню́",
+    "hooks": [
+      "огонь"
+    ],
+    "image": "Огонь держит день матери в руках."
+  },
+  "araba": {
+    "kind": "keyword",
+    "phonetic": "араба́",
+    "hooks": [
+      "арбуз"
+    ],
+    "image": "Арбуз держит машину в руках."
+  },
+  "aralık": {
+    "kind": "keyword",
+    "phonetic": "аралы́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит декабрь в руках."
+  },
+  "aramak": {
+    "kind": "keyword",
+    "phonetic": "арама́к",
+    "hooks": [
+      "рамка"
+    ],
+    "image": "Рамка прямо сейчас умеет звонить."
+  },
+  "arap": {
+    "kind": "keyword",
+    "phonetic": "ара́п",
+    "hooks": [
+      "рупор"
+    ],
+    "image": "Рупор держит араб в руках."
+  },
+  "arapça": {
+    "kind": "keyword",
+    "phonetic": "арапча́",
+    "hooks": [
+      "почка"
+    ],
+    "image": "Почка сегодня выглядит арабский язык."
+  },
+  "arka": {
+    "kind": "keyword",
+    "phonetic": "арка́",
+    "hooks": [
+      "рак"
+    ],
+    "image": "Рак держит зад в руках."
+  },
+  "arkadaş": {
+    "kind": "keyword",
+    "phonetic": "аркада́ш",
+    "hooks": [
+      "душ"
+    ],
+    "image": "Душ держит друг в руках."
+  },
+  "arnavut": {
+    "kind": "keyword",
+    "phonetic": "арнаву́т",
+    "hooks": [
+      "вата"
+    ],
+    "image": "Вата держит албанец в руках."
+  },
+  "arnavutça": {
+    "kind": "keyword",
+    "phonetic": "арнавутча́",
+    "hooks": [
+      "вата"
+    ],
+    "image": "Вата сегодня выглядит албанский язык."
+  },
+  "arnavutluk": {
+    "kind": "keyword",
+    "phonetic": "арнавутлу́к",
+    "hooks": [
+      "лук"
+    ],
+    "image": "Лук держит Албанию в руках."
+  },
+  "artı": {
+    "kind": "keyword",
+    "phonetic": "арты́",
+    "hooks": [
+      "рот"
+    ],
+    "image": "Рот держит плюс в руках."
+  },
+  "asmak": {
+    "kind": "keyword",
+    "phonetic": "а́смак",
+    "hooks": [
+      "сумка"
+    ],
+    "image": "Сумка прямо сейчас умеет вешать."
+  },
+  "asya": {
+    "kind": "cognate",
+    "phonetic": "ася́",
+    "hooks": [
+      "Азия"
+    ],
+    "image": ""
+  },
+  "aşağı": {
+    "kind": "keyword",
+    "phonetic": "ашаы́",
+    "hooks": [
+      "каша"
+    ],
+    "image": "Каша держит низ в руках."
+  },
+  "ateş": {
+    "kind": "keyword",
+    "phonetic": "ате́ш",
+    "hooks": [
+      "тушь"
+    ],
+    "image": "Тушь держит огонь в руках."
+  },
+  "ateş düşürücü": {
+    "kind": "keyword",
+    "phonetic": "атеш дюшюрюджю́",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит жаропонижающее в руках."
+  },
+  "atlamak": {
+    "kind": "keyword",
+    "phonetic": "атла́мак",
+    "hooks": [
+      "толпа"
+    ],
+    "image": "Толпа прямо сейчас умеет прыгать."
+  },
+  "atmak": {
+    "kind": "keyword",
+    "phonetic": "а́тмак",
+    "hooks": [
+      "тема"
+    ],
+    "image": "Тема прямо сейчас умеет бросать."
+  },
+  "avukat": {
+    "kind": "cognate",
+    "phonetic": "авука́т",
+    "hooks": [
+      "адвокат"
+    ],
+    "image": ""
+  },
+  "avustralya": {
+    "kind": "cognate",
+    "phonetic": "авустраля́",
+    "hooks": [
+      "Австралия"
+    ],
+    "image": ""
+  },
+  "avusturya": {
+    "kind": "cognate",
+    "phonetic": "авустуря́",
+    "hooks": [
+      "Австрия"
+    ],
+    "image": ""
+  },
+  "ay": {
+    "kind": "keyword",
+    "phonetic": "а́й",
+    "hooks": [
+      "май"
+    ],
+    "image": "Май держит месяц в руках."
+  },
+  "aynı": {
+    "kind": "keyword",
+    "phonetic": "айны́",
+    "hooks": [
+      "январь"
+    ],
+    "image": "Январь сегодня выглядит такой же."
+  },
+  "az": {
+    "kind": "keyword",
+    "phonetic": "а́з",
+    "hooks": [
+      "азбука"
+    ],
+    "image": "Азбука держит мало в руках."
+  },
+  "baba": {
+    "kind": "keyword",
+    "phonetic": "баба́",
+    "hooks": [
+      "баба"
+    ],
+    "image": "Баба держит отец в руках."
+  },
+  "babaanne": {
+    "kind": "keyword",
+    "phonetic": "бабаанне́",
+    "hooks": [
+      "анна"
+    ],
+    "image": "Анна держит бабушку в руках."
+  },
+  "bahçe": {
+    "kind": "keyword",
+    "phonetic": "бахче́",
+    "hooks": [
+      "бахрома"
+    ],
+    "image": "Бахрома держит сад в руках."
+  },
+  "bakmak": {
+    "kind": "keyword",
+    "phonetic": "ба́кмак",
+    "hooks": [
+      "бык"
+    ],
+    "image": "Бык прямо сейчас умеет смотреть."
+  },
+  "balayı": {
+    "kind": "keyword",
+    "phonetic": "балайы́",
+    "hooks": [
+      "лейка"
+    ],
+    "image": "Лейка сегодня выглядит медовый месяц."
+  },
+  "bale": {
+    "kind": "keyword",
+    "phonetic": "бале́",
+    "hooks": [
+      "блин"
+    ],
+    "image": "Блин держит балет в руках."
+  },
+  "balık": {
+    "kind": "keyword",
+    "phonetic": "балы́к",
+    "hooks": [
+      "блок"
+    ],
+    "image": "Блок держит рыбу в руках."
+  },
+  "balkon": {
+    "kind": "cognate",
+    "phonetic": "балко́н",
+    "hooks": [
+      "балкон"
+    ],
+    "image": ""
+  },
+  "banka": {
+    "kind": "cognate",
+    "phonetic": "банка́",
+    "hooks": [
+      "банк"
+    ],
+    "image": ""
+  },
+  "banyo": {
+    "kind": "keyword",
+    "phonetic": "банйо́",
+    "hooks": [
+      "баян"
+    ],
+    "image": "Баян держит ванну в руках."
+  },
+  "banyo yapmak": {
+    "kind": "keyword",
+    "phonetic": "банйо́ япмак",
+    "hooks": [
+      "баян"
+    ],
+    "image": "Баян прямо сейчас умеет принимать ванну."
+  },
+  "bardak": {
+    "kind": "keyword",
+    "phonetic": "барда́к",
+    "hooks": [
+      "бардак"
+    ],
+    "image": "Бардак держит стакан в руках."
+  },
+  "başarılı": {
+    "kind": "keyword",
+    "phonetic": "башарылы́",
+    "hooks": [
+      "орёл"
+    ],
+    "image": "Орёл сегодня выглядит успешный."
+  },
+  "başlamak": {
+    "kind": "keyword",
+    "phonetic": "башла́мак",
+    "hooks": [
+      "башня"
+    ],
+    "image": "Башня прямо сейчас умеет начинать."
+  },
+  "bavul": {
+    "kind": "keyword",
+    "phonetic": "баву́л",
+    "hooks": [
+      "вилы"
+    ],
+    "image": "Вилы держит чемодан в руках."
+  },
+  "bay": {
+    "kind": "keyword",
+    "phonetic": "ба́й",
+    "hooks": [
+      "баян"
+    ],
+    "image": "Баян держит господин в руках."
+  },
+  "bayan": {
+    "kind": "keyword",
+    "phonetic": "бая́н",
+    "hooks": [
+      "баян"
+    ],
+    "image": "Баян держит госпожу в руках."
+  },
+  "bayılmak": {
+    "kind": "keyword",
+    "phonetic": "байы́лмак",
+    "hooks": [
+      "кайло"
+    ],
+    "image": "Кайло прямо сейчас умеет терять сознание."
+  },
+  "bayram": {
+    "kind": "keyword",
+    "phonetic": "байра́м",
+    "hooks": [
+      "рама"
+    ],
+    "image": "Рама держит праздник в руках."
+  },
+  "bayramlık": {
+    "kind": "keyword",
+    "phonetic": "байрамлы́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак сегодня выглядит праздничный."
+  },
+  "bebek": {
+    "kind": "keyword",
+    "phonetic": "бебе́к",
+    "hooks": [
+      "бык"
+    ],
+    "image": "Бык держит малыш в руках."
+  },
+  "bekâr": {
+    "kind": "keyword",
+    "phonetic": "бека́р",
+    "hooks": [
+      "краб"
+    ],
+    "image": "Краб держит холостяк в руках."
+  },
+  "beklemek": {
+    "kind": "keyword",
+    "phonetic": "бекле́мек",
+    "hooks": [
+      "бык"
+    ],
+    "image": "Бык прямо сейчас умеет ждать."
+  },
+  "belirti": {
+    "kind": "keyword",
+    "phonetic": "белирти́",
+    "hooks": [
+      "ларь"
+    ],
+    "image": "Ларь держит симптом в руках."
+  },
+  "beraber": {
+    "kind": "keyword",
+    "phonetic": "берабе́р",
+    "hooks": [
+      "берёза"
+    ],
+    "image": "Берёза держит вместе в руках."
+  },
+  "bereket": {
+    "kind": "keyword",
+    "phonetic": "береке́т",
+    "hooks": [
+      "кит"
+    ],
+    "image": "Кит держит изобилие в руках."
+  },
+  "bey": {
+    "kind": "keyword",
+    "phonetic": "бе́й",
+    "hooks": [
+      "баян"
+    ],
+    "image": "Баян держит господин в руках."
+  },
+  "bilet": {
+    "kind": "cognate",
+    "phonetic": "биле́т",
+    "hooks": [
+      "билет"
+    ],
+    "image": ""
+  },
+  "biletçi": {
+    "kind": "cognate",
+    "phonetic": "билетчи́",
+    "hooks": [
+      "билетер"
+    ],
+    "image": ""
+  },
+  "bilete": {
+    "kind": "cognate",
+    "phonetic": "билете́",
+    "hooks": [
+      "билет"
+    ],
+    "image": ""
+  },
+  "bilgisayar": {
+    "kind": "keyword",
+    "phonetic": "билгисая́р",
+    "hooks": [
+      "сыр"
+    ],
+    "image": "Сыр держит компьютер в руках."
+  },
+  "bilgisayar oyunu": {
+    "kind": "keyword",
+    "phonetic": "билгисаяр ойуну́",
+    "hooks": [
+      "январь"
+    ],
+    "image": "Январь сегодня выглядит компьютерная игра."
+  },
+  "bilmek": {
+    "kind": "keyword",
+    "phonetic": "би́лмек",
+    "hooks": [
+      "блин"
+    ],
+    "image": "Блин прямо сейчас умеет знать."
+  },
+  "bina": {
+    "kind": "keyword",
+    "phonetic": "бина́",
+    "hooks": [
+      "баян"
+    ],
+    "image": "Баян держит здание в руках."
+  },
+  "binmek": {
+    "kind": "keyword",
+    "phonetic": "би́нмек",
+    "hooks": [
+      "баян"
+    ],
+    "image": "Баян прямо сейчас умеет садиться."
+  },
+  "birçok": {
+    "kind": "keyword",
+    "phonetic": "бирчо́к",
+    "hooks": [
+      "очки"
+    ],
+    "image": "Очки держит многие в руках."
+  },
+  "biricik": {
+    "kind": "keyword",
+    "phonetic": "бириджи́к",
+    "hooks": [
+      "джинсы"
+    ],
+    "image": "Джинсы сегодня выглядит единственный."
+  },
+  "birlikte": {
+    "kind": "keyword",
+    "phonetic": "бирликте́",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит вместе в руках."
+  },
+  "birliktelik": {
+    "kind": "keyword",
+    "phonetic": "бирликтели́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит вместе в руках."
+  },
+  "bitmek": {
+    "kind": "keyword",
+    "phonetic": "би́тмек",
+    "hooks": [
+      "батон"
+    ],
+    "image": "Батон прямо сейчас умеет заканчиваться."
+  },
+  "bol bol": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Ставят перед словом, когда чего-то очень много."
+  },
+  "bol şanslar.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так желают удачи перед важным делом."
+  },
+  "boş": {
+    "kind": "keyword",
+    "phonetic": "бо́ш",
+    "hooks": [
+      "башня"
+    ],
+    "image": "Башня сегодня выглядит пустой."
+  },
+  "boş zaman": {
+    "kind": "keyword",
+    "phonetic": "бош зама́н",
+    "hooks": [
+      "мангал"
+    ],
+    "image": "Мангал сегодня выглядит свободное время."
+  },
+  "boya": {
+    "kind": "keyword",
+    "phonetic": "боя́",
+    "hooks": [
+      "боярин"
+    ],
+    "image": "Боярин держит краску в руках."
+  },
+  "boyun": {
+    "kind": "keyword",
+    "phonetic": "бою́н",
+    "hooks": [
+      "баян"
+    ],
+    "image": "Баян держит шею в руках."
+  },
+  "bozuk": {
+    "kind": "keyword",
+    "phonetic": "бозу́к",
+    "hooks": [
+      "сказка"
+    ],
+    "image": "Сказка сегодня выглядит сломанный."
+  },
+  "bölü": {
+    "kind": "keyword",
+    "phonetic": "бёлю́",
+    "hooks": [
+      "блин"
+    ],
+    "image": "Блин держит делить в руках."
+  },
+  "bölüm": {
+    "kind": "keyword",
+    "phonetic": "бёлю́м",
+    "hooks": [
+      "лом"
+    ],
+    "image": "Лом держит отдел в руках."
+  },
+  "buçuk": {
+    "kind": "keyword",
+    "phonetic": "бучу́к",
+    "hooks": [
+      "бочка"
+    ],
+    "image": "Бочка держит половину в руках."
+  },
+  "bugün": {
+    "kind": "keyword",
+    "phonetic": "бугю́н",
+    "hooks": [
+      "огонь"
+    ],
+    "image": "Огонь держит сегодню в руках."
+  },
+  "bulaşık": {
+    "kind": "keyword",
+    "phonetic": "булашы́к",
+    "hooks": [
+      "шкаф"
+    ],
+    "image": "Шкаф держит посуду в руках."
+  },
+  "buluşmak": {
+    "kind": "keyword",
+    "phonetic": "булу́шмак",
+    "hooks": [
+      "леший"
+    ],
+    "image": "Леший прямо сейчас умеет встречаться."
+  },
+  "burada": {
+    "kind": "keyword",
+    "phonetic": "бурада́",
+    "hooks": [
+      "бардак"
+    ],
+    "image": "Бардак держит здесь в руках."
+  },
+  "burun": {
+    "kind": "keyword",
+    "phonetic": "буру́н",
+    "hooks": [
+      "ранец"
+    ],
+    "image": "Ранец держит нос в руках."
+  },
+  "büro": {
+    "kind": "cognate",
+    "phonetic": "бюро́",
+    "hooks": [
+      "бюро"
+    ],
+    "image": ""
+  },
+  "bütün": {
+    "kind": "keyword",
+    "phonetic": "бютю́н",
+    "hooks": [
+      "батон"
+    ],
+    "image": "Батон держит весь в руках."
+  },
+  "cami": {
+    "kind": "keyword",
+    "phonetic": "джами́",
+    "hooks": [
+      "джем"
+    ],
+    "image": "Джем держит мечеть в руках."
+  },
+  "cesur": {
+    "kind": "keyword",
+    "phonetic": "джесу́р",
+    "hooks": [
+      "сыр"
+    ],
+    "image": "Сыр сегодня выглядит смелый."
+  },
+  "cetvel": {
+    "kind": "keyword",
+    "phonetic": "джетве́л",
+    "hooks": [
+      "вилы"
+    ],
+    "image": "Вилы держит линейку в руках."
+  },
+  "cevap": {
+    "kind": "keyword",
+    "phonetic": "джева́п",
+    "hooks": [
+      "выпь"
+    ],
+    "image": "Выпь держит ответ в руках."
+  },
+  "cevap vermek": {
+    "kind": "keyword",
+    "phonetic": "джева́п вермек",
+    "hooks": [
+      "выпь"
+    ],
+    "image": "Выпь прямо сейчас умеет отвечать."
+  },
+  "ceviz": {
+    "kind": "keyword",
+    "phonetic": "джеви́з",
+    "hooks": [
+      "ваза"
+    ],
+    "image": "Ваза держит орех в руках."
+  },
+  "ciddi": {
+    "kind": "keyword",
+    "phonetic": "джидди́",
+    "hooks": [
+      "дождь"
+    ],
+    "image": "Дождь сегодня выглядит серьёзный."
+  },
+  "cimri": {
+    "kind": "keyword",
+    "phonetic": "джимри́",
+    "hooks": [
+      "джем"
+    ],
+    "image": "Джем сегодня выглядит скупой."
+  },
+  "coşku": {
+    "kind": "keyword",
+    "phonetic": "джошку́",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит энтузиазм в руках."
+  },
+  "cuma": {
+    "kind": "keyword",
+    "phonetic": "джума́",
+    "hooks": [
+      "джем"
+    ],
+    "image": "Джем держит пятницу в руках."
+  },
+  "cumartesi": {
+    "kind": "keyword",
+    "phonetic": "джумартеси́",
+    "hooks": [
+      "тесак"
+    ],
+    "image": "Тесак держит субботу в руках."
+  },
+  "çalışkan": {
+    "kind": "keyword",
+    "phonetic": "чалышка́н",
+    "hooks": [
+      "канал"
+    ],
+    "image": "Канал сегодня выглядит трудолюбивый."
+  },
+  "çalışma odası": {
+    "kind": "keyword",
+    "phonetic": "чалышма одасы́",
+    "hooks": [
+      "диск"
+    ],
+    "image": "Диск держит кабинет в руках."
+  },
+  "çalışmak": {
+    "kind": "keyword",
+    "phonetic": "чалы́шмак",
+    "hooks": [
+      "леший"
+    ],
+    "image": "Леший прямо сейчас умеет работать."
+  },
+  "çalmak": {
+    "kind": "keyword",
+    "phonetic": "ча́лмак",
+    "hooks": [
+      "чёлка"
+    ],
+    "image": "Чёлка прямо сейчас умеет звонить."
+  },
+  "çamaşır odası": {
+    "kind": "keyword",
+    "phonetic": "чамашыр одасы́",
+    "hooks": [
+      "диск"
+    ],
+    "image": "Диск сегодня выглядит прачечная."
+  },
+  "çanta": {
+    "kind": "keyword",
+    "phonetic": "чанта́",
+    "hooks": [
+      "чин"
+    ],
+    "image": "Чин держит сумку в руках."
+  },
+  "çarpı": {
+    "kind": "keyword",
+    "phonetic": "чарпы́",
+    "hooks": [
+      "череп"
+    ],
+    "image": "Череп держит умножение в руках."
+  },
+  "çarşamba": {
+    "kind": "keyword",
+    "phonetic": "чаршамба́",
+    "hooks": [
+      "шум"
+    ],
+    "image": "Шум держит среду в руках."
+  },
+  "çarşı": {
+    "kind": "keyword",
+    "phonetic": "чаршы́",
+    "hooks": [
+      "череп"
+    ],
+    "image": "Череп держит базар в руках."
+  },
+  "çay": {
+    "kind": "cognate",
+    "phonetic": "ча́й",
+    "hooks": [
+      "чай"
+    ],
+    "image": ""
+  },
+  "çene": {
+    "kind": "keyword",
+    "phonetic": "чене́",
+    "hooks": [
+      "чин"
+    ],
+    "image": "Чин держит подбородок в руках."
+  },
+  "çeşitli": {
+    "kind": "keyword",
+    "phonetic": "чешитли́",
+    "hooks": [
+      "штаны"
+    ],
+    "image": "Штаны сегодня выглядит различный."
+  },
+  "çeyrek": {
+    "kind": "keyword",
+    "phonetic": "чейре́к",
+    "hooks": [
+      "река"
+    ],
+    "image": "Река держит четверть в руках."
+  },
+  "çıkmak": {
+    "kind": "keyword",
+    "phonetic": "чы́кмак",
+    "hooks": [
+      "очки"
+    ],
+    "image": "Очки прямо сейчас умеет выходить."
+  },
+  "çiçek": {
+    "kind": "keyword",
+    "phonetic": "чиче́к",
+    "hooks": [
+      "очки"
+    ],
+    "image": "Очки держит цветок в руках."
+  },
+  "çift": {
+    "kind": "keyword",
+    "phonetic": "чи́фт",
+    "hooks": [
+      "чифирь"
+    ],
+    "image": "Чифирь держит пару в руках."
+  },
+  "çin": {
+    "kind": "keyword",
+    "phonetic": "чи́н",
+    "hooks": [
+      "чин"
+    ],
+    "image": "Чин держит Китай в руках."
+  },
+  "çinli": {
+    "kind": "keyword",
+    "phonetic": "чинли́",
+    "hooks": [
+      "чин"
+    ],
+    "image": "Чин держит китаец в руках."
+  },
+  "çirkin": {
+    "kind": "keyword",
+    "phonetic": "чирки́н",
+    "hooks": [
+      "кино"
+    ],
+    "image": "Кино сегодня выглядит некрасивый."
+  },
+  "çocuk": {
+    "kind": "keyword",
+    "phonetic": "чоджу́к",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит ребёнок в руках."
+  },
+  "çocuk odası": {
+    "kind": "keyword",
+    "phonetic": "чоджук одасы́",
+    "hooks": [
+      "диск"
+    ],
+    "image": "Диск сегодня выглядит детская комната."
+  },
+  "çok": {
+    "kind": "keyword",
+    "phonetic": "чо́к",
+    "hooks": [
+      "очки"
+    ],
+    "image": "Очки держит много в руках."
+  },
+  "çok yaşa.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так говорят человеку, который чихнул."
+  },
+  "çorba": {
+    "kind": "keyword",
+    "phonetic": "чорба́",
+    "hooks": [
+      "череп"
+    ],
+    "image": "Череп держит суп в руках."
+  },
+  "çoşku": {
+    "kind": "keyword",
+    "phonetic": "чошку́",
+    "hooks": [
+      "чашка"
+    ],
+    "image": "Чашка держит энтузиазм в руках."
+  },
+  "çöp kutusu": {
+    "kind": "keyword",
+    "phonetic": "чёп кутусу́",
+    "hooks": [
+      "тесак"
+    ],
+    "image": "Тесак сегодня выглядит мусорное ведро."
+  },
+  "çünkü": {
+    "kind": "keyword",
+    "phonetic": "чюнкю́",
+    "hooks": [
+      "чин"
+    ],
+    "image": "Чин держит потому что в руках."
+  },
+  "dağınık": {
+    "kind": "keyword",
+    "phonetic": "даыны́к",
+    "hooks": [
+      "анкета"
+    ],
+    "image": "Анкета сегодня выглядит беспорядочный."
+  },
+  "dakika": {
+    "kind": "keyword",
+    "phonetic": "дакика́",
+    "hooks": [
+      "кекс"
+    ],
+    "image": "Кекс держит минуту в руках."
+  },
+  "dans": {
+    "kind": "keyword",
+    "phonetic": "да́нс",
+    "hooks": [
+      "дыня"
+    ],
+    "image": "Дыня держит танец в руках."
+  },
+  "dans etmek": {
+    "kind": "keyword",
+    "phonetic": "да́нс етмек",
+    "hooks": [
+      "дыня"
+    ],
+    "image": "Дыня прямо сейчас умеет танцевать."
+  },
+  "dar": {
+    "kind": "keyword",
+    "phonetic": "да́р",
+    "hooks": [
+      "адрес"
+    ],
+    "image": "Адрес сегодня выглядит узкий."
+  },
+  "davet etmek": {
+    "kind": "keyword",
+    "phonetic": "даве́т етмек",
+    "hooks": [
+      "ветер"
+    ],
+    "image": "Ветер прямо сейчас умеет приглашать."
+  },
+  "dayı": {
+    "kind": "keyword",
+    "phonetic": "дайы́",
+    "hooks": [
+      "дайкон"
+    ],
+    "image": "Дайкон держит дядю в руках."
+  },
+  "dede": {
+    "kind": "keyword",
+    "phonetic": "деде́",
+    "hooks": [
+      "дудка"
+    ],
+    "image": "Дудка держит дедушку в руках."
+  },
+  "defter": {
+    "kind": "keyword",
+    "phonetic": "дефте́р",
+    "hooks": [
+      "термос"
+    ],
+    "image": "Термос держит тетрадь в руках."
+  },
+  "değişik": {
+    "kind": "keyword",
+    "phonetic": "деиши́к",
+    "hooks": [
+      "шкаф"
+    ],
+    "image": "Шкаф сегодня выглядит разный."
+  },
+  "demek": {
+    "kind": "keyword",
+    "phonetic": "де́мек",
+    "hooks": [
+      "дом"
+    ],
+    "image": "Дом прямо сейчас умеет говорить."
+  },
+  "deniz": {
+    "kind": "keyword",
+    "phonetic": "дени́з",
+    "hooks": [
+      "низина"
+    ],
+    "image": "Низина держит море в руках."
+  },
+  "dergi": {
+    "kind": "keyword",
+    "phonetic": "дерги́",
+    "hooks": [
+      "дорога"
+    ],
+    "image": "Дорога держит журнал в руках."
+  },
+  "ders": {
+    "kind": "keyword",
+    "phonetic": "де́рс",
+    "hooks": [
+      "адрес"
+    ],
+    "image": "Адрес держит урок в руках."
+  },
+  "ders çalışmak": {
+    "kind": "keyword",
+    "phonetic": "дерс чалы́шмак",
+    "hooks": [
+      "леший"
+    ],
+    "image": "Леший прямо сейчас умеет заниматься."
+  },
+  "dış": {
+    "kind": "keyword",
+    "phonetic": "ды́ш",
+    "hooks": [
+      "душ"
+    ],
+    "image": "Душ сегодня выглядит внешний."
+  },
+  "dışarı": {
+    "kind": "keyword",
+    "phonetic": "дышары́",
+    "hooks": [
+      "шар"
+    ],
+    "image": "Шар держит наружу в руках."
+  },
+  "dikkatli": {
+    "kind": "keyword",
+    "phonetic": "диккатли́",
+    "hooks": [
+      "котёл"
+    ],
+    "image": "Котёл сегодня выглядит внимательный."
+  },
+  "dikkatsiz": {
+    "kind": "keyword",
+    "phonetic": "диккатси́з",
+    "hooks": [
+      "сазан"
+    ],
+    "image": "Сазан сегодня выглядит невнимательный."
+  },
+  "dilek": {
+    "kind": "keyword",
+    "phonetic": "диле́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит желание в руках."
+  },
+  "dilemek": {
+    "kind": "keyword",
+    "phonetic": "диле́мек",
+    "hooks": [
+      "одеяло"
+    ],
+    "image": "Одеяло прямо сейчас умеет желать."
+  },
+  "dini": {
+    "kind": "keyword",
+    "phonetic": "дини́",
+    "hooks": [
+      "дыня"
+    ],
+    "image": "Дыня сегодня выглядит религиозный."
+  },
+  "dinlemek": {
+    "kind": "keyword",
+    "phonetic": "динле́мек",
+    "hooks": [
+      "дыня"
+    ],
+    "image": "Дыня прямо сейчас умеет слушать."
+  },
+  "dinlenmek": {
+    "kind": "keyword",
+    "phonetic": "динле́нмек",
+    "hooks": [
+      "лента"
+    ],
+    "image": "Лента прямо сейчас умеет отдыхать."
+  },
+  "diş": {
+    "kind": "keyword",
+    "phonetic": "ди́ш",
+    "hooks": [
+      "душ"
+    ],
+    "image": "Душ держит зуб в руках."
+  },
+  "dişçi": {
+    "kind": "keyword",
+    "phonetic": "дишчи́",
+    "hooks": [
+      "душ"
+    ],
+    "image": "Душ сегодня выглядит зубной врач."
+  },
+  "doğru": {
+    "kind": "keyword",
+    "phonetic": "дору́",
+    "hooks": [
+      "дыра"
+    ],
+    "image": "Дыра сегодня выглядит правильный."
+  },
+  "doğum tarihi": {
+    "kind": "keyword",
+    "phonetic": "доум тарихи́",
+    "hooks": [
+      "орех"
+    ],
+    "image": "Орех держит дата рождения в руках."
+  },
+  "doktor": {
+    "kind": "cognate",
+    "phonetic": "докто́р",
+    "hooks": [
+      "доктор"
+    ],
+    "image": ""
+  },
+  "dolap": {
+    "kind": "keyword",
+    "phonetic": "дола́п",
+    "hooks": [
+      "лапа"
+    ],
+    "image": "Лапа держит шкаф в руках."
+  },
+  "dolaşmak": {
+    "kind": "keyword",
+    "phonetic": "дола́шмак",
+    "hooks": [
+      "леший"
+    ],
+    "image": "Леший прямо сейчас умеет гулять."
+  },
+  "domates": {
+    "kind": "keyword",
+    "phonetic": "домате́с",
+    "hooks": [
+      "тесак"
+    ],
+    "image": "Тесак держит помидор в руках."
+  },
+  "dosya": {
+    "kind": "keyword",
+    "phonetic": "дося́",
+    "hooks": [
+      "диск"
+    ],
+    "image": "Диск держит файл в руках."
+  },
+  "durak": {
+    "kind": "keyword",
+    "phonetic": "дура́к",
+    "hooks": [
+      "рак"
+    ],
+    "image": "Рак держит остановку в руках."
+  },
+  "durmak": {
+    "kind": "keyword",
+    "phonetic": "ду́рмак",
+    "hooks": [
+      "дыра"
+    ],
+    "image": "Дыра прямо сейчас умеет стоять."
+  },
+  "duş almak": {
+    "kind": "cognate",
+    "phonetic": "душ а́лмак",
+    "hooks": [
+      "душ"
+    ],
+    "image": ""
+  },
+  "duvar": {
+    "kind": "keyword",
+    "phonetic": "дува́р",
+    "hooks": [
+      "дверь"
+    ],
+    "image": "Дверь держит стену в руках."
+  },
+  "düğüm": {
+    "kind": "keyword",
+    "phonetic": "дюю́м",
+    "hooks": [
+      "дом"
+    ],
+    "image": "Дом держит узел в руках."
+  },
+  "e-posta": {
+    "kind": "cognate",
+    "phonetic": "е поста́",
+    "hooks": [
+      "почта"
+    ],
+    "image": ""
+  },
+  "eczacı": {
+    "kind": "keyword",
+    "phonetic": "еджзаджы́",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит фармацевт в руках."
+  },
+  "eczane": {
+    "kind": "keyword",
+    "phonetic": "еджзане́",
+    "hooks": [
+      "зонд"
+    ],
+    "image": "Зонд держит аптеку в руках."
+  },
+  "egemenlik": {
+    "kind": "keyword",
+    "phonetic": "егеменли́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит суверенитет в руках."
+  },
+  "eğlenceli": {
+    "kind": "keyword",
+    "phonetic": "еленджели́",
+    "hooks": [
+      "джинсы"
+    ],
+    "image": "Джинсы сегодня выглядит весёлый."
+  },
+  "eğlenmek": {
+    "kind": "keyword",
+    "phonetic": "еле́нмек",
+    "hooks": [
+      "лента"
+    ],
+    "image": "Лента прямо сейчас умеет веселиться."
+  },
+  "ekim": {
+    "kind": "keyword",
+    "phonetic": "еки́м",
+    "hooks": [
+      "камыш"
+    ],
+    "image": "Камыш держит октябрь в руках."
+  },
+  "ekmek": {
+    "kind": "keyword",
+    "phonetic": "екме́к",
+    "hooks": [
+      "мак"
+    ],
+    "image": "Мак держит хлеб в руках."
+  },
+  "eksi": {
+    "kind": "keyword",
+    "phonetic": "екси́",
+    "hooks": [
+      "киоск"
+    ],
+    "image": "Киоск держит минус в руках."
+  },
+  "eksik": {
+    "kind": "keyword",
+    "phonetic": "екси́к",
+    "hooks": [
+      "киоск"
+    ],
+    "image": "Киоск сегодня выглядит недостающий."
+  },
+  "el öpmek": {
+    "kind": "keyword",
+    "phonetic": "ел ё́пмек",
+    "hooks": [
+      "лапа"
+    ],
+    "image": "Лапа прямо сейчас умеет целовать руку."
+  },
+  "elbise": {
+    "kind": "keyword",
+    "phonetic": "елбисе́",
+    "hooks": [
+      "бусы"
+    ],
+    "image": "Бусы держит платье в руках."
+  },
+  "elma": {
+    "kind": "keyword",
+    "phonetic": "елма́",
+    "hooks": [
+      "лампа"
+    ],
+    "image": "Лампа держит яблоко в руках."
+  },
+  "enfes": {
+    "kind": "keyword",
+    "phonetic": "енфе́с",
+    "hooks": [
+      "фаска"
+    ],
+    "image": "Фаска сегодня выглядит восхитительный."
+  },
+  "enişte": {
+    "kind": "keyword",
+    "phonetic": "ениште́",
+    "hooks": [
+      "штаны"
+    ],
+    "image": "Штаны держит зять в руках."
+  },
+  "erkek": {
+    "kind": "keyword",
+    "phonetic": "ерке́к",
+    "hooks": [
+      "кекс"
+    ],
+    "image": "Кекс держит мужчину в руках."
+  },
+  "erkek kardeş": {
+    "kind": "keyword",
+    "phonetic": "еркек карде́ш",
+    "hooks": [
+      "душ"
+    ],
+    "image": "Душ держит брат в руках."
+  },
+  "erken": {
+    "kind": "keyword",
+    "phonetic": "ерке́н",
+    "hooks": [
+      "кино"
+    ],
+    "image": "Кино держит рано в руках."
+  },
+  "eski": {
+    "kind": "keyword",
+    "phonetic": "ески́",
+    "hooks": [
+      "искра"
+    ],
+    "image": "Искра сегодня выглядит старый."
+  },
+  "eşya": {
+    "kind": "keyword",
+    "phonetic": "ешя́",
+    "hooks": [
+      "леший"
+    ],
+    "image": "Леший держит вещь в руках."
+  },
+  "etmek": {
+    "kind": "keyword",
+    "phonetic": "е́тмек",
+    "hooks": [
+      "тема"
+    ],
+    "image": "Тема прямо сейчас умеет делать."
+  },
+  "ev": {
+    "kind": "keyword",
+    "phonetic": "е́в",
+    "hooks": [
+      "ева"
+    ],
+    "image": "Ева держит дом в руках."
+  },
+  "ev hanımı": {
+    "kind": "keyword",
+    "phonetic": "ев ханымы́",
+    "hooks": [
+      "нимб"
+    ],
+    "image": "Нимб держит домохозяйку в руках."
+  },
+  "evlenmek": {
+    "kind": "keyword",
+    "phonetic": "евле́нмек",
+    "hooks": [
+      "лента"
+    ],
+    "image": "Лента прямо сейчас умеет жениться."
+  },
+  "evli": {
+    "kind": "keyword",
+    "phonetic": "евли́",
+    "hooks": [
+      "вилы"
+    ],
+    "image": "Вилы сегодня выглядит женатый."
+  },
+  "evlilik": {
+    "kind": "keyword",
+    "phonetic": "евлили́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит брак в руках."
+  },
+  "eylül": {
+    "kind": "keyword",
+    "phonetic": "ейлю́л",
+    "hooks": [
+      "аллея"
+    ],
+    "image": "Аллея держит сентябрь в руках."
+  },
+  "fabrika": {
+    "kind": "cognate",
+    "phonetic": "фабрика́",
+    "hooks": [
+      "фабрика"
+    ],
+    "image": ""
+  },
+  "fark": {
+    "kind": "keyword",
+    "phonetic": "фа́рк",
+    "hooks": [
+      "фарш"
+    ],
+    "image": "Фарш держит разницу в руках."
+  },
+  "farklı": {
+    "kind": "keyword",
+    "phonetic": "фарклы́",
+    "hooks": [
+      "фарш"
+    ],
+    "image": "Фарш сегодня выглядит разный."
+  },
+  "fındık": {
+    "kind": "cognate",
+    "phonetic": "фынды́к",
+    "hooks": [
+      "фундук"
+    ],
+    "image": ""
+  },
+  "fırça": {
+    "kind": "keyword",
+    "phonetic": "фырча́",
+    "hooks": [
+      "фарш"
+    ],
+    "image": "Фарш держит щётку в руках."
+  },
+  "fikir": {
+    "kind": "keyword",
+    "phonetic": "фики́р",
+    "hooks": [
+      "икра"
+    ],
+    "image": "Икра держит идею в руках."
+  },
+  "film": {
+    "kind": "cognate",
+    "phonetic": "фи́лм",
+    "hooks": [
+      "фильм"
+    ],
+    "image": ""
+  },
+  "fincan": {
+    "kind": "keyword",
+    "phonetic": "финджа́н",
+    "hooks": [
+      "джинсы"
+    ],
+    "image": "Джинсы держит чашку в руках."
+  },
+  "fotoğraf çekmek": {
+    "kind": "keyword",
+    "phonetic": "фотораф че́кмек",
+    "hooks": [
+      "очки"
+    ],
+    "image": "Очки прямо сейчас умеет фотографировать."
+  },
+  "fransa": {
+    "kind": "cognate",
+    "phonetic": "франса́",
+    "hooks": [
+      "Франция"
+    ],
+    "image": ""
+  },
+  "futbol": {
+    "kind": "cognate",
+    "phonetic": "футбо́л",
+    "hooks": [
+      "футбол"
+    ],
+    "image": ""
+  },
+  "futbol maçı": {
+    "kind": "cognate",
+    "phonetic": "футбол мачы́",
+    "hooks": [
+      "футбольный"
+    ],
+    "image": ""
+  },
+  "futbolcu": {
+    "kind": "cognate",
+    "phonetic": "футболджу́",
+    "hooks": [
+      "футболист"
+    ],
+    "image": ""
+  },
+  "galeri": {
+    "kind": "cognate",
+    "phonetic": "галери́",
+    "hooks": [
+      "галерея"
+    ],
+    "image": ""
+  },
+  "garaj": {
+    "kind": "cognate",
+    "phonetic": "гара́ж",
+    "hooks": [
+      "гараж"
+    ],
+    "image": ""
+  },
+  "garson": {
+    "kind": "keyword",
+    "phonetic": "гарсо́н",
+    "hooks": [
+      "санки"
+    ],
+    "image": "Санки держит официант в руках."
+  },
+  "gazete": {
+    "kind": "cognate",
+    "phonetic": "газете́",
+    "hooks": [
+      "газета"
+    ],
+    "image": ""
+  },
+  "geç": {
+    "kind": "keyword",
+    "phonetic": "ге́ч",
+    "hooks": [
+      "мягче"
+    ],
+    "image": "Мягче держит поздно в руках."
+  },
+  "geçmiş olsun.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так желают скорее поправиться после болезни."
+  },
+  "gelecek": {
+    "kind": "keyword",
+    "phonetic": "геледже́к",
+    "hooks": [
+      "джем"
+    ],
+    "image": "Джем держит будущее в руках."
+  },
+  "gelmek": {
+    "kind": "keyword",
+    "phonetic": "ге́лмек",
+    "hooks": [
+      "гель"
+    ],
+    "image": "Гель прямо сейчас умеет приходить."
+  },
+  "genç": {
+    "kind": "keyword",
+    "phonetic": "ге́нч",
+    "hooks": [
+      "огонь"
+    ],
+    "image": "Огонь сегодня выглядит молодой."
+  },
+  "gençlik": {
+    "kind": "keyword",
+    "phonetic": "генчли́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит молодость в руках."
+  },
+  "genellikle": {
+    "kind": "keyword",
+    "phonetic": "генелликле́",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит обычно в руках."
+  },
+  "geniş": {
+    "kind": "keyword",
+    "phonetic": "гени́ш",
+    "hooks": [
+      "ниша"
+    ],
+    "image": "Ниша сегодня выглядит широкий."
+  },
+  "geveze": {
+    "kind": "keyword",
+    "phonetic": "гевезе́",
+    "hooks": [
+      "гвоздь"
+    ],
+    "image": "Гвоздь сегодня выглядит болтливый."
+  },
+  "gezi": {
+    "kind": "keyword",
+    "phonetic": "гези́",
+    "hooks": [
+      "газ"
+    ],
+    "image": "Газ держит экскурсию в руках."
+  },
+  "girmek": {
+    "kind": "keyword",
+    "phonetic": "ги́рмек",
+    "hooks": [
+      "гром"
+    ],
+    "image": "Гром прямо сейчас умеет входить."
+  },
+  "gitar": {
+    "kind": "cognate",
+    "phonetic": "гита́р",
+    "hooks": [
+      "гитара"
+    ],
+    "image": ""
+  },
+  "gitmek": {
+    "kind": "keyword",
+    "phonetic": "ги́тмек",
+    "hooks": [
+      "гитара"
+    ],
+    "image": "Гитара прямо сейчас умеет идти."
+  },
+  "golf oynamak": {
+    "kind": "cognate",
+    "phonetic": "голф ойна́мак",
+    "hooks": [
+      "гольф"
+    ],
+    "image": ""
+  },
+  "görüşmek üzere.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так обещают скорую новую встречу."
+  },
+  "görüşürüz / görüşmek üzere.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так прощаются, когда ещё увидятся."
+  },
+  "görüşürüz.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так заканчивают разговор: увидимся."
+  },
+  "gösteri yapmak": {
+    "kind": "keyword",
+    "phonetic": "гёстери́ япмак",
+    "hooks": [
+      "трап"
+    ],
+    "image": "Трап прямо сейчас умеет выступать."
+  },
+  "götürmek": {
+    "kind": "keyword",
+    "phonetic": "гётю́рмек",
+    "hooks": [
+      "термос"
+    ],
+    "image": "Термос прямо сейчас умеет относить."
+  },
+  "göz": {
+    "kind": "keyword",
+    "phonetic": "гё́з",
+    "hooks": [
+      "газ"
+    ],
+    "image": "Газ держит глаз в руках."
+  },
+  "gri": {
+    "kind": "keyword",
+    "phonetic": "гри́",
+    "hooks": [
+      "гиря"
+    ],
+    "image": "Гиря сегодня выглядит серый."
+  },
+  "grip": {
+    "kind": "cognate",
+    "phonetic": "гри́п",
+    "hooks": [
+      "грипп"
+    ],
+    "image": ""
+  },
+  "güçlü": {
+    "kind": "keyword",
+    "phonetic": "гючлю́",
+    "hooks": [
+      "мягче"
+    ],
+    "image": "Мягче сегодня выглядит сильный."
+  },
+  "güçsüz": {
+    "kind": "keyword",
+    "phonetic": "гючсю́з",
+    "hooks": [
+      "сазан"
+    ],
+    "image": "Сазан сегодня выглядит слабый."
+  },
+  "gül": {
+    "kind": "keyword",
+    "phonetic": "гю́л",
+    "hooks": [
+      "гель"
+    ],
+    "image": "Гель держит розу в руках."
+  },
+  "güle güle.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так говорят тому, кто уже уходит."
+  },
+  "güler yüzlü": {
+    "kind": "keyword",
+    "phonetic": "гюлер йюзлю́",
+    "hooks": [
+      "кайзер"
+    ],
+    "image": "Кайзер сегодня выглядит улыбчивый."
+  },
+  "gün": {
+    "kind": "keyword",
+    "phonetic": "гю́н",
+    "hooks": [
+      "огонь"
+    ],
+    "image": "Огонь держит день в руках."
+  },
+  "günaydın.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так здороваются утром при встрече."
+  },
+  "güney amerika": {
+    "kind": "cognate",
+    "phonetic": "гюней америка́",
+    "hooks": [
+      "Америка"
+    ],
+    "image": ""
+  },
+  "güvenli": {
+    "kind": "keyword",
+    "phonetic": "гювенли́",
+    "hooks": [
+      "винт"
+    ],
+    "image": "Винт сегодня выглядит безопасный."
+  },
+  "güzel": {
+    "kind": "keyword",
+    "phonetic": "гюзе́л",
+    "hooks": [
+      "зола"
+    ],
+    "image": "Зола сегодня выглядит красивый."
+  },
+  "hafta içi": {
+    "kind": "keyword",
+    "phonetic": "хафта ичи́",
+    "hooks": [
+      "точка"
+    ],
+    "image": "Точка держит будни в руках."
+  },
+  "hafta sonu": {
+    "kind": "keyword",
+    "phonetic": "хафта сону́",
+    "hooks": [
+      "сундук"
+    ],
+    "image": "Сундук сегодня выглядит выходные."
+  },
+  "hâl": {
+    "kind": "keyword",
+    "phonetic": "ха́л",
+    "hooks": [
+      "хлам"
+    ],
+    "image": "Хлам держит состояние в руках."
+  },
+  "hala": {
+    "kind": "keyword",
+    "phonetic": "хала́",
+    "hooks": [
+      "хлам"
+    ],
+    "image": "Хлам держит тётю в руках."
+  },
+  "halı": {
+    "kind": "keyword",
+    "phonetic": "халы́",
+    "hooks": [
+      "хлам"
+    ],
+    "image": "Хлам держит ковёр в руках."
+  },
+  "halsiz": {
+    "kind": "keyword",
+    "phonetic": "халси́з",
+    "hooks": [
+      "сазан"
+    ],
+    "image": "Сазан сегодня выглядит вялый."
+  },
+  "hanım": {
+    "kind": "keyword",
+    "phonetic": "ханы́м",
+    "hooks": [
+      "нимб"
+    ],
+    "image": "Нимб держит госпожу в руках."
+  },
+  "harçlık": {
+    "kind": "keyword",
+    "phonetic": "харчлы́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак сегодня выглядит карманные деньги."
+  },
+  "harf": {
+    "kind": "keyword",
+    "phonetic": "ха́рф",
+    "hooks": [
+      "хрен"
+    ],
+    "image": "Хрен держит букву в руках."
+  },
+  "hasta": {
+    "kind": "keyword",
+    "phonetic": "хаста́",
+    "hooks": [
+      "хасан"
+    ],
+    "image": "Хасан сегодня выглядит больной."
+  },
+  "hastalık": {
+    "kind": "keyword",
+    "phonetic": "хасталы́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит болезнь в руках."
+  },
+  "havuç": {
+    "kind": "keyword",
+    "phonetic": "хаву́ч",
+    "hooks": [
+      "овчарка"
+    ],
+    "image": "Овчарка держит морковь в руках."
+  },
+  "havuz": {
+    "kind": "keyword",
+    "phonetic": "хаву́з",
+    "hooks": [
+      "ваза"
+    ],
+    "image": "Ваза держит бассейн в руках."
+  },
+  "hayat": {
+    "kind": "keyword",
+    "phonetic": "хая́т",
+    "hooks": [
+      "яхта"
+    ],
+    "image": "Яхта держит жизнь в руках."
+  },
+  "hayvanat bahçesi": {
+    "kind": "keyword",
+    "phonetic": "хайванат бахчеси́",
+    "hooks": [
+      "часы"
+    ],
+    "image": "Часы держит зоопарк в руках."
+  },
+  "hazırlamak": {
+    "kind": "keyword",
+    "phonetic": "хазырла́мак",
+    "hooks": [
+      "зеркало"
+    ],
+    "image": "Зеркало прямо сейчас умеет готовить."
+  },
+  "hazırlanmak": {
+    "kind": "keyword",
+    "phonetic": "хазырла́нмак",
+    "hooks": [
+      "луна"
+    ],
+    "image": "Луна прямо сейчас умеет готовиться."
+  },
+  "haziran": {
+    "kind": "keyword",
+    "phonetic": "хазира́н",
+    "hooks": [
+      "ранец"
+    ],
+    "image": "Ранец держит июнь в руках."
+  },
+  "hece": {
+    "kind": "keyword",
+    "phonetic": "хедже́",
+    "hooks": [
+      "джем"
+    ],
+    "image": "Джем держит слог в руках."
+  },
+  "hemşire": {
+    "kind": "keyword",
+    "phonetic": "хемшире́",
+    "hooks": [
+      "шар"
+    ],
+    "image": "Шар держит медсестру в руках."
+  },
+  "her": {
+    "kind": "keyword",
+    "phonetic": "хе́р",
+    "hooks": [
+      "хрен"
+    ],
+    "image": "Хрен сегодня выглядит каждый."
+  },
+  "her gün/hafta/yaz": {
+    "kind": "keyword",
+    "phonetic": "хер гю́н",
+    "hooks": [
+      "огонь"
+    ],
+    "image": "Огонь сегодня выглядит каждый день."
+  },
+  "her zaman": {
+    "kind": "keyword",
+    "phonetic": "хер зама́н",
+    "hooks": [
+      "мангал"
+    ],
+    "image": "Мангал держит всегду в руках."
+  },
+  "heyecanlanmak": {
+    "kind": "keyword",
+    "phonetic": "хееджанла́нмак",
+    "hooks": [
+      "луна"
+    ],
+    "image": "Луна прямо сейчас умеет волноваться."
+  },
+  "heyecanlı": {
+    "kind": "keyword",
+    "phonetic": "хееджанлы́",
+    "hooks": [
+      "джинсы"
+    ],
+    "image": "Джинсы сегодня выглядит взволнованный."
+  },
+  "hızlı": {
+    "kind": "keyword",
+    "phonetic": "хызлы́",
+    "hooks": [
+      "хазар"
+    ],
+    "image": "Хазар сегодня выглядит быстрый."
+  },
+  "hiç": {
+    "kind": "keyword",
+    "phonetic": "хи́ч",
+    "hooks": [
+      "хач"
+    ],
+    "image": "Хач держит нисколько в руках."
+  },
+  "hiçbir zaman": {
+    "kind": "keyword",
+    "phonetic": "хичбир зама́н",
+    "hooks": [
+      "мангал"
+    ],
+    "image": "Мангал держит никогду в руках."
+  },
+  "hissetmek": {
+    "kind": "keyword",
+    "phonetic": "хиссе́тмек",
+    "hooks": [
+      "стамеска"
+    ],
+    "image": "Стамеска прямо сейчас умеет чувствовать."
+  },
+  "hostes": {
+    "kind": "keyword",
+    "phonetic": "хосте́с",
+    "hooks": [
+      "тесак"
+    ],
+    "image": "Тесак держит стюардессу в руках."
+  },
+  "hoş bulduk.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так отвечают на слова добро пожаловать."
+  },
+  "hoş geldin.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так встречают гостя у двери дома."
+  },
+  "hoşça kal.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так прощаются с тем, кто остаётся."
+  },
+  "hoşlanmak": {
+    "kind": "keyword",
+    "phonetic": "хошла́нмак",
+    "hooks": [
+      "луна"
+    ],
+    "image": "Луна прямо сейчас умеет любить."
+  },
+  "hukuk": {
+    "kind": "keyword",
+    "phonetic": "хуку́к",
+    "hooks": [
+      "кукла"
+    ],
+    "image": "Кукла держит право в руках."
+  },
+  "ıspanak": {
+    "kind": "keyword",
+    "phonetic": "ыспана́к",
+    "hooks": [
+      "анкета"
+    ],
+    "image": "Анкета держит шпинат в руках."
+  },
+  "ızgara": {
+    "kind": "keyword",
+    "phonetic": "ызгара́",
+    "hooks": [
+      "гараж"
+    ],
+    "image": "Гараж держит гриль в руках."
+  },
+  "iç": {
+    "kind": "keyword",
+    "phonetic": "и́ч",
+    "hooks": [
+      "чиж"
+    ],
+    "image": "Чиж сегодня выглядит внутренний."
+  },
+  "i̇ç": {
+    "kind": "keyword",
+    "phonetic": "и́ч",
+    "hooks": [
+      "чиж"
+    ],
+    "image": "Чиж держит внутренняя часть в руках."
+  },
+  "içecek": {
+    "kind": "keyword",
+    "phonetic": "ичедже́к",
+    "hooks": [
+      "джем"
+    ],
+    "image": "Джем держит напиток в руках."
+  },
+  "içeri": {
+    "kind": "keyword",
+    "phonetic": "ичери́",
+    "hooks": [
+      "череп"
+    ],
+    "image": "Череп держит внутрь в руках."
+  },
+  "ideal": {
+    "kind": "cognate",
+    "phonetic": "идеа́л",
+    "hooks": [
+      "идеал"
+    ],
+    "image": ""
+  },
+  "iğne olmak": {
+    "kind": "keyword",
+    "phonetic": "ине́ олмак",
+    "hooks": [
+      "ноль"
+    ],
+    "image": "Ноль прямо сейчас умеет делать укол."
+  },
+  "ikram etmek": {
+    "kind": "keyword",
+    "phonetic": "икра́м етмек",
+    "hooks": [
+      "рама"
+    ],
+    "image": "Рама прямо сейчас умеет угощать."
+  },
+  "i̇lgilenmek": {
+    "kind": "keyword",
+    "phonetic": "илгиле́нмек",
+    "hooks": [
+      "лента"
+    ],
+    "image": "Лента прямо сейчас умеет интересоваться."
+  },
+  "ilkbahar": {
+    "kind": "keyword",
+    "phonetic": "илкбаха́р",
+    "hooks": [
+      "хрен"
+    ],
+    "image": "Хрен держит весну в руках."
+  },
+  "ilkokul": {
+    "kind": "keyword",
+    "phonetic": "илкоку́л",
+    "hooks": [
+      "кулак"
+    ],
+    "image": "Кулак сегодня выглядит начальная школа."
+  },
+  "inanmak": {
+    "kind": "keyword",
+    "phonetic": "ина́нмак",
+    "hooks": [
+      "анна"
+    ],
+    "image": "Анна прямо сейчас умеет верить."
+  },
+  "inek": {
+    "kind": "keyword",
+    "phonetic": "ине́к",
+    "hooks": [
+      "анкета"
+    ],
+    "image": "Анкета держит корову в руках."
+  },
+  "i̇ngiliz": {
+    "kind": "keyword",
+    "phonetic": "ингили́з",
+    "hooks": [
+      "лезвие"
+    ],
+    "image": "Лезвие держит англичанин в руках."
+  },
+  "i̇ngilizce": {
+    "kind": "keyword",
+    "phonetic": "ингилиздже́",
+    "hooks": [
+      "джем"
+    ],
+    "image": "Джем сегодня выглядит английский язык."
+  },
+  "i̇ngiltere": {
+    "kind": "cognate",
+    "phonetic": "ингилтере́",
+    "hooks": [
+      "Англия"
+    ],
+    "image": ""
+  },
+  "insan": {
+    "kind": "keyword",
+    "phonetic": "инса́н",
+    "hooks": [
+      "санки"
+    ],
+    "image": "Санки держит человек в руках."
+  },
+  "inşallah": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так говорят о надежде: дай бог, надеюсь."
+  },
+  "internete girmek": {
+    "kind": "cognate",
+    "phonetic": "интернете ги́рмек",
+    "hooks": [
+      "интернет"
+    ],
+    "image": ""
+  },
+  "i̇ran": {
+    "kind": "cognate",
+    "phonetic": "ира́н",
+    "hooks": [
+      "Иран"
+    ],
+    "image": ""
+  },
+  "i̇ranlı": {
+    "kind": "cognate",
+    "phonetic": "иранлы́",
+    "hooks": [
+      "иранец"
+    ],
+    "image": ""
+  },
+  "i̇skele": {
+    "kind": "keyword",
+    "phonetic": "искеле́",
+    "hooks": [
+      "скала"
+    ],
+    "image": "Скала держит пристань в руках."
+  },
+  "i̇spanya": {
+    "kind": "cognate",
+    "phonetic": "испаня́",
+    "hooks": [
+      "Испания"
+    ],
+    "image": ""
+  },
+  "i̇spanyol": {
+    "kind": "cognate",
+    "phonetic": "испанйо́л",
+    "hooks": [
+      "испанец"
+    ],
+    "image": ""
+  },
+  "istasyon": {
+    "kind": "keyword",
+    "phonetic": "истасйо́н",
+    "hooks": [
+      "январь"
+    ],
+    "image": "Январь держит станцию в руках."
+  },
+  "iş": {
+    "kind": "keyword",
+    "phonetic": "и́ш",
+    "hooks": [
+      "шина"
+    ],
+    "image": "Шина держит работу в руках."
+  },
+  "iş adamı": {
+    "kind": "keyword",
+    "phonetic": "иш адамы́",
+    "hooks": [
+      "дым"
+    ],
+    "image": "Дым держит бизнесмен в руках."
+  },
+  "iş yeri": {
+    "kind": "keyword",
+    "phonetic": "иш ери́",
+    "hooks": [
+      "шар"
+    ],
+    "image": "Шар держит рабочее место в руках."
+  },
+  "işadamı": {
+    "kind": "keyword",
+    "phonetic": "ишадамы́",
+    "hooks": [
+      "дым"
+    ],
+    "image": "Дым держит бизнесмен в руках."
+  },
+  "i̇talya": {
+    "kind": "cognate",
+    "phonetic": "италя́",
+    "hooks": [
+      "Италия"
+    ],
+    "image": ""
+  },
+  "iyi": {
+    "kind": "keyword",
+    "phonetic": "ийи́",
+    "hooks": [
+      "иней"
+    ],
+    "image": "Иней сегодня выглядит хороший."
+  },
+  "japonya": {
+    "kind": "keyword",
+    "phonetic": "жапоня́",
+    "hooks": [
+      "пень"
+    ],
+    "image": "Пень держит Японию в руках."
+  },
+  "jeton": {
+    "kind": "cognate",
+    "phonetic": "жето́н",
+    "hooks": [
+      "жетон"
+    ],
+    "image": ""
+  },
+  "jilet": {
+    "kind": "keyword",
+    "phonetic": "жиле́т",
+    "hooks": [
+      "жилет"
+    ],
+    "image": "Жилет держит бритву в руках."
+  },
+  "kaç": {
+    "kind": "keyword",
+    "phonetic": "ка́ч",
+    "hooks": [
+      "качка"
+    ],
+    "image": "Качка держит сколько в руках."
+  },
+  "kaçıncı": {
+    "kind": "keyword",
+    "phonetic": "качынджы́",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз сегодня выглядит который."
+  },
+  "kadın": {
+    "kind": "keyword",
+    "phonetic": "кады́н",
+    "hooks": [
+      "дыня"
+    ],
+    "image": "Дыня держит женщину в руках."
+  },
+  "kafe": {
+    "kind": "cognate",
+    "phonetic": "кафе́",
+    "hooks": [
+      "кафе"
+    ],
+    "image": ""
+  },
+  "kahvaltı etmek": {
+    "kind": "keyword",
+    "phonetic": "кахвалты́ етмек",
+    "hooks": [
+      "вилы"
+    ],
+    "image": "Вилы прямо сейчас умеет завтракать."
+  },
+  "kahve": {
+    "kind": "keyword",
+    "phonetic": "кахве́",
+    "hooks": [
+      "кухня"
+    ],
+    "image": "Кухня держит кофе в руках."
+  },
+  "kahverengi": {
+    "kind": "keyword",
+    "phonetic": "кахверенги́",
+    "hooks": [
+      "ранец"
+    ],
+    "image": "Ранец сегодня выглядит коричневый."
+  },
+  "kalabalık": {
+    "kind": "keyword",
+    "phonetic": "калабалы́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит толпу в руках."
+  },
+  "kalem": {
+    "kind": "keyword",
+    "phonetic": "кале́м",
+    "hooks": [
+      "лом"
+    ],
+    "image": "Лом держит ручку в руках."
+  },
+  "kalkmak": {
+    "kind": "keyword",
+    "phonetic": "ка́лкмак",
+    "hooks": [
+      "клык"
+    ],
+    "image": "Клык прямо сейчас умеет вставать."
+  },
+  "kalmak": {
+    "kind": "keyword",
+    "phonetic": "ка́лмак",
+    "hooks": [
+      "акула"
+    ],
+    "image": "Акула прямо сейчас умеет оставаться."
+  },
+  "kalp": {
+    "kind": "keyword",
+    "phonetic": "ка́лп",
+    "hooks": [
+      "клапан"
+    ],
+    "image": "Клапан держит сердце в руках."
+  },
+  "kampus": {
+    "kind": "cognate",
+    "phonetic": "кампу́с",
+    "hooks": [
+      "кампус"
+    ],
+    "image": ""
+  },
+  "kampüs": {
+    "kind": "cognate",
+    "phonetic": "кампю́с",
+    "hooks": [
+      "кампус"
+    ],
+    "image": ""
+  },
+  "kanepe": {
+    "kind": "keyword",
+    "phonetic": "канепе́",
+    "hooks": [
+      "кнопка"
+    ],
+    "image": "Кнопка держит диван в руках."
+  },
+  "kaneple": {
+    "kind": "keyword",
+    "phonetic": "канепле́",
+    "hooks": [
+      "конопля"
+    ],
+    "image": "Конопля держит с диваном в руках."
+  },
+  "kantin": {
+    "kind": "keyword",
+    "phonetic": "канти́н",
+    "hooks": [
+      "тень"
+    ],
+    "image": "Тень сегодня выглядит столовая."
+  },
+  "kapalı": {
+    "kind": "keyword",
+    "phonetic": "капалы́",
+    "hooks": [
+      "пыль"
+    ],
+    "image": "Пыль сегодня выглядит закрытый."
+  },
+  "kapanmak": {
+    "kind": "keyword",
+    "phonetic": "капа́нмак",
+    "hooks": [
+      "панама"
+    ],
+    "image": "Панама прямо сейчас умеет закрываться."
+  },
+  "kapatmak": {
+    "kind": "keyword",
+    "phonetic": "капа́тмак",
+    "hooks": [
+      "петух"
+    ],
+    "image": "Петух прямо сейчас умеет закрывать."
+  },
+  "kapı": {
+    "kind": "keyword",
+    "phonetic": "капы́",
+    "hooks": [
+      "кепка"
+    ],
+    "image": "Кепка держит дверь в руках."
+  },
+  "kardeş": {
+    "kind": "keyword",
+    "phonetic": "карде́ш",
+    "hooks": [
+      "душ"
+    ],
+    "image": "Душ держит брат в руках."
+  },
+  "karı": {
+    "kind": "keyword",
+    "phonetic": "кары́",
+    "hooks": [
+      "крыло"
+    ],
+    "image": "Крыло держит жену в руках."
+  },
+  "karın": {
+    "kind": "keyword",
+    "phonetic": "кары́н",
+    "hooks": [
+      "кран"
+    ],
+    "image": "Кран держит живот в руках."
+  },
+  "karşı": {
+    "kind": "keyword",
+    "phonetic": "каршы́",
+    "hooks": [
+      "крыша"
+    ],
+    "image": "Крыша держит против в руках."
+  },
+  "karşılamak": {
+    "kind": "keyword",
+    "phonetic": "каршыла́мак",
+    "hooks": [
+      "шлем"
+    ],
+    "image": "Шлем прямо сейчас умеет встречать."
+  },
+  "kasap": {
+    "kind": "keyword",
+    "phonetic": "каса́п",
+    "hooks": [
+      "сапог"
+    ],
+    "image": "Сапог держит мясник в руках."
+  },
+  "kasım": {
+    "kind": "keyword",
+    "phonetic": "касы́м",
+    "hooks": [
+      "сом"
+    ],
+    "image": "Сом держит ноябрь в руках."
+  },
+  "kaş": {
+    "kind": "keyword",
+    "phonetic": "ка́ш",
+    "hooks": [
+      "каша"
+    ],
+    "image": "Каша держит бровь в руках."
+  },
+  "kaşınmak": {
+    "kind": "keyword",
+    "phonetic": "кашы́нмак",
+    "hooks": [
+      "шина"
+    ],
+    "image": "Шина прямо сейчас умеет чесаться."
+  },
+  "kat": {
+    "kind": "keyword",
+    "phonetic": "ка́т",
+    "hooks": [
+      "каюта"
+    ],
+    "image": "Каюта держит этаж в руках."
+  },
+  "kaza": {
+    "kind": "keyword",
+    "phonetic": "каза́",
+    "hooks": [
+      "козёл"
+    ],
+    "image": "Козёл сегодня выглядит несчастный случай."
+  },
+  "kazakça": {
+    "kind": "keyword",
+    "phonetic": "казакча́",
+    "hooks": [
+      "сказка"
+    ],
+    "image": "Сказка сегодня выглядит казахский язык."
+  },
+  "kazakistan": {
+    "kind": "cognate",
+    "phonetic": "казакиста́н",
+    "hooks": [
+      "Казахстан"
+    ],
+    "image": ""
+  },
+  "kebap": {
+    "kind": "cognate",
+    "phonetic": "кеба́п",
+    "hooks": [
+      "кебаб"
+    ],
+    "image": ""
+  },
+  "kedi": {
+    "kind": "keyword",
+    "phonetic": "кеди́",
+    "hooks": [
+      "кеды"
+    ],
+    "image": "Кеды держит кошку в руках."
+  },
+  "kısa": {
+    "kind": "keyword",
+    "phonetic": "кыса́",
+    "hooks": [
+      "каска"
+    ],
+    "image": "Каска сегодня выглядит короткий."
+  },
+  "kıskanç": {
+    "kind": "keyword",
+    "phonetic": "кыска́нч",
+    "hooks": [
+      "канал"
+    ],
+    "image": "Канал сегодня выглядит завистливый."
+  },
+  "kış": {
+    "kind": "keyword",
+    "phonetic": "кы́ш",
+    "hooks": [
+      "каша"
+    ],
+    "image": "Каша держит зиму в руках."
+  },
+  "kız": {
+    "kind": "keyword",
+    "phonetic": "кы́з",
+    "hooks": [
+      "козёл"
+    ],
+    "image": "Козёл держит девушку в руках."
+  },
+  "kız kardeş": {
+    "kind": "keyword",
+    "phonetic": "кыз карде́ш",
+    "hooks": [
+      "душ"
+    ],
+    "image": "Душ держит сестру в руках."
+  },
+  "kızgın": {
+    "kind": "keyword",
+    "phonetic": "кызгы́н",
+    "hooks": [
+      "огонь"
+    ],
+    "image": "Огонь сегодня выглядит сердитый."
+  },
+  "kibar": {
+    "kind": "keyword",
+    "phonetic": "киба́р",
+    "hooks": [
+      "бардак"
+    ],
+    "image": "Бардак сегодня выглядит вежливый."
+  },
+  "kira": {
+    "kind": "keyword",
+    "phonetic": "кира́",
+    "hooks": [
+      "краб"
+    ],
+    "image": "Краб сегодня выглядит арендная плата."
+  },
+  "kirli": {
+    "kind": "keyword",
+    "phonetic": "кирли́",
+    "hooks": [
+      "крыло"
+    ],
+    "image": "Крыло сегодня выглядит грязный."
+  },
+  "kişi": {
+    "kind": "keyword",
+    "phonetic": "киши́",
+    "hooks": [
+      "каша"
+    ],
+    "image": "Каша держит человек в руках."
+  },
+  "kitap": {
+    "kind": "keyword",
+    "phonetic": "кита́п",
+    "hooks": [
+      "кит"
+    ],
+    "image": "Кит читает толстую книгу у окна."
+  },
+  "kitaplık": {
+    "kind": "keyword",
+    "phonetic": "китаплы́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак сегодня выглядит книжный шкаф."
+  },
+  "klarnet": {
+    "kind": "cognate",
+    "phonetic": "кларне́т",
+    "hooks": [
+      "кларнет"
+    ],
+    "image": ""
+  },
+  "koca": {
+    "kind": "keyword",
+    "phonetic": "коджа́",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит муж в руках."
+  },
+  "kol": {
+    "kind": "keyword",
+    "phonetic": "ко́л",
+    "hooks": [
+      "колба"
+    ],
+    "image": "Колба держит руку в руках."
+  },
+  "kolay": {
+    "kind": "keyword",
+    "phonetic": "кола́й",
+    "hooks": [
+      "клей"
+    ],
+    "image": "Клей сегодня выглядит лёгкий."
+  },
+  "kolonya dökmek": {
+    "kind": "keyword",
+    "phonetic": "колоня дё́кмек",
+    "hooks": [
+      "доктор"
+    ],
+    "image": "Доктор прямо сейчас умеет поливать одеколоном."
+  },
+  "koltuk": {
+    "kind": "keyword",
+    "phonetic": "колту́к",
+    "hooks": [
+      "утка"
+    ],
+    "image": "Утка держит кресло в руках."
+  },
+  "komik": {
+    "kind": "keyword",
+    "phonetic": "коми́к",
+    "hooks": [
+      "миксер"
+    ],
+    "image": "Миксер сегодня выглядит смешной."
+  },
+  "konser": {
+    "kind": "keyword",
+    "phonetic": "консе́р",
+    "hooks": [
+      "серп"
+    ],
+    "image": "Серп держит концерт в руках."
+  },
+  "kontrol etmek": {
+    "kind": "cognate",
+    "phonetic": "контро́л етмек",
+    "hooks": [
+      "контролировать"
+    ],
+    "image": ""
+  },
+  "konuşkan": {
+    "kind": "keyword",
+    "phonetic": "конушка́н",
+    "hooks": [
+      "канал"
+    ],
+    "image": "Канал сегодня выглядит разговорчивый."
+  },
+  "konuşmak": {
+    "kind": "keyword",
+    "phonetic": "кону́шмак",
+    "hooks": [
+      "ниша"
+    ],
+    "image": "Ниша прямо сейчас умеет говорить."
+  },
+  "kore": {
+    "kind": "cognate",
+    "phonetic": "коре́",
+    "hooks": [
+      "Корея"
+    ],
+    "image": ""
+  },
+  "koreli": {
+    "kind": "cognate",
+    "phonetic": "корели́",
+    "hooks": [
+      "кореец"
+    ],
+    "image": ""
+  },
+  "koridor": {
+    "kind": "cognate",
+    "phonetic": "коридо́р",
+    "hooks": [
+      "коридор"
+    ],
+    "image": ""
+  },
+  "korkmak": {
+    "kind": "keyword",
+    "phonetic": "ко́ркмак",
+    "hooks": [
+      "корка"
+    ],
+    "image": "Корка прямо сейчас умеет бояться."
+  },
+  "korumak": {
+    "kind": "keyword",
+    "phonetic": "кору́мак",
+    "hooks": [
+      "крем"
+    ],
+    "image": "Крем прямо сейчас умеет защищать."
+  },
+  "koşmak": {
+    "kind": "keyword",
+    "phonetic": "ко́шмак",
+    "hooks": [
+      "кошка"
+    ],
+    "image": "Кошка прямо сейчас умеет бежать."
+  },
+  "köpek": {
+    "kind": "keyword",
+    "phonetic": "кёпе́к",
+    "hooks": [
+      "кепка"
+    ],
+    "image": "Кепка держит собаку в руках."
+  },
+  "köprü": {
+    "kind": "keyword",
+    "phonetic": "кёпрю́",
+    "hooks": [
+      "кепка"
+    ],
+    "image": "Кепка держит мост в руках."
+  },
+  "köşe": {
+    "kind": "keyword",
+    "phonetic": "кёше́",
+    "hooks": [
+      "каша"
+    ],
+    "image": "Каша держит угол в руках."
+  },
+  "kötü": {
+    "kind": "keyword",
+    "phonetic": "кётю́",
+    "hooks": [
+      "кит"
+    ],
+    "image": "Кит сегодня выглядит плохой."
+  },
+  "köy": {
+    "kind": "keyword",
+    "phonetic": "кё́й",
+    "hooks": [
+      "койка"
+    ],
+    "image": "Койка держит деревню в руках."
+  },
+  "kuaför": {
+    "kind": "keyword",
+    "phonetic": "куафё́р",
+    "hooks": [
+      "фарш"
+    ],
+    "image": "Фарш держит парикмахер в руках."
+  },
+  "kulak": {
+    "kind": "keyword",
+    "phonetic": "кула́к",
+    "hooks": [
+      "клык"
+    ],
+    "image": "Клык держит ухо в руках."
+  },
+  "kulaklık": {
+    "kind": "keyword",
+    "phonetic": "кулаклы́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит наушники в руках."
+  },
+  "kullanmak": {
+    "kind": "keyword",
+    "phonetic": "кулла́нмак",
+    "hooks": [
+      "луна"
+    ],
+    "image": "Луна прямо сейчас умеет использовать."
+  },
+  "kulüp": {
+    "kind": "cognate",
+    "phonetic": "кулю́п",
+    "hooks": [
+      "клуб"
+    ],
+    "image": ""
+  },
+  "kuş": {
+    "kind": "keyword",
+    "phonetic": "ку́ш",
+    "hooks": [
+      "кушетка"
+    ],
+    "image": "Кушетка держит птицу в руках."
+  },
+  "kutlama": {
+    "kind": "keyword",
+    "phonetic": "кутлама́",
+    "hooks": [
+      "лампа"
+    ],
+    "image": "Лампа держит празднование в руках."
+  },
+  "kutlu olmak": {
+    "kind": "keyword",
+    "phonetic": "кутлу́ олмак",
+    "hooks": [
+      "котёл"
+    ],
+    "image": "Котёл прямо сейчас умеет быть благословенным."
+  },
+  "kutu": {
+    "kind": "keyword",
+    "phonetic": "куту́",
+    "hooks": [
+      "кит"
+    ],
+    "image": "Кит держит коробку в руках."
+  },
+  "kuyumcu": {
+    "kind": "keyword",
+    "phonetic": "куюмджу́",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит ювелир в руках."
+  },
+  "kuzen": {
+    "kind": "cognate",
+    "phonetic": "кузе́н",
+    "hooks": [
+      "кузен"
+    ],
+    "image": ""
+  },
+  "kuzey amerika": {
+    "kind": "cognate",
+    "phonetic": "кузей америка́",
+    "hooks": [
+      "Америка"
+    ],
+    "image": ""
+  },
+  "küçük": {
+    "kind": "keyword",
+    "phonetic": "кючю́к",
+    "hooks": [
+      "очки"
+    ],
+    "image": "Очки сегодня выглядит маленький."
+  },
+  "kütüphane": {
+    "kind": "keyword",
+    "phonetic": "кютюпхане́",
+    "hooks": [
+      "хна"
+    ],
+    "image": "Хна держит библиотеку в руках."
+  },
+  "lale": {
+    "kind": "keyword",
+    "phonetic": "лале́",
+    "hooks": [
+      "аллея"
+    ],
+    "image": "Аллея держит тюльпан в руках."
+  },
+  "lamba": {
+    "kind": "cognate",
+    "phonetic": "ламба́",
+    "hooks": [
+      "лампа"
+    ],
+    "image": ""
+  },
+  "lig": {
+    "kind": "cognate",
+    "phonetic": "ли́г",
+    "hooks": [
+      "лига"
+    ],
+    "image": ""
+  },
+  "limon": {
+    "kind": "cognate",
+    "phonetic": "лимо́н",
+    "hooks": [
+      "лимон"
+    ],
+    "image": ""
+  },
+  "lise": {
+    "kind": "keyword",
+    "phonetic": "лисе́",
+    "hooks": [
+      "лес"
+    ],
+    "image": "Лес держит средняя школа в руках."
+  },
+  "liste": {
+    "kind": "keyword",
+    "phonetic": "листе́",
+    "hooks": [
+      "лестница"
+    ],
+    "image": "Лестница держит список в руках."
+  },
+  "litre": {
+    "kind": "cognate",
+    "phonetic": "литре́",
+    "hooks": [
+      "литр"
+    ],
+    "image": ""
+  },
+  "lokanta": {
+    "kind": "keyword",
+    "phonetic": "локанта́",
+    "hooks": [
+      "канал"
+    ],
+    "image": "Канал держит ресторан в руках."
+  },
+  "lütfen": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Ставят в просьбу, когда говорят пожалуйста."
+  },
+  "lütfen.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Ставят в просьбу, когда говорят пожалуйста."
+  },
+  "maç": {
+    "kind": "keyword",
+    "phonetic": "ма́ч",
+    "hooks": [
+      "мяч"
+    ],
+    "image": "Мяч держит матч в руках."
+  },
+  "mahalle": {
+    "kind": "keyword",
+    "phonetic": "махалле́",
+    "hooks": [
+      "хлеб"
+    ],
+    "image": "Хлеб держит квартал в руках."
+  },
+  "makas": {
+    "kind": "keyword",
+    "phonetic": "мака́с",
+    "hooks": [
+      "миксер"
+    ],
+    "image": "Миксер держит ножницы в руках."
+  },
+  "malezya": {
+    "kind": "cognate",
+    "phonetic": "малезя́",
+    "hooks": [
+      "Малайзия"
+    ],
+    "image": ""
+  },
+  "malezyalı": {
+    "kind": "cognate",
+    "phonetic": "малезялы́",
+    "hooks": [
+      "малазиец"
+    ],
+    "image": ""
+  },
+  "manikür": {
+    "kind": "cognate",
+    "phonetic": "маникю́р",
+    "hooks": [
+      "маникюр"
+    ],
+    "image": ""
+  },
+  "manto": {
+    "kind": "keyword",
+    "phonetic": "манто́",
+    "hooks": [
+      "монета"
+    ],
+    "image": "Монета держит пальто в руках."
+  },
+  "marka": {
+    "kind": "cognate",
+    "phonetic": "марка́",
+    "hooks": [
+      "марка"
+    ],
+    "image": ""
+  },
+  "market": {
+    "kind": "keyword",
+    "phonetic": "марке́т",
+    "hooks": [
+      "кит"
+    ],
+    "image": "Кит держит магазин в руках."
+  },
+  "marş": {
+    "kind": "cognate",
+    "phonetic": "ма́рш",
+    "hooks": [
+      "марш"
+    ],
+    "image": ""
+  },
+  "masa": {
+    "kind": "keyword",
+    "phonetic": "маса́",
+    "hooks": [
+      "маска"
+    ],
+    "image": "Маска держит стол в руках."
+  },
+  "mavi": {
+    "kind": "keyword",
+    "phonetic": "мави́",
+    "hooks": [
+      "амвон"
+    ],
+    "image": "Амвон сегодня выглядит синий."
+  },
+  "mayıs": {
+    "kind": "keyword",
+    "phonetic": "майы́с",
+    "hooks": [
+      "рейс"
+    ],
+    "image": "Рейс держит май в руках."
+  },
+  "mektup": {
+    "kind": "keyword",
+    "phonetic": "мекту́п",
+    "hooks": [
+      "тип"
+    ],
+    "image": "Тип держит письмо в руках."
+  },
+  "memur": {
+    "kind": "keyword",
+    "phonetic": "мему́р",
+    "hooks": [
+      "муравей"
+    ],
+    "image": "Муравей сегодня выглядит служащий."
+  },
+  "mercimek çorbası": {
+    "kind": "keyword",
+    "phonetic": "мерджимек чорбасы́",
+    "hooks": [
+      "бусы"
+    ],
+    "image": "Бусы сегодня выглядит чечевичный суп."
+  },
+  "merhaba.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так здороваются при встрече днём."
+  },
+  "mericmek çorbası": {
+    "kind": "keyword",
+    "phonetic": "мериджмек чорбасы́",
+    "hooks": [
+      "бусы"
+    ],
+    "image": "Бусы сегодня выглядит чечевичный суп."
+  },
+  "metro": {
+    "kind": "cognate",
+    "phonetic": "метро́",
+    "hooks": [
+      "метро"
+    ],
+    "image": ""
+  },
+  "mevsim": {
+    "kind": "keyword",
+    "phonetic": "мевси́м",
+    "hooks": [
+      "сом"
+    ],
+    "image": "Сом держит время года в руках."
+  },
+  "meydan": {
+    "kind": "keyword",
+    "phonetic": "мейда́н",
+    "hooks": [
+      "дыня"
+    ],
+    "image": "Дыня держит площадь в руках."
+  },
+  "mezuniyet": {
+    "kind": "keyword",
+    "phonetic": "мезуние́т",
+    "hooks": [
+      "енот"
+    ],
+    "image": "Енот держит выпуск в руках."
+  },
+  "mısırlı": {
+    "kind": "keyword",
+    "phonetic": "мысырлы́",
+    "hooks": [
+      "сыр"
+    ],
+    "image": "Сыр держит египтянин в руках."
+  },
+  "midesi bulanmak": {
+    "kind": "keyword",
+    "phonetic": "мидеси була́нмак",
+    "hooks": [
+      "луна"
+    ],
+    "image": "Луна прямо сейчас умеет тошнить."
+  },
+  "millet": {
+    "kind": "keyword",
+    "phonetic": "милле́т",
+    "hooks": [
+      "лето"
+    ],
+    "image": "Лето держит народ в руках."
+  },
+  "milli": {
+    "kind": "keyword",
+    "phonetic": "милли́",
+    "hooks": [
+      "мел"
+    ],
+    "image": "Мел сегодня выглядит национальный."
+  },
+  "misal": {
+    "kind": "keyword",
+    "phonetic": "миса́л",
+    "hooks": [
+      "масло"
+    ],
+    "image": "Масло держит пример в руках."
+  },
+  "mola": {
+    "kind": "keyword",
+    "phonetic": "мола́",
+    "hooks": [
+      "малина"
+    ],
+    "image": "Малина держит перерыв в руках."
+  },
+  "mor": {
+    "kind": "keyword",
+    "phonetic": "мо́р",
+    "hooks": [
+      "море"
+    ],
+    "image": "Море сегодня выглядит фиолетовый."
+  },
+  "mp3 çalar": {
+    "kind": "cognate",
+    "phonetic": "мп чала́р",
+    "hooks": [
+      "-плеер"
+    ],
+    "image": ""
+  },
+  "mutfak": {
+    "kind": "keyword",
+    "phonetic": "мутфа́к",
+    "hooks": [
+      "факел"
+    ],
+    "image": "Факел держит кухню в руках."
+  },
+  "mutlu": {
+    "kind": "keyword",
+    "phonetic": "мутлу́",
+    "hooks": [
+      "метла"
+    ],
+    "image": "Метла сегодня выглядит счастливый."
+  },
+  "mutsuz": {
+    "kind": "keyword",
+    "phonetic": "мутсу́з",
+    "hooks": [
+      "сазан"
+    ],
+    "image": "Сазан сегодня выглядит несчастный."
+  },
+  "mühendis": {
+    "kind": "keyword",
+    "phonetic": "мюхенди́с",
+    "hooks": [
+      "диск"
+    ],
+    "image": "Диск держит инженер в руках."
+  },
+  "mümkün": {
+    "kind": "keyword",
+    "phonetic": "мюмкю́н",
+    "hooks": [
+      "кино"
+    ],
+    "image": "Кино сегодня выглядит возможный."
+  },
+  "müsait": {
+    "kind": "keyword",
+    "phonetic": "мюсаи́т",
+    "hooks": [
+      "мост"
+    ],
+    "image": "Мост сегодня выглядит свободный."
+  },
+  "nar": {
+    "kind": "keyword",
+    "phonetic": "на́р",
+    "hooks": [
+      "нора"
+    ],
+    "image": "Нора держит гранат в руках."
+  },
+  "nefes": {
+    "kind": "keyword",
+    "phonetic": "нефе́с",
+    "hooks": [
+      "фаска"
+    ],
+    "image": "Фаска держит дыхание в руках."
+  },
+  "nefret etmek": {
+    "kind": "keyword",
+    "phonetic": "нефре́т етмек",
+    "hooks": [
+      "рот"
+    ],
+    "image": "Рот прямо сейчас умеет ненавидеть."
+  },
+  "nerede": {
+    "kind": "keyword",
+    "phonetic": "нереде́",
+    "hooks": [
+      "редис"
+    ],
+    "image": "Редис держит где в руках."
+  },
+  "nesne": {
+    "kind": "keyword",
+    "phonetic": "несне́",
+    "hooks": [
+      "нос"
+    ],
+    "image": "Нос держит объект в руках."
+  },
+  "nice": {
+    "kind": "keyword",
+    "phonetic": "нидже́",
+    "hooks": [
+      "джем"
+    ],
+    "image": "Джем держит многие в руках."
+  },
+  "niçin": {
+    "kind": "keyword",
+    "phonetic": "ничи́н",
+    "hooks": [
+      "чин"
+    ],
+    "image": "Чин держит почему в руках."
+  },
+  "nijerya": {
+    "kind": "cognate",
+    "phonetic": "нижеря́",
+    "hooks": [
+      "Нигерия"
+    ],
+    "image": ""
+  },
+  "nikah": {
+    "kind": "keyword",
+    "phonetic": "ника́х",
+    "hooks": [
+      "кухня"
+    ],
+    "image": "Кухня держит бракосочетание в руках."
+  },
+  "nikah memuru": {
+    "kind": "keyword",
+    "phonetic": "никах мемуру́",
+    "hooks": [
+      "муравей"
+    ],
+    "image": "Муравей держит сотрудник ЗАГСа в руках."
+  },
+  "nisan": {
+    "kind": "keyword",
+    "phonetic": "ниса́н",
+    "hooks": [
+      "санки"
+    ],
+    "image": "Санки держит апрель в руках."
+  },
+  "normal": {
+    "kind": "cognate",
+    "phonetic": "норма́л",
+    "hooks": [
+      "нормальный"
+    ],
+    "image": ""
+  },
+  "numara": {
+    "kind": "cognate",
+    "phonetic": "нумара́",
+    "hooks": [
+      "номер"
+    ],
+    "image": ""
+  },
+  "ocak": {
+    "kind": "keyword",
+    "phonetic": "оджа́к",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит январь в руках."
+  },
+  "oda": {
+    "kind": "keyword",
+    "phonetic": "ода́",
+    "hooks": [
+      "мода"
+    ],
+    "image": "Мода держит комнату в руках."
+  },
+  "odun": {
+    "kind": "keyword",
+    "phonetic": "оду́н",
+    "hooks": [
+      "дыня"
+    ],
+    "image": "Дыня держит дрову в руках."
+  },
+  "ofis": {
+    "kind": "cognate",
+    "phonetic": "офи́с",
+    "hooks": [
+      "офис"
+    ],
+    "image": ""
+  },
+  "okumak": {
+    "kind": "keyword",
+    "phonetic": "окума́к",
+    "hooks": [
+      "мак"
+    ],
+    "image": "Мак прямо сейчас умеет читать."
+  },
+  "olimpiyat": {
+    "kind": "cognate",
+    "phonetic": "олимпия́т",
+    "hooks": [
+      "олимпиада"
+    ],
+    "image": ""
+  },
+  "olmak": {
+    "kind": "keyword",
+    "phonetic": "о́лмак",
+    "hooks": [
+      "лом"
+    ],
+    "image": "Лом прямо сейчас умеет быть."
+  },
+  "omuz": {
+    "kind": "keyword",
+    "phonetic": "ому́з",
+    "hooks": [
+      "мазут"
+    ],
+    "image": "Мазут держит плечо в руках."
+  },
+  "opera": {
+    "kind": "cognate",
+    "phonetic": "опера́",
+    "hooks": [
+      "опера"
+    ],
+    "image": ""
+  },
+  "orada": {
+    "kind": "keyword",
+    "phonetic": "орада́",
+    "hooks": [
+      "радиола"
+    ],
+    "image": "Радиола держит там в руках."
+  },
+  "orman": {
+    "kind": "keyword",
+    "phonetic": "орма́н",
+    "hooks": [
+      "ремень"
+    ],
+    "image": "Ремень держит лес в руках."
+  },
+  "orta": {
+    "kind": "keyword",
+    "phonetic": "орта́",
+    "hooks": [
+      "рот"
+    ],
+    "image": "Рот держит середину в руках."
+  },
+  "ortaokul": {
+    "kind": "keyword",
+    "phonetic": "ортаоку́л",
+    "hooks": [
+      "кулак"
+    ],
+    "image": "Кулак держит средняя школа в руках."
+  },
+  "otantik": {
+    "kind": "keyword",
+    "phonetic": "отанти́к",
+    "hooks": [
+      "ток"
+    ],
+    "image": "Ток сегодня выглядит аутентичный."
+  },
+  "otel": {
+    "kind": "cognate",
+    "phonetic": "оте́л",
+    "hooks": [
+      "отель"
+    ],
+    "image": ""
+  },
+  "otobüs": {
+    "kind": "cognate",
+    "phonetic": "отобю́с",
+    "hooks": [
+      "автобус"
+    ],
+    "image": ""
+  },
+  "oturmak": {
+    "kind": "keyword",
+    "phonetic": "оту́рмак",
+    "hooks": [
+      "термос"
+    ],
+    "image": "Термос прямо сейчас умеет сидеть."
+  },
+  "oynamak": {
+    "kind": "keyword",
+    "phonetic": "ойна́мак",
+    "hooks": [
+      "январь"
+    ],
+    "image": "Январь прямо сейчас умеет играть."
+  },
+  "öğleden sonra": {
+    "kind": "cognate",
+    "phonetic": "ёледен сонра́",
+    "hooks": [
+      "полудня"
+    ],
+    "image": ""
+  },
+  "öğlen": {
+    "kind": "keyword",
+    "phonetic": "ёле́н",
+    "hooks": [
+      "лента"
+    ],
+    "image": "Лента держит полдень в руках."
+  },
+  "öğrenci": {
+    "kind": "keyword",
+    "phonetic": "ёренджи́",
+    "hooks": [
+      "джинсы"
+    ],
+    "image": "Джинсы держит ученик в руках."
+  },
+  "öğrenci işleri": {
+    "kind": "keyword",
+    "phonetic": "ёренджи ишлери́",
+    "hooks": [
+      "ларь"
+    ],
+    "image": "Ларь держит отдел по работе со студентами в руках."
+  },
+  "öğrenmek": {
+    "kind": "keyword",
+    "phonetic": "ёре́нмек",
+    "hooks": [
+      "ранец"
+    ],
+    "image": "Ранец прямо сейчас умеет узнавать."
+  },
+  "öğretmek": {
+    "kind": "keyword",
+    "phonetic": "ёре́тмек",
+    "hooks": [
+      "рот"
+    ],
+    "image": "Рот прямо сейчас умеет учить."
+  },
+  "öğretmen": {
+    "kind": "keyword",
+    "phonetic": "ёретме́н",
+    "hooks": [
+      "мина"
+    ],
+    "image": "Мина держит учитель в руках."
+  },
+  "öksürmek": {
+    "kind": "keyword",
+    "phonetic": "ёксю́рмек",
+    "hooks": [
+      "сыр"
+    ],
+    "image": "Сыр прямо сейчас умеет кашлять."
+  },
+  "ön": {
+    "kind": "keyword",
+    "phonetic": "ё́н",
+    "hooks": [
+      "клён"
+    ],
+    "image": "Клён держит перед в руках."
+  },
+  "önemli": {
+    "kind": "keyword",
+    "phonetic": "ёнемли́",
+    "hooks": [
+      "мел"
+    ],
+    "image": "Мел сегодня выглядит важный."
+  },
+  "önemsiz": {
+    "kind": "keyword",
+    "phonetic": "ёнемси́з",
+    "hooks": [
+      "сазан"
+    ],
+    "image": "Сазан сегодня выглядит неважный."
+  },
+  "öpmek": {
+    "kind": "keyword",
+    "phonetic": "ё́пмек",
+    "hooks": [
+      "помпа"
+    ],
+    "image": "Помпа прямо сейчас умеет целовать."
+  },
+  "ördek": {
+    "kind": "keyword",
+    "phonetic": "ёрде́к",
+    "hooks": [
+      "редька"
+    ],
+    "image": "Редька держит утку в руках."
+  },
+  "özel": {
+    "kind": "keyword",
+    "phonetic": "ёзе́л",
+    "hooks": [
+      "зола"
+    ],
+    "image": "Зола сегодня выглядит частный."
+  },
+  "özlemek": {
+    "kind": "keyword",
+    "phonetic": "ёзле́мек",
+    "hooks": [
+      "зола"
+    ],
+    "image": "Зола прямо сейчас умеет скучать."
+  },
+  "özür dilerim.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так просят прощения за свою ошибку."
+  },
+  "pahalı": {
+    "kind": "keyword",
+    "phonetic": "пахалы́",
+    "hooks": [
+      "хлам"
+    ],
+    "image": "Хлам сегодня выглядит дорогой."
+  },
+  "paket": {
+    "kind": "cognate",
+    "phonetic": "паке́т",
+    "hooks": [
+      "пакет"
+    ],
+    "image": ""
+  },
+  "pakistan": {
+    "kind": "cognate",
+    "phonetic": "пакиста́н",
+    "hooks": [
+      "Пакистан"
+    ],
+    "image": ""
+  },
+  "pakistanlı": {
+    "kind": "cognate",
+    "phonetic": "пакистанлы́",
+    "hooks": [
+      "пакистанец"
+    ],
+    "image": ""
+  },
+  "palto": {
+    "kind": "cognate",
+    "phonetic": "палто́",
+    "hooks": [
+      "пальто"
+    ],
+    "image": ""
+  },
+  "para": {
+    "kind": "keyword",
+    "phonetic": "пара́",
+    "hooks": [
+      "пара"
+    ],
+    "image": "Пара держит деньги в руках."
+  },
+  "para çekmek": {
+    "kind": "keyword",
+    "phonetic": "пара че́кмек",
+    "hooks": [
+      "очки"
+    ],
+    "image": "Очки прямо сейчас умеет снимать деньги."
+  },
+  "para toplamak": {
+    "kind": "keyword",
+    "phonetic": "пара топла́мак",
+    "hooks": [
+      "тепло"
+    ],
+    "image": "Тепло прямо сейчас умеет собирать деньги."
+  },
+  "pardösü": {
+    "kind": "keyword",
+    "phonetic": "пардёсю́",
+    "hooks": [
+      "диск"
+    ],
+    "image": "Диск держит пальто в руках."
+  },
+  "park": {
+    "kind": "cognate",
+    "phonetic": "па́рк",
+    "hooks": [
+      "парк"
+    ],
+    "image": ""
+  },
+  "parmak": {
+    "kind": "keyword",
+    "phonetic": "парма́к",
+    "hooks": [
+      "мак"
+    ],
+    "image": "Мак держит палец в руках."
+  },
+  "pastane": {
+    "kind": "keyword",
+    "phonetic": "пастане́",
+    "hooks": [
+      "пистон"
+    ],
+    "image": "Пистон сегодня выглядит кондитерская."
+  },
+  "patates": {
+    "kind": "keyword",
+    "phonetic": "патате́с",
+    "hooks": [
+      "тесак"
+    ],
+    "image": "Тесак держит картофель в руках."
+  },
+  "pazar": {
+    "kind": "cognate",
+    "phonetic": "паза́р",
+    "hooks": [
+      "базар"
+    ],
+    "image": ""
+  },
+  "pazartesi": {
+    "kind": "keyword",
+    "phonetic": "пазартеси́",
+    "hooks": [
+      "тесак"
+    ],
+    "image": "Тесак держит понедельник в руках."
+  },
+  "pembe": {
+    "kind": "keyword",
+    "phonetic": "пембе́",
+    "hooks": [
+      "помпа"
+    ],
+    "image": "Помпа сегодня выглядит розовый."
+  },
+  "pencere": {
+    "kind": "keyword",
+    "phonetic": "пенджере́",
+    "hooks": [
+      "джем"
+    ],
+    "image": "Джем держит окно в руках."
+  },
+  "perşembe": {
+    "kind": "keyword",
+    "phonetic": "першембе́",
+    "hooks": [
+      "шум"
+    ],
+    "image": "Шум держит четверг в руках."
+  },
+  "pijama": {
+    "kind": "cognate",
+    "phonetic": "пижама́",
+    "hooks": [
+      "пижама"
+    ],
+    "image": ""
+  },
+  "piyano": {
+    "kind": "keyword",
+    "phonetic": "пияно́",
+    "hooks": [
+      "пончик"
+    ],
+    "image": "Пончик держит пианино в руках."
+  },
+  "plan": {
+    "kind": "cognate",
+    "phonetic": "пла́н",
+    "hooks": [
+      "план"
+    ],
+    "image": ""
+  },
+  "plan yapmak": {
+    "kind": "cognate",
+    "phonetic": "пла́н япмак",
+    "hooks": [
+      "планы"
+    ],
+    "image": ""
+  },
+  "polis": {
+    "kind": "cognate",
+    "phonetic": "поли́с",
+    "hooks": [
+      "полиция"
+    ],
+    "image": ""
+  },
+  "portakal": {
+    "kind": "keyword",
+    "phonetic": "портака́л",
+    "hooks": [
+      "акула"
+    ],
+    "image": "Акула держит апельсин в руках."
+  },
+  "postane": {
+    "kind": "keyword",
+    "phonetic": "постане́",
+    "hooks": [
+      "пистон"
+    ],
+    "image": "Пистон держит почту в руках."
+  },
+  "pratik yapmak": {
+    "kind": "keyword",
+    "phonetic": "прати́к япмак",
+    "hooks": [
+      "ток"
+    ],
+    "image": "Ток прямо сейчас умеет практиковаться."
+  },
+  "profesör": {
+    "kind": "cognate",
+    "phonetic": "професё́р",
+    "hooks": [
+      "профессор"
+    ],
+    "image": ""
+  },
+  "program": {
+    "kind": "cognate",
+    "phonetic": "програ́м",
+    "hooks": [
+      "программа"
+    ],
+    "image": ""
+  },
+  "projektör": {
+    "kind": "cognate",
+    "phonetic": "прожектё́р",
+    "hooks": [
+      "проектор"
+    ],
+    "image": ""
+  },
+  "psikolog": {
+    "kind": "cognate",
+    "phonetic": "псиколо́г",
+    "hooks": [
+      "психолог"
+    ],
+    "image": ""
+  },
+  "radyo": {
+    "kind": "cognate",
+    "phonetic": "радйо́",
+    "hooks": [
+      "радио"
+    ],
+    "image": ""
+  },
+  "randevu": {
+    "kind": "keyword",
+    "phonetic": "рандеву́",
+    "hooks": [
+      "удав"
+    ],
+    "image": "Удав держит встречу в руках."
+  },
+  "rapor": {
+    "kind": "keyword",
+    "phonetic": "рапо́р",
+    "hooks": [
+      "рупор"
+    ],
+    "image": "Рупор держит отчёт в руках."
+  },
+  "renk": {
+    "kind": "keyword",
+    "phonetic": "ре́нк",
+    "hooks": [
+      "ранец"
+    ],
+    "image": "Ранец держит цвет в руках."
+  },
+  "resepsiyonist": {
+    "kind": "keyword",
+    "phonetic": "ресепсийони́ст",
+    "hooks": [
+      "нос"
+    ],
+    "image": "Нос держит администратор в руках."
+  },
+  "resim": {
+    "kind": "keyword",
+    "phonetic": "реси́м",
+    "hooks": [
+      "сом"
+    ],
+    "image": "Сом держит рисунок в руках."
+  },
+  "resmi": {
+    "kind": "keyword",
+    "phonetic": "ресми́",
+    "hooks": [
+      "рис"
+    ],
+    "image": "Рис сегодня выглядит официальный."
+  },
+  "restoran": {
+    "kind": "cognate",
+    "phonetic": "рестора́н",
+    "hooks": [
+      "ресторан"
+    ],
+    "image": ""
+  },
+  "rezervasyon": {
+    "kind": "keyword",
+    "phonetic": "резервасйо́н",
+    "hooks": [
+      "январь"
+    ],
+    "image": "Январь держит бронирование в руках."
+  },
+  "rica ederim.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так отвечают, когда говорят спасибо."
+  },
+  "rol": {
+    "kind": "cognate",
+    "phonetic": "ро́л",
+    "hooks": [
+      "роль"
+    ],
+    "image": ""
+  },
+  "roman": {
+    "kind": "cognate",
+    "phonetic": "рома́н",
+    "hooks": [
+      "роман"
+    ],
+    "image": ""
+  },
+  "röportaj": {
+    "kind": "keyword",
+    "phonetic": "рёпорта́ж",
+    "hooks": [
+      "этаж"
+    ],
+    "image": "Этаж держит интервью в руках."
+  },
+  "rus": {
+    "kind": "keyword",
+    "phonetic": "ру́с",
+    "hooks": [
+      "рис"
+    ],
+    "image": "Рис сегодня выглядит русский."
+  },
+  "rusça": {
+    "kind": "keyword",
+    "phonetic": "русча́",
+    "hooks": [
+      "рис"
+    ],
+    "image": "Рис сегодня выглядит русский язык."
+  },
+  "rusya": {
+    "kind": "keyword",
+    "phonetic": "руся́",
+    "hooks": [
+      "рис"
+    ],
+    "image": "Рис держит Россию в руках."
+  },
+  "saat": {
+    "kind": "keyword",
+    "phonetic": "саа́т",
+    "hooks": [
+      "аист"
+    ],
+    "image": "Аист держит час в руках."
+  },
+  "sabah": {
+    "kind": "keyword",
+    "phonetic": "саба́х",
+    "hooks": [
+      "бахрома"
+    ],
+    "image": "Бахрома держит утро в руках."
+  },
+  "sabahları": {
+    "kind": "keyword",
+    "phonetic": "сабахлары́",
+    "hooks": [
+      "ларь"
+    ],
+    "image": "Ларь держит по утрам в руках."
+  },
+  "saç": {
+    "kind": "keyword",
+    "phonetic": "са́ч",
+    "hooks": [
+      "сыч"
+    ],
+    "image": "Сыч держит волосы в руках."
+  },
+  "saç kestirmek": {
+    "kind": "keyword",
+    "phonetic": "сач кести́рмек",
+    "hooks": [
+      "термос"
+    ],
+    "image": "Термос прямо сейчас умеет стричься."
+  },
+  "sağ": {
+    "kind": "keyword",
+    "phonetic": "са́",
+    "hooks": [
+      "сало"
+    ],
+    "image": "Сало сегодня выглядит правый."
+  },
+  "sağlam": {
+    "kind": "keyword",
+    "phonetic": "сала́м",
+    "hooks": [
+      "лампа"
+    ],
+    "image": "Лампа сегодня выглядит прочный."
+  },
+  "sağlıklı": {
+    "kind": "keyword",
+    "phonetic": "салыклы́",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак сегодня выглядит здоровый."
+  },
+  "sakin": {
+    "kind": "cognate",
+    "phonetic": "саки́н",
+    "hooks": [
+      "спокойный"
+    ],
+    "image": ""
+  },
+  "salı": {
+    "kind": "keyword",
+    "phonetic": "салы́",
+    "hooks": [
+      "осёл"
+    ],
+    "image": "Осёл держит вторник в руках."
+  },
+  "salıncak": {
+    "kind": "keyword",
+    "phonetic": "салынджа́к",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит качели в руках."
+  },
+  "salon": {
+    "kind": "keyword",
+    "phonetic": "сало́н",
+    "hooks": [
+      "слон"
+    ],
+    "image": "Слон сегодня выглядит гостиная."
+  },
+  "sandalye": {
+    "kind": "keyword",
+    "phonetic": "сандале́",
+    "hooks": [
+      "одеяло"
+    ],
+    "image": "Одеяло держит стул в руках."
+  },
+  "sandalyec": {
+    "kind": "keyword",
+    "phonetic": "сандале́дж",
+    "hooks": [
+      "джем"
+    ],
+    "image": "Джем держит стул в руках."
+  },
+  "saniye": {
+    "kind": "keyword",
+    "phonetic": "сание́",
+    "hooks": [
+      "санки"
+    ],
+    "image": "Санки держит секунду в руках."
+  },
+  "sanmak": {
+    "kind": "keyword",
+    "phonetic": "са́нмак",
+    "hooks": [
+      "санки"
+    ],
+    "image": "Санки прямо сейчас умеет думать."
+  },
+  "sarı": {
+    "kind": "keyword",
+    "phonetic": "сары́",
+    "hooks": [
+      "сыр"
+    ],
+    "image": "Сыр сегодня выглядит жёлтый."
+  },
+  "satın almak": {
+    "kind": "keyword",
+    "phonetic": "сатын а́лмак",
+    "hooks": [
+      "танк"
+    ],
+    "image": "Танк прямо сейчас умеет покупать."
+  },
+  "satranç": {
+    "kind": "keyword",
+    "phonetic": "сатра́нч",
+    "hooks": [
+      "ранец"
+    ],
+    "image": "Ранец держит шахматы в руках."
+  },
+  "saygıdeğer": {
+    "kind": "keyword",
+    "phonetic": "сайгыдее́р",
+    "hooks": [
+      "дыра"
+    ],
+    "image": "Дыра сегодня выглядит уважаемый."
+  },
+  "sayı": {
+    "kind": "keyword",
+    "phonetic": "сайы́",
+    "hooks": [
+      "сейф"
+    ],
+    "image": "Сейф держит число в руках."
+  },
+  "seans": {
+    "kind": "cognate",
+    "phonetic": "сеа́нс",
+    "hooks": [
+      "сеанс"
+    ],
+    "image": ""
+  },
+  "sebep": {
+    "kind": "keyword",
+    "phonetic": "себе́п",
+    "hooks": [
+      "субподряд"
+    ],
+    "image": "Субподряд держит причину в руках."
+  },
+  "sefer": {
+    "kind": "keyword",
+    "phonetic": "сефе́р",
+    "hooks": [
+      "фарш"
+    ],
+    "image": "Фарш держит рейс в руках."
+  },
+  "sehpa": {
+    "kind": "keyword",
+    "phonetic": "сехпа́",
+    "hooks": [
+      "сахар"
+    ],
+    "image": "Сахар сегодня выглядит журнальный столик."
+  },
+  "sekreter": {
+    "kind": "cognate",
+    "phonetic": "секрете́р",
+    "hooks": [
+      "секретарь"
+    ],
+    "image": ""
+  },
+  "selam söylemek": {
+    "kind": "keyword",
+    "phonetic": "селам сёйле́мек",
+    "hooks": [
+      "сейф"
+    ],
+    "image": "Сейф прямо сейчас умеет передавать привет."
+  },
+  "sembol": {
+    "kind": "cognate",
+    "phonetic": "сембо́л",
+    "hooks": [
+      "символ"
+    ],
+    "image": ""
+  },
+  "sergi": {
+    "kind": "keyword",
+    "phonetic": "серги́",
+    "hooks": [
+      "сыр"
+    ],
+    "image": "Сыр держит выставку в руках."
+  },
+  "sessiz": {
+    "kind": "keyword",
+    "phonetic": "сесси́з",
+    "hooks": [
+      "сазан"
+    ],
+    "image": "Сазан сегодня выглядит тихий."
+  },
+  "sevgili": {
+    "kind": "keyword",
+    "phonetic": "севгили́",
+    "hooks": [
+      "игла"
+    ],
+    "image": "Игла сегодня выглядит любимый."
+  },
+  "sevmek": {
+    "kind": "keyword",
+    "phonetic": "се́вмек",
+    "hooks": [
+      "свеча"
+    ],
+    "image": "Свеча прямо сейчас умеет любить."
+  },
+  "seyahat": {
+    "kind": "keyword",
+    "phonetic": "сеяха́т",
+    "hooks": [
+      "яхта"
+    ],
+    "image": "Яхта держит путешествие в руках."
+  },
+  "seyahat etmek": {
+    "kind": "keyword",
+    "phonetic": "сеяхат етме́к",
+    "hooks": [
+      "мак"
+    ],
+    "image": "Мак держит путешествие в руках."
+  },
+  "sıcak": {
+    "kind": "keyword",
+    "phonetic": "сыджа́к",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз сегодня выглядит горячий."
+  },
+  "sıfat": {
+    "kind": "keyword",
+    "phonetic": "сыфа́т",
+    "hooks": [
+      "футляр"
+    ],
+    "image": "Футляр сегодня выглядит прилагательное."
+  },
+  "sıkılmak": {
+    "kind": "keyword",
+    "phonetic": "сыкы́лмак",
+    "hooks": [
+      "клык"
+    ],
+    "image": "Клык прямо сейчас умеет скучать."
+  },
+  "sıra": {
+    "kind": "keyword",
+    "phonetic": "сыра́",
+    "hooks": [
+      "сарай"
+    ],
+    "image": "Сарай держит очередь в руках."
+  },
+  "silgi": {
+    "kind": "keyword",
+    "phonetic": "силги́",
+    "hooks": [
+      "осёл"
+    ],
+    "image": "Осёл держит ластик в руках."
+  },
+  "sinema": {
+    "kind": "keyword",
+    "phonetic": "синема́",
+    "hooks": [
+      "нимб"
+    ],
+    "image": "Нимб держит кино в руках."
+  },
+  "sinirli": {
+    "kind": "keyword",
+    "phonetic": "синирли́",
+    "hooks": [
+      "нора"
+    ],
+    "image": "Нора сегодня выглядит сердитый."
+  },
+  "sofra hazırlamak": {
+    "kind": "keyword",
+    "phonetic": "софра хазырла́мак",
+    "hooks": [
+      "зеркало"
+    ],
+    "image": "Зеркало прямо сейчас умеет накрывать на стол."
+  },
+  "soğuk algınlığı": {
+    "kind": "keyword",
+    "phonetic": "соук алгынлыы́",
+    "hooks": [
+      "ноль"
+    ],
+    "image": "Ноль держит простуду в руках."
+  },
+  "sohbet etmek": {
+    "kind": "keyword",
+    "phonetic": "сохбе́т етмек",
+    "hooks": [
+      "батон"
+    ],
+    "image": "Батон прямо сейчас умеет беседовать."
+  },
+  "sokak": {
+    "kind": "keyword",
+    "phonetic": "сока́к",
+    "hooks": [
+      "кекс"
+    ],
+    "image": "Кекс держит улицу в руках."
+  },
+  "sol": {
+    "kind": "keyword",
+    "phonetic": "со́л",
+    "hooks": [
+      "осёл"
+    ],
+    "image": "Осёл сегодня выглядит левый."
+  },
+  "somali": {
+    "kind": "cognate",
+    "phonetic": "сомали́",
+    "hooks": [
+      "Сомали"
+    ],
+    "image": ""
+  },
+  "son kullanma tarihi": {
+    "kind": "keyword",
+    "phonetic": "сон кулланма тарихи́",
+    "hooks": [
+      "орех"
+    ],
+    "image": "Орех держит срок годности в руках."
+  },
+  "sonbahar": {
+    "kind": "keyword",
+    "phonetic": "сонбаха́р",
+    "hooks": [
+      "хрен"
+    ],
+    "image": "Хрен держит осень в руках."
+  },
+  "sormak": {
+    "kind": "keyword",
+    "phonetic": "со́рмак",
+    "hooks": [
+      "сыр"
+    ],
+    "image": "Сыр прямо сейчас умеет спрашивать."
+  },
+  "soru": {
+    "kind": "keyword",
+    "phonetic": "сору́",
+    "hooks": [
+      "сыр"
+    ],
+    "image": "Сыр держит вопрос в руках."
+  },
+  "soru olmak": {
+    "kind": "keyword",
+    "phonetic": "сору́ олмак",
+    "hooks": [
+      "сыр"
+    ],
+    "image": "Сыр прямо сейчас умеет отсутствовать."
+  },
+  "sorun": {
+    "kind": "keyword",
+    "phonetic": "сору́н",
+    "hooks": [
+      "саранча"
+    ],
+    "image": "Саранча держит проблему в руках."
+  },
+  "sosyal medya": {
+    "kind": "keyword",
+    "phonetic": "сосял медя́",
+    "hooks": [
+      "мёд"
+    ],
+    "image": "Мёд сегодня выглядит социальные сети."
+  },
+  "sosyal olmak": {
+    "kind": "keyword",
+    "phonetic": "сося́л олмак",
+    "hooks": [
+      "соска"
+    ],
+    "image": "Соска прямо сейчас умеет быть общительным."
+  },
+  "soyadı": {
+    "kind": "keyword",
+    "phonetic": "сояды́",
+    "hooks": [
+      "седло"
+    ],
+    "image": "Седло держит фамилию в руках."
+  },
+  "söylemek": {
+    "kind": "keyword",
+    "phonetic": "сёйле́мек",
+    "hooks": [
+      "сейф"
+    ],
+    "image": "Сейф прямо сейчас умеет говорить."
+  },
+  "sözlük": {
+    "kind": "keyword",
+    "phonetic": "сёзлю́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит словарь в руках."
+  },
+  "spor yapmak": {
+    "kind": "cognate",
+    "phonetic": "спо́р япмак",
+    "hooks": [
+      "спортом"
+    ],
+    "image": ""
+  },
+  "stres atmak": {
+    "kind": "cognate",
+    "phonetic": "стрес а́тмак",
+    "hooks": [
+      "стресс"
+    ],
+    "image": ""
+  },
+  "suriye": {
+    "kind": "cognate",
+    "phonetic": "сурие́",
+    "hooks": [
+      "Сирия"
+    ],
+    "image": ""
+  },
+  "sürpriz": {
+    "kind": "cognate",
+    "phonetic": "сюрпри́з",
+    "hooks": [
+      "сюрприз"
+    ],
+    "image": ""
+  },
+  "şarkı": {
+    "kind": "keyword",
+    "phonetic": "шаркы́",
+    "hooks": [
+      "шарик"
+    ],
+    "image": "Шарик держит песню в руках."
+  },
+  "şehir": {
+    "kind": "keyword",
+    "phonetic": "шехи́р",
+    "hooks": [
+      "хрен"
+    ],
+    "image": "Хрен держит город в руках."
+  },
+  "şemsiye": {
+    "kind": "keyword",
+    "phonetic": "шемсие́",
+    "hooks": [
+      "мясо"
+    ],
+    "image": "Мясо держит зонт в руках."
+  },
+  "şiir": {
+    "kind": "keyword",
+    "phonetic": "шии́р",
+    "hooks": [
+      "шар"
+    ],
+    "image": "Шар держит стихотворение в руках."
+  },
+  "şikâyet": {
+    "kind": "keyword",
+    "phonetic": "шикае́т",
+    "hooks": [
+      "шкатулка"
+    ],
+    "image": "Шкатулка держит жалобу в руках."
+  },
+  "şimdi": {
+    "kind": "keyword",
+    "phonetic": "шимди́",
+    "hooks": [
+      "шум"
+    ],
+    "image": "Шум держит сейчас в руках."
+  },
+  "şimdilik": {
+    "kind": "keyword",
+    "phonetic": "шимдили́к",
+    "hooks": [
+      "лак"
+    ],
+    "image": "Лак держит поку в руках."
+  },
+  "şişe": {
+    "kind": "keyword",
+    "phonetic": "шише́",
+    "hooks": [
+      "шишка"
+    ],
+    "image": "Шишка держит бутылку в руках."
+  },
+  "şişman": {
+    "kind": "keyword",
+    "phonetic": "шишма́н",
+    "hooks": [
+      "мангал"
+    ],
+    "image": "Мангал сегодня выглядит толстый."
+  },
+  "şubat": {
+    "kind": "keyword",
+    "phonetic": "шуба́т",
+    "hooks": [
+      "батон"
+    ],
+    "image": "Батон держит февраль в руках."
+  },
+  "şurup": {
+    "kind": "cognate",
+    "phonetic": "шуру́п",
+    "hooks": [
+      "сироп"
+    ],
+    "image": ""
+  },
+  "tabak": {
+    "kind": "keyword",
+    "phonetic": "таба́к",
+    "hooks": [
+      "бык"
+    ],
+    "image": "Бык держит тарелку в руках."
+  },
+  "tadı damağında kalmak": {
+    "kind": "keyword",
+    "phonetic": "тады дамаында ка́лмак",
+    "hooks": [
+      "акула"
+    ],
+    "image": "Акула прямо сейчас умеет оставлять приятное послевкусие."
+  },
+  "tahlil yaptırmak": {
+    "kind": "keyword",
+    "phonetic": "тахлил япты́рмак",
+    "hooks": [
+      "термос"
+    ],
+    "image": "Термос прямо сейчас умеет сдавать анализы."
+  },
+  "tahmin": {
+    "kind": "keyword",
+    "phonetic": "тахми́н",
+    "hooks": [
+      "мина"
+    ],
+    "image": "Мина держит предположение в руках."
+  },
+  "tahta": {
+    "kind": "keyword",
+    "phonetic": "тахта́",
+    "hooks": [
+      "тахта"
+    ],
+    "image": "Тахта держит доску в руках."
+  },
+  "tamam.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так соглашаются: хорошо, ладно, окей."
+  },
+  "tanımak": {
+    "kind": "keyword",
+    "phonetic": "таны́мак",
+    "hooks": [
+      "тень"
+    ],
+    "image": "Тень прямо сейчас умеет знать."
+  },
+  "tanışmak": {
+    "kind": "keyword",
+    "phonetic": "таны́шмак",
+    "hooks": [
+      "ниша"
+    ],
+    "image": "Ниша прямо сейчас умеет знакомиться."
+  },
+  "tansiyon ölçtürmek": {
+    "kind": "keyword",
+    "phonetic": "тансийон ёлчтю́рмек",
+    "hooks": [
+      "мачта"
+    ],
+    "image": "Мачта прямо сейчас умеет измерять давление."
+  },
+  "tarih": {
+    "kind": "keyword",
+    "phonetic": "тари́х",
+    "hooks": [
+      "орех"
+    ],
+    "image": "Орех держит историю в руках."
+  },
+  "tarihi": {
+    "kind": "keyword",
+    "phonetic": "тарихи́",
+    "hooks": [
+      "орех"
+    ],
+    "image": "Орех сегодня выглядит исторический."
+  },
+  "tarihî": {
+    "kind": "keyword",
+    "phonetic": "тарихи́",
+    "hooks": [
+      "орех"
+    ],
+    "image": "Орех сегодня выглядит исторический."
+  },
+  "tartılmak": {
+    "kind": "keyword",
+    "phonetic": "тарты́лмак",
+    "hooks": [
+      "толпа"
+    ],
+    "image": "Толпа прямо сейчас умеет взвешиваться."
+  },
+  "tatil": {
+    "kind": "keyword",
+    "phonetic": "тати́л",
+    "hooks": [
+      "толпа"
+    ],
+    "image": "Толпа держит отпуск в руках."
+  },
+  "tavuk": {
+    "kind": "keyword",
+    "phonetic": "таву́к",
+    "hooks": [
+      "вокзал"
+    ],
+    "image": "Вокзал держит курицу в руках."
+  },
+  "tebrikler.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так поздравляют человека с удачей."
+  },
+  "tedavi olmak": {
+    "kind": "keyword",
+    "phonetic": "тедави́ олмак",
+    "hooks": [
+      "диван"
+    ],
+    "image": "Диван прямо сейчас умеет лечиться."
+  },
+  "tehlikeli": {
+    "kind": "keyword",
+    "phonetic": "техликели́",
+    "hooks": [
+      "клин"
+    ],
+    "image": "Клин сегодня выглядит опасный."
+  },
+  "tekrar etmek": {
+    "kind": "keyword",
+    "phonetic": "текра́р етмек",
+    "hooks": [
+      "терраса"
+    ],
+    "image": "Терраса прямо сейчас умеет повторять."
+  },
+  "telefon": {
+    "kind": "cognate",
+    "phonetic": "телефо́н",
+    "hooks": [
+      "телефон"
+    ],
+    "image": ""
+  },
+  "telefon etmek": {
+    "kind": "keyword",
+    "phonetic": "телефо́н етмек",
+    "hooks": [
+      "фонарь"
+    ],
+    "image": "Фонарь прямо сейчас умеет звонить."
+  },
+  "temiz": {
+    "kind": "keyword",
+    "phonetic": "теми́з",
+    "hooks": [
+      "мазут"
+    ],
+    "image": "Мазут сегодня выглядит чистый."
+  },
+  "temizlemek": {
+    "kind": "keyword",
+    "phonetic": "темизле́мек",
+    "hooks": [
+      "мазут"
+    ],
+    "image": "Мазут прямо сейчас умеет чистить."
+  },
+  "temizlik görevlisi": {
+    "kind": "keyword",
+    "phonetic": "темизлик гёревлиси́",
+    "hooks": [
+      "лиса"
+    ],
+    "image": "Лиса держит уборщик в руках."
+  },
+  "temmuz": {
+    "kind": "keyword",
+    "phonetic": "темму́з",
+    "hooks": [
+      "мазут"
+    ],
+    "image": "Мазут держит июль в руках."
+  },
+  "teneffüs": {
+    "kind": "keyword",
+    "phonetic": "тенеффю́с",
+    "hooks": [
+      "фаска"
+    ],
+    "image": "Фаска держит перерыв в руках."
+  },
+  "terzi": {
+    "kind": "keyword",
+    "phonetic": "терзи́",
+    "hooks": [
+      "торт"
+    ],
+    "image": "Торт сегодня выглядит портной."
+  },
+  "teyze": {
+    "kind": "keyword",
+    "phonetic": "тейзе́",
+    "hooks": [
+      "тайга"
+    ],
+    "image": "Тайга держит тётю в руках."
+  },
+  "tezgahtar": {
+    "kind": "keyword",
+    "phonetic": "тезгахта́р",
+    "hooks": [
+      "трап"
+    ],
+    "image": "Трап держит продавец в руках."
+  },
+  "tırmanmak": {
+    "kind": "keyword",
+    "phonetic": "тырма́нмак",
+    "hooks": [
+      "мангал"
+    ],
+    "image": "Мангал прямо сейчас умеет карабкаться."
+  },
+  "tiyatro": {
+    "kind": "cognate",
+    "phonetic": "тиятро́",
+    "hooks": [
+      "театр"
+    ],
+    "image": ""
+  },
+  "top": {
+    "kind": "keyword",
+    "phonetic": "то́п",
+    "hooks": [
+      "топор"
+    ],
+    "image": "Топор держит мяч в руках."
+  },
+  "toplamak": {
+    "kind": "keyword",
+    "phonetic": "топла́мак",
+    "hooks": [
+      "тепло"
+    ],
+    "image": "Тепло прямо сейчас умеет собирать."
+  },
+  "turist": {
+    "kind": "cognate",
+    "phonetic": "тури́ст",
+    "hooks": [
+      "турист"
+    ],
+    "image": ""
+  },
+  "turuncu": {
+    "kind": "keyword",
+    "phonetic": "турунджу́",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз сегодня выглядит оранжевый."
+  },
+  "tuzlu": {
+    "kind": "keyword",
+    "phonetic": "тузлу́",
+    "hooks": [
+      "таз"
+    ],
+    "image": "Таз сегодня выглядит солёный."
+  },
+  "türk": {
+    "kind": "cognate",
+    "phonetic": "тю́рк",
+    "hooks": [
+      "турок"
+    ],
+    "image": ""
+  },
+  "türkiye": {
+    "kind": "cognate",
+    "phonetic": "тюркие́",
+    "hooks": [
+      "Турция"
+    ],
+    "image": ""
+  },
+  "ucuz": {
+    "kind": "keyword",
+    "phonetic": "уджу́з",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз сегодня выглядит дешёвый."
+  },
+  "uçak": {
+    "kind": "keyword",
+    "phonetic": "уча́к",
+    "hooks": [
+      "очки"
+    ],
+    "image": "Очки держит самолёт в руках."
+  },
+  "uçurtma": {
+    "kind": "keyword",
+    "phonetic": "учуртма́",
+    "hooks": [
+      "тема"
+    ],
+    "image": "Тема сегодня выглядит воздушный змей."
+  },
+  "uğur getirmek": {
+    "kind": "keyword",
+    "phonetic": "уур гети́рмек",
+    "hooks": [
+      "термос"
+    ],
+    "image": "Термос прямо сейчас умеет приносить удачу."
+  },
+  "ulusal": {
+    "kind": "keyword",
+    "phonetic": "улуса́л",
+    "hooks": [
+      "сало"
+    ],
+    "image": "Сало сегодня выглядит национальный."
+  },
+  "uyumak": {
+    "kind": "keyword",
+    "phonetic": "уйума́к",
+    "hooks": [
+      "мак"
+    ],
+    "image": "Мак прямо сейчас умеет спать."
+  },
+  "uzak": {
+    "kind": "keyword",
+    "phonetic": "уза́к",
+    "hooks": [
+      "сказка"
+    ],
+    "image": "Сказка сегодня выглядит далёкий."
+  },
+  "uzanmak": {
+    "kind": "keyword",
+    "phonetic": "уза́нмак",
+    "hooks": [
+      "значок"
+    ],
+    "image": "Значок прямо сейчас умеет ложиться."
+  },
+  "uzun": {
+    "kind": "keyword",
+    "phonetic": "узу́н",
+    "hooks": [
+      "зонд"
+    ],
+    "image": "Зонд сегодня выглядит длинный."
+  },
+  "ücret": {
+    "kind": "keyword",
+    "phonetic": "юджре́т",
+    "hooks": [
+      "рот"
+    ],
+    "image": "Рот держит плату в руках."
+  },
+  "üç": {
+    "kind": "keyword",
+    "phonetic": "ю́ч",
+    "hooks": [
+      "ключ"
+    ],
+    "image": "Ключ держит три в руках."
+  },
+  "üflemek": {
+    "kind": "keyword",
+    "phonetic": "юфле́мек",
+    "hooks": [
+      "флейта"
+    ],
+    "image": "Флейта прямо сейчас умеет дуть."
+  },
+  "üniversite": {
+    "kind": "cognate",
+    "phonetic": "юниверсите́",
+    "hooks": [
+      "университет"
+    ],
+    "image": ""
+  },
+  "üst": {
+    "kind": "keyword",
+    "phonetic": "ю́ст",
+    "hooks": [
+      "аист"
+    ],
+    "image": "Аист держит верх в руках."
+  },
+  "ütü": {
+    "kind": "cognate",
+    "phonetic": "ютю́",
+    "hooks": [
+      "утюг"
+    ],
+    "image": ""
+  },
+  "üzgünüm.": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так говорят, когда человеку жаль."
+  },
+  "üzüm": {
+    "kind": "keyword",
+    "phonetic": "юзю́м",
+    "hooks": [
+      "змея"
+    ],
+    "image": "Змея держит виноград в руках."
+  },
+  "vagon": {
+    "kind": "cognate",
+    "phonetic": "ваго́н",
+    "hooks": [
+      "вагон"
+    ],
+    "image": ""
+  },
+  "vakit geçirmek": {
+    "kind": "keyword",
+    "phonetic": "вакит гечи́рмек",
+    "hooks": [
+      "череп"
+    ],
+    "image": "Череп прямо сейчас умеет проводить время."
+  },
+  "vapur": {
+    "kind": "keyword",
+    "phonetic": "вапу́р",
+    "hooks": [
+      "пара"
+    ],
+    "image": "Пара держит паром в руках."
+  },
+  "var": {
+    "kind": "keyword",
+    "phonetic": "ва́р",
+    "hooks": [
+      "евро"
+    ],
+    "image": "Евро держит есть в руках."
+  },
+  "varmak": {
+    "kind": "keyword",
+    "phonetic": "ва́рмак",
+    "hooks": [
+      "евро"
+    ],
+    "image": "Евро прямо сейчас умеет прибывать."
+  },
+  "vermek": {
+    "kind": "keyword",
+    "phonetic": "ве́рмек",
+    "hooks": [
+      "евро"
+    ],
+    "image": "Евро прямо сейчас умеет давать."
+  },
+  "vücut": {
+    "kind": "keyword",
+    "phonetic": "вюджу́т",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит тело в руках."
+  },
+  "yabancı": {
+    "kind": "keyword",
+    "phonetic": "ябанджы́",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит иностранец в руках."
+  },
+  "yabancı dil": {
+    "kind": "keyword",
+    "phonetic": "ябанджы ди́л",
+    "hooks": [
+      "одеяло"
+    ],
+    "image": "Одеяло сегодня выглядит иностранный язык."
+  },
+  "yakın": {
+    "kind": "keyword",
+    "phonetic": "якы́н",
+    "hooks": [
+      "кино"
+    ],
+    "image": "Кино сегодня выглядит близкий."
+  },
+  "yaklaşık": {
+    "kind": "keyword",
+    "phonetic": "яклашы́к",
+    "hooks": [
+      "шкаф"
+    ],
+    "image": "Шкаф держит примерно в руках."
+  },
+  "yakmak": {
+    "kind": "keyword",
+    "phonetic": "я́кмак",
+    "hooks": [
+      "камыш"
+    ],
+    "image": "Камыш прямо сейчас умеет жечь."
+  },
+  "yanak": {
+    "kind": "keyword",
+    "phonetic": "яна́к",
+    "hooks": [
+      "анкета"
+    ],
+    "image": "Анкета держит щеку в руках."
+  },
+  "yanlış": {
+    "kind": "keyword",
+    "phonetic": "янлы́ш",
+    "hooks": [
+      "леший"
+    ],
+    "image": "Леший сегодня выглядит неправильный."
+  },
+  "yapmak": {
+    "kind": "keyword",
+    "phonetic": "я́пмак",
+    "hooks": [
+      "помпа"
+    ],
+    "image": "Помпа прямо сейчас умеет делать."
+  },
+  "yardım etmek": {
+    "kind": "keyword",
+    "phonetic": "ярды́м етмек",
+    "hooks": [
+      "дым"
+    ],
+    "image": "Дым прямо сейчас умеет помогать."
+  },
+  "yardım istemek": {
+    "kind": "keyword",
+    "phonetic": "ярдым исте́мек",
+    "hooks": [
+      "стамеска"
+    ],
+    "image": "Стамеска прямо сейчас умеет просить о помощи."
+  },
+  "yarın": {
+    "kind": "keyword",
+    "phonetic": "яры́н",
+    "hooks": [
+      "ранец"
+    ],
+    "image": "Ранец держит завтру в руках."
+  },
+  "yastık": {
+    "kind": "keyword",
+    "phonetic": "ясты́к",
+    "hooks": [
+      "сетка"
+    ],
+    "image": "Сетка держит подушку в руках."
+  },
+  "yaş": {
+    "kind": "keyword",
+    "phonetic": "я́ш",
+    "hooks": [
+      "шея"
+    ],
+    "image": "Шея держит возраст в руках."
+  },
+  "yaşamak": {
+    "kind": "keyword",
+    "phonetic": "яша́мак",
+    "hooks": [
+      "шум"
+    ],
+    "image": "Шум прямо сейчас умеет жить."
+  },
+  "yaşlanmak": {
+    "kind": "keyword",
+    "phonetic": "яшла́нмак",
+    "hooks": [
+      "луна"
+    ],
+    "image": "Луна прямо сейчас умеет стареть."
+  },
+  "yaşlı": {
+    "kind": "keyword",
+    "phonetic": "яшлы́",
+    "hooks": [
+      "шелк"
+    ],
+    "image": "Шелк сегодня выглядит старый."
+  },
+  "yatak odası": {
+    "kind": "keyword",
+    "phonetic": "ятак одасы́",
+    "hooks": [
+      "диск"
+    ],
+    "image": "Диск держит спальню в руках."
+  },
+  "yatmak": {
+    "kind": "keyword",
+    "phonetic": "я́тмак",
+    "hooks": [
+      "тема"
+    ],
+    "image": "Тема прямо сейчас умеет ложиться спать."
+  },
+  "yavaş": {
+    "kind": "keyword",
+    "phonetic": "ява́ш",
+    "hooks": [
+      "вишня"
+    ],
+    "image": "Вишня сегодня выглядит медленный."
+  },
+  "yaz": {
+    "kind": "keyword",
+    "phonetic": "я́з",
+    "hooks": [
+      "князь"
+    ],
+    "image": "Князь держит лето в руках."
+  },
+  "yazı tahtası": {
+    "kind": "keyword",
+    "phonetic": "язы тахтасы́",
+    "hooks": [
+      "тесак"
+    ],
+    "image": "Тесак сегодня выглядит классная доска."
+  },
+  "yazmak": {
+    "kind": "keyword",
+    "phonetic": "я́змак",
+    "hooks": [
+      "замок"
+    ],
+    "image": "Замок прямо сейчас умеет писать."
+  },
+  "yemek": {
+    "kind": "keyword",
+    "phonetic": "еме́к",
+    "hooks": [
+      "мак"
+    ],
+    "image": "Мак держит еду в руках."
+  },
+  "yemekhane": {
+    "kind": "keyword",
+    "phonetic": "емекхане́",
+    "hooks": [
+      "хна"
+    ],
+    "image": "Хна сегодня выглядит столовая."
+  },
+  "yenge": {
+    "kind": "keyword",
+    "phonetic": "енге́",
+    "hooks": [
+      "ангел"
+    ],
+    "image": "Ангел держит жена брата в руках."
+  },
+  "yeni": {
+    "kind": "keyword",
+    "phonetic": "ени́",
+    "hooks": [
+      "чин"
+    ],
+    "image": "Чин сегодня выглядит новый."
+  },
+  "yeni yıl": {
+    "kind": "keyword",
+    "phonetic": "ени йы́л",
+    "hooks": [
+      "кайло"
+    ],
+    "image": "Кайло сегодня выглядит новый год."
+  },
+  "yer": {
+    "kind": "keyword",
+    "phonetic": "е́р",
+    "hooks": [
+      "ерш"
+    ],
+    "image": "Ерш держит место в руках."
+  },
+  "yer ayırtmak": {
+    "kind": "keyword",
+    "phonetic": "ер айыртма́к",
+    "hooks": [
+      "тема"
+    ],
+    "image": "Тема прямо сейчас умеет бронировать место."
+  },
+  "yeşil": {
+    "kind": "keyword",
+    "phonetic": "еши́л",
+    "hooks": [
+      "шелк"
+    ],
+    "image": "Шелк сегодня выглядит зелёный."
+  },
+  "yıkamak": {
+    "kind": "keyword",
+    "phonetic": "йыка́мак",
+    "hooks": [
+      "лайк"
+    ],
+    "image": "Лайк прямо сейчас умеет мыть."
+  },
+  "yıl": {
+    "kind": "keyword",
+    "phonetic": "йы́л",
+    "hooks": [
+      "кайло"
+    ],
+    "image": "Кайло держит год в руках."
+  },
+  "yıl dönümü": {
+    "kind": "keyword",
+    "phonetic": "йыл дёнюмю́",
+    "hooks": [
+      "нимб"
+    ],
+    "image": "Нимб держит годовщину в руках."
+  },
+  "yılbaşı": {
+    "kind": "keyword",
+    "phonetic": "йылбашы́",
+    "hooks": [
+      "башня"
+    ],
+    "image": "Башня сегодня выглядит Новый год."
+  },
+  "yıldız": {
+    "kind": "keyword",
+    "phonetic": "йылды́з",
+    "hooks": [
+      "дзюдо"
+    ],
+    "image": "Дзюдо держит звезду в руках."
+  },
+  "yıldönümü": {
+    "kind": "keyword",
+    "phonetic": "йылдёнюмю́",
+    "hooks": [
+      "нимб"
+    ],
+    "image": "Нимб держит годовщину в руках."
+  },
+  "yiyecek": {
+    "kind": "keyword",
+    "phonetic": "йиедже́к",
+    "hooks": [
+      "джем"
+    ],
+    "image": "Джем держит еду в руках."
+  },
+  "yok": {
+    "kind": "keyword",
+    "phonetic": "йо́к",
+    "hooks": [
+      "лайк"
+    ],
+    "image": "Лайк держит нет в руках."
+  },
+  "yolcu": {
+    "kind": "keyword",
+    "phonetic": "йолджу́",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз держит пассажир в руках."
+  },
+  "yorgun": {
+    "kind": "keyword",
+    "phonetic": "йоргу́н",
+    "hooks": [
+      "огонь"
+    ],
+    "image": "Огонь сегодня выглядит уставший."
+  },
+  "yorucu": {
+    "kind": "keyword",
+    "phonetic": "йоруджу́",
+    "hooks": [
+      "джаз"
+    ],
+    "image": "Джаз сегодня выглядит утомительный."
+  },
+  "yorulmak": {
+    "kind": "keyword",
+    "phonetic": "йору́лмак",
+    "hooks": [
+      "руль"
+    ],
+    "image": "Руль прямо сейчас умеет уставать."
+  },
+  "yukarı": {
+    "kind": "keyword",
+    "phonetic": "юкары́",
+    "hooks": [
+      "крыло"
+    ],
+    "image": "Крыло держит верх в руках."
+  },
+  "yumuşak": {
+    "kind": "cognate",
+    "phonetic": "юмуша́к",
+    "hooks": [
+      "мягкий"
+    ],
+    "image": ""
+  },
+  "yunan": {
+    "kind": "keyword",
+    "phonetic": "юна́н",
+    "hooks": [
+      "анна"
+    ],
+    "image": "Анна держит грек в руках."
+  },
+  "yunanistan": {
+    "kind": "keyword",
+    "phonetic": "юнаниста́н",
+    "hooks": [
+      "танк"
+    ],
+    "image": "Танк держит Грецию в руках."
+  },
+  "yürümek": {
+    "kind": "keyword",
+    "phonetic": "йюрю́мек",
+    "hooks": [
+      "майор"
+    ],
+    "image": "Майор прямо сейчас умеет ходить."
+  },
+  "yüz": {
+    "kind": "keyword",
+    "phonetic": "йю́з",
+    "hooks": [
+      "кайзер"
+    ],
+    "image": "Кайзер держит лицо в руках."
+  },
+  "yüzmek": {
+    "kind": "keyword",
+    "phonetic": "йю́змек",
+    "hooks": [
+      "кайзер"
+    ],
+    "image": "Кайзер прямо сейчас умеет плавать."
+  },
+  "yüzük": {
+    "kind": "keyword",
+    "phonetic": "йюзю́к",
+    "hooks": [
+      "сказка"
+    ],
+    "image": "Сказка держит кольцо в руках."
+  },
+  "zaman": {
+    "kind": "keyword",
+    "phonetic": "зама́н",
+    "hooks": [
+      "мангал"
+    ],
+    "image": "Мангал держит время в руках."
+  },
+  "zaman geçirmek": {
+    "kind": "keyword",
+    "phonetic": "заман гечи́рмек",
+    "hooks": [
+      "череп"
+    ],
+    "image": "Череп прямо сейчас умеет проводить время."
+  },
+  "zamir": {
+    "kind": "keyword",
+    "phonetic": "зами́р",
+    "hooks": [
+      "море"
+    ],
+    "image": "Море держит местоимение в руках."
+  },
+  "zayıf": {
+    "kind": "keyword",
+    "phonetic": "зайы́ф",
+    "hooks": [
+      "кайф"
+    ],
+    "image": "Кайф сегодня выглядит слабый."
+  },
+  "zengin": {
+    "kind": "keyword",
+    "phonetic": "зенги́н",
+    "hooks": [
+      "огонь"
+    ],
+    "image": "Огонь сегодня выглядит богатый."
+  },
+  "zevkli": {
+    "kind": "keyword",
+    "phonetic": "зевкли́",
+    "hooks": [
+      "звезда"
+    ],
+    "image": "Звезда сегодня выглядит приятный."
+  },
+  "zeytin": {
+    "kind": "keyword",
+    "phonetic": "зейти́н",
+    "hooks": [
+      "тень"
+    ],
+    "image": "Тень держит оливку в руках."
+  },
+  "ziyarete gelmek": {
+    "kind": "keyword",
+    "phonetic": "зиярете ге́лмек",
+    "hooks": [
+      "гель"
+    ],
+    "image": "Гель прямо сейчас умеет приходить с визитом."
+  },
+  "zor": {
+    "kind": "keyword",
+    "phonetic": "зо́р",
+    "hooks": [
+      "зеркало"
+    ],
+    "image": "Зеркало сегодня выглядит трудный."
+  },
+  "zürafa": {
+    "kind": "cognate",
+    "phonetic": "зюрафа́",
+    "hooks": [
+      "жираф"
+    ],
+    "image": ""
+  }
+}

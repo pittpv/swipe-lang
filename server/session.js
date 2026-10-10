@@ -101,6 +101,34 @@ function formatExamples(raw) {
     .filter(Boolean);
 }
 
+const ASSOCIATION_KINDS = new Set(['keyword', 'cognate', 'usage']);
+
+/** Parse a stored association. Empty and broken values become null. */
+export function formatAssociation(raw) {
+  if (raw == null || raw === '' || raw === 'null') return null;
+  let value = raw;
+  if (typeof raw === 'string') {
+    try {
+      value = JSON.parse(raw);
+    } catch {
+      return null;
+    }
+  }
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const kind = value.kind;
+  if (!ASSOCIATION_KINDS.has(kind)) return null;
+  const phonetic = String(value.phonetic || '').trim();
+  const hooks = (Array.isArray(value.hooks) ? value.hooks : [])
+    .map((hook) => String(hook || '').trim())
+    .filter(Boolean)
+    .slice(0, 2);
+  const image = String(value.image || '').trim();
+  if (kind === 'keyword' && (!phonetic || !hooks.length || !image)) return null;
+  if (kind === 'cognate' && !hooks.length) return null;
+  if (kind === 'usage' && !image) return null;
+  return { kind, phonetic, hooks, image };
+}
+
 export function formatWord(row) {
   const examples = formatExamples(row.examples);
   const forms = row.pos === 'verb' ? parseJsonArray(row.forms) : [];
@@ -111,6 +139,7 @@ export function formatWord(row) {
     pos: row.pos,
     examples,
     forms,
+    association: formatAssociation(row.association),
     cefrLevel: row.cefr_level,
     unit: row.unit || null,
     langPair: row.lang_pair || DEFAULT_LANG_PAIR,

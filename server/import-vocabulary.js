@@ -8,8 +8,8 @@ import { LANG_PAIRS, isLangPair, normalizeLangPair, wordLangPair } from './lang-
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const dataRoot = join(__dirname, 'data');
 
-/** Bump when examples/forms CSV shape or attach key (lang_pair + source_id) changes. */
-export const VOCAB_EXTRAS_VERSION = 2;
+/** Bump when examples/forms/associations shape or attach key changes. */
+export const VOCAB_EXTRAS_VERSION = 3;
 
 const POS_MAP = {
   İSİMLER: 'noun',
@@ -126,12 +126,41 @@ function loadFormsBySourceId(pack) {
   return map;
 }
 
-function attachExtras(word, examplesBySource, formsBySource) {
+/** Lemma key. Must stay `toLowerCase()`, same as association file keys. */
+function normalizeLemmaKey(lemma) {
+  return String(lemma || '').toLowerCase().trim();
+}
+
+function loadAssociations(pack) {
+  const path = join(packDir(pack), 'associations.json');
+  const map = new Map();
+  if (!existsSync(path)) return map;
+  const data = JSON.parse(readFileSync(path, 'utf8'));
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return map;
+  for (const [lemma, entry] of Object.entries(data)) {
+    if (!entry || typeof entry !== 'object') continue;
+    map.set(normalizeLemmaKey(lemma), entry);
+  }
+  return map;
+}
+
+function encodeAssociation(entry) {
+  return JSON.stringify({
+    kind: entry.kind,
+    phonetic: entry.phonetic || '',
+    hooks: Array.isArray(entry.hooks) ? entry.hooks : [],
+    image: entry.image || '',
+  });
+}
+
+function attachExtras(word, examplesBySource, formsBySource, associationsByLemma) {
   const sid = word.source_id != null ? String(word.source_id) : '';
   const examples = sid && examplesBySource.has(sid) ? examplesBySource.get(sid) : [];
   const forms = word.pos === 'verb' && sid && formsBySource.has(sid) ? formsBySource.get(sid) : [];
   word.examples = JSON.stringify(examples);
   word.forms = JSON.stringify(forms);
+  const entry = associationsByLemma?.get?.(normalizeLemmaKey(word.lemma)) || null;
+  word.association = entry ? encodeAssociation(entry) : 'null';
 }
 
 function extrasByPair() {
@@ -140,6 +169,7 @@ function extrasByPair() {
     map.set(pack.lang_pair, {
       examples: loadExamplesBySourceId(pack),
       forms: loadFormsBySourceId(pack),
+      associations: loadAssociations(pack),
     });
   }
   return map;
@@ -148,7 +178,7 @@ function extrasByPair() {
 function attachWordExtras(word, byPair) {
   const extras = byPair.get(wordLangPair(word));
   if (!extras) return;
-  attachExtras(word, extras.examples, extras.forms);
+  attachExtras(word, extras.examples, extras.forms, extras.associations);
 }
 
 function packsForPairs(pairs) {
@@ -200,7 +230,7 @@ export function hydrateVocabulary({ persist = false } = {}) {
     const { words } = loadPackWords(pack);
     const extras = byPair.get(pack.lang_pair);
     for (const word of words) {
-      if (extras) attachExtras(word, extras.examples, extras.forms);
+      if (extras) attachExtras(word, extras.examples, extras.forms, extras.associations);
       incoming.push(word);
     }
   }
@@ -251,8 +281,9 @@ export function enrichVocabularyExtras({ force = false } = {}) {
   for (const word of db.data.words) {
     const prevEx = word.examples;
     const prevForms = word.forms;
+    const prevAssociation = word.association;
     attachWordExtras(word, byPair);
-    if (word.examples !== prevEx || word.forms !== prevForms) updated++;
+    if (word.examples !== prevEx || word.forms !== prevForms || word.association !== prevAssociation) updated++;
   }
 
   db.data._vocabExtrasVersion = VOCAB_EXTRAS_VERSION;
@@ -281,7 +312,7 @@ export function importVocabulary({ replace = false, pairs } = {}) {
     const { words, rowCounts } = loadPackWords(pack);
     const extras = byPair.get(pack.lang_pair);
     for (const word of words) {
-      if (extras) attachExtras(word, extras.examples, extras.forms);
+      if (extras) attachExtras(word, extras.examples, extras.forms, extras.associations);
     }
     incoming.push(...words);
     packStats[pack.lang_pair] = { unique: words.length, ...rowCounts };
