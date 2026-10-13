@@ -2825,11 +2825,6 @@ export class App {
     this.scheduleStreakRiskRefresh();
   }
 
-  /**
-   * Streak chip in the top corner. Within 3 hours of the reset deadline it
-   * shows a warning and opens a short explanation on tap.
-   * @param {boolean} compact session header omits the word «дней»
-   */
   homeNavButton(action, label, count, noticeFor) {
     const badge = count
       ? `<span class="nav-badge" aria-hidden="true">${count > 9 ? '9+' : count}</span>`
@@ -2844,6 +2839,11 @@ export class App {
     return `<p class="home-rhythm">В кружке сегодня ${circle.todayClosed} из ${circle.memberCount}</p>`;
   }
 
+  /**
+   * Streak chip in the top corner. Within 12 hours of the reset deadline it
+   * shows a clock on the badge and opens a short explanation on tap.
+   * @param {boolean} compact session header omits the word «дней»
+   */
   streakBadgeHtml(compact) {
     const days = this.user?.streak;
     if (!days) return '';
@@ -2864,14 +2864,14 @@ export class App {
           aria-expanded="${open ? 'true' : 'false'}"
           aria-controls="streak-risk-note"
           aria-label="Серия ${days} дней, скоро сбросится"
-        ><span class="streak-warn-mark" aria-hidden="true">⚠️</span>${count}</button>
+        >${count}<span class="streak-warn-mark" aria-hidden="true">${STREAK_WARN_SVG}</span></button>
         ${open ? `<span class="streak-risk-note" id="streak-risk-note" role="status">${esc(hint)}</span>` : ''}
       </span>`;
   }
 
   /**
-   * The 3-hour window often opens while the phone is locked. Background timers
-   * do not run there, so a stale home screen kept the badge without ⚠️.
+   * The warning window often opens while the phone is locked. Background timers
+   * do not run there, so a stale home screen kept the badge without the clock.
    */
   refreshStreakRisk() {
     if (this.view !== 'home' && this.view !== 'session') return;
@@ -2884,7 +2884,7 @@ export class App {
     this.scheduleStreakRiskRefresh();
   }
 
-  /** Re-render when the 3-hour window opens, and keep an open hint fresh. */
+  /** Re-render when the warning window opens, and keep an open hint fresh. */
   scheduleStreakRiskRefresh() {
     clearTimeout(this._streakRiskTimer);
     this._streakRiskTimer = null;
@@ -2923,6 +2923,9 @@ function esc(s) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
+
+const STREAK_WARN_SVG =
+  '<svg class="streak-warn-icon" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><circle cx="8" cy="8.15" r="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 4.85V8.25l2.15 1.35"/></svg>';
 
 const IOS_SHARE_SVG =
   '<svg class="ios-install-share" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 9H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-2M12 3v12M8.5 6.5 12 3l3.5 3.5"/></svg>';

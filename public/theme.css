@@ -15,6 +15,7 @@
   --color-border: #d8e4de;
   --color-danger: #dc2626;
   --color-danger-hover: #b91c1c;
+  --color-on-danger: #ffffff;
   --color-overlay: rgba(28, 36, 33, 0.45);
   --color-skeleton-shine: #eef4f1;
   --color-on-accent: #1c2421;
@@ -42,6 +43,7 @@
     --color-border: #2e3f38;
     --color-danger: #f87171;
     --color-danger-hover: #fca5a5;
+    --color-on-danger: #1c2421;
     --color-overlay: rgba(6, 10, 8, 0.72);
     --color-skeleton-shine: #2a3832;
     --color-on-accent: #1c2421;
@@ -69,6 +71,7 @@ html[data-theme='dark'] {
   --color-border: #2e3f38;
   --color-danger: #f87171;
   --color-danger-hover: #fca5a5;
+  --color-on-danger: #1c2421;
   --color-overlay: rgba(6, 10, 8, 0.72);
   --color-skeleton-shine: #2a3832;
   --color-on-accent: #1c2421;

@@ -700,6 +700,7 @@ select:focus-visible,
 }
 
 button.streak-badge {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.28rem;
@@ -711,17 +712,30 @@ button.streak-badge {
   touch-action: manipulation;
 }
 
+.streak-badge-risk {
+  padding-left: 1.3rem;
+}
+
 .streak-warn-mark {
-  display: inline-block;
-  margin-right: 0.05rem;
-  padding: 0.02rem 0.12rem 0.06rem;
-  border-radius: 999px;
-  background: var(--color-bg);
-  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', emoji, sans-serif;
-  font-size: 0.95rem;
-  font-weight: 400;
-  font-variant-emoji: emoji;
-  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--color-danger);
+  color: var(--color-on-danger);
+  box-shadow: 0 0 0 2px var(--color-bg);
+  transform: translate(-42%, -50%);
+  pointer-events: none;
+  line-height: 0;
+}
+
+.streak-warn-icon {
+  display: block;
 }
 
 .streak-badge-wrap {
@@ -733,6 +747,10 @@ button.streak-badge {
 
 .home-bar .streak-badge-wrap {
   margin-top: 0.35rem;
+}
+
+.home-bar .streak-badge-wrap .streak-badge {
+  margin-top: 0;
 }
 
 .streak-badge-risk:focus-visible {

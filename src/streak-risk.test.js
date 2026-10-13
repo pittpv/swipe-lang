@@ -17,7 +17,7 @@ test('deadline is the end of the UTC day after the last session', () => {
   assert.equal(streakResetDeadlineMs('02-10-2026'), null);
 });
 
-test('warning is only inside the last 3 hours before reset', () => {
+test('warning is only inside the window before reset', () => {
   const user = { streak: 4, lastSessionDate: '2026-10-02' };
   const deadline = Date.UTC(2026, 9, 4);
   assert.equal(streakResetRisk(user, deadline - STREAK_WARN_MS - 1), null);
@@ -37,7 +37,7 @@ test('no warning after a session today or without a streak', () => {
   assert.equal(streakResetRisk(null, now), null);
 });
 
-test('msUntilStreakWarning counts down to the 3-hour mark', () => {
+test('msUntilStreakWarning counts down to the warning window', () => {
   const user = { streak: 2, lastSessionDate: '2026-10-02' };
   const deadline = Date.UTC(2026, 9, 4);
   assert.equal(msUntilStreakWarning(user, deadline - STREAK_WARN_MS - 2 * HOUR), 2 * HOUR);

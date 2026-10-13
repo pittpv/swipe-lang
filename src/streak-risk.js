@@ -1,5 +1,5 @@
-/** Warn when the daily streak is within this long of resetting. */
-export const STREAK_WARN_MS = 3 * 60 * 60 * 1000;
+/** Show the reset warning this long before the streak deadline. */
+export const STREAK_WARN_MS = 12 * 60 * 60 * 1000;
 
 /**
  * UTC instant when the streak can no longer be continued.
