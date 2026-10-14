@@ -69,6 +69,9 @@ import {
   sendReminderPush,
   sendTestPush,
   pushEndpointHost,
+  pushEndpointTag,
+  revokePushSubscription,
+  rejectRevokedPush,
 } from './reminders.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -456,9 +459,14 @@ app.get('/api/push/status', requireAuth, async (req, res) => {
   // another instance would otherwise show as off until a cold start.
   await db.reload();
   const user = findUser(req.session.userId);
+  const hasSubscription = Boolean(user.push_subscription?.endpoint);
   res.json({
     enabled: Boolean(user.push_schedule_id),
     time: user.reminder_time ?? null,
+    hasSubscription,
+    // Set only while the live subscription is gone, so the client can drop a
+    // browser endpoint Apple/FCM already rejected instead of uploading it again.
+    revokedTag: hasSubscription ? null : pushEndpointTag(user.push_revoked_endpoint),
   });
 });
 
@@ -473,9 +481,15 @@ app.post('/api/push/subscribe', requireAuth, async (req, res) => {
   if (!process.env.QSTASH_TOKEN || !process.env.REMINDER_SECRET) {
     return res.status(503).json({ error: 'Reminder scheduling is not configured on the server' });
   }
+  const replaceRevoked = Boolean(req.body?.replaceRevoked);
   try {
     await db.transact(async () => {
       const user = findUser(req.session.userId);
+      if (rejectRevokedPush(user, subscription.endpoint, replaceRevoked)) {
+        const err = new Error('Push subscription expired');
+        err.rotate = true;
+        throw err;
+      }
       await purgeOrphanSchedules(user);
       const stableId = reminderScheduleId(user.id);
       if (user.push_schedule_id && user.push_schedule_id !== stableId) {
@@ -493,12 +507,14 @@ app.post('/api/push/subscribe', requireAuth, async (req, res) => {
         timeZone: sanitizeText(req.body?.timeZone, 64),
       });
       user.push_subscription = subscription;
+      user.push_revoked_endpoint = null;
       user.reminder_time = reminderTime;
       user.tz_offset_minutes = Number(tzOffsetMinutes) || 0;
       user.push_schedule_id = scheduleId;
     });
     res.json({ ok: true, enabled: true, time: reminderTime });
   } catch (e) {
+    if (e.rotate) return res.status(409).json({ error: e.message, rotate: true });
     res.status(502).json({ error: e.message });
   }
 });
@@ -512,6 +528,7 @@ app.post('/api/push/unsubscribe', requireAuth, async (req, res) => {
     await purgeOrphanSchedules(user);
     user.push_schedule_id = null;
     user.push_subscription = null;
+    user.push_revoked_endpoint = null;
     user.reminder_time = null;
   });
   res.json({ ok: true, enabled: false });
@@ -535,7 +552,7 @@ app.post('/api/cron/reminders', async (req, res) => {
     if (result.expired) {
       await db.transact(() => {
         const u = db.data.users.find((row) => row.id === userId);
-        if (u) u.push_subscription = null;
+        if (u) revokePushSubscription(u);
       });
     }
     console.log(`[cron] reminder for user ${userId}: ${JSON.stringify(result)}`);
@@ -1042,7 +1059,7 @@ app.post('/api/admin/push/test', requireAdmin, async (req, res) => {
     if (result.expired) {
       await db.transact(() => {
         const u = db.data.users.find((row) => row.id === userId);
-        if (u) u.push_subscription = null;
+        if (u) revokePushSubscription(u);
       });
     }
     if (!result.sent) {

@@ -289,6 +289,48 @@ self.addEventListener('notificationclick', (event) => {
   );
 });
 
+/** Same 16-hex SHA-256 prefix as server `pushEndpointTag`. */
+async function endpointTag(endpoint) {
+  if (!endpoint || !crypto?.subtle) return null;
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(endpoint));
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 16);
+}
+
+function vapidKeyBytes(publicKey) {
+  const raw = atob(publicKey.replace(/-/g, '+').replace(/_/g, '/'));
+  const applicationServerKey = new Uint8Array(raw.length);
+  for (let i = 0; i < raw.length; i++) applicationServerKey[i] = raw.charCodeAt(i);
+  return applicationServerKey;
+}
+
+async function csrfHeaders() {
+  const headers = { 'Content-Type': 'application/json' };
+  try {
+    const cookie = await self.cookieStore?.get?.('csrf_token');
+    if (cookie?.value) headers['X-CSRF-Token'] = cookie.value;
+  } catch {
+    /* Cookie Store is missing on some browsers; the next app open heals. */
+  }
+  return headers;
+}
+
+async function postPushSubscription(subscription, reminderTime, replaceRevoked) {
+  const res = await fetch('/api/push/subscribe', {
+    method: 'POST',
+    credentials: 'include',
+    headers: await csrfHeaders(),
+    body: JSON.stringify({
+      subscription: subscription.toJSON(),
+      reminderTime,
+      tzOffsetMinutes: new Date().getTimezoneOffset(),
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      replaceRevoked,
+    }),
+  });
+  if (res.status === 409) return 'rotate';
+  return res.ok ? 'ok' : 'fail';
+}
+
 /**
  * Browser rotated or revoked the push endpoint. Rebind while the session cookie
  * still works so the server does not keep a dead Apple URL until next app open.
@@ -306,25 +348,28 @@ self.addEventListener('pushsubscriptionchange', (event) => {
         const status = await statusRes.json();
         if (!status.enabled || !status.time || !config.publicKey) return;
 
-        const raw = atob(config.publicKey.replace(/-/g, '+').replace(/_/g, '/'));
-        const applicationServerKey = new Uint8Array(raw.length);
-        for (let i = 0; i < raw.length; i++) applicationServerKey[i] = raw.charCodeAt(i);
-
-        const subscription = await self.registration.pushManager.subscribe({
+        const applicationServerKey = vapidKeyBytes(config.publicKey);
+        let current = await self.registration.pushManager.getSubscription();
+        let replaceRevoked = false;
+        if (current && status.revokedTag && (await endpointTag(current.endpoint)) === status.revokedTag) {
+          await current.unsubscribe().catch(() => {});
+          current = null;
+          replaceRevoked = true;
+        }
+        const subscription =
+          current ||
+          (await self.registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey,
+          }));
+        const posted = await postPushSubscription(subscription, status.time, replaceRevoked);
+        if (posted !== 'rotate') return;
+        await subscription.unsubscribe().catch(() => {});
+        const fresh = await self.registration.pushManager.subscribe({
           userVisibleOnly: true,
           applicationServerKey,
         });
-        await fetch('/api/push/subscribe', {
-          method: 'POST',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            subscription: subscription.toJSON(),
-            reminderTime: status.time,
-            tzOffsetMinutes: new Date().getTimezoneOffset(),
-            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-          }),
-        });
+        await postPushSubscription(fresh, status.time, true);
       } catch {
         /* next app-open heal will retry */
       }

@@ -8,6 +8,7 @@
  *    POST /api/cron/reminders with { userId } and x-internal-secret header.
  *  - The callback sends the push if there is something worth reminding about.
  */
+import { createHash } from 'node:crypto';
 import webpush from 'web-push';
 import { LANG_PAIR_META, userLangPair } from './lang-pairs.js';
 
@@ -132,6 +133,34 @@ export function pushEndpointHost(subscription) {
   }
 }
 
+/** Short SHA-256 prefix so the client can recognize a revoked endpoint without receiving the URL. */
+export function pushEndpointTag(endpoint) {
+  if (!endpoint || typeof endpoint !== 'string') return null;
+  return createHash('sha256').update(endpoint).digest('hex').slice(0, 16);
+}
+
+/**
+ * Drop a dead endpoint but remember it. The schedule and reminder time stay,
+ * so settings still show reminders as on and the next app open can resubscribe.
+ * Re-saving this exact endpoint is refused until the client rotates it.
+ */
+export function revokePushSubscription(user) {
+  if (!user) return;
+  const endpoint = user.push_subscription?.endpoint;
+  if (typeof endpoint === 'string' && endpoint) user.push_revoked_endpoint = endpoint;
+  user.push_subscription = null;
+}
+
+/** True when this endpoint was already rejected and the client has not rotated yet. */
+export function rejectRevokedPush(user, endpoint, replaceRevoked) {
+  return Boolean(
+    user?.push_revoked_endpoint &&
+      endpoint &&
+      user.push_revoked_endpoint === endpoint &&
+      !replaceRevoked,
+  );
+}
+
 /** Sends one push; cleans up expired subscriptions. Never throws for delivery issues. */
 export async function sendReminderPush(db, user) {
   if (!user?.push_subscription) return { skipped: 'no-subscription' };
@@ -168,8 +197,9 @@ export async function sendReminderPush(db, user) {
   } catch (err) {
     console.error(`[reminders] web-push ${err.statusCode ?? '???'}: ${err.body ?? err.message}`);
     // 404/410 — subscription expired; 401/403 — VAPID key mismatch (keys were
-    // rotated). Drop the endpoint so the next app-open heal can resubscribe,
-    // but keep the QStash schedule and reminder_time — otherwise the UI shows
+    // rotated). Caller drops the endpoint and stores it as revoked so the next
+    // app-open heal mints a new one instead of uploading this URL again.
+    // The QStash schedule and reminder_time stay — otherwise the UI shows
     // reminders as off and heal never runs.
     if ([401, 403, 404, 410].includes(err.statusCode)) {
       return { skipped: 'expired-subscription', expired: true, host, statusCode: err.statusCode };

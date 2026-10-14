@@ -91,6 +91,7 @@ export class App {
     this.reminderSaveQueued = false;
     this.reminderSaveInteractiveQueued = false;
     this.reminderNeedsGestureHeal = false;
+    this.reminderRotate = false;
     this.gestureHealArmed = false;
     this.vapidPublicKey = null;
     this.settingsError = '';
@@ -1352,8 +1353,14 @@ export class App {
       const status = await api('/push/status');
       if (status.time) this.reminderTime = status.time;
       else if (local?.time) this.reminderTime = local.time;
+      this.reminderRotate = false;
       if (status.enabled || local?.enabled) {
         this.reminder.enabled = true;
+        // Schedule is on, but the stored endpoint was rejected. Re-uploading
+        // the browser's copy would put the same dead URL back.
+        if (status.enabled && status.hasSubscription === false && status.revokedTag) {
+          this.reminderRotate = await this.browserSubscriptionMatchesTag(status.revokedTag);
+        }
         await this.pushSubscribe({ interactive: false });
         return;
       }
@@ -1386,6 +1393,17 @@ export class App {
     document.addEventListener('pointerup', retry, { once: true, capture: true });
   }
 
+  async browserSubscriptionMatchesTag(tag) {
+    try {
+      const registration = await navigator.serviceWorker.getRegistration();
+      const subscription = await registration?.pushManager.getSubscription();
+      if (!subscription?.endpoint || !tag) return false;
+      return (await endpointTag(subscription.endpoint)) === tag;
+    } catch {
+      return false;
+    }
+  }
+
   async prefetchVapidPublicKey() {
     if (this.vapidPublicKey) return this.vapidPublicKey;
     try {
@@ -1404,7 +1422,7 @@ export class App {
    * even when the PWA already has notification permission.
    * Subscribe itself is still attempted whenever permission is already granted.
    */
-  async ensurePushSubscription({ interactive = false } = {}) {
+  async ensurePushSubscription({ interactive = false, rotate = false } = {}) {
     if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
       if (!interactive) return null;
       throw new Error('Push-уведомления не поддерживаются этим браузером');
@@ -1426,6 +1444,15 @@ export class App {
     if (subscription && !this.sameVapidKey(subscription, publicKey)) {
       await subscription.unsubscribe().catch(() => {});
       subscription = null;
+    }
+    // Push service already rejected this endpoint. Unsubscribe and mint a new
+    // one — the same thing the settings toggle does by hand. Rotate only when
+    // the server says this exact endpoint was revoked.
+    if (subscription && rotate) {
+      const deadEndpoint = subscription.endpoint;
+      await subscription.unsubscribe().catch(() => {});
+      subscription = await registration.pushManager.getSubscription();
+      if (subscription?.endpoint === deadEndpoint) return null;
     }
     if (subscription) return subscription.toJSON();
 
@@ -1488,10 +1515,14 @@ export class App {
     }
     this.reminderSaveInFlight = true;
     if (interactive) this.reminderError = '';
+    const rotate = this.reminderRotate;
+    this.reminderRotate = false;
+    let rotateAgain = false;
     try {
-      const subscription = await this.ensurePushSubscription({ interactive });
+      const subscription = await this.ensurePushSubscription({ interactive, rotate });
       if (!subscription) {
         this.reminderNeedsGestureHeal = true;
+        if (rotate) this.reminderRotate = true;
         if (readReminderPref()?.enabled) this.reminder.enabled = true;
       } else {
         const result = await api('/push/subscribe', {
@@ -1501,6 +1532,7 @@ export class App {
             reminderTime: this.reminderTime,
             tzOffsetMinutes: new Date().getTimezoneOffset(),
             timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            replaceRevoked: rotate,
           },
         });
         this.reminder.enabled = Boolean(result.enabled);
@@ -1508,11 +1540,21 @@ export class App {
         if (this.reminder.enabled) writeReminderPref({ enabled: true, time: this.reminderTime });
       }
     } catch (e) {
-      if (interactive) this.reminderError = e.message;
-      else this.reminderNeedsGestureHeal = true;
-      if (readReminderPref()?.enabled) this.reminder.enabled = true;
+      if (e.data?.rotate && !rotate) {
+        this.reminderRotate = true;
+        rotateAgain = true;
+      } else {
+        if (interactive) this.reminderError = e.message;
+        else this.reminderNeedsGestureHeal = true;
+        if (rotate) this.reminderRotate = true;
+        if (readReminderPref()?.enabled) this.reminder.enabled = true;
+      }
     }
     this.reminderSaveInFlight = false;
+    if (rotateAgain) {
+      await this.pushSubscribe({ interactive });
+      return;
+    }
     if (this.reminderSaveQueued) {
       this.reminderSaveQueued = false;
       const nextInteractive = this.reminderSaveInteractiveQueued;
@@ -1538,6 +1580,7 @@ export class App {
 
   async disableReminders() {
     this.cancelPendingReminderSave();
+    this.reminderRotate = false;
     clearReminderPref();
     try {
       await api('/push/unsubscribe', { method: 'POST' });
@@ -3416,6 +3459,13 @@ function clearReminderPref() {
   } catch {
     /* private mode */
   }
+}
+
+/** Same 16-hex SHA-256 prefix as server `pushEndpointTag`. */
+async function endpointTag(endpoint) {
+  if (!endpoint || !crypto?.subtle) return null;
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(endpoint));
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 16);
 }
 
 function urlB64ToUint8Array(base64UrlString) {
