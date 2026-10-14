@@ -83,7 +83,7 @@ export class App {
     /** True after fly-out while /session/swipe is still in flight — show card skeleton. */
     this.awaitingNext = false;
     this.cardEnter = false;
-    this.reminder = { enabled: false };
+    this.reminder = { enabled: false, pendingRebind: false };
     this.reminderTime = '19:00';
     this.reminderError = '';
     this.reminderSaveTimer = null;
@@ -1347,30 +1347,40 @@ export class App {
 
   async loadReminderStatus() {
     const local = readReminderPref();
-    // Warm the VAPID key before any Enable tap so subscribe stays in-gesture.
+    // Warm the VAPID key and the service worker before any Enable tap so
+    // subscribe stays in-gesture. A home-screen reinstall has no worker yet;
+    // waiting for it inside the tap drops iOS user activation.
     void this.prefetchVapidPublicKey();
+    void this.preparePushRegistration();
     try {
       const status = await api('/push/status');
       if (status.time) this.reminderTime = status.time;
       else if (local?.time) this.reminderTime = local.time;
       this.reminderRotate = false;
-      if (status.enabled || local?.enabled) {
-        this.reminder.enabled = true;
+      const wantsReminders = Boolean(status.enabled || local?.enabled);
+      if (wantsReminders) {
         // Schedule is on, but the stored endpoint was rejected. Re-uploading
         // the browser's copy would put the same dead URL back.
         if (status.enabled && status.hasSubscription === false && status.revokedTag) {
           this.reminderRotate = await this.browserSubscriptionMatchesTag(status.revokedTag);
         }
         await this.pushSubscribe({ interactive: false });
+        // Deleting the home-screen icon drops this device's subscription.
+        // The account schedule stays on, so the switch must not claim the
+        // new install is already subscribed.
+        this.reminder.pendingRebind = !this.reminder.enabled;
+        if (this.view === 'settings') this.render();
         return;
       }
+      this.reminder.pendingRebind = false;
       const registration = await navigator.serviceWorker.getRegistration();
       const subscription = await registration?.pushManager.getSubscription();
       if (subscription) await this.pushSubscribe({ interactive: false });
     } catch {
       if (local?.enabled) {
-        this.reminder.enabled = true;
+        this.reminder.pendingRebind = !this.reminder.enabled;
         if (local.time) this.reminderTime = local.time;
+        if (this.view === 'settings') this.render();
       }
     }
   }
@@ -1388,9 +1398,33 @@ export class App {
       this.gestureHealArmed = false;
       // Keep reminderNeedsGestureHeal until pushSubscribe succeeds so a failed
       // tap can re-arm instead of silently giving up after one attempt.
-      this.pushSubscribe({ interactive: false });
+      // A reinstall resets permission to "default"; a silent retry never asks.
+      const permission = typeof Notification !== 'undefined' ? Notification.permission : 'default';
+      this.pushSubscribe({ interactive: permission !== 'granted' });
     };
     document.addEventListener('pointerup', retry, { once: true, capture: true });
+  }
+
+  async preparePushRegistration() {
+    if (!('serviceWorker' in navigator)) return null;
+    try {
+      let registration = await navigator.serviceWorker.getRegistration();
+      if (!registration) registration = await navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' });
+      await navigator.serviceWorker.ready;
+      return registration;
+    } catch {
+      return null;
+    }
+  }
+
+  async browserHasSubscription() {
+    try {
+      const registration = await navigator.serviceWorker.getRegistration();
+      const subscription = await registration?.pushManager.getSubscription();
+      return Boolean(subscription?.endpoint);
+    } catch {
+      return false;
+    }
   }
 
   async browserSubscriptionMatchesTag(tag) {
@@ -1523,7 +1557,7 @@ export class App {
       if (!subscription) {
         this.reminderNeedsGestureHeal = true;
         if (rotate) this.reminderRotate = true;
-        if (readReminderPref()?.enabled) this.reminder.enabled = true;
+        this.reminder.enabled = false;
       } else {
         const result = await api('/push/subscribe', {
           method: 'POST',
@@ -1536,6 +1570,7 @@ export class App {
           },
         });
         this.reminder.enabled = Boolean(result.enabled);
+        this.reminder.pendingRebind = false;
         this.reminderNeedsGestureHeal = false;
         if (this.reminder.enabled) writeReminderPref({ enabled: true, time: this.reminderTime });
       }
@@ -1547,7 +1582,7 @@ export class App {
         if (interactive) this.reminderError = e.message;
         else this.reminderNeedsGestureHeal = true;
         if (rotate) this.reminderRotate = true;
-        if (readReminderPref()?.enabled) this.reminder.enabled = true;
+        if (!(await this.browserHasSubscription())) this.reminder.enabled = false;
       }
     }
     this.reminderSaveInFlight = false;
@@ -1581,6 +1616,7 @@ export class App {
   async disableReminders() {
     this.cancelPendingReminderSave();
     this.reminderRotate = false;
+    this.reminder.pendingRebind = false;
     clearReminderPref();
     try {
       await api('/push/unsubscribe', { method: 'POST' });
@@ -1733,7 +1769,7 @@ export class App {
     this.referralCopied = false;
     clearTimeout(this.referralCopiedTimer);
     this.referralCopiedTimer = null;
-    this.reminder = { enabled: false };
+    this.reminder = { enabled: false, pendingRebind: false };
     this.landingBenefitIndex = 0;
     this.view = 'landing';
     this.render();
@@ -2734,6 +2770,7 @@ export class App {
               ${this.reminder.enabled
                 ? '<button type="button" class="btn btn-ghost btn-ghost-border" data-action="reminder-disable">Отключить</button>'
                 : '<button type="button" class="btn btn-primary" data-action="reminder-enable">Включить</button>'}
+              ${this.reminder.pendingRebind ? '<p class="settings-hint">Приложение ставили на экран заново — нажмите «Включить», чтобы пуши снова приходили на это устройство.</p>' : ''}
               ${this.reminderError ? `<p class="error">${esc(this.reminderError)}</p>` : ''}
             </div>`)}
           ${settingsGroup('Справка', `
