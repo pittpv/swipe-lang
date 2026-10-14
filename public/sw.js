@@ -11,6 +11,9 @@ const PRECACHE_URLS = [
   '/offline.js',
   '/offline.css',
   '/favicon.svg',
+  '/apple-touch-icon.png',
+  '/icon-192.png',
+  '/icon-512.png',
 ];
 
 function isHtmlNavigation(request) {
@@ -268,7 +271,7 @@ self.addEventListener('push', (event) => {
   event.waitUntil(
     self.registration.showNotification(title, {
       body,
-      icon: '/favicon.svg',
+      icon: '/icon-192.png',
       badge: '/favicon.svg',
       data: { url },
     }),
