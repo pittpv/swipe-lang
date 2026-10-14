@@ -85,6 +85,94 @@ body {
   color: var(--color-text);
 }
 
+.faq-list {
+  background: var(--color-surface);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.faq-item + .faq-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.85rem 1.25rem;
+  list-style: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.faq-q h2 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.faq-go {
+  flex-shrink: 0;
+  color: var(--color-muted);
+  font-weight: 400;
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+
+.faq-item[open] .faq-go {
+  transform: rotate(90deg);
+}
+
+.faq-q:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+@media (hover: hover) {
+  .faq-q:hover {
+    background: color-mix(in srgb, var(--color-border) 70%, transparent);
+  }
+}
+
+.faq-a {
+  padding: 0 1.25rem 1rem;
+}
+
+.faq-a p,
+.faq-a li {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+}
+
+.faq-a p:last-child,
+.faq-a ol:last-child {
+  margin-bottom: 0;
+}
+
+.faq-a ol {
+  margin: 0 0 0.75rem;
+  padding-left: 1.2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-go {
+    transition: none;
+  }
+}
+
 .info-shell p,
 .info-shell li {
   line-height: 1.6;

@@ -1,5 +1,15 @@
 const RETURN_KEY = 'langapp.returnView';
 
+function openHashedFaq() {
+  const id = location.hash.replace(/^#/, '');
+  if (!id) return;
+  const item = document.getElementById(id);
+  if (item instanceof HTMLDetailsElement) item.open = true;
+}
+
+openHashedFaq();
+window.addEventListener('hashchange', openHashedFaq);
+
 const back = document.querySelector('[data-info-back]');
 if (back) {
   const from = new URLSearchParams(location.search).get('from');
