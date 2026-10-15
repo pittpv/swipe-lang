@@ -2488,8 +2488,8 @@ export class App {
           </div>` : card ? sessionCardHtml(card, this.cardEnter) : ''}
         </div>
         <div class="swipe-hints">
-          <span>← Знаю</span>
-          <span>Учу →</span>
+          <span>Знаю - свайп влево</span>
+          <span>свайп вправо - Учу</span>
         </div>
         <div style="display:flex;gap:0.5rem;margin-top:1rem">
           <button class="btn btn-ghost" data-action="swipe-left" style="flex:1" ${this.swiping ? 'disabled' : ''}>← Знаю</button>
