@@ -45,8 +45,17 @@ const VOCAB_PACKS = [
   },
 ];
 
+/**
+ * Some Turkish exports store dotted i as U+0069 plus U+0307 COMBINING DOT ABOVE.
+ * The letter already has a tittle, so the card draws two dots. Strip only that
+ * mark. Do not lowercase here: İ must stay İ, and toLowerCase("İ") is i+U+0307.
+ */
+export function normalizeLemmaText(text) {
+  return String(text ?? '').replace(/\u0307/g, '').trim();
+}
+
 function normalizeKey(lemma) {
-  return lemma.toLowerCase().trim();
+  return normalizeLemmaText(lemma).toLowerCase();
 }
 
 function mapPos(tip) {
@@ -56,7 +65,7 @@ function mapPos(tip) {
 }
 
 function rowToWord(row, source, langPair) {
-  const lemma = row['Слово']?.trim();
+  const lemma = normalizeLemmaText(row['Слово']);
   const translation = row['Перевод']?.trim();
   if (!lemma || !translation) return null;
 
@@ -97,8 +106,8 @@ function loadExamplesBySourceId(pack) {
   if (!existsSync(path)) return map;
   for (const row of parseCsvFile(readFileSync(path, 'utf8'))) {
     const wordId = String(row.word_id || '').trim();
-    const example = String(row.example || '').trim();
-    const translate = String(row.translate || '').trim();
+    const example = normalizeLemmaText(row.example);
+    const translate = normalizeLemmaText(row.translate);
     if (!wordId || !example) continue;
     if (!map.has(wordId)) map.set(wordId, []);
     map.get(wordId).push({ example, translate });
@@ -113,7 +122,7 @@ function loadFormsBySourceId(pack) {
   if (!existsSync(path)) return map;
   for (const row of parseCsvFile(readFileSync(path, 'utf8'))) {
     const wordId = String(row.word_id || '').trim();
-    const form = String(row.form || '').trim();
+    const form = normalizeLemmaText(row.form);
     if (!wordId || !form) continue;
     if (!map.has(wordId)) map.set(wordId, []);
     map.get(wordId).push({
@@ -126,9 +135,13 @@ function loadFormsBySourceId(pack) {
   return map;
 }
 
-/** Lemma key. Must stay `toLowerCase()`, same as association file keys. */
+/**
+ * Association lookup. Strip U+0307 after toLowerCase so i̇skele, iskele, and
+ * İngiliz (whose default lowercase is i+U+0307) share one key. Word ids use
+ * normalizeKey instead and must keep that İ lowercase, or progress ids move.
+ */
 function normalizeLemmaKey(lemma) {
-  return String(lemma || '').toLowerCase().trim();
+  return String(lemma || '').toLowerCase().replace(/\u0307/g, '').trim();
 }
 
 function loadAssociations(pack) {
@@ -139,7 +152,10 @@ function loadAssociations(pack) {
   if (!data || typeof data !== 'object' || Array.isArray(data)) return map;
   for (const [lemma, entry] of Object.entries(data)) {
     if (!entry || typeof entry !== 'object') continue;
-    map.set(normalizeLemmaKey(lemma), entry);
+    const key = normalizeLemmaKey(lemma);
+    // Prefer the entry stored without the spurious dot when both exist (iç).
+    if (lemma.includes('\u0307') && map.has(key)) continue;
+    map.set(key, entry);
   }
   return map;
 }
@@ -186,17 +202,54 @@ function packsForPairs(pairs) {
   return VOCAB_PACKS.filter((p) => wanted.has(p.lang_pair));
 }
 
-function loadPackWords(pack) {
+const CEFR_RANK = { A1: 0, A2: 1, B1: 2, B2: 3, C1: 4, C2: 5 };
+
+function earlierCefr(a, b) {
+  return (CEFR_RANK[a] ?? 99) <= (CEFR_RANK[b] ?? 99) ? a : b;
+}
+
+/**
+ * Last row wins, except a dotted duplicate (i + U+0307) must not push the
+ * word out of the earlier course. A1 was only seeing iskele because of that
+ * extra mark; after it collapses into the plain lemma the card stays on A1.
+ */
+function upsertLemma(merged, word, fromDot) {
+  const key = normalizeKey(word.lemma);
+  const prev = merged.get(key);
+  if (!prev) {
+    if (fromDot) word._fromDot = true;
+    merged.set(key, word);
+    return;
+  }
+  if (!prev._fromDot && !fromDot) {
+    merged.set(key, word);
+    return;
+  }
+  const cefr = earlierCefr(prev.cefr_level, word.cefr_level);
+  if (fromDot && !prev._fromDot) {
+    prev.cefr_level = cefr;
+    prev._fromDot = true;
+    return;
+  }
+  word.cefr_level = cefr;
+  word._fromDot = true;
+  merged.set(key, word);
+}
+
+export function loadPackWords(pack) {
   const merged = new Map();
   const rowCounts = {};
   for (const { file, source } of pack.files) {
     const rows = loadCsv(pack, file);
     rowCounts[source] = rows.length;
     for (const row of rows) {
+      const raw = row['Слово']?.trim() || '';
       const word = rowToWord(row, source, pack.lang_pair);
-      if (word) merged.set(normalizeKey(word.lemma), word);
+      if (!word) continue;
+      upsertLemma(merged, word, raw.includes('\u0307'));
     }
   }
+  for (const word of merged.values()) delete word._fromDot;
   return { words: [...merged.values()], rowCounts };
 }
 
