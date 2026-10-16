@@ -3,47 +3,400 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Analytics — LangSwipe</title>
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1a5f4a" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121916" />
+  <title>Админка — LangSwipe</title>
+  <link rel="stylesheet" href="/theme.css" />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
+  <script src="/theme-boot.js"></script>
+  <script>
+    try {
+      if (sessionStorage.getItem('langapp_admin_key')) {
+        document.documentElement.classList.add('admin-restoring');
+      }
+    } catch (e) { /* private mode */ }
+  </script>
   <style>
-    :root { --primary: #1a5f4a; --muted: #5c6b64; --bg: #f4f7f5; --surface: #fff; --danger: #b42318; --line: #d8e4de; }
-    body { font-family: system-ui, sans-serif; margin: 0; background: var(--bg); color: #1c2421; }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
-    h1 { color: var(--primary); }
-    h2 { margin: 0 0 0.75rem; font-size: 1.05rem; }
-    .card { background: var(--surface); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
-    .metric .num { font-size: 1.75rem; font-weight: 700; color: var(--primary); }
-    .metric .lbl { font-size: 0.75rem; color: var(--muted); }
+    :root {
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --z-sticky: 10;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.45;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-5);
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .brand {
+      margin: 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-heading);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-wrap: balance;
+    }
+
+    h2 {
+      margin: 0 0 var(--space-3);
+      font-size: 1rem;
+      font-weight: 700;
+      text-wrap: balance;
+    }
+
+    .topbar-actions, .row, .dialog-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .wrap {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: var(--space-5) var(--space-4) var(--space-8);
+    }
+
+    .stack { display: flex; flex-direction: column; gap: var(--space-4); }
+    [hidden] { display: none !important; }
+
+    .panel {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-4) var(--space-5) var(--space-5);
+    }
+
+    .gate {
+      width: min(26rem, 100%);
+      margin: var(--space-8) auto 0;
+    }
+
+    .lede, .note, .muted, .empty {
+      color: var(--color-muted);
+      margin: 0;
+    }
+
+    .lede { margin: var(--space-3) 0 var(--space-5); max-width: 65ch; }
+    code { font-family: inherit; font-weight: 700; }
+    .note { max-width: 72ch; margin-bottom: var(--space-4); }
+
+    label { display: block; font-weight: 600; font-size: 0.875rem; }
+
+    input, select, button { font: inherit; }
+
+    input, select {
+      width: 100%;
+      margin-top: var(--space-2);
+      min-height: 44px;
+      padding: 0.6rem 0.75rem;
+      color: var(--color-text);
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+    }
+
+    input::placeholder { color: var(--color-muted); opacity: 1; }
+
+    .row input, .row select { width: auto; margin-top: 0; flex: 1; min-width: 12rem; }
+
+    .btn {
+      min-height: 40px;
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      cursor: pointer;
+    }
+
+    .btn:hover { background: var(--color-primary-light); }
+    .btn:disabled { cursor: progress; }
+    .btn.block { width: 100%; margin-top: var(--space-4); min-height: 44px; }
+    .btn.ghost {
+      background: transparent;
+      color: var(--color-text);
+      border-color: var(--color-border);
+    }
+    .btn.ghost:hover { background: var(--color-skeleton-shine); }
+    .btn.danger { background: var(--color-danger); color: var(--color-on-danger); }
+    .btn.danger:hover { background: var(--color-danger-hover); }
+    .btn.small { min-height: 36px; padding: 0.35rem 0.7rem; }
+
+    .theme {
+      display: inline-flex;
+      padding: 3px;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      background: var(--color-bg);
+    }
+
+    .theme button {
+      min-height: 32px;
+      padding: 0.25rem 0.65rem;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--color-muted);
+      cursor: pointer;
+    }
+
+    .theme button[aria-checked="true"] {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--color-primary-light);
+      outline-offset: 2px;
+    }
+
+    .error { color: var(--color-danger); min-height: 1.25rem; margin: var(--space-3) 0 0; }
+    .ok { color: var(--color-heading); min-height: 1.25rem; margin: var(--space-3) 0 0; }
+
+    .metrics, .funnel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--space-4);
+    }
+
+    .metric .num, .step .num {
+      font-size: 1.75rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+      color: var(--color-heading);
+    }
+
+    .metric .lbl, .step .lbl { font-size: 0.875rem; font-weight: 600; margin-top: var(--space-1); }
+    .metric .hint, .step .hint { color: var(--color-muted); font-size: 0.8125rem; margin-top: var(--space-1); }
+
     .table-wrap { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-    th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
-    th { color: var(--muted); font-weight: 600; white-space: nowrap; }
-    td.num { font-variant-numeric: tabular-nums; }
-    input, button, select { padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid var(--line); font: inherit; }
-    input:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-    button { background: var(--primary); color: #fff; border: none; cursor: pointer; }
-    button:hover { filter: brightness(1.08); }
-    button:disabled { opacity: 0.55; cursor: not-allowed; filter: none; }
-    button.danger { background: var(--danger); }
-    .error { color: var(--danger); }
-    .ok { color: var(--primary); }
-    .muted { color: var(--muted); margin: 0; }
-    .row { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 0.75rem; }
-    .row input[type="search"] { flex: 1; min-width: 12rem; }
-    select { min-width: 16rem; }
-    .empty { color: var(--muted); margin: 0.75rem 0 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    table.users { min-width: 760px; }
+    th, td { padding: 0.55rem 0.45rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: middle; }
+    th { color: var(--color-muted); font-weight: 600; font-size: 0.75rem; white-space: nowrap; }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    tr[data-today] { background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface)); }
+
+    .skeleton {
+      height: 4.5rem;
+      border-radius: 12px;
+      background: var(--color-skeleton-shine);
+    }
+
+    dialog {
+      width: min(28rem, calc(100% - 2rem));
+      padding: var(--space-5);
+      color: var(--color-text);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    dialog::backdrop { background: var(--color-overlay); }
+    dialog p { margin: var(--space-3) 0 var(--space-5); }
+    .dialog-actions { justify-content: flex-end; }
+
+    .admin-restoring #gate { display: none !important; }
+    .admin-restoring #loading { display: flex !important; }
+
+    @media (max-width: 640px) {
+      .topbar { align-items: stretch; flex-direction: column; }
+      .gate { margin-top: var(--space-4); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>LangSwipe Analytics</h1>
-    <div class="card" id="auth">
-      <label>Admin API Key <input type="password" id="key" autocomplete="current-password" style="width:100%;margin-top:0.25rem" /></label>
-      <button id="load-btn" style="margin-top:0.75rem">Загрузить</button>
-      <p class="error" id="err"></p>
+  <header class="topbar">
+    <div>
+      <p class="brand">LangSwipe</p>
+      <h1 id="title">Вход в админку</h1>
     </div>
-    <div id="dash" style="display:none"></div>
-  </div>
+    <div class="topbar-actions">
+      <div class="theme" role="radiogroup" aria-label="Тема">
+        <button type="button" data-theme="light" role="radio" aria-checked="false">Светлая</button>
+        <button type="button" data-theme="dark" role="radio" aria-checked="false">Тёмная</button>
+        <button type="button" data-theme="system" role="radio" aria-checked="false">Система</button>
+      </div>
+      <button type="button" class="btn ghost" id="refresh" hidden>Обновить</button>
+      <button type="button" class="btn ghost" id="logout" hidden>Выйти</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel gate" id="gate">
+      <p class="lede">Ключ — это значение <code>ADMIN_API_KEY</code> на сервере. В этой вкладке он запоминается до выхода.</p>
+      <form id="login-form">
+        <label for="key">Ключ</label>
+        <input id="key" type="password" name="key" autocomplete="current-password" spellcheck="false" />
+        <button type="submit" class="btn block" id="load-btn">Войти</button>
+        <p class="error" id="err" role="alert"></p>
+      </form>
+    </section>
+
+    <section id="loading" class="stack" hidden aria-busy="true" aria-label="Загрузка админки">
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </section>
+
+    <section id="app" class="stack" hidden>
+      <p class="note" id="retention-note"></p>
+      <p class="muted" id="updated"></p>
+
+      <section class="panel" aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Сводка</h2>
+        <div class="metrics" id="metrics"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="funnel-heading">
+        <h2 id="funnel-heading">Воронка</h2>
+        <div class="funnel" id="funnel"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="week-heading">
+        <h2 id="week-heading">Последние 7 дней</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Дата</th>
+                <th class="num">Регистрации</th>
+                <th class="num">Активные</th>
+                <th class="num">Сессии</th>
+              </tr>
+            </thead>
+            <tbody id="week-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel" id="users-card" aria-labelledby="users-heading">
+        <h2 id="users-heading">Пользователи</h2>
+        <div class="row">
+          <input type="search" id="user-search" placeholder="Email, имя или id" aria-label="Поиск пользователей" />
+          <p class="muted" id="user-count"></p>
+        </div>
+        <div class="table-wrap">
+          <table class="users">
+            <thead>
+              <tr>
+                <th class="num">ID</th>
+                <th>Email</th>
+                <th>Имя</th>
+                <th>Язык</th>
+                <th>Уровень</th>
+                <th class="num">Серия</th>
+                <th class="num">Сессии</th>
+                <th class="num">Слова</th>
+                <th>Регистрация</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="users-body"></tbody>
+          </table>
+        </div>
+        <p id="users-empty" class="empty" hidden></p>
+        <p id="users-msg" class="ok" role="status"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="assoc-heading">
+        <h2 id="assoc-heading">Ассоциации</h2>
+        <p class="muted">Сначала слова, которые чаще отклоняют. У человека одна оценка на слово.</p>
+        <div class="metrics" id="assoc-metrics" style="margin-top: 0.75rem"></div>
+        <div class="table-wrap" id="assoc-table-wrap" hidden style="margin-top: 0.75rem">
+          <table>
+            <thead>
+              <tr>
+                <th>Слово</th>
+                <th>Язык</th>
+                <th>Зацепка</th>
+                <th>Сцена</th>
+                <th class="num">Подходит</th>
+                <th class="num">Нет</th>
+                <th class="num">Доля</th>
+              </tr>
+            </thead>
+            <tbody id="assoc-body"></tbody>
+          </table>
+        </div>
+        <p id="assoc-empty" class="empty" hidden></p>
+      </section>
+
+      <section class="panel" aria-labelledby="push-heading">
+        <h2 id="push-heading">Тест пуш-уведомления</h2>
+        <p class="muted" id="vapid-line"></p>
+        <p class="muted" id="push-count" style="margin-top: 0.35rem"></p>
+        <div class="row" id="push-row" hidden>
+          <select id="push-user" aria-label="Получатель теста"></select>
+          <button type="button" class="btn" id="push-test-btn">Отправить тест</button>
+        </div>
+        <p id="push-empty" class="empty" hidden>Нет активных подписок — сначала включите напоминания в приложении.</p>
+        <p id="push-msg" class="ok" role="status"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="events-heading">
+        <h2 id="events-heading">События</h2>
+        <div class="table-wrap" id="events-table-wrap">
+          <table>
+            <thead>
+              <tr><th>Событие</th><th class="num">Количество</th></tr>
+            </thead>
+            <tbody id="events-body"></tbody>
+          </table>
+        </div>
+        <p id="events-empty" class="empty" hidden>Событий пока нет.</p>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="delete-dialog" aria-labelledby="delete-title">
+    <form method="dialog">
+      <h2 id="delete-title">Удалить аккаунт</h2>
+      <p id="delete-copy"></p>
+      <div class="dialog-actions">
+        <button type="submit" class="btn ghost" value="cancel">Отмена</button>
+        <button type="submit" class="btn danger" value="confirm">Удалить</button>
+      </div>
+    </form>
+  </dialog>
+
   <script src="/admin/dashboard.js"></script>
 </body>
 </html>
