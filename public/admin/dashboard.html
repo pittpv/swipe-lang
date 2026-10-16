@@ -103,13 +103,11 @@
       margin: var(--space-8) auto 0;
     }
 
-    .lede, .note, .muted, .empty {
+    .note, .muted, .empty {
       color: var(--color-muted);
       margin: 0;
     }
 
-    .lede { margin: var(--space-3) 0 var(--space-5); max-width: 65ch; }
-    code { font-family: inherit; font-weight: 700; }
     .note { max-width: 72ch; margin-bottom: var(--space-4); }
 
     label { display: block; font-weight: 600; font-size: 0.875rem; }
@@ -261,7 +259,6 @@
 
   <main class="wrap">
     <section class="panel gate" id="gate">
-      <p class="lede">Ключ — это значение <code>ADMIN_API_KEY</code> на сервере. В этой вкладке он запоминается до выхода.</p>
       <form id="login-form">
         <label for="key">Ключ</label>
         <input id="key" type="password" name="key" autocomplete="current-password" spellcheck="false" />
