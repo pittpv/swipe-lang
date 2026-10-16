@@ -8,6 +8,14 @@ import { existsSync } from 'fs';
 import {
   securityHeaders,
   authRateLimit,
+  ttsRateLimit,
+  adminRateLimit,
+  adminLoginRateLimit,
+  secretsMatch,
+  setAdminCookie,
+  clearAdminCookie,
+  adminSessionValid,
+  ADMIN_COOKIE,
   validateEmail,
   validatePassword,
   sanitizeText,
@@ -46,7 +54,7 @@ import {
   circleSessionWordIds,
   circleState,
   createCircle,
-  joinCircle,
+  joinCircleFromClient,
   leaveCircle,
   inviteReferral,
   acceptCircleInvite,
@@ -68,6 +76,7 @@ import {
   reminderScheduleId,
   sendReminderPush,
   sendTestPush,
+  isAllowedPushEndpoint,
   pushEndpointHost,
   pushEndpointTag,
   revokePushSubscription,
@@ -77,6 +86,11 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3000;
 const app = express();
+app.disable('x-powered-by');
+// Vercel is the only proxy in front of this process. Trusting it makes req.ip
+// the visitor address. Left unset, every isolate would share the platform hop
+// and the auth limit would count the whole site as one client.
+if (process.env.VERCEL) app.set('trust proxy', 1);
 
 {
   const { hydrateVocabulary } = await import('./import-vocabulary.js');
@@ -312,7 +326,10 @@ app.post('/api/circles', requireAuth, async (req, res) => {
 app.post('/api/circles/join', requireAuth, async (req, res) => {
   try {
     const payload = await db.transact(() =>
-      joinCircle(db, req.session.userId, { code: req.body?.code, circleId: req.body?.circleId }),
+      joinCircleFromClient(db, req.session.userId, {
+        code: req.body?.code,
+        circleId: req.body?.circleId,
+      }),
     );
     res.json(withCircleLink(payload, req));
   } catch (err) {
@@ -424,7 +441,7 @@ app.post('/api/circles/session', requireAuth, async (req, res) => {
 const TTS_UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 
-app.get('/api/tts', async (req, res) => {
+app.get('/api/tts', ttsRateLimit, async (req, res) => {
   const text = sanitizeText(req.query.q, 200);
   if (!text) {
     return res.status(400).json({ error: 'q required' });
@@ -475,10 +492,14 @@ app.post('/api/push/subscribe', requireAuth, async (req, res) => {
   if (!subscription?.endpoint || typeof subscription.endpoint !== 'string') {
     return res.status(400).json({ error: 'Valid push subscription required' });
   }
+  if (!isAllowedPushEndpoint(subscription.endpoint)) {
+    return res.status(400).json({ error: 'Этот браузер не поддерживается для напоминаний' });
+  }
   if (!/^([01]?\d|2[0-3]):[0-5]\d$/.test(reminderTime ?? '')) {
     return res.status(400).json({ error: 'reminderTime must be HH:MM' });
   }
-  if (!process.env.QSTASH_TOKEN || !process.env.REMINDER_SECRET) {
+  const appOrigin = (process.env.APP_URL || '').replace(/\/$/, '');
+  if (!process.env.QSTASH_TOKEN || !process.env.REMINDER_SECRET || !appOrigin) {
     return res.status(503).json({ error: 'Reminder scheduling is not configured on the server' });
   }
   const replaceRevoked = Boolean(req.body?.replaceRevoked);
@@ -496,9 +517,7 @@ app.post('/api/push/subscribe', requireAuth, async (req, res) => {
         await removeScheduleOrQueue(user, user.push_schedule_id);
         user.push_schedule_id = null;
       }
-      const proto = req.headers['x-forwarded-proto'] || req.protocol;
-      const host = req.get('x-forwarded-host') || req.get('host');
-      const callbackUrl = `${String(proto).split(',')[0].trim()}://${host}/api/cron/reminders`;
+      const callbackUrl = `${appOrigin}/api/cron/reminders`;
       const scheduleId = await createReminderSchedule({
         callbackUrl,
         userId: user.id,
@@ -515,7 +534,8 @@ app.post('/api/push/subscribe', requireAuth, async (req, res) => {
     res.json({ ok: true, enabled: true, time: reminderTime });
   } catch (e) {
     if (e.rotate) return res.status(409).json({ error: e.message, rotate: true });
-    res.status(502).json({ error: e.message });
+    console.error('[reminders] subscribe failed:', e.message);
+    res.status(502).json({ error: 'Не удалось включить напоминание' });
   }
 });
 
@@ -536,7 +556,7 @@ app.post('/api/push/unsubscribe', requireAuth, async (req, res) => {
 
 /** QStash schedule target — authorized via shared secret header. */
 app.post('/api/cron/reminders', async (req, res) => {
-  if (!process.env.REMINDER_SECRET || req.get('x-internal-secret') !== process.env.REMINDER_SECRET) {
+  if (!secretsMatch(req.get('x-internal-secret') ?? '', process.env.REMINDER_SECRET ?? '')) {
     console.error('[cron] rejected: bad or missing x-internal-secret');
     return res.status(401).json({ error: 'Unauthorized' });
   }
@@ -559,7 +579,7 @@ app.post('/api/cron/reminders', async (req, res) => {
     res.json({ ok: true, result });
   } catch (e) {
     console.error(`[cron] reminder for user ${userId} failed:`, e);
-    res.status(500).json({ ok: false, error: e.message });
+    res.status(500).json({ ok: false, error: 'Reminder failed' });
   }
 });
 
@@ -905,15 +925,35 @@ const publicPath = join(__dirname, '..', 'public');
 app.use(express.static(publicPath));
 
 function requireAdmin(req, res, next) {
+  return adminRateLimit(req, res, () => {
+    const key = process.env.ADMIN_API_KEY;
+    if (!key) {
+      return res.status(503).json({ error: 'Analytics dashboard disabled' });
+    }
+    const header = req.get('x-admin-key');
+    if (header) {
+      if (!secretsMatch(header, key)) return res.status(401).json({ error: 'Unauthorized' });
+      return next();
+    }
+    if (adminSessionValid(req.cookies?.[ADMIN_COOKIE])) return next();
+    return res.status(401).json({ error: 'Unauthorized' });
+  });
+}
+
+app.post('/api/admin/session', adminLoginRateLimit, (req, res) => {
   const key = process.env.ADMIN_API_KEY;
-  if (!key) {
-    return res.status(503).json({ error: 'Analytics dashboard disabled' });
-  }
-  if (req.get('x-admin-key') !== key) {
+  if (!key) return res.status(503).json({ error: 'Analytics dashboard disabled' });
+  if (!secretsMatch(req.get('x-admin-key') ?? '', key)) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
-  next();
-}
+  setAdminCookie(res);
+  res.json({ ok: true });
+});
+
+app.post('/api/admin/logout', (_req, res) => {
+  clearAdminCookie(res);
+  res.json({ ok: true });
+});
 
 app.get('/api/health', (_req, res) => res.json({ ok: true, words: db.data.words.length, storage: dbMode }));
 

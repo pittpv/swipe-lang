@@ -16,3 +16,4 @@ vercel-log.json
 vl.json
 *.tmp
 .impeccable/
+brag-output/

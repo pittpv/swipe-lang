@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {
   localTimeToCron,
   reminderScheduleId,
+  isAllowedPushEndpoint,
   pushEndpointTag,
   revokePushSubscription,
   rejectRevokedPush,
@@ -23,6 +24,17 @@ test('localTimeToCron falls back to UTC using the JS timezone offset', () => {
 
 test('reminderScheduleId is stable per user so QStash updates in place', () => {
   assert.equal(reminderScheduleId(7), 'langapp-reminder-7');
+});
+
+test('push endpoints are limited to known browser push services', () => {
+  assert.equal(isAllowedPushEndpoint('https://fcm.googleapis.com/fcm/send/abc'), true);
+  assert.equal(isAllowedPushEndpoint('https://updates.push.services.mozilla.com/wpush/v2/x'), true);
+  assert.equal(isAllowedPushEndpoint('https://web.push.apple.com/Q'), true);
+  assert.equal(isAllowedPushEndpoint('https://wns2-pn1p.notify.windows.com/w/?token=1'), true);
+  assert.equal(isAllowedPushEndpoint('https://evil.example/collect'), false);
+  assert.equal(isAllowedPushEndpoint('http://fcm.googleapis.com/fcm/send/abc'), false);
+  assert.equal(isAllowedPushEndpoint('https://user:pass@fcm.googleapis.com/fcm/send/abc'), false);
+  assert.equal(isAllowedPushEndpoint('not a url'), false);
 });
 
 test('pushEndpointTag is a stable sha256 prefix', () => {

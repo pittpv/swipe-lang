@@ -125,6 +125,30 @@ function vapidSubject() {
   return process.env.APP_URL || 'https://www.langswipe.xyz';
 }
 
+const PUSH_HOSTS = new Set([
+  'fcm.googleapis.com',
+  'android.googleapis.com',
+  'updates.push.services.mozilla.com',
+  'web.push.apple.com',
+]);
+
+/** Browser push services only. The server later POSTs to this URL. */
+export function isAllowedPushEndpoint(endpoint) {
+  let url;
+  try {
+    url = new URL(endpoint);
+  } catch {
+    return false;
+  }
+  if (url.protocol !== 'https:') return false;
+  if (url.username || url.password) return false;
+  const host = url.hostname.toLowerCase();
+  if (PUSH_HOSTS.has(host)) return true;
+  if (host.endsWith('.push.apple.com')) return true;
+  if (host === 'notify.windows.com' || host.endsWith('.notify.windows.com')) return true;
+  return false;
+}
+
 export function pushEndpointHost(subscription) {
   try {
     return new URL(subscription?.endpoint).host;
@@ -164,6 +188,9 @@ export function rejectRevokedPush(user, endpoint, replaceRevoked) {
 /** Sends one push; cleans up expired subscriptions. Never throws for delivery issues. */
 export async function sendReminderPush(db, user) {
   if (!user?.push_subscription) return { skipped: 'no-subscription' };
+  if (!isAllowedPushEndpoint(user.push_subscription.endpoint)) {
+    return { skipped: 'unsupported-endpoint', host: pushEndpointHost(user.push_subscription) };
+  }
   const { due, started } = dueWordsCount(db, user.id);
   const host = pushEndpointHost(user.push_subscription);
 
@@ -211,6 +238,9 @@ export async function sendReminderPush(db, user) {
 /** Immediate test notification — same VAPID path as the daily reminder. */
 export async function sendTestPush(user) {
   if (!user?.push_subscription) return { skipped: 'no-subscription', host: null };
+  if (!isAllowedPushEndpoint(user.push_subscription.endpoint)) {
+    return { skipped: 'unsupported-endpoint', host: pushEndpointHost(user.push_subscription) };
+  }
   const host = pushEndpointHost(user.push_subscription);
   const keys = getVapidKeys();
   const subject = vapidSubject();

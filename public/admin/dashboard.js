@@ -1,4 +1,4 @@
-const KEY_STORAGE = 'langapp_admin_key';
+const LEGACY_KEY = 'langapp_admin_key';
 const THEME_KEY = 'langapp.theme';
 const PAIR_LABELS = { 'tr-ru': 'TR', 'en-ru': 'EN', 'es-ru': 'ES' };
 const D7_BAR = 25;
@@ -14,7 +14,6 @@ const refreshBtn = document.getElementById('refresh');
 const logoutBtn = document.getElementById('logout');
 const deleteDialog = document.getElementById('delete-dialog');
 
-let adminKey = '';
 let usersCache = [];
 let pendingDelete = null;
 let loadingNow = false;
@@ -23,7 +22,7 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
   e.preventDefault();
   load();
 });
-refreshBtn.addEventListener('click', () => load(adminKey));
+refreshBtn.addEventListener('click', () => load({ silent: true }));
 logoutBtn.addEventListener('click', logout);
 document.getElementById('user-search').addEventListener('input', renderUsersTable);
 document.getElementById('users-body').addEventListener('click', onUsersClick);
@@ -31,29 +30,24 @@ document.getElementById('push-test-btn').addEventListener('click', sendTestPush)
 deleteDialog.addEventListener('close', onDeleteClose);
 initTheme();
 
-const savedKey = readKey();
-if (savedKey) {
-  keyInput.value = savedKey;
+const legacyKey = takeLegacyKey();
+if (legacyKey) {
   title.textContent = 'Админка';
-  load(savedKey);
+  load({ key: legacyKey });
+} else if (document.cookie.split('; ').includes('langapp_admin_ui=1')) {
+  title.textContent = 'Админка';
+  load({ silent: true });
 } else {
   keyInput.focus();
 }
 
-function readKey() {
+function takeLegacyKey() {
   try {
-    return sessionStorage.getItem(KEY_STORAGE) || '';
+    const value = sessionStorage.getItem(LEGACY_KEY) || '';
+    sessionStorage.removeItem(LEGACY_KEY);
+    return value;
   } catch {
     return '';
-  }
-}
-
-function writeKey(value) {
-  try {
-    if (value) sessionStorage.setItem(KEY_STORAGE, value);
-    else sessionStorage.removeItem(KEY_STORAGE);
-  } catch {
-    /* private mode */
   }
 }
 
@@ -63,7 +57,6 @@ async function adminFetch(path, options = {}) {
     res = await fetch(path, {
       ...options,
       headers: {
-        'X-Admin-Key': adminKey,
         'Content-Type': 'application/json',
         ...options.headers,
       },
@@ -88,18 +81,25 @@ function messageForStatus(status, serverMessage) {
   return serverMessage || 'Не удалось загрузить данные';
 }
 
-async function load(preset) {
+async function load(options = {}) {
   if (loadingNow) return;
-  const next = String(preset ?? keyInput.value).trim();
-  err.textContent = '';
-  if (!next) {
+  const typed = String(options.key ?? keyInput.value).trim();
+  const silent = options.silent === true;
+  if (!typed && !silent) {
     showGate('Введите ключ');
     return;
   }
-  adminKey = next;
+  err.textContent = '';
   const firstPaint = app.hidden;
   setBusy(true, firstPaint);
   try {
+    if (typed) {
+      await adminFetch('/api/admin/session', {
+        method: 'POST',
+        headers: { 'X-Admin-Key': typed },
+      });
+      keyInput.value = '';
+    }
     const [data, push, usersRes, vapid, associations] = await Promise.all([
       adminFetch('/api/analytics/dashboard'),
       adminFetch('/api/admin/push/subscribers'),
@@ -107,16 +107,13 @@ async function load(preset) {
       adminFetch('/api/admin/diag/vapid'),
       adminFetch('/api/admin/associations'),
     ]);
-    writeKey(adminKey);
     usersCache = usersRes.users ?? [];
     render(data, push.subscribers ?? [], vapid, associations);
     showApp();
   } catch (e) {
     if (e.status === 401 || e.status === 503) {
-      writeKey('');
-      adminKey = '';
       keyInput.value = '';
-      showGate(e.message);
+      showGate(silent && e.status === 401 ? '' : e.message);
     } else if (firstPaint) {
       showGate(e.message);
     } else {
@@ -169,9 +166,9 @@ function showApp() {
 }
 
 function logout() {
-  adminKey = '';
   usersCache = [];
-  writeKey('');
+  try { sessionStorage.removeItem(LEGACY_KEY); } catch { /* private mode */ }
+  fetch('/api/admin/logout', { method: 'POST' }).catch(() => {});
   keyInput.value = '';
   document.getElementById('users-msg').textContent = '';
   document.getElementById('push-msg').textContent = '';

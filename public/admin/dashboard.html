@@ -11,9 +11,10 @@
   <script src="/theme-boot.js"></script>
   <script>
     try {
-      if (sessionStorage.getItem('langapp_admin_key')) {
-        document.documentElement.classList.add('admin-restoring');
-      }
+      var legacy = false;
+      try { legacy = !!sessionStorage.getItem('langapp_admin_key'); } catch (e) {}
+      var hinted = document.cookie.split('; ').indexOf('langapp_admin_ui=1') !== -1;
+      if (legacy || hinted) document.documentElement.classList.add('admin-restoring');
     } catch (e) { /* private mode */ }
   </script>
   <style>

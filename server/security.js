@@ -1,4 +1,5 @@
-import { createHmac, randomBytes, timingSafeEqual } from 'crypto';
+import { createHash, createHmac, randomBytes, timingSafeEqual } from 'crypto';
+import { takeRateLimitSlot } from './database.js';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -88,19 +89,34 @@ export function csrfProtection(req, res, next) {
 
 const buckets = new Map();
 
+function clientIp(req) {
+  return req.ip || 'unknown';
+}
+
+function memoryCount(key, windowMs) {
+  const now = Date.now();
+  let bucket = buckets.get(key);
+  if (!bucket || now > bucket.reset) {
+    bucket = { count: 0, reset: now + windowMs };
+    buckets.set(key, bucket);
+  }
+  bucket.count += 1;
+  return bucket.count;
+}
+
+// Shared counter lives in Neon (`langapp_rate_limit`) so a limit survives
+// serverless isolates. Local file mode keeps the in-memory bucket.
 export function rateLimit({ windowMs = 60_000, max = 60, keyFn }) {
-  return (req, res, next) => {
+  return async (req, res, next) => {
     const key = keyFn(req);
-    const now = Date.now();
-    let bucket = buckets.get(key);
-    if (!bucket || now > bucket.reset) {
-      bucket = { count: 0, reset: now + windowMs };
-      buckets.set(key, bucket);
+    let count = null;
+    try {
+      count = await takeRateLimitSlot(key, windowMs);
+    } catch (err) {
+      console.error('[rate-limit]', err.message);
     }
-    bucket.count += 1;
-    if (bucket.count > max) {
-      return res.status(429).json({ error: 'Too many requests' });
-    }
+    if (count == null) count = memoryCount(key, windowMs);
+    if (count > max) return res.status(429).json({ error: 'Too many requests' });
     next();
   };
 }
@@ -108,8 +124,35 @@ export function rateLimit({ windowMs = 60_000, max = 60, keyFn }) {
 export const authRateLimit = rateLimit({
   windowMs: 15 * 60_000,
   max: 20,
-  keyFn: (req) => `auth:${req.ip}:${req.path}`,
+  keyFn: (req) => `auth:${clientIp(req)}:${req.path}`,
 });
+
+export const ttsRateLimit = rateLimit({
+  windowMs: 60_000,
+  max: 120,
+  keyFn: (req) => `tts:${clientIp(req)}`,
+});
+
+export const adminRateLimit = rateLimit({
+  windowMs: 60_000,
+  max: 120,
+  keyFn: (req) => `admin:${clientIp(req)}`,
+});
+
+export const adminLoginRateLimit = rateLimit({
+  windowMs: 15 * 60_000,
+  max: 20,
+  keyFn: (req) => `admin-login:${clientIp(req)}`,
+});
+
+/** Equal-length SHA-256 digests, so a short guess is not faster to reject. */
+export function secretsMatch(provided, expected) {
+  if (typeof expected !== 'string' || expected.length === 0) return false;
+  if (typeof provided !== 'string') return false;
+  const a = createHash('sha256').update(provided).digest();
+  const b = createHash('sha256').update(expected).digest();
+  return timingSafeEqual(a, b);
+}
 
 export function validateEmail(email) {
   if (typeof email !== 'string') return false;
@@ -168,6 +211,49 @@ export function setSessionCookie(res, payload) {
     path: '/',
     maxAge: SESSION_TTL_MS,
   });
+}
+
+export const ADMIN_COOKIE = 'langapp_admin';
+export const ADMIN_UI_COOKIE = 'langapp_admin_ui';
+const ADMIN_TTL_MS = 12 * 60 * 60 * 1000;
+
+const adminCookieBase = {
+  sameSite: 'strict',
+  secure: isProd,
+  path: '/api',
+};
+
+export function setAdminCookie(res) {
+  const body = Buffer.from(JSON.stringify({ adm: 1, exp: Date.now() + ADMIN_TTL_MS })).toString('base64url');
+  res.cookie(ADMIN_COOKIE, `${body}.${hmac(body)}`, {
+    ...adminCookieBase,
+    httpOnly: true,
+    maxAge: ADMIN_TTL_MS,
+  });
+  // Readable flag so the admin page can hide the login form on refresh.
+  // It is not a credential.
+  res.cookie(ADMIN_UI_COOKIE, '1', {
+    httpOnly: false,
+    sameSite: 'strict',
+    secure: isProd,
+    path: '/',
+    maxAge: ADMIN_TTL_MS,
+  });
+}
+
+export function clearAdminCookie(res) {
+  res.clearCookie(ADMIN_COOKIE, { ...adminCookieBase, httpOnly: true });
+  res.clearCookie(ADMIN_UI_COOKIE, {
+    httpOnly: false,
+    sameSite: 'strict',
+    secure: isProd,
+    path: '/',
+  });
+}
+
+export function adminSessionValid(token) {
+  const payload = decodeSession(token);
+  return payload?.adm === 1;
 }
 
 export function clearSessionCookie(res) {

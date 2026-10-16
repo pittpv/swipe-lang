@@ -127,6 +127,48 @@ if (pgEnabled) {
   cache = loadFile();
 }
 
+if (dbMode === 'postgres' && sql) {
+  try {
+    await sql`CREATE TABLE IF NOT EXISTS langapp_rate_limit (
+      bucket text PRIMARY KEY,
+      count integer NOT NULL,
+      reset_at timestamptz NOT NULL
+    )`;
+  } catch (err) {
+    console.error('[db] rate limit table:', err.message);
+  }
+}
+
+/**
+ * One hit against the shared Neon counter. Returns null when Postgres is not
+ * the active store so the caller can use its in-process bucket (local file mode).
+ */
+export async function takeRateLimitSlot(key, windowMs) {
+  if (dbMode !== 'postgres' || !sql || remoteUnavailable) return null;
+  const resetAt = new Date(Date.now() + windowMs);
+  const rows = await sql`
+    INSERT INTO langapp_rate_limit (bucket, count, reset_at)
+    VALUES (${key}, 1, ${resetAt})
+    ON CONFLICT (bucket) DO UPDATE SET
+      count = CASE
+        WHEN langapp_rate_limit.reset_at <= now() THEN 1
+        ELSE langapp_rate_limit.count + 1
+      END,
+      reset_at = CASE
+        WHEN langapp_rate_limit.reset_at <= now() THEN ${resetAt}
+        ELSE langapp_rate_limit.reset_at
+      END
+    RETURNING count
+  `;
+  if (Math.random() < 0.02) {
+    const cleanup = sql`DELETE FROM langapp_rate_limit WHERE reset_at < now()`.catch((err) => {
+      console.error('[db] rate limit cleanup:', err.message);
+    });
+    waitUntil(cleanup);
+  }
+  return Number(rows[0]?.count ?? 1);
+}
+
 let pendingSave = null;
 
 function currentRev() {

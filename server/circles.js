@@ -280,6 +280,22 @@ export function createCircle(db, userId, rawName) {
   return circleState(db, userId);
 }
 
+/**
+ * Public join. An invite code still opens the circle.
+ * A numeric id is accepted only when that circle is on this user's
+ * suggestion list (shared vocabulary). Guessing 1, 2, 3… does not.
+ * Accepting an invite uses joinCircle directly — the invite row is the permission.
+ */
+export function joinCircleFromClient(db, userId, { code, circleId } = {}) {
+  const hasCode = code != null && String(code).trim() !== '';
+  if (!hasCode) {
+    const id = Number(circleId);
+    const suggested = circleState(db, userId).suggestions.some((row) => row.id === id);
+    if (!suggested) throw new CircleError('Этот кружок вам не предложен', 403);
+  }
+  return joinCircle(db, userId, hasCode ? { code } : { circleId });
+}
+
 export function joinCircle(db, userId, { code, circleId } = {}) {
   ensureCircleStore(db);
   const user = db.data.users?.find((row) => row.id === userId);

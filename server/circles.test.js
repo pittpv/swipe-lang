@@ -9,6 +9,7 @@ import {
   inviteReferral,
   jaccard,
   joinCircle,
+  joinCircleFromClient,
   leaveCircle,
   progressWordIds,
   removeUserFromCircles,
@@ -87,6 +88,21 @@ test('create, suggest by overlap, join, and practice the intersection', () => {
 
   assert.throws(() => joinCircle(db, 2, { code: created.circle.inviteCode }), /текущего кружка/);
   assert.throws(() => createCircle(db, 1, 'Второй'), /уже в кружке/);
+});
+
+test('client join by id only allows a current suggestion; the invite code still works', () => {
+  const db = mockDb();
+  const created = createCircle(db, 1, 'Закрытый');
+  db.data.users.push({ id: 8, name: 'Нет слов', lang_pair: 'tr-ru' });
+  assert.throws(() => joinCircleFromClient(db, 8, { circleId: created.circle.id }), /не предложен/);
+  assert.throws(() => joinCircleFromClient(db, 8, { circleId: 999 }), /не предложен/);
+
+  const suggested = joinCircleFromClient(db, 2, { circleId: created.circle.id });
+  assert.equal(suggested.circle.memberCount, 2);
+
+  leaveCircle(db, 2);
+  const byCode = joinCircleFromClient(db, 8, { code: created.circle.inviteCode });
+  assert.equal(byCode.circle.members.some((member) => member.name === 'Нет слов'), true);
 });
 
 test('invite code joins the circle and a foreign language is rejected', () => {
