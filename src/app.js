@@ -22,6 +22,7 @@ export { api } from './track.js';
 /** Injected at build/dev time from package.json via vite.config.js */
 const APP_VERSION = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '0.1.0';
 const SUPPORT_TELEGRAM_URL = 'https://t.me/+mf9HThpx2m4xNzQ8';
+const CHANNEL_TELEGRAM_URL = 'https://t.me/langswipe_xyz';
 const IOS_INSTALL_DISMISS_KEY = 'langapp.iosInstallDismissed';
 const SEEN_CIRCLE_INVITES_KEY = 'langapp.seenCircleInvites';
 
@@ -2775,12 +2776,23 @@ export class App {
             </div>`)}
           ${settingsGroup('Справка', `
             <nav class="card-form settings-list" aria-label="Справка">
-              <a class="settings-row" href="${SUPPORT_TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">
-                Группа поддержки в Telegram
-                <span class="settings-row-go" aria-hidden="true">›</span>
-              </a>
               <a class="settings-row" href="/help/faq.html?from=settings">
                 FAQ
+                <span class="settings-row-go" aria-hidden="true">›</span>
+              </a>
+              <a class="settings-row" href="${SUPPORT_TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">
+                Багрепорты и поддержка
+                <span class="settings-row-go" aria-hidden="true">›</span>
+              </a>
+              <button type="button" class="settings-row" data-action="updates">
+                Что нового
+                <span class="settings-row-end">
+                  ${this.changelogUnseen ? '<span class="settings-new">новое</span>' : ''}
+                  <span class="settings-row-go" aria-hidden="true">›</span>
+                </span>
+              </button>
+              <a class="settings-row" href="${CHANNEL_TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">
+                Канал LangSwipe_xyz
                 <span class="settings-row-go" aria-hidden="true">›</span>
               </a>
               <a class="settings-row" href="/legal/privacy.html?from=settings">
@@ -2791,13 +2803,6 @@ export class App {
                 Условия
                 <span class="settings-row-go" aria-hidden="true">›</span>
               </a>
-              <button type="button" class="settings-row" data-action="updates">
-                Что нового
-                <span class="settings-row-end">
-                  ${this.changelogUnseen ? '<span class="settings-new">новое</span>' : ''}
-                  <span class="settings-row-go" aria-hidden="true">›</span>
-                </span>
-              </button>
             </nav>`)}
           ${settingsGroup('Аккаунт', `
             <div class="card-form settings-list">
