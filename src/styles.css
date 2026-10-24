@@ -1832,11 +1832,11 @@ button.streak-badge {
   z-index: 40;
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.45rem;
   max-width: 420px;
   margin: 0 auto;
-  padding: 0.55rem 0.65rem;
-  border-radius: 18px;
+  padding: 0.4rem 0.45rem 0.4rem 0.4rem;
+  border-radius: 16px;
   background: var(--color-inverse);
   color: var(--color-on-inverse);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
@@ -1859,9 +1859,9 @@ button.streak-badge {
 }
 
 .ios-install-icon {
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 12px;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 10px;
   flex-shrink: 0;
   object-fit: cover;
 }
@@ -1873,31 +1873,38 @@ button.streak-badge {
 
 .ios-install-copy strong {
   display: block;
-  font-size: 0.9rem;
+  overflow: hidden;
+  font-size: 0.8rem;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.15;
   color: var(--color-on-inverse);
-  text-wrap: balance;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .ios-install-copy p {
-  margin: 0.12rem 0 0;
-  font-size: 0.78rem;
-  line-height: 1.3;
+  margin: 0.08rem 0 0;
+  overflow: hidden;
+  font-size: 0.7rem;
+  line-height: 1.2;
   color: color-mix(in srgb, var(--color-on-inverse) 78%, transparent);
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .ios-install-act {
   flex-shrink: 0;
-  min-height: 2.75rem;
-  padding: 0.4rem 0.7rem;
+  min-height: 1.85rem;
+  padding: 0.22rem 0.5rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 9px;
   background: var(--color-primary);
   color: var(--color-on-primary);
   font: inherit;
-  font-size: 0.85rem;
+  font-size: 0.72rem;
   font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
   cursor: pointer;
   touch-action: manipulation;
 }
@@ -1915,18 +1922,19 @@ button.streak-badge {
 .ios-install-close {
   position: absolute;
   z-index: 2;
-  top: -2.55rem;
-  right: 0.15rem;
+  top: -2.35rem;
+  right: 0.05rem;
   display: grid;
   place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
   border: none;
   border-radius: 999px;
   background: transparent;
-  color: var(--color-heading);
+  color: var(--color-on-inverse);
   font: inherit;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 600;
   line-height: 1;
   cursor: pointer;
@@ -1943,22 +1951,24 @@ button.streak-badge {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 1.85rem;
-  height: 1.85rem;
+  width: 1.7rem;
+  height: 1.7rem;
   border-radius: 999px;
-  background: var(--color-surface);
-  border: 1px solid color-mix(in srgb, var(--color-text) 22%, var(--color-border));
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+  background: var(--color-inverse);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
   transform: translate(-50%, -50%);
 }
 
 .ios-guide {
   position: fixed;
   inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   width: 100%;
   height: 100%;
-  max-width: none;
-  max-height: none;
   margin: 0;
   padding: 0;
   border: none;
@@ -1966,30 +1976,35 @@ button.streak-badge {
   color: var(--color-text);
   overflow: hidden;
   outline: none;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ios-guide.is-open {
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .ios-guide:focus {
   outline: none;
 }
 
-.ios-guide[open] {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.ios-guide::backdrop {
+.ios-guide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: var(--color-overlay);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
 }
 
-.ios-guide.is-shown::backdrop {
+.ios-guide.is-shown::before {
   opacity: 1;
 }
 
 .ios-guide-sheet {
+  position: relative;
+  z-index: 1;
   width: min(420px, 100%);
   padding: 0.7rem 1.15rem calc(1rem + env(safe-area-inset-bottom, 0px));
   border-radius: var(--radius) var(--radius) 0 0;

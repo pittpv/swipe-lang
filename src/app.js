@@ -296,8 +296,10 @@ export class App {
 
     bar.append(icon, copy, act, close);
 
-    const guide = document.createElement('dialog');
+    const guide = document.createElement('div');
     guide.className = 'ios-guide';
+    guide.setAttribute('role', 'dialog');
+    guide.setAttribute('aria-modal', 'true');
     guide.setAttribute('aria-labelledby', 'ios-guide-title');
     guide.innerHTML = iosGuideHtml();
     if (!isIosSafari()) {
@@ -309,11 +311,6 @@ export class App {
     guide.addEventListener('click', (event) => {
       if (event.target === guide) requestClose();
     });
-    guide.addEventListener('cancel', (event) => {
-      event.preventDefault();
-      requestClose();
-    });
-    guide.addEventListener('close', () => this.stopIosGuide());
 
     document.body.append(bar, guide);
   }
@@ -324,39 +321,68 @@ export class App {
     } catch {
       /* private mode */
     }
-    const guide = document.querySelector('.ios-guide');
-    if (guide?.open) guide.close();
-    else this.stopIosGuide();
-    guide?.remove();
+    if (this._iosGuideKeydown) {
+      document.removeEventListener('keydown', this._iosGuideKeydown);
+      this._iosGuideKeydown = null;
+    }
+    this.stopIosGuide();
+    document.querySelector('.ios-guide')?.remove();
     document.querySelector('.ios-install')?.remove();
     this.syncIosInstallHint();
   }
 
   openIosInstallGuide() {
     const guide = document.querySelector('.ios-guide');
-    if (!guide || guide.open) return;
+    if (!guide || guide.classList.contains('is-open')) return;
     const stage = guide.querySelector('.ios-guide-stage');
     if (stage) stage.dataset.step = '0';
-    guide.classList.remove('is-shown');
-    guide.showModal();
-    guide.querySelector('.ios-guide-sheet')?.focus({ preventScroll: true });
+    const sheet = guide.querySelector('.ios-guide-sheet');
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) guide.classList.add('is-shown');
-    else {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (guide.open) guide.classList.add('is-shown');
-        });
-      });
+    // Stay below the screen for one painted frame, then use the same
+    // transition as close, in reverse. A native dialog open jumps to the top.
+    guide.classList.remove('is-shown');
+    if (sheet && !reduced) {
+      sheet.style.transition = 'none';
+      sheet.style.transform = 'translateY(100%)';
     }
+    guide.classList.add('is-open');
+    if (sheet) void sheet.offsetHeight;
+    const reveal = () => {
+      if (!guide.classList.contains('is-open')) return;
+      if (sheet) {
+        sheet.style.transition = '';
+        sheet.style.transform = '';
+      }
+      guide.classList.add('is-shown');
+    };
+    if (reduced) reveal();
+    else requestAnimationFrame(() => requestAnimationFrame(reveal));
     this.playIosGuide(guide);
+    this._iosGuideKeydown = (event) => {
+      if (event.key !== 'Escape') return;
+      event.preventDefault();
+      this.closeIosInstallGuide(guide);
+    };
+    document.addEventListener('keydown', this._iosGuideKeydown);
   }
 
   closeIosInstallGuide(guide = document.querySelector('.ios-guide')) {
-    if (!guide?.open || guide.dataset.closing === '1') return;
+    if (!guide?.classList.contains('is-open') || guide.dataset.closing === '1') return;
     const finish = () => {
+      if (guide.dataset.closing === 'done') return;
+      guide.dataset.closing = 'done';
+      guide.classList.remove('is-open', 'is-shown');
+      const sheet = guide.querySelector('.ios-guide-sheet');
+      if (sheet) {
+        sheet.style.transition = '';
+        sheet.style.transform = '';
+      }
       delete guide.dataset.closing;
-      if (guide.open) guide.close();
+      if (this._iosGuideKeydown) {
+        document.removeEventListener('keydown', this._iosGuideKeydown);
+        this._iosGuideKeydown = null;
+      }
+      this.stopIosGuide();
     };
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {
@@ -412,7 +438,7 @@ export class App {
     const onHome = this.view === 'home' && Boolean(this.user);
     if (onHome) this.mountIosInstallHint();
     const guide = document.querySelector('.ios-guide');
-    if (!onHome && guide?.open) guide.close();
+    if (!onHome && guide?.classList.contains('is-open')) this.closeIosInstallGuide(guide);
     const el = document.querySelector('.ios-install');
     if (el) el.hidden = !onHome;
     document.documentElement.classList.remove('has-ios-install');
