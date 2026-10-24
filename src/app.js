@@ -1522,23 +1522,34 @@ export class App {
    * may have failed; retry on the first tap — synchronously, because setTimeout
    * drops user activation and subscribe() then fails silently.
    *
-   * Only when permission is already granted. Asking from this listener makes
-   * the tap interactive, and on iOS Safari (not the home-screen app) PushManager
-   * rejects in a microtask. pushSubscribe then replaces innerHTML before `click`,
-   * so cabinet buttons need several taps. The Enable control is the gesture
-   * that may request permission.
+   * In a browser tab, only retry when permission is already granted. Asking
+   * from this listener makes the tap interactive, and on iOS Safari (not the
+   * home-screen app) PushManager rejects in a microtask. Replacing innerHTML
+   * before `click` makes cabinet buttons need several taps.
+   *
+   * The installed app is different: deleting the icon clears permission, so
+   * the next tap there may request it again. The Enable button is left to its
+   * own click handler — a silent subscribe started on pointerup would hold the
+   * gesture until that click's request runs too late.
    */
   armGesturePushHeal() {
     if (!this.reminderNeedsGestureHeal || this.gestureHealArmed) return;
     const permission = typeof Notification !== 'undefined' ? Notification.permission : 'default';
-    if (permission !== 'granted') return;
+    if (permission !== 'granted' && !isStandaloneDisplay()) return;
     this.gestureHealArmed = true;
-    const retry = () => {
+    const retry = (event) => {
       document.removeEventListener('pointerup', retry, true);
       this.gestureHealArmed = false;
+      if (!this.reminderNeedsGestureHeal) return;
+      const enable = event.target instanceof Element && event.target.closest('[data-action="reminder-enable"]');
+      if (enable) {
+        this.armGesturePushHeal();
+        return;
+      }
+      const current = typeof Notification !== 'undefined' ? Notification.permission : 'default';
       // Keep reminderNeedsGestureHeal until pushSubscribe succeeds so a failed
       // tap can re-arm instead of silently giving up after one attempt.
-      this.pushSubscribe({ interactive: false });
+      this.pushSubscribe({ interactive: current !== 'granted' && isStandaloneDisplay() });
     };
     document.addEventListener('pointerup', retry, { once: true, capture: true });
   }
@@ -1549,6 +1560,7 @@ export class App {
       let registration = await navigator.serviceWorker.getRegistration();
       if (!registration) registration = await navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' });
       await navigator.serviceWorker.ready;
+      this._pushRegistration = registration;
       return registration;
     } catch {
       return null;
@@ -1599,6 +1611,17 @@ export class App {
       if (!interactive) return null;
       throw new Error('Push-уведомления не поддерживаются этим браузером');
     }
+    // Ask before any other await. After a home-screen reinstall iOS permission
+    // is back to "default", and a prompt issued after serviceWorker.ready is
+    // no longer a user gesture, so the new install never gets a subscription.
+    let permission = typeof Notification !== 'undefined' ? Notification.permission : 'denied';
+    if (permission !== 'granted') {
+      if (!interactive) return null;
+      permission = await Notification.requestPermission();
+      if (permission !== 'granted') {
+        throw new Error('Разрешение на уведомления не выдано');
+      }
+    }
     // Prefer a cached VAPID key so subscribe() stays inside the user-gesture
     // window on iOS (awaiting /push/config first often burns activation).
     let publicKey = this.vapidPublicKey;
@@ -1607,9 +1630,13 @@ export class App {
       publicKey = config.publicKey;
       this.vapidPublicKey = publicKey;
     }
-    let registration = await navigator.serviceWorker.getRegistration();
-    if (!registration) registration = await navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' });
-    await navigator.serviceWorker.ready;
+    let registration = this._pushRegistration;
+    if (!registration) {
+      registration = await navigator.serviceWorker.getRegistration();
+      if (!registration) registration = await navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' });
+      await navigator.serviceWorker.ready;
+      this._pushRegistration = registration;
+    }
     let subscription = await registration.pushManager.getSubscription();
     // Only rotate when WebKit exposes the key AND it disagrees. An empty key
     // must not unsubscribe — that killed live Apple endpoints after 8c03b34.
@@ -1628,14 +1655,6 @@ export class App {
     }
     if (subscription) return subscription.toJSON();
 
-    let permission = typeof Notification !== 'undefined' ? Notification.permission : 'denied';
-    if (permission !== 'granted') {
-      if (!interactive) return null;
-      permission = await Notification.requestPermission();
-      if (permission !== 'granted') {
-        throw new Error('Разрешение на уведомления не выдано');
-      }
-    }
     try {
       subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
@@ -1739,7 +1758,8 @@ export class App {
     // app) PushManager rejects in a microtask, before `click`. Replacing
     // innerHTML in that microtask detaches the button, so the tap looks dead.
     // Wait until the next task so the click that started this subscribe lands.
-    if (interactive || (this.view === 'settings' && !this.reminderNeedsGestureHeal)) {
+    // Never redraw an open session: the rebind tap may be "Начать сессию".
+    if (this.view !== 'session' && (interactive || (this.view === 'settings' && !this.reminderNeedsGestureHeal))) {
       this.renderAfterClick();
     }
     if (this.reminderNeedsGestureHeal) this.armGesturePushHeal();
