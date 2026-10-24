@@ -304,9 +304,14 @@ export class App {
       const note = guide.querySelector('.ios-guide-note');
       if (note) note.hidden = false;
     }
-    guide.querySelector('.ios-guide-done')?.addEventListener('click', () => guide.close());
+    const requestClose = () => this.closeIosInstallGuide(guide);
+    guide.querySelector('.ios-guide-done')?.addEventListener('click', requestClose);
     guide.addEventListener('click', (event) => {
-      if (event.target === guide) guide.close();
+      if (event.target === guide) requestClose();
+    });
+    guide.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      requestClose();
     });
     guide.addEventListener('close', () => this.stopIosGuide());
 
@@ -332,8 +337,47 @@ export class App {
     if (!guide || guide.open) return;
     const stage = guide.querySelector('.ios-guide-stage');
     if (stage) stage.dataset.step = '0';
+    guide.classList.remove('is-shown');
     guide.showModal();
+    guide.querySelector('.ios-guide-sheet')?.focus({ preventScroll: true });
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) guide.classList.add('is-shown');
+    else {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (guide.open) guide.classList.add('is-shown');
+        });
+      });
+    }
     this.playIosGuide(guide);
+  }
+
+  closeIosInstallGuide(guide = document.querySelector('.ios-guide')) {
+    if (!guide?.open || guide.dataset.closing === '1') return;
+    const finish = () => {
+      delete guide.dataset.closing;
+      if (guide.open) guide.close();
+    };
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      guide.classList.remove('is-shown');
+      finish();
+      return;
+    }
+    guide.dataset.closing = '1';
+    guide.classList.remove('is-shown');
+    const sheet = guide.querySelector('.ios-guide-sheet');
+    let settled = false;
+    const done = (event) => {
+      if (settled) return;
+      if (event && event.target !== sheet) return;
+      if (event && event.propertyName !== 'transform') return;
+      settled = true;
+      sheet?.removeEventListener('transitionend', done);
+      finish();
+    };
+    sheet?.addEventListener('transitionend', done);
+    setTimeout(done, 560);
   }
 
   playIosGuide(guide) {
@@ -371,10 +415,7 @@ export class App {
     if (!onHome && guide?.open) guide.close();
     const el = document.querySelector('.ios-install');
     if (el) el.hidden = !onHome;
-    // The bar is position:fixed over the cabinet. Without reserved space its
-    // close control sits on the nav buttons, and those taps never reach them.
-    // The home-screen app does not show this bar.
-    document.documentElement.classList.toggle('has-ios-install', Boolean(el && !el.hidden));
+    document.documentElement.classList.remove('has-ios-install');
   }
 
   openUpdates() {
@@ -3144,7 +3185,7 @@ function iosSafariPageHtml(dim) {
 
 function iosGuideHtml() {
   return `
-    <div class="ios-guide-sheet">
+    <div class="ios-guide-sheet" tabindex="-1">
       <div class="ios-guide-handle" aria-hidden="true"></div>
       <div class="ios-guide-stage" aria-hidden="true">
         <div class="ios-scene ios-scene-1">
