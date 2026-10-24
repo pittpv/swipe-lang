@@ -260,57 +260,121 @@ export class App {
     if (document.querySelector('.ios-install')) return;
     if (!shouldShowIosInstallHint()) return;
 
-    const el = document.createElement('aside');
-    el.className = 'ios-install';
-    el.setAttribute('role', 'status');
-    el.setAttribute('aria-live', 'polite');
-    el.setAttribute('aria-labelledby', 'ios-install-title');
+    const bar = document.createElement('aside');
+    bar.className = 'ios-install';
+    bar.setAttribute('role', 'status');
+    bar.setAttribute('aria-labelledby', 'ios-install-title');
+
+    const icon = document.createElement('img');
+    icon.className = 'ios-install-icon';
+    icon.src = '/apple-touch-icon.png';
+    icon.alt = '';
+    icon.width = 44;
+    icon.height = 44;
 
     const copy = document.createElement('div');
     copy.className = 'ios-install-copy';
     const title = document.createElement('strong');
     title.id = 'ios-install-title';
+    title.textContent = 'Добавить на домашний экран';
     const body = document.createElement('p');
-
-    if (isIosSafari()) {
-      title.textContent = 'Установить приложение';
-      body.append('Нажмите ');
-      const icon = document.createElement('span');
-      icon.className = 'ios-install-share-wrap';
-      icon.setAttribute('aria-hidden', 'true');
-      icon.innerHTML = IOS_SHARE_SVG;
-      body.append(icon, ' Поделиться, затем «На экран Домой».');
-    } else {
-      title.textContent = 'Установить приложение';
-      body.textContent = 'Иконка на экране появляется только из Safari: Поделиться → На экран «Домой».';
-    }
-
+    body.textContent = 'Используйте как приложение';
     copy.append(title, body);
+
+    const act = document.createElement('button');
+    act.type = 'button';
+    act.className = 'ios-install-act';
+    act.textContent = 'Установить';
+    act.addEventListener('click', () => this.openIosInstallGuide());
 
     const close = document.createElement('button');
     close.type = 'button';
     close.className = 'ios-install-close';
     close.setAttribute('aria-label', 'Закрыть подсказку');
-    close.textContent = '×';
-    close.addEventListener('click', () => {
-      try {
-        localStorage.setItem(IOS_INSTALL_DISMISS_KEY, '1');
-      } catch {
-        /* private mode */
-      }
-      el.remove();
-    });
+    close.innerHTML = '<span class="ios-install-x">×</span>';
+    close.addEventListener('click', () => this.dismissIosInstallHint());
 
-    el.append(copy, close);
-    document.body.appendChild(el);
+    bar.append(icon, copy, act, close);
+
+    const guide = document.createElement('dialog');
+    guide.className = 'ios-guide';
+    guide.setAttribute('aria-labelledby', 'ios-guide-title');
+    guide.innerHTML = iosGuideHtml();
+    if (!isIosSafari()) {
+      const note = guide.querySelector('.ios-guide-note');
+      if (note) note.hidden = false;
+    }
+    guide.querySelector('.ios-guide-done')?.addEventListener('click', () => guide.close());
+    guide.addEventListener('click', (event) => {
+      if (event.target === guide) guide.close();
+    });
+    guide.addEventListener('close', () => this.stopIosGuide());
+
+    document.body.append(bar, guide);
+  }
+
+  dismissIosInstallHint() {
+    try {
+      localStorage.setItem(IOS_INSTALL_DISMISS_KEY, '1');
+    } catch {
+      /* private mode */
+    }
+    const guide = document.querySelector('.ios-guide');
+    if (guide?.open) guide.close();
+    else this.stopIosGuide();
+    guide?.remove();
+    document.querySelector('.ios-install')?.remove();
+    this.syncIosInstallHint();
+  }
+
+  openIosInstallGuide() {
+    const guide = document.querySelector('.ios-guide');
+    if (!guide || guide.open) return;
+    const stage = guide.querySelector('.ios-guide-stage');
+    if (stage) stage.dataset.step = '0';
+    guide.showModal();
+    this.playIosGuide(guide);
+  }
+
+  playIosGuide(guide) {
+    this.stopIosGuide();
+    const stage = guide.querySelector('.ios-guide-stage');
+    const caption = guide.querySelector('.ios-guide-caption');
+    if (!stage || !caption) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      stage.dataset.step = '3';
+      caption.innerHTML = `Нажмите ${iosCapIco(IOS_DOTS_SVG, 'кнопка с тремя точками, iOS 26')} справа или ${iosCapIco(IOS_PAGE_SVG, 'меню страницы, iOS 27')} слева от адреса, затем «Поделиться», выберите «На экран „Домой“» и подтвердите «Добавить».`;
+      return;
+    }
+    let step = 1;
+    const show = () => {
+      stage.dataset.step = String(step);
+      caption.innerHTML = IOS_GUIDE_STEPS[step - 1];
+    };
+    show();
+    this._iosGuideTimer = setInterval(() => {
+      step = step === IOS_GUIDE_STEPS.length ? 1 : step + 1;
+      show();
+    }, IOS_GUIDE_STEP_MS);
+  }
+
+  stopIosGuide() {
+    clearInterval(this._iosGuideTimer);
+    this._iosGuideTimer = null;
   }
 
   syncIosInstallHint() {
     const onHome = this.view === 'home' && Boolean(this.user);
     if (onHome) this.mountIosInstallHint();
+    const guide = document.querySelector('.ios-guide');
+    if (!onHome && guide?.open) guide.close();
     const el = document.querySelector('.ios-install');
-    if (!el) return;
-    el.hidden = !onHome;
+    if (el) el.hidden = !onHome;
+    // The bar is position:fixed over the cabinet. Without reserved space its
+    // close control sits on the nav buttons, and those taps never reach them.
+    // The home-screen app does not show this bar.
+    document.documentElement.classList.toggle('has-ios-install', Boolean(el && !el.hidden));
   }
 
   openUpdates() {
@@ -1390,18 +1454,24 @@ export class App {
    * iOS requires pushManager.subscribe inside a real user gesture. Launch heal
    * may have failed; retry on the first tap — synchronously, because setTimeout
    * drops user activation and subscribe() then fails silently.
+   *
+   * Only when permission is already granted. Asking from this listener makes
+   * the tap interactive, and on iOS Safari (not the home-screen app) PushManager
+   * rejects in a microtask. pushSubscribe then replaces innerHTML before `click`,
+   * so cabinet buttons need several taps. The Enable control is the gesture
+   * that may request permission.
    */
   armGesturePushHeal() {
     if (!this.reminderNeedsGestureHeal || this.gestureHealArmed) return;
+    const permission = typeof Notification !== 'undefined' ? Notification.permission : 'default';
+    if (permission !== 'granted') return;
     this.gestureHealArmed = true;
     const retry = () => {
       document.removeEventListener('pointerup', retry, true);
       this.gestureHealArmed = false;
       // Keep reminderNeedsGestureHeal until pushSubscribe succeeds so a failed
       // tap can re-arm instead of silently giving up after one attempt.
-      // A reinstall resets permission to "default"; a silent retry never asks.
-      const permission = typeof Notification !== 'undefined' ? Notification.permission : 'default';
-      this.pushSubscribe({ interactive: permission !== 'granted' });
+      this.pushSubscribe({ interactive: false });
     };
     document.addEventListener('pointerup', retry, { once: true, capture: true });
   }
@@ -1598,11 +1668,12 @@ export class App {
       await this.pushSubscribe({ interactive: nextInteractive });
       return;
     }
-    // A failed silent heal must not re-render Settings. On iOS Safari (not PWA)
-    // PushManager rejects in a microtask; replacing innerHTML then drops the
-    // tap's click, so every control on the page looks dead.
+    // A failed silent heal must not re-render. On iOS Safari (not the home-screen
+    // app) PushManager rejects in a microtask, before `click`. Replacing
+    // innerHTML in that microtask detaches the button, so the tap looks dead.
+    // Wait until the next task so the click that started this subscribe lands.
     if (interactive || (this.view === 'settings' && !this.reminderNeedsGestureHeal)) {
-      this.render();
+      this.renderAfterClick();
     }
     if (this.reminderNeedsGestureHeal) this.armGesturePushHeal();
   }
@@ -2281,7 +2352,17 @@ export class App {
     });
   }
 
+  /** Skip if a click handler already rendered a newer screen in this turn. */
+  renderAfterClick() {
+    const gen = this._renderGen ?? 0;
+    setTimeout(() => {
+      if ((this._renderGen ?? 0) !== gen) return;
+      this.render();
+    }, 0);
+  }
+
   render() {
+    this._renderGen = (this._renderGen ?? 0) + 1;
     const v = this.view;
     let html = '<div class="shell">';
 
@@ -3012,8 +3093,199 @@ function esc(s) {
 const STREAK_WARN_SVG =
   '<svg class="streak-warn-icon" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><circle cx="8" cy="8.15" r="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 4.85V8.25l2.15 1.35"/></svg>';
 
+const IOS_GUIDE_STEP_MS = 3000;
+
+const IOS_GUIDE_STEPS_TAIL = [
+  'Нажмите «Поделиться»',
+  'Выберите «На экран „Домой“»',
+  'Нажмите «Добавить»',
+  'Иконка появится на экране „Домой“',
+];
+
 const IOS_SHARE_SVG =
-  '<svg class="ios-install-share" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 9H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-2M12 3v12M8.5 6.5 12 3l3.5 3.5"/></svg>';
+  '<svg class="ios-install-share" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 9H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-2M12 3v12M8.5 6.5 12 3l3.5 3.5"/></svg>';
+
+const IOS_CHEVRON_SVG =
+  '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M10 3.2 5.4 8 10 12.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+const IOS_DOTS_SVG =
+  '<svg viewBox="325.2 41.4 20.6 6.1" width="16" height="16" aria-hidden="true"><path d="M328.244 46.2949C327.219 46.2949 326.389 45.4746 326.389 44.4492C326.389 43.4238 327.219 42.5938 328.244 42.5938C329.27 42.5938 330.09 43.4238 330.09 44.4492C330.09 45.4746 329.27 46.2949 328.244 46.2949ZM335.5 46.2949C334.475 46.2949 333.645 45.4746 333.645 44.4492C333.645 43.4238 334.475 42.5938 335.5 42.5938C336.525 42.5938 337.346 43.4238 337.346 44.4492C337.346 45.4746 336.525 46.2949 335.5 46.2949ZM342.756 46.2949C341.73 46.2949 340.9 45.4746 340.9 44.4492C340.9 43.4238 341.73 42.5938 342.756 42.5938C343.781 42.5938 344.611 43.4238 344.611 44.4492C344.611 45.4746 343.781 46.2949 342.756 46.2949Z" fill="currentColor"/></svg>';
+
+const IOS_PAGE_SVG =
+  '<svg viewBox="111.2 51.6 18.8 20.4" width="16" height="16" aria-hidden="true"><path d="M113.366 53.2461C113.454 53.1852 113.66 53.0469 113.763 53.0353C114.17 52.9894 114.618 53.0015 115.028 53.0015L117.133 53.0029L118.93 53.0015C119.303 53.0011 119.68 52.9934 120.046 53.0321C120.383 53.0679 120.785 53.4871 120.825 53.8077C120.898 54.3929 120.869 55.0525 120.869 55.6446C121.025 55.6759 121.071 55.6351 121.193 55.6413C121.566 55.6397 122.068 55.6245 122.425 55.668C122.503 55.6581 122.612 55.6412 122.687 55.6396C122.704 55.7401 122.73 55.8607 122.725 55.9606L122.748 56.317C122.852 56.2876 122.866 56.2611 122.953 56.2863C123.019 56.3815 122.996 56.6044 122.997 56.735C123.001 56.9769 123.005 57.2463 122.978 57.4861C122.978 57.5644 122.989 57.6853 122.945 57.7443C122.889 57.753 122.915 57.7562 122.864 57.7359C122.822 57.7181 122.792 57.7225 122.745 57.7224C122.739 57.8182 122.728 57.9358 122.732 58.0299L122.394 58.0517C122.37 58.1474 122.404 58.2093 122.364 58.2837C122.297 58.3065 122.242 58.2982 122.171 58.2937C121.954 58.306 121.711 58.3219 121.496 58.3047C121.513 58.2457 121.518 58.1317 121.523 58.0658L121.192 58.045L121.025 58.0493L120.871 58.0459C120.863 58.6348 120.861 59.2238 120.867 59.8127C120.873 59.9484 120.876 60.2878 120.833 60.4069C120.754 60.4119 120.687 60.391 120.61 60.3726L120.599 60.734C120.292 60.7844 120.014 60.9502 119.693 60.9751C119.322 61.0039 118.942 60.9956 118.57 60.9958L116.716 60.9962L115.091 60.9957C114.352 60.9953 113.973 61.0623 113.31 60.6843C113.305 60.5956 113.302 60.4813 113.288 60.3956C113.167 60.3734 113.144 60.4213 113.067 60.3929C113.043 60.3201 113.039 60.2635 113.03 60.188C112.993 59.4253 112.997 58.4474 113.024 57.6819C113.029 57.579 113.012 57.5795 113.064 57.5097C113.173 57.4552 113.347 57.4783 113.483 57.4797C113.628 57.4737 113.779 57.4693 113.923 57.4597C113.925 57.5374 113.916 57.6563 113.965 57.7101C114.032 57.7424 114.129 57.7298 114.206 57.7266C114.319 57.7353 114.402 57.7437 114.517 57.7348C114.496 58.0181 114.535 57.9545 114.536 58.0576C114.778 58.0807 115.355 58.0486 115.601 58.0188L115.584 57.9743C115.516 57.9303 115.463 57.8883 115.475 57.8027C115.536 57.756 115.626 57.7517 115.705 57.7402C115.73 57.6985 115.749 57.5515 115.759 57.4949C115.763 57.4073 115.76 57.2911 115.801 57.2164C115.894 57.1506 115.939 57.1627 116.061 57.154C116.068 56.9337 116.063 56.7089 116.034 56.4904C115.959 56.5308 115.925 56.5541 115.841 56.5673C115.686 56.4972 115.856 56.2416 115.503 56.23C115.458 56.1552 115.472 56.0591 115.472 55.9671C115.157 55.9525 114.841 55.9578 114.527 55.9596L114.208 55.9668C114.21 56.0496 114.226 56.1903 114.182 56.2529C114.124 56.2909 114.022 56.2794 113.949 56.2779C113.931 56.3735 113.924 56.443 113.916 56.5401C113.709 56.531 113.539 56.5267 113.332 56.5319C113.246 56.5747 113.154 56.5731 113.073 56.5289C113.018 56.4627 113.028 56.4001 113.029 56.3133C112.98 55.5177 113.001 54.394 113.032 53.5953C113.01 53.2777 113.075 53.2987 113.366 53.2461Z" fill="currentColor" opacity="0.55"/><path d="M127.9 64C128.397 64 128.801 64.4033 128.801 64.9004C128.801 65.3974 128.397 65.8008 127.9 65.8008H113.4C112.903 65.8008 112.5 65.3974 112.5 64.9004C112.5 64.4033 112.903 64 113.4 64H127.9Z" fill="currentColor"/><path d="M122.9 69C123.397 69 123.801 69.4033 123.801 69.9004C123.801 70.3974 123.397 70.8008 122.9 70.8008H113.4C112.903 70.8008 112.5 70.3974 112.5 69.9004C112.5 69.4033 112.903 69 113.4 69H122.9Z" fill="currentColor"/></svg>';
+
+function iosCapIco(svg, label, variant) {
+  const extra = variant ? ` ${variant}` : '';
+  return `<span class="ios-cap-ico${extra}" role="img" aria-label="${label}">${svg}</span>`;
+}
+
+const IOS_GUIDE_STEPS = [
+  `Нажмите ${iosCapIco(IOS_DOTS_SVG, 'кнопка с тремя точками, iOS 26')} справа или ${iosCapIco(IOS_PAGE_SVG, 'меню страницы, iOS 27')} слева от адреса`,
+  ...IOS_GUIDE_STEPS_TAIL,
+];
+
+const IOS_BOOK_SVG =
+  '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M12 7.2c-1.4-1-3.6-1.4-6.2-.6v11.2c2.6-.8 4.8-.4 6.2.6 1.4-1 3.6-1.4 6.2-.6V6.6c-2.6-.8-4.8-.4-6.2.6z"/></svg>';
+
+const IOS_TABS_SVG =
+  '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="7.2" y="7.2" width="11" height="11" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6.2 15.2V6.8A1.8 1.8 0 0 1 8 5h8.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+
+function iosSafariPageHtml(dim) {
+  return `
+    <div class="ios-safari-page${dim ? ' is-dim' : ''}">
+      <div class="ios-safari-site">
+        <span class="ios-safari-mark">L</span>
+        <span class="ios-safari-line"></span>
+        <span class="ios-safari-line is-short"></span>
+        <span class="ios-safari-line"></span>
+      </div>
+    </div>`;
+}
+
+function iosGuideHtml() {
+  return `
+    <div class="ios-guide-sheet">
+      <div class="ios-guide-handle" aria-hidden="true"></div>
+      <div class="ios-guide-stage" aria-hidden="true">
+        <div class="ios-scene ios-scene-1">
+          <div class="ios-phone">
+            ${iosSafariPageHtml()}
+            <div class="ios-safari-bar ios-bar-both">
+              <span class="ios-safari-back">${IOS_CHEVRON_SVG}</span>
+              <span class="ios-page">${IOS_PAGE_SVG}</span>
+              <span class="ios-safari-url"><span class="ios-safari-lock"></span>langswipe.xyz</span>
+              <span class="ios-bar-end">
+                <span class="ios-more">${IOS_DOTS_SVG}</span>
+                <span class="ios-tabs">${IOS_TABS_SVG}</span>
+              </span>
+            </div>
+            <span class="ios-os-tag is-26">iOS 26</span>
+            <span class="ios-os-tag is-27">iOS 27</span>
+            <span class="ios-tap"></span>
+          </div>
+        </div>
+        <div class="ios-scene ios-scene-2">
+          <div class="ios-phone">
+            ${iosSafariPageHtml(true)}
+            <div class="ios-more-menu">
+              <div class="ios-menu-row is-hit"><span>Поделиться</span>${IOS_SHARE_SVG}</div>
+              <div class="ios-menu-row"><span>Закладки</span>${IOS_BOOK_SVG}</div>
+              <div class="ios-menu-row"><span>Вкладки</span>${IOS_TABS_SVG}</div>
+            </div>
+            <div class="ios-safari-bar">
+              <span class="ios-safari-back">${IOS_CHEVRON_SVG}</span>
+              <span class="ios-page is-on">${IOS_PAGE_SVG}</span>
+              <span class="ios-safari-url"><span class="ios-safari-lock"></span>langswipe.xyz</span>
+              <span class="ios-tabs is-static">${IOS_TABS_SVG}</span>
+            </div>
+            <span class="ios-tap"></span>
+          </div>
+        </div>
+        <div class="ios-scene ios-scene-3">
+          <div class="ios-phone">
+            ${iosSafariPageHtml(true)}
+            <div class="ios-share-sheet">
+              <div class="ios-share-scroll">
+                <div class="ios-share-head">
+                  <img src="/apple-touch-icon.png" alt="">
+                  <span class="ios-share-meta">
+                    <strong>LangSwipe</strong>
+                    <small>langswipe.xyz</small>
+                    <span class="ios-share-opt">Параметры ›</span>
+                  </span>
+                  <span class="ios-share-x" aria-hidden="true">×</span>
+                </div>
+                <div class="ios-share-people">
+                  <div class="ios-share-person"><span class="ios-avatar is-a">А</span><span>Аня</span></div>
+                  <div class="ios-share-person"><span class="ios-avatar is-m">М</span><span>Марк</span></div>
+                  <div class="ios-share-person"><span class="ios-avatar is-l">Л</span><span>Лена</span></div>
+                  <div class="ios-share-person"><span class="ios-avatar is-i">И</span><span>Илья</span></div>
+                  <div class="ios-share-person"><span class="ios-avatar is-o">О</span><span>Оля</span></div>
+                </div>
+                <div class="ios-share-apps">
+                  <div class="ios-share-app"><span class="ios-glyph is-air"></span><span>AirDrop</span></div>
+                  <div class="ios-share-app"><span class="ios-glyph is-msg"></span><span>Сообщения</span></div>
+                  <div class="ios-share-app"><span class="ios-glyph is-mail"></span><span>Почта</span></div>
+                  <div class="ios-share-app"><span class="ios-glyph is-notes"></span><span>Заметки</span></div>
+                  <div class="ios-share-app"><span class="ios-glyph is-rem"></span><span>Напоминания</span></div>
+                </div>
+                <div class="ios-share-group">
+                  <div class="ios-share-row"><span>Скопировать</span><span class="ios-row-ico is-copy"></span></div>
+                </div>
+                <div class="ios-share-group">
+                  <div class="ios-share-row"><span>В список для чтения</span><span class="ios-row-ico is-read"></span></div>
+                  <div class="ios-share-row"><span>Добавить закладку</span><span class="ios-row-ico is-book"></span></div>
+                  <div class="ios-share-row"><span>В избранное</span><span class="ios-row-ico is-star"></span></div>
+                  <div class="ios-share-row"><span>Найти на странице</span><span class="ios-row-ico is-find"></span></div>
+                  <div class="ios-share-row is-hit"><span>На экран «Домой»</span><span class="ios-row-ico is-plus"></span></div>
+                </div>
+                <div class="ios-share-group">
+                  <div class="ios-share-row"><span>Разметка</span><span class="ios-row-ico is-mark"></span></div>
+                  <div class="ios-share-row"><span>Печать</span><span class="ios-row-ico is-print"></span></div>
+                </div>
+                <p class="ios-share-edit">Изменить действия…</p>
+              </div>
+            </div>
+            <span class="ios-tap"></span>
+          </div>
+        </div>
+        <div class="ios-scene ios-scene-4">
+          <div class="ios-phone">
+            <div class="ios-add-card">
+              <div class="ios-add-head">
+                <span class="ios-add-x" aria-hidden="true">×</span>
+                <span>На экран «Домой»</span>
+                <span class="ios-add-go">Добавить</span>
+              </div>
+              <div class="ios-add-app">
+                <img src="/apple-touch-icon.png" alt="">
+                <span>
+                  <strong>LangSwipe</strong>
+                  <small>langswipe.xyz</small>
+                </span>
+                <span class="ios-add-clear" aria-hidden="true">×</span>
+              </div>
+              <div class="ios-add-toggle">
+                <span>Открыть как веб-приложение</span>
+                <span class="ios-switch" aria-hidden="true"></span>
+              </div>
+              <p class="ios-add-note">Значок на экране «Домой» для быстрого доступа к сайту.</p>
+            </div>
+            <span class="ios-tap"></span>
+          </div>
+        </div>
+        <div class="ios-scene ios-scene-5">
+          <div class="ios-phone ios-home">
+            <div class="ios-home-grid">
+              <div class="ios-home-app is-new">
+                <img src="/apple-touch-icon.png" alt="">
+                <span>LangSwipe</span>
+              </div>
+              <div class="ios-home-app">
+                <span class="ios-home-blob is-cal"><b>17</b></span>
+                <span>Календарь</span>
+              </div>
+              <div class="ios-home-app">
+                <span class="ios-home-blob is-photos"></span>
+                <span>Фото</span>
+              </div>
+              <div class="ios-home-app">
+                <span class="ios-home-blob is-cam"></span>
+                <span>Камера</span>
+              </div>
+            </div>
+            <div class="ios-home-dock" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 id="ios-guide-title">Добавить на домашний экран</h2>
+      <p class="ios-guide-note" hidden>Сначала откройте сайт в Safari.</p>
+      <p class="ios-guide-caption" aria-live="polite"></p>
+      <button type="button" class="btn btn-primary ios-guide-done">Понятно</button>
+    </div>`;
+}
 
 function isIosDevice() {
   const ua = navigator.userAgent || '';
