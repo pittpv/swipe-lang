@@ -137,6 +137,16 @@ if (dbMode === 'postgres' && sql) {
   } catch (err) {
     console.error('[db] rate limit table:', err.message);
   }
+  try {
+    await sql`CREATE TABLE IF NOT EXISTS langapp_analytics (
+      id bigserial PRIMARY KEY,
+      user_id integer,
+      event text NOT NULL,
+      at timestamptz NOT NULL DEFAULT now()
+    )`;
+  } catch (err) {
+    console.error('[db] analytics table:', err.message);
+  }
 }
 
 /**
@@ -167,6 +177,54 @@ export async function takeRateLimitSlot(key, windowMs) {
     waitUntil(cleanup);
   }
   return Number(rows[0]?.count ?? 1);
+}
+
+/**
+ * Append-only event log. Must not rewrite langapp_state: a swipe and an
+ * analytics event used to CAS the same document and the swipe lost.
+ * Returns false when Postgres is not the active store.
+ */
+export async function insertAnalyticsEvent(userId, event) {
+  if (dbMode !== 'postgres' || !sql || remoteUnavailable) return false;
+  await sql`
+    INSERT INTO langapp_analytics (user_id, event, at)
+    VALUES (${userId ?? null}, ${event}, now())
+  `;
+  return true;
+}
+
+export async function loadAnalyticsEvents(limit = 10000) {
+  if (dbMode !== 'postgres' || !sql || remoteUnavailable) return [];
+  const rows = await sql`
+    SELECT user_id, event, at
+    FROM langapp_analytics
+    ORDER BY id DESC
+    LIMIT ${limit}
+  `;
+  return rows.map((row) => ({
+    user_id: row.user_id,
+    event: row.event,
+    at: row.at instanceof Date ? row.at.toISOString() : row.at,
+  }));
+}
+
+export async function deleteAnalyticsForUser(userId) {
+  if (dbMode !== 'postgres' || !sql || remoteUnavailable) return;
+  await sql`DELETE FROM langapp_analytics WHERE user_id = ${userId}`;
+}
+
+/** JSON analytics plus the Postgres log, for dashboards and the weekly report. */
+export async function analyticsSnapshot(data = cache) {
+  const extra = await loadAnalyticsEvents().catch((err) => {
+    console.error('[db] analytics load:', err.message);
+    return [];
+  });
+  return {
+    data: {
+      ...data,
+      analytics: [...(data.analytics ?? []), ...extra],
+    },
+  };
 }
 
 let pendingSave = null;
@@ -311,11 +369,15 @@ export const db = {
       if (dbMode === 'file') saveFile(cache);
       return result;
     }
-    for (let attempt = 0; attempt < 5; attempt++) {
+    for (let attempt = 0; attempt < 8; attempt++) {
       // First attempt uses the in-memory snapshot (already loaded on this
       // isolate). Reload only after a CAS miss so a swipe is one write, not
       // two full-document round-trips.
-      if (attempt > 0) await this.reload();
+      if (attempt > 0) {
+        await this.reload();
+        const waitMs = 25 * attempt + Math.floor(Math.random() * 40);
+        await new Promise((resolve) => setTimeout(resolve, waitMs));
+      }
       const expectedRev = currentRev();
       const result = await mutator();
       cache._rev = expectedRev + 1;
@@ -324,7 +386,7 @@ export const db = {
         pendingSave = null;
         return result;
       }
-      console.warn(`[db] write conflict, retry ${attempt + 1}/5`);
+      console.warn(`[db] write conflict, retry ${attempt + 1}/8`);
     }
     throw new Error('Database write conflict');
   },

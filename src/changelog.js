@@ -4,6 +4,13 @@
  */
 export const CHANGELOG = [
   {
+    version: '0.5.33',
+    date: '2026-10-31',
+    items: [
+      'Исправили ошибки при завершении сессии',
+    ],
+  },
+  {
     version: '0.5.32',
     date: '2026-10-25',
     items: [

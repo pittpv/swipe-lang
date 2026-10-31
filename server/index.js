@@ -25,9 +25,16 @@ import {
   setSessionCookie,
   clearSessionCookie,
 } from './security.js';
-import { db, dbMode, persistableState } from './database.js';
-import { applySwipe } from './srs.js';
+import {
+  db,
+  dbMode,
+  persistableState,
+  insertAnalyticsEvent,
+  deleteAnalyticsForUser,
+  analyticsSnapshot,
+} from './database.js';
 import { buildSessionDeck, formatAssociation, formatWord, SESSION_SIZE } from './session.js';
+import { applyRecordedSwipes, normalizeSwipeBatch } from './session-swipe.js';
 import { getLevelProgress, estimateEta, CEFR_ORDER } from './progress.js';
 import { collectMilestones, knownWordsByPair, listMilestones, repairWordMilestones } from './milestones.js';
 import {
@@ -63,9 +70,7 @@ import {
 import {
   countHolds,
   languageBoard,
-  noteRatingSwipe,
   ratingDeckMeta,
-  swipeInstant,
   finishPlayedSession,
   weekPayload,
 } from './rating.js';
@@ -264,6 +269,9 @@ app.delete('/api/account', requireAuth, async (req, res) => {
   await cancelUserReminderSchedules(findUser(userId));
   await db.transact(() => {
     purgeUserRecords(db, userId);
+  });
+  await deleteAnalyticsForUser(userId).catch((err) => {
+    console.error('[analytics] account delete:', err.message);
   });
   clearSessionCookie(res);
   res.json({ ok: true });
@@ -723,56 +731,34 @@ app.post('/api/session/start', requireAuth, async (req, res) => {
 });
 
 app.post('/api/session/swipe', requireAuth, async (req, res) => {
-  const { wordId, direction } = req.body ?? {};
-  if (!wordId || !['left', 'right'].includes(direction)) {
+  const swipes = normalizeSwipeBatch(req.body);
+  if (!swipes) {
     return res.status(400).json({ error: 'wordId and direction (left|right) required' });
   }
   const userId = req.session.userId;
   const sessionId = studySessionId(req);
   const recordedAt = new Date();
-  const ratedAt = swipeInstant(req.body?.swipedAt, recordedAt);
   // No reload up front: transact writes once and re-reads only after a conflict.
-  const updated = await db.transact(() => {
-    const existing = db.data.user_word_progress.find(
-      (p) => p.user_id === userId && p.word_id === wordId,
+  // The whole batch is one write. A repeat of the same card is ignored.
+  try {
+    const updated = await db.transact(() =>
+      applyRecordedSwipes(db.data, { userId, sessionId, swipes, recordedAt }),
     );
-    const next = applySwipe(existing, direction);
-    if (existing) {
-      Object.assign(existing, {
-        status: next.status,
-        ease: next.ease,
-        interval_days: next.interval_days,
-        repetitions: next.repetitions,
-        next_review_at: next.next_review_at,
-        updated_at: recordedAt.toISOString(),
-      });
-    } else {
-      db.data.user_word_progress.push({
-        id: db.nextId('user_word_progress'),
-        user_id: userId,
-        word_id: wordId,
-        ...next,
-        updated_at: recordedAt.toISOString(),
-      });
+    if (req.session.sessionStats && sessionId != null && sessionId === Number(req.session.activeSessionId)) {
+      req.session.sessionStats.reviewed += updated.reviewed;
+      req.session.sessionStats.learned += updated.learned;
+      setSessionCookie(res, req.session);
     }
-    const sessionRow = db.data.study_sessions.find(
-      (row) => Number(row.id) === sessionId && Number(row.user_id) === Number(userId) && !row.ended_at,
-    );
-    if (sessionRow) {
-      noteRatingSwipe(sessionRow, wordId, ratedAt);
-      sessionRow.cards_reviewed = (Number(sessionRow.cards_reviewed) || 0) + 1;
-      if (direction === 'right') sessionRow.cards_learned = (Number(sessionRow.cards_learned) || 0) + 1;
-    }
-    return next;
-  });
-
-  if (req.session.sessionStats && sessionId != null && sessionId === Number(req.session.activeSessionId)) {
-    req.session.sessionStats.reviewed += 1;
-    if (direction === 'right') req.session.sessionStats.learned += 1;
-    setSessionCookie(res, req.session);
+    const applied = updated.progress.filter(Boolean);
+    res.json({
+      ok: true,
+      progress: applied.length === 1 ? applied[0] : applied,
+      reviewed: updated.reviewed,
+      learned: updated.learned,
+    });
+  } catch (err) {
+    return sendWriteError(res, err, 'session/swipe');
   }
-
-  res.json({ ok: true, progress: updated });
 });
 
 /** Words marked «Знаю» (SRS known/mature) in the user's current language pair. */
@@ -784,6 +770,15 @@ function countWordsKnown(userId) {
   return db.data.user_word_progress.filter(
     (p) => p.user_id === userId && ids.has(p.word_id) && ['known', 'mature'].includes(p.status),
   ).length;
+}
+
+function sendWriteError(res, err, where) {
+  if (err?.status === 404) return res.status(404).json({ error: err.message });
+  if (err?.message === 'Database write conflict') {
+    return res.status(503).json({ error: 'Сервер занят, повторите' });
+  }
+  console.error(`[${where}]`, err);
+  return res.status(500).json({ error: 'Сервер временно недоступен' });
 }
 
 app.post('/api/session/complete', requireAuth, async (req, res) => {
@@ -798,7 +793,9 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
 
   const wordIds = Array.isArray(req.body?.wordIds) ? req.body.wordIds : [];
 
-  const payload = await db.transact(() => {
+  let payload;
+  try {
+    payload = await db.transact(() => {
     const now = new Date();
     const user = findUser(userId);
     if (!user) {
@@ -816,9 +813,8 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
     const sessionRow = db.data.study_sessions.find(
       (s) => Number(s.id) === sessionId && Number(s.user_id) === Number(userId),
     );
-    if (sessionRow) {
-      sessionRow.cards_learned = Math.max(stats.learned, Number(sessionRow.cards_learned) || 0);
-    }
+    const cardsLearned = Math.max(stats.learned, Number(sessionRow?.cards_learned) || 0);
+    if (sessionRow) sessionRow.cards_learned = cardsLearned;
     const today = now.toISOString().slice(0, 10);
     let streak = user.streak ?? 0;
     if (user.last_session_date !== today) {
@@ -859,7 +855,7 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
 
     return {
       cardsReviewed: Math.max(stats.reviewed, wordIds.length),
-      cardsLearned: stats.learned,
+      cardsLearned,
       streak,
       lastSessionDate: user.last_session_date,
       wordsDueTomorrow,
@@ -871,6 +867,9 @@ app.post('/api/session/complete', requireAuth, async (req, res) => {
       rating,
     };
   });
+  } catch (err) {
+    return sendWriteError(res, err, 'session/complete');
+  }
 
   delete req.session.activeSessionId;
   delete req.session.sessionStats;
@@ -1023,7 +1022,7 @@ app.get('/api/admin/associations', requireAdmin, async (_req, res) => {
 
 app.get('/api/analytics/dashboard', requireAdmin, async (_req, res) => {
   await db.reload();
-  res.json(buildAnalyticsDashboard(db));
+  res.json(buildAnalyticsDashboard(await analyticsSnapshot()));
 });
 
 app.get('/api/admin/users', requireAdmin, async (_req, res) => {
@@ -1042,6 +1041,9 @@ app.delete('/api/admin/users/:id', requireAdmin, async (req, res) => {
   await cancelUserReminderSchedules(user);
   await db.transact(() => {
     purgeUserRecords(db, userId);
+  });
+  await deleteAnalyticsForUser(userId).catch((err) => {
+    console.error('[analytics] admin delete:', err.message);
   });
   res.json({ ok: true, id: userId });
 });
@@ -1139,18 +1141,26 @@ app.post('/api/analytics', (req, res, next) => {
   if (!ALLOWED_EVENTS.has(event)) {
     return res.status(400).json({ error: 'Invalid event' });
   }
-  await db.transact(() => {
-    if (!db.data.analytics) db.data.analytics = [];
-    db.data.analytics.push({
-      id: db.nextId('analytics'),
-      user_id: req.session?.userId ?? null,
-      event,
-      at: new Date().toISOString(),
-    });
-    if (db.data.analytics.length > 10_000) {
-      db.data.analytics = db.data.analytics.slice(-5_000);
+  try {
+    const stored = await insertAnalyticsEvent(req.session?.userId ?? null, event);
+    if (!stored) {
+      await db.transact(() => {
+        if (!db.data.analytics) db.data.analytics = [];
+        db.data.analytics.push({
+          id: db.nextId('analytics'),
+          user_id: req.session?.userId ?? null,
+          event,
+          at: new Date().toISOString(),
+        });
+        if (db.data.analytics.length > 10_000) {
+          db.data.analytics = db.data.analytics.slice(-5_000);
+        }
+      });
     }
-  });
+  } catch (err) {
+    // A lost event is better than a write that races the swipe document.
+    console.error('[analytics]', err.message);
+  }
   res.json({ ok: true });
 });
 

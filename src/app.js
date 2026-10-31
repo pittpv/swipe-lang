@@ -125,8 +125,12 @@ export class App {
     this.audioCache = new Map();
     /** Serial swipe saves so session counts stay in order. The card does not wait on this. */
     this._swipeChain = Promise.resolve();
+    this._swipeOutbox = [];
+    this._swipeFlushing = false;
     this._swipeHalted = false;
     this._swipeFailure = null;
+    this._finishing = false;
+    this.wrapError = '';
     this._deckPrefetch = null;
     this._deckGen = 0;
   }
@@ -821,7 +825,7 @@ export class App {
     this._deckGen += 1;
     const pendingDeck = this._deckPrefetch;
     this._deckPrefetch = null;
-    await this._swipeChain;
+    await this.drainSwipes();
     if (pendingDeck) await pendingDeck.promise.catch(() => {});
     try {
       const data = await api('/circles/session', { method: 'POST' });
@@ -1100,21 +1104,143 @@ export class App {
   }
 
   enqueueSwipe(wordId, direction) {
-    const swipedAt = new Date().toISOString();
-    const sessionId = this.sessionId;
-    this._swipeChain = this._swipeChain.then(async () => {
-      if (this._swipeHalted) return;
+    this._swipeOutbox.push({
+      wordId,
+      direction,
+      swipedAt: new Date().toISOString(),
+      sessionId: this.sessionId,
+    });
+    this.scheduleSwipeFlush();
+  }
+
+  scheduleSwipeFlush() {
+    if (this._swipeFlushing || this._swipeHalted) return;
+    this._swipeFlushing = true;
+    this._swipeChain = this._swipeChain
+      .then(() => this.flushSwipeOutbox())
+      .finally(() => {
+        this._swipeFlushing = false;
+        if (this._swipeOutbox.length && !this._swipeHalted) this.scheduleSwipeFlush();
+      });
+  }
+
+  async flushSwipeOutbox() {
+    while (this._swipeOutbox.length && !this._swipeHalted) {
+      const sessionId = this._swipeOutbox[0].sessionId;
+      const batch = [];
+      while (
+        this._swipeOutbox.length &&
+        this._swipeOutbox[0].sessionId === sessionId &&
+        batch.length < 18
+      ) {
+        batch.push(this._swipeOutbox.shift());
+      }
+      let sent = false;
+      let lastError = null;
+      for (let attempt = 0; attempt < 3 && !sent; attempt++) {
+        try {
+          await api('/session/swipe', {
+            method: 'POST',
+            body: {
+              sessionId,
+              swipes: batch.map(({ wordId, direction, swipedAt }) => ({ wordId, direction, swipedAt })),
+            },
+            signal: abortAfter(15000),
+          });
+          sent = true;
+          for (const swipe of batch) track(swipe.direction === 'left' ? 'swipe_left' : 'swipe_right');
+        } catch (error) {
+          lastError = error;
+          if (!isTransientApiError(error) || attempt === 2) break;
+          await wait(400 * (attempt + 1));
+        }
+      }
+      if (!sent) {
+        this._swipeOutbox = batch.concat(this._swipeOutbox);
+        this._swipeHalted = true;
+        this._swipeFailure = { wordId: batch[0].wordId, error: lastError };
+        if (this.view === 'session' && !this.swiping) this.applySwipeFailure();
+        return;
+      }
+    }
+  }
+
+  async drainSwipes() {
+    if (this._swipeOutbox.length && !this._swipeHalted) this.scheduleSwipeFlush();
+    while ((this._swipeFlushing || this._swipeOutbox.length) && !this._swipeHalted) {
+      await this._swipeChain;
+      if (this._swipeOutbox.length && !this._swipeFlushing && !this._swipeHalted) {
+        this.scheduleSwipeFlush();
+      }
+    }
+  }
+
+  failWrap(error) {
+    this.wrapError = sessionSaveError(error);
+    this.view = 'session-wrapping';
+    this.swiping = false;
+    this.render();
+  }
+
+  async completeSessionWithRetry() {
+    let lastError = null;
+    for (let attempt = 0; attempt < 3; attempt++) {
       try {
-        await api('/session/swipe', {
+        return await api('/session/complete', {
           method: 'POST',
-          body: { wordId, direction, swipedAt, sessionId },
+          body: { sessionId: this.sessionId, wordIds: this.cards.map((card) => card.id) },
+          signal: abortAfter(15000),
         });
       } catch (error) {
-        this._swipeHalted = true;
-        this._swipeFailure = { wordId, error };
-        if (!this.swiping) this.applySwipeFailure();
+        lastError = error;
+        if (!isTransientApiError(error) || attempt === 2) throw error;
+        await wait(400 * (attempt + 1));
       }
-    });
+    }
+    throw lastError;
+  }
+
+  async finishSession() {
+    if (this._finishing) return;
+    this._finishing = true;
+    this.overlayWord = null;
+    this.overlaySection = null;
+    this.swiping = false;
+    this.wrapError = '';
+    this.view = 'session-wrapping';
+    this.render();
+    try {
+      await this.drainSwipes();
+      if (this._swipeHalted) {
+        this.failWrap(this._swipeFailure?.error);
+        return;
+      }
+      this.summary = await this.completeSessionWithRetry();
+      if (this.user) {
+        this.user.streak = this.summary.streak;
+        if (this.summary.lastSessionDate) this.user.lastSessionDate = this.summary.lastSessionDate;
+        this.streakRiskOpen = false;
+      }
+      if (this.summary.levelComplete) this.levelOffer = this.summary.levelProgress;
+      track('session_complete');
+      this.view = 'summary';
+      // Defer celebration until Home: on iOS a full-screen layer + post-swipe
+      // missing click made «На главную» need two taps.
+      this.pendingAchievements = this.summary.achievements;
+    } catch (error) {
+      this.failWrap(error);
+      return;
+    } finally {
+      this._finishing = false;
+    }
+    this.render();
+  }
+
+  retryFinish() {
+    this._swipeHalted = false;
+    this._swipeFailure = null;
+    this.wrapError = '';
+    this.finishSession();
   }
 
   applySwipeFailure() {
@@ -1122,7 +1248,7 @@ export class App {
     if (!failure || failure.applied) return;
     failure.applied = true;
     const index = this.cards.findIndex((card) => card.id === failure.wordId);
-    this.error = failure.error?.message || 'Не удалось сохранить свайп';
+    this.error = sessionSaveError(failure.error);
     if (index >= 0) this.cardIndex = index;
     this.view = 'session';
     this.swiping = false;
@@ -1150,6 +1276,14 @@ export class App {
   }
 
   async swipe(direction, from = { x: 0, y: 0 }) {
+    if (this._swipeHalted && this.view === 'session' && !this.swiping) {
+      this._swipeHalted = false;
+      this._swipeFailure = null;
+      this.error = '';
+      this.render();
+      this.scheduleSwipeFlush();
+      return;
+    }
     const card = this.currentCard();
     if (!card || this.swiping || this._swipeHalted || this.view !== 'session') return;
     this.swiping = true;
@@ -1157,51 +1291,21 @@ export class App {
     this.drag.active = false;
     this.drag.pointerId = null;
     this.endPointerTracking();
-    track(direction === 'left' ? 'swipe_left' : 'swipe_right');
     const wordId = card.id;
     const isLast = this.cardIndex >= this.cards.length - 1;
     this.enqueueSwipe(wordId, direction);
     await this.flyCardOut(direction, from.x, from.y);
     if (this._swipeHalted) {
       this.swiping = false;
-      this.applySwipeFailure();
+      if (isLast) this.failWrap(this._swipeFailure?.error);
+      else this.applySwipeFailure();
       return;
     }
     this.cardIndex += 1;
     this.drag = { active: false, pointerId: null, startX: 0, startY: 0, x: 0, y: 0 };
     this.cardEnter = true;
     if (isLast) {
-      this.overlayWord = null;
-      this.overlaySection = null;
-      this.swiping = false;
-      this.view = 'session-wrapping';
-      this.render();
-      try {
-        await this._swipeChain;
-        if (this._swipeHalted) {
-          this.applySwipeFailure();
-          return;
-        }
-        this.summary = await api('/session/complete', {
-          method: 'POST',
-          body: { sessionId: this.sessionId, wordIds: this.cards.map((card) => card.id) },
-        });
-        if (this.user) {
-          this.user.streak = this.summary.streak;
-          if (this.summary.lastSessionDate) this.user.lastSessionDate = this.summary.lastSessionDate;
-          this.streakRiskOpen = false;
-        }
-        if (this.summary.levelComplete) this.levelOffer = this.summary.levelProgress;
-        track('session_complete');
-        this.view = 'summary';
-        // Defer celebration until Home: on iOS a full-screen layer + post-swipe
-        // missing click made «На главную» need two taps.
-        this.pendingAchievements = this.summary.achievements;
-      } catch (e) {
-        this.error = e.message;
-        this.view = 'home';
-      }
-      this.render();
+      await this.finishSession();
       return;
     }
     this.swiping = false;
@@ -1245,7 +1349,7 @@ export class App {
     }
     this._deckGen += 1;
     this._deckPrefetch = null;
-    await this._swipeChain;
+    await this.drainSwipes();
     return api('/session/start', { method: 'POST' });
   }
 
@@ -2365,6 +2469,7 @@ export class App {
       if (action === 'speak') this.speak(this.overlayWord?.lemma);
       if (action === 'overlay-examples') this.toggleOverlaySection('examples');
       if (action === 'overlay-forms') this.toggleOverlaySection('forms');
+      if (action === 'retry-finish') this.retryFinish();
       if (action === 'swipe-left') this.swipe('left');
       if (action === 'swipe-right') this.swipe('right');
       if (action === 'copy-referral') this.copyReferral();
@@ -2667,9 +2772,14 @@ export class App {
     } else if (v === 'session-wrapping') {
       html += `
         <div class="screen-result">
-          <div class="summary-card summary-wrapping" aria-busy="true" aria-live="polite">
-            <div class="skeleton-bone skeleton-summary-title"></div>
-            <p class="wrapping-copy">Подвожу итоги сессии…</p>
+          <div class="summary-card summary-wrapping${this.wrapError ? ' is-failed' : ''}" aria-busy="${this.wrapError ? 'false' : 'true'}" aria-live="polite">
+            ${this.wrapError ? '' : '<div class="skeleton-bone skeleton-summary-title"></div>'}
+            <p class="${this.wrapError ? 'error' : 'wrapping-copy'}">${this.wrapError ? esc(this.wrapError) : 'Подвожу итоги сессии…'}</p>
+            ${this.wrapError ? `
+            <div class="screen-actions">
+              <button type="button" class="btn btn-primary" data-action="retry-finish">Повторить</button>
+              <button type="button" class="btn btn-ghost" data-action="home">На главную</button>
+            </div>` : `
             <div class="stat-grid">
               <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
               <div class="stat-box skeleton-stat"><div class="skeleton-bone skeleton-stat-num"></div><div class="skeleton-bone skeleton-stat-lbl"></div></div>
@@ -2680,7 +2790,7 @@ export class App {
             <div class="screen-actions">
               <div class="skeleton-bone skeleton-summary-btn"></div>
               <div class="skeleton-bone skeleton-summary-btn ghost"></div>
-            </div>
+            </div>`}
           </div>
         </div>`;
     } else if (v === 'summary' && this.summary) {
@@ -3438,6 +3548,32 @@ function nameFieldHtml(value, extra = '') {
 function accountUsernameField(email) {
   if (!email) return '';
   return `<input class="sr-only" type="email" value="${esc(email)}" autocomplete="username" tabindex="-1" readonly aria-hidden="true" />`;
+}
+
+function sessionSaveError(error) {
+  if (!error || error.name === 'TimeoutError' || error.name === 'AbortError' || error.name === 'TypeError') {
+    return 'Сервер временно недоступен';
+  }
+  return error.message || 'Сервер временно недоступен';
+}
+
+function isTransientApiError(error) {
+  const status = error?.status;
+  if (status == null) return true;
+  return status === 408 || status === 429 || status >= 500;
+}
+
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function abortAfter(ms) {
+  if (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') {
+    return AbortSignal.timeout(ms);
+  }
+  const controller = new AbortController();
+  setTimeout(() => controller.abort(), ms);
+  return controller.signal;
 }
 
 function withTimeout(promise, ms, timeoutMessage = 'timeout') {
