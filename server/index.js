@@ -34,8 +34,10 @@ import {
   analyticsSnapshot,
 } from './database.js';
 import { buildSessionDeck, formatAssociation, formatWord, SESSION_SIZE } from './session.js';
+import { buildHardDeck, HARD_SESSION_MIN } from './hard-session.js';
 import { applyRecordedSwipes, normalizeSwipeBatch } from './session-swipe.js';
 import { getLevelProgress, estimateEta, CEFR_ORDER } from './progress.js';
+import { buildReturnReasons } from './return-reason.js';
 import { collectMilestones, knownWordsByPair, listMilestones, repairWordMilestones } from './milestones.js';
 import {
   DEFAULT_LANG_PAIR,
@@ -55,6 +57,7 @@ import {
 } from './referral.js';
 import { buildAnalyticsDashboard } from './analytics-report.js';
 import { applyAssociationVote, summarizeAssociationRatings } from './association-ratings.js';
+import { applyAssociationTrust } from './association-trust.js';
 import { listAdminUsers, purgeUserRecords } from './admin-users.js';
 import {
   CircleError,
@@ -397,9 +400,10 @@ function studySessionId(req) {
 function stampRatingSession(userId, sessionRow, cards, now = new Date()) {
   const user = findUser(userId);
   sessionRow.lang_pair = userLangPair(user);
+  // Leech repeats (server/session.js) put the same word in the deck twice; rate it once.
   sessionRow.rating_deck = ratingDeckMeta(
     db.data.user_word_progress.filter((row) => row.user_id === userId),
-    cards.map((card) => card.id),
+    [...new Set(cards.map((card) => card.id))],
     now,
   );
   sessionRow.rating_hits = [];
@@ -730,6 +734,33 @@ app.post('/api/session/start', requireAuth, async (req, res) => {
   });
 });
 
+// Optional extra deck of words the user keeps missing (server/hard-session.js).
+app.post('/api/session/hard', requireAuth, async (req, res) => {
+  await db.reload();
+  const userId = req.session.userId;
+  const hard = buildHardDeck(db, userId);
+  if (!hard.enough) {
+    return res.json({ sessionId: null, cards: [], notEnough: true, count: hard.count, min: HARD_SESSION_MIN });
+  }
+  const sessionRow = await db.transact(() => {
+    const row = {
+      id: db.nextId('study_sessions'),
+      user_id: userId,
+      started_at: new Date().toISOString(),
+      ended_at: null,
+      cards_reviewed: 0,
+      cards_learned: 0,
+    };
+    stampRatingSession(userId, row, hard.cards);
+    db.data.study_sessions.push(row);
+    return row;
+  });
+  req.session.activeSessionId = sessionRow.id;
+  req.session.sessionStats = { reviewed: 0, learned: 0 };
+  setSessionCookie(res, req.session);
+  res.json({ sessionId: sessionRow.id, sessionSize: hard.cards.length, cards: hard.cards });
+});
+
 app.post('/api/session/swipe', requireAuth, async (req, res) => {
   const swipes = normalizeSwipeBatch(req.body);
   if (!swipes) {
@@ -900,6 +931,14 @@ app.get('/api/stats', requireAuth, async (req, res) => {
   const levelProgress = getLevelProgress(db, userId);
   const eta = estimateEta(db, userId, levelProgress);
   const pair = userLangPair(user);
+  const returnReasons = buildReturnReasons({
+    progressRows: db.data.user_word_progress,
+    words: db.data.words,
+    ratings: db.data.association_ratings ?? [],
+    sessions: db.data.study_sessions,
+    userId,
+    langPair: pair,
+  });
   res.json({
     streak: user.streak,
     cefrLevel: user.cefr_level,
@@ -910,6 +949,7 @@ app.get('/api/stats', requireAuth, async (req, res) => {
     achievements: listMilestones(user, knownByPair),
     levelProgress,
     eta,
+    returnReasons,
     week: weekPayload(user, pair, countHolds(db, userId, pair)),
   });
 });
@@ -989,7 +1029,8 @@ app.post('/api/associations/rate', requireAuth, async (req, res) => {
   }
   await db.reload();
   const word = db.data.words.find((row) => row.id === wordId);
-  const association = formatAssociation(word?.association);
+  // A retired curated line stays votable so the crowd can bring it back.
+  const association = formatAssociation(word?.association_retired ?? word?.association);
   if (!word || !association) return res.status(404).json({ error: 'Association not found' });
   const hook = association.hooks.join(' + ');
   const image = association.kind === 'cognate'
@@ -1011,6 +1052,7 @@ app.post('/api/associations/rate', requireAuth, async (req, res) => {
       vote,
       updated_at: new Date().toISOString(),
     });
+    applyAssociationTrust(word, db.data.association_ratings);
   });
   res.json({ ok: true, vote });
 });

@@ -4,12 +4,13 @@ import { fileURLToPath } from 'url';
 import { parseCsvFile } from './lib/csv-parse.js';
 import { db, dbMode } from './database.js';
 import { LANG_PAIRS, isLangPair, normalizeLangPair, wordLangPair } from './lang-pairs.js';
+import { CURATED_SOURCE, applyAssociationTrust } from './association-trust.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const dataRoot = join(__dirname, 'data');
 
 /** Bump when examples/forms/associations shape or attach key changes. */
-export const VOCAB_EXTRAS_VERSION = 3;
+export const VOCAB_EXTRAS_VERSION = 4;
 
 const POS_MAP = {
   İSİMLER: 'noun',
@@ -166,6 +167,7 @@ function encodeAssociation(entry) {
     phonetic: entry.phonetic || '',
     hooks: Array.isArray(entry.hooks) ? entry.hooks : [],
     image: entry.image || '',
+    source: CURATED_SOURCE,
   });
 }
 
@@ -176,7 +178,10 @@ function attachExtras(word, examplesBySource, formsBySource, associationsByLemma
   word.examples = JSON.stringify(examples);
   word.forms = JSON.stringify(forms);
   const entry = associationsByLemma?.get?.(normalizeLemmaKey(word.lemma)) || null;
+  delete word.association_retired;
   word.association = entry ? encodeAssociation(entry) : 'null';
+  // Re-apply crowd verdicts, otherwise every boot would resurrect a rejected line.
+  applyAssociationTrust(word, db.data?.association_ratings);
 }
 
 function extrasByPair() {

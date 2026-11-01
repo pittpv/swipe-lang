@@ -1,0 +1,7506 @@
+{
+  "a": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Перед согласным звуком: a book, a pen."
+  },
+  "ability": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "the ability to swim — способность плавать."
+  },
+  "able": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "be able to — мочь: I am able to swim. Как can, но в других временах."
+  },
+  "about": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "about — о: talk about music; about ten — около десяти."
+  },
+  "above": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "above — над, выше: above the door; above all — прежде всего."
+  },
+  "accord": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "аккорд"
+    ],
+    "image": ""
+  },
+  "across": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "across — через, поперёк: across the street; across the world."
+  },
+  "act": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "актёр"
+    ],
+    "image": ""
+  },
+  "action": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "экшен"
+    ],
+    "image": ""
+  },
+  "action film": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "экшен"
+    ],
+    "image": ""
+  },
+  "activity": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "активность"
+    ],
+    "image": ""
+  },
+  "actor": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "актёр"
+    ],
+    "image": ""
+  },
+  "actually": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "actually — на самом деле, не «актуально»: Actually, I’m tired."
+  },
+  "add": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "add — добавлять: add sugar; add up — сложить числа. addition — сложение."
+  },
+  "addition": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "addition — добавление: in addition — вдобавок. add — добавлять."
+  },
+  "advantage": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "advantage — преимущество: take advantage of — воспользоваться."
+  },
+  "advice": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "advice — только ед. число: some advice, не advices."
+  },
+  "affect": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "affect — влиять (глагол); effect — влияние (сущ.): It affects me."
+  },
+  "after": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "after — после: after lunch, after school. Противоположность — before."
+  },
+  "afternoon": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "after + noon: «после полудня». Good afternoon!"
+  },
+  "again": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "again — снова: Say it again, please. once again — ещё раз."
+  },
+  "agreement": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "agreement — соглашение: sign an agreement. agree — соглашаться."
+  },
+  "air": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "air — воздух: fresh air; by air — по воздуху; an air conditioner — кондиционер."
+  },
+  "airport": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "аэропорт"
+    ],
+    "image": ""
+  },
+  "alarm clock": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "alarm (сигнал) + clock (часы): будильник. Set the alarm clock."
+  },
+  "all": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "all — весь: all day — весь день; all of us — все мы; all the time — всё время."
+  },
+  "allow": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "allow — позволять: allow me to go. allowed — разрешено."
+  },
+  "almost": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "almost — почти: almost ready; almost always — почти всегда."
+  },
+  "alone": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "alone — один, без других: I live alone. lonely — одинокий и грустный."
+  },
+  "along": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "along — вдоль: walk along the river; along with — вместе с."
+  },
+  "alphabet": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "алфавит"
+    ],
+    "image": ""
+  },
+  "also": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "also — также, перед глаголом: I also like tea."
+  },
+  "always": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Ставят перед глаголом: I always get up at seven."
+  },
+  "american": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "американский"
+    ],
+    "image": ""
+  },
+  "among": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "among — среди многих: among friends. between — между двумя."
+  },
+  "amount": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "amount — количество: a large amount of money; a small amount of salt."
+  },
+  "an": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Перед гласным звуком: an apple, an hour."
+  },
+  "analysis": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "анализ"
+    ],
+    "image": ""
+  },
+  "and": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Соединяет слова: tea and coffee."
+  },
+  "animal": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "анималист"
+    ],
+    "image": ""
+  },
+  "another": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "another — ещё один: another coffee, please. an + other."
+  },
+  "answer": {
+    "kind": "keyword",
+    "phonetic": "а́нсэ",
+    "hooks": [
+      "ансамбль"
+    ],
+    "image": "Ансамбль ответил на аплодисменты поклоном."
+  },
+  "any": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "any — в вопросах и отрицаниях: Is there any milk? No, there isn’t."
+  },
+  "anyone": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "anyone — кто-нибудь: Is anyone here? I don’t know anyone."
+  },
+  "anything": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "anything — что-нибудь: Do you want anything? I don’t want anything."
+  },
+  "appear": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "appear — появляться: The sun appeared. appear — ещё «казаться»."
+  },
+  "apple": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Эппл"
+    ],
+    "image": ""
+  },
+  "approach": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "approach — подход; приближаться: a new approach; approach the door."
+  },
+  "april": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "апрель"
+    ],
+    "image": ""
+  },
+  "area": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "area — область, район: this area; area code — код региона."
+  },
+  "arm": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "армрестлинг"
+    ],
+    "image": ""
+  },
+  "around": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "around — вокруг: around the corner; around five — около пяти."
+  },
+  "arrive": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "arrive in + город, arrive at + место: arrive at the station."
+  },
+  "as": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "as — как: as big as — такой же большой, как; as a teacher — в роли учителя."
+  },
+  "ask": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "ask a question — задать вопрос; ask for — просить."
+  },
+  "at": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "at — в точке: at the door, at the station, at five."
+  },
+  "at night": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Ночью — с at: at night, а не in night."
+  },
+  "at the moment": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "at the moment — в данный момент: I’m busy at the moment."
+  },
+  "attack": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "атака"
+    ],
+    "image": ""
+  },
+  "attention": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "attention — внимание: Attention, please! pay attention to — обращать внимание на."
+  },
+  "august": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "август"
+    ],
+    "image": ""
+  },
+  "aunt": {
+    "kind": "keyword",
+    "phonetic": "а́нт",
+    "hooks": [
+      "антенна"
+    ],
+    "image": "Тётя поправила антенну на крыше."
+  },
+  "average": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "average — средний: on average — в среднем; the average age — средний возраст."
+  },
+  "away": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "away — прочь, далеко: go away; far away; two miles away."
+  },
+  "baby": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бэби"
+    ],
+    "image": ""
+  },
+  "back": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "back — спина и «назад»: come back — вернуться; a backpack — рюкзак."
+  },
+  "bad": {
+    "kind": "keyword",
+    "phonetic": "бэ́д",
+    "hooks": [
+      "бедлам"
+    ],
+    "image": "Бедлам — очень плохое место."
+  },
+  "bag": {
+    "kind": "keyword",
+    "phonetic": "бэ́г",
+    "hooks": [
+      "бег"
+    ],
+    "image": "Во время бега сумка бьёт по спине."
+  },
+  "ball": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "баскетбол"
+    ],
+    "image": ""
+  },
+  "banana": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "банан"
+    ],
+    "image": ""
+  },
+  "band": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "band — группа музыкантов: a rock band."
+  },
+  "bank": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "банк"
+    ],
+    "image": ""
+  },
+  "base": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "база"
+    ],
+    "image": ""
+  },
+  "bathroom": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: bath (ванна) + room (комната)."
+  },
+  "be": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "I am · you are · he/she/it is · we/they are."
+  },
+  "bean": {
+    "kind": "keyword",
+    "phonetic": "би́н",
+    "hooks": [
+      "Бин"
+    ],
+    "image": "Мистер Бин ест на завтрак тарелку фасоли."
+  },
+  "bear": {
+    "kind": "keyword",
+    "phonetic": "бэ́р",
+    "hooks": [
+      "берлога"
+    ],
+    "image": "Медведь спит всю зиму в тёплой берлоге."
+  },
+  "beautiful": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бьюти"
+    ],
+    "image": ""
+  },
+  "because": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "because — потому что: Why? — Because I’m tired."
+  },
+  "become": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "become + кем: She became a doctor. become, became, become."
+  },
+  "bed": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Спят in bed, а лежат on the bed: The cat is on the bed."
+  },
+  "before": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "before — до: before lunch, before seven. Противоположность — after."
+  },
+  "begin": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "begin, began, begun: The film begins at six."
+  },
+  "behavior": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "behavior — поведение, без мн. числа: good behavior. behave — вести себя."
+  },
+  "behind": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "behind — сзади: The bag is behind the chair."
+  },
+  "believe": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "believe — верить: I believe you. believe in — верить в."
+  },
+  "below": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "below — ниже, под: below zero — ниже нуля; see below — смотри ниже."
+  },
+  "belt": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "belt — ремень: a leather belt. Читается «бэлт»."
+  },
+  "benefit": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бенефис"
+    ],
+    "image": ""
+  },
+  "between": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "between + два предмета: between the bed and the door."
+  },
+  "big": {
+    "kind": "keyword",
+    "phonetic": "би́г",
+    "hooks": [
+      "бигуди"
+    ],
+    "image": "На голове у неё большие бигуди."
+  },
+  "bike": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "байкер"
+    ],
+    "image": ""
+  },
+  "bird": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бердвотчинг"
+    ],
+    "image": ""
+  },
+  "biscuit": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бисквит"
+    ],
+    "image": ""
+  },
+  "bit": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a bit — немного: a bit tired. a bit of cake — кусочек торта."
+  },
+  "black": {
+    "kind": "keyword",
+    "phonetic": "блэ́к",
+    "hooks": [
+      "блин"
+    ],
+    "image": "Подгоревший блин стал чёрным."
+  },
+  "blanket": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a warm blanket — тёплое одеяло: pull the blanket up."
+  },
+  "blood": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "blood — кровь: a blood test — анализ крови; bloody — кровавый."
+  },
+  "blue": {
+    "kind": "keyword",
+    "phonetic": "блу́",
+    "hooks": [
+      "блузка"
+    ],
+    "image": "Синяя блузка висит на стуле."
+  },
+  "board": {
+    "kind": "keyword",
+    "phonetic": "бо́рд",
+    "hooks": [
+      "борт"
+    ],
+    "image": "С борта корабля сняли доску."
+  },
+  "book": {
+    "kind": "keyword",
+    "phonetic": "бу́к",
+    "hooks": [
+      "бук"
+    ],
+    "image": "Из бука делают бумагу для книги."
+  },
+  "boots": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бутсы"
+    ],
+    "image": ""
+  },
+  "boring": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "boring — скучный (что), bored — скучающий (кто): The film is boring."
+  },
+  "both": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "both — оба: both of us — мы оба; both … and — и … и."
+  },
+  "bottle": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бутылка"
+    ],
+    "image": ""
+  },
+  "bowl": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "боулинг"
+    ],
+    "image": ""
+  },
+  "box": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ланчбокс"
+    ],
+    "image": ""
+  },
+  "boy": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бойскаут"
+    ],
+    "image": ""
+  },
+  "boyfriend": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: boy + friend, «парень-друг»."
+  },
+  "brazil": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Бразилия"
+    ],
+    "image": ""
+  },
+  "bread": {
+    "kind": "keyword",
+    "phonetic": "бре́д",
+    "hooks": [
+      "бред"
+    ],
+    "image": "Больной бредит и просит хлеба."
+  },
+  "break": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "брейк"
+    ],
+    "image": ""
+  },
+  "breakfast": {
+    "kind": "keyword",
+    "phonetic": "бре́кфэст",
+    "hooks": [
+      "бряк"
+    ],
+    "image": "За завтраком тарелка упала на пол: бряк!"
+  },
+  "bridge": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a bridge over the river — мост через реку; bridge — ещё карточная игра."
+  },
+  "bright": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "bright — яркий: bright colours, a bright room."
+  },
+  "bring": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "bring — принести сюда, take — унести. bring, brought, brought."
+  },
+  "british": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "британский"
+    ],
+    "image": ""
+  },
+  "brother": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "брат"
+    ],
+    "image": ""
+  },
+  "brown": {
+    "kind": "keyword",
+    "phonetic": "бра́ун",
+    "hooks": [
+      "брауни"
+    ],
+    "image": "Коричневый брауни остыл на тарелке."
+  },
+  "build": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бодибилдинг"
+    ],
+    "image": ""
+  },
+  "burger": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бургер"
+    ],
+    "image": ""
+  },
+  "bus": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "автобус"
+    ],
+    "image": ""
+  },
+  "busy": {
+    "kind": "keyword",
+    "phonetic": "би́зи",
+    "hooks": [
+      "бизнес"
+    ],
+    "image": "Занятой человек ведёт бизнес допоздна."
+  },
+  "but": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "but — но: I like tea, but I don’t like coffee."
+  },
+  "butter": {
+    "kind": "keyword",
+    "phonetic": "ба́тэ",
+    "hooks": [
+      "батон"
+    ],
+    "image": "Свежий батон намазали маслом."
+  },
+  "button": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бутон"
+    ],
+    "image": ""
+  },
+  "buy": {
+    "kind": "keyword",
+    "phonetic": "ба́й",
+    "hooks": [
+      "байкер"
+    ],
+    "image": "Байкер поехал покупать новый шлем."
+  },
+  "by": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "by bus — на автобусе; by the window — у окна; written by — написано кем-то."
+  },
+  "bye": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Короткое «пока» при расставании с друзьями."
+  },
+  "cake": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "кекс"
+    ],
+    "image": ""
+  },
+  "call": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "I’ll call you tonight — позвоню тебе вечером."
+  },
+  "camera": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "камера"
+    ],
+    "image": ""
+  },
+  "can": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "can + глагол без to, без -s: I can swim. She can swim."
+  },
+  "cap": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "кепка"
+    ],
+    "image": ""
+  },
+  "capital": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "капитал"
+    ],
+    "image": ""
+  },
+  "cappuccino": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "капучино"
+    ],
+    "image": ""
+  },
+  "car": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "карета"
+    ],
+    "image": ""
+  },
+  "car park": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: car (машина) + park (парковать)."
+  },
+  "care": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "care — забота: take care — береги себя; I don’t care — мне всё равно."
+  },
+  "carrot": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "каротин"
+    ],
+    "image": ""
+  },
+  "carry": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "carry — нести, возить: carry a bag; carry on — продолжать."
+  },
+  "case": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "кейс"
+    ],
+    "image": ""
+  },
+  "casual": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "кэжуал"
+    ],
+    "image": ""
+  },
+  "cat": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "кот"
+    ],
+    "image": ""
+  },
+  "catch": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "catch a train — успеть на поезд. catch, caught, caught."
+  },
+  "cause": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "cause — вызывать; причина: cause problems — создавать проблемы."
+  },
+  "cell": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "cell — клетка, ячейка; cell phone — мобильный телефон (амер.)."
+  },
+  "cent": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "цент"
+    ],
+    "image": ""
+  },
+  "center": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "центр"
+    ],
+    "image": ""
+  },
+  "century": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "центнер"
+    ],
+    "image": ""
+  },
+  "cereal": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "cereal — хлопья на завтрак с молоком: a bowl of cereal."
+  },
+  "certain": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "certain — уверенный: I’m certain. a certain man — некий человек."
+  },
+  "certainly": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "certainly — конечно: Can you help? — Certainly! Вежливее, чем sure."
+  },
+  "chair": {
+    "kind": "keyword",
+    "phonetic": "че́э",
+    "hooks": [
+      "чердак"
+    ],
+    "image": "Старый стул стоит на чердаке."
+  },
+  "change": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "change trains — пересесть; change money — поменять деньги."
+  },
+  "cheap": {
+    "kind": "keyword",
+    "phonetic": "чи́п",
+    "hooks": [
+      "чипсы"
+    ],
+    "image": "Чипсы в магазине очень дешёвые."
+  },
+  "check": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "чекап"
+    ],
+    "image": ""
+  },
+  "cheese": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "чизкейк"
+    ],
+    "image": ""
+  },
+  "chef": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "шеф"
+    ],
+    "image": ""
+  },
+  "chicken": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "чикен-бургер"
+    ],
+    "image": ""
+  },
+  "child": {
+    "kind": "keyword",
+    "phonetic": "ча́йлд",
+    "hooks": [
+      "чайка"
+    ],
+    "image": "Ребёнок кормит чайку хлебом."
+  },
+  "children": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "child → children: особое мн. число, не childs."
+  },
+  "china": {
+    "kind": "keyword",
+    "phonetic": "ча́йна",
+    "hooks": [
+      "чай"
+    ],
+    "image": "Из Китая в мир пришёл чай."
+  },
+  "chinese": {
+    "kind": "keyword",
+    "phonetic": "чайни́з",
+    "hooks": [
+      "чайник"
+    ],
+    "image": "Китайский чайник стоит на полке."
+  },
+  "chips": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "chips — картофель фри; чипсы в пакете — crisps (UK)."
+  },
+  "chocolate": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "шоколад"
+    ],
+    "image": ""
+  },
+  "choose": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "choose — выбирать: choose, chose, chosen."
+  },
+  "church": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "church — церковь; ch читается «ч»: go to church — ходить в церковь."
+  },
+  "cinema": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "кинематограф"
+    ],
+    "image": ""
+  },
+  "city": {
+    "kind": "keyword",
+    "phonetic": "си́ти",
+    "hooks": [
+      "Сити"
+    ],
+    "image": "Небоскрёбы Москва-Сити стоят в центре города."
+  },
+  "class": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "класс"
+    ],
+    "image": ""
+  },
+  "classroom": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "класс"
+    ],
+    "image": ""
+  },
+  "clean": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "клининг"
+    ],
+    "image": ""
+  },
+  "clear": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "clear — ясный, чистый: a clear sky. Is that clear? — Понятно?"
+  },
+  "clearly": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "clearly — ясно: speak clearly. Clearly! — Очевидно!"
+  },
+  "close": {
+    "kind": "keyword",
+    "phonetic": "кло́уз",
+    "hooks": [
+      "клоун"
+    ],
+    "image": "Клоун закрывает занавес после номера."
+  },
+  "closed": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "closed — закрыт: The shop is closed."
+  },
+  "clothes": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Только мн. число: My clothes are new. Читается «клоуз»."
+  },
+  "coat": {
+    "kind": "keyword",
+    "phonetic": "ко́ут",
+    "hooks": [
+      "кот"
+    ],
+    "image": "Кот в сапогах надел тёплое пальто."
+  },
+  "coffee": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "кофе"
+    ],
+    "image": ""
+  },
+  "collect": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "коллекция"
+    ],
+    "image": ""
+  },
+  "color": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "колорит"
+    ],
+    "image": ""
+  },
+  "colour": {
+    "kind": "keyword",
+    "phonetic": "ка́лэ",
+    "hooks": [
+      "колер"
+    ],
+    "image": "Маляр подбирает нужный цвет — колер."
+  },
+  "come": {
+    "kind": "keyword",
+    "phonetic": "ка́м",
+    "hooks": [
+      "камин"
+    ],
+    "image": "К камину приятно приходить с мороза."
+  },
+  "comedy": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "комедия"
+    ],
+    "image": ""
+  },
+  "common": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "common — общий, обычный: common sense; have in common — иметь общее."
+  },
+  "community": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "коммуна"
+    ],
+    "image": ""
+  },
+  "complete": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "комплект"
+    ],
+    "image": ""
+  },
+  "computer": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "компьютер"
+    ],
+    "image": ""
+  },
+  "concern": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "concern — беспокойство: no cause for concern; concerned — обеспокоенный."
+  },
+  "concert": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "концерт"
+    ],
+    "image": ""
+  },
+  "condition": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "кондиция"
+    ],
+    "image": ""
+  },
+  "consider": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "consider — рассматривать: Consider my offer. consider + -ing."
+  },
+  "contact": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "контакт"
+    ],
+    "image": ""
+  },
+  "contain": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "contain — содержать: The bottle contains water. container — контейнер."
+  },
+  "continue": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "continue + to или -ing: continue to work — продолжать работать."
+  },
+  "contract": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "контракт"
+    ],
+    "image": ""
+  },
+  "control": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "контроль"
+    ],
+    "image": ""
+  },
+  "cook": {
+    "kind": "keyword",
+    "phonetic": "ку́к",
+    "hooks": [
+      "кок"
+    ],
+    "image": "Корабельный кок будет готовить обед."
+  },
+  "cooking": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "cook → cooking: I like cooking. Не путать: a cook — повар."
+  },
+  "corridor": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "коридор"
+    ],
+    "image": ""
+  },
+  "cotton": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "котон"
+    ],
+    "image": ""
+  },
+  "could": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "could — мог: I could swim at five. Could you help me? — вежливая просьба."
+  },
+  "country": {
+    "kind": "keyword",
+    "phonetic": "ка́нтри",
+    "hooks": [
+      "кантри"
+    ],
+    "image": "Любимая песня в стиле кантри звучит по всей стране."
+  },
+  "couple": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "куплет"
+    ],
+    "image": ""
+  },
+  "court": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "корт"
+    ],
+    "image": ""
+  },
+  "cousin": {
+    "kind": "keyword",
+    "phonetic": "ка́зн",
+    "hooks": [
+      "казна"
+    ],
+    "image": "Мой двоюродный брат служит в казне."
+  },
+  "cover": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "cover — покрывать: cover the pot — накрыть кастрюлю; a book cover — обложка."
+  },
+  "cow": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ковбой"
+    ],
+    "image": ""
+  },
+  "create": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "креатив"
+    ],
+    "image": ""
+  },
+  "cucumber": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "cucumber — огурец: a cucumber salad — салат из огурцов."
+  },
+  "culture": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "культура"
+    ],
+    "image": ""
+  },
+  "cup": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "кубок"
+    ],
+    "image": ""
+  },
+  "current": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "current — текущий; электрический ток: current news — последние новости."
+  },
+  "cut": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "каттер"
+    ],
+    "image": ""
+  },
+  "dad": {
+    "kind": "keyword",
+    "phonetic": "дэ́д",
+    "hooks": [
+      "да-да"
+    ],
+    "image": "Малыш говорит «да-да» и тянется к папе."
+  },
+  "dance": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "дансинг"
+    ],
+    "image": ""
+  },
+  "dancer": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "dance + er: танцор. She is a good dancer."
+  },
+  "dark": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "даркнет"
+    ],
+    "image": ""
+  },
+  "date": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "дата"
+    ],
+    "image": ""
+  },
+  "daughter": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "дочь"
+    ],
+    "image": ""
+  },
+  "day": {
+    "kind": "keyword",
+    "phonetic": "дэ́й",
+    "hooks": [
+      "дай"
+    ],
+    "image": "Дай мне один день на отдых."
+  },
+  "deal": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "deal with — справляться с: deal with problems. a good deal — выгодная сделка."
+  },
+  "death": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "death — смерть; die — умирать; dead — мёртвый."
+  },
+  "december": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "декабрь"
+    ],
+    "image": ""
+  },
+  "decide": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "decide to + глагол: I decide to stay."
+  },
+  "deep": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "дипфейк"
+    ],
+    "image": ""
+  },
+  "delay": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "The flight is delayed — рейс задерживают. A delay — задержка."
+  },
+  "demand": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "demand — требовать: demand an answer; in demand — востребован."
+  },
+  "depend": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "depend on — зависеть от: It depends on you. It depends. — Смотря как."
+  },
+  "describe": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "describe — описывать: describe a person. description — описание."
+  },
+  "design": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "дизайн"
+    ],
+    "image": ""
+  },
+  "despite": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "despite — несмотря на, без of: despite the rain. in spite of — с of."
+  },
+  "detail": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "деталь"
+    ],
+    "image": ""
+  },
+  "determine": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "determine — определять: determine the cause. determined — решительный."
+  },
+  "development": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "development — развитие: develop + ment. new developments — новые события."
+  },
+  "difference": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "difference — разница: What’s the difference? make a difference."
+  },
+  "different": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "дифференциация"
+    ],
+    "image": ""
+  },
+  "difficult": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "difficult ≠ easy: The test was difficult, but I passed."
+  },
+  "dinner": {
+    "kind": "keyword",
+    "phonetic": "ди́нэ",
+    "hooks": [
+      "динозавр"
+    ],
+    "image": "Динозавр пришёл к нам на ужин."
+  },
+  "direct": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "директ"
+    ],
+    "image": ""
+  },
+  "director": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "директор"
+    ],
+    "image": ""
+  },
+  "dirty": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "dirty — грязный: dirty hands, a dirty cup."
+  },
+  "discuss": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "discuss — обсуждать, без about: discuss the plan."
+  },
+  "discussion": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "дискуссия"
+    ],
+    "image": ""
+  },
+  "do": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "do my homework — делать уроки; Do you like tea? — вопрос."
+  },
+  "doctor": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "доктор"
+    ],
+    "image": ""
+  },
+  "dog": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "дог"
+    ],
+    "image": ""
+  },
+  "door": {
+    "kind": "keyword",
+    "phonetic": "до́о",
+    "hooks": [
+      "дорога"
+    ],
+    "image": "Дверь выходит прямо на дорогу."
+  },
+  "down": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "down — вниз: sit down, go down the stairs. Противоположность — up."
+  },
+  "drama": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "драма"
+    ],
+    "image": ""
+  },
+  "draw": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "draw — карандашом, paint — красками: I can draw a cat."
+  },
+  "dress": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "дресс-код"
+    ],
+    "image": ""
+  },
+  "drink": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Это и «напиток», и «пить»: a drink, to drink."
+  },
+  "drive": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "драйв"
+    ],
+    "image": ""
+  },
+  "driver": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "драйвер"
+    ],
+    "image": ""
+  },
+  "drop": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "drop — ронять, падать; a drop of water — капля воды; drop in — заглянуть."
+  },
+  "drug": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "drug — лекарство или наркотик: a drugstore — аптека (амер.)."
+  },
+  "duck": {
+    "kind": "keyword",
+    "phonetic": "да́к",
+    "hooks": [
+      "Дак"
+    ],
+    "image": "Дональд Дак — самая известная мультяшная утка."
+  },
+  "due": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "due to — из-за; due on Monday — срок в понедельник."
+  },
+  "during": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "during — во время + сущ.: during the lesson. while — + предложение."
+  },
+  "each": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "each — каждый по отдельности: each student, each of us."
+  },
+  "early": {
+    "kind": "keyword",
+    "phonetic": "ё́рли",
+    "hooks": [
+      "орёл"
+    ],
+    "image": "Рано утром над полем летит орёл."
+  },
+  "easy": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "изи"
+    ],
+    "image": ""
+  },
+  "eat": {
+    "kind": "keyword",
+    "phonetic": "и́т",
+    "hooks": [
+      "итого"
+    ],
+    "image": "Итого: нам нужно есть три раза в день."
+  },
+  "economic": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "экономический"
+    ],
+    "image": ""
+  },
+  "economy": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "экономика"
+    ],
+    "image": ""
+  },
+  "effect": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "эффект"
+    ],
+    "image": ""
+  },
+  "effort": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "effort — усилие: make an effort — постараться; without effort — без усилий."
+  },
+  "egg": {
+    "kind": "keyword",
+    "phonetic": "э́г",
+    "hooks": [
+      "эгоист"
+    ],
+    "image": "Эгоист разбил последнее яйцо."
+  },
+  "eight": {
+    "kind": "keyword",
+    "phonetic": "э́йт",
+    "hooks": [
+      "Эйфель"
+    ],
+    "image": "Возле Эйфелевой башни стоят восемь машин."
+  },
+  "either": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "either … or — или … или: either tea or coffee. not … either — тоже не."
+  },
+  "elephant": {
+    "kind": "keyword",
+    "phonetic": "э́лифант",
+    "hooks": [
+      "фанта"
+    ],
+    "image": "Слон выпил целую бочку фанты."
+  },
+  "eleven": {
+    "kind": "keyword",
+    "phonetic": "иле́вн",
+    "hooks": [
+      "Лёва"
+    ],
+    "image": "Лёва выпил одиннадцать стаканов сока."
+  },
+  "else": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "else — ещё, другой: Anything else? — Что-нибудь ещё? someone else — кто-то другой."
+  },
+  "employee": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "employee — работник по найму; employer — работодатель; employ — нанимать."
+  },
+  "empty": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "empty — пустой: an empty box, an empty bottle."
+  },
+  "end": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "end — конец: the end of the film; at the end of — в конце."
+  },
+  "engineer": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "инженер"
+    ],
+    "image": ""
+  },
+  "england": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Англия"
+    ],
+    "image": ""
+  },
+  "enter": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "enter — входить, без in: enter the room. entrance — вход."
+  },
+  "envelope": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "envelope — конверт: Put the letter in the envelope."
+  },
+  "especially": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "especially — особенно: I love fruit, especially apples."
+  },
+  "establish": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "establish — основывать: establish a company; established — давно известный."
+  },
+  "even": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "even — даже: Even my dog knows it. even number — чётное число."
+  },
+  "evening": {
+    "kind": "keyword",
+    "phonetic": "и́внин",
+    "hooks": [
+      "Ева"
+    ],
+    "image": "Вечером Ева идёт гулять."
+  },
+  "every": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "every day — каждый день; every + ед. число: every student is here."
+  },
+  "every day": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "every day — каждый день: I read every day."
+  },
+  "everyone": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "everyone — все: Everyone is here. Глагол в ед. числе, как everybody."
+  },
+  "everything": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "everything — всё: Everything is OK. Сказуемое в ед. числе."
+  },
+  "exactly": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "exactly — точно: Exactly! — Именно так! exact — точный."
+  },
+  "example": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "for example — например: for example, I like tea."
+  },
+  "excuse me": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так привлекают внимание: Excuse me, where is the bank?"
+  },
+  "exist": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "exist — существовать: Do dragons exist? Не «экзистенциализм»."
+  },
+  "expensive": {
+    "kind": "keyword",
+    "phonetic": "икспэ́нсив",
+    "hooks": [
+      "экспонат"
+    ],
+    "image": "Этот музейный экспонат очень дорогой."
+  },
+  "explain": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "explain the rule to me — объяснить правило мне."
+  },
+  "fact": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "факт"
+    ],
+    "image": ""
+  },
+  "factor": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фактор"
+    ],
+    "image": ""
+  },
+  "factory": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фабрика"
+    ],
+    "image": ""
+  },
+  "fall": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "fall — падать: Leaves fall in autumn. fall, fell, fallen."
+  },
+  "false": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фальшь"
+    ],
+    "image": ""
+  },
+  "family": {
+    "kind": "keyword",
+    "phonetic": "фэ́мили",
+    "hooks": [
+      "фамилия"
+    ],
+    "image": "У всей семьи одна общая фамилия."
+  },
+  "far": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "far — далеко: far from here. How far? — Как далеко?"
+  },
+  "farm": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ферма"
+    ],
+    "image": ""
+  },
+  "fashionable": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фэшн"
+    ],
+    "image": ""
+  },
+  "fast": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фастфуд"
+    ],
+    "image": ""
+  },
+  "father": {
+    "kind": "keyword",
+    "phonetic": "фа́зэ",
+    "hooks": [
+      "фазенда"
+    ],
+    "image": "Папа построил фазенду для всей семьи."
+  },
+  "fear": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "fear — страх: fear of heights. afraid — боящийся."
+  },
+  "feature": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "feature — особенность: main feature; a feature film — художественный фильм."
+  },
+  "february": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "февраль"
+    ],
+    "image": ""
+  },
+  "feel": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "feel + прилагательное: I feel happy. feel, felt."
+  },
+  "few": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a few — несколько: a few friends. few без a — «мало»."
+  },
+  "field": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "field — поле: a football field; a field of study — область знаний."
+  },
+  "fifty": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "fif-ty: «пять десятков». Не путать с fifteen — 15."
+  },
+  "fight": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "fight — драться, бороться: fight, fought, fought."
+  },
+  "figure": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "figure — цифра, фигура: a figure of ten; figure out — разобраться."
+  },
+  "film": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фильм"
+    ],
+    "image": ""
+  },
+  "film star": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: film (фильм) + star (звезда)."
+  },
+  "final": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "финал"
+    ],
+    "image": ""
+  },
+  "financial": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "финансовый"
+    ],
+    "image": ""
+  },
+  "find": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "find — находить: I can’t find my keys. find, found, found."
+  },
+  "finger": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "finger — палец руки; toe — палец ноги; thumb — большой палец."
+  },
+  "finish": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "финиш"
+    ],
+    "image": ""
+  },
+  "firm": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фирма"
+    ],
+    "image": ""
+  },
+  "first": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "first — первый: first, second, third."
+  },
+  "first name": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "first name — имя (Anna); surname — фамилия (Brown). What’s your first name?"
+  },
+  "fish": {
+    "kind": "keyword",
+    "phonetic": "фи́ш",
+    "hooks": [
+      "фишка"
+    ],
+    "image": "Рыба — его фирменная фишка."
+  },
+  "five": {
+    "kind": "keyword",
+    "phonetic": "фа́йв",
+    "hooks": [
+      "файл"
+    ],
+    "image": "На флешке лежит пять файлов."
+  },
+  "flight": {
+    "kind": "keyword",
+    "phonetic": "фла́йт",
+    "hooks": [
+      "флаер"
+    ],
+    "image": "Флаер с расписанием рейсов лежит на столе."
+  },
+  "flower": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "флора"
+    ],
+    "image": ""
+  },
+  "food": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фудкорт"
+    ],
+    "image": ""
+  },
+  "foot": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фут"
+    ],
+    "image": ""
+  },
+  "football": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "футбол"
+    ],
+    "image": ""
+  },
+  "force": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "форсировать"
+    ],
+    "image": ""
+  },
+  "foreign": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "foreign — иностранный: a foreign language; a foreigner — иностранец."
+  },
+  "forget": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "forget — забыть: Don’t forget your keys. forget, forgot."
+  },
+  "fork": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a knife and a fork — нож и вилка, всегда парой."
+  },
+  "form": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Заполняют form: fill in the form — заполнить бланк."
+  },
+  "former": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "former — бывший: my former boss. the former — первый из двух названных."
+  },
+  "forty": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "В forty нет буквы u, хотя в four она есть."
+  },
+  "forward": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "forward — вперёд: look forward to — ждать с нетерпением."
+  },
+  "four": {
+    "kind": "keyword",
+    "phonetic": "фо́",
+    "hooks": [
+      "фора"
+    ],
+    "image": "Шахматисту дали фору в четыре пешки."
+  },
+  "fox": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фокстерьер"
+    ],
+    "image": ""
+  },
+  "france": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Франция"
+    ],
+    "image": ""
+  },
+  "free": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "free — свободный, бесплатный: free time; free of charge — бесплатно."
+  },
+  "free time": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: free + time, «свободное время»."
+  },
+  "french": {
+    "kind": "keyword",
+    "phonetic": "фре́нч",
+    "hooks": [
+      "френч"
+    ],
+    "image": "Французский художник носит зелёный френч."
+  },
+  "friday": {
+    "kind": "keyword",
+    "phonetic": "фра́йдэй",
+    "hooks": [
+      "фрак"
+    ],
+    "image": "В пятницу он надел фрак на концерт."
+  },
+  "friend": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "френд"
+    ],
+    "image": ""
+  },
+  "frog": {
+    "kind": "keyword",
+    "phonetic": "фро́г",
+    "hooks": [
+      "фрак"
+    ],
+    "image": "Лягушка в чёрном фраке сидит на кувшинке."
+  },
+  "from": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Откуда родом: I’m from Russia."
+  },
+  "front": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фронт"
+    ],
+    "image": ""
+  },
+  "fruit": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фрукт"
+    ],
+    "image": ""
+  },
+  "full": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фултайм"
+    ],
+    "image": ""
+  },
+  "fun": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Have fun! — Весёлого отдыха! It’s fun — это весело."
+  },
+  "function": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "функция"
+    ],
+    "image": ""
+  },
+  "fund": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фонд"
+    ],
+    "image": ""
+  },
+  "further": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "further — дальше: further information — дополнительные сведения."
+  },
+  "gain": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "gain — получать, набирать: gain weight — набрать вес; gain experience."
+  },
+  "game": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "геймер"
+    ],
+    "image": ""
+  },
+  "garlic": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "garlic — чеснок: garlic bread — хлеб с чесноком."
+  },
+  "gate": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "гейт"
+    ],
+    "image": ""
+  },
+  "general": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "генеральный"
+    ],
+    "image": ""
+  },
+  "german": {
+    "kind": "keyword",
+    "phonetic": "дже́рмэн",
+    "hooks": [
+      "Герман"
+    ],
+    "image": "Друг Герман любит немецкое пиво."
+  },
+  "germany": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Германия"
+    ],
+    "image": ""
+  },
+  "get": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "get — очень частый: get a letter — получить, get home — добраться."
+  },
+  "get dressed": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "get dressed — одеваться: I get dressed in five minutes."
+  },
+  "get up": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "get up at seven — вставать в семь."
+  },
+  "gift": {
+    "kind": "keyword",
+    "phonetic": "ги́фт",
+    "hooks": [
+      "гиря"
+    ],
+    "image": "Ему на день рождения вручили подарок — гирю."
+  },
+  "girl": {
+    "kind": "keyword",
+    "phonetic": "гё́рл",
+    "hooks": [
+      "горло"
+    ],
+    "image": "У девочки болит горло."
+  },
+  "girlfriend": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: girl + friend, «девушка-подруга»."
+  },
+  "give": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "give + кому + что: Give me the key. give, gave, given."
+  },
+  "glass": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a glass of water — стакан воды; glass — ещё «стекло»."
+  },
+  "glasses": {
+    "kind": "keyword",
+    "phonetic": "гла́сиз",
+    "hooks": [
+      "глаз"
+    ],
+    "image": "Очки защищают глаз от яркого солнца."
+  },
+  "go": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "го"
+    ],
+    "image": ""
+  },
+  "go to bed": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "go to bed at ten — ложиться спать в десять."
+  },
+  "good": {
+    "kind": "keyword",
+    "phonetic": "гу́д",
+    "hooks": [
+      "гудок"
+    ],
+    "image": "Хороший гудок поезда слышен издалека."
+  },
+  "good at": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "good at + -ing: I’m good at drawing. Предлог at, не in."
+  },
+  "goodbye": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так прощаются, когда расходятся надолго."
+  },
+  "grandfather": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: grand + father, «большой отец»."
+  },
+  "grandmother": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: grand + mother, «большая мать»."
+  },
+  "grape": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "grape — виноград; grapefruit — грейпфрут. a bunch of grapes — гроздь винограда."
+  },
+  "great": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "great — отличный: Great idea! Great Britain — Великобритания."
+  },
+  "green": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Гринпис"
+    ],
+    "image": ""
+  },
+  "grey": {
+    "kind": "keyword",
+    "phonetic": "грэ́й",
+    "hooks": [
+      "грей"
+    ],
+    "image": "Чай «Эрл Грей» отливает серым цветом."
+  },
+  "ground": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "ground — земля, пол: on the ground; the ground floor — первый этаж (брит.)."
+  },
+  "group": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "группа"
+    ],
+    "image": ""
+  },
+  "grow": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "grow — расти: Flowers grow. grow, grew, grown."
+  },
+  "growth": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "growth — рост: economic growth. grow — расти."
+  },
+  "guest": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "гость"
+    ],
+    "image": ""
+  },
+  "guitar": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "гитара"
+    ],
+    "image": ""
+  },
+  "guy": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "guy — парень (разг.): a nice guy; you guys — вы, ребята."
+  },
+  "gym": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "гимнастика"
+    ],
+    "image": ""
+  },
+  "half": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "half — половина: half an hour — полчаса; half past two — полтретьего."
+  },
+  "hand": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "хендмейд"
+    ],
+    "image": ""
+  },
+  "happen": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "happen — происходить: What happened? happen to — случиться с."
+  },
+  "happy": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "хэппи-энд"
+    ],
+    "image": ""
+  },
+  "hard": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "hard — трудный, твёрдый: a hard test. hardly — едва, а не «сильно»."
+  },
+  "hat": {
+    "kind": "keyword",
+    "phonetic": "хэ́т",
+    "hooks": [
+      "хата"
+    ],
+    "image": "Дед в шляпе вошёл в хату."
+  },
+  "hate": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "хейтер"
+    ],
+    "image": ""
+  },
+  "hate doing": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "hate + глагол-ing: I hate waiting."
+  },
+  "have": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "have + вещь: I have a car — у меня есть машина."
+  },
+  "have a bath": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "have a bath — принять ванну, а не take."
+  },
+  "have a shower": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "have a shower — принять душ, а не take: I have a shower at seven."
+  },
+  "he": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "О мужчине и мальчике: He is a doctor."
+  },
+  "head": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "хедхантер"
+    ],
+    "image": ""
+  },
+  "headphones": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "headphones — наушники, всегда во мн. числе: These are my headphones."
+  },
+  "hear": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "hear — слышать, listen to — слушать: I hear music."
+  },
+  "heart": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "heart — сердце: I love you with all my heart. a heart attack — инфаркт."
+  },
+  "heavy": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "хэви-метал"
+    ],
+    "image": ""
+  },
+  "hello": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так здороваются при встрече в любое время дня."
+  },
+  "help": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Просьба о помощи: Help! Can you help me?"
+  },
+  "her": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Хозяйка — женщина: her bag — её сумка."
+  },
+  "here": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "here — здесь: Come here! Here you are — пожалуйста, держите."
+  },
+  "hi": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Короткое «привет» для друзей и знакомых."
+  },
+  "high": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "хайтек"
+    ],
+    "image": ""
+  },
+  "hill": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "холм"
+    ],
+    "image": ""
+  },
+  "himself": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "himself — себя, сам: He cut himself. He did it himself — он сам."
+  },
+  "his": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Хозяин — мужчина: his bag — его сумка."
+  },
+  "history": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "история"
+    ],
+    "image": ""
+  },
+  "hit": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "хит"
+    ],
+    "image": ""
+  },
+  "hobby": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "хобби"
+    ],
+    "image": ""
+  },
+  "hold": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "холдинг"
+    ],
+    "image": ""
+  },
+  "holiday": {
+    "kind": "keyword",
+    "phonetic": "хо́лидэй",
+    "hooks": [
+      "холить"
+    ],
+    "image": "Хочу холить и нежить себя в отпуске."
+  },
+  "home": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "at home — дома; go home — домой, без to."
+  },
+  "honey": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "honey — мёд, и обращение «милый»: Hi, honey!"
+  },
+  "hoodie": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "худи"
+    ],
+    "image": ""
+  },
+  "horror film": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "хоррор"
+    ],
+    "image": ""
+  },
+  "horse": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "horse — лошадь: ride a horse. Мн. число: horses."
+  },
+  "hospital": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "госпиталь"
+    ],
+    "image": ""
+  },
+  "host": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "хостес"
+    ],
+    "image": ""
+  },
+  "hotel": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "отель"
+    ],
+    "image": ""
+  },
+  "hotel room": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: hotel + room — комната в отеле."
+  },
+  "hour": {
+    "kind": "keyword",
+    "phonetic": "а́уэ",
+    "hooks": [
+      "аукать"
+    ],
+    "image": "Целый час он аукает в лесу."
+  },
+  "how": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Вопрос «как»: How are you?"
+  },
+  "how are you": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Ответ: Fine, thanks. And you?"
+  },
+  "how much": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так спрашивают цену: How much is it?"
+  },
+  "how was your day": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так спрашивают вечером: How was your day? — Fine, thanks."
+  },
+  "human": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "гуманоид"
+    ],
+    "image": ""
+  },
+  "hundred": {
+    "kind": "keyword",
+    "phonetic": "ха́ндрэд",
+    "hooks": [
+      "хандра"
+    ],
+    "image": "Сто раз на него накатывала хандра."
+  },
+  "hungry": {
+    "kind": "keyword",
+    "phonetic": "ха́нгри",
+    "hooks": [
+      "Венгрия"
+    ],
+    "image": "Голодный турист в Венгрии ищет гуляш."
+  },
+  "hurt": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "My head hurts — у меня болит голова. hurt, hurt, hurt."
+  },
+  "husband": {
+    "kind": "keyword",
+    "phonetic": "ха́збэнд",
+    "hooks": [
+      "хозяин"
+    ],
+    "image": "Муж — хозяин дома."
+  },
+  "i": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Всегда с большой буквы: I am a student."
+  },
+  "ice cream": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: ice (лёд) + cream (крем)."
+  },
+  "idea": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "идея"
+    ],
+    "image": ""
+  },
+  "if": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "if — если: If it rains, I stay home. После if не ставят will."
+  },
+  "image": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "имидж"
+    ],
+    "image": ""
+  },
+  "important": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "important — важный: an important meeting."
+  },
+  "impossible": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "im + possible: невозможный. Mission impossible!"
+  },
+  "in": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "in — внутри: in the room, in Moscow."
+  },
+  "in front of": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "in front of — спереди: The taxi is in front of the hotel."
+  },
+  "in the morning": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Утром — с in: in the morning."
+  },
+  "include": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "инклюзивный"
+    ],
+    "image": ""
+  },
+  "indeed": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "indeed — действительно: Thank you very much indeed! Very good indeed."
+  },
+  "individual": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "индивид"
+    ],
+    "image": ""
+  },
+  "influence": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "инфлюэнсер"
+    ],
+    "image": ""
+  },
+  "information": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "информация"
+    ],
+    "image": ""
+  },
+  "inside": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "inside — внутри: inside the box; go inside — зайти внутрь."
+  },
+  "instead": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "instead — вместо этого: No tea, coffee instead. instead of tea — вместо чая."
+  },
+  "interesting": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "интересный"
+    ],
+    "image": ""
+  },
+  "international": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "интернациональный"
+    ],
+    "image": ""
+  },
+  "internet": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "интернет"
+    ],
+    "image": ""
+  },
+  "into": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "into — внутрь, с движением: go into the room. in — внутри, без движения."
+  },
+  "introduce": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "introduce — знакомить: Let me introduce my wife — познакомьтесь с моей женой."
+  },
+  "involve": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "involve — вовлекать: involved in — вовлечён в; The job involves travel."
+  },
+  "irregular verb": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "irregular verb — своя форма, без -ed: go → went → gone."
+  },
+  "island": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "s не читается: island = «а́йленд». A small island."
+  },
+  "it": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "О предмете или животном: It is a book."
+  },
+  "italian": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "итальянский"
+    ],
+    "image": ""
+  },
+  "italy": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Италия"
+    ],
+    "image": ""
+  },
+  "item": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "item — предмет в списке: an item on the list; a news item — новость."
+  },
+  "its": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "О предмете, без апострофа: its name — его название."
+  },
+  "itself": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "itself — само: The cat washed itself. by itself — само по себе."
+  },
+  "jacket": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "жакет"
+    ],
+    "image": ""
+  },
+  "january": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "январь"
+    ],
+    "image": ""
+  },
+  "japan": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Япония"
+    ],
+    "image": ""
+  },
+  "japanese": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "японский"
+    ],
+    "image": ""
+  },
+  "jeans": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "джинсы"
+    ],
+    "image": ""
+  },
+  "job": {
+    "kind": "keyword",
+    "phonetic": "джо́б",
+    "hooks": [
+      "Джобс"
+    ],
+    "image": "Стив Джобс нашёл работу своей мечты."
+  },
+  "journalist": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "журналист"
+    ],
+    "image": ""
+  },
+  "juice": {
+    "kind": "keyword",
+    "phonetic": "джу́с",
+    "hooks": [
+      "ужас"
+    ],
+    "image": "Какой ужас, в холодильнике нет сока!"
+  },
+  "july": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "июль"
+    ],
+    "image": ""
+  },
+  "jump": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бейс-джампинг"
+    ],
+    "image": ""
+  },
+  "june": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "июнь"
+    ],
+    "image": ""
+  },
+  "keep": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "голкипер"
+    ],
+    "image": ""
+  },
+  "key": {
+    "kind": "keyword",
+    "phonetic": "ки́",
+    "hooks": [
+      "кит"
+    ],
+    "image": "Кит случайно проглотил золотой ключ."
+  },
+  "key card": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "key + card: ключ-карта. Приложи key card к двери."
+  },
+  "kid": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "kid — ребёнок (разг.): How many kids? I’m just kidding — я шучу."
+  },
+  "kill": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "kill — убивать: kill time — убивать время. kill + объект."
+  },
+  "kitchen": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "I cook in the kitchen. Читается «ки́чин»."
+  },
+  "knife": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "k не читается: knife = «найф». A knife and a fork."
+  },
+  "know": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "k не читается: know = «ноу». I know him."
+  },
+  "knowledge": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "knowledge — знание, не во мн. числе: a lot of knowledge. know — знать."
+  },
+  "lack": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "lack — нехватка: lack of time — нехватка времени."
+  },
+  "land": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "диснейленд"
+    ],
+    "image": ""
+  },
+  "language": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "лингвист"
+    ],
+    "image": ""
+  },
+  "laptop": {
+    "kind": "keyword",
+    "phonetic": "ла́птоп",
+    "hooks": [
+      "лапа"
+    ],
+    "image": "Кот топает лапой по ноутбуку."
+  },
+  "large": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "large — большой, формально: a large size; на одежде L — large."
+  },
+  "last": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "last — последний: the last bus; last night."
+  },
+  "last night": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Без предлога: I slept well last night."
+  },
+  "last week": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Без предлога: We met last week."
+  },
+  "late": {
+    "kind": "keyword",
+    "phonetic": "лэ́йт",
+    "hooks": [
+      "лейтенант"
+    ],
+    "image": "Лейтенант пришёл слишком поздно."
+  },
+  "laugh": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "laugh — смеяться; gh читается «ф»: «лаф». a laugh — смех."
+  },
+  "lawyer": {
+    "kind": "keyword",
+    "phonetic": "ло́йэ",
+    "hooks": [
+      "лай"
+    ],
+    "image": "В суде слышен лай — это юрист спорит."
+  },
+  "lead": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "lead — вести: lead, led, led. leader — лидер."
+  },
+  "leader": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "лидер"
+    ],
+    "image": ""
+  },
+  "learn": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "learn — учить(ся): I learn English. learn, learnt."
+  },
+  "least": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "least — наименее: at least — по крайней мере; the least — меньше всего."
+  },
+  "leather": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "leather — кожа как материал: a leather bag. Кожа тела — skin."
+  },
+  "leave": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "leave the room — выйти из комнаты. leave, left."
+  },
+  "leg": {
+    "kind": "keyword",
+    "phonetic": "лэ́г",
+    "hooks": [
+      "Лего"
+    ],
+    "image": "У фигурки из Лего оторвалась нога."
+  },
+  "lemon": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "лимон"
+    ],
+    "image": ""
+  },
+  "less": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "less — меньше: less sugar. Противоположность — more."
+  },
+  "let": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Let me help you — дай я помогу. let, let, let."
+  },
+  "letter": {
+    "kind": "keyword",
+    "phonetic": "ле́тэ",
+    "hooks": [
+      "лето"
+    ],
+    "image": "Летом он получил письмо с одной буквой."
+  },
+  "library": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "library — библиотека, не книжный магазин (bookshop)."
+  },
+  "lie": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "lie — лежать (lie, lay, lain) и лгать (lie, lied, lied): два разных глагола."
+  },
+  "life": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "лайфхак"
+    ],
+    "image": ""
+  },
+  "light": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "лайт"
+    ],
+    "image": ""
+  },
+  "like": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "лайк"
+    ],
+    "image": ""
+  },
+  "like doing": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "like + глагол-ing: I like cooking."
+  },
+  "likely": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "likely — вероятный: It’s likely to rain. unlikely — маловероятно."
+  },
+  "limit": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "лимит"
+    ],
+    "image": ""
+  },
+  "line": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "линия"
+    ],
+    "image": ""
+  },
+  "link": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "линк"
+    ],
+    "image": ""
+  },
+  "lion": {
+    "kind": "keyword",
+    "phonetic": "ла́йон",
+    "hooks": [
+      "лайка"
+    ],
+    "image": "Лайка залаяла: из клетки выглянул лев."
+  },
+  "list": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "list — список: a shopping list; make a list."
+  },
+  "listen": {
+    "kind": "keyword",
+    "phonetic": "ли́сн",
+    "hooks": [
+      "лисёнок"
+    ],
+    "image": "Лисёнок слушает шорох в траве."
+  },
+  "listen to": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "listen to + что: listen to music."
+  },
+  "little": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "little — маленький; a little — немного: a little milk — немного молока."
+  },
+  "live": {
+    "kind": "keyword",
+    "phonetic": "ли́в",
+    "hooks": [
+      "ливень"
+    ],
+    "image": "Приятно жить там, где летом ливень."
+  },
+  "local": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "локальный"
+    ],
+    "image": ""
+  },
+  "long": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "long — длинный: a long road. Противоположное — short."
+  },
+  "look": {
+    "kind": "keyword",
+    "phonetic": "лу́к",
+    "hooks": [
+      "лук"
+    ],
+    "image": "Он любит смотреть на лук в корзине."
+  },
+  "look at": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "look at + что: Look at this photo!"
+  },
+  "loose": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "loose — свободный: a loose shirt. Противоположное — tight."
+  },
+  "lose": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "лузер"
+    ],
+    "image": ""
+  },
+  "lot": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a lot of — много: a lot of water, a lot of friends. I like it a lot."
+  },
+  "love": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "лав-стори"
+    ],
+    "image": ""
+  },
+  "love doing": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "love + глагол-ing: I love dancing — обожаю танцевать."
+  },
+  "low": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "лоукост"
+    ],
+    "image": ""
+  },
+  "lunch": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ланч"
+    ],
+    "image": ""
+  },
+  "machine": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "машина"
+    ],
+    "image": ""
+  },
+  "main": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "main — главный: the main road; the main course — основное блюдо."
+  },
+  "major": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "major — главный, крупный: a major road. Ещё — майор и мажор в музыке."
+  },
+  "make": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "мейкап"
+    ],
+    "image": ""
+  },
+  "man": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "бизнесмен"
+    ],
+    "image": ""
+  },
+  "management": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "менеджмент"
+    ],
+    "image": ""
+  },
+  "manager": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "менеджер"
+    ],
+    "image": ""
+  },
+  "map": {
+    "kind": "keyword",
+    "phonetic": "мэ́п",
+    "hooks": [
+      "мопс"
+    ],
+    "image": "Мопс сидит на разложенной карте."
+  },
+  "march": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "март"
+    ],
+    "image": ""
+  },
+  "married": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "I’m married — я женат/замужем. get married — пожениться."
+  },
+  "marry": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "marry — жениться: Marry me! get married — пожениться, без with."
+  },
+  "material": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "материал"
+    ],
+    "image": ""
+  },
+  "matter": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "matter — дело: What’s the matter? It doesn’t matter — неважно."
+  },
+  "may": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "май"
+    ],
+    "image": ""
+  },
+  "meal": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Завтрак, обед и ужин — всё это meals."
+  },
+  "mean": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "What does it mean? — Что это значит? mean, meant, meant."
+  },
+  "meat": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "митбол"
+    ],
+    "image": ""
+  },
+  "medium": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "medium — средний: размер M — medium; social media — соцсети (мн. от medium)."
+  },
+  "meet": {
+    "kind": "keyword",
+    "phonetic": "ми́т",
+    "hooks": [
+      "митинг"
+    ],
+    "image": "На митинге мы будем встречать знакомых."
+  },
+  "member": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "member — член клуба: a member of the group."
+  },
+  "mention": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "mention — упомянуть: Don’t mention it — не за что."
+  },
+  "message": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "мессенджер"
+    ],
+    "image": ""
+  },
+  "method": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "метод"
+    ],
+    "image": ""
+  },
+  "mexico": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Мексика"
+    ],
+    "image": ""
+  },
+  "mile": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "миля"
+    ],
+    "image": ""
+  },
+  "military": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "милитари"
+    ],
+    "image": ""
+  },
+  "milk": {
+    "kind": "keyword",
+    "phonetic": "ми́лк",
+    "hooks": [
+      "Милка"
+    ],
+    "image": "Шоколад «Милка» сделан с молоком."
+  },
+  "mind": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "mind — ум; Do you mind? — Вы не против? Never mind — ничего страшного."
+  },
+  "minute": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "минута"
+    ],
+    "image": ""
+  },
+  "miss": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "miss the train — опоздать на поезд; I miss you — скучаю по тебе."
+  },
+  "mistake": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "make a mistake — сделать ошибку, а не do."
+  },
+  "mix": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "микс"
+    ],
+    "image": ""
+  },
+  "model": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "модель"
+    ],
+    "image": ""
+  },
+  "moment": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "момент"
+    ],
+    "image": ""
+  },
+  "monday": {
+    "kind": "keyword",
+    "phonetic": "ма́ндэй",
+    "hooks": [
+      "мандарин"
+    ],
+    "image": "В понедельник мама купила мандарины."
+  },
+  "monkey": {
+    "kind": "keyword",
+    "phonetic": "ма́нки",
+    "hooks": [
+      "манка"
+    ],
+    "image": "Обезьяна украла у повара кастрюлю манной каши."
+  },
+  "month": {
+    "kind": "keyword",
+    "phonetic": "ма́нс",
+    "hooks": [
+      "мансарда"
+    ],
+    "image": "Месяц светит в окно мансарды."
+  },
+  "more": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "more — больше: more water. Длинные прилагательные: more beautiful."
+  },
+  "morning": {
+    "kind": "keyword",
+    "phonetic": "мо́нин",
+    "hooks": [
+      "мороз"
+    ],
+    "image": "Утром на улице был мороз."
+  },
+  "most": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "most — самый, большинство: the most popular; most people — большинство людей."
+  },
+  "mother": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "мать"
+    ],
+    "image": ""
+  },
+  "move": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "move to + город: We move to London."
+  },
+  "movie": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "movie — фильм (амер.): watch a movie. Брит. вариант — film."
+  },
+  "mr": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Mr Brown — господин Браун; ставят только перед фамилией, не перед именем."
+  },
+  "mrs": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Mrs Brown — госпожа Браун, замужняя женщина; ставят перед фамилией."
+  },
+  "ms": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Ms Brown — госпожа Браун, без уточнения, замужем она или нет."
+  },
+  "mum": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "мама"
+    ],
+    "image": ""
+  },
+  "mushroom": {
+    "kind": "keyword",
+    "phonetic": "ма́шрум",
+    "hooks": [
+      "Маша"
+    ],
+    "image": "Маша несёт из леса полную корзину грибов."
+  },
+  "music": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "музыка"
+    ],
+    "image": ""
+  },
+  "must": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "must — должен: I must go. Без -s: he must, she must."
+  },
+  "my": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Стоит перед словом: my book — моя книга."
+  },
+  "myself": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "myself — себя, сам: I did it myself. by myself — один, сам."
+  },
+  "name": {
+    "kind": "keyword",
+    "phonetic": "нэ́йм",
+    "hooks": [
+      "немой"
+    ],
+    "image": "Немой человек не может назвать своё имя."
+  },
+  "nation": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "нация"
+    ],
+    "image": ""
+  },
+  "national": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "национальный"
+    ],
+    "image": ""
+  },
+  "nationality": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "национальность"
+    ],
+    "image": ""
+  },
+  "nature": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "натуральный"
+    ],
+    "image": ""
+  },
+  "near": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "near — близко: The bank is near the hotel."
+  },
+  "nearly": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "nearly — почти, чуть не: I nearly fell — я чуть не упал."
+  },
+  "neck": {
+    "kind": "keyword",
+    "phonetic": "не́к",
+    "hooks": [
+      "нектар"
+    ],
+    "image": "Жираф вытянул шею к цветку за нектаром."
+  },
+  "need": {
+    "kind": "keyword",
+    "phonetic": "ни́д",
+    "hooks": [
+      "нить"
+    ],
+    "image": "Портной нуждается в нити для иглы."
+  },
+  "never": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Ставят перед глаголом: I never eat fish."
+  },
+  "new": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Нью-Йорк"
+    ],
+    "image": ""
+  },
+  "new life": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Прилагательное перед словом: a new life, a good life."
+  },
+  "next": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "next — следующий: next week, next year."
+  },
+  "next to": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "next to — рядом с: The bank is next to the hotel."
+  },
+  "nice": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "найс"
+    ],
+    "image": ""
+  },
+  "nice to meet you": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "При знакомстве: Nice to meet you. — Nice to meet you, too."
+  },
+  "night": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ночь"
+    ],
+    "image": ""
+  },
+  "nine": {
+    "kind": "keyword",
+    "phonetic": "на́йн",
+    "hooks": [
+      "найти"
+    ],
+    "image": "Нужно найти девять грибов до обеда."
+  },
+  "no": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так отказываются: No, thanks."
+  },
+  "not": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "not после вспомогательного глагола: I do not know. Кратко: don’t, isn’t."
+  },
+  "notebook": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "notebook — блокнот, тетрадь; не «ноутбук»: компьютер — laptop."
+  },
+  "nothing": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "nothing — ничего: Nothing happened. Без not: I know nothing."
+  },
+  "notice": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "notice — замечать: I notice a change; a notice — объявление на двери."
+  },
+  "november": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ноябрь"
+    ],
+    "image": ""
+  },
+  "now": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "now — сейчас, в эту минуту: I’m reading now."
+  },
+  "number": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "номер"
+    ],
+    "image": ""
+  },
+  "nurse": {
+    "kind": "keyword",
+    "phonetic": "нё́рс",
+    "hooks": [
+      "нерв"
+    ],
+    "image": "Медсестра лечит расшатанные нервы."
+  },
+  "o'clock": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Только для ровного часа: five o’clock — ровно пять."
+  },
+  "occur": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "occur — происходить: It occurred to me — мне пришло в голову."
+  },
+  "october": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "октябрь"
+    ],
+    "image": ""
+  },
+  "of": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "of — «из, чего»: a cup of tea, the end of the day."
+  },
+  "off": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "off — выключено, прочь: turn off the light; take off — снять. Противоположность — on."
+  },
+  "office": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "офис"
+    ],
+    "image": ""
+  },
+  "official": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "официальный"
+    ],
+    "image": ""
+  },
+  "often": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Ставят перед глаголом: I often walk to work."
+  },
+  "oil": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "olive oil — оливковое масло: cook with oil."
+  },
+  "old": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "олдтаймер"
+    ],
+    "image": ""
+  },
+  "on": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "on — на поверхности: on the table, on the wall."
+  },
+  "on the left": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "on the left — слева: The bank is on the left."
+  },
+  "on the right": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "on the right — справа: The bank is on the right."
+  },
+  "one": {
+    "kind": "keyword",
+    "phonetic": "ва́н",
+    "hooks": [
+      "Ванька"
+    ],
+    "image": "Ванька остался в ванне совсем один."
+  },
+  "onion": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "onion — лук: Cut an onion and you cry. Onion soup — луковый суп."
+  },
+  "only": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "only — только: only one — только один; an only child — единственный ребёнок."
+  },
+  "only child": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "I’m an only child — я единственный ребёнок в семье, без братьев и сестёр."
+  },
+  "open": {
+    "kind": "keyword",
+    "phonetic": "о́упэн",
+    "hooks": [
+      "опера"
+    ],
+    "image": "В опере занавес открывают перед спектаклем."
+  },
+  "or": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "or — или: Tea or coffee?"
+  },
+  "orange": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "оранжевый"
+    ],
+    "image": ""
+  },
+  "organization": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "организация"
+    ],
+    "image": ""
+  },
+  "other": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "other + мн. число: other people. another + один: another book."
+  },
+  "our": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Стоит перед словом: our house — наш дом."
+  },
+  "out": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "out — наружу: go out; eat out — поесть вне дома. Противоположность — in."
+  },
+  "outside": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "outside — снаружи: wait outside; outside the house. Противоположность — inside."
+  },
+  "over": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "over — над, через: over the bridge; The game is over — игра окончена."
+  },
+  "over there": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "over there — вон там: Look over there!"
+  },
+  "own": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "own — собственный, после my/his: my own room — моя собственная комната."
+  },
+  "owner": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "own + er: «тот, кто владеет». The owner of the shop."
+  },
+  "package": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "package — посылка, как «пакет»: Send a package by post."
+  },
+  "page": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пейджер"
+    ],
+    "image": ""
+  },
+  "paint": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пейнтбол"
+    ],
+    "image": ""
+  },
+  "pair": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a pair of shoes — пара обуви; a pair of jeans — джинсы."
+  },
+  "paper": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "папирус"
+    ],
+    "image": ""
+  },
+  "parent": {
+    "kind": "keyword",
+    "phonetic": "пэ́рэнт",
+    "hooks": [
+      "парень"
+    ],
+    "image": "Парень слушается родителя во всём."
+  },
+  "park": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "парк"
+    ],
+    "image": ""
+  },
+  "part": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "part — часть: a part of the city; take part in — участвовать в."
+  },
+  "particular": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "particular — конкретный: in particular — в частности. particle — частица."
+  },
+  "particularly": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "particularly — особенно: particularly good; not particularly — не особо."
+  },
+  "party": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пати"
+    ],
+    "image": ""
+  },
+  "passenger": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пассажир"
+    ],
+    "image": ""
+  },
+  "passport": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "паспорт"
+    ],
+    "image": ""
+  },
+  "passport control": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "passport (паспорт) + control (контроль): Have your passport ready."
+  },
+  "past": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "past — прошлое: in the past; half past two — половина третьего (2:30)."
+  },
+  "pasta": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "паста"
+    ],
+    "image": ""
+  },
+  "pause": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пауза"
+    ],
+    "image": ""
+  },
+  "pay": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пейпал"
+    ],
+    "image": ""
+  },
+  "pea": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "pea — горошина; peas — зелёный горошек: fish and chips with peas."
+  },
+  "peach": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "peach — персик: a peach and a pear. Peach juice — персиковый сок."
+  },
+  "pen": {
+    "kind": "keyword",
+    "phonetic": "пэ́н",
+    "hooks": [
+      "пень"
+    ],
+    "image": "На старом пеньке лежит чья-то ручка."
+  },
+  "pencil": {
+    "kind": "keyword",
+    "phonetic": "пэ́нсл",
+    "hooks": [
+      "пенал"
+    ],
+    "image": "Карандаш лежит в пенале."
+  },
+  "people": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пипл"
+    ],
+    "image": ""
+  },
+  "pepper": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пепперони"
+    ],
+    "image": ""
+  },
+  "per": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "per — на, в расчёте: per day — в день; per cent — процент."
+  },
+  "percent": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "процент"
+    ],
+    "image": ""
+  },
+  "perfect": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "перфекционист"
+    ],
+    "image": ""
+  },
+  "perhaps": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "perhaps — возможно: Perhaps he’s late. Формальнее, чем maybe."
+  },
+  "period": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "период"
+    ],
+    "image": ""
+  },
+  "person": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "персона"
+    ],
+    "image": ""
+  },
+  "personal": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "персональный"
+    ],
+    "image": ""
+  },
+  "pet": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "pet — домашний питомец: Do you have a pet? I have a cat."
+  },
+  "phone": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "телефон"
+    ],
+    "image": ""
+  },
+  "phone charger": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: phone (телефон) + charger (зарядка)."
+  },
+  "phone number": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Цифры называют по одной: 5-5-5 — five, five, five."
+  },
+  "photo": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "фото"
+    ],
+    "image": ""
+  },
+  "piano": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пианино"
+    ],
+    "image": ""
+  },
+  "pick": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "pick — выбирать, срывать: pick a flower; pick up — подобрать, забрать."
+  },
+  "picture": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пикча"
+    ],
+    "image": ""
+  },
+  "piece": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "piece — кусок: a piece of cake; a piece of advice — совет."
+  },
+  "pig": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "pig — свинья: a piggy bank — копилка-свинка. Мясо — pork."
+  },
+  "pillow": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a soft pillow — мягкая подушка; в слове две l: pil-low."
+  },
+  "pilot": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пилот"
+    ],
+    "image": ""
+  },
+  "pink": {
+    "kind": "keyword",
+    "phonetic": "пи́нк",
+    "hooks": [
+      "Пинк"
+    ],
+    "image": "Певица Пинк красит волосы в розовый цвет."
+  },
+  "pizza": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пицца"
+    ],
+    "image": ""
+  },
+  "place": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "place — место на карте: a nice place. Не путать с seat."
+  },
+  "plane": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "планер"
+    ],
+    "image": ""
+  },
+  "plate": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a plate of pasta — тарелка пасты."
+  },
+  "platform": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "платформа"
+    ],
+    "image": ""
+  },
+  "play": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "плей"
+    ],
+    "image": ""
+  },
+  "player": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "player — игрок: a football player. a DVD player — проигрыватель."
+  },
+  "please": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Ставят в конце просьбы: Water, please."
+  },
+  "plural": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Множественное число: two books, three pens."
+  },
+  "pocket": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "покетбук"
+    ],
+    "image": ""
+  },
+  "point": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "point — точка, смысл: What’s the point? point at — показывать на."
+  },
+  "police": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "полиция"
+    ],
+    "image": ""
+  },
+  "political": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "политический"
+    ],
+    "image": ""
+  },
+  "pool": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a swimming pool — бассейн: Let’s go to the pool."
+  },
+  "popular": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "популярный"
+    ],
+    "image": ""
+  },
+  "population": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "популяция"
+    ],
+    "image": ""
+  },
+  "position": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "позиция"
+    ],
+    "image": ""
+  },
+  "possible": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "possible ≠ impossible: It is possible. im- = «не-»."
+  },
+  "post office": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: post (почта) + office (отделение)."
+  },
+  "postcard": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: post (почта) + card (карточка)."
+  },
+  "potato": {
+    "kind": "keyword",
+    "phonetic": "пэтэ́йтоу",
+    "hooks": [
+      "потом"
+    ],
+    "image": "Потом чистим и варим картофель."
+  },
+  "pour": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "pour tea into a cup — наливать чай в чашку."
+  },
+  "power": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пауэрлифтинг"
+    ],
+    "image": ""
+  },
+  "practise": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "практика"
+    ],
+    "image": ""
+  },
+  "present": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a present — подарок: a birthday present. The present — настоящее."
+  },
+  "president": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "президент"
+    ],
+    "image": ""
+  },
+  "press": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пресс"
+    ],
+    "image": ""
+  },
+  "price": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "прайс"
+    ],
+    "image": ""
+  },
+  "private": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "приватный"
+    ],
+    "image": ""
+  },
+  "problem": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "проблема"
+    ],
+    "image": ""
+  },
+  "process": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "процесс"
+    ],
+    "image": ""
+  },
+  "produce": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "продюсер"
+    ],
+    "image": ""
+  },
+  "production": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "продукция"
+    ],
+    "image": ""
+  },
+  "program": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "программа"
+    ],
+    "image": ""
+  },
+  "provide": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "provide — предоставлять: provide food for guests. provide X for Y."
+  },
+  "public": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "публичный"
+    ],
+    "image": ""
+  },
+  "pull": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "pull — тянуть: на двери Pull — «на себя», push — «от себя»."
+  },
+  "purpose": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "purpose — цель: on purpose — нарочно; the purpose of the visit."
+  },
+  "put": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "put the bag on the chair — положить. put, put, put."
+  },
+  "put on": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "put on a coat — надевать пальто (само действие)."
+  },
+  "puzzle": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "пазл"
+    ],
+    "image": ""
+  },
+  "question": {
+    "kind": "keyword",
+    "phonetic": "кве́счен",
+    "hooks": [
+      "квест"
+    ],
+    "image": "В хорошем квесте много вопросов."
+  },
+  "quickly": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "quickly — быстро: run quickly. quick + ly."
+  },
+  "quite": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "quite — довольно: quite good. Не путать: quiet — тихий."
+  },
+  "rabbit": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "rabbit — кролик: the White Rabbit из «Алисы в Стране чудес»."
+  },
+  "radio": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "радио"
+    ],
+    "image": ""
+  },
+  "range": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "range — диапазон: a range of colours; from … to … — от … до …"
+  },
+  "rate": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "рейтинг"
+    ],
+    "image": ""
+  },
+  "rather": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "rather — скорее: rather good — довольно хорошо; I’d rather go — лучше пойду."
+  },
+  "reach": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "reach — достигать: reach the top; reach for — потянуться за."
+  },
+  "read": {
+    "kind": "keyword",
+    "phonetic": "ри́д",
+    "hooks": [
+      "ридикюль"
+    ],
+    "image": "В ридикюле бабушка носит книгу, чтобы читать."
+  },
+  "ready": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "ready — готов: I’m ready. Are you ready?"
+  },
+  "real": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "реальный"
+    ],
+    "image": ""
+  },
+  "realize": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "realize — осознавать, а не «реализовать»: I realize my mistake."
+  },
+  "really": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "really — правда, очень: really good. Really? — Правда?"
+  },
+  "reason": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "резон"
+    ],
+    "image": ""
+  },
+  "receive": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ресивер"
+    ],
+    "image": ""
+  },
+  "recent": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "recent — недавний: recent news. recently — недавно."
+  },
+  "reception": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ресепшен"
+    ],
+    "image": ""
+  },
+  "receptionist": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ресепшн"
+    ],
+    "image": ""
+  },
+  "recipe": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "рецепт"
+    ],
+    "image": ""
+  },
+  "recognize": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "recognize — узнавать в лицо: I recognize him. Ещё — признать."
+  },
+  "red": {
+    "kind": "keyword",
+    "phonetic": "рэ́д",
+    "hooks": [
+      "редис"
+    ],
+    "image": "Красный редис лежит на грядке."
+  },
+  "regard": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "regard — отношение: kind regards — с уважением; with regard to — относительно."
+  },
+  "region": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "регион"
+    ],
+    "image": ""
+  },
+  "regular verb": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "regular verb + -ed: work → worked, play → played."
+  },
+  "relate": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "relate to — относиться к; related — связанный; relative — родственник."
+  },
+  "relative": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "relative — родственник: I visit my relatives on Sunday."
+  },
+  "relax": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "релакс"
+    ],
+    "image": ""
+  },
+  "release": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "релиз"
+    ],
+    "image": ""
+  },
+  "remain": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "remain — оставаться: remain calm — сохранять спокойствие."
+  },
+  "remember": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "remember + что: I remember his name."
+  },
+  "repeat": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "репетиция"
+    ],
+    "image": ""
+  },
+  "report": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "репортаж"
+    ],
+    "image": ""
+  },
+  "represent": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "represent — быть представителем: represent a country; representative."
+  },
+  "require": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "require — требовать: The job requires English. required — обязательный."
+  },
+  "response": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "response — ответ: in response to — в ответ на. respond — отвечать."
+  },
+  "rest": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "have a rest — отдохнуть. rest — ещё «остальное»."
+  },
+  "restaurant": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ресторан"
+    ],
+    "image": ""
+  },
+  "rice": {
+    "kind": "keyword",
+    "phonetic": "ра́йс",
+    "hooks": [
+      "рай"
+    ],
+    "image": "Рай для голодного — миска горячего риса."
+  },
+  "ride": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "райдер"
+    ],
+    "image": ""
+  },
+  "rise": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "rise — подниматься: rise, rose, risen. The sun rises — солнце всходит."
+  },
+  "river": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a river — река: the River Thames — Темза."
+  },
+  "road": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "road — дорога между городами: a long road. В городе — street."
+  },
+  "role": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "роль"
+    ],
+    "image": ""
+  },
+  "room": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "рум-сервис"
+    ],
+    "image": ""
+  },
+  "round": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "round — круглый, вокруг: round the table; a round of applause."
+  },
+  "rubber": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "rubber — ластик (брит.), в США eraser. rubber — ещё «резина»."
+  },
+  "rule": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "rule — правило: the rules of the game; as a rule — как правило."
+  },
+  "ruler": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "ruler — линейка: Draw a line with a ruler. rule — правило."
+  },
+  "run": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "раннер"
+    ],
+    "image": ""
+  },
+  "running": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "run → running: удваивают n. I like running."
+  },
+  "russia": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Россия"
+    ],
+    "image": ""
+  },
+  "russian": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "русский"
+    ],
+    "image": ""
+  },
+  "sad": {
+    "kind": "keyword",
+    "phonetic": "сэ́д",
+    "hooks": [
+      "сад"
+    ],
+    "image": "Грустный человек сидит в саду."
+  },
+  "salad": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "салат"
+    ],
+    "image": ""
+  },
+  "salt": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "соль"
+    ],
+    "image": ""
+  },
+  "same": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "the same — тот же: the same name. Same here! — Я тоже!"
+  },
+  "sandwich": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "сэндвич"
+    ],
+    "image": ""
+  },
+  "saturday": {
+    "kind": "keyword",
+    "phonetic": "сэ́тэдэй",
+    "hooks": [
+      "Сатурн"
+    ],
+    "image": "В субботу он смотрел на Сатурн в телескоп."
+  },
+  "say": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "say — сказать (слова): He says: “Hello”. say, said."
+  },
+  "school": {
+    "kind": "keyword",
+    "phonetic": "ску́л",
+    "hooks": [
+      "скулить"
+    ],
+    "image": "Щенок скулит у входа в школу."
+  },
+  "science fiction": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Коротко: sci-fi. I like sci-fi films."
+  },
+  "scissors": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "scissors — ножницы, всегда мн. число: a pair of scissors."
+  },
+  "sea": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "sea — море: by the sea, at the seaside."
+  },
+  "seat": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Take a seat, please. — Садитесь, пожалуйста. A seat — место."
+  },
+  "second": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "second — второй и секунда: the second floor; Wait a second."
+  },
+  "section": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "секция"
+    ],
+    "image": ""
+  },
+  "see": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "see — видеть: I see a bird. See you later! — до встречи."
+  },
+  "see you later": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так прощаются до скорой встречи: See you later!"
+  },
+  "seek": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "seek — искать, книжно: seek help; seek, sought, sought. Обычно look for."
+  },
+  "seem": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "seem — казаться: It seems good; He seems tired."
+  },
+  "sell": {
+    "kind": "keyword",
+    "phonetic": "сэ́л",
+    "hooks": [
+      "селёдка"
+    ],
+    "image": "Рыбак торопится продавать свежую селёдку."
+  },
+  "send": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "send a message — отправить сообщение: send an email."
+  },
+  "sense": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "sense — смысл, чувство: make sense — иметь смысл; common sense — здравый смысл."
+  },
+  "september": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "сентябрь"
+    ],
+    "image": ""
+  },
+  "serve": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "сервис"
+    ],
+    "image": ""
+  },
+  "set": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "set the table — накрыть на стол; a set of keys — набор ключей."
+  },
+  "seven": {
+    "kind": "keyword",
+    "phonetic": "се́вен",
+    "hooks": [
+      "сев"
+    ],
+    "image": "Весной на сев ушло семь мешков зерна."
+  },
+  "several": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "several — несколько (больше двух): several days, several times."
+  },
+  "shampoo": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "шампунь"
+    ],
+    "image": ""
+  },
+  "she": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "О женщине и девочке: She is a nurse."
+  },
+  "sheep": {
+    "kind": "keyword",
+    "phonetic": "ши́п",
+    "hooks": [
+      "шип"
+    ],
+    "image": "Овца зацепилась шерстью за острый шип."
+  },
+  "sheet": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "sheet — простыня; a sheet of paper — лист бумаги."
+  },
+  "shirt": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "shirt — рубашка, skirt — юбка: не путать. A white shirt."
+  },
+  "shoes": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "шузы"
+    ],
+    "image": ""
+  },
+  "shop": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "шопинг"
+    ],
+    "image": ""
+  },
+  "should": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "should — следует: You should sleep more. Совет, не приказ."
+  },
+  "shoulder": {
+    "kind": "keyword",
+    "phonetic": "шо́улдэр",
+    "hooks": [
+      "солдат"
+    ],
+    "image": "Солдат несёт ружьё на правом плече."
+  },
+  "show": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "шоу"
+    ],
+    "image": ""
+  },
+  "shower": {
+    "kind": "keyword",
+    "phonetic": "ша́уэ",
+    "hooks": [
+      "шаурма"
+    ],
+    "image": "После шаурмы он пошёл под душ."
+  },
+  "side": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "side — сторона: the other side; by my side — рядом со мной."
+  },
+  "significant": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "significant — значительный: a significant change. sign — знак."
+  },
+  "silk": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "silk — шёлк: a silk dress, soft silk."
+  },
+  "similar": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "similar — похожий: similar to — похож на. the same — тот же самый."
+  },
+  "simple": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "simple — простой: a simple question. simply — просто."
+  },
+  "simply": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "simply — просто: simply put — проще говоря. simple — простой."
+  },
+  "sing": {
+    "kind": "keyword",
+    "phonetic": "си́нг",
+    "hooks": [
+      "Сингапур"
+    ],
+    "image": "В Сингапуре любят петь."
+  },
+  "singer": {
+    "kind": "keyword",
+    "phonetic": "си́нгэ",
+    "hooks": [
+      "сингл"
+    ],
+    "image": "Певец выпустил новый сингл."
+  },
+  "single": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "сингл"
+    ],
+    "image": ""
+  },
+  "singular": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Единственное число: one book, one pen."
+  },
+  "sister": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "сестра"
+    ],
+    "image": ""
+  },
+  "sit": {
+    "kind": "keyword",
+    "phonetic": "си́т",
+    "hooks": [
+      "сидит"
+    ],
+    "image": "Пёс сидит: он обожает сидеть у двери."
+  },
+  "site": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "сайт"
+    ],
+    "image": ""
+  },
+  "situation": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ситуация"
+    ],
+    "image": ""
+  },
+  "six": {
+    "kind": "keyword",
+    "phonetic": "си́кс",
+    "hooks": [
+      "Сикстинская"
+    ],
+    "image": "В Сикстинской капелле горят шесть свечей."
+  },
+  "ski": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "go skiing — ехать кататься: We go skiing in winter."
+  },
+  "skirt": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "skirt — юбка: a long skirt. Читается «скё́рт»."
+  },
+  "sleep": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "sleep — спать: I sleep eight hours. sleep, slept."
+  },
+  "slow": {
+    "kind": "keyword",
+    "phonetic": "сло́у",
+    "hooks": [
+      "слон"
+    ],
+    "image": "Слон шагает медленно и важно."
+  },
+  "small": {
+    "kind": "keyword",
+    "phonetic": "смо́л",
+    "hooks": [
+      "смола"
+    ],
+    "image": "Капля смолы очень маленькая."
+  },
+  "smart": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "smart clothes — нарядная одежда; a smart person — умный человек."
+  },
+  "snake": {
+    "kind": "keyword",
+    "phonetic": "сне́йк",
+    "hooks": [
+      "снег"
+    ],
+    "image": "По белому снегу ползёт длинная змея."
+  },
+  "so": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "so — так, поэтому: I’m tired, so I go home. so good — так хорошо."
+  },
+  "soap": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "soap — мыло, soup — суп: не путать! a bar of soap."
+  },
+  "social": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "социальный"
+    ],
+    "image": ""
+  },
+  "society": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "социум"
+    ],
+    "image": ""
+  },
+  "socks": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Только мн. число: a pair of socks — пара носков."
+  },
+  "solution": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "solution — решение: find a solution. solve — решать; solution — ещё «раствор»."
+  },
+  "some": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "some — немного, в утверждении: some water, some eggs."
+  },
+  "someone": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "someone — кто-то: Someone is at the door. В вопросах — anyone."
+  },
+  "something": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "something — что-то: I want something to drink. В вопросах — anything."
+  },
+  "sometimes": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Ставят перед глаголом: I sometimes cook."
+  },
+  "son": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "сын"
+    ],
+    "image": ""
+  },
+  "song": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "sing — петь, song — песня: a beautiful song."
+  },
+  "sorry": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так извиняются: Sorry, I’m late."
+  },
+  "sort": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "сорт"
+    ],
+    "image": ""
+  },
+  "sound": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "саундтрек"
+    ],
+    "image": ""
+  },
+  "soup": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "суп"
+    ],
+    "image": ""
+  },
+  "souvenir": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "сувенир"
+    ],
+    "image": ""
+  },
+  "space": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "space — пространство, космос: outer space; a parking space — место на парковке."
+  },
+  "spain": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Испания"
+    ],
+    "image": ""
+  },
+  "spanish": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "испанский"
+    ],
+    "image": ""
+  },
+  "speak": {
+    "kind": "keyword",
+    "phonetic": "спи́к",
+    "hooks": [
+      "спикер"
+    ],
+    "image": "Спикер вышел на сцену и стал говорить."
+  },
+  "special": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "специальный"
+    ],
+    "image": ""
+  },
+  "specific": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "специфический"
+    ],
+    "image": ""
+  },
+  "spell": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "How do you spell it? — Как это пишется по буквам?"
+  },
+  "spoon": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a spoon of sugar — ложка сахара. Читается «спу́н»."
+  },
+  "sport": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "спорт"
+    ],
+    "image": ""
+  },
+  "stamp": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "stamp — почтовая марка: Put a stamp on the letter."
+  },
+  "stand": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "стенд"
+    ],
+    "image": ""
+  },
+  "standard": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "стандарт"
+    ],
+    "image": ""
+  },
+  "start": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "старт"
+    ],
+    "image": ""
+  },
+  "state": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "штат"
+    ],
+    "image": ""
+  },
+  "station": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "станция"
+    ],
+    "image": ""
+  },
+  "stay": {
+    "kind": "keyword",
+    "phonetic": "стэ́й",
+    "hooks": [
+      "стая"
+    ],
+    "image": "Стая будет оставаться здесь всю зиму."
+  },
+  "step": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "step — шаг: step by step — шаг за шагом; the first step."
+  },
+  "still": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "still — всё ещё: I’m still here. still water — вода без газа."
+  },
+  "stomach": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "stomach — живот; ch читается «к»: «сто́мак». a stomach ache — боль в животе."
+  },
+  "stop": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "стоп"
+    ],
+    "image": ""
+  },
+  "store": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "store — магазин (амер.); хранить: a grocery store — продуктовый магазин."
+  },
+  "straight on": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "straight on — прямо: Go straight on for two hundred metres."
+  },
+  "stranger": {
+    "kind": "keyword",
+    "phonetic": "стре́йнджэ",
+    "hooks": [
+      "странник"
+    ],
+    "image": "Незнакомец с посохом оказался странником."
+  },
+  "strawberry": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "straw + berry: «соломенная ягода». Strawberry jam — клубничное варенье."
+  },
+  "street": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Адрес с on: I live on Baker Street."
+  },
+  "strike": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "страйк"
+    ],
+    "image": ""
+  },
+  "strong": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Армстронг"
+    ],
+    "image": ""
+  },
+  "structure": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "структура"
+    ],
+    "image": ""
+  },
+  "student": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "студент"
+    ],
+    "image": ""
+  },
+  "student card": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "student card — студенческий билет: Show your student card, please."
+  },
+  "study": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "студия"
+    ],
+    "image": ""
+  },
+  "stuff": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "stuff — вещи, барахло (разг.): my stuff — мои вещи; не мн. число."
+  },
+  "such": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "such a + сущ.: such a nice day — такой чудесный день."
+  },
+  "sugar": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "сахар"
+    ],
+    "image": ""
+  },
+  "suitcase": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: suit (костюм) + case (футляр)."
+  },
+  "sunday": {
+    "kind": "keyword",
+    "phonetic": "са́ндэй",
+    "hooks": [
+      "сандалии"
+    ],
+    "image": "В воскресенье он гулял в сандалиях."
+  },
+  "suppose": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "suppose — полагать: I suppose so. be supposed to — предполагается."
+  },
+  "sure": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "sure — уверенный: Are you sure? Sure! — Конечно!"
+  },
+  "surname": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "surname — фамилия, идёт после first name: Anna Brown, Brown — surname."
+  },
+  "surprise": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "сюрприз"
+    ],
+    "image": ""
+  },
+  "sweater": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "свитер"
+    ],
+    "image": ""
+  },
+  "swim": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "swim, swam, swum — неправильный глагол: I swim every day."
+  },
+  "swimming": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "swim → swimming: удваивают m. I like swimming."
+  },
+  "system": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "система"
+    ],
+    "image": ""
+  },
+  "t-shirt": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Слово из двух: T + shirt — рубашка в форме буквы «Т»."
+  },
+  "table": {
+    "kind": "keyword",
+    "phonetic": "тэ́йбл",
+    "hooks": [
+      "таблица"
+    ],
+    "image": "На столе лежит большая таблица."
+  },
+  "take": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "тейк"
+    ],
+    "image": ""
+  },
+  "take care": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так прощаются и желают добра: Take care!"
+  },
+  "take off": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "take off a coat — снимать пальто; the plane takes off — взлетает."
+  },
+  "take photos": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "take photos — фотографировать: I take photos on holiday."
+  },
+  "talk": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "ток-шоу"
+    ],
+    "image": ""
+  },
+  "taxi": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "такси"
+    ],
+    "image": ""
+  },
+  "tea": {
+    "kind": "keyword",
+    "phonetic": "ти́",
+    "hooks": [
+      "тихо"
+    ],
+    "image": "Тихо в доме, только пьют горячий чай."
+  },
+  "teach": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "teach — преподавать: She teaches Spanish. teach, taught."
+  },
+  "teacher": {
+    "kind": "keyword",
+    "phonetic": "ти́чэ",
+    "hooks": [
+      "тишь"
+    ],
+    "image": "Учитель любит тишь в классе."
+  },
+  "television": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "телевидение"
+    ],
+    "image": ""
+  },
+  "tell": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "tell + кому: Tell me the truth. tell, told."
+  },
+  "ten": {
+    "kind": "keyword",
+    "phonetic": "те́н",
+    "hooks": [
+      "тент"
+    ],
+    "image": "Под тентом стоят десять стульев."
+  },
+  "tennis": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "теннис"
+    ],
+    "image": ""
+  },
+  "than": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "than — чем, после сравнения: taller than me — выше меня."
+  },
+  "thank": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "thank — благодарить: I thank you for the gift. Thank you!"
+  },
+  "thank you": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так благодарят: Thank you very much."
+  },
+  "thanks": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Короткое «спасибо» между своими: Thanks a lot."
+  },
+  "that": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Дальний предмет: that book — та книга."
+  },
+  "that way": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "that way — туда: Go that way."
+  },
+  "the": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Когда предмет уже известен: the sun, the door."
+  },
+  "the usa": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Читают по буквам: «ю-эс-э́й», с артиклем the."
+  },
+  "their": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Стоит перед словом: their car — их машина."
+  },
+  "themselves": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "themselves — себя, сами (о них): They enjoyed themselves. by themselves — сами."
+  },
+  "there": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "there — там, туда: Go there. See you there."
+  },
+  "there are": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "There are + много: There are two chairs here."
+  },
+  "there is": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "There is + один предмет: There is a bed in the room."
+  },
+  "these": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Много и близко: these books — эти книги."
+  },
+  "they": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "О нескольких людях или вещах: They are students."
+  },
+  "thing": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Любая вещь: this thing — эта штука, a good thing — хорошая вещь."
+  },
+  "think": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "think about — думать о: I think about you. think, thought."
+  },
+  "thirsty": {
+    "kind": "keyword",
+    "phonetic": "сё́сти",
+    "hooks": [
+      "сёрбать"
+    ],
+    "image": "Ему хочется пить, и он сёрбает воду."
+  },
+  "thirteen": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "От 13 до 19 слово кончается на -teen: thirteen, fourteen."
+  },
+  "thirty": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "thir-ty: «три десятка». Не путать с thirteen — 13."
+  },
+  "this": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Близкий предмет: this book — эта книга."
+  },
+  "this way": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "this way — сюда: Come this way, please."
+  },
+  "those": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Много и далеко: those books — те книги."
+  },
+  "though": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "though — хотя: I’m tired though. Короткая форма although."
+  },
+  "three": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "три"
+    ],
+    "image": ""
+  },
+  "through": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "through — сквозь: through the window, through the park."
+  },
+  "thursday": {
+    "kind": "keyword",
+    "phonetic": "сё́здэй",
+    "hooks": [
+      "сёрф"
+    ],
+    "image": "В четверг он катался на сёрфе."
+  },
+  "thus": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "thus — таким образом, книжно: Thus, we see… В речи обычно so."
+  },
+  "ticket": {
+    "kind": "keyword",
+    "phonetic": "ти́кит",
+    "hooks": [
+      "тик-так"
+    ],
+    "image": "Тик-так, спеши за билетом!"
+  },
+  "ticket inspector": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "ticket + inspector: «инспектор по билетам», то есть контролёр."
+  },
+  "tidy": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "tidy up — прибраться: Tidy your room. tidy — аккуратный."
+  },
+  "tiger": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "тигр"
+    ],
+    "image": ""
+  },
+  "tight": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "тайтсы"
+    ],
+    "image": ""
+  },
+  "time": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "тайм"
+    ],
+    "image": ""
+  },
+  "tired": {
+    "kind": "keyword",
+    "phonetic": "та́йэд",
+    "hooks": [
+      "тайга"
+    ],
+    "image": "Усталый турист вышел из тайги."
+  },
+  "to": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "to + глагол: I want to go — хочу пойти. Ещё «к»: go to school."
+  },
+  "toast": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "тост"
+    ],
+    "image": ""
+  },
+  "today": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Без предлога: I’m busy today. See you today."
+  },
+  "together": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "together — вместе: We live together. Противоположность — alone."
+  },
+  "tomato": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "томат"
+    ],
+    "image": ""
+  },
+  "tomorrow": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Без предлога: See you tomorrow."
+  },
+  "too": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "too в конце — тоже: Me too. Перед прилагательным — слишком: too big."
+  },
+  "tooth": {
+    "kind": "keyword",
+    "phonetic": "ту́с",
+    "hooks": [
+      "туз"
+    ],
+    "image": "Фокусник вынул из рукава туз, а изо рта зуб."
+  },
+  "toothbrush": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "tooth + brush: «щётка для зубов». Two toothbrushes."
+  },
+  "top": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "топ"
+    ],
+    "image": ""
+  },
+  "total": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "тотальный"
+    ],
+    "image": ""
+  },
+  "tourist": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "турист"
+    ],
+    "image": ""
+  },
+  "toward": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "toward — к: walk toward the door. Брит. вариант — towards."
+  },
+  "towel": {
+    "kind": "keyword",
+    "phonetic": "та́уэл",
+    "hooks": [
+      "тауэр"
+    ],
+    "image": "В Тауэре гость вытер руки полотенцем."
+  },
+  "town": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "town — городок, city — большой город: a small town."
+  },
+  "toy": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "той-терьер"
+    ],
+    "image": ""
+  },
+  "trade": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "трейдер"
+    ],
+    "image": ""
+  },
+  "train": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "by train, on a train: I go to work by train."
+  },
+  "translate": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "translate into + язык: translate into Russian."
+  },
+  "travel": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "тревел"
+    ],
+    "image": ""
+  },
+  "tree": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "древо"
+    ],
+    "image": ""
+  },
+  "trip": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a trip — поездка: a school trip, a business trip."
+  },
+  "trousers": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Только мн. число: My trousers are black."
+  },
+  "true": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "true — верный: True or false? It’s true."
+  },
+  "tuesday": {
+    "kind": "keyword",
+    "phonetic": "тью́здэй",
+    "hooks": [
+      "тюльпан"
+    ],
+    "image": "Во вторник на рынке продают тюльпаны."
+  },
+  "turkey": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Турция"
+    ],
+    "image": ""
+  },
+  "turn": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "turn left — повернуть налево; turn on the light — включить свет."
+  },
+  "tv": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Читают по буквам: «ти-ви́». watch TV, а не see TV."
+  },
+  "twelve": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Особое слово без -teen: eleven, twelve, потом thirteen."
+  },
+  "twenty": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "двадцать"
+    ],
+    "image": ""
+  },
+  "twin": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "twin — близнец: my twin sister — моя сестра-близняшка. Twins — близнецы."
+  },
+  "two": {
+    "kind": "keyword",
+    "phonetic": "ту́",
+    "hooks": [
+      "Ту"
+    ],
+    "image": "У самолёта Ту два больших крыла."
+  },
+  "type": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "тип"
+    ],
+    "image": ""
+  },
+  "typical": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "типичный"
+    ],
+    "image": ""
+  },
+  "umbrella": {
+    "kind": "keyword",
+    "phonetic": "амбре́ла",
+    "hooks": [
+      "брелок"
+    ],
+    "image": "К зонту привязан смешной брелок."
+  },
+  "uncle": {
+    "kind": "keyword",
+    "phonetic": "а́нкл",
+    "hooks": [
+      "ангел"
+    ],
+    "image": "Дядя — настоящий ангел-хранитель всей семьи."
+  },
+  "under": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "андеграунд"
+    ],
+    "image": ""
+  },
+  "understand": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "I don’t understand. under + stand: «стоять под смыслом»."
+  },
+  "unit": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "юнит"
+    ],
+    "image": ""
+  },
+  "university": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "университет"
+    ],
+    "image": ""
+  },
+  "until": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "until — до тех пор пока: wait until six; until Monday — до понедельника."
+  },
+  "up": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "up — вверх: stand up, get up. Противоположность — down."
+  },
+  "upon": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "upon — на, книжно: once upon a time — давным-давно. Обычно on."
+  },
+  "use": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "use + вещь: I use my phone every day. Читается «юз»."
+  },
+  "useful": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "use + ful: «полный пользы». useful ≠ useless."
+  },
+  "usually": {
+    "kind": "keyword",
+    "phonetic": "ю́жуали",
+    "hooks": [
+      "южный"
+    ],
+    "image": "Обычно южный ветер приносит дождь."
+  },
+  "value": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "валюта"
+    ],
+    "image": ""
+  },
+  "various": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "various — различный: various reasons — разные причины; a variety of."
+  },
+  "vegetable": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "вегетарианец"
+    ],
+    "image": ""
+  },
+  "very": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "very + прилагательное: very good, very big."
+  },
+  "view": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "интервью"
+    ],
+    "image": ""
+  },
+  "visit": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "визит"
+    ],
+    "image": ""
+  },
+  "wait": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Wait! — Подожди! Can you wait a minute?"
+  },
+  "wait for": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "wait for + кого: Wait for me, please."
+  },
+  "waiter": {
+    "kind": "keyword",
+    "phonetic": "уэ́йтэ",
+    "hooks": [
+      "ветер"
+    ],
+    "image": "Ветер унёс шляпу, а официант её поймал."
+  },
+  "wake up": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "wake up at seven — проснуться в семь. wake, woke, woken."
+  },
+  "walk": {
+    "kind": "keyword",
+    "phonetic": "уо́к",
+    "hooks": [
+      "вокзал"
+    ],
+    "image": "Мы будем гулять мимо вокзала."
+  },
+  "wallet": {
+    "kind": "keyword",
+    "phonetic": "уо́лит",
+    "hooks": [
+      "валюта"
+    ],
+    "image": "В бумажнике лежит иностранная валюта."
+  },
+  "want": {
+    "kind": "keyword",
+    "phonetic": "уо́нт",
+    "hooks": [
+      "ванты"
+    ],
+    "image": "Мальчик хотел залезть на ванты."
+  },
+  "war": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "war — война: Star Wars — «Звёздные войны»; a world war — мировая война."
+  },
+  "was": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "was — be в прошлом для I/he/she/it: I was at home."
+  },
+  "wash": {
+    "kind": "keyword",
+    "phonetic": "уо́ш",
+    "hooks": [
+      "вошь"
+    ],
+    "image": "Вошь убегает, когда человек начинает мыть голову."
+  },
+  "watch": {
+    "kind": "keyword",
+    "phonetic": "уо́тч",
+    "hooks": [
+      "вотчина"
+    ],
+    "image": "В своей вотчине барин носил золотые часы."
+  },
+  "water": {
+    "kind": "keyword",
+    "phonetic": "уо́тэ",
+    "hooks": [
+      "ватерлиния"
+    ],
+    "image": "Линия на борту корабля, ватерлиния, показывает уровень воды."
+  },
+  "way": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "way — путь, способ: the way to the station; a way to learn."
+  },
+  "we": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "О себе и других вместе: We are friends."
+  },
+  "weak": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "weak — слабый; звучит как week — неделя: weak tea."
+  },
+  "wear": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "wear — носить на себе: She wears a red dress."
+  },
+  "website": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "вебсайт"
+    ],
+    "image": ""
+  },
+  "wednesday": {
+    "kind": "keyword",
+    "phonetic": "уэ́нздэй",
+    "hooks": [
+      "венец"
+    ],
+    "image": "В среду невеста надела венец."
+  },
+  "week": {
+    "kind": "keyword",
+    "phonetic": "ви́к",
+    "hooks": [
+      "уик-энд"
+    ],
+    "image": "В уик-энд кончается рабочая неделя."
+  },
+  "weekend": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "уик-энд"
+    ],
+    "image": ""
+  },
+  "well": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "well — хорошо (наречие), good — прилагательное: She speaks well."
+  },
+  "were": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "were — be в прошлом для you/we/they: We were at a party."
+  },
+  "what": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Вопрос о предмете: What is this?"
+  },
+  "whatever": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "whatever — что угодно: Whatever you want. В разговоре: «как хочешь»."
+  },
+  "when": {
+    "kind": "keyword",
+    "phonetic": "уэ́н",
+    "hooks": [
+      "вена"
+    ],
+    "image": "Когда болит вена, идут к врачу."
+  },
+  "where": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Вопрос о месте: Where is the bank?"
+  },
+  "where were you": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Where were you? — Где ты был(а)? — I was at home."
+  },
+  "whether": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "whether — ли в косвенном вопросе: I don’t know whether he comes."
+  },
+  "which": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "which — который, какой из: Which book? The book which I read."
+  },
+  "while": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "while — пока: Don’t talk while you eat. Оба действия идут одновременно."
+  },
+  "white": {
+    "kind": "keyword",
+    "phonetic": "уа́йт",
+    "hooks": [
+      "вата"
+    ],
+    "image": "Белая вата лежит в аптечке."
+  },
+  "who": {
+    "kind": "keyword",
+    "phonetic": "ху́",
+    "hooks": [
+      "хутор"
+    ],
+    "image": "Кто живёт на дальнем хуторе?"
+  },
+  "whole": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "whole — целый: the whole day. Читается как hole — «дыра»."
+  },
+  "why": {
+    "kind": "keyword",
+    "phonetic": "уа́й",
+    "hooks": [
+      "вайфай"
+    ],
+    "image": "Почему не работает вайфай?"
+  },
+  "wide": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "wide — широкий: a wide river, wide open."
+  },
+  "wife": {
+    "kind": "keyword",
+    "phonetic": "уа́йф",
+    "hooks": [
+      "вафля"
+    ],
+    "image": "Жена испекла вафли к чаю."
+  },
+  "wifi": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "вайфай"
+    ],
+    "image": ""
+  },
+  "win": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "вин-вин"
+    ],
+    "image": ""
+  },
+  "window": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Виндовс"
+    ],
+    "image": ""
+  },
+  "wish": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "wish — желать: I wish you luck. Best wishes — с наилучшими пожеланиями."
+  },
+  "with": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "with — с: coffee with milk; with me — со мной."
+  },
+  "within": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "within — в пределах: within an hour — в течение часа; within a mile."
+  },
+  "without": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "without — без: tea without sugar. with — с, without — без."
+  },
+  "wolf": {
+    "kind": "keyword",
+    "phonetic": "ву́лф",
+    "hooks": [
+      "Вольф"
+    ],
+    "image": "Охотник Вольф увидел в лесу серого волка."
+  },
+  "woman": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "woman — одна, women — несколько (читается «уимин»)."
+  },
+  "wonder": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "wonder — интересоваться: I wonder why. wonderful — чудесный; a wonder — чудо."
+  },
+  "wool": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "wool — шерсть: a wool sweater, wool socks."
+  },
+  "word": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "Ворд"
+    ],
+    "image": ""
+  },
+  "work": {
+    "kind": "keyword",
+    "phonetic": "уё́рк",
+    "hooks": [
+      "Воркута"
+    ],
+    "image": "В Воркуте тяжело работать зимой."
+  },
+  "worker": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "worker — работник: a factory worker. work + er — тот, кто работает."
+  },
+  "world": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "the world — мир, вселенная: the whole world. Мир-покой — peace."
+  },
+  "worry": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "worry — беспокоиться: Don’t worry! — Не волнуйся! worried — взволнованный."
+  },
+  "would": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "would like — хотел бы: I would like a coffee. Вежливая просьба."
+  },
+  "write": {
+    "kind": "keyword",
+    "phonetic": "ра́йт",
+    "hooks": [
+      "Райт"
+    ],
+    "image": "Братья Райт любили писать длинные письма."
+  },
+  "wrong": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "wrong — неправильный: the wrong number, the wrong key."
+  },
+  "year": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "a year — год: last year, next year, this year."
+  },
+  "yellow": {
+    "kind": "keyword",
+    "phonetic": "йэ́лоу",
+    "hooks": [
+      "ёлка"
+    ],
+    "image": "У ёлки осенью жёлтые иголки."
+  },
+  "yes": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Так отвечают согласием: Yes, I am."
+  },
+  "yesterday": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "С прошедшим временем: I called her yesterday."
+  },
+  "yoga": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "йога"
+    ],
+    "image": ""
+  },
+  "yogurt": {
+    "kind": "cognate",
+    "phonetic": "",
+    "hooks": [
+      "йогурт"
+    ],
+    "image": ""
+  },
+  "you": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Одно слово и для «ты», и для «вы»: You are kind."
+  },
+  "your": {
+    "kind": "usage",
+    "phonetic": "",
+    "hooks": [],
+    "image": "Стоит перед словом: your name — твоё или ваше имя."
+  },
+  "zero": {
+    "kind": "keyword",
+    "phonetic": "зи́роу",
+    "hooks": [
+      "Зорро"
+    ],
+    "image": "Зорро нарисовал шпагой в воздухе ноль."
+  }
+}

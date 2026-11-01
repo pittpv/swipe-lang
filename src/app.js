@@ -16,6 +16,7 @@ import {
   normalizeLangPair,
 } from '../server/lang-pairs.js';
 import { STREAK_WARN_MS, formatStreakRiskHint, msUntilStreakWarning, streakResetRisk } from './streak-risk.js';
+import { buildExercise, exerciseHtml, shouldOfferExercise, wireExercise } from './exercise.js';
 
 export { api } from './track.js';
 
@@ -84,6 +85,8 @@ export class App {
     /** True after fly-out while /session/swipe is still in flight — show card skeleton. */
     this.awaitingNext = false;
     this.cardEnter = false;
+    /** Post-«знаю» check shown in the deck; see exercise.js. */
+    this.exercise = null;
     this.reminder = { enabled: false, pendingRebind: false };
     this.reminderTime = '19:00';
     this.reminderError = '';
@@ -495,6 +498,7 @@ export class App {
     if (view === 'landing' && this.view !== 'landing') this.landingBenefitIndex = 0;
     this.view = view;
     this.error = '';
+    this.hardNote = '';
     this.overlayWord = null;
     this.overlaySection = null;
     dismissAchievements();
@@ -672,6 +676,43 @@ export class App {
       this.levelOffer = data.levelComplete ? data.levelProgress : null;
       this.view = 'session';
       track('session_start');
+    } catch (e) {
+      this.error = e.message;
+    }
+    this.render();
+  }
+
+  /**
+   * Optional extra deck of words the user keeps missing. Same swipe path and
+   * session row as the daily session; the daily deck is not touched.
+   */
+  async startHardSession() {
+    this.pendingAchievements = null;
+    this.sessionSource = null;
+    this.hardNote = '';
+    dismissAchievements();
+    this._swipeHalted = false;
+    this._swipeFailure = null;
+    this._deckGen += 1;
+    const pendingDeck = this._deckPrefetch;
+    this._deckPrefetch = null;
+    await this.drainSwipes();
+    if (pendingDeck) await pendingDeck.promise.catch(() => {});
+    try {
+      const data = await api('/session/hard', { method: 'POST' });
+      if (!data.cards?.length) {
+        this.hardNote = 'Трудных слов пока мало — они появятся, когда вы забудете несколько уже выученных.';
+        this.view = 'home';
+        this.render();
+        return;
+      }
+      this.sessionId = data.sessionId;
+      this.cards = data.cards;
+      this.cardIndex = 0;
+      this.summary = null;
+      this.awaitingNext = false;
+      this.levelOffer = null;
+      this.view = 'session';
     } catch (e) {
       this.error = e.message;
     }
@@ -1295,6 +1336,11 @@ export class App {
     const isLast = this.cardIndex >= this.cards.length - 1;
     this.enqueueSwipe(wordId, direction);
     await this.flyCardOut(direction, from.x, from.y);
+    if (direction === 'left') {
+      const sessionId = this.sessionId;
+      await this.maybeRunExercise(card);
+      if (this.sessionId !== sessionId || this.view !== 'session') return;
+    }
     if (this._swipeHalted) {
       this.swiping = false;
       if (isLast) this.failWrap(this._swipeFailure?.error);
@@ -1310,6 +1356,55 @@ export class App {
     }
     this.swiping = false;
     this.presentNextCard();
+  }
+
+  /** Dev-only `?drill=1|typed|cloze` opens a check on every «знаю» swipe. */
+  forcedExercise() {
+    if (!import.meta.env?.DEV) return null;
+    const value = new URLSearchParams(window.location.search).get('drill');
+    if (!value) return null;
+    return { type: value === 'typed' || value === 'cloze' ? value : null };
+  }
+
+  /** Practice after «знаю»: the swipe is already queued as the SRS signal; this only delays the next card. */
+  maybeRunExercise(card) {
+    const forced = this.forcedExercise();
+    if (!forced && !shouldOfferExercise(this.sessionId, card.id)) return Promise.resolve();
+    return new Promise((resolve) => {
+      this.exercise = buildExercise(card, this.cards, this.sessionId, forced?.type);
+      this.exercise.resolve = resolve;
+      this.setDeckButtonsDisabled(true);
+      this.mountExercise(true);
+    });
+  }
+
+  mountExercise(enter = false) {
+    const deck = this.root.querySelector('#deck');
+    if (!deck || !this.exercise) return;
+    deck.innerHTML = exerciseHtml(this.exercise, enter);
+    this.wireExercise();
+  }
+
+  wireExercise() {
+    wireExercise(this.root.querySelector('#drill-card'), this.exercise, {
+      refresh: () => this.mountExercise(),
+      done: () => this.endExercise(),
+    });
+  }
+
+  endExercise() {
+    const exercise = this.exercise;
+    if (!exercise) return;
+    clearTimeout(exercise.timer);
+    this.exercise = null;
+    this.setDeckButtonsDisabled(false);
+    exercise.resolve?.();
+  }
+
+  setDeckButtonsDisabled(disabled) {
+    for (const btn of this.root.querySelectorAll('[data-action="swipe-left"], [data-action="swipe-right"]')) {
+      btn.disabled = disabled;
+    }
   }
 
   deckCacheKey() {
@@ -2039,6 +2134,7 @@ export class App {
   }
 
   exitSession() {
+    this.endExercise();
     this.cards = [];
     this.cardIndex = 0;
     this.sessionId = null;
@@ -2163,7 +2259,7 @@ export class App {
       }
       return;
     }
-    if (this.view !== 'session') return;
+    if (this.view !== 'session' || this.exercise) return;
     if (this.overlayWord) {
       if (e.key === 'Escape') this.closeOverlay();
       return;
@@ -2440,6 +2536,7 @@ export class App {
       if (action === 'onboarding') this.saveOnboarding();
       if (action === 'start') this.startSession();
       if (action === 'start-circle') this.startCircleSession();
+      if (action === 'start-hard') this.startHardSession();
       if (action === 'open-circle') this.openCircle();
       if (action === 'create-circle') this.createCircle();
       if (action === 'join-circle') this.joinCircle(t.dataset.circleId);
@@ -2715,6 +2812,10 @@ export class App {
               </span>
               <span class="btn btn-primary home-start-label">Начать сессию</span>
             </button>
+            <div class="home-hard">
+              <button type="button" class="home-hard-link" data-action="start-hard">Трудные слова</button>
+              ${this.hardNote ? `<p class="home-hard-note" role="status">${esc(this.hardNote)}</p>` : ''}
+            </div>
             <nav class="home-nav" aria-label="Кабинет">
               <button type="button" class="btn btn-ghost" data-action="stats">Статистика</button>
               ${this.homeNavButton('open-circle', 'Кружок', this.unseenCircleInviteCount(), (count) => `${count} ${pluralRu(count, 'новое приглашение', 'новых приглашения', 'новых приглашений')}`)}
@@ -2755,7 +2856,7 @@ export class App {
         </div>
         ${this.error ? `<p class="error">${esc(this.error)}</p>` : ''}
         <div class="deck-area" id="deck">
-          ${this.awaitingNext ? `
+          ${this.exercise ? exerciseHtml(this.exercise) : this.awaitingNext ? `
           <div class="word-card word-card-skeleton" aria-busy="true" aria-label="Загрузка карточки">
             <div class="skeleton-bone skeleton-lemma"></div>
             <div class="skeleton-bone skeleton-hint"></div>
@@ -2940,6 +3041,7 @@ export class App {
                 ? '<p class="saved-hint">Словарь C1 полностью освоен ✓</p>'
                 : ''}
             </div>`) : ''}
+          ${renderReturnReasons(this.stats.returnReasons)}
           ${settingsGroup('Достижения', `
             <div class="card-form">
               ${achievements.length
@@ -3180,6 +3282,7 @@ export class App {
     if (card) {
       card.addEventListener('pointerdown', (e) => this.onPointerDown(e));
     }
+    if (v === 'session' && this.exercise) this.wireExercise();
     if (v === 'landing') this.mountLandingDeck();
     if (v === 'onboarding' && !window.navigator.standalone) {
       this.root.querySelector('input[name="displayName"]')?.focus();
@@ -3760,6 +3863,19 @@ function renderStatsEta(stats, lp, eta) {
     return '<p class="stats-eta">После первой сессии появится оценка, когда закроется уровень.</p>';
   }
   return `<p class="stats-eta">${esc(eta.label)}</p>`;
+}
+
+function renderReturnReasons(items) {
+  if (!Array.isArray(items) || !items.length) return '';
+  const rows = items.map((item) => `
+    <li class="return-reason">
+      <p class="return-reason-word"><strong>${esc(item.lemma)}</strong><span>${esc(item.translation)}</span></p>
+      <p class="return-reason-text">${esc(item.reason)}</p>
+    </li>`).join('');
+  return settingsGroup('Почему слово вернулось', `
+    <div class="card-form">
+      <ul class="return-reasons">${rows}</ul>
+    </div>`);
 }
 
 function pageBar({ title, subtitle = '', backAction = '', backLabel = 'Назад' }) {

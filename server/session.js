@@ -1,8 +1,23 @@
 import { getLevelProgress, levelsUpTo } from './progress.js';
 import { DEFAULT_LANG_PAIR, userLangPair, wordMatchesPair } from './lang-pairs.js';
+import { isLeech, lapsesOf } from './srs.js';
 
 const SESSION_SIZE = 18;
 const REVIEW_RATIO = 0.3;
+/**
+ * Review debt. When more than REVIEW_DEBT_THRESHOLD × SESSION_SIZE words are
+ * due (more than 14 of 18), the fixed 30 % share lets the backlog grow faster
+ * than it is cleared. For that session only, reviews take
+ * ELEVATED_REVIEW_RATIO of the deck instead (floor(18 × 0.55) = 9 cards, 50 %).
+ * SESSION_SIZE never changes — the micro-session stays 18 cards.
+ */
+const REVIEW_DEBT_THRESHOLD = 0.8;
+const ELEVATED_REVIEW_RATIO = 0.55;
+/**
+ * Cap on end-of-deck leech repeats. 18 cards ≈ 5 minutes; three extra swipes
+ * keep the micro-session under about six minutes even on a bad day.
+ */
+const LEECH_EXTRA_CARDS_MAX = 3;
 
 function inScope(word, levels, pair) {
   return Boolean(word) && levels.includes(word.cefr_level) && wordMatchesPair(word, pair);
@@ -16,10 +31,7 @@ export function buildSessionDeck(db, userId) {
   const now = new Date().toISOString();
   const levelProgress = getLevelProgress(db, userId);
 
-  const reviewCount = Math.floor(SESSION_SIZE * REVIEW_RATIO);
-  const newCount = SESSION_SIZE - reviewCount;
-
-  const due = db.data.user_word_progress
+  const dueRows = db.data.user_word_progress
     .filter(
       (p) =>
         p.user_id === userId &&
@@ -27,7 +39,12 @@ export function buildSessionDeck(db, userId) {
         p.next_review_at <= now &&
         inScope(db.data.words.find((w) => w.id === p.word_id), levels, pair),
     )
-    .sort((a, b) => a.next_review_at.localeCompare(b.next_review_at))
+    .sort((a, b) => a.next_review_at.localeCompare(b.next_review_at));
+
+  const reviewCount = Math.floor(SESSION_SIZE * reviewRatioFor(dueRows.length));
+  const newCount = SESSION_SIZE - reviewCount;
+
+  const due = dueRows
     .slice(0, reviewCount)
     .map((p) => db.data.words.find((w) => w.id === p.word_id))
     .filter((w) => inScope(w, levels, pair));
@@ -73,7 +90,41 @@ export function buildSessionDeck(db, userId) {
     deck = deck.concat(moreDue);
   }
 
-  return deck.slice(0, SESSION_SIZE).map(formatWord);
+  const main = deck.slice(0, SESSION_SIZE);
+  const progressRows = db.data.user_word_progress.filter((p) => p.user_id === userId);
+  return main.concat(leechExtraCards(main, progressRows)).map(formatWord);
+}
+
+/**
+ * Review share for one session from the number of due words in scope.
+ * Two tiers only: the normal REVIEW_RATIO, or ELEVATED_REVIEW_RATIO while the
+ * due count exceeds REVIEW_DEBT_THRESHOLD × SESSION_SIZE.
+ */
+export function reviewRatioFor(dueCount) {
+  return dueCount > SESSION_SIZE * REVIEW_DEBT_THRESHOLD ? ELEVATED_REVIEW_RATIO : REVIEW_RATIO;
+}
+
+/**
+ * Leech insurance (see server/srs.js): a word forgotten LEECH_LAPSES_THRESHOLD
+ * times after being known is shown once more at the end of the deck it is in.
+ * One extra card per word, worst lapses first, at most LEECH_EXTRA_CARDS_MAX,
+ * and never right after itself when the leech is already the last card.
+ * A second swipe on the same word is a pure repeat: the swipe handler records
+ * each word once per session, so SM-2 is not moved twice.
+ */
+export function leechExtraCards(deck, progressRows) {
+  if (!deck.length) return [];
+  const byWord = new Map((progressRows ?? []).map((row) => [row.word_id, row]));
+  const lastId = deck[deck.length - 1].id;
+  const seen = new Set();
+  return deck
+    .filter((word) => {
+      if (seen.has(word.id) || word.id === lastId) return false;
+      seen.add(word.id);
+      return isLeech(byWord.get(word.id));
+    })
+    .sort((a, b) => lapsesOf(byWord.get(b.id)) - lapsesOf(byWord.get(a.id)))
+    .slice(0, LEECH_EXTRA_CARDS_MAX);
 }
 
 function parseJsonArray(raw) {
@@ -146,4 +197,4 @@ export function formatWord(row) {
   };
 }
 
-export { SESSION_SIZE };
+export { SESSION_SIZE, REVIEW_RATIO, REVIEW_DEBT_THRESHOLD, ELEVATED_REVIEW_RATIO, LEECH_EXTRA_CARDS_MAX };

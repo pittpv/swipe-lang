@@ -21,14 +21,16 @@ Key implementation details:
 
 - **Ease factor** (initial value 2.5) — a per-word "difficulty" score: the more often you forget a word, the slower its intervals grow
 - **Minimum ease = 1.3** (`MIN_EASE`) — protection against endlessly punishing a hard word
+- **`lapses`** counts a right swipe on a card that was already `known` or `mature`. A miss on a `new` or still-`learning` card does not. At 3 lapses the next review is about 10 minutes later, and the session builder may append up to 3 of those cards at the end of the daily deck. The ease and interval formula above is unchanged
 - The `isDue()` function selects only words whose review time has arrived
 - Algorithm correctness is covered by unit tests (`npm test`)
 
 ## 2. Microlearning: Fixed Short Sessions (`server/session.js`)
 
-- **18 cards per session** (`SESSION_SIZE = 18`) — about 3–5 minutes, following the principle "consistency beats volume"
-- **30% reviews / 70% new words** (`REVIEW_RATIO = 0.3`) — a balance between consolidation and forward progress
+- **18 cards per session** (`SESSION_SIZE = 18`) — about 3–5 minutes, following the principle "consistency beats volume". Up to 3 extra leech cards can follow that 18
+- **30% reviews by default** (`REVIEW_RATIO = 0.3`, 5 of 18). When 15 or more reviews are due, that session gives reviews about half the deck (`ELEVATED_REVIEW_RATIO = 0.55`, 9 of 18). The deck size stays 18
 - Reviews are picked most-overdue-first (sorted by `next_review_at`)
+- Home link **«Трудные слова»** opens up to 12 cards with the most lapses, or a short note when fewer than 4 exist. Swipes use the same path. Finishing it counts as a normal finished session for the streak and for the day
 - New words are filtered **by the user's language pair and CEFR level** (A1→C1 for Turkish and English; Spanish tops out at B2). Levels accumulate via `levelsUpTo()`.
 - When the current CEFR scope is fully marked «known» and nothing is due → empty deck → **level-up offer** (or dictionary-complete at the pair's max level); due reviews still run as review-only sessions
 - Edge cases are documented in the workflow spec: empty review queue → new words only; everything learned → celebration + level-up suggestion
@@ -36,6 +38,7 @@ Key implementation details:
 ## 2b. Progress ETA & level completion (`server/progress.js`)
 
 - **Stats screen** opens with a content-shaped skeleton while `/stats` loads, then grouped cards: a three-number summary (streak, known, sessions), CEFR progress (percent, bar, learning / unseen), and a rough **ETA** to finish marking the level as «Знаю» (shown after the first session)
+- After level progress, **«Почему слово вернулось»** lists up to 8 words. Reasons are still learning, a due review, forgot N times, and a retired association only when this user voted it down
 - ETA ≈ `remaining ÷ ~13 new cards per session × 1.3 buffer`, paced by completed sessions in the last 14 days (defaults to 1 session/day)
 - **Level-up** can be accepted from stats, session summary, or the dedicated level-up screen; it PATCHes `cefrLevel` and starts a new session
 
@@ -43,12 +46,13 @@ Key implementation details:
 
 - The swipe forces **recall before the hint**: decision first, verification second
 - **Tapping a card** reveals the translation, audio pronunciation, and usage examples (context-based learning)
-- **Turkish A1 mnemonic row** (`server/data/vocabulary/associations.json`): after the tap, under the part of speech and before pronunciation, a block titled «Чтобы запомнить». The card face stays recall-only; English and Spanish cards have no row yet. Three kinds:
+- After about 6% of «знаю» swipes (`EXERCISE_RATE = 0.06`), a short check replaces the card: type the translation, or pick the missing word in the example. «Учу» swipes do not open it. The swipe remains the SRS grade. The same session and card always get the same check
+- **A1 mnemonic row** for Turkish, English, and Spanish (`associations.json` next to each vocabulary pack): after the tap, under the part of speech and before pronunciation, a block titled «Чтобы запомнить». The card face stays recall-only. The English A1 bank is complete at 1075 rows and the Spanish A1 bank at 929, through the same pipeline as Turkish. Three kinds:
   - **keyword** — a Cyrillic phonetic, one or two Russian sound hooks, and a single concrete scene that ties the hook to the meaning (`кита́п → кит`, «Кит читает книгу»)
   - **cognate** — a familiar loanword note («похоже на телефон»), with no invented scene
   - **usage** — one short formula for a fixed phrase (`merhaba`, `lütfen`), with no fake picture
-- Rows are attached by lowercase lemma in `server/import-vocabulary.js` and returned as `association` from `formatWord`. The A1 file is curated: each keyword hook is used once, it echoes a syllable of the phonetic (not just two consonants), and the scene is specific to that pair. `npm run generate:associations` only fills lemmas that are not already in the file. Do not pass `--force`: that replaces the curated rows with the template draft.
-- Two icons on the association row record «подходит» / «не подходит». One vote per user per word (`association_ratings`). The admin dashboard lists them worst-first.
+- Rows are attached by lowercase lemma in `server/import-vocabulary.js` and returned as `association` from `formatWord`. The A1 files are curated: each keyword hook is used once, it echoes a syllable of the phonetic (not just two consonants), and the scene is specific to that pair. `npm run generate:associations` only fills Turkish lemmas that are not already in the file. Do not pass `--force`: that replaces the curated Turkish rows with the template draft. `npm run generate:associations:enes` writes the English and Spanish A1 files from the hand-written banks.
+- Two icons on the association row record «подходит» / «не подходит». One vote per user per word (`association_ratings`). A curated line is retired only after at least 25 different voters and at least 75% «не подходит». The admin dashboard lists ratings worst-first.
 - Analytics events (`tap_translation`, `tap_audio`) measure how often users need help
 
 ## 4. Habit Building: Streaks & Push Reminders
@@ -79,7 +83,7 @@ Operators open `/admin/dashboard.html` with `ADMIN_API_KEY` for live metrics, a 
 |---|---|
 | Spaced Repetition (SM-2) | `server/srs.js` — simplified version with an ease factor |
 | Active Recall | Swipe before the translation is shown |
-| Keyword method | Turkish A1 overlay: sound hook plus one image, only after the tap |
+| Keyword method | A1 overlay for Turkish, English, and Spanish: sound hook, cognate, or short formula, only after the tap |
 | Microlearning / consistency | 18-card sessions + daily streak + push reminders |
 | Gamification | Milestones, animated achievements |
 | Adaptivity (zone of proximal development) | CEFR filtering of new words by level and language pair |

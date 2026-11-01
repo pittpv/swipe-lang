@@ -67,6 +67,25 @@ test('applyRecordedSwipes records a batch once and ignores a retry', () => {
   assert.equal(data.user_word_progress.length, 2);
 });
 
+test('applyRecordedSwipes persists lapses on existing rows and starts new rows at 0', () => {
+  const data = sessionData();
+  data.user_word_progress.push({
+    id: 1, user_id: 1, word_id: 11, status: 'known', ease: 2.5, interval_days: 6, repetitions: 3, next_review_at: null,
+  });
+  applyRecordedSwipes(data, {
+    userId: 1,
+    sessionId: 7,
+    swipes: [
+      { wordId: 11, direction: 'right', swipedAt: null },
+      { wordId: 12, direction: 'right', swipedAt: null },
+    ],
+  });
+  const lapsed = data.user_word_progress.find((row) => row.word_id === 11);
+  assert.equal(lapsed.lapses, 1);
+  assert.equal(lapsed.status, 'learning');
+  assert.equal(data.user_word_progress.find((row) => row.word_id === 12).lapses, 0);
+});
+
 test('a batched session still closes the rating day once and keeps review points', () => {
   const user = { id: 1, lang_pair: 'tr-ru', rating_days: [] };
   const played = {

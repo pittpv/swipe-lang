@@ -78,6 +78,7 @@ export function applyRecordedSwipes(data, { userId, sessionId, swipes, recordedA
         interval_days: next.interval_days,
         repetitions: next.repetitions,
         next_review_at: next.next_review_at,
+        lapses: next.lapses,
         updated_at: updatedAt,
       });
     } else {
