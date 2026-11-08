@@ -6,6 +6,13 @@
 /** Share of «знаю» swipes that open a check. */
 export const EXERCISE_RATE = 0.06;
 
+/**
+ * Cards that must pass before a «знаю» word can be checked.
+ * The translation may have been opened on the card itself, so the check
+ * is never that same card.
+ */
+export const EXERCISE_LAG = 3;
+
 const RIGHT_HOLD_MS = 900;
 const WRONG_HOLD_MS = 2400;
 const CLOZE_OPTIONS = 3;
@@ -28,6 +35,21 @@ export function stableUnit(key) {
 /** Same session + card always gives the same answer, so a reload does not reshuffle. */
 export function shouldOfferExercise(sessionId, cardId, rate = EXERCISE_RATE) {
   return stableUnit(`${sessionId ?? 'none'}:${cardId}`) < rate;
+}
+
+/**
+ * Oldest «знаю» card that is far enough behind the one just swiped.
+ * `entries` are `{ card, index, used }`. Returns null when nothing qualifies.
+ */
+export function pickLaggedCard(entries, currentIndex, lag = EXERCISE_LAG) {
+  const here = Number(currentIndex);
+  let chosen = null;
+  for (const entry of entries || []) {
+    if (!entry?.card || entry.used) continue;
+    if (!Number.isInteger(entry.index) || here - entry.index < lag) continue;
+    if (!chosen || entry.index < chosen.index) chosen = entry;
+  }
+  return chosen;
 }
 
 export function normalizeAnswer(text) {

@@ -46,7 +46,7 @@ Key implementation details:
 
 - The swipe forces **recall before the hint**: decision first, verification second
 - **Tapping a card** reveals the translation, audio pronunciation, and usage examples (context-based learning)
-- After about 6% of «знаю» swipes (`EXERCISE_RATE = 0.06`), a short check replaces the card: type the translation, or pick the missing word in the example. «Учу» swipes do not open it. The swipe remains the SRS grade. The same session and card always get the same check
+- After about 6% of «знаю» swipes (`EXERCISE_RATE = 0.06`), a short check replaces the card: type the translation, or pick the missing word in the example. The word is one marked «знаю» at least three cards earlier in the same session (`EXERCISE_LAG`), never the card just swiped. «Учу» swipes do not open it. The swipe remains the SRS grade.
 - **A1 mnemonic row** for Turkish, English, and Spanish (`associations.json` next to each vocabulary pack): after the tap, under the part of speech and before pronunciation, a block titled «Чтобы запомнить». The card face stays recall-only. The English A1 bank is complete at 1075 rows and the Spanish A1 bank at 929, through the same pipeline as Turkish. Three kinds:
   - **keyword** — a Cyrillic phonetic, one or two Russian sound hooks, and a single concrete scene that ties the hook to the meaning (`кита́п → кит`, «Кит читает книгу»)
   - **cognate** — a familiar loanword note («похоже на телефон»), with no invented scene
@@ -93,7 +93,7 @@ Operators open `/admin/dashboard.html` with `ADMIN_API_KEY` for live metrics, a 
 
 ## Study circles
 
-Home → **Кружок**. A circle holds up to 8 people on the same language pair. Suggestions rank circles by Jaccard overlap of swiped words. The shared session is the intersection of members who already have cards (`server/circles.js`). Invite links use `/?circle=CODE`. Emails are not shown — only display names.
+Home → **Кружок**. A circle holds up to 8 people on the same language pair. Suggestions rank circles by Jaccard overlap of swiped words. The shared session is the intersection of members who already have cards (`server/circles.js`). The same screen shows a weekly standing: who first brought more words to a 21-day interval (`mature_at` during the current UTC week). Invite links use `/?circle=CODE`. Emails are not shown — only display names.
 
 ## First-run onboarding
 

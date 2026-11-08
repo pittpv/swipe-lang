@@ -1,6 +1,6 @@
 import { generateReferralCode } from './referral.js';
 import { normalizeLangPair, userLangPair, LANG_PAIR_META } from './lang-pairs.js';
-import { compareRank, weekSummary } from './rating.js';
+import { compareRank, utcDay, weekDates, weekSummary } from './rating.js';
 
 export const CIRCLE_MAX_MEMBERS = 8;
 export const CIRCLE_NAME_MIN = 2;
@@ -76,6 +76,35 @@ function displayName(db, userId) {
   const user = db.data.users?.find((row) => row.id === userId);
   const name = String(user?.name ?? '').trim();
   return name || 'Участник';
+}
+
+/** Words whose interval first reached 21 days during the UTC week of `now`. */
+export function matureThisWeek(db, userId, langPair, now = new Date(), pairIndex = pairByWordId(db)) {
+  const pair = normalizeLangPair(langPair);
+  const days = new Set(weekDates(utcDay(now)));
+  let count = 0;
+  for (const row of db.data.user_word_progress ?? []) {
+    if (row.user_id !== userId || row.status !== 'mature') continue;
+    if (pairIndex.get(row.word_id) !== pair) continue;
+    const day = String(row.mature_at || '').slice(0, 10);
+    if (days.has(day)) count += 1;
+  }
+  return count;
+}
+
+function challengeStandings(db, circle, viewerId, pairIndex) {
+  const rows = (circle.member_ids ?? []).map((id) => ({
+    id,
+    name: displayName(db, id),
+    count: matureThisWeek(db, id, circle.lang_pair, new Date(), pairIndex),
+    you: id === viewerId,
+  }));
+  rows.sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'ru'));
+  let place = 1;
+  return rows.map((row, index) => {
+    if (index > 0 && row.count < rows[index - 1].count) place = index + 1;
+    return { ...row, place };
+  });
 }
 
 function rankedMembers(db, circle, viewerId) {
@@ -174,6 +203,9 @@ export function circleState(db, userId) {
       sharedCount: shared.size,
       sharedPreview: wordPreview(db, shared),
       canStart: shared.size > 0,
+      challenge: {
+        standings: challengeStandings(db, circle, userId, pairIndex),
+      },
     },
     langPair: pair,
     suggestions: [],

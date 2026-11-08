@@ -47,6 +47,18 @@ function openSession(data, userId, sessionId) {
   );
 }
 
+/**
+ * First moment a word's interval reaches the mature band (21 days).
+ * A later successful review keeps the original stamp. A miss clears it,
+ * so the word can count again only when it matures once more.
+ * Rows that were already mature before the stamp existed stay unstamped.
+ */
+function nextMatureAt(existing, next, updatedAt) {
+  if (next.status !== 'mature') return null;
+  if (existing?.status === 'mature') return existing.mature_at ?? null;
+  return updatedAt;
+}
+
 function alreadyRecorded(session, wordId) {
   return (session?.rating_hits ?? []).some((hit) => wordKey(hit) === wordKey(wordId));
 }
@@ -71,6 +83,7 @@ export function applyRecordedSwipes(data, { userId, sessionId, swipes, recordedA
     );
     const next = applySwipe(existing, swipe.direction);
     const updatedAt = recordedAt.toISOString();
+    const matureAt = nextMatureAt(existing, next, updatedAt);
     if (existing) {
       Object.assign(existing, {
         status: next.status,
@@ -79,6 +92,7 @@ export function applyRecordedSwipes(data, { userId, sessionId, swipes, recordedA
         repetitions: next.repetitions,
         next_review_at: next.next_review_at,
         lapses: next.lapses,
+        mature_at: matureAt,
         updated_at: updatedAt,
       });
     } else {
@@ -87,6 +101,7 @@ export function applyRecordedSwipes(data, { userId, sessionId, swipes, recordedA
         user_id: userId,
         word_id: swipe.wordId,
         ...next,
+        mature_at: matureAt,
         updated_at: updatedAt,
       });
     }

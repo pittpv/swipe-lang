@@ -174,3 +174,45 @@ test('a batched session still closes the rating day once and keeps review points
   assert.equal(data.user_word_progress.find((row) => row.word_id === 1).held_6, true);
   assert.equal(data.user_word_progress.find((row) => row.word_id === 1).repetitions, 5);
 });
+
+test('mature_at is stamped once when the interval first reaches 21 days and clears on a miss', () => {
+  const data = sessionData();
+  data.user_word_progress.push({
+    id: 1,
+    user_id: 1,
+    word_id: 11,
+    status: 'known',
+    ease: 2.5,
+    interval_days: 15,
+    repetitions: 5,
+    next_review_at: null,
+    lapses: 0,
+  });
+  applyRecordedSwipes(data, {
+    userId: 1,
+    sessionId: 7,
+    swipes: [{ wordId: 11, direction: 'left', swipedAt: null }],
+    recordedAt: NOW,
+  });
+  const row = data.user_word_progress.find((item) => item.word_id === 11);
+  assert.equal(row.status, 'mature');
+  assert.equal(row.mature_at, NOW.toISOString());
+
+  const later = new Date(NOW.getTime() + 86_400_000);
+  applyRecordedSwipes(data, {
+    userId: 1,
+    sessionId: null,
+    swipes: [{ wordId: 11, direction: 'left', swipedAt: null }],
+    recordedAt: later,
+  });
+  assert.equal(row.mature_at, NOW.toISOString());
+
+  applyRecordedSwipes(data, {
+    userId: 1,
+    sessionId: null,
+    swipes: [{ wordId: 11, direction: 'right', swipedAt: null }],
+    recordedAt: later,
+  });
+  assert.equal(row.status, 'learning');
+  assert.equal(row.mature_at, null);
+});

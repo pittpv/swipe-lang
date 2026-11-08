@@ -16,7 +16,7 @@ import {
   normalizeLangPair,
 } from '../server/lang-pairs.js';
 import { STREAK_WARN_MS, formatStreakRiskHint, msUntilStreakWarning, streakResetRisk } from './streak-risk.js';
-import { buildExercise, exerciseHtml, shouldOfferExercise, wireExercise } from './exercise.js';
+import { buildExercise, exerciseHtml, pickLaggedCard, shouldOfferExercise, wireExercise } from './exercise.js';
 
 export { api } from './track.js';
 
@@ -671,6 +671,7 @@ export class App {
       this.sessionId = data.sessionId;
       this.cards = data.cards;
       this.cardIndex = 0;
+      this.resetDrillQueue();
       this.summary = null;
       this.awaitingNext = false;
       this.levelOffer = data.levelComplete ? data.levelProgress : null;
@@ -709,6 +710,7 @@ export class App {
       this.sessionId = data.sessionId;
       this.cards = data.cards;
       this.cardIndex = 0;
+      this.resetDrillQueue();
       this.summary = null;
       this.awaitingNext = false;
       this.levelOffer = null;
@@ -880,6 +882,7 @@ export class App {
       this.sessionId = data.sessionId;
       this.cards = data.cards;
       this.cardIndex = 0;
+      this.resetDrillQueue();
       this.summary = null;
       this.awaitingNext = false;
       this.levelOffer = null;
@@ -924,6 +927,7 @@ export class App {
         <p class="circle-note">${esc(hint)}</p>
       </section>
       ${this.renderCircleRhythm()}
+      ${this.renderCircleChallenge()}
       ${words.length ? `
       <section class="circle-card">
         <h2 class="circle-kicker">Общие слова</h2>
@@ -1040,6 +1044,26 @@ export class App {
     if (person.invited) return { label: 'Ждёт ответа', canInvite: false };
     if (!hasCircle) return { label: 'Тот же язык', canInvite: false };
     return { label: 'Тот же язык', canInvite: true };
+  }
+
+  renderCircleChallenge() {
+    const standings = this.circle?.challenge?.standings;
+    if (!standings?.length) return '';
+    return `
+      <section class="circle-card">
+        <h2 class="circle-kicker">Неделя в кружке</h2>
+        <p class="circle-lead">Кто доведёт больше слов до длинного интервала</p>
+        <ul class="circle-people circle-ranks">
+          ${standings.map((row) => `
+            <li class="${row.you ? 'is-you' : ''}">
+              <div class="circle-person">
+                <strong class="circle-person-line"><span class="rank-place">${row.place}</span><span class="circle-person-name">${esc(row.name)}</span>${row.you ? '<span class="you-tag">Это вы</span>' : ''}</strong>
+              </div>
+              <span class="rank-score">${row.count} ${this.pluralWords(row.count)}</span>
+            </li>`).join('')}
+        </ul>
+        <p class="circle-note">В зачёт идут слова, у которых на этой неделе интервал впервые дошёл до 21 дня. Если слово снова забыто, оно выпадает, пока не дойдёт ещё раз.</p>
+      </section>`;
   }
 
   renderCircleRhythm() {
@@ -1366,12 +1390,27 @@ export class App {
     return { type: value === 'typed' || value === 'cloze' ? value : null };
   }
 
-  /** Practice after «знаю»: the swipe is already queued as the SRS signal; this only delays the next card. */
+  resetDrillQueue() {
+    this._knownForDrill = [];
+    this._drillOwed = 0;
+  }
+
+  /**
+   * Practice after «знаю». The swipe is already the SRS signal.
+   * The check uses a word marked «знаю» earlier in this session, never the card
+   * whose translation may still be open.
+   */
   maybeRunExercise(card) {
+    if (!this._knownForDrill) this.resetDrillQueue();
     const forced = this.forcedExercise();
-    if (!forced && !shouldOfferExercise(this.sessionId, card.id)) return Promise.resolve();
+    if (forced || shouldOfferExercise(this.sessionId, card.id)) this._drillOwed = 1;
+    const target = pickLaggedCard(this._knownForDrill, this.cardIndex);
+    this._knownForDrill.push({ card, index: this.cardIndex, used: false });
+    if (!target || (!forced && !this._drillOwed)) return Promise.resolve();
+    if (!forced) this._drillOwed = 0;
+    target.used = true;
     return new Promise((resolve) => {
-      this.exercise = buildExercise(card, this.cards, this.sessionId, forced?.type);
+      this.exercise = buildExercise(target.card, this.cards, this.sessionId, forced?.type);
       this.exercise.resolve = resolve;
       this.setDeckButtonsDisabled(true);
       this.mountExercise(true);
@@ -2135,6 +2174,7 @@ export class App {
 
   exitSession() {
     this.endExercise();
+    this.resetDrillQueue();
     this.cards = [];
     this.cardIndex = 0;
     this.sessionId = null;

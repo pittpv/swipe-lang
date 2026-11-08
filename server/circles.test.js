@@ -11,10 +11,12 @@ import {
   joinCircle,
   joinCircleFromClient,
   leaveCircle,
+  matureThisWeek,
   progressWordIds,
   removeUserFromCircles,
   sharedWordIds,
 } from './circles.js';
+import { utcDay, weekDates } from './rating.js';
 
 function word(id, lemma, pair = 'tr-ru') {
   return { id, lemma, translation: lemma, lang_pair: pair, pos: 'noun', examples: '[]', forms: '[]' };
@@ -173,4 +175,26 @@ test('a referral can be invited and must accept before joining', () => {
   assert.deepEqual(accepted.circle.members.map((member) => member.name), ['Аня', 'Галя']);
   assert.equal(circleState(db, 1).referrals.find((person) => person.id === 4).inThisCircle, true);
   assert.equal(db.data.circle_invites.length, 0);
+});
+
+test('weekly challenge counts words that first matured this week, in this language', () => {
+  const db = mockDb();
+  createCircle(db, 1, 'Неделя');
+  joinCircle(db, 2, { circleId: 1 });
+  const thisWeek = `${weekDates(utcDay(new Date()))[0]}T08:00:00.000Z`;
+  db.data.user_word_progress.push(
+    { user_id: 1, word_id: 1, status: 'mature', mature_at: thisWeek },
+    { user_id: 1, word_id: 2, status: 'mature', mature_at: '2020-01-06T08:00:00.000Z' },
+    { user_id: 1, word_id: 4, status: 'mature', mature_at: thisWeek },
+    { user_id: 2, word_id: 3, status: 'mature', mature_at: thisWeek },
+    { user_id: 2, word_id: 2, status: 'learning', mature_at: thisWeek },
+  );
+  assert.equal(matureThisWeek(db, 1, 'tr-ru'), 1);
+  const standings = circleState(db, 1).circle.challenge.standings;
+  assert.deepEqual(standings.map((row) => [row.name, row.count, row.place]), [
+    ['Аня', 1, 1],
+    ['Борис', 1, 1],
+  ]);
+  assert.equal(circleState(db, 1).circle.members.length, 2);
+  assert.equal(circleState(db, 1).circle.sharedCount, 1);
 });

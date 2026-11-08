@@ -5,6 +5,8 @@ import {
   buildExercise,
   findCloze,
   gradeTyped,
+  EXERCISE_LAG,
+  pickLaggedCard,
   shouldOfferExercise,
   stableUnit,
 } from './exercise.js';
@@ -21,6 +23,21 @@ test('gate is deterministic per session and card', () => {
   for (let id = 0; id < 50; id++) {
     assert.equal(shouldOfferExercise(9, id), shouldOfferExercise(9, id));
   }
+});
+
+test('the check is an earlier «знаю» card, never the one just swiped', () => {
+  assert.equal(EXERCISE_LAG >= 2, true);
+  const entries = [
+    { card: { id: 1 }, index: 0, used: false },
+    { card: { id: 2 }, index: 1, used: false },
+    { card: { id: 3 }, index: 2, used: false },
+  ];
+  assert.equal(pickLaggedCard(entries, 2), null);
+  assert.equal(pickLaggedCard(entries, 3).card.id, 1);
+  entries[0].used = true;
+  assert.equal(pickLaggedCard(entries, 4).card.id, 2);
+  assert.equal(pickLaggedCard([], 10), null);
+  assert.equal(pickLaggedCard([{ card: { id: 9 }, index: 9, used: false }], 9), null);
 });
 
 test('gate fires on roughly EXERCISE_RATE of cards', () => {
